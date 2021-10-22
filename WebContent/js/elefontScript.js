@@ -174,10 +174,6 @@ $(window).on('load', function() {
 		
 	});
 
-
-
-
-		
 });
 
 

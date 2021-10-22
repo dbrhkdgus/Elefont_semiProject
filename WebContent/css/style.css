@@ -1788,84 +1788,8 @@ p { padding: 5px 0; }
 
 
 ​
-/* 
-* 커뮤니티 좋아요 리스트 혜진  
-*/
 
 
-.commlist-tools{
-  display: flex;
-  align-items: center;
-	
-}
-.comm-like-list{
-  display: flex;
-}
-
-.comm-finder{
-  display: flex;
-}
-
-.like-comm{
-  width: 270px;
-  height: 390px;
-  text-align: center;
-  margin: 10px;
-  border: 2px solid black;
-}
-.like-comm a{
-  margin: 0 auto;
-  display: flex;
-  height: 45px;
-  padding-top: 10px;
-}
-.like-comm a *{
-  margin-left: 10px;
-}
-.like-comm-buttons{
-  margin: 5px 0;
-}
-.like-comm-content{
-  overflow: hidden;
-  height: 45px;
-}
-
-.comm-img{
-  width: 270px;
-  height: 270px;
-  border: 1px solid #000;
-}
-
-
-/* 
-* 폰트 좋아요 리스트
-*/
-.like-list, .likelist-tools{
-  align-items: center;
-  display: flex;
-}
-
-.like-item-buttons{
-  text-align: center;
-}
-.like-item-buttons i{
-  margin: 10px;
-  
-}
-.like-item{
-  margin: 10px;
-  border: 2px solid black;
-  width: 270px;
-  height: 390px;
-}
-.like-item-title{
-	padding: 20px;
-}
-
-.like-item textarea{
-	resize : none;
-}
-/* 폰트 좋아요 리스트 끝 */
 
 
 /* Shop Css  */
@@ -1878,7 +1802,6 @@ p { padding: 5px 0; }
 
 }
 .tools{
-  background-color: greenyellow;
   margin: 10px;
 }
 
@@ -1943,6 +1866,94 @@ p { padding: 5px 0; }
 }
 /* shop landing 페이지 끝 */
 
+/* 
+* 폰트 좋아요 리스트
+*/
+.likelist-tools{
+    display: flex;
+    height: 80px;
+    justify-content: flex-start;
+    margin: 0 auto;
+    align-items: center;
+    padding-left: 20px;
+}
+
+.like-list{
+  display: flex;
+}
+
+.like-item-buttons{
+  text-align: center;
+}
+.like-item-buttons i{
+  margin: 10px;
+  
+}
+.like-item{
+  margin: 10px;
+  border: 2px solid black;
+  width: 270px;
+  height: 390px;
+}
+.like-item-title{
+	padding: 20px;
+}
+
+.like-item textarea{
+	resize : none;
+}
+/* 폰트 좋아요 리스트 끝 */
+
+
+/* 
+* 커뮤니티 좋아요 리스트 혜진  
+*/
+
+.commlist-tools{
+    display: flex;
+    height: 80px;
+    justify-content: flex-start;
+    margin: 0 auto;
+    align-items: center;
+    padding-left: 20px;
+}
+.comm-like-list{
+  display: flex;
+}
+
+.comm-finder{
+  display: flex;
+}
+
+.like-comm{
+  width: 270px;
+  height: 390px;
+  text-align: center;
+  margin: 10px;
+  border: 2px solid black;
+}
+.like-comm a{
+  margin: 0 auto;
+  display: flex;
+  height: 45px;
+  padding-top: 10px;
+}
+.like-comm a *{
+  margin-left: 10px;
+}
+.like-comm-buttons{
+  margin: 5px 0;
+}
+.like-comm-content{
+  overflow: hidden;
+  height: 45px;
+}
+
+.comm-img{
+  width: 270px;
+  height: 270px;
+  border: 1px solid #000;
+}
 
 /*
  * 메뉴 로그인 nav창
@@ -2118,3 +2129,69 @@ p { padding: 5px 0; }
 .memberEnroll>form>input:first-of-type{
 	margin-right : 40px;
 }
+
+/* 멤버 디테일 시작*/
+#member-mypage{
+  position: relative;
+}
+.coupon-enroll{
+  width: 700px;
+  height: 450px;
+  background-color: #ECF2F0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  padding-top: 30px;
+  display: none;
+}
+.coupon-no{
+  width: 100px;
+  border: none;
+}
+.coupon-enroll>form>*{
+  margin: 21px 0;
+}
+.member-container{
+  display: flex;
+  flex-direction: row;
+  justify-content:center;
+}
+.member-profile{
+  width: 300px;
+  height: 450px;
+  border: 2px solid #000;
+  border-radius: 10px;
+  text-align: center;
+  margin-top: 20px;
+  padding-top: 10%;
+  margin-right: 30px;
+}
+.member-detail{
+  display: flex;
+  justify-content: space-evenly;
+}
+.member-log{
+  width: 900px;
+}
+.member-point{
+  border: 2px solid #000;
+  border-radius: 10px;
+  padding: 10px 0;
+  text-align: center;
+}
+
+.member-comm, .member-font-like{
+  margin-top: 20px;
+}
+.member-list{
+  display: flex;
+  justify-content: space-evenly;
+}
+.member-list *{
+  width: 160px;
+  height: 160px;
+  border: 1px solid #000;
+}
+/* 멤버 디테일 끝*/
