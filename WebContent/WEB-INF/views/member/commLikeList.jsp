@@ -1,11 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@include file = "/WEB-INF/views/common/LandingHeader.jsp" %>
-<script>
-	$("#member-font").click((e)=>{
-		location.href = "<%=request.getContextPath()%>/member/commLikeList"
-	});
-</script>
     
      <!-- Portfolio Start -->
     <section id="comm-likelist" class="comm-likelist section-space-padding">
@@ -199,6 +194,11 @@
     </section>
 
     <!-- Portfolio End -->
-
+<script>
+$("#member-font").click((e)=>{
+	console.log("클릭");
+	location.href = "<%=request.getContextPath()%>/member/fontLikeList"
+});
+</script>
 
 <%@ include file = "/WEB-INF/views/common/footer.jsp" %>

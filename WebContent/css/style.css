@@ -234,7 +234,9 @@ fieldset {
 	border: 3px solid #000000 !important;
 	color: #000000;
 }
-
+.nav li a{
+	display: flex;
+}
 
 
 /* Preloader */
@@ -451,181 +453,7 @@ body.loaded #preloader{
     -webkit-transition: all 0.3s ease-out;
     transition: all 0.3s ease-out;
 }
-.nav li a{
-	display: flex;
-}
 
-.loginBox {
-	float: right;
-	width: 240px;
-	height: 133px;
-	background-color: #fff;
-	border-radius: 10px;
-	display: none;
-	text-align: center;
-	margin: 10px;
-}
-
-.loginDesign {
-	margin: 5px;
-}
-
-#memberLoginBtn {
-  display: inline-block;
-  position: relative;
-  background-color: #24b662;
-  border-radius: 99px;
-  padding: 0.3rem 3.0rem;
-  color: white;
-  text-decoration: none;
-  font-size: 1.15rem;
-  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-}
-
-#memberEnrollBtn {
-  display: inline-block;
-  position: relative;
-  background-color: #24b662;
-  border-radius: 99px;
-  padding: 0.3rem 2.4rem;
-  color: white;
-  text-decoration: none;
-  font-size: 1.15rem;
-  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-}
-
-#loginId {
-	margin-top: 10px;
-}
-
-#profile::after{
-	content: "▼";
-	font-size: 2px;
-	margin: 0 3px;
-	color: #fff;
-	
-}
-#profile-img{
-	width: 20px;
-	height: 20px;
-	margin-right: 7px;
-}
-
-#profile-loginMember-name{
-	width: 105px;
-}
-.member-menu{
-	float: right;
-	width: 164px;
-	background-color: #fff;
-	list-style: none;
-	border-radius: 10px;
-	display: none;
-}
-
-.member-menu>li{
-	border-radius: 10px;
-	padding: 10px 10px;
-}
-.member-menu>li:hover{
-	background-color: #5b5b5b;
-	opacity: 30;
-}
-.member-menu>li:hover a{
-	color: #fff;
-}
-.member-menu>li>a{
-	color: #000;
-}
-.member-menu>li>a>img{
-	width: 20px;
-	height: 20px;
-	margin: 0 6px;
-}
-
-.nav li a:focus,
-.nav li a:hover {
-    background: none;
-    color: #fff;
-    -webkit-transition: all 0.3s ease-out;
-    transition: all 0.3s ease-out;
-}
-
-.navbar {
-    margin: 0;
-}
-
-.navigation-background {
-    -webkit-transition: all 0.3s ease-out;
-    transition: all 0.3s ease-out;
-    background: #000;
-}
-
-.navigation-background .logo {
-    padding-top: 18px;
-    -webkit-transition: all 0.3s ease-out;
-    transition: all 0.3s ease-out;
-}
-
-.navigation-background .navigation-menu .navbar-nav li a {
-    color: #fff;
-    padding: 20px 15px;
-    -webkit-transition: .3s;
-    transition: .3s;
-}
-
-.navigation-background .navigation-menu .navbar-nav li a:hover {
-    color: #fff;
-}
-
-/* 회원가입 폼 */
-.memberEnroll{
-	width: 550px;
-	position: fixed;
-	text-align : center;
-	z-index: 999;
-	background-color: #fff;
-	margin: 0 auto;
-	vertical-align : middle;
-	left : 0;
-	right : 0;
-	top: 20%;
-	display : none;
-}
-
-.memberEnroll>form{
-	padding-bottom: 10px;
-	border: 2px solid gray;
-}
-.enrollTbl{
-	margin : 0 auto;	
-}
-.enrollTbl tr:first-of-type td{
-	
-	text-align : right;
-}
-.enrollTbl tr *{
-	padding: 5px;
-	text-align : left;
-}
-#enrollXBtn{
-	height : 30px;
-	width : 30px;
-}
-.memberEnroll>form>input{
-	display: inline-block;
-	position: relative;
-	background-color: #24b662;
-	border-radius: 99px;
-	padding: 0.3rem 2.4rem;
-	color: white;
-	text-decoration: none;
-	font-size: 1.5rem;
-	box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
-}
-.memberEnroll>form>input:first-of-type{
-	margin-right : 40px;
-}
 
 /* Portfolio */
 
@@ -1961,89 +1789,332 @@ p { padding: 5px 0; }
 
 ​
 /* 
- * 커뮤니티 좋아요 리스트 혜진  
- */
+* 커뮤니티 좋아요 리스트 혜진  
+*/
 
 
- .commlist-tools{
-    display: flex;
-    height: 80px;
-    justify-content: flex-start;
-    margin: 0 auto;
-    align-items: center;
-    padding-left: 20px;
+.commlist-tools{
+  display: flex;
+  align-items: center;
+	
 }
-
-
 .comm-like-list{
-    display: flex;
+  display: flex;
 }
+
+.comm-finder{
+  display: flex;
+}
+
 .like-comm{
-    width: 270px;
-    height: 390px;
-    text-align: center;
-    margin: 10px;
-    border: 2px solid black;
+  width: 270px;
+  height: 390px;
+  text-align: center;
+  margin: 10px;
+  border: 2px solid black;
 }
 .like-comm a{
-    margin: 0 auto;
-    display: flex;
-    height: 45px;
-    padding-top: 10px;
+  margin: 0 auto;
+  display: flex;
+  height: 45px;
+  padding-top: 10px;
 }
 .like-comm a *{
-    margin-left: 10px;
+  margin-left: 10px;
 }
 .like-comm-buttons{
-    margin: 5px 0;
+  margin: 5px 0;
 }
 .like-comm-content{
-    overflow: hidden;
-    height: 45px;
+  overflow: hidden;
+  height: 45px;
 }
 
 .comm-img{
-    width: 270px;
-    height: 270px;
-    border: 1px solid #000;
+  width: 270px;
+  height: 270px;
+  border: 1px solid #000;
 }
+
+
+/* 
+* 폰트 좋아요 리스트
+*/
+.like-list, .likelist-tools{
+  align-items: center;
+  display: flex;
+}
+
+.like-item-buttons{
+  text-align: center;
+}
+.like-item-buttons i{
+  margin: 10px;
+  
+}
+.like-item{
+  margin: 10px;
+  border: 2px solid black;
+  width: 270px;
+  height: 390px;
+}
+.like-item-title{
+	padding: 20px;
+}
+
+.like-item textarea{
+	resize : none;
+}
+/* 폰트 좋아요 리스트 끝 */
+
+
 /* Shop Css  */
 /* shop에서 한개의 아이템 div */
+.search-tools{
+  display: flex;
+  border: 2px solid blue;
+  height: 45px;
+  justify-content: space-around;
+
+}
+.tools{
+  background-color: greenyellow;
+  margin: 10px;
+}
+
+.font-name-finder, .font-color-previewer, .font-size-range{
+  display: flex;
+  align-items: center;
+}
+
+#color-title{
+  margin: 0 10px;
+}
+
+#style-button{
+  padding: 0 15px;
+
+}
+
+.font-style-category{
+  display: flex;
+  flex-direction: column;
+}
+.font-style-chkbox{
+  border: 1px solid #000;
+  background-color: #fff;
+  border-radius: 10px;
+  opacity: 1;
+  width: 100px;
+  z-index: 999;
+  padding: 10px;
+  display: none;
+}
 .item {
+  -webkit-transition: .3s;
+  transition: .3s;
+}
+.test-item-title{
+  height: 60px;
+  border-bottom: 2px solid black;
+  justify-content: space-around;
+  padding-left: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.test-shop{
+  display: flex;
+  justify-content: center;
+}
+.test-item{
+  margin: 10px;
+  border: 2px solid black;
+}
+.test-item textarea{
+  resize: none;
+}
+.test-item-buttons{
+  text-align: center;
+}
+.test-item-buttons i{
+  margin: 10px;
+  
+}
+/* shop landing 페이지 끝 */
+
+
+/*
+ * 메뉴 로그인 nav창
+ */
+.loginBox {
+	float: right;
+	width: 240px;
+	height: 133px;
+	background-color: #fff;
+	border-radius: 10px;
+	display: none;
+	text-align: center;
+	margin: 10px;
+}
+
+.loginDesign {
+	margin: 5px;
+}
+
+#memberLoginBtn {
+  display: inline-block;
+  position: relative;
+  background-color: #24b662;
+  border-radius: 99px;
+  padding: 0.3rem 3.0rem;
+  color: white;
+  text-decoration: none;
+  font-size: 1.15rem;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+#memberEnrollBtn {
+  display: inline-block;
+  position: relative;
+  background-color: #24b662;
+  border-radius: 99px;
+  padding: 0.3rem 2.4rem;
+  color: white;
+  text-decoration: none;
+  font-size: 1.15rem;
+  box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+
+#loginId {
+	margin-top: 10px;
+}
+
+#profile::after{
+	content: "▼";
+	font-size: 2px;
+	margin: 0 3px;
+	color: #fff;
+	
+}
+#profile-img{
+	width: 20px;
+	height: 20px;
+	margin-right: 7px;
+}
+
+#profile-loginMember-name{
+	width: 105px;
+}
+.member-menu{
+	float: right;
+	width: 164px;
+	background-color: #fff;
+	list-style: none;
+	border-radius: 10px;
+	display: none;
+}
+
+.member-menu>li{
+	border-radius: 10px;
+	padding: 10px 10px;
+}
+.member-menu>li:hover{
+	background-color: #5b5b5b;
+	opacity: 30;
+}
+.member-menu>li:hover a{
+	color: #fff;
+}
+.member-menu>li>a{
+	color: #000;
+}
+.member-menu>li>a>img{
+	width: 20px;
+	height: 20px;
+	margin: 0 6px;
+}
+
+.nav li a:focus,
+.nav li a:hover {
+    background: none;
+    color: #fff;
+    -webkit-transition: all 0.3s ease-out;
+    transition: all 0.3s ease-out;
+}
+
+.navbar {
+    margin: 0;
+}
+
+.navigation-background {
+    -webkit-transition: all 0.3s ease-out;
+    transition: all 0.3s ease-out;
+    background: #000;
+}
+
+.navigation-background .logo {
+    padding-top: 18px;
+    -webkit-transition: all 0.3s ease-out;
+    transition: all 0.3s ease-out;
+}
+
+.navigation-background .navigation-menu .navbar-nav li a {
+    color: #fff;
+    padding: 20px 15px;
     -webkit-transition: .3s;
     transition: .3s;
 }
-.test-item-title{
-    height: 60px;
-    border-bottom: 2px solid black;
-    justify-content: space-around;
-    padding-left: 10px;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-}
-.test-shop-box{
 
+.navigation-background .navigation-menu .navbar-nav li a:hover {
+    color: #fff;
 }
-.test-shop{
-    display: flex;
+
+/* 회원가입 폼 */
+.memberEnroll{
+	width: 550px;
+	position: fixed;
+	text-align : center;
+	z-index: 999;
+	background-color: #fff;
+	margin: 0 auto;
+	vertical-align : middle;
+	left : 0;
+	right : 0;
+	top: 20%;
+	display : none;
 }
-.test-item{
-    margin: 10px;
-    border: 2px solid black;
+
+.memberEnroll>form{
+	padding-bottom: 10px;
+	border: 2px solid gray;
 }
-.test-item-buttons i{
-    margin: 10px;
+.enrollTbl{
+	margin : 0 auto;	
 }
-.search-tools{
-    display: flex;
-    border: 2px solid blue;
-    height: 100px;
-    justify-content: space-around;
+.enrollTbl tr:first-of-type td{
+	
+	text-align : right;
 }
-.tools{
-    background-color: greenyellow;
-    height: 60px;
-    margin: 10px;
-    width: 15%;
+.enrollTbl tr *{
+	padding: 5px;
+	text-align : left;
+}
+#enrollXBtn{
+	height : 30px;
+	width : 30px;
+}
+.memberEnroll>form>input{
+	display: inline-block;
+	position: relative;
+	background-color: #24b662;
+	border-radius: 99px;
+	padding: 0.3rem 2.4rem;
+	color: white;
+	text-decoration: none;
+	font-size: 1.5rem;
+	box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+}
+.memberEnroll>form>input:first-of-type{
+	margin-right : 40px;
 }
