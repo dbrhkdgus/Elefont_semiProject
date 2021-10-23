@@ -2134,6 +2134,7 @@ p { padding: 5px 0; }
 #member-mypage{
   position: relative;
 }
+/* 일반 회원  */
 .coupon-enroll{
   width: 700px;
   height: 450px;
@@ -2153,27 +2154,6 @@ p { padding: 5px 0; }
 }
 .coupon-enroll>form>*{
   margin: 21px 0;
-}
-.font-wrapper{
-	display:flex;
-}
-.font-enroll{
-  width: 700px;
-  height: 400px;
-  background-color: #ECF2F0;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  text-align: center;
-  padding-top: 65px;
-  padding-left: 40px;
-  display: none;
-  z-index: 999;
-}
-.font-enroll>form>*{
-  margin: 21px 0;
-  text-align: left;
 }
 .member-container{
   display: flex;
@@ -2216,6 +2196,29 @@ p { padding: 5px 0; }
   height: 160px;
   border: 1px solid #000;
 }
+/* 판매 회원  */
+.font-wrapper{
+	display:flex;
+}
+.font-enroll{
+  width: 700px;
+  height: 400px;
+  background-color: #ECF2F0;
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  text-align: center;
+  padding-top: 65px;
+  padding-left: 40px;
+  display: none;
+  z-index: 999;
+}
+.font-enroll>form>*{
+  margin: 21px 0;
+  text-align: left;
+}
+
 
 .font-audit{
 	text-align: center;
@@ -2280,5 +2283,39 @@ p { padding: 5px 0; }
 	margin-top:-3px;
 	background-color: #404040;
 	transform: rotate(45deg);
+}
+/* 관리자 회원 */
+.admin-container{
+	margin-top: 20px;
+	width: 900px;
+	height: 400px;
+	border: 2px solid #000;
+	border-radius: 10px;
+}
+.admin-tab-bar ul{
+	display: flex;
+	flex-direction: row;
+	overflow: hidden;
+	background-color: #A0BFB5;
+}
+.admin-tab-bar ul li{
+	list-style: none;
+	width: 150px; 
+	text-align: center;
+}
+.admin-tab-bar li a {
+  display: block; color: #fff; 
+  padding: 15px 20px; 
+  font-weight: bold;
+}
+.admin-tab-bar li.active a {
+  border-bottom: 3px solid #000;
+  color: #000;
+}
+#tab-content{
+  width: 100%; 
+  background: #fff; padding: 20px; 
+  box-sizing: border-box;
+  border-radius: 0 0 4px 4px;
 }
 /* 멤버 디테일 끝*/

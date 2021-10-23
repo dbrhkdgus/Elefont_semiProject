@@ -183,24 +183,81 @@
 <%
 }else{
 %>
+		<div class="admin-container">
 			<div class="admin-tab-bar">
-			<ul>
-				<li><a href="">회원 관리</a></li>
-				<li><a href="">게시판 관리</a></li>
-				<li><a href="">주문 관리</a></li>
-				<li><a href="">쿠폰 관리</a></li>
-			</ul>
+				<ul>
+					<li class="active"><a href="#">회원 관리</a></li>
+					<li><a href="#">게시판 관리</a></li>
+					<li><a href="#">주문 관리</a></li>
+					<li><a href="#">쿠폰 관리</a></li>
+				</ul>
 			</div>
 			<div id="tab-content">
 				<div>
+					<div class="memberLookup">
+						<table>
+							<tr>
+								<th>회원 구분</th>
+								<th>회원 아이디</th>
+								<th>회원 이름</th>
+								<th>회원 이메일</th>
+								<th>회원 포인트</th>
+								<th>회원 연락처</th>
+								<th>회원 탈퇴 여부</th>
+							</tr>
+						</table>
+					</div>
 				</div>
 				<div>
+					<table>
+						<tr>
+							<th>폰트 카테고리 관리</th>
+							<th>커뮤니티 관리</th>
+						</tr>
+					</table>
 				</div>
 				<div>
+					<table>
+						<tr>
+							<th>최신 주문 리스트</th>
+						</tr>
+					</table>
+					<span>상세보기</span>
 				</div>
 				<div>
+					<h3>사용자 쿠폰 관리</h3>
+					<table>
+						<tr>
+							<th>쿠폰 조회</th>
+							<th>쿠폰 발행</th>
+							<th>쿠폰 충전</th>
+						</tr>
+						<tr>
+							<td><input type="text" placeholder="유저아이디로 검색" /></td>
+							<td><button>신규 쿠폰 발행</button></td>
+							<td><input type="text" placeholder="유저아이디로 검색" /></td>
+						</tr>
+					</table>
 				</div>
 			</div>
+		</div>
+<script>
+/* 관리자 사용 메뉴 탭 클릭 시 다른 탭 보이도록 하는 효과 */
+	let $tabBtn = $(".admin-tab-bar>ul>li");  
+	let $tabContent = $("#tab-content>div"); 
+	
+
+	$tabContent.hide().eq(0).show();
+	
+	$tabBtn.click((e)=>{
+	  const $target = $(e.target).parent();    
+	  const index = $target.index(); 
+	  $tabBtn.removeClass("active");
+	  $target.addClass("active");   
+	  $tabContent.css("display","none");
+	  $tabContent.eq(index).css("display","block");
+	});
+</script>
 <%
 }
 %>
