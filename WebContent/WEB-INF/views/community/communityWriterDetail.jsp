@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
+<%@include file = "/WEB-INF/views/common/LandingHeader.jsp" %>
     
     <!-- community writer detail 시작 -->
 
@@ -37,19 +38,19 @@
                 <div class="comm-writer-font-history">
                     <p>폰트 좋아요 이력</p>
                     <div class="comm-writer-font-history-content">
-                        <div class="like-item">
+                        <div class="like-item-comm">
                             <a href=""><div class="like-item-title"> 광현체 </div></a>
                             <textarea name="" id="" cols="30" rows="10"></textarea> 
                         </div>
-                        <div class="like-item">
+                        <div class="like-item-comm">
                             <a href=""><div class="like-item-title"> 광현체 </div></a>
                             <textarea name="" id="" cols="30" rows="10"></textarea> 
                         </div> 
-                        <div class="like-item">
+                        <div class="like-item-comm">
                             <a href=""><div class="like-item-title"> 광현체 </div></a>
                             <textarea name="" id="" cols="30" rows="10"></textarea> 
                         </div> 
-                        <div class="like-item">
+                        <div class="like-item-comm">
                             <a href=""><div class="like-item-title"> 광현체 </div></a>
                             <textarea name="" id="" cols="30" rows="10"></textarea> 
                         </div> 
@@ -61,6 +62,6 @@
             
     </div>
 </section>
-
+<%@ include file = "/WEB-INF/views/common/footer.jsp" %>
 
 <!-- community user detail 끝 -->
