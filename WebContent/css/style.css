@@ -2195,3 +2195,44 @@ p { padding: 5px 0; }
   border: 1px solid #000;
 }
 /* 멤버 디테일 끝*/
+
+/* community writer detail  */
+#writer-detail{
+    margin-left: 10%;
+}
+.comm-writer-detail{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+.comm-writer-info{
+    text-align: center;
+}
+.writer-profile-img{
+    width: 270px;
+    height: 270px;
+}
+.comm-writer-history{
+    margin-left: 150px;
+}
+.comm-writer-comm-history{
+   
+    text-align: left;
+    margin-bottom: 50px;
+}
+.comm-writer-font-history{
+    text-align: left;
+}
+.comm-writer-font-history-content{
+    display: flex;
+}
+.comm-writer-comm-history-content{
+    display: flex;
+    justify-content: space-around;
+    margin-bottom: 30px;
+}
+.comm-writer-comm-history-content img{
+    width: 150px;
+}
+
+/* community writer detail 끝 */
