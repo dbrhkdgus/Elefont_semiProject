@@ -82,7 +82,7 @@
         
     
         </section>
-    
+    	<!-- 에러수정확인 -->
         <!-- Portfolio End -->
 
 <%@ include file = "/WEB-INF/views/common/footer.jsp" %>
