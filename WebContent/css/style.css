@@ -2318,4 +2318,7 @@ p { padding: 5px 0; }
   box-sizing: border-box;
   border-radius: 0 0 4px 4px;
 }
+.admin-tbl tr th{
+	padding: 0 15px;
+}
 /* 멤버 디테일 끝*/

@@ -195,7 +195,7 @@
 			<div id="tab-content">
 				<div>
 					<div class="memberLookup">
-						<table>
+						<table class="admin-tbl">
 							<tr>
 								<th>회원 구분</th>
 								<th>회원 아이디</th>
@@ -209,7 +209,7 @@
 					</div>
 				</div>
 				<div>
-					<table>
+					<table class="admin-tbl">
 						<tr>
 							<th>폰트 카테고리 관리</th>
 							<th>커뮤니티 관리</th>
@@ -217,7 +217,7 @@
 					</table>
 				</div>
 				<div>
-					<table>
+					<table class="admin-tbl">
 						<tr>
 							<th>최신 주문 리스트</th>
 						</tr>
@@ -226,7 +226,7 @@
 				</div>
 				<div>
 					<h3>사용자 쿠폰 관리</h3>
-					<table>
+					<table class="admin-tbl">
 						<tr>
 							<th>쿠폰 조회</th>
 							<th>쿠폰 발행</th>
