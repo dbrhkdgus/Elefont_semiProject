@@ -1,12 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@include file = "/WEB-INF/views/common/LandingHeader.jsp" %>
-<script>
-	$("#member-comm").click((e)=>{
-		location.href = "<%=request.getContextPath()%>/member/commLikeList"
-	});
-</script>
-    
+
      <!-- Portfolio Start -->
         <section id="font-likelist" class="font-likelist section-space-padding">
             <div class="container">
@@ -151,6 +146,17 @@
         </section>
     
         <!-- Portfolio End -->
+<script>
+	$("#member-comm").click((e)=>{
+		console.log("클릭");
+		location.href = "<%=request.getContextPath()%>/member/commLikeList"
+	});
 
+	/* 폰트 사이즈 조절 바 px크기 입력*/
+	$("#range-result").html($(range).val()+"px");
+	$(range).change((e)=>{
+		$("#range-result").html($(range).val()+"px");
+	});
+</script>
 
 <%@ include file = "/WEB-INF/views/common/footer.jsp" %>

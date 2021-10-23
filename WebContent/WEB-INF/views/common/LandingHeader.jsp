@@ -176,7 +176,7 @@ if(loginMember != null){
                     			
                                 <ul class="member-menu">
                                 	<li><a href="<%=request.getContextPath() %>/member/memberDetail"><img src="<%=request.getContextPath() %>/images/home.png" alt="" />마이페이지</a></li>
-                                    <li><a href="<%=request.getContextPath() %>/member/memberLikeList"><img src="<%=request.getContextPath() %>/images/like.png" alt="" />좋아요 리스트</a></li>
+                                    <li><a href="<%=request.getContextPath() %>/member/fontLikeList"><img src="<%=request.getContextPath() %>/images/like.png" alt="" />좋아요 리스트</a></li>
                                     <li><a href="<%=request.getContextPath() %>/member/memberCart"><img src="<%=request.getContextPath() %>/images/shopping-cart.png" alt="" />장바구니</a></li>
                                     <li><a href="<%=request.getContextPath() %>/member/memberLogout"><img src="<%=request.getContextPath() %>/images/logout.png" alt="" />로그아웃</a></li>
                                 </ul>
