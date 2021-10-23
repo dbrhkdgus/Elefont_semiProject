@@ -173,8 +173,7 @@ $(window).on('load', function() {
 		});
 		
 	});
-	
-		
+
 });
 
 

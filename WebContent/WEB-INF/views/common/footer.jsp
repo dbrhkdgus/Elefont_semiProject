@@ -6,16 +6,16 @@
             <div class="row">
 
                 <div class="col-md-4 text-left">
-                    <p><span><a href="<%=request.getContextPath() %>/about" class="smoth-scroll">About Me</a></span> | <span><a href="<%=request.getContextPath() %>/shop"
+                    <p><span><a href="<%=request.getContextPath() %>/about" class="smoth-scroll">About Us</a></span> | <span><a href="<%=request.getContextPath() %>/shop"
                                 class="smoth-scroll">Shop</a></span></p>
                 </div>
 
                 <div class="col-md-4 text-center">
-                    <p>© Copyright 2021 팀명.</p>
+                    <p>© Copyright 2021 Produce404</p>
                 </div>
 
                 <div class="col-md-4 uipasta-credit text-right">
-                    <p>Designed By <span class="footer-teamName">팀명</span></p>
+                    <p>Designed By <span class="footer-teamName">Produce404</span></p>
                 </div>
 
             </div>
