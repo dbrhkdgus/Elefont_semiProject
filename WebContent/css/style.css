@@ -2222,9 +2222,17 @@ p { padding: 5px 0; }
 }
 .comm-writer-font-history{
     text-align: left;
+    height : 300px;
 }
 .comm-writer-font-history-content{
     display: flex;
+}
+.like-item-comm{
+	height : 210px;
+	margin-right: 10px;
+}
+.like-item-comm{
+	zoom : 0.8;
 }
 .comm-writer-comm-history-content{
     display: flex;
@@ -2234,5 +2242,6 @@ p { padding: 5px 0; }
 .comm-writer-comm-history-content img{
     width: 150px;
 }
+
 
 /* community writer detail 끝 */
