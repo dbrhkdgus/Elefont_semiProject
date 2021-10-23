@@ -2372,3 +2372,72 @@ p { padding: 5px 0; }
 
 
 /* community writer detail 끝 */
+
+/*윤희 어바웃디테일 aboutDetail*/
+
+  .aboutdetail.outer{
+   
+    display: flex;
+    justify-content: space-between;
+
+  }
+
+
+.aboutdetail.content{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width:  600px;
+}
+
+
+.aboutdetail.rightouter{
+    display: flex;
+    flex-wrap: wrap;
+    width: 200px;
+}
+
+
+.aboutdetail.rightinner{
+    /* border: 1px solid #000; */
+    width: 80px;
+    height: 80px;
+    margin: 20px 20px 20px 0px;
+    text-align: center;
+}
+
+
+.aboutdetail.rightinner >button{
+    position: relative;
+    font-size: .7rem;
+    padding: 0px;
+    height: 20px;
+    top: 5px;
+    line-height: 18px;
+    
+}
+
+.aboutdetail.leftbox{
+    width: 250px;
+    display: flex;
+    /* border: 1px solid #000; */
+    flex-direction: column;
+    justify-content: center;
+}
+
+
+.aboutdetail.leftbox>img{
+    width: 250px;
+    height: 250px;
+    border: 1px solid #000;
+}
+
+
+.aboutdetail.leftbox>button{
+    position: relative;
+    top: 20px;
+
+}
+
+/*  어바웃디테일 끝*/
+
