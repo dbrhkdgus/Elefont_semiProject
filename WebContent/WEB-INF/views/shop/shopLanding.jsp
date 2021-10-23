@@ -2,7 +2,6 @@
     pageEncoding="UTF-8"%>
 <%@include file = "/WEB-INF/views/common/LandingHeader.jsp" %>
 
-<<<<<<< HEAD
 	<!-- Portfolio Start -->
     <section id="portfolio" class="portfolio section-space-padding">
         <div class="container">
@@ -167,6 +166,17 @@
             </div>
 
     </section>
-
+<script>
+	/* 샵 랜딩 스타일 체크박스 드롭다운 메뉴 */
+	$("#style-button").click((e)=>{
+		console.log("스타일 버튼 클릭");
+	    $(".font-style-chkbox").toggle();
+	});
+	/* 폰트 사이즈 조절 바 px크기 입력*/
+	$("#range-result").html($(range).val()+"px");
+	$(range).change((e)=>{
+		$("#range-result").html($(range).val()+"px");
+    });
+</script>
 
 <%@ include file = "/WEB-INF/views/common/footer.jsp" %>

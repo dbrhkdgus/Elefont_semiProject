@@ -2,8 +2,30 @@
     pageEncoding="UTF-8"%>
 <%@include file = "/WEB-INF/views/common/LandingHeader.jsp" %>
 
-  <!-- Portfolio Start -->
-    <section id="member-mypage" class="member-mypage section-space-padding">
+     <!-- Portfolio Start -->
+<%
+	String memberRole = loginMember.getMemberRole();
+	if("U".equals(memberRole)){
+%>
+     <section id="member-mypage" class="member-mypage section-space-padding">
+        <div class="coupon-enroll">
+            <form action="" method="POST" name="couponEnrollFrm">
+                <h5>쿠폰 등록</h5>
+                <h2>쿠폰 등록 번호</h2>
+                <input type="text" class="coupon-no" name="coupon-no1" id="coupon-no1">
+                <span>-</span>
+                <input type="text" class="coupon-no" name="coupon-no2" id="coupon-no2">
+                <span>-</span>
+                <input type="text" class="coupon-no" name="coupon-no3" id="coupon-no3">
+                <br>
+                <span>총 금액</span>
+                <h3 class="coupon-total">0P</h3>
+
+                <input type="button" id="coupon-x-btn" value="취소하기">
+                <input type="button" id="coupon-submit-btn" value="등록하기">
+                <input type="hidden" name="memberId">
+        </form>
+        </div>
         <div class="member-container">
          <div class="member-profile">
             <i class="fas fa-user"></i>
@@ -19,7 +41,7 @@
                     <span>3</span><br>
                     <span>장바구니</span>
                 </a>
-                <a href="<%=request.getContextPath()%>/member/memberLikeList">
+                <a href="<%=request.getContextPath()%>/member/fontLikeList">
                     <span>1</span><br>
                     <span>좋아요</span>
                 </a>
@@ -44,15 +66,35 @@
                 <div class="member-list">
                     <a href=""><div class="my-font-img"></div></a>
                     <a href=""><div class="my-font-img"></div></a>
-                   <a href=""><div class="my-font-img"></div></a>
+                    <a href=""><div class="my-font-img"></div></a>
                     <a href=""><div class="my-font-img"></div></a>
                 </div>
             </div>
          </div>
 
         </div>
-    </section>
 
+    </section>
+<script>
+	$("#member-coupon").click((e)=>{
+		const $couponEnroll = $(".coupon-enroll");
+		if($couponEnroll.css("display","none")){
+			$couponEnroll.show();
+			
+			$("#coupon-submit-btn").click((e)=>{
+				$(document.couponEnrollFrm).submit();
+			});
+			$("#coupon-x-btn").click((e)=>{
+				$couponEnroll.hide();
+			});
+			
+		}
+		else return;
+	});
+</script>
+<%
+}
+%>
     <!-- Portfolio End -->
 
 <%@ include file = "/WEB-INF/views/common/footer.jsp" %>
