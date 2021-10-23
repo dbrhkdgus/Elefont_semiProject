@@ -30,7 +30,7 @@
          <div class="member-profile">
             <i class="fas fa-user"></i>
             <h3>USER</h3>
-            <button>설정</button>
+            <button id="btn-member-Info-Edit">설정</button>
             <hr>
             <div class="member-detail">
                 <a href="">
@@ -90,6 +90,9 @@
 			
 		}
 		else return;
+	});
+	$("#btn-member-Info-Edit").click((e)=>{
+		location.href = "<%= request.getContextPath()%>/member/memberInfoEdit";
 	});
 </script>
 <%
