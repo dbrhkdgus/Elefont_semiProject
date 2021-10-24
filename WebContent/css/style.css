@@ -2330,6 +2330,26 @@ p { padding: 5px 0; }
 .admin-tbl tr th{
 	padding: 0 15px;
 }
+.memberLookup{
+	border: 2px solid #000;
+}
+.admin-tbl{
+	border: 2px solid #000;
+	border-collapse: collapse;
+	margin: 0 auto;
+	width: 850px;
+}
+.admin-tbl th,td{
+	border: 1px solid #000;
+	text-align: center;
+}
+.admin-tbl td{
+	overflow: auto;
+	
+}
+.user-search-bar{
+	text-align: right;
+}
 /* 멤버 디테일 끝*/
 
 /* community writer detail  */

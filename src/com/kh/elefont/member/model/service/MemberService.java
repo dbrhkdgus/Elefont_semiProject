@@ -3,6 +3,7 @@ package com.kh.elefont.member.model.service;
 
 import static com.kh.elefont.common.JdbcTemplate.*;
 import java.sql.Connection;
+import java.util.List;
 
 import com.kh.elefont.member.model.dao.MemberDao;
 import com.kh.elefont.member.model.vo.Member;
@@ -43,6 +44,13 @@ public class MemberService {
 		Member member = memberDao.selectOneMemberByEmail(conn, memberEmail);
 		close(conn);
 		return member;
+	}
+
+	public List<Member> selectAllMember() {
+		Connection conn = getConnection();
+		
+		List<Member> list = memberDao.selectAllMember(conn);
+		return list;
 	}
 
 
