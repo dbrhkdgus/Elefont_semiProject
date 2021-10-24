@@ -307,13 +307,14 @@
 						<form action="" method="POST" name="couponEnrollFrm">
 							<table id="coupon-enroll-tbl">
 								<tr>
-									<th>쿠폰 발행</th>
-									<td >
+									<th >쿠폰 발행</th>
+									<td colspan="2">
 										<input type="radio" name="couponType" id="point" value="P" checked>
 										<label for="couponType0">포인트 쿠폰</label>
 										<input type="radio" name="couponType" id="discount" value="D">
 										<label for="couponType1">할인 쿠폰</label>
 									</td>
+
 								</tr>
 								<tr>
 									<td>
@@ -323,6 +324,9 @@
 									<td>
 										<span>쿠폰 매수</span>
 										<input type="number" name="couponCnt" id="couponCnt" value="1"/>
+									</td>
+									<td rowspan="2">
+										<input type="submit" value="발행" />
 									</td>
 								</tr>
 								<tr>
@@ -334,7 +338,12 @@
 										<span>회원 아이디 입력</span>
 										<input type="text" name="memberId" placeholder="아이디를 입력하세요" />
 									</td>
-								</tr>								
+								</tr>
+								<tr>
+									<td colspan="2">
+										
+									</td>
+								</tr>							
 							</table>
 						</form>
 						<div class="coupon-result">

@@ -2402,9 +2402,14 @@ p { padding: 5px 0; }
 .coupon-enroll-wrapper{
 	display:flex;
 }
+#coupon-enroll-tbl{
+	width: 180px;
+}
 #coupon-enroll-tbl td{
-	width: 100px;
 	padding-right: 15px;
+}
+#coupon-enroll-tbl tr:first-of-type td{
+	text-align:right;
 }
 .coupon-result{
 	width: 400px;
@@ -2423,6 +2428,7 @@ p { padding: 5px 0; }
 }
 .coupon-tbl th, .coupon-tbl td{
 	border: 1px solid #000;
+	
 	
 }
 
