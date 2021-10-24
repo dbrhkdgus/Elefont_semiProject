@@ -9,6 +9,8 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Properties;
 
 import com.kh.elefont.member.model.vo.Attachment;
@@ -22,7 +24,7 @@ public class MemberDao {
 		  	
 		  
 	        String filepath = MemberDao.class.getResource("/member/member-query.properties").getPath();
-	        System.out.println(filepath);
+//	        System.out.println(filepath);
 	        try {
 	            prop.load(new FileReader(filepath));
 	        } catch (IOException e) {
@@ -156,6 +158,37 @@ public class MemberDao {
 		}
 		
 		return member;
+	}
+
+
+	public List<Member> selectAllMember(Connection conn) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		List<Member> list = new ArrayList<>();
+		String sql = prop.getProperty("selectAllMember");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			rset = pstmt.executeQuery();
+			while(rset.next()) {
+				Member member = new Member();
+				
+				member.setMemberId(rset.getString("member_id"));
+				member.setMemberName(rset.getString("member_name"));
+				member.setMemberEmail(rset.getString("member_email"));
+				member.setMemberPhone(rset.getString("member_phone"));
+				member.setMemberPoint(rset.getString("member_point"));
+				member.setMemberQuitYN(rset.getString("member_quit_yn"));
+				member.setMemberRole(rset.getString("member_role")!= null? rset.getString("member_role"):"X");
+				System.out.println(member);
+				list.add(member);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return list;
 	}
 
 

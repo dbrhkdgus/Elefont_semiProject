@@ -1,3 +1,4 @@
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@include file = "/WEB-INF/views/common/LandingHeader.jsp" %>
@@ -85,7 +86,7 @@
                     <div class="font-audit">3</div>
                 </a>
 <%
-}else{
+}else if("A".equals(memberRole)){
 %>
                 <div>
                     <div class=""><%= memberRole %></div>
@@ -127,6 +128,7 @@
             </div>
 <%
 	if("U".equals(memberRole)){
+
 %>
             <div class="member-comm">
                 <h4>내가 쓴 커뮤니티</h4>
@@ -181,7 +183,9 @@
 				</div>
 			</div>
 <%
-}else{
+}else if("A".equals(memberRole)){
+	List<Member> list = (List<Member>) session.getAttribute("list");
+	System.out.println(list);
 %>
 		<div class="admin-container">
 			<div class="admin-tab-bar">
@@ -195,6 +199,25 @@
 			<div id="tab-content">
 				<div>
 					<div class="memberLookup">
+						<div class="user-search-bar">
+							<input type="radio" name="memberRole" id="user" value="U" checked>
+							<label for="memberRole0">일반 회원 보기</label>
+							<input type="radio" name="memberRole" id="seller" value="S">
+							<label for="memberRole1">판매 회원 보기</label>
+							<input type="radio" name="memberRole" id="user" value="U" checked>
+							<label for="memberRole2">관리 회원 보기</label>
+							<input type="radio" name="memberRole" id="seller" value="S">
+							<label for="memberRole3">휴면 회원 보기</label>
+							<br />
+							<select name="user-search" id="user-search">
+								<option value="" selected>모든 회원 조회</option>
+								<option value="id">Id로 검색</option>
+								<option value="email">이메일로 검색</option>
+								<option value="phone">연락처로 검색</option>
+							</select>
+							<input type="text" name="" id="" placeholder="검색할 내용을 입력하세요."/>
+							<input type="button" value="검색" />
+						</div>
 						<table class="admin-tbl">
 							<tr>
 								<th>회원 구분</th>
@@ -205,6 +228,23 @@
 								<th>회원 연락처</th>
 								<th>회원 탈퇴 여부</th>
 							</tr>
+<%
+	if(list != null){
+		for(Member m : list){
+%>
+							<tr>
+								<td><%= m.getMemberRole() %></td>
+								<td><%= m.getMemberId() %></td>
+								<td><%= m.getMemberName() %></td>
+								<td><%= m.getMemberEmail() %></td>
+								<td><%= m.getMemberPoint() %></td>
+								<td><%= m.getMemberPhone() %></td>
+								<td><%= m.getMemberQuitYN() %></td>
+							</tr>
+<%
+		}
+	}
+%>
 						</table>
 					</div>
 				</div>
@@ -217,12 +257,26 @@
 					</table>
 				</div>
 				<div>
+					<div class="user-search-bar">
+							<select name="user-search" id="user-search">
+								<option value="" selected>모든 주문 조회</option>
+								<option value="orderNo">주문 번호로 검색</option>
+								<option value="orderDate">주문일로 검색</option>
+								<option value="orderId">주문 회원으로 검색</option>
+								<option value="orderFont">주문 상품으로 검색</option>
+							</select>
+							<input type="text" name="" id="" placeholder="검색할 내용을 입력하세요."/>
+							<input type="button" value="검색" />
+						</div>
 					<table class="admin-tbl">
 						<tr>
-							<th>최신 주문 리스트</th>
+							<th>주문 번호</th>
+							<th>주문일</th>
+							<th>주문 회원</th>
+							<th>주문 상품</th>
+							<th>주문 가격</th>
 						</tr>
 					</table>
-					<span>상세보기</span>
 				</div>
 				<div>
 					<h3>사용자 쿠폰 관리</h3>
@@ -233,9 +287,15 @@
 							<th>쿠폰 충전</th>
 						</tr>
 						<tr>
-							<td><input type="text" placeholder="유저아이디로 검색" /></td>
+							<td>
+								<input type="text" placeholder="유저아이디로 검색" />
+								<input type="button" value="검색" />
+							</td>
 							<td><button>신규 쿠폰 발행</button></td>
-							<td><input type="text" placeholder="유저아이디로 검색" /></td>
+							<td>
+								<input type="text" placeholder="유저아이디로 검색" />
+								<input type="button" value="검색" />
+							</td>
 						</tr>
 					</table>
 				</div>
@@ -254,8 +314,9 @@
 	  const index = $target.index(); 
 	  $tabBtn.removeClass("active");
 	  $target.addClass("active");   
-	  $tabContent.css("display","none");
-	  $tabContent.eq(index).css("display","block");
+	  $tabContent
+		  .css("display","none")
+		  .eq(index).css("display","block");
 	});
 </script>
 <%
