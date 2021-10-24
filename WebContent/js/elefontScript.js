@@ -176,5 +176,19 @@ $(window).on('load', function() {
 
 });
 
+  		function doShow(imgSrc){
+        var imgSrcc = $(imgSrc).parent().children("img").attr("src");
+        var name = $(imgSrc).html();  
+
+        // console.log($('.aboutdetail.leftbox>p').text());
+        // console.log(name)
+        // console.log(imgSrcc);
+        document.getElementById("bigImg").src = imgSrcc;
+        $('.aboutdetail.leftbox>p').text(name);
+        }
+
+
+
+
 
 

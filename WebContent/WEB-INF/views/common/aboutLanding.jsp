@@ -1,7 +1,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@include file = "/WEB-INF/views/common/LandingHeader.jsp" %>
+<%
+	
 
+%>
             <section id="portfolio" class="portfolio section-space-padding">
             <div class="container">
              
@@ -17,35 +20,38 @@
 
                          <div class="about outer">
                             
-                            
                             <div class="about inner">
-                               <button type="button" onclick="location.href='<%= request.getContextPath() %>/aboutDetail';" > 자세히보기</button>
+             					<form action ="<%= request.getContextPath() %>/aboutDetail" name="nameFrm">
+  			            			<input type="submit" name="name" onclick="submitMember();" value="권혜진" > </input>
+                            	
                              </div>   
 
                              <div class="about inner">
-                                          <button type="button" onclick="location.href='<%= request.getContextPath() %>/aboutDetail';"> 자세히보기</button>
-                          </div>   
+                               	<input type="submit" name="name" onclick="submitMember();" value="김다현" > </input>
+                          	</div>   
 
                               
                               <div class="about inner">
-                                           <button type="button" onclick="location.href='<%= request.getContextPath() %>/aboutDetail';"> 자세히보기</button>
+                              	<input type="submit" name="name" onclick="submitMember();" value="김은희" > </input>
                               </div>   
 
                               <div class="about inner">
-                                <button type="button" onclick="location.href='<%= request.getContextPath() %>/aboutDetail';"> 자세히보기</button>
+                              	<input type="submit" name="name" onclick="submitMember();" value="백지영" > </input>
                               </div>   
 
                               <div class="about inner">
-                                <button type="button" onclick="location.href='<%= request.getContextPath() %>/aboutDetail';"> 자세히보기</button>
+                               	<input type="submit" name="name" onclick="submitMember();" value="유광현" > </input>
                               </div>   
 
                               <div class="about inner">
-                                <button type="button" onclick="location.href='<%= request.getContextPath() %>/aboutDetail';"> 자세히보기</button>
+     		                  	<input type="submit" name="name" onclick="submitMember();" value="이윤희" > </input>
                               </div>   
-    
+    						
+    							
+                      
                          </div>
 
-    
+   									 </form>
                 <div class="portfolio-inner">
                     <div class="test-shop-box">
     
@@ -63,8 +69,16 @@
     
         <!-- Portfolio End -->
   
-      
-    
+<script>
+function submitMember () {
+		
+$(document.nameFrm).submit();
+
+}
+
+
+
+</script>  
     
 
 

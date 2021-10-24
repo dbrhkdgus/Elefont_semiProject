@@ -16,7 +16,16 @@ public class AboutDetailServlet extends HttpServlet {
        
   
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
+				//1.사용자입력값
+				String name = request.getParameter("name");
+				System.out.println(name);
+					
+				
+				//2.업무?
+					
+						
+				//3.뷰단
+				request.setAttribute("name",name);
 		request.getRequestDispatcher("/WEB-INF/views/common/aboutDetail.jsp").forward(request, response);
 	}
 

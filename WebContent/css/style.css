@@ -1782,7 +1782,7 @@ p { padding: 5px 0; }
    
 }
 
-.about.inner >button{
+.about.inner >input{
     position: relative;
     top: 210px;
 }
@@ -2228,7 +2228,6 @@ p { padding: 5px 0; }
     width: 80px;
     height: 80px;
     margin: 20px 20px 20px 0px;
-    text-align: center;
 }
 
 
@@ -2243,11 +2242,15 @@ p { padding: 5px 0; }
 }
 
 .aboutdetail.leftbox{
-    width: 250px;
+    width: 800px;
     display: flex;
-    /* border: 1px solid #000; */
-    flex-direction: column;
-    justify-content: center;
+    flex-direction: row;
+    align-items: center;
+    height: 500px;
+}
+
+.left.image{
+    width: 250px;
 }
 
 
@@ -2264,4 +2267,18 @@ p { padding: 5px 0; }
 
 }
 
-/*  어바웃디테일 끝*/
+.aboutdetail.leftbox{
+    display: none;
+    margin-left: 50px;
+}
+
+.left.content{
+    width:550px;
+    text-align: center;
+}
+.left.image{
+	text-align: center;
+}
+.leftbox.active{
+    display: flex;
+}
