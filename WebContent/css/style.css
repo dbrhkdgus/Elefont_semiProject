@@ -1775,14 +1775,41 @@ p { padding: 5px 0; }
 
 .faq_chat{
     position:fixed;
-    bottom: 320px;
-    right: 180px;
+    bottom: 13%;
+    left: 81%;
+    z-index:10;
 }
 #faqbox{
     text-align: center;
+    height:552px;
 }
 #faqH1{
     font-weight: bold;
+}
+#chatMessage{
+    position: fixed;
+    border-radius: 10px;
+    border: 3px solid #005A3C;
+    width: 300px;
+    height: 400px;
+    background-color: #A0BFB5;
+    bottom: 28%;
+    left: 75%;
+    display: none;
+    z-index: 100;
+}
+#chatInputFrm{
+    display: flex;
+}
+#chatPutMsg textarea {
+    resize: none;
+}
+#chatMsg{
+    border-radius: 10px;
+    width: 280px;
+    height: 260px;
+    background-color: rgb(246, 255, 197);
+    margin: 10px auto;
 }
 
 /* faq-end */
