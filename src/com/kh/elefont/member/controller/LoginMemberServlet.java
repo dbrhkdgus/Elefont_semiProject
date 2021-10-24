@@ -24,7 +24,7 @@ public class LoginMemberServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	
+
 		//인코딩 처리 - filter 처리
 		//입력값 지금 받을 것 X
 		String memberId = request.getParameter("loginId");

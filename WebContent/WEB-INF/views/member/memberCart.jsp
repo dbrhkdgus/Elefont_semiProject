@@ -35,7 +35,7 @@
                             <p>640P</p>
                         </div>
                         <div class="cart_order  cart_content_margin">
-                            <button>상품 주문하기</button>  
+                            <button class="btn-order-from-cart">상품 주문하기</button>  
                         </div>
                     </div>
                     <div class="cart_content">
@@ -60,7 +60,7 @@
                             <p>640P</p>
                         </div>
                         <div class="cart_order  cart_content_margin">
-                            <button>상품 주문하기</button>  
+                            <button class="btn-order-from-cart">상품 주문하기</button>  
                         </div>
                     </div>
                     <div class="cart_content">
@@ -85,7 +85,7 @@
                             <p>640P</p>
                         </div>
                         <div class="cart_order  cart_content_margin">
-                            <button>상품 주문하기</button>  
+                            <button class="btn-order-from-cart">상품 주문하기</button>  
                         </div>
                     </div>
                     
@@ -143,19 +143,20 @@
                 
             </div>
             <div class="payment_buttons">
-                <button>취소하기</button>
+                <button id="btn-payment-cancle">취소하기</button>
                 <button>주문하기</button>
-
-
-            </div>
-
-
-
-
-
-
+          </div>
         </div>
+<script>
+	$(".payment_window").hide();
+	$(".btn-order-from-cart").click((e) =>{
+		$(".payment_window").show();
+	});
+	$("#btn-payment-cancle").click((e)=>{
+		$(".payment_window").hide();
+	});
 
+</script>
 
 
 
