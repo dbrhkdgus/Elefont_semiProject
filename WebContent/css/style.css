@@ -1670,7 +1670,10 @@ text-align: center;
     width: fit-content;
 
 }
-
+/* 서치아이콘 커서 포인터 추가 */
+.fa-search-plus{
+	cursor: pointer;
+}
 .sd-review-box{
     display: flex;
     flex-direction: column;
