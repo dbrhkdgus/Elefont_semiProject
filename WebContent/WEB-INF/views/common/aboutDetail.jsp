@@ -85,8 +85,6 @@
                                          
                                 </div>   
 
-                                   
-    
                
     
     
@@ -154,8 +152,7 @@
                     $leftinner.css("display" ,"none");
                     $leftinner.eq($index).css("display","flex");
 
-
-
+ 
                 });
     	    
                 

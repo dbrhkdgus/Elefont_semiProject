@@ -55,28 +55,29 @@
                            
                         </div>
                         <div class="test-item">
-                            <a href=""><div class="test-item-title"> 광현체 </div></a>
+                     
+                               <a href="<%= request.getContextPath()%>/shopDetail"><div class="test-item-title"> 광현체 </div></a>
                             <textarea name="" id="" cols="30" rows="10"></textarea>
                             <div class="test-item-buttons"> 
-                                <i class="fas fa-heart"></i>
-                                <i class="fas fa-search-plus"></i>
+                                <i class="fas fa-heart"></i>  
+                                <i class="fas fa-search-plus"></i></a>
                              </div>
                         </div> 
                         <div class="test-item">
-                            <a href=""><div class="test-item-title"> 광현체 </div></a>
+                              <a href="<%= request.getContextPath()%>/shopDetail"><div class="test-item-title"> 광현체 </div></a>
                             
                             <textarea name="" id="" cols="30" rows="10"></textarea>
                             <div class="test-item-buttons"> 
                                 <i class="fas fa-heart"></i>
-                                <i class="fas fa-search-plus"></i>
+                                 <i class="fas fa-search-plus"></i></a>
                              </div>
                         </div>
                         <div class="test-item">
-                            <a href=""><div class="test-item-title"> 광현체 </div></a>
+                             <a href="<%= request.getContextPath()%>/shopDetail"><div class="test-item-title"> 광현체 </div></a>
                             <textarea name="" id="" cols="30" rows="10"></textarea>
                             <div class="test-item-buttons"> 
                                 <i class="fas fa-heart"></i>
-                                <i class="fas fa-search-plus"></i>
+                                <i class="fas fa-search-plus"></i></a>
                              </div>
                         </div>
                        
@@ -86,7 +87,7 @@
                     </div>
                     <div class="test-shop">
                         <div class="test-item">
-                            <a href=""><div class="test-item-title"> 광현체 </div></a>
+                             <a href="<%= request.getContextPath()%>/shopDetail"><div class="test-item-title"> 광현체 </div></a>
 
                             <textarea name="" id="" cols="30" rows="10"></textarea>
                             <div class="test-item-buttons"> 
@@ -95,7 +96,7 @@
                             </div>
                         </div>
                         <div class="test-item">
-                            <a href=""><div class="test-item-title"> 광현체 </div></a>
+                             <a href="<%= request.getContextPath()%>/shopDetail"><div class="test-item-title"> 광현체 </div></a>
                             <textarea name="" id="" cols="30" rows="10"></textarea>
                             <div class="test-item-buttons"> 
                                 <i class="fas fa-heart"></i>
@@ -103,7 +104,7 @@
                              </div>
                         </div> 
                         <div class="test-item">
-                            <a href=""><div class="test-item-title"> 광현체 </div></a>
+                            <a href="<%= request.getContextPath()%>/shopDetail"><div class="test-item-title"> 광현체 </div></a>
                             
                             <textarea name="" id="" cols="30" rows="10"></textarea>
                             <div class="test-item-buttons"> 
@@ -112,7 +113,7 @@
                              </div>
                         </div>
                         <div class="test-item">
-                            <a href=""><div class="test-item-title"> 광현체 </div></a>
+                             <a href="<%= request.getContextPath()%>/shopDetail"><div class="test-item-title"> 광현체 </div></a>
                             <textarea name="" id="" cols="30" rows="10"></textarea>
                             <div class="test-item-buttons"> 
                                 <i class="fas fa-heart"></i>
@@ -125,7 +126,7 @@
                     
                     <div class="test-shop">
                         <div class="test-item">
-                            <a href=""><div class="test-item-title"> 광현체 </div></a>
+                            <a href="<%= request.getContextPath()%>/shopDetail"><div class="test-item-title"> 광현체 </div></a>
 
                             <textarea name="" id="" cols="30" rows="10"></textarea>
                             <div class="test-item-buttons"> 
@@ -134,7 +135,7 @@
                             </div>
                         </div>
                         <div class="test-item">
-                            <a href=""><div class="test-item-title"> 광현체 </div></a>
+                             <a href="<%= request.getContextPath()%>/shopDetail"><div class="test-item-title"> 광현체 </div></a>
                             <textarea name="" id="" cols="30" rows="10"></textarea>
                             <div class="test-item-buttons"> 
                                 <i class="fas fa-heart"></i>
@@ -142,7 +143,7 @@
                              </div>
                         </div> 
                         <div class="test-item">
-                            <a href=""><div class="test-item-title"> 광현체 </div></a>
+                             <a href="<%= request.getContextPath()%>/shopDetail"><div class="test-item-title"> 광현체 </div></a>
                             
                             <textarea name="" id="" cols="30" rows="10"></textarea>
                             <div class="test-item-buttons"> 
@@ -151,7 +152,9 @@
                              </div>
                         </div>
                         <div class="test-item">
-                            <a href=""><div class="test-item-title"> 광현체 </div></a>
+                       
+                        
+                             <a href="<%= request.getContextPath()%>/shopDetail"><div class="test-item-title"> 광현체 </div></a>
                             <textarea name="" id="" cols="30" rows="10"></textarea>
                             <div class="test-item-buttons"> 
                                 <i class="fas fa-heart"></i>
@@ -177,6 +180,12 @@
 	$(range).change((e)=>{
 		$("#range-result").html($(range).val()+"px");
     });
+	
+	/* 돋보기 아이콘 클릭시 넘어감*/
+	$(".fa-search-plus").click((e)=>{
+		location.href = "<%=request.getContextPath()%>/shopDetail";
+	});
+	
 </script>
 
 <%@ include file = "/WEB-INF/views/common/footer.jsp" %>

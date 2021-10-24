@@ -30,6 +30,8 @@ CREATE TABLE attachment(
 );
 
 select * from member;
+update member set member_role = 'A' where member_no =1;
+commit;
 
 
 CREATE TABLE member (
@@ -479,7 +481,8 @@ insert into member values ('3','test3','1234','테스트3','M','test3@naver.com'
 insert into member values ('4','test4','1234','테스트4','M','test4@naver.com','01042341234',null,null,default,default,default,null,null);
 insert into member values ('5','test5','1234','테스트5','M','test5@naver.com','01052341234',null,null,default,default,default,null,null);
 
-insert into member values ('11','Stest','1ARVn2Auq2/WAqx2gNrL+q3RNjAzXpUfCXrzkA6d4Xa22yhRLy4AC50E+6UTPoscbo31nbOoq51gvkuXzJ6B2w==','판매자테스트','M','test1@naver.com','01012341234',null,null,default,default,default,'S',null);
+insert into member values ('11','seller','1ARVn2Auq2/WAqx2gNrL+q3RNjAzXpUfCXrzkA6d4Xa22yhRLy4AC50E+6UTPoscbo31nbOoq51gvkuXzJ6B2w==','판매자테스트','M','seller@naver.com','01012341234',null,null,default,default,default,'S',null);
+insert into member values ('111','admin','1ARVn2Auq2/WAqx2gNrL+q3RNjAzXpUfCXrzkA6d4Xa22yhRLy4AC50E+6UTPoscbo31nbOoq51gvkuXzJ6B2w==','관리자테스트','M','admin@naver.com','01012341234',null,null,default,default,default,'A',null);
 --insert into member values ('6', 'test6', '1234', '테스트6', 'F', 'test6@gmail.com', '01012341234', null, null, default,default,default,null,default,default);
 --insert into member values ('7','test7','1234','테스트7','M','test7@naver.com','01012341234',null, null, default,default,default,null,default,default);
 --insert into member values ('8','test8','1234','테스트8','F','test8@naver.com','01012341234',null, null, default,default,default,null,default,default);
@@ -503,5 +506,11 @@ select * from member;
 -- 제약조건 조회
 SELECT * FROM    ALL_CONSTRAINTS
 WHERE    TABLE_NAME = 'MEMBER';
+
+--alter table member
+--drop constraint CK_MEMBER_MEMBER_ROLE;
+
+--alter table member
+--add constraint ck_member_member_role check (member_role in ('U', 'A', 'S'));
 
 commit;
