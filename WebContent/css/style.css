@@ -1815,13 +1815,14 @@ p { padding: 5px 0; }
 
 /* faq-end */
 
-/*어바웃 about 페이지 윤희*/
+/*어바웃 about 페이지 이윤희*/
 .about>span{
     font-size: 5rem;
 }
 .about{
     margin-top: 40px;
     margin-bottom: 20px;
+    text-align: center;
 }
 
 
@@ -1841,7 +1842,7 @@ p { padding: 5px 0; }
    
 }
 
-.about.inner >button{
+.about.inner >input{
     position: relative;
     top: 210px;
 }
@@ -2256,6 +2257,10 @@ p { padding: 5px 0; }
   height: 160px;
   border: 1px solid #000;
 }
+
+
+
+
 /* 판매 회원  */
 .font-wrapper{
 	display:flex;
@@ -2512,73 +2517,7 @@ p { padding: 5px 0; }
 
 /* community writer detail 끝 */
 
-/*윤희 어바웃디테일 aboutDetail*/
 
-  .aboutdetail.outer{
-   
-    display: flex;
-    justify-content: space-between;
-
-  }
-
-
-.aboutdetail.content{
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    width:  600px;
-}
-
-
-.aboutdetail.rightouter{
-    display: flex;
-    flex-wrap: wrap;
-    width: 200px;
-}
-
-
-.aboutdetail.rightinner{
-    /* border: 1px solid #000; */
-    width: 80px;
-    height: 80px;
-    margin: 20px 20px 20px 0px;
-    text-align: center;
-}
-
-
-.aboutdetail.rightinner >button{
-    position: relative;
-    font-size: .7rem;
-    padding: 0px;
-    height: 20px;
-    top: 5px;
-    line-height: 18px;
-    
-}
-
-.aboutdetail.leftbox{
-    width: 250px;
-    display: flex;
-    /* border: 1px solid #000; */
-    flex-direction: column;
-    justify-content: center;
-}
-
-
-.aboutdetail.leftbox>img{
-    width: 250px;
-    height: 250px;
-    border: 1px solid #000;
-}
-
-
-.aboutdetail.leftbox>button{
-    position: relative;
-    top: 20px;
-
-}
-
-/*  어바웃디테일 끝*/
 
 /* community picture detail */
 .comm-pic-detail{
@@ -2770,3 +2709,91 @@ p { padding: 5px 0; }
     width: 56px;
 }
 /* admin qna end */
+
+
+ /*윤희 어바웃디테일 aboutDetail*/
+
+  .aboutdetail.outer{
+   
+    display: flex;
+    justify-content: space-between;
+
+  }
+
+
+.aboutdetail.content{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width:  600px;
+}
+
+
+.aboutdetail.rightouter{
+    display: flex;
+    flex-wrap: wrap;
+    width: 200px;
+}
+
+
+.aboutdetail.rightinner{
+    /* border: 1px solid #000; */
+    width: 80px;
+    height: 80px;
+    margin: 20px 20px 20px 0px;
+}
+
+
+.aboutdetail.rightinner >button{
+    position: relative;
+    font-size: .7rem;
+    padding: 0px;
+    height: 20px;
+    top: 5px;
+    line-height: 18px;
+    
+}
+
+.aboutdetail.leftbox{
+    width: 800px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    height: 500px;
+}
+
+.left.image{
+    width: 250px;
+}
+
+
+.aboutdetail.leftbox>img{
+    width: 250px;
+    height: 250px;
+    border: 1px solid #000;
+}
+
+
+.aboutdetail.leftbox>button{
+    position: relative;
+    top: 20px;
+
+}
+
+.aboutdetail.leftbox{
+    display: none;
+    margin-left: 50px;
+}
+
+.left.content{
+    width:550px;
+    text-align: center;
+}
+.left.image{
+	text-align: center;
+}
+.leftbox.active{
+    display: flex;
+}
+
+/*어바웃디테일 끝*/
