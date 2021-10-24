@@ -2524,3 +2524,66 @@ p { padding: 5px 0; }
     margin: 10px;
 }
 /* community picture detail 끝*/
+
+
+/* seller-management 시작*/
+.seller-management{
+    margin-left:  200px;
+    margin-right:  200px;
+    margin-top:50px;
+    
+    padding:20px;
+    
+    
+}
+
+.seller-management-title{
+    border: 2px solid #000;
+    border-radius: 10px;
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+}
+
+.seller-management-content{
+    text-align: start;
+    margin-left:50px;
+}
+
+.sm-enroll-font>h4{
+    font-weight: bold;
+    margin-top:20px;
+    margin-right:100px;
+
+}
+#sm-font-button{
+    margin-left: 10px;
+}
+
+.sm-enroll-font{
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    /* width: fit-content; */
+  
+}
+
+.sm-enroll-first{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    margin-bottom: 30px;
+}
+.sm-enroll-second{
+   margin-right: 50px;
+   margin-top:30px;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+}
+#sm-enroll-menu{
+    background-color: #ECF2F0;
+    width: fit-content;
+    font-weight: bold;
+}
+/* seller-management end */
