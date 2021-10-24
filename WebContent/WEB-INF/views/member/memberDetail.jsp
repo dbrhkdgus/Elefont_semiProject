@@ -303,24 +303,58 @@
 					</table>
 				</div>
 				<div>
-					<table class="coupon-tbl">
-						<tr>
-							<th>쿠폰 조회</th>
-							<th>쿠폰 발행</th>
-							<th>쿠폰 충전</th>
-						</tr>
-						<tr>
-							<td class="coupon-search">
-								<input type="text" placeholder="유저아이디로 검색" />
-								<input type="button" value="검색" />
-							</td>
-							<td><button>신규 쿠폰 발행</button></td>
-							<td class="coupon-search">
-								<input type="text" placeholder="유저아이디로 검색" />
-								<input type="button" value="검색" />
-							</td>
-						</tr>
-					</table>
+					<div class="coupon-enroll-wrapper">
+						<form action="" method="POST" name="couponEnrollFrm">
+							<table id="coupon-enroll-tbl">
+								<tr>
+									<th>쿠폰 발행</th>
+									<td >
+										<input type="radio" name="couponType" id="point" value="P" checked>
+										<label for="couponType0">포인트 쿠폰</label>
+										<input type="radio" name="couponType" id="discount" value="D">
+										<label for="couponType1">할인 쿠폰</label>
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<span>포인트/할인율</span>
+										<input type="text" name="couponRate" id="couponRate" />
+									</td>
+									<td>
+										<span>쿠폰 매수</span>
+										<input type="number" name="couponCnt" id="couponCnt" value="1"/>
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<span>쿠폰 유효기간</span>
+										<input type="text" name="couponExpiration" id="couponExpiration" placeholder="발급일로부터 일"/>
+									</td>
+									<td>
+										<span>회원 아이디 입력</span>
+										<input type="text" name="memberId" placeholder="아이디를 입력하세요" />
+									</td>
+								</tr>								
+							</table>
+						</form>
+						<div class="coupon-result">
+						<!-- 발행된 쿠폰 번호 출력할 div -->
+						</div>
+					</div>
+						<table class="coupon-tbl">
+							<tr>
+								<th>쿠폰 발급일</th>
+								<th>쿠폰 번호</th>
+								<th>쿠폰 종류</th>
+								<th>쿠폰 유효기간</th>
+								<th>쿠폰 사용여부</th>
+								<th>포인트 값/할인율</th>
+								<th>회원 아이디</th>
+							</tr>
+							<tr>
+								<!-- db에서 읽어온 쿠폰 정보 출력 -->
+							</tr>
+						</table>
 				</div>
 			</div>
 		</div>

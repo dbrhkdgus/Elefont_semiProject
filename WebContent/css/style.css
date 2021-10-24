@@ -2398,19 +2398,33 @@ p { padding: 5px 0; }
 	text-align: right;
 	margin-bottom: 20px;
 }
+
+.coupon-enroll-wrapper{
+	display:flex;
+}
+#coupon-enroll-tbl td{
+	width: 100px;
+	padding-right: 15px;
+}
+.coupon-result{
+	width: 400px;
+	height: 140px;
+	background-color: #A0BFB5;
+	border-radius: 10px;
+	overflow:auto;
+}
 .coupon-tbl{
-	margin: 20px auto;
+	border-collapse: collapse;
+	border: 2px solid #000;
 	width: 850px;
+	margin-top : 30px;
+	font-size: 1.2rem;
+	
 }
 .coupon-tbl th, .coupon-tbl td{
-	text-align: center;
-	padding: 15px 0;
+	border: 1px solid #000;
+	
 }
-.coupon-search{
-	display:flex;
-	justify-content: center;
-}
-
 
 /* 멤버 디테일 끝*/
 
