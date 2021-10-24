@@ -61,7 +61,11 @@
                                 <img src="./images/portfolio/1.jpg" alt="">
                                 <button type="button"> 자세히보기</button>
                               </div>   
-
+				
+				</div>
+				</div>
+				</div>
+				</section>
 
 
 <%@ include file = "/WEB-INF/views/common/footer.jsp" %>
