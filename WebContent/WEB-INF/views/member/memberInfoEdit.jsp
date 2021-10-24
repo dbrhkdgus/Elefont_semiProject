@@ -2,56 +2,10 @@
     pageEncoding="UTF-8"%>
 <%@include file = "/WEB-INF/views/common/LandingHeader.jsp" %>
 
-<style>
-/* 회원정보수정 시작 */
-.editTitle{
-    display: inline-block;
-}
-.defaultphotobox {
-    width: 150px;
-    height: 150px; 
-    border-radius: 70%;
-    overflow: hidden;
-}
-.defaultPhoto {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-#editPhoto{
-    display: inline-block;
-    margin-right: 40px;
-}
-#infoEditInput{
-    display: inline-block;
-}
-.info{
-    display: inline-block;
-}
-#editOuterDiv{
-    border: 3px solid grey;
-    border-radius: 10px;
-    display: inline-block;
-    padding: 30px 30px;
-}
-#editButton{
-    text-align: center;
-}
-#editInfo2{
-    margin-left: 20px;
-    margin-bottom: 8px;
-}
-#withdrawButton{
-    margin-top: 40px;
-    width: 60px;
-    font-size: 1px;
-    float: right;
-}
-/*회원정보수정 끝*/
-</style>
 
         <!-- 회원정보 수정 section 시작-->
         <section id="portfolio" class="portfolio section-space-padding">
+        <div class="editCenter">
             <div id="editOuterDiv">
                     <div id="titleDiv" >
                         <div class="editTitle" id="title"><h2>회원정보 수정</h2></div>
@@ -141,6 +95,7 @@
                     </div>
             </div>   
             </div>
+        </div>    
         </section>
 
 
