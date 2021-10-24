@@ -2441,3 +2441,57 @@ p { padding: 5px 0; }
 
 /*  어바웃디테일 끝*/
 
+/* community picture detail */
+.comm-pic-detail{
+    margin-top: 50px;
+    display: flex;
+}
+.comm-board-content{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+#comm-user-attach-img{
+    width: 270px;
+    height: 270px;
+    margin-bottom: 50px;
+}
+.comm-user-content{
+    width: 500px;
+}
+.comm-writer-info{
+    text-align: centerk;
+    margin-left: 300px;
+}
+.comm-writer-info-buttons i{
+    font-size: 50px;
+    
+}
+.comm-writer-info-buttons .fa-heart{
+    margin-right: 30px;
+}
+.comm-writer-img-name{
+    display: flex;
+    margin-top: 30px;
+    align-items: center;
+    justify-content: space-around;
+}
+.comm-pic-writer-profile-img{
+    width: 100px;
+    height: 100px;
+}
+.comm-pic-detail-history{
+    margin-top: 50px;
+    width: 250px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+
+}
+.comm-pic-detail-history img{
+    width: 100px;
+    margin: 10px;
+}
+/* community picture detail 끝*/
