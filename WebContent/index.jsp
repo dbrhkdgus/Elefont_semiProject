@@ -291,7 +291,6 @@
  
 </section>
 <!-- 리뷰 End -->
-<div>이건 테스트용입니다.</div>
 
 
 <%@ include file = "/WEB-INF/views/common/footer.jsp" %>
