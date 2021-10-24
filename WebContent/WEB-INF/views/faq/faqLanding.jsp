@@ -21,11 +21,22 @@
                         <div class="faq_content"> 어떻게 하냐면요 포인트를 넣고요 일단 회원가입은 하셨어요?</div>    
                 </div>
             </div>
-                <div class="faq_chat">
-                    <a href="" id="chatClick">
-                        <img src="https://i.ibb.co/KLrtGnq/chat-Icon-1.png" alt="" style="width: 110px;">
-                    </a>
-                </div>        
+            <div class="faq_chat">
+                <a id="chatClick" onclick="showUpChat();">
+                    <img src="https://i.ibb.co/KLrtGnq/chat-Icon-1.png" alt="" style="width: 130px;" >
+                </a>
+            </div>
+            <div id ="chatMessage">
+                <div id="chatMsg">
+                </div>
+                <hr>
+                <div id="chatPutMsg">
+                    <form id="chatInputFrm" action="">
+                        <textarea name="" id="textareaMsg" cols="30" rows="3">메세지를 입력하세요</textarea>
+                        <input type="button" value="전송">
+                    </form>
+                </div>
+            </div>        
         </section>
 <script>
 	$(document).ready(function() {
@@ -37,6 +48,19 @@
 		  });
 		});
 
+    function showUpChat() {
+        const $chatMessage = $("#chatMessage");
+        
+        if($chatMessage.css("display")=="none"){
+            console.log(($chatMessage.css("display"))=="none");
+            $chatMessage.show();
+        }
+        else {
+            console.log("닫혀랏엽")
+            // $chatMessage.css("display", "none");
+            $chatMessage.hide();
+        }    
+    }
 </script>
 
 <%@ include file = "/WEB-INF/views/common/footer.jsp" %>
