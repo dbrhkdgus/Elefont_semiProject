@@ -1774,11 +1774,13 @@ p { padding: 5px 0; }
 
 .faq_chat{
     position:fixed;
-    bottom: 320px;
-    right: 180px;
+    bottom: 13%;
+    left: 81%;
+    z-index:10;
 }
 #faqbox{
     text-align: center;
+    height:552px;
 }
 #faqH1{
     font-weight: bold;
