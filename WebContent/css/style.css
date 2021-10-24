@@ -1731,6 +1731,17 @@ text-align: center;
     width: 70%;
 }
 
+/* faq-css */
+.faq_container{
+    display: flex;
+    margin: 0px auto;
+    padding: 0;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: center;
+    width: 70%;
+}
+
 .faq_title{
 display: flex;
 justify-content: space-between;
@@ -1761,6 +1772,17 @@ width:80%;
 
 p { padding: 5px 0; }
 
+.faq_chat{
+    position:fixed;
+    bottom: 320px;
+    right: 180px;
+}
+#faqbox{
+    text-align: center;
+}
+#faqH1{
+    font-weight: bold;
+}
 
 /* faq-end */
 

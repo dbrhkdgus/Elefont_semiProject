@@ -30,6 +30,8 @@ CREATE TABLE attachment(
 );
 
 select * from member;
+update member set member_role = 'A' where member_no =1;
+commit;
 
 
 CREATE TABLE member (
