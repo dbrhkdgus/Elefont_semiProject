@@ -1670,7 +1670,10 @@ text-align: center;
     width: fit-content;
 
 }
-
+/* 서치아이콘 커서 포인터 추가 */
+.fa-search-plus{
+	cursor: pointer;
+}
 .sd-review-box{
     display: flex;
     flex-direction: column;
@@ -2327,6 +2330,26 @@ p { padding: 5px 0; }
 .admin-tbl tr th{
 	padding: 0 15px;
 }
+.memberLookup{
+	border: 2px solid #000;
+}
+.admin-tbl{
+	border: 2px solid #000;
+	border-collapse: collapse;
+	margin: 0 auto;
+	width: 850px;
+}
+.admin-tbl th,td{
+	border: 1px solid #000;
+	text-align: center;
+}
+.admin-tbl td{
+	overflow: auto;
+	
+}
+.user-search-bar{
+	text-align: right;
+}
 /* 멤버 디테일 끝*/
 
 /* community writer detail  */
@@ -2447,3 +2470,57 @@ p { padding: 5px 0; }
 
 /*  어바웃디테일 끝*/
 
+/* community picture detail */
+.comm-pic-detail{
+    margin-top: 50px;
+    display: flex;
+}
+.comm-board-content{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+
+}
+#comm-user-attach-img{
+    width: 270px;
+    height: 270px;
+    margin-bottom: 50px;
+}
+.comm-user-content{
+    width: 500px;
+}
+.comm-writer-info{
+    text-align: centerk;
+    margin-left: 300px;
+}
+.comm-writer-info-buttons i{
+    font-size: 50px;
+    
+}
+.comm-writer-info-buttons .fa-heart{
+    margin-right: 30px;
+}
+.comm-writer-img-name{
+    display: flex;
+    margin-top: 30px;
+    align-items: center;
+    justify-content: space-around;
+}
+.comm-pic-writer-profile-img{
+    width: 100px;
+    height: 100px;
+}
+.comm-pic-detail-history{
+    margin-top: 50px;
+    width: 250px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+
+}
+.comm-pic-detail-history img{
+    width: 100px;
+    margin: 10px;
+}
+/* community picture detail 끝*/

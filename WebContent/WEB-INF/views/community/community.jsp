@@ -157,7 +157,13 @@
                 </div>
             </div>
         </section>
-    
+<script>
+	$(".comm-img").click((e) =>{
+		<%-- location.href = "<%= request.getContextPath()%>/community/board?commNo="; --%>
+		location.href = "<%= request.getContextPath()%>/community/board";
+	});
+
+</script>
         <!-- Portfolio End -->
 		
 	

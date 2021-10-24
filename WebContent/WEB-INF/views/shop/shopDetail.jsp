@@ -7,7 +7,8 @@
                 <div class= "shop-detail-top">
                     <div class="shop-detail-font-name"><h2>Elefont</h2></div>
                     <div class="shop-detail-buttons">
-                        <button id="purchase-button" name="button" type="button">구매</button>
+                    
+                        <button id="purchase-button" name="button" type="button" onclick="location.href='<%= request.getContextPath() %>/member/memberCart';" >구매</button>
                         <button id="cart-button" name="button" type="button">장바구니</button>
                         <button id="like-button" name="button" type="button">좋아요</button>
                     </div>
