@@ -83,9 +83,10 @@ public class FontDao {
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, attach.getMemberNo());
-			pstmt.setString(2, attach.getOriginalFilename());
-			pstmt.setString(3, attach.getRenamedFilename());
-			pstmt.setString(4, attach.getFontNo());
+			pstmt.setString(2, attach.getFontNo());
+			pstmt.setString(3, attach.getOriginalFilename());
+			pstmt.setString(4, attach.getRenamedFilename());
+			
 			
 			result = pstmt.executeUpdate();
 			
