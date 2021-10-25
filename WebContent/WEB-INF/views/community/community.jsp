@@ -4,7 +4,11 @@
 
 	
         <section id="comm-likelist" class="comm-likelist section-space-padding">
+          
             <div class="container">
+                <div class="enrollBtn">
+                    <button>글 작성하기</button>
+                    </div>
                         <div class="comm-like-list">
                             <div class="like-comm">
                                 <a href="<%= request.getContextPath()%>/community/writerDetail"><i class="fas fa-user"></i><div class="like-comm-writer"> user id </div></a>
