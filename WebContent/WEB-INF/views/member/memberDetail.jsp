@@ -46,7 +46,8 @@
             </div>
             <input type="button" id="font-x-btn" value="취소하기">
             <input type="button" id="font-submit-btn" value="등록하기">
-            <input type="hidden" name="memberId">
+            <input type="hidden" name="memberId" value="<%= loginMember.getMemberId() %>">
+            <input type="hidden" name="memberNo" value="<%= loginMember.getMemberNo() %>">
         </form>
 <%
 }
