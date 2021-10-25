@@ -53,5 +53,14 @@ public class MemberService {
 		return list;
 	}
 
+	public String selectMemberNoByMemberName(String memberName) {
+		Connection conn = getConnection();
+		String Memberno = memberDao.selectMemberNoByMemberName(conn, memberName);
+		close(conn);
+
+		return Memberno;
+		
+	}
+
 
 }

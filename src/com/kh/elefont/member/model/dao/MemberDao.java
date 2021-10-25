@@ -192,4 +192,37 @@ public class MemberDao {
 	}
 
 
+	public String selectMemberNoByMemberName(Connection conn, String memberName) {
+		String sql = prop.getProperty("selectMemberNoByMemberName");
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String memberNo = null;
+		
+		try {
+			// 1.PreparedStatment객체 생성 및 미완성쿼리 값대입
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, memberName);
+			
+			// 2.실행 & ResultSet객체 리턴
+			rset = pstmt.executeQuery();
+			
+			// 3.ResultSet -> Member
+			if(rset.next()) {
+				memberNo = rset.getString("member_no");
+				
+			}
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			// 4.자원 반납
+			close(rset);
+			close(pstmt);
+		}
+		
+		return memberNo;
+	}
+
+
 }
