@@ -225,4 +225,55 @@ public class MemberDao {
 	}
 
 
+	public Member selectOneMemberByMemberNo(Connection conn, String memberNo) {
+		Attachment attach = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectOneMemberByMemberNo");
+		Member member = null;
+		
+		
+		try {
+			// 1.PreparedStatment객체 생성 및 미완성쿼리 값대입
+			pstmt = conn.prepareStatement(sql);
+			System.out.println(sql);
+			pstmt.setString(1, memberNo);
+			
+			// 2.실행 & ResultSet객체 리턴
+			rset = pstmt.executeQuery();
+			if(rset == null) System.out.println("null 리턴");
+			
+			// 3.ResultSet -> Member
+			if(rset.next()) {
+				String memberEmail = rset.getString("member_email");
+				String memberId = rset.getString("member_id");
+				String memberPwd = rset.getString("member_pwd");
+				String memberName = rset.getString("member_name");
+				String memberGender = rset.getString("member_gender");
+				String memberPhone = rset.getString("member_phone");
+				Date memberBirthday = rset.getDate("member_birthday");
+				String memberJob = rset.getString("member_job");
+				String memberPoint = rset.getString("member_point");
+				Date enrollDate = rset.getDate("member_reg_date");
+				String memberQuitYN = rset.getString("member_quit_yn");
+				String memberRole = rset.getString("member_role");
+//				Attachment  attNo = rset.getObject("att_no");
+				
+				member = new Member(memberNo, memberId, memberPwd, memberName, memberGender, memberEmail, memberPhone, memberBirthday, memberJob, memberPoint, enrollDate, memberQuitYN, memberRole, null);
+			}
+			System.out.println(member);
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			// 4.자원 반납
+			close(rset);
+			close(pstmt);
+		}
+		
+		return member;
+	}
+
+
 }
