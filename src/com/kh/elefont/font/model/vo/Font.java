@@ -20,6 +20,8 @@ public class Font implements Serializable{
 	private int fontPurchasedCount;
 	
 	private Date fontRegDate;
+	
+	private Attachment attach;
 
 	public Font() {
 		super();

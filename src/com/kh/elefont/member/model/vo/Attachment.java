@@ -10,8 +10,9 @@ public class Attachment  implements Serializable{
 	//이게왜안돼냐구
 	
 	private int attNo;
-	private int memberNo;
+	private String memberNo;
 	private int commNo;
+	
 	private String originalFilename;
 	private String renamedFilename;
 	private Date regDate;
@@ -19,7 +20,7 @@ public class Attachment  implements Serializable{
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Attachment(int attNo, int memberNo, int commNo, String originalFilename, String renamedFilename,
+	public Attachment(int attNo, String memberNo, int commNo, String originalFilename, String renamedFilename,
 			Date regDate) {
 		super();
 		this.attNo = attNo;
@@ -35,10 +36,10 @@ public class Attachment  implements Serializable{
 	public void setAttNo(int attNo) {
 		this.attNo = attNo;
 	}
-	public int getMemberNo() {
+	public String getMemberNo() {
 		return memberNo;
 	}
-	public void setMemberNo(int memberNo) {
+	public void setMemberNo(String memberNo) {
 		this.memberNo = memberNo;
 	}
 	public int getCommNo() {
