@@ -27,6 +27,7 @@ CREATE TABLE attachment(
     
     constraint pk_attachment_att_no primary key(att_no)
 );
+create sequence seq_attachment_no;
 
 select * from member;
 select * from attachment;
@@ -112,17 +113,18 @@ CREATE TABLE font (
 	font_no	varchar2(500)	not null ,
 	font_name	varchar2(200)	not null,
 	font_url	varchar2(500)	not null ,
-
 	font_price	number DEFAULT 300 not null ,
 	font_discount_rate	number DEFAULT 1,
 	font_like_count	number DEFAULT 0,
 	font_view_count	number DEFAULT 0,
 	font_purchased_count	number DEFAULT 0,
-	font_reg_date		Date	 DEFAULT sysdate
+	font_reg_date Date DEFAULT sysdate
 );
 ALTER TABLE font ADD CONSTRAINT PK_FONT_FONT_NO PRIMARY KEY (
 	font_no
 );
+
+select * from font;
 
 CREATE TABLE font_category (
 	category_code	varchar2(50)  not null ,
@@ -510,7 +512,7 @@ select * from member;
 
 -- 제약조건 조회
 SELECT * FROM    ALL_CONSTRAINTS
-WHERE    TABLE_NAME = 'MEMBER';
+WHERE    TABLE_NAME = 'ATTACHMENT';
 
 
 --update member set member_role = 'S' where member_no =3;
@@ -523,24 +525,39 @@ WHERE    TABLE_NAME = 'MEMBER';
 -- community 테이블 title, attach 컬럼 추가
 --ALTER TABLE community ADD(comm_title VARCHAR2(200)); 
 --ALTER TABLE community ADD(comm_attach VARCHAR2(200));
-select * from community;
+--ALTER TABLE community DROP COLUMN comm_attach;
+--drop table community CASCADE CONSTRAINTS;
+--drop table attachment CASCADE CONSTRAINTS;
+select * from community order by comm_reg_date;
+select * from member;
+select * from attachment;
 select * from font;
 insert into font values ('fftest01', '광현체', 'asdf', default, default, default, default, default, default);
 select font_no from font where font_name = '광현체';
+
+select * from USER_SEQUENCES;
+select SEQ_COMMUNITY_NO.CURRVAL from dual;
+insert into attachment values (seq_attachment_no.nextval, 'ele-20211019-0001', 'comm-' || to_char(sysdate,'yyyymmdd') || '-' || to_char(SEQ_COMMUNITY_NO.CURRVAL,'fm0000'),'old','new',default);
+
+select comm_no from(select row_number() over (order by comm_no desc) row_num, comm_no from community) f where row_num = 1;
+
 
 
 commit;
 
 -- 여기서부터 추가 수정입니다. 진행하고 커밋해 주세요(10/25 혜진, 다현, 은희)
 --alter table attachment add font_no varchar2(500);
-
+--
 --create sequence seq_attachment_no;
-
+--
 --alter table font add member_id varchar2(200);
-
+--
 --ALTER TABLE font ADD CONSTRAINT FK_FONT_MEMBER_ID FOREIGN KEY (
 --	member_id
 --) REFERENCES MEMBER(member_id);
-
+--
 --create sequence seq_font_no;
 --commit;
+select * from community;
+select * from attachment;   
+select * from font;
