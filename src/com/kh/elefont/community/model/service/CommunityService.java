@@ -9,16 +9,45 @@ import java.sql.Connection;
 import java.util.List;
 
 import com.kh.elefont.community.model.dao.CommunityDao;
+import com.kh.elefont.community.model.vo.Community;
 
 
 public class CommunityService {
 	CommunityDao communityDao = new CommunityDao();
-	public int enrollBoard() {
-		Connection conn = getConnection();
-		int result = communityDao.enrollBoard(conn, );
-		close(conn);
+	
+	public int enrollBoard(Community community) {
+		
+		 Connection conn = getConnection();
+	        int result = 0;
+	        
+	        try {
+	        	result = communityDao.enrollBoard(conn, community);
+	            
+	            commit(conn);
+	        }catch(Exception e) {
+	            rollback(conn);
+	            throw e;
+	        }finally {
+	            close(conn);
+	        }
+	        return result;
+	}
 
-		return 0;
+	public String selectLastCommNo() {
+		 Connection conn = getConnection();
+	        String LastNo = "";
+	        
+	        try {
+	        	LastNo = communityDao.selectLastCommNo(conn);
+	            
+	            commit(conn);
+	        }catch(Exception e) {
+	            rollback(conn);
+	            throw e;
+	        }finally {
+	            close(conn);
+	        }
+	        return LastNo;
 	}
 
 }

@@ -39,8 +39,9 @@
                 name="boardEnrollFrm"
                 action="<%=request.getContextPath() %>/community/boardEnroll" 
                 method="post"
+                enctype="multipart/form-data" 
                 >
-                <!-- enctype="multipart/form-data" -->
+                 
                 <table id="tbl-board-view">
                 <tr>
                     <th>제 목</th>
@@ -53,9 +54,16 @@
                     </td>
                 </tr>
                 <tr>
+                	<th>사용된 폰트</th>
+                	<td>
+                		<input type="text" name="font" />
+                	</td>
+                </tr>
+                <tr>
                     <th>첨부파일</th>
                     <td>			
                         <input type="file" name="upFile">
+                    
                     </td>
                 </tr>
                 <tr>

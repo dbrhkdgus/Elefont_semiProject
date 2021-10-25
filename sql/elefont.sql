@@ -198,6 +198,8 @@ CREATE TABLE community (
     constraint fk_community_font_no foreign key(font_no) references  font(font_no)
 );
 
+create sequence seq_community_no;
+
 
 CREATE TABLE rep (
 	rep_no number,
@@ -518,7 +520,16 @@ WHERE    TABLE_NAME = 'MEMBER';
 --alter table member
 --add constraint ck_member_member_role check (member_role in ('U', 'A', 'S'));
 
+-- community 테이블 title, attach 컬럼 추가
+--ALTER TABLE community ADD(comm_title VARCHAR2(200)); 
+--ALTER TABLE community ADD(comm_attach VARCHAR2(200));
+select * from community;
+select * from font;
+insert into font values ('fftest01', '광현체', 'asdf', default, default, default, default, default, default);
+select font_no from font where font_name = '광현체';
 
+
+commit;
 
 -- 여기서부터 추가 수정입니다. 진행하고 커밋해 주세요(10/25 혜진, 다현, 은희)
 --alter table attachment add font_no varchar2(500);

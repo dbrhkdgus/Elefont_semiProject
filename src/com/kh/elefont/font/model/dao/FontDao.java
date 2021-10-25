@@ -13,6 +13,10 @@ import java.util.Properties;
 
 import com.kh.elefont.common.model.vo.Attachment;
 import com.kh.elefont.font.model.vo.Font;
+import java.sql.Date;
+
+import com.kh.elefont.member.model.vo.Member;
+
 
 public class FontDao {
 	private Properties prop = new Properties();
@@ -94,5 +98,38 @@ public class FontDao {
 		}
 		return result;
 	}
+	
+	public String selectFontNoByFontName(Connection conn, String fontName) {
+		String sql = prop.getProperty("selectFontNoByFontName");
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String fontNo = null;
+		
+		try {
+			// 1.PreparedStatment객체 생성 및 미완성쿼리 값대입
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, fontName);
+			
+			// 2.실행 & ResultSet객체 리턴
+			rset = pstmt.executeQuery();
+			
+			// 3.ResultSet -> Member
+			if(rset.next()) {
+				fontNo = rset.getString("font_no");
+				
+			}
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			// 4.자원 반납
+			close(rset);
+			close(pstmt);
+		}
+		
+		return fontNo;
+	}
+	
 
 }

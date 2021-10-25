@@ -38,5 +38,12 @@ public class FontService {
 		close(conn);
 		return result;
 	}
+	public String selectFontNoByFontName(String font) {
+		Connection conn = getConnection();
+		String fontNo = fontDao.selectFontNoByFontName(conn, font);
+		close(conn);
+
+		return fontNo;
+	}
 
 }

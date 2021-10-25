@@ -11,7 +11,7 @@ public class Attachment  implements Serializable{
 	
 	private int attNo;
 	private String memberNo;
-	private int commNo;
+	private String commNo;
 	private String fontNo;
 	
 	private String originalFilename;
@@ -23,7 +23,7 @@ public class Attachment  implements Serializable{
 		// TODO Auto-generated constructor stub
 	}
 	
-	public Attachment(int attNo, String memberNo, int commNo, String fontNo, String originalFilename,
+	public Attachment(int attNo, String memberNo, String commNo, String fontNo, String originalFilename,
 			String renamedFilename, Date regDate) {
 		super();
 		this.attNo = attNo;
@@ -47,10 +47,10 @@ public class Attachment  implements Serializable{
 	public void setMemberNo(String memberNo) {
 		this.memberNo = memberNo;
 	}
-	public int getCommNo() {
+	public String getCommNo() {
 		return commNo;
 	}
-	public void setCommNo(int commNo) {
+	public void setCommNo(String commNo) {
 		this.commNo = commNo;
 	}
 	public String getOriginalFilename() {
