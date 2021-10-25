@@ -13,7 +13,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Properties;
 
-import com.kh.elefont.member.model.vo.Attachment;
+import com.kh.elefont.common.model.vo.Attachment;
 import com.kh.elefont.member.model.vo.Member;
 
 public class MemberDao {

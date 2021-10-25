@@ -1,4 +1,4 @@
-package com.kh.elefont.member.model.vo;
+package com.kh.elefont.common.model.vo;
 
 import java.io.Serializable;
 import java.sql.Date;
