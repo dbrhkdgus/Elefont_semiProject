@@ -80,18 +80,6 @@ public class CommunityBoardEnrollServlet extends HttpServlet {
 		community.setCommContent(content);
 		
 		
-		if(multipartRequest.getFile("upFile") != null) {
-			Attachment attach = new Attachment();
-			attach.setOriginalFilename(originalFilename);
-			attach.setRenamedFilename(renamedFilename);
-			
-			// attachment insert sql
-			AttachmentService attachmentService = new AttachmentService();
-			int result = attachmentService.insertAttachment(attach);
-			
-			
-			community.setAttach(attach);
-		}
 		
 		FontService fontService = new FontService();
 		community.setFontNo(fontService.selectFontNoByFontName(font));
@@ -102,6 +90,20 @@ public class CommunityBoardEnrollServlet extends HttpServlet {
 		
 		// 3. 업무로직
 		int result = communityService.enrollBoard(community);
+		
+		
+		if(multipartRequest.getFile("upFile") != null) {
+			Attachment attach = new Attachment();
+			attach.setOriginalFilename(originalFilename);
+			attach.setRenamedFilename(renamedFilename);
+			attach.setCommNo(communityService.selectLastCommNo());
+			// attachment insert sql
+			AttachmentService attachmentService = new AttachmentService();
+			result = attachmentService.insertAttachment(attach);
+			
+			
+			community.setAttach(attach);
+		}
 		
 		String msg = result > 0 ? "게시물 등록 성공" : "게시물 등록 실패";
 		

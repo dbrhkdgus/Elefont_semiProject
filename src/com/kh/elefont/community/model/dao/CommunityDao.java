@@ -6,6 +6,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Properties;
 
@@ -52,6 +53,30 @@ public class CommunityDao {
 		}
 		
 		return result;
+	}
+
+	public String selectLastCommNo(Connection conn) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String LastNo = "";
+		
+		String sql = null;
+		
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			rset = pstmt.executeQuery();
+			if(rset.next())
+				LastNo = rset.getString(1);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return LastNo;
 	}
 
 }
