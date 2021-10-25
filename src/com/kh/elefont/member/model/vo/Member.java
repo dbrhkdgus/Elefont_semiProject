@@ -3,6 +3,8 @@ package com.kh.elefont.member.model.vo;
 import java.io.Serializable;
 import java.sql.Date;
 
+import com.kh.elefont.common.model.vo.Attachment;
+
 public class Member implements Serializable {
 	
 	/**

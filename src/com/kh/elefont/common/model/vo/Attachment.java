@@ -1,4 +1,4 @@
-package com.kh.elefont.member.model.vo;
+package com.kh.elefont.common.model.vo;
 
 import java.io.Serializable;
 import java.sql.Date;
@@ -10,9 +10,8 @@ public class Attachment  implements Serializable{
 	//이게왜안돼냐구
 	
 	private int attNo;
-	private String memberNo;
+	private int memberNo;
 	private int commNo;
-	
 	private String originalFilename;
 	private String renamedFilename;
 	private Date regDate;
@@ -20,7 +19,7 @@ public class Attachment  implements Serializable{
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Attachment(int attNo, String memberNo, int commNo, String originalFilename, String renamedFilename,
+	public Attachment(int attNo, int memberNo, int commNo, String originalFilename, String renamedFilename,
 			Date regDate) {
 		super();
 		this.attNo = attNo;
@@ -36,10 +35,10 @@ public class Attachment  implements Serializable{
 	public void setAttNo(int attNo) {
 		this.attNo = attNo;
 	}
-	public String getMemberNo() {
+	public int getMemberNo() {
 		return memberNo;
 	}
-	public void setMemberNo(String memberNo) {
+	public void setMemberNo(int memberNo) {
 		this.memberNo = memberNo;
 	}
 	public int getCommNo() {

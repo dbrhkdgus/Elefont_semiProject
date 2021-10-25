@@ -32,13 +32,15 @@
                 $(document.boardEnrollFrm).submit(boardValidate);
             });
             </script>
+            
             <section id="board-container">
             <h2>커뮤니티 게시글 작성</h2>
             <form
                 name="boardEnrollFrm"
-                action="<%=request.getContextPath() %>/board/boardEnroll" 
+                action="<%=request.getContextPath() %>/community/boardEnroll" 
                 method="post"
-                enctype="multipart/form-data">
+                >
+                <!-- enctype="multipart/form-data" -->
                 <table id="tbl-board-view">
                 <tr>
                     <th>제 목</th>
@@ -47,7 +49,7 @@
                 <tr>
                     <th>작성자</th>
                     <td>
-                        <input type="text" name="writer" value="작성자" readonly/>
+                        <input type="text" name="writer" value="<%= loginMember.getMemberName()%>" readonly/>
                     </td>
                 </tr>
                 <tr>

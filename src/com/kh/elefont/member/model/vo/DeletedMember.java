@@ -2,6 +2,8 @@ package com.kh.elefont.member.model.vo;
 
 import java.sql.Date;
 
+import com.kh.elefont.common.model.vo.Attachment;
+
 public class DeletedMember extends Member {
 
 	/**
