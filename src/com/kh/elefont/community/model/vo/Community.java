@@ -2,7 +2,7 @@ package com.kh.elefont.community.model.vo;
 import java.io.Serializable;
 import java.sql.Date;
 
-import com.kh.elefont.member.model.vo.Attachment;
+import com.kh.elefont.common.model.vo.Attachment;
 public class Community implements Serializable {
 	
 	/**
