@@ -52,5 +52,21 @@ public class FontService {
 		close(conn);
 		return fontList;
 	}
+	public int updateFont(Font[] fontArr) {
+		Connection conn = getConnection();
+		int result = 0;
+		
+		try {
+			result = fontDao.updateFont(conn, fontArr);
+			System.out.println("result@dao = "+result);
+			commit(conn);
+		}catch(Exception e) {
+			rollback(conn);
+		}finally {
+			close(conn);
+		}
+		
+		return result;
+	}
 
 }
