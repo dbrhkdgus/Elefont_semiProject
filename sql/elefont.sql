@@ -543,4 +543,6 @@ commit;
 --) REFERENCES MEMBER(member_id);
 --
 --create sequence seq_font_no;
---commit;
+--commit
+select * from member;
+select * from attachment;
