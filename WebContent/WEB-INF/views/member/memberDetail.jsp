@@ -1,3 +1,4 @@
+<%@page import="com.kh.elefont.font.model.vo.Font"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -189,8 +190,8 @@
 			</div>
 <%
 }else if("A".equals(memberRole)){
-	List<Member> list = (List<Member>) session.getAttribute("list");
-	System.out.println(list);
+	List<Member> memberList = (List<Member>) session.getAttribute("memberList");
+	List<Font> fontList = (List<Font>) session.getAttribute("fontList");
 %>
 		<div class="admin-container">
 			<div class="admin-tab-bar">
@@ -235,8 +236,8 @@
 								<th>회원 탈퇴 여부</th>
 							</tr>
 <%
-	if(list != null){
-		for(Member m : list){
+	if(memberList != null){
+		for(Member m : memberList){
 %>
 							<tr>
 								<td><%= m.getMemberRole() %></td>
@@ -264,7 +265,7 @@
 					<div id="admin-board-section">
 						<div class="admin-board">
 							<h4>폰트 카테고리 관리</h4>
-							<table id="font-tbl">
+							<table id="font-category-tbl">
 								<tr>
 									<th>No.</th>
 									<th>분류명</th>
@@ -390,25 +391,68 @@
 							<input type="text" name="" id="" placeholder="검색할 내용을 입력하세요."/>
 							<input type="button" value="검색" />
 						</div>
-						<table class="font-tbl">
-							<tr>
-								<th>폰트 승인 여부</th>
-								<th>폰트 번호</th>
-								<th>폰트명</th>
-								<th>폰트 파일</th>
-								<th>판매 회원</th>
-								<th>판매 회원 결과 확인</th>
-							</tr>
-							<tr>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td></td>
-								<td></td>
-							</tr>
-
+						<form action="<%=request.getContextPath()%>/admin/fontUpdate" method="POST" name="adminFontUpdateFrm" id="adminFontupdateFrm">
+							<div class="fix-head">
+							<table class="font-tbl">
+								<thead>
+									<tr>
+										<th>폰트 승인</th>
+										<th>폰트 번호</th>
+										<th>폰트명</th>
+										<th>폰트 가격</th>
+										<th>폰트 파일</th>
+										<th>판매 회원</th>
+										<th>회원 확인</th>
+									</tr>
+								</thead>
+								<tbody>
+<%
+	if(fontList != null){
+		for(Font f : fontList){
+%>
+								<tr>
+									<td>
+										<select name="fontApproval" id="">
+											<option value="N" <%= "N".equals(f.getFontApproval())?"selected":"" %>>N</option>
+											<option value="Y" <%= "Y".equals(f.getFontApproval())?"selected":"" %>>Y</option>
+										</select>
+										
+									</td>
+									<td><%= f.getFontNo() %></td>
+									<td><%= f.getFontName() %></td>
+									<td>
+										<input type="text" name="fontPrice" placeholder="<%= f.getFontPrice() %>"/>
+									</td>
+									<td>
+<% 
+		if(f.getAttach() == null){
+%>
+										<input type="button" value="파일 다운로드" class="fontDownloadBtn"/>			
+<%
+		}
+%>	
+									</td>
+									<td><%= f.getMemberId() %></td>
+									<td>
+									<%-- 회원 확인 여부를 여기에 출력해야 하는데 어떻게 해야할지 모르겠음! 좀 더 고민해보기 --%>
+									</td>
+								</tr>
+<%
+		}
+	}else{
+%>
+								<tr>
+									<td colspan="7">등록된 폰트가 없습니다</td>
+								</tr>
+<%
+	}
+%>
+							</tbody>
 						</table>
+							<input type="hidden" name="fontNo" />
+						</div>
+							<input type="submit" value="수정" />
+						</form>
 					</div>
 				</div>
 			</div>
@@ -429,6 +473,14 @@
 	  $tabContent
 		  .css("display","none")
 		  .eq(index).css("display","block");
+	});
+
+/* 폰트 관리 - 회원 폰트 다운로드 버튼 클릭 시 파일 다운로드 */
+	$(".fontDownloadBtn").click((e)=>{
+		console.log($(e.target).parent().parent().eq(1));
+		/* $fontNo = $(e.target).parent().parent().eq(1).html();
+		console.log($fontNo); */
+		/* location.href = request.getContextPath() + "/font/fontDownload?fontNo=" + $fontNo; */ 
 	});
 </script>
 <%

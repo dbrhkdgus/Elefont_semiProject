@@ -2,20 +2,18 @@ package com.kh.elefont.font.model.dao;
 
 import static com.kh.elefont.common.JdbcTemplate.close;
 
-import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Properties;
 
 import com.kh.elefont.common.model.vo.Attachment;
 import com.kh.elefont.font.model.vo.Font;
-import java.sql.Date;
-
-import com.kh.elefont.member.model.vo.Member;
 
 
 public class FontDao {
@@ -130,6 +128,40 @@ public class FontDao {
 		}
 		
 		return fontNo;
+	}
+
+	public List<Font> selectAllFont(Connection conn) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		List<Font> fontList = new ArrayList<>();
+		
+		String sql = prop.getProperty("selectAllFont");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				Font font = new Font();
+				font.setFontNo(rset.getString("font_no"));
+				font.setFontName(rset.getString("font_name"));
+				font.setFontUrl(rset.getString("font_url"));
+				font.setFontPrice(rset.getDouble("font_price"));
+				font.setFontDiscountRate(rset.getDouble("font_discount_rate"));
+				font.setFontRegDate(rset.getDate("font_reg_date"));
+				font.setFontApproval(rset.getString("font_approval"));
+				
+				fontList.add(font);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return fontList;
 	}
 	
 

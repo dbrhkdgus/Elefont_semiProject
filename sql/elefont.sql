@@ -113,17 +113,18 @@ CREATE TABLE font (
 	font_no	varchar2(500)	not null ,
 	font_name	varchar2(200)	not null,
 	font_url	varchar2(500)	not null ,
-
 	font_price	number DEFAULT 300 not null ,
 	font_discount_rate	number DEFAULT 1,
 	font_like_count	number DEFAULT 0,
 	font_view_count	number DEFAULT 0,
 	font_purchased_count	number DEFAULT 0,
-	font_reg_date		Date	 DEFAULT sysdate
+	font_reg_date Date DEFAULT sysdate
 );
 ALTER TABLE font ADD CONSTRAINT PK_FONT_FONT_NO PRIMARY KEY (
 	font_no
 );
+
+select * from font;
 
 CREATE TABLE font_category (
 	category_code	varchar2(50)  not null ,
@@ -546,15 +547,15 @@ commit;
 
 -- 여기서부터 추가 수정입니다. 진행하고 커밋해 주세요(10/25 혜진, 다현, 은희)
 --alter table attachment add font_no varchar2(500);
-
+--
 --create sequence seq_attachment_no;
-
+--
 --alter table font add member_id varchar2(200);
-
+--
 --ALTER TABLE font ADD CONSTRAINT FK_FONT_MEMBER_ID FOREIGN KEY (
 --	member_id
 --) REFERENCES MEMBER(member_id);
-
+--
 --create sequence seq_font_no;
 --commit;
 select * from community;

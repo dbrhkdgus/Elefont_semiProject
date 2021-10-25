@@ -3,6 +3,7 @@ package com.kh.elefont.font.model.service;
 import static com.kh.elefont.common.JdbcTemplate.*;
 
 import java.sql.Connection;
+import java.util.List;
 
 import com.kh.elefont.common.model.vo.Attachment;
 import com.kh.elefont.font.model.dao.FontDao;
@@ -44,6 +45,12 @@ public class FontService {
 		close(conn);
 
 		return fontNo;
+	}
+	public List<Font> selectAllFont() {
+		Connection conn = getConnection();
+		List<Font> fontList = fontDao.selectAllFont(conn);
+		close(conn);
+		return fontList;
 	}
 
 }

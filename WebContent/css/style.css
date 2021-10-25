@@ -2287,7 +2287,7 @@ font-size: 16px;
 }
 .font-enroll{
   width: 700px;
-  height: 400px;
+  height: 450px;
   background-color: #ECF2F0;
   position: absolute;
   top: 50%;
@@ -2437,14 +2437,13 @@ font-size: 16px;
 	overflow: auto;
 	
 }
-#font-tbl{
+#font-category-tbl{
 	border: 2px solid #000;
 	border-collapse:collapse;
 	width: 250px;
 }
-#font-tbl th, #font-tbl td{
+#font-category-tbl th, #font-tbl td{
 	border: 1px solid #000;
-	
 }
 
 .user-search-bar{
@@ -2486,12 +2485,50 @@ font-size: 16px;
 	text-align: right;
 }
 .font-tbl{
-	border: 2px solid #000;
-	width: 800px;
-	margin: 10px auto;
+	table-layout:fixed;
+	width: 100%;
 }
 .font-tbl th, .font-tbl td{
 	border: 1px solid #000;
+	font-size: 1rem;
+	background-color: #fff;
+}
+#adminFontupdateFrm{
+	text-align: center;
+}
+.font-tbl thead th{
+	position: sticky;
+	top: 0px;
+	background-color: #005A3C;
+	color: #fff;
+}
+.fix-head{
+	border: 1px solid #000;
+	overflow:auto;
+	height:180px;
+	width: 820px;
+	margin: 10px auto;
+}
+.font-tbl th:first-of-type, .font-tbl td:first-of-type{
+	width: 75px;
+}
+.font-tbl th:nth-of-type(2), .font-tbl td:nth-of-type(2){
+	width: 130px;
+}
+.font-tbl th:nth-of-type(3), .font-tbl td:nth-of-type(3){
+	width: 130px;
+}
+.font-tbl th:nth-of-type(4), .font-tbl td:nth-of-type(4){
+	width: 136px;
+}
+.font-tbl th:nth-of-type(5), .font-tbl td:nth-of-type(5){
+	width: 75px;
+}
+.font-tbl th:nth-of-type(6), .font-tbl td:nth-of-type(6){
+	width: 100px;
+}
+.font-tbl th:last-of-type, .font-tbl td:last-of-type{
+	width: 75px;
 }
 
 /* 멤버 디테일 끝*/
@@ -2611,7 +2648,6 @@ font-size: 16px;
     margin-left:  200px;
     margin-right:  200px;
     margin-top:50px;
-    
     padding:20px;
     
     
