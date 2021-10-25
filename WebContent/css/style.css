@@ -2016,6 +2016,24 @@ p { padding: 5px 0; }
   border: 1px solid #000;
 }
 
+/*커뮤니티 페이지 윤희*/
+
+.enrollBtn{
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 10px;
+}
+
+.enrollBtn>button{
+background-color: #4CAF50; /* Green */
+border: 0px;
+color: white;
+padding: 10px 12px;
+text-align: center;
+text-decoration: none;
+display: inline-block;
+font-size: 16px;
+}
 /*
  * 메뉴 로그인 nav창
  */
@@ -2797,3 +2815,30 @@ p { padding: 5px 0; }
 }
 
 /*어바웃디테일 끝*/
+
+/* Community Board Enroll */
+#board-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+#board-container h2{
+    margin-bottom: 50px;
+}
+table#tbl-board-view {
+	width:500px; 
+	margin:0 auto; 
+	border:1px solid black; 
+	border-collapse:collapse;  
+}
+table#tbl-board-view th {
+	width: 150px; 
+	border:1px solid; 
+	padding: 10px 0; 
+	text-align:center; 
+} 
+table#tbl-board-view td {
+	border:1px solid; 
+	padding: 5px 0 5px 15px; 
+	text-align:left;
+}
