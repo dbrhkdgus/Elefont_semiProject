@@ -472,6 +472,9 @@ select * from question where q_questioner = 'hyejin' order by q_date asc;;
 select * from member;
 select * from view_member_orders where member_no =?
 
+
+
+
 -- member 테이블 테스트용
 insert into member values ('1','test1','1234','테스트1','M','test1@naver.com','01012341234',null,null,default,default,default,null,null);
 insert into member values ('2','test2','1234','테스트2','M','test2@naver.com','01022341234',null,null,default,default,default,null,null);
@@ -505,6 +508,8 @@ select * from member;
 SELECT * FROM    ALL_CONSTRAINTS
 WHERE    TABLE_NAME = 'MEMBER';
 
+
+--update member set member_role = 'S' where member_no =3;
 --alter table member
 --drop constraint CK_MEMBER_MEMBER_ROLE;
 
