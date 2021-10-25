@@ -95,5 +95,42 @@ public class AttachmentDao {
 		
 		return attachmentList;
 	}
+	public List<Attachment> selectAllAttachmentListByMemberNo(Connection conn, String memberNo) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		List<Attachment> attachmentList = new ArrayList<>();
+		
+		String sql = prop.getProperty("selectAllAttachmentListByMemberNo");
+		
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, memberNo);
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				Attachment attachment = new Attachment();
+				attachment.setAttNo(rset.getInt("att_no"));
+				attachment.setMemberNo(rset.getString("member_no"));
+				attachment.setCommNo(rset.getString("comm_no"));
+				attachment.setFontNo(rset.getString("font_no"));
+				attachment.setOriginalFilename(rset.getString("original_filename"));
+				attachment.setRenamedFilename(rset.getString("renamed_filename"));
+				attachment.setRegDate(rset.getDate("reg_date"));
+				
+				
+				attachmentList.add(attachment);
+				
+			}
+				
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return attachmentList;
+	}
 
 }
