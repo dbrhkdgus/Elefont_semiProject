@@ -4,7 +4,11 @@
 <%@include file = "/WEB-INF/views/common/LandingHeader.jsp" %>
     
     <!-- community writer detail 시작 -->
+<%
+	Member writerMember = (Member)request.getAttribute("writerMember");
+System.out.println("writerMember@jsp : " +  writerMember);
 
+%>
 <section id="portfolio" class="portfolio section-space-padding">
     <div id="writer-detail"class="container"> 
         <div class="comm-writer-detail">
@@ -12,8 +16,8 @@
             <div class="comm-writer-info">
                 
                 <img src="./images/free-icon-male-user-74464.png" alt="" class="writer-profile-img">
-                <h2>Writer Name</h2>
-                <h2>게시글 수 : <span>0</span></h2>
+                <h2><%= writerMember.getMemberName() %></h2>
+                <h2>게시글 수 : <span><%=  %></span></h2>
             </div>
             
             <div class="comm-writer-history">
