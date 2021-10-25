@@ -14,13 +14,12 @@ public class Font implements Serializable{
 	private String fontNo;
 	private String fontName;
 	private String fontUrl;
+	private String memberId;
 	private double fontPrice;
 	private double fontDiscountRate;
 	private int fontLikeCount;
 	private int fontViewCount;
-	
 	private int fontPurchasedCount;
-	
 	private Date fontRegDate;
 	
 	private Attachment attach;
@@ -30,19 +29,26 @@ public class Font implements Serializable{
 		// TODO Auto-generated constructor stub
 	}
 
-	public Font(String fontNo, String fontName, String fontUrl, double fontPrice, double fontDiscountRate,
-			int fontLikeCount, int fontViewCount, int fontPurchasedCount, Date fontRegDate) {
+	
+
+	public Font(String fontNo, String fontName, String fontUrl, String memberId, double fontPrice,
+			double fontDiscountRate, int fontLikeCount, int fontViewCount, int fontPurchasedCount, Date fontRegDate,
+			Attachment attach) {
 		super();
 		this.fontNo = fontNo;
 		this.fontName = fontName;
 		this.fontUrl = fontUrl;
+		this.memberId = memberId;
 		this.fontPrice = fontPrice;
 		this.fontDiscountRate = fontDiscountRate;
 		this.fontLikeCount = fontLikeCount;
 		this.fontViewCount = fontViewCount;
 		this.fontPurchasedCount = fontPurchasedCount;
 		this.fontRegDate = fontRegDate;
+		this.attach = attach;
 	}
+
+
 
 	public String getFontNo() {
 		return fontNo;
@@ -114,6 +120,26 @@ public class Font implements Serializable{
 
 	public void setFontRegDate(Date fontRegDate) {
 		this.fontRegDate = fontRegDate;
+	}
+
+	public String getMemberId() {
+		return memberId;
+	}
+
+
+
+	public void setMemberId(String memberId) {
+		this.memberId = memberId;
+	}
+
+
+
+	public Attachment getAttach() {
+		return attach;
+	}
+
+	public void setAttach(Attachment attach) {
+		this.attach = attach;
 	}
 
 	@Override

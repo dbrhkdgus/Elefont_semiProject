@@ -18,22 +18,19 @@ alter session set "_oracle_script" = true;
 --============================================
 
 CREATE TABLE attachment(
-    att_no number ,
+    att_no number,
     member_no varchar2(200) not null,
     comm_no varchar2(500),
-    font_no varchar2(500),
     original_filename varchar2(255) not null,
     renamed_filename varchar2(255) not null,
     reg_date Date default sysdate,
     
     constraint pk_attachment_att_no primary key(att_no)
- 
 );
 
 select * from member;
-update member set member_role = 'A' where member_no =1;
-commit;
-
+select * from attachment;
+select * from font;
 
 CREATE TABLE member (
 	member_no	varchar2(200) not null ,
@@ -115,6 +112,7 @@ CREATE TABLE font (
 	font_no	varchar2(500)	not null ,
 	font_name	varchar2(200)	not null,
 	font_url	varchar2(500)	not null ,
+
 	font_price	number DEFAULT 300 not null ,
 	font_discount_rate	number DEFAULT 1,
 	font_like_count	number DEFAULT 0,
@@ -125,7 +123,6 @@ CREATE TABLE font (
 ALTER TABLE font ADD CONSTRAINT PK_FONT_FONT_NO PRIMARY KEY (
 	font_no
 );
-
 
 CREATE TABLE font_category (
 	category_code	varchar2(50)  not null ,
@@ -496,7 +493,8 @@ insert into member values ('111','admin','1ARVn2Auq2/WAqx2gNrL+q3RNjAzXpUfCXrzkA
 --insert into member values ('9','test9','1234','테스트9','F','test9@naver.com','01012341234',null, null, default,default,default,null,default,default);
 --insert into member values ('10','test10','1234','테스트10','M','test10@naver.com','01012341234',null, null, default,default,default,null,default,default);
 
-
+select * from font;
+select * from attachment;
 -- 회원-포인트 뷰 테스트용
 --insert into point_category values('C', '고객이벤트');
 --insert into point values('1', 'C', 300, default);
@@ -532,3 +530,17 @@ select font_no from font where font_name = '광현체';
 
 
 commit;
+
+-- 여기서부터 추가 수정입니다. 진행하고 커밋해 주세요(10/25 혜진, 다현, 은희)
+--alter table attachment add font_no varchar2(500);
+
+--create sequence seq_attachment_no;
+
+--alter table font add member_id varchar2(200);
+
+--ALTER TABLE font ADD CONSTRAINT FK_FONT_MEMBER_ID FOREIGN KEY (
+--	member_id
+--) REFERENCES MEMBER(member_id);
+
+--create sequence seq_font_no;
+--commit;
