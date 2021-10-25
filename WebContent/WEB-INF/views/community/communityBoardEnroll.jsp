@@ -39,8 +39,9 @@
                 name="boardEnrollFrm"
                 action="<%=request.getContextPath() %>/community/boardEnroll" 
                 method="post"
+                enctype="multipart/form-data" 
                 >
-                <!-- enctype="multipart/form-data" -->
+                 
                 <table id="tbl-board-view">
                 <tr>
                     <th>제 목</th>
