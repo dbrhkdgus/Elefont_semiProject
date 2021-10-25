@@ -10,22 +10,24 @@ public class Community implements Serializable {
 	 */
 	private static final long serialVersionUID = 1L;
 	private String commNo;
+	private String commTitle;
 	private String commWriter;
 	private String commContent;
 	private int commViewCount;
 	private int commLikeCount;
 	private Date commRegDate;
-	private int fontNo;
+	private String fontNo;
 	
 	private Attachment attach;
 	public Community() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Community(String commNo, String commWriter, String commContent, int commViewCount, int commLikeCount,
-			Date commRegDate, int fontNo, Attachment attach) {
+	public Community(String commNo, String commTitle, String commWriter, String commContent, int commViewCount,
+			int commLikeCount, Date commRegDate, String fontNo, Attachment attach) {
 		super();
 		this.commNo = commNo;
+		this.commTitle = commTitle;
 		this.commWriter = commWriter;
 		this.commContent = commContent;
 		this.commViewCount = commViewCount;
@@ -39,6 +41,12 @@ public class Community implements Serializable {
 	}
 	public void setCommNo(String commNo) {
 		this.commNo = commNo;
+	}
+	public String getCommTitle() {
+		return commTitle;
+	}
+	public void setCommTitle(String commTitle) {
+		this.commTitle = commTitle;
 	}
 	public String getCommWriter() {
 		return commWriter;
@@ -70,10 +78,10 @@ public class Community implements Serializable {
 	public void setCommRegDate(Date commRegDate) {
 		this.commRegDate = commRegDate;
 	}
-	public int getFontNo() {
+	public String getFontNo() {
 		return fontNo;
 	}
-	public void setFontNo(int fontNo) {
+	public void setFontNo(String fontNo) {
 		this.fontNo = fontNo;
 	}
 	public Attachment getAttach() {
@@ -82,6 +90,13 @@ public class Community implements Serializable {
 	public void setAttach(Attachment attach) {
 		this.attach = attach;
 	}
+	@Override
+	public String toString() {
+		return "Community [commNo=" + commNo + ", commTitle=" + commTitle + ", commWriter=" + commWriter
+				+ ", commContent=" + commContent + ", commViewCount=" + commViewCount + ", commLikeCount="
+				+ commLikeCount + ", commRegDate=" + commRegDate + ", fontNo=" + fontNo + ", attach=" + attach + "]";
+	}
+	
 
 	
 }
