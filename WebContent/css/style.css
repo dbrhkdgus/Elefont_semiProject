@@ -2292,7 +2292,7 @@ font-size: 16px;
   left: 50%;
   transform: translate(-50%, -50%);
   text-align: center;
-  padding-top: 65px;
+  padding-top: 40px;
   padding-left: 40px;
   display: none;
   z-index: 999;
@@ -2479,8 +2479,17 @@ font-size: 16px;
 }
 .coupon-tbl th, .coupon-tbl td{
 	border: 1px solid #000;
-	
-	
+}
+.font-search-bar{
+	text-align: right;
+}
+.font-tbl{
+	border: 2px solid #000;
+	width: 800px;
+	margin: 10px auto;
+}
+.font-tbl th, .font-tbl td{
+	border: 1px solid #000;
 }
 
 /* 멤버 디테일 끝*/

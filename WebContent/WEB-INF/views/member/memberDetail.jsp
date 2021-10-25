@@ -37,9 +37,11 @@
             <h3>등록하실 폰트명</h3>
             <div class="font-wrpper">
             <input type="text" name="font-name" id="font-name" placeholder="폰트명을 입력하세요"><i class="fas fa-check-circle"></i>
-            </div>
+            <h4>희망 가격 입력</h4>
+            <input type="text" name="font-price" id="" value="기본 가격은 200P입니다."/><br />
             <h3>폰트파일 업로드</h3>
             <input type="file" name="font-file" id="font-file" />
+            </div>
             <input type="button" id="font-x-btn" value="취소하기">
             <input type="button" id="font-submit-btn" value="등록하기">
             <input type="hidden" name="memberId">
@@ -194,6 +196,7 @@
 					<li><a href="#">게시판 관리</a></li>
 					<li><a href="#">주문 관리</a></li>
 					<li><a href="#">쿠폰 관리</a></li>
+					<li><a href="#">폰트 관리</a></li>
 				</ul>
 			</div>
 			<div id="tab-content">
@@ -364,6 +367,46 @@
 								<!-- db에서 읽어온 쿠폰 정보 출력 -->
 							</tr>
 						</table>
+				</div>
+				<div>
+					<div class="fontLookup">
+						<div class="font-search-bar">
+							<input type="radio" name="fontAuditYN" id="font-a" value="A" checked>
+							<label for="fontAuditYN0">모든 폰트 보기</label>
+							<input type="radio" name="fontAuditYN" id="font-n" value="N" checked>
+							<label for="fontAuditYN1">미승인 폰트 보기</label>
+							<input type="radio" name="fontAuditYN" id="font-y" value="Y">
+							<label for="fontAuditYN2">승인 폰트 보기</label>
+							<br />
+							<select name="font-search" id="font-search">
+								<option value="" selected>모든 폰트 조회</option>
+								<option value="font-no">폰트번호로 검색</option>
+								<option value="font-name">폰트명으로 검색</option>
+								<option value="font-seller">폰트 판매자로 검색</option>
+							</select>
+							<input type="text" name="" id="" placeholder="검색할 내용을 입력하세요."/>
+							<input type="button" value="검색" />
+						</div>
+						<table class="font-tbl">
+							<tr>
+								<th>폰트 승인 여부</th>
+								<th>폰트 번호</th>
+								<th>폰트명</th>
+								<th>폰트 파일</th>
+								<th>판매 회원</th>
+								<th>판매 회원 결과 확인</th>
+							</tr>
+							<tr>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+								<td></td>
+							</tr>
+
+						</table>
+					</div>
 				</div>
 			</div>
 		</div>
