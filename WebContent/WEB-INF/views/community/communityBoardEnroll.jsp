@@ -53,9 +53,16 @@
                     </td>
                 </tr>
                 <tr>
+                	<th>사용된 폰트</th>
+                	<td>
+                		<input type="text" name="font" />
+                	</td>
+                </tr>
+                <tr>
                     <th>첨부파일</th>
                     <td>			
                         <input type="file" name="upFile">
+                    
                     </td>
                 </tr>
                 <tr>
