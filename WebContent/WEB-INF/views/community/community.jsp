@@ -7,7 +7,7 @@
           
             <div class="container">
                 <div class="enrollBtn">
-                    <button>글 작성하기</button>
+                    <button id="btn-comm-board-enroll">글 작성하기</button>
                     </div>
                         <div class="comm-like-list">
                             <div class="like-comm">
@@ -166,7 +166,10 @@
 		<%-- location.href = "<%= request.getContextPath()%>/community/board?commNo="; --%>
 		location.href = "<%= request.getContextPath()%>/community/board";
 	});
-
+	$("#btn-comm-board-enroll").click((e)=>{
+		
+		location.href = "<%= request.getContextPath()%>/community/boardEnroll";
+	});
 </script>
         <!-- Portfolio End -->
 		
