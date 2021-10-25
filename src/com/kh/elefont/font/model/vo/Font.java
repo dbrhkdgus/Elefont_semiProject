@@ -21,6 +21,7 @@ public class Font implements Serializable{
 	private int fontViewCount;
 	private int fontPurchasedCount;
 	private Date fontRegDate;
+	private String fontApproval;
 	
 	private Attachment attach;
 
@@ -29,11 +30,10 @@ public class Font implements Serializable{
 		// TODO Auto-generated constructor stub
 	}
 
-	
 
 	public Font(String fontNo, String fontName, String fontUrl, String memberId, double fontPrice,
 			double fontDiscountRate, int fontLikeCount, int fontViewCount, int fontPurchasedCount, Date fontRegDate,
-			Attachment attach) {
+			String fontApproval, Attachment attach) {
 		super();
 		this.fontNo = fontNo;
 		this.fontName = fontName;
@@ -45,9 +45,9 @@ public class Font implements Serializable{
 		this.fontViewCount = fontViewCount;
 		this.fontPurchasedCount = fontPurchasedCount;
 		this.fontRegDate = fontRegDate;
+		this.fontApproval = fontApproval;
 		this.attach = attach;
 	}
-
 
 
 	public String getFontNo() {
@@ -141,13 +141,29 @@ public class Font implements Serializable{
 	public void setAttach(Attachment attach) {
 		this.attach = attach;
 	}
+	
+	
+
+	public String getFontApproval() {
+		return fontApproval;
+	}
+
+
+	public void setFontApproval(String fontApproval) {
+		this.fontApproval = fontApproval;
+	}
+
 
 	@Override
 	public String toString() {
-		return "Font [fontNo=" + fontNo + ", fontName=" + fontName + ", fontUrl=" + fontUrl + ", fontPrice=" + fontPrice
-				+ ", fontDiscountRate=" + fontDiscountRate + ", fontLikeCount=" + fontLikeCount + ", fontViewCount="
-				+ fontViewCount + ", fontPurchasedCount=" + fontPurchasedCount + ", fontRegDate=" + fontRegDate + "]";
+		return "Font [fontNo=" + fontNo + ", fontName=" + fontName + ", fontUrl=" + fontUrl + ", memberId=" + memberId
+				+ ", fontPrice=" + fontPrice + ", fontDiscountRate=" + fontDiscountRate + ", fontLikeCount="
+				+ fontLikeCount + ", fontViewCount=" + fontViewCount + ", fontPurchasedCount=" + fontPurchasedCount
+				+ ", fontRegDate=" + fontRegDate + ", fontApproval=" + fontApproval + ", attach=" + attach + "]";
 	}
+
+
+	
 	
 	
 	
