@@ -560,4 +560,5 @@ commit;
 --
 --create sequence seq_font_no;
 
-
+select * from community;
+select * from attachment;
