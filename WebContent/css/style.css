@@ -2016,6 +2016,24 @@ p { padding: 5px 0; }
   border: 1px solid #000;
 }
 
+/*커뮤니티 페이지 윤희*/
+
+.enrollBtn{
+    display: flex;
+    justify-content: flex-end;
+    margin-bottom: 10px;
+}
+
+.enrollBtn>button{
+background-color: #4CAF50; /* Green */
+border: 0px;
+color: white;
+padding: 10px 12px;
+text-align: center;
+text-decoration: none;
+display: inline-block;
+font-size: 16px;
+}
 /*
  * 메뉴 로그인 nav창
  */
