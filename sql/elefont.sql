@@ -21,6 +21,7 @@ CREATE TABLE attachment(
     att_no number ,
     member_no varchar2(200) not null,
     comm_no varchar2(500),
+    font_no varchar2(500),
     original_filename varchar2(255) not null,
     renamed_filename varchar2(255) not null,
     reg_date Date default sysdate,
@@ -393,6 +394,7 @@ CREATE TABLE orders(
 
  alter table attachment  add constraint fk_attachment_member_no foreign key(member_no) references member(member_no);
   alter table attachment   add  constraint fk_attachment_comm_no foreign key(comm_no) references community(comm_no);
+  alter table attachment add constraint fk_attachment_font_no foreign key(font_no) references font(font_no);
 -- view 생성
 -- 회원 - 포인트 뷰
 create or replace view view_member_point
