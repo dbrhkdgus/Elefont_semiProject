@@ -16,6 +16,7 @@ import com.kh.elefont.common.model.vo.Attachment;
 import com.kh.elefont.community.model.service.CommunityService;
 import com.kh.elefont.community.model.vo.Community;
 import com.kh.elefont.font.model.service.FontService;
+import com.kh.elefont.member.model.service.MemberService;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.FileRenamePolicy;
 
@@ -96,6 +97,10 @@ public class CommunityBoardEnrollServlet extends HttpServlet {
 			Attachment attach = new Attachment();
 			attach.setOriginalFilename(originalFilename);
 			attach.setRenamedFilename(renamedFilename);
+			MemberService memberService = new MemberService();
+			System.out.println(memberService.selectMemberNoByMemberName(writer));
+			attach.setMemberNo(memberService.selectMemberNoByMemberName(writer));
+			System.out.println(communityService.selectLastCommNo());
 			attach.setCommNo(communityService.selectLastCommNo());
 			// attachment insert sql
 			AttachmentService attachmentService = new AttachmentService();
