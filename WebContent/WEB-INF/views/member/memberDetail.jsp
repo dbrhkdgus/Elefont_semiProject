@@ -474,14 +474,13 @@
 		  .css("display","none")
 		  .eq(index).css("display","block");
 	});
-
-/* 폰트 관리 - 회원 폰트 다운로드 버튼 클릭 시 파일 다운로드 */
-	$(".fontDownloadBtn").click((e)=>{
-		console.log($(e.target).parent().parent().eq(1));
-		/* $fontNo = $(e.target).parent().parent().eq(1).html();
-		console.log($fontNo); */
-		/* location.href = request.getContextPath() + "/font/fontDownload?fontNo=" + $fontNo; */ 
-	});
+	
+	/* 폰트 관리 - 회원 폰트 다운로드 버튼 클릭 시 파일 다운로드 */
+    $(".fontDownloadBtn").click((e)=>{
+        $fontNo = $(e.target).parent().prevAll().eq(2).html();
+        console.log($fontNo);
+        location.href = "<%=request.getContextPath()%>/font/fontDownload?fontNo=" + $fontNo; 
+    });
 </script>
 <%
 }
