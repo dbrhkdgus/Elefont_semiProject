@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.kh.elefont.font.model.service.FontService;
+import com.kh.elefont.font.model.vo.Font;
 import com.kh.elefont.member.model.service.MemberService;
 import com.kh.elefont.member.model.vo.Member;
 
@@ -20,6 +22,7 @@ import com.kh.elefont.member.model.vo.Member;
 public class MemberDetailServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private MemberService memberService = new MemberService();
+	private FontService fontService = new FontService();
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
@@ -33,11 +36,13 @@ public class MemberDetailServlet extends HttpServlet {
 		System.out.println(memberRole);
 		
 		if("A".equals(memberRole)) {
-			List<Member> list = memberService.selectAllMember();
-			System.out.println("list@servlet = "+list);
+			List<Member> memberList = memberService.selectAllMember();
+			List<Font> fontList = fontService.selectAllFont();
 			
-			session.setAttribute("list", list);
+			session.setAttribute("memberList", memberList);
+			session.setAttribute("fontList", fontList);
 		}
+		
 		request
 			.getRequestDispatcher("/WEB-INF/views/member/memberDetail.jsp")
 			.forward(request, response);

@@ -112,17 +112,18 @@ CREATE TABLE font (
 	font_no	varchar2(500)	not null ,
 	font_name	varchar2(200)	not null,
 	font_url	varchar2(500)	not null ,
-
 	font_price	number DEFAULT 300 not null ,
 	font_discount_rate	number DEFAULT 1,
 	font_like_count	number DEFAULT 0,
 	font_view_count	number DEFAULT 0,
 	font_purchased_count	number DEFAULT 0,
-	font_reg_date		Date	 DEFAULT sysdate
+	font_reg_date Date DEFAULT sysdate
 );
 ALTER TABLE font ADD CONSTRAINT PK_FONT_FONT_NO PRIMARY KEY (
 	font_no
 );
+
+select * from font;
 
 CREATE TABLE font_category (
 	category_code	varchar2(50)  not null ,
