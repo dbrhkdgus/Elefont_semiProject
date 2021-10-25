@@ -200,13 +200,13 @@
 				<div>
 					<div class="memberLookup">
 						<div class="user-search-bar">
-							<input type="radio" name="memberRole" id="user" value="U" checked>
+							<input type="radio" name="memberRole" id="user" value="M" checked>
 							<label for="memberRole0">일반 회원 보기</label>
 							<input type="radio" name="memberRole" id="seller" value="S">
 							<label for="memberRole1">판매 회원 보기</label>
-							<input type="radio" name="memberRole" id="user" value="U" checked>
+							<input type="radio" name="memberRole" id="user" value="A">
 							<label for="memberRole2">관리 회원 보기</label>
-							<input type="radio" name="memberRole" id="seller" value="S">
+							<input type="radio" name="memberRole" id="seller" value="D">
 							<label for="memberRole3">휴면 회원 보기</label>
 							<br />
 							<select name="user-search" id="user-search">
@@ -243,18 +243,42 @@
 							</tr>
 <%
 		}
+	}else{
+%>
+							<tr>
+								<td colspan="7">회원이 없습니다</td>
+							</tr>
+<%
 	}
 %>
 						</table>
 					</div>
 				</div>
 				<div>
-					<table class="admin-tbl">
-						<tr>
-							<th>폰트 카테고리 관리</th>
-							<th>커뮤니티 관리</th>
-						</tr>
-					</table>
+					<div id="admin-board-section">
+						<div class="admin-board">
+							<h4>폰트 카테고리 관리</h4>
+							<table id="font-tbl">
+								<tr>
+									<th>No.</th>
+									<th>분류명</th>
+									<th>관리</th>
+								</tr>
+<%
+/* 폰트 카테고리 불러와서 세션에 저장해놓고 불러올 것. 값이 null이면 폰트 카테고리가 없습니다 뜨게 하기. */
+%>
+							</table>
+						</div>
+						<div class="admin-board">
+							<h4>커뮤니티 관리</h4>
+							<ul>
+								<li><a href="">1:1 문의 관리</a></li>
+								<li><a href="">삭제 게시글/댓글 관리</a></li>
+								<li><a href="<%= request.getContextPath()%>/community">커뮤니티로 이동</a></li>
+							</ul>
+							
+						</div>
+					</div>
 				</div>
 				<div>
 					<div class="user-search-bar">
@@ -279,25 +303,67 @@
 					</table>
 				</div>
 				<div>
-					<h3>사용자 쿠폰 관리</h3>
-					<table class="admin-tbl">
-						<tr>
-							<th>쿠폰 조회</th>
-							<th>쿠폰 발행</th>
-							<th>쿠폰 충전</th>
-						</tr>
-						<tr>
-							<td>
-								<input type="text" placeholder="유저아이디로 검색" />
-								<input type="button" value="검색" />
-							</td>
-							<td><button>신규 쿠폰 발행</button></td>
-							<td>
-								<input type="text" placeholder="유저아이디로 검색" />
-								<input type="button" value="검색" />
-							</td>
-						</tr>
-					</table>
+					<div class="coupon-enroll-wrapper">
+						<form action="" method="POST" name="couponEnrollFrm">
+							<table id="coupon-enroll-tbl">
+								<tr>
+									<th >쿠폰 발행</th>
+									<td colspan="2">
+										<input type="radio" name="couponType" id="point" value="P" checked>
+										<label for="couponType0">포인트 쿠폰</label>
+										<input type="radio" name="couponType" id="discount" value="D">
+										<label for="couponType1">할인 쿠폰</label>
+									</td>
+
+								</tr>
+								<tr>
+									<td>
+										<span>포인트/할인율</span>
+										<input type="text" name="couponRate" id="couponRate" />
+									</td>
+									<td>
+										<span>쿠폰 매수</span>
+										<input type="number" name="couponCnt" id="couponCnt" value="1"/>
+									</td>
+									<td rowspan="2">
+										<input type="submit" value="발행" />
+									</td>
+								</tr>
+								<tr>
+									<td>
+										<span>쿠폰 유효기간</span>
+										<input type="text" name="couponExpiration" id="couponExpiration" placeholder="발급일로부터 일"/>
+									</td>
+									<td>
+										<span>회원 아이디 입력</span>
+										<input type="text" name="memberId" placeholder="아이디를 입력하세요" />
+									</td>
+								</tr>
+								<tr>
+									<td colspan="2">
+										
+									</td>
+								</tr>							
+							</table>
+						</form>
+						<div class="coupon-result">
+						<!-- 발행된 쿠폰 번호 출력할 div -->
+						</div>
+					</div>
+						<table class="coupon-tbl">
+							<tr>
+								<th>쿠폰 발급일</th>
+								<th>쿠폰 번호</th>
+								<th>쿠폰 종류</th>
+								<th>쿠폰 유효기간</th>
+								<th>쿠폰 사용여부</th>
+								<th>포인트 값/할인율</th>
+								<th>회원 아이디</th>
+							</tr>
+							<tr>
+								<!-- db에서 읽어온 쿠폰 정보 출력 -->
+							</tr>
+						</table>
 				</div>
 			</div>
 		</div>
