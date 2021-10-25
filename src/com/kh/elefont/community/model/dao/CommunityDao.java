@@ -8,6 +8,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Properties;
 
 import com.kh.elefont.community.model.vo.Community;
@@ -77,6 +79,44 @@ public class CommunityDao {
 		}
 		
 		return LastNo;
+	}
+
+	public List<Community> selectAllCommunityList(Connection conn) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		List<Community> communityList = new ArrayList<>();
+		
+		String sql = prop.getProperty("selectAllCommunityList");
+		
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				Community community = new Community();
+				community.setCommNo(rset.getString("comm_no"));
+				community.setCommWriter(rset.getString("comm_writer"));
+				community.setCommContent(rset.getString("comm_content"));
+				community.setCommViewCount(rset.getInt("comm_view_count"));
+				community.setCommLikeCount(rset.getInt("comm_like_count"));
+				community.setCommRegDate(rset.getDate("comm_reg_date"));
+				community.setFontNo(rset.getString("font_no"));
+				community.setCommTitle(rset.getString("comm_title"));
+				
+				communityList.add(community);
+				
+			}
+				
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return communityList;
 	}
 
 }
