@@ -152,6 +152,8 @@ CREATE TABLE font_copyright (
 ALTER TABLE font_copyRight ADD CONSTRAINT PK_FONT_COPYRIGHT_FONT_NO PRIMARY KEY (
 	font_no
 );
+alter table font add font_approval char(1);
+alter table font add constraint ck_font_font_approval check(font_approval in ('Y','N'));
 
 CREATE TABLE cart (
 	cart_no	varchar2(500)		not null ,
@@ -557,7 +559,5 @@ commit;
 --) REFERENCES MEMBER(member_id);
 --
 --create sequence seq_font_no;
---commit;
-select * from community;
-select * from attachment;   
-select * from font;
+
+

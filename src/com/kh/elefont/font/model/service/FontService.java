@@ -1,7 +1,6 @@
 package com.kh.elefont.font.model.service;
 
 import static com.kh.elefont.common.JdbcTemplate.*;
-
 import java.sql.Connection;
 import java.util.List;
 
@@ -51,6 +50,29 @@ public class FontService {
 		List<Font> fontList = fontDao.selectAllFont(conn);
 		close(conn);
 		return fontList;
+	}
+	public int updateFont(Font[] fontArr) {
+		Connection conn = getConnection();
+		int result = 0;
+		
+		try {
+			result = fontDao.updateFont(conn, fontArr);
+			System.out.println("result@dao = "+result);
+			commit(conn);
+		}catch(Exception e) {
+			rollback(conn);
+		}finally {
+			close(conn);
+		}
+		
+		return result;
+	}
+	public Attachment selectOneAttachment(String fontNo) {
+		Connection conn = getConnection();
+		Attachment attach = fontDao.selectOneAttachment(conn, fontNo);
+		System.out.println("제가 attach 객체를 잘 받아왔나요?! " + attach);
+		close(conn);
+		return attach;
 	}
 
 }
