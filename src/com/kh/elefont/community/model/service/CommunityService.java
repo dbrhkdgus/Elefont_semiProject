@@ -33,4 +33,21 @@ public class CommunityService {
 	        return result;
 	}
 
+	public String selectLastCommNo() {
+		 Connection conn = getConnection();
+	        String LastNo = "";
+	        
+	        try {
+	        	LastNo = communityDao.selectLastCommNo(conn);
+	            
+	            commit(conn);
+	        }catch(Exception e) {
+	            rollback(conn);
+	            throw e;
+	        }finally {
+	            close(conn);
+	        }
+	        return LastNo;
+	}
+
 }
