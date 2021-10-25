@@ -28,22 +28,22 @@
                         <div class="comm-like-list">
 <%
 		String attachFilename = "";
+		String memberNo = "";
+		
 		for(Community comm : communityList){
 			for(Attachment att : attachmentList){
-				System.out.println("comm~commNo@jsp : "+comm.getCommNo());
-				System.out.println("att~commNo@jsp : "+att.getCommNo());
 				
-				System.out.println("att.getCommNo().equals(comm.getCommNo())@jsp : " + att.getCommNo().equals(comm.getCommNo()));
 				if(att.getCommNo().equals(comm.getCommNo())){
 					attachFilename = att.getRenamedFilename();
-					System.out.println("attachFilePath@jsp : " + attachFilename);
+					memberNo = att.getMemberNo();
+					
 				}
 			}
 %>
 
  						<div class="like-comm">
 <%--                            <a href="<%= request.getContextPath()%>/community/writerDetail?writer=<% userId%>"><i class="fas fa-user"></i><div class="like-comm-writer"> user id </div></a> --%>
-                                <a href="<%= request.getContextPath()%>/community/writerDetail"><i class="fas fa-user"></i><div class="like-comm-writer"> <%= comm.getCommWriter() %> </div></a>
+                                <a href="<%= request.getContextPath()%>/community/writerDetail?commWriter=<%= memberNo %>"><i class="fas fa-user"></i><div class="like-comm-writer"> <%= comm.getCommWriter() %> </div></a>
                                 <div class="comm-img">
                                		<img src="<%= request.getContextPath()%>/upload/community/<%=attachFilename%>" alt="" width=16px/>
                                		
