@@ -35,9 +35,10 @@ public class AttachmentDao {
 			//미완성쿼리문을 가지고 객체생성.
 			pstmt = conn.prepareStatement(query);
 			//쿼리문미완성
-			pstmt.setString(1, attach.getCommNo());
-			pstmt.setString(2, attach.getOriginalFilename());
-			pstmt.setString(3, attach.getRenamedFilename());
+			pstmt.setString(1, attach.getMemberNo());
+			pstmt.setString(2, attach.getCommNo());
+			pstmt.setString(3, attach.getOriginalFilename());
+			pstmt.setString(4, attach.getRenamedFilename());
 			
 			
 			

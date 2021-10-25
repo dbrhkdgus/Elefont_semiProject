@@ -60,7 +60,7 @@ public class CommunityDao {
 		ResultSet rset = null;
 		String LastNo = "";
 		
-		String sql = null;
+		String sql = prop.getProperty("selectLastCommNo");
 		
 		
 		try {
@@ -68,7 +68,7 @@ public class CommunityDao {
 			
 			rset = pstmt.executeQuery();
 			if(rset.next())
-				LastNo = rset.getString(1);
+				LastNo = rset.getString("comm_no");
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
