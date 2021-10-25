@@ -559,13 +559,5 @@ commit;
 --) REFERENCES MEMBER(member_id);
 --
 --create sequence seq_font_no;
-<<<<<<< HEAD
---commit
-select * from member;
-select * from attachment;
-=======
---commit;
-select * from community;
-select * from attachment;   
-select * from font;
->>>>>>> branch 'master' of https://github.com/dbrhkdgus/Elefont_semiProject.git
+
+
