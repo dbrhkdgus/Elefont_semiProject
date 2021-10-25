@@ -1980,6 +1980,8 @@ p { padding: 5px 0; }
 }
 .comm-like-list{
   display: flex;
+  flex-wrap: wrap;
+  width: 1160px;
 }
 
 .comm-finder{
@@ -2538,7 +2540,8 @@ font-size: 16px;
 .comm-writer-detail{
     display: flex;
     align-items: center;
-    justify-content: space-between;
+   	 justify-content: center;
+   	 height: 1000px;
 }
 .comm-writer-info{
     text-align: center;
@@ -2561,6 +2564,7 @@ font-size: 16px;
 }
 .comm-writer-font-history-content{
     display: flex;
+    height: 500px;
 }
 .like-item-comm{
 	height : 210px;

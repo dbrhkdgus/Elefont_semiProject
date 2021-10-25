@@ -1,11 +1,12 @@
 package com.kh.elefont.community.model.service;
 
 import static com.kh.elefont.common.JdbcTemplate.close;
-import static com.kh.elefont.common.JdbcTemplate.getConnection;
 import static com.kh.elefont.common.JdbcTemplate.commit;
+import static com.kh.elefont.common.JdbcTemplate.getConnection;
 import static com.kh.elefont.common.JdbcTemplate.rollback;
 
 import java.sql.Connection;
+import java.util.ArrayList;
 import java.util.List;
 
 import com.kh.elefont.community.model.dao.CommunityDao;
@@ -48,6 +49,23 @@ public class CommunityService {
 	            close(conn);
 	        }
 	        return LastNo;
+	}
+
+	public List<Community> selectAllCommunityList() {
+		 Connection conn = getConnection();
+		 List<Community> communityList = new ArrayList<>();
+	        
+	        try {
+	        	communityList = communityDao.selectAllCommunityList(conn);
+	            
+	            commit(conn);
+	        }catch(Exception e) {
+	            rollback(conn);
+	            throw e;
+	        }finally {
+	            close(conn);
+	        }
+	        return communityList;
 	}
 
 }
