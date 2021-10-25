@@ -54,7 +54,7 @@ public class SellerFontEnrollServlet extends HttpServlet {
 		//	파일 정보 가져오기
 		String originalFilename = multipartRequest.getOriginalFileName("font-file");
 		String renamedFilename = multipartRequest.getFilesystemName("font-file");
-				
+		System.out.println("renamedFilename@servlet : " + renamedFilename);		
 		
 		//1. 사용자 입력값 받기
 		String memberId = multipartRequest.getParameter("memberId");
@@ -71,6 +71,7 @@ public class SellerFontEnrollServlet extends HttpServlet {
 		font.setFontUrl(fontUrl);
 		font.setMemberId(memberId);
 		
+		System.out.println("font@servlet = " + font);
 		if(multipartRequest.getFile("font-file") != null) {
 			Attachment attach = new Attachment();
 			attach.setMemberNo(memberNo);
