@@ -21,6 +21,7 @@
                                     <span>타이틀제목들어갈자리</span>
                                  </div>
                             </div> 
+                            
                             <div class="like-comm">
                                 <a href="<%= request.getContextPath()%>/community/writerDetail"><i class="fas fa-user"></i><div class="like-comm-writer"> user id </div></a>
                                 <div class="comm-img"></div>
@@ -32,6 +33,7 @@
                                     <span>타이틀제목들어갈자리</span>
                                  </div>
                             </div> 
+                            
                             <div class="like-comm">
 <%--                            <a href="<%= request.getContextPath()%>/community/writerDetail?writer=<% userId%>"><i class="fas fa-user"></i><div class="like-comm-writer"> user id </div></a> --%>
                                 <a href="<%= request.getContextPath()%>/community/writerDetail"><i class="fas fa-user"></i><div class="like-comm-writer"> user id </div></a>
@@ -58,6 +60,7 @@
                             </div>
                            
                         </div>
+                        
                         <div class="comm-like-list">
                             <div class="like-comm">
                                 <a href="<%= request.getContextPath()%>/community/writerDetail"><i class="fas fa-user"></i><div class="like-comm-writer"> user id </div></a>

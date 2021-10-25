@@ -557,3 +557,6 @@ commit;
 
 --create sequence seq_font_no;
 --commit;
+select * from community;
+select * from attachment;   
+select * from font;
