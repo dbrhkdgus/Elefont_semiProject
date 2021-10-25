@@ -3,6 +3,8 @@ package com.kh.elefont.font.model.vo;
 import java.io.Serializable;
 import java.sql.Date;
 
+import com.kh.elefont.common.model.vo.Attachment;
+
 public class Font implements Serializable{
 
 	/**
@@ -20,6 +22,8 @@ public class Font implements Serializable{
 	private int fontPurchasedCount;
 	
 	private Date fontRegDate;
+	
+	private Attachment attach;
 
 	public Font() {
 		super();
