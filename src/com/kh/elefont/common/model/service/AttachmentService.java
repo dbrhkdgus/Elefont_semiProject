@@ -47,5 +47,21 @@ public class AttachmentService {
 	        }
 	        return attachmentList;
 	}
+	public List<Attachment> selectAllAttachmentListByMemberNo(String memberNo) {
+		Connection conn = getConnection();
+		 List<Attachment> attachmentList = new ArrayList<>();
+	        
+	        try {
+	        	attachmentList = attachmentDao.selectAllAttachmentListByMemberNo(conn, memberNo);
+	            
+	            commit(conn);
+	        }catch(Exception e) {
+	            rollback(conn);
+	            throw e;
+	        }finally {
+	            close(conn);
+	        }
+	        return attachmentList;
+	}
 
 }

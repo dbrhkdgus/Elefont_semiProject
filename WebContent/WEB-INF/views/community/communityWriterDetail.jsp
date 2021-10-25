@@ -1,3 +1,5 @@
+<%@page import="com.kh.elefont.common.model.vo.Attachment"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
@@ -6,6 +8,8 @@
     <!-- community writer detail 시작 -->
 <%
 	Member writerMember = (Member)request.getAttribute("writerMember");
+	int totalCommunityByWriter = (int)request.getAttribute("totalCommunityByWriter");
+	List<Attachment> attachmentList = (List<Attachment>)request.getAttribute("attachmentList");
 System.out.println("writerMember@jsp : " +  writerMember);
 
 %>
@@ -17,27 +21,24 @@ System.out.println("writerMember@jsp : " +  writerMember);
                 
                 <img src="./images/free-icon-male-user-74464.png" alt="" class="writer-profile-img">
                 <h2><%= writerMember.getMemberName() %></h2>
-                <h2>게시글 수 : <span><%=  %></span></h2>
+                <h2>게시글 수 : <span><%= totalCommunityByWriter %></span></h2>
             </div>
             
             <div class="comm-writer-history">
                 <div class="comm-writer-comm-history">
                     <p>커뮤니티 게시글 이력</p>
                     <div class="comm-writer-comm-history-content">
-                        
-                        <img src="./images/free-icon-photo-frame-3342153.png" alt="">
-                        <img src="./images/free-icon-photo-frame-3342153.png" alt="">
-                        <img src="./images/free-icon-photo-frame-3342153.png" alt="">
-                        <img src="./images/free-icon-photo-frame-3342153.png" alt="">
-                       
+ <%
+ 	for(Attachment att : attachmentList){
+ %>
+ 						<img src="<%= request.getContextPath()%>/upload/community/<%=att.getRenamedFilename()%>" alt="" width=16px/>
+ 
+ <%	
+ 	}
+ %>                       
+            
                     </div>
-                    <div class="comm-writer-comm-history-content">
-                        <img src="./images/free-icon-photo-frame-3342153.png" alt="">
-                        <img src="./images/free-icon-photo-frame-3342153.png" alt="">
-                        <img src="./images/free-icon-photo-frame-3342153.png" alt="">
-                        <img src="./images/free-icon-photo-frame-3342153.png" alt="">
-                       
-                    </div>
+                   
                 </div>
                 <div class="comm-writer-font-history">
                     <p>폰트 좋아요 이력</p>

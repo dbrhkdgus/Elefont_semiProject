@@ -68,4 +68,21 @@ public class CommunityService {
 	        return communityList;
 	}
 
+	public int countTotalCommunityByWriter(String memberNo) {
+		 Connection conn = getConnection();
+		 int totalCommunityByWriter = 0;
+	        
+	        try {
+	        	totalCommunityByWriter = communityDao.countTotalCommunityByWriter(conn, memberNo);
+	            
+	            commit(conn);
+	        }catch(Exception e) {
+	            rollback(conn);
+	            throw e;
+	        }finally {
+	            close(conn);
+	        }
+	        return totalCommunityByWriter;
+	}
+
 }
