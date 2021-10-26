@@ -62,5 +62,13 @@ public class MemberService {
 		
 	}
 
+	public Member selectOneMemberByMemberNo(String memberNo) {
+		Connection conn = getConnection();
+		
+		Member member = memberDao.selectOneMemberByMemberNo(conn, memberNo);
+		close(conn);
+		return member;
+	}
+
 
 }

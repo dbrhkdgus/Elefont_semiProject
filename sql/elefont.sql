@@ -1,7 +1,7 @@
 --===========================================
 -- semi_project :  elefont 계정 생성
 --===========================================
-alter session set "_oracle_script" = true;
+--alter session set "_oracle_script" = true;
 --drop user elefont cascade;
 --
 --create user elefont
@@ -29,9 +29,7 @@ CREATE TABLE attachment(
 );
 create sequence seq_attachment_no;
 
-select * from member;
-select * from attachment;
-select * from font;
+
 
 CREATE TABLE member (
 	member_no	varchar2(200) not null ,
@@ -113,7 +111,7 @@ CREATE TABLE font (
 	font_no	varchar2(500)	not null ,
 	font_name	varchar2(200)	not null,
 	font_url	varchar2(500)	not null ,
-	font_price	number DEFAULT 300 not null ,
+	font_price	number DEFAULT 300 not null,
 	font_discount_rate	number DEFAULT 1,
 	font_like_count	number DEFAULT 0,
 	font_view_count	number DEFAULT 0,
@@ -124,7 +122,7 @@ ALTER TABLE font ADD CONSTRAINT PK_FONT_FONT_NO PRIMARY KEY (
 	font_no
 );
 
-select * from font;
+
 
 CREATE TABLE font_category (
 	category_code	varchar2(50)  not null ,
@@ -152,6 +150,8 @@ CREATE TABLE font_copyright (
 ALTER TABLE font_copyRight ADD CONSTRAINT PK_FONT_COPYRIGHT_FONT_NO PRIMARY KEY (
 	font_no
 );
+alter table font add font_approval char(1);
+alter table font add constraint ck_font_font_approval check(font_approval in ('Y','N'));
 
 CREATE TABLE cart (
 	cart_no	varchar2(500)		not null ,
@@ -471,32 +471,31 @@ from
                 join font f
                     on o.font_no = f.font_no;
                     
-select * from question where q_questioner = 'hyejin' order by q_date asc;;
+select * from question where q_questioner = 'hyejin' order by q_date asc;
     
 
-select * from member;
-select * from view_member_orders where member_no =?
+
+
 
 
 
 
 -- member 테이블 테스트용
-insert into member values ('1','test1','1234','테스트1','M','test1@naver.com','01012341234',null,null,default,default,default,null,null);
-insert into member values ('2','test2','1234','테스트2','M','test2@naver.com','01022341234',null,null,default,default,default,null,null);
-insert into member values ('3','test3','1234','테스트3','M','test3@naver.com','01032341234',null,null,default,default,default,null,null);
-insert into member values ('4','test4','1234','테스트4','M','test4@naver.com','01042341234',null,null,default,default,default,null,null);
-insert into member values ('5','test5','1234','테스트5','M','test5@naver.com','01052341234',null,null,default,default,default,null,null);
+--insert into member values ('1','test1','1234','테스트1','M','test1@naver.com','01012341234',null,null,default,default,default,null,null);
+--insert into member values ('2','test2','1234','테스트2','M','test2@naver.com','01022341234',null,null,default,default,default,null,null);
+--insert into member values ('3','test3','1234','테스트3','M','test3@naver.com','01032341234',null,null,default,default,default,null,null);
+--insert into member values ('4','test4','1234','테스트4','M','test4@naver.com','01042341234',null,null,default,default,default,null,null);
+--insert into member values ('5','test5','1234','테스트5','M','test5@naver.com','01052341234',null,null,default,default,default,null,null);
 
-insert into member values ('11','seller','1ARVn2Auq2/WAqx2gNrL+q3RNjAzXpUfCXrzkA6d4Xa22yhRLy4AC50E+6UTPoscbo31nbOoq51gvkuXzJ6B2w==','판매자테스트','M','seller@naver.com','01012341234',null,null,default,default,default,'S',null);
-insert into member values ('111','admin','1ARVn2Auq2/WAqx2gNrL+q3RNjAzXpUfCXrzkA6d4Xa22yhRLy4AC50E+6UTPoscbo31nbOoq51gvkuXzJ6B2w==','관리자테스트','M','admin@naver.com','01012341234',null,null,default,default,default,'A',null);
+--insert into member values ('11','seller','1ARVn2Auq2/WAqx2gNrL+q3RNjAzXpUfCXrzkA6d4Xa22yhRLy4AC50E+6UTPoscbo31nbOoq51gvkuXzJ6B2w==','판매자테스트','M','seller@naver.com','01012341234',null,null,default,default,default,'S',null);
+--insert into member values ('111','admin','1ARVn2Auq2/WAqx2gNrL+q3RNjAzXpUfCXrzkA6d4Xa22yhRLy4AC50E+6UTPoscbo31nbOoq51gvkuXzJ6B2w==','관리자테스트','M','admin@naver.com','01012341234',null,null,default,default,default,'A',null);
 --insert into member values ('6', 'test6', '1234', '테스트6', 'F', 'test6@gmail.com', '01012341234', null, null, default,default,default,null,default,default);
 --insert into member values ('7','test7','1234','테스트7','M','test7@naver.com','01012341234',null, null, default,default,default,null,default,default);
 --insert into member values ('8','test8','1234','테스트8','F','test8@naver.com','01012341234',null, null, default,default,default,null,default,default);
 --insert into member values ('9','test9','1234','테스트9','F','test9@naver.com','01012341234',null, null, default,default,default,null,default,default);
 --insert into member values ('10','test10','1234','테스트10','M','test10@naver.com','01012341234',null, null, default,default,default,null,default,default);
 
-select * from font;
-select * from attachment;
+
 -- 회원-포인트 뷰 테스트용
 --insert into point_category values('C', '고객이벤트');
 --insert into point values('1', 'C', 300, default);
@@ -508,11 +507,11 @@ select * from attachment;
 
 --update  member set member_pwd = '1ARVn2Auq2/WAqx2gNrL+q3RNjAzXpUfCXrzkA6d4Xa22yhRLy4AC50E+6UTPoscbo31nbOoq51gvkuXzJ6B2w==' where member_id= 'test111';
 --update member set member_name = '고와서새미나' where member_id = 'test1';
-select * from member;
+
 
 -- 제약조건 조회
-SELECT * FROM    ALL_CONSTRAINTS
-WHERE    TABLE_NAME = 'ATTACHMENT';
+--SELECT * FROM    ALL_CONSTRAINTS
+--WHERE    TABLE_NAME = 'ATTACHMENT';
 
 
 --update member set member_role = 'S' where member_no =3;
@@ -523,41 +522,36 @@ WHERE    TABLE_NAME = 'ATTACHMENT';
 --add constraint ck_member_member_role check (member_role in ('U', 'A', 'S'));
 
 -- community 테이블 title, attach 컬럼 추가
---ALTER TABLE community ADD(comm_title VARCHAR2(200)); 
---ALTER TABLE community ADD(comm_attach VARCHAR2(200));
---ALTER TABLE community DROP COLUMN comm_attach;
+ALTER TABLE community ADD(comm_title VARCHAR2(200)); 
+
+
 --drop table community CASCADE CONSTRAINTS;
 --drop table attachment CASCADE CONSTRAINTS;
-select * from community order by comm_reg_date;
-select * from member;
-select * from attachment;
-select * from font;
-insert into font values ('fftest01', '광현체', 'asdf', default, default, default, default, default, default);
-select font_no from font where font_name = '광현체';
+
+
 
 select * from USER_SEQUENCES;
-select SEQ_COMMUNITY_NO.CURRVAL from dual;
-insert into attachment values (seq_attachment_no.nextval, 'ele-20211019-0001', 'comm-' || to_char(sysdate,'yyyymmdd') || '-' || to_char(SEQ_COMMUNITY_NO.CURRVAL,'fm0000'),'old','new',default);
+--select SEQ_COMMUNITY_NO.CURRVAL from dual;
+--insert into attachment values (seq_attachment_no.nextval, 'ele-20211019-0001', 'comm-' || to_char(sysdate,'yyyymmdd') || '-' || to_char(SEQ_COMMUNITY_NO.CURRVAL,'fm0000'),'old','new',default);
 
-select comm_no from(select row_number() over (order by comm_no desc) row_num, comm_no from community) f where row_num = 1;
+--select comm_no from(select row_number() over (order by comm_no desc) row_num, comm_no from community) f where row_num = 1;
 
+
+
+
+
+-- 여기서부터 추가 수정입니다. 진행하고 커밋해 주세요(10/25 혜진, 다현, 은희)
+alter table attachment add font_no varchar2(500);
+--
+-- create sequence seq_attachment_no;
+--
+alter table font add member_id varchar2(200);
+--
+ALTER TABLE font ADD CONSTRAINT FK_FONT_MEMBER_ID FOREIGN KEY (
+	member_id
+) REFERENCES MEMBER(member_id);
+--
+create sequence seq_font_no;
 
 
 commit;
-
--- 여기서부터 추가 수정입니다. 진행하고 커밋해 주세요(10/25 혜진, 다현, 은희)
---alter table attachment add font_no varchar2(500);
---
---create sequence seq_attachment_no;
---
---alter table font add member_id varchar2(200);
---
---ALTER TABLE font ADD CONSTRAINT FK_FONT_MEMBER_ID FOREIGN KEY (
---	member_id
---) REFERENCES MEMBER(member_id);
---
---create sequence seq_font_no;
---commit;
-select * from community;
-select * from attachment;   
-select * from font;

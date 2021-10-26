@@ -2,6 +2,7 @@ package com.kh.elefont.font.model.dao;
 
 import static com.kh.elefont.common.JdbcTemplate.close;
 
+
 import java.io.FileReader;
 import java.io.IOException;
 import java.sql.Connection;
@@ -83,9 +84,9 @@ public class FontDao {
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, attach.getMemberNo());
-			pstmt.setString(2, attach.getFontNo());
-			pstmt.setString(3, attach.getOriginalFilename());
-			pstmt.setString(4, attach.getRenamedFilename());
+			pstmt.setString(2, attach.getOriginalFilename());
+			pstmt.setString(3, attach.getRenamedFilename());
+			pstmt.setString(4, attach.getFontNo());
 			
 			
 			result = pstmt.executeUpdate();
@@ -151,6 +152,7 @@ public class FontDao {
 				font.setFontDiscountRate(rset.getDouble("font_discount_rate"));
 				font.setFontRegDate(rset.getDate("font_reg_date"));
 				font.setFontApproval(rset.getString("font_approval"));
+				font.setMemberId(rset.getString("member_id"));
 				
 				fontList.add(font);
 			}
@@ -162,6 +164,65 @@ public class FontDao {
 		}
 		
 		return fontList;
+	}
+
+	public int updateFont(Connection conn, Font[] fontArr) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String sql = prop.getProperty("updateFont");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			for(int i = 0; i < fontArr.length; i++) {
+				pstmt.setString(1, fontArr[i].getFontApproval());
+				pstmt.setDouble(2, fontArr[i].getFontPrice());
+				pstmt.setDouble(3, fontArr[i].getFontDiscountRate());
+				pstmt.setString(4, fontArr[i].getFontNo());
+				
+				result = pstmt.executeUpdate();
+				if(result < 0) break;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+	public Attachment selectOneAttachment(Connection conn, String fontNo) {
+		Attachment attach = null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String query = prop.getProperty("selectOneAttachment");
+		try{
+			//미완성쿼리문을 가지고 객체생성.
+			pstmt = conn.prepareStatement(query);
+			//쿼리문미완성
+			pstmt.setString(1, fontNo);
+			//쿼리문실행
+			//완성된 쿼리를 가지고 있는 pstmt실행(파라미터 없음)
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()){
+				attach = new Attachment();
+				attach.setAttNo(rset.getInt("ATT_NO"));
+				attach.setMemberNo(rset.getString("MEMBER_NO"));
+				attach.setCommNo(rset.getString("COMM_NO"));
+				attach.setFontNo(fontNo);
+				attach.setOriginalFilename(rset.getString("original_filename"));
+				attach.setRenamedFilename(rset.getString("renamed_filename"));
+				attach.setRegDate(rset.getDate("reg_date"));
+			}
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally{
+			close(rset);
+			close(pstmt);
+		}
+		return attach;
 	}
 	
 
