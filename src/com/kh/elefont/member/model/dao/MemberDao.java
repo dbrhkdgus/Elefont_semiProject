@@ -276,4 +276,23 @@ public class MemberDao {
 	}
 
 
+	public int withdrawalMember(Connection conn, String memberId) {
+		PreparedStatement pstmt = null;
+		int result =0;
+		String sql = prop.getProperty("withdrawalMember");
+		
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setString(1, memberId);
+			
+			result = pstmt.executeUpdate();
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		return result;
+	}
+
+
 }
