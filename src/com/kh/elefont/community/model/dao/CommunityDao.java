@@ -5,6 +5,7 @@ import static com.kh.elefont.common.JdbcTemplate.close;
 import java.io.FileReader;
 import java.io.IOException;
 import java.sql.Connection;
+import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -13,6 +14,7 @@ import java.util.List;
 import java.util.Properties;
 
 import com.kh.elefont.community.model.vo.Community;
+import com.kh.elefont.member.model.vo.Member;
 
 
 public class CommunityDao {
@@ -146,6 +148,46 @@ public class CommunityDao {
 		}
 		
 		return totalCommunityByWriter;
+	}
+
+	public Community selectOneCommunity(Connection conn, String commNo) {
+		Community community = new Community();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectOneCommunity");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, commNo);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				
+				community.setCommNo(rset.getString("comm_no"));
+				community.setCommWriter(rset.getString("comm_writer"));
+				community.setCommContent(rset.getString("comm_content"));
+				community.setCommViewCount(rset.getInt("comm_view_count"));
+				community.setCommLikeCount(rset.getInt("comm_like_count"));
+				community.setCommRegDate(rset.getDate("comm_reg_date"));
+				community.setFontNo(rset.getString("font_no"));
+				community.setCommTitle(rset.getString("comm_title"));
+				
+				
+				
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		System.out.println("commDao@" + community);
+		
+		return community;
 	}
 
 }

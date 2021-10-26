@@ -29,6 +29,7 @@
 <%
 		String attachFilename = "";
 		String memberNo = "";
+		String commNo = "";
 		
 		for(Community comm : communityList){
 			for(Attachment att : attachmentList){
@@ -36,7 +37,7 @@
 				if(att.getCommNo().equals(comm.getCommNo())){
 					attachFilename = att.getRenamedFilename();
 					memberNo = att.getMemberNo();
-					
+					commNo = att.getCommNo();
 				}
 			}
 %>
@@ -45,7 +46,9 @@
 <%--                            <a href="<%= request.getContextPath()%>/community/writerDetail?writer=<% userId%>"><i class="fas fa-user"></i><div class="like-comm-writer"> user id </div></a> --%>
                                 <a href="<%= request.getContextPath()%>/community/writerDetail?commWriter=<%= memberNo %>"><i class="fas fa-user"></i><div class="like-comm-writer"> <%= comm.getCommWriter() %> </div></a>
                                 <div class="comm-img">
+                               		<a href="<%= request.getContextPath()%>/community/pictureDetail?commNo=<%= commNo %>">
                                		<img src="<%= request.getContextPath()%>/upload/community/<%=attachFilename%>" alt="" width=16px/>
+                               		</a>
                                		
                                 </div>
                                 <div class="like-comm-buttons"> 

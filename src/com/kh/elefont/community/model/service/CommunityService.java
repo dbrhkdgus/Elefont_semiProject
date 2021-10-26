@@ -11,6 +11,7 @@ import java.util.List;
 
 import com.kh.elefont.community.model.dao.CommunityDao;
 import com.kh.elefont.community.model.vo.Community;
+import com.kh.elefont.member.model.vo.Member;
 
 
 public class CommunityService {
@@ -83,6 +84,13 @@ public class CommunityService {
 	            close(conn);
 	        }
 	        return totalCommunityByWriter;
+	}
+
+	public Community selectOneCommunity(String commNo) {
+		Connection conn = getConnection();
+		Community community = communityDao.selectOneCommunity(conn, commNo);
+		close(conn);
+		return community;
 	}
 
 }

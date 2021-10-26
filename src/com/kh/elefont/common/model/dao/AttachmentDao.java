@@ -92,7 +92,7 @@ public class AttachmentDao {
 			close(rset);
 			close(pstmt);
 		}
-		
+		System.out.println("attachmentListDao@" + attachmentList);
 		return attachmentList;
 	}
 	public List<Attachment> selectAllAttachmentListByMemberNo(Connection conn, String memberNo) {
@@ -132,5 +132,40 @@ public class AttachmentDao {
 		
 		return attachmentList;
 	}
+	public Attachment selectOneAttachment(Connection conn, String commNo) {
+		Attachment attachment = new Attachment();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String sql = prop.getProperty("selectOneAttachment");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1, commNo);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				attachment.setAttNo(rset.getInt("att_no"));
+				attachment.setMemberNo(rset.getString("member_no"));
+				attachment.setCommNo(rset.getString("comm_no"));
+				attachment.setFontNo(rset.getString("font_no"));
+				attachment.setOriginalFilename(rset.getString("original_filename"));
+				attachment.setRenamedFilename(rset.getString("renamed_filename"));
+				attachment.setRegDate(rset.getDate("reg_date"));
+			}
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		System.out.println("attachmentDao@" + attachment);
+		
+		return attachment;
+	}
+	
 
 }
