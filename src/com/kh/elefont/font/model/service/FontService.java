@@ -3,6 +3,7 @@ package com.kh.elefont.font.model.service;
 import static com.kh.elefont.common.JdbcTemplate.*;
 import java.sql.Connection;
 import java.util.List;
+import java.util.Map;
 
 import com.kh.elefont.common.model.vo.Attachment;
 import com.kh.elefont.font.model.dao.FontDao;
@@ -73,6 +74,34 @@ public class FontService {
 		System.out.println("제가 attach 객체를 잘 받아왔나요?! " + attach);
 		close(conn);
 		return attach;
+	}
+	public List<Font> selectFontByMemberId(String memberId) {
+		Connection conn = getConnection();
+		List<Font> list = null;
+		try {
+			list = fontDao.selectFontByMemberId(conn, memberId);
+			commit(conn);
+		}catch(Exception e) {
+			e.printStackTrace();
+			rollback(conn);
+		}finally {
+			close(conn);
+		}
+		return list;
+	}
+	public int updateFontAuditCheck(Map<String, Object> param) {
+		Connection conn = getConnection();
+		int result = 0;
+		try {
+			result = fontDao.updateFontAuditCheck(conn, param);
+			commit(conn);
+		}catch(Exception e) {
+			e.printStackTrace();
+			rollback(conn);
+		}finally {
+			close(conn);
+		}
+		return result;
 	}
 	public Font selectOneFontByFontNo(String fontNo) {
 		Connection conn = getConnection();

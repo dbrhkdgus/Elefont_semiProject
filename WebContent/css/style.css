@@ -1861,14 +1861,14 @@ p { padding: 5px 0; }
 
 
 /* Shop Css  */
-/* shop에서 한개의 아이템 div */
-.search-tools{
+#search-tools{
   display: flex;
   border: 2px solid blue;
   height: 45px;
   justify-content: space-around;
 
 }
+/* shop에서 한개의 아이템 div */
 .tools{
   margin: 10px;
 }
@@ -2649,8 +2649,7 @@ font-size: 16px;
 }
 
 .seller-management-content{
-    text-align: start;
-    margin-left:50px;
+    text-align: center;
 }
 
 .sm-enroll-font>h4{
@@ -2688,6 +2687,10 @@ font-size: 16px;
     background-color: #ECF2F0;
     width: fit-content;
     font-weight: bold;
+}
+
+#auditCheckBtn{
+	height: 25px;
 }
 /* seller-management end */
 
