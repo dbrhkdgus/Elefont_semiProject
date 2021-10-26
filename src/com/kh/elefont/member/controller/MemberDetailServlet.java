@@ -36,7 +36,7 @@ public class MemberDetailServlet extends HttpServlet {
 		//memberRole이 관리자인 경우 전체 회원정보를 DB에서 불러와 함께 전달할 것
 		Member loginMember = (Member) session.getAttribute("loginMember");
 		String memberRole = loginMember.getMemberRole();
-		System.out.println(memberRole);
+//		System.out.println(memberRole);
 		
 		if("A".equals(memberRole)) {
 			List<Member> memberList = memberService.selectAllMember();
