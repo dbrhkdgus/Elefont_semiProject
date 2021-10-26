@@ -47,7 +47,7 @@
                                 <a href="<%= request.getContextPath()%>/community/writerDetail?commWriter=<%= memberNo %>"><i class="fas fa-user"></i><div class="like-comm-writer"> <%= comm.getCommWriter() %> </div></a>
                                 <div class="comm-img">
                                		<a href="<%= request.getContextPath()%>/community/pictureDetail?commNo=<%= commNo %>">
-                               		<img src="<%= request.getContextPath()%>/upload/community/<%=attachFilename%>" alt="" width=16px/>
+                               		<img src="<%= request.getContextPath()%>/upload/community/<%=attachFilename%>" alt="" />
                                		</a>
                                		
                                 </div>
