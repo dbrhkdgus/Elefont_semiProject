@@ -1599,6 +1599,11 @@ text-align: center;
 #photoEditButton{
     text-align: center;
 }
+#personalInfo{
+    display: flex;
+    align-items: center;
+
+}
 /*회원정보수정 끝*/
 
 
