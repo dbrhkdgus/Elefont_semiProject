@@ -5,11 +5,17 @@
 <%@include file="/WEB-INF/views/common/LandingHeader.jsp"%>
 
 <%
-	Member member = (Member) request.getAttribute("member");
+Member member = (Member) request.getAttribute("member");
 %>
 
 <!-- 회원정보 수정 section 시작-->
 <section id="portfolio" class="portfolio section-space-padding">
+
+	<form name="withdrawalFrm" method="post"
+		action="<%=request.getContextPath()%>/member/withdrawal">
+		<input type="hidden" name="memberId" value="<%=member.getMemberId()%>" />
+	</form>
+
 	<div class="editCenter">
 		<div id="editOuterDiv">
 			<div id="titleDiv">
@@ -17,7 +23,12 @@
 					<h2>회원정보 수정</h2>
 				</div>
 				<div class="editTitle" id="withdrawButton">
-					<button>탈퇴하기</button>
+<%
+	if("U".equals(member.getMemberRole()) || "S".equals(member.getMemberRole()) ){
+%>				<input type="button" id="memberwithdrawalBtn" value="탈퇴하기">
+<%
+	}
+%>
 				</div>
 			</div>
 			<hr>
@@ -30,7 +41,7 @@
 								alt="프로필기본사진">
 						</div>
 						<p>
-							&nbsp;&nbsp;<%=member.getMemberRegDate() %>
+							&nbsp;&nbsp;<%=member.getMemberRegDate()%>
 							가입
 						</p>
 						<div id="photoEditButton">
@@ -43,7 +54,7 @@
 								<tr>
 									<th>아이디<sup>*</sup></th>
 									<td><input type="text" id="editId" readonly
-										placeholder="<%= member.getMemberId()%>"></td>
+										placeholder="<%=member.getMemberId()%>"></td>
 								</tr>
 								<tr>
 									<th>비밀번호<sup>*</sup></th>
@@ -57,7 +68,7 @@
 								<tr>
 									<th>생년월일</th>
 									<td><input type="date" id="editBirthday"
-										value="<%= member.getMemberBirthday()%>"></td>
+										value="<%=member.getMemberBirthday()%>"></td>
 								</tr>
 							</table>
 						</div>
@@ -67,10 +78,10 @@
 									<th>성별</th>
 									<td><input type="radio" id="male" name="editGender"
 										value="male"
-										<%= MemberService.GENDER_MALE.equals(member.getMemberGender()) ? "checked" :"disabled" %>>
+										<%=MemberService.GENDER_MALE.equals(member.getMemberGender()) ? "checked" : "disabled"%>>
 										<label for="male">남성</label> <input type="radio" id="female"
 										name="eidtGender" value="female"
-										<%= MemberService.GENDER_FEMALE.equals(member.getMemberGender()) ? "checked" :"disabled" %>>
+										<%=MemberService.GENDER_FEMALE.equals(member.getMemberGender()) ? "checked" : "disabled"%>>
 										<label for="female">여성</label></td>
 								</tr>
 								<tr>
@@ -82,22 +93,28 @@
 									<th>연락처&nbsp;</th>
 									<td><input type="tel" id="editPhone"
 										placeholder="<%=member.getMemberPhone()%>"></td>
-								</tr>							
+								</tr>
 								<tr>
-<%
- String student = "학생";
- String designer = "디자이너";
- String developer = "개발자";
- String etc = "기타";
- String none = "대답 안 함";
-%>								
+									<%
+									String student = "학생";
+									String designer = "디자이너";
+									String developer = "개발자";
+									String etc = "기타";
+									String none = "대답 안 함";
+									%>
 									<th>직업</th>
 									<td><select name="job" id="editJob">
-											<option value="student" <%=student.equals(member.getMemberJob())?"selected":""%>>학생</option>
-											<option value="designer" <%=designer.equals(member.getMemberJob())?"selected":""%>>디자이너</option>
-											<option value="developer" <%=developer.equals(member.getMemberJob())?"selected":""%>>개발자</option>
-											<option value="etc"<%=etc.equals(member.getMemberJob())?"selected":""%>>기타</option>
-											<option value="none" <%=none.equals(member.getMemberJob())?"selected":""%>>대답 안 함</option>
+											<option value="student"
+												<%=student.equals(member.getMemberJob()) ? "selected" : ""%>>학생</option>
+											<option value="designer"
+												<%=designer.equals(member.getMemberJob()) ? "selected" : ""%>>디자이너</option>
+											<option value="developer"
+												<%=developer.equals(member.getMemberJob()) ? "selected" : ""%>>개발자</option>
+											<option value="etc"
+												<%=etc.equals(member.getMemberJob()) ? "selected" : ""%>>기타</option>
+											<option value="none"
+												<%=none.equals(member.getMemberJob()) ? "selected" : ""%>>대답
+												안 함</option>
 									</select></td>
 								</tr>
 							</table>
@@ -111,8 +128,21 @@
 			</div>
 		</div>
 	</div>
-	</div>
 </section>
+
+<script>
+
+$("#memberwithdrawalBtn").click((e)=>{
+	if(confirm("탈퇴하시겠습니까?")){
+		console.log("탈퇴?잘가요 ㅜㅜ")
+		$(document.withdrawalFrm).submit();
+	}
+});
+	
+
+	
+
+</script>
 
 
 <%@ include file="/WEB-INF/views/common/footer.jsp"%>
