@@ -150,6 +150,7 @@ public class CommunityDao {
 		return totalCommunityByWriter;
 	}
 
+
 	public Community selectOneCommunity(Connection conn, String commNo) {
 		Community community = new Community();
 		PreparedStatement pstmt = null;
@@ -159,13 +160,11 @@ public class CommunityDao {
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
-			
 			pstmt.setString(1, commNo);
 			
 			rset = pstmt.executeQuery();
 			
 			if(rset.next()) {
-				
 				community.setCommNo(rset.getString("comm_no"));
 				community.setCommWriter(rset.getString("comm_writer"));
 				community.setCommContent(rset.getString("comm_content"));
@@ -174,20 +173,53 @@ public class CommunityDao {
 				community.setCommRegDate(rset.getDate("comm_reg_date"));
 				community.setFontNo(rset.getString("font_no"));
 				community.setCommTitle(rset.getString("comm_title"));
-				
-				
-				
-			}
-			
-		} catch (SQLException e) {
+ 			  }
+      
+      } catch (SQLException e) {
 			e.printStackTrace();
-		} finally {
+		  } finally {
 			close(rset);
 			close(pstmt);
 		}
-		System.out.println("commDao@" + community);
+    System.out.println("commDao@" + community);
 		
 		return community;
-	}
+    }
+
+  
+	public List<Community> selectCommunityListByFontNo(Connection conn, String fontNo) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		List<Community> communityList = new ArrayList<>();
+		
+		String sql = prop.getProperty("selectCommunityListByFontNo");
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1,fontNo);
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				Community community = new Community();
+        community.setCommNo(rset.getString("comm_no"));
+				community.setCommWriter(rset.getString("comm_writer"));
+				community.setCommContent(rset.getString("comm_content"));
+				community.setCommViewCount(rset.getInt("comm_view_count"));
+				community.setCommLikeCount(rset.getInt("comm_like_count"));
+				community.setCommRegDate(rset.getDate("comm_reg_date"));
+				community.setFontNo(rset.getString("font_no"));
+				community.setCommTitle(rset.getString("comm_title"));
+				
+				communityList.add(community);
+				
+			  }
+      } catch (SQLException e) {
+			e.printStackTrace();
+		  } finally {
+			close(rset);
+			close(pstmt);
+		}	
+		return communityList;
+  }
+
 
 }

@@ -38,7 +38,6 @@
   15. Useful Classes ( Such as : Margin, Padding, colors  "This classes will be helpful for you during designing/development time.")
   16. UiPasta Credit
  
-
 */
 
 
@@ -1596,6 +1595,14 @@ text-align: center;
 #editOuterDiv{
     text-align: left;
 }
+#photoEditButton{
+    text-align: center;
+}
+#personalInfo{
+    display: flex;
+    align-items: center;
+
+}
 /*회원정보수정 끝*/
 
 
@@ -1909,7 +1916,9 @@ p { padding: 5px 0; }
 }
 .test-shop{
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  width: 1190px;
 }
 .test-item{
   margin: 10px;
@@ -2470,25 +2479,14 @@ font-size: 16px;
 	border-radius: 10px;
 	overflow:auto;
 }
-.coupon-tbl{
-	border-collapse: collapse;
-	border: 2px solid #000;
-	width: 850px;
-	margin-top : 30px;
-	font-size: 1.2rem;
-	
-}
-.coupon-tbl th, .coupon-tbl td{
-	border: 1px solid #000;
-}
 .font-search-bar{
 	text-align: right;
 }
-.font-tbl{
+.fix-tbl{
 	table-layout:fixed;
 	width: 100%;
 }
-.font-tbl th, .font-tbl td{
+.fix-tbl th, .fix-tbl td{
 	border: 1px solid #000;
 	font-size: 1rem;
 	background-color: #fff;
@@ -2496,11 +2494,12 @@ font-size: 16px;
 #adminFontupdateFrm{
 	text-align: center;
 }
-.font-tbl thead th{
+.fix-tbl thead th{
 	position: sticky;
 	top: 0px;
 	background-color: #005A3C;
 	color: #fff;
+	text-align: center;
 }
 .fix-head{
 	border: 1px solid #000;
@@ -2509,26 +2508,14 @@ font-size: 16px;
 	width: 820px;
 	margin: 10px auto;
 }
-.font-tbl th:first-of-type, .font-tbl td:first-of-type{
-	width: 75px;
+#coupon-head{
+	height: 140px;
 }
-.font-tbl th:nth-of-type(2), .font-tbl td:nth-of-type(2){
-	width: 130px;
-}
-.font-tbl th:nth-of-type(3), .font-tbl td:nth-of-type(3){
-	width: 130px;
-}
-.font-tbl th:nth-of-type(4), .font-tbl td:nth-of-type(4){
-	width: 136px;
-}
-.font-tbl th:nth-of-type(5), .font-tbl td:nth-of-type(5){
-	width: 75px;
-}
-.font-tbl th:nth-of-type(6), .font-tbl td:nth-of-type(6){
+#fPrice{
 	width: 100px;
 }
-.font-tbl th:last-of-type, .font-tbl td:last-of-type{
-	width: 75px;
+#fDCRate{
+	width: 80px;
 }
 
 /* 멤버 디테일 끝*/

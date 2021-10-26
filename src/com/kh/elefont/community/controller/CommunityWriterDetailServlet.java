@@ -43,7 +43,7 @@ public class CommunityWriterDetailServlet extends HttpServlet {
 		int totalCommunityByWriter = communityService.countTotalCommunityByWriter(writerMember.getMemberNo());
 		
 		
-		List<Attachment> attachmentList = attachmentService.selectAllAttachmentListByMemberNo(memberNo);
+		List<Attachment> attachmentList = attachmentService.selectAllCommAttachmentListByMemberNo(memberNo);
 		
 		request.setAttribute("writerMember", writerMember);
 		request.setAttribute("totalCommunityByWriter", totalCommunityByWriter);

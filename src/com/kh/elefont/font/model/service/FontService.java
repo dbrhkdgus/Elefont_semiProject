@@ -67,12 +67,34 @@ public class FontService {
 		
 		return result;
 	}
-	public Attachment selectOneAttachment(String fontNo) {
+	public Attachment selectOneFontAttachmentByFontNo(String fontNo) {
 		Connection conn = getConnection();
-		Attachment attach = fontDao.selectOneAttachment(conn, fontNo);
+		Attachment attach = fontDao.selectOneFontAttachmentByFontNo(conn, fontNo);
 		System.out.println("제가 attach 객체를 잘 받아왔나요?! " + attach);
 		close(conn);
 		return attach;
+	}
+	public Font selectOneFontByFontNo(String fontNo) {
+		Connection conn = getConnection();
+		Font font = fontDao.selectOneFontByFontNo(conn, fontNo);
+		
+		close(conn);
+		return font;
+	}
+	public int updateFontViewCount(String fontNo) {
+		Connection conn = getConnection();
+		int result = 0;
+		
+		try {
+			result = fontDao.updateFontViewCount(conn, fontNo);
+			commit(conn);
+		}catch(Exception e) {
+			rollback(conn);
+		}finally {
+			close(conn);
+		}
+		
+		return result;
 	}
 
 }

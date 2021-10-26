@@ -32,12 +32,12 @@ public class AttachmentService {
 	        }
 	        return result;
 	}
-	public List<Attachment> selectAllAttachmentList() {
+	public List<Attachment> selectAllCommAttachmentList() {
 		Connection conn = getConnection();
 		 List<Attachment> attachmentList = new ArrayList<>();
 	        
 	        try {
-	        	attachmentList = attachmentDao.selectAllAttachmentList(conn);
+	        	attachmentList = attachmentDao.selectAllCommAttachmentList(conn);
 	            
 	            commit(conn);
 	        }catch(Exception e) {
@@ -48,7 +48,7 @@ public class AttachmentService {
 	        }
 	        return attachmentList;
 	}
-	public List<Attachment> selectAllAttachmentListByMemberNo(String memberNo) {
+	public List<Attachment> selectAllCommAttachmentListByMemberNo(String memberNo) {
 		Connection conn = getConnection();
 		 List<Attachment> attachmentList = new ArrayList<>();
 	        
@@ -64,12 +64,31 @@ public class AttachmentService {
 	        }
 	        return attachmentList;
 	}
+
 	
 	public Attachment selectOneAttachment(String commNo) {
 		Connection conn = getConnection();
 		Attachment attachment = attachmentDao.selectOneAttachment(conn, commNo);
 		close(conn);
 		return attachment;
+	}
+
+
+	public List<Attachment> selectAllFontAttachmentList() {
+		 Connection conn = getConnection();
+		 List<Attachment> fontAttchmentList = new ArrayList<>();
+	        
+	        try {
+	        	fontAttchmentList = attachmentDao.selectAllFontAttachmentList(conn);
+	            
+	            commit(conn);
+	        }catch(Exception e) {
+	            rollback(conn);
+	            throw e;
+	        }finally {
+	            close(conn);
+	        }
+	        return fontAttchmentList;
 	}
 
 

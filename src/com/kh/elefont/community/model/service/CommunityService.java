@@ -86,11 +86,29 @@ public class CommunityService {
 	        return totalCommunityByWriter;
 	}
 
+
 	public Community selectOneCommunity(String commNo) {
 		Connection conn = getConnection();
 		Community community = communityDao.selectOneCommunity(conn, commNo);
 		close(conn);
 		return community;
+  }
+  
+	public List<Community> selectCommunityListByFontNo(String fontNo) {
+		 Connection conn = getConnection();
+		 List<Community> communityList = new ArrayList<>();
+	        
+	        try {
+	        	communityList = communityDao.selectCommunityListByFontNo(conn, fontNo);
+	            
+	            commit(conn);
+	        }catch(Exception e) {
+	            rollback(conn);
+	            throw e;
+	        }finally {
+	            close(conn);
+	        }
+	        return communityList;
 	}
 
 }

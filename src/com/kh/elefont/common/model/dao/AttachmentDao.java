@@ -58,12 +58,12 @@ public class AttachmentDao {
 		
 		return result;
 	}
-	public List<Attachment> selectAllAttachmentList(Connection conn) {
+	public List<Attachment> selectAllCommAttachmentList(Connection conn) {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		List<Attachment> attachmentList = new ArrayList<>();
 		
-		String sql = prop.getProperty("selectAllAttachmentList");
+		String sql = prop.getProperty("selectAllCommAttachmentList");
 		
 		
 		try {
@@ -132,40 +132,63 @@ public class AttachmentDao {
 		
 		return attachmentList;
 	}
-	public Attachment selectOneAttachment(Connection conn, String commNo) {
+  	public Attachment selectOneAttachment(Connection conn, String commNo) {
 		Attachment attachment = new Attachment();
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		
 		String sql = prop.getProperty("selectOneAttachment");
-		
-		try {
+    try {
 			pstmt = conn.prepareStatement(sql);
-			
-			pstmt.setString(1, commNo);
+      pstmt.setString(1, commNo);
 			
 			rset = pstmt.executeQuery();
 			
 			if(rset.next()) {
-				attachment.setAttNo(rset.getInt("att_no"));
+        attachment.setAttNo(rset.getInt("att_no"));
 				attachment.setMemberNo(rset.getString("member_no"));
 				attachment.setCommNo(rset.getString("comm_no"));
 				attachment.setFontNo(rset.getString("font_no"));
 				attachment.setOriginalFilename(rset.getString("original_filename"));
 				attachment.setRenamedFilename(rset.getString("renamed_filename"));
 				attachment.setRegDate(rset.getDate("reg_date"));
-			}
-			
-		} catch (SQLException e) {
+        }
+      System.out.println("attachmentDao@" + attachment);
+      } catch (SQLException e) {
 			e.printStackTrace();
-		} finally {
+		  } finally {
 			close(rset);
 			close(pstmt);
-		}
-		System.out.println("attachmentDao@" + attachment);
+		  }
 		
-		return attachment;
+		  return attachment;
 	}
 	
+      
 
+	public List<Attachment> selectAllFontAttachmentList(Connection conn) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		List<Attachment> fontAttchmentList = new ArrayList<>();
+		
+		String sql = prop.getProperty("selectAllFontAttachmentList");
+		rset = pstmt.executeQuery();
+			
+		while(rset.next()) {
+				Attachment attachment = new Attachment();
+        attachment.setAttNo(rset.getInt("att_no"));
+				attachment.setMemberNo(rset.getString("member_no"));
+				attachment.setCommNo(rset.getString("comm_no"));
+				attachment.setFontNo(rset.getString("font_no"));
+				attachment.setOriginalFilename(rset.getString("original_filename"));
+				attachment.setRenamedFilename(rset.getString("renamed_filename"));
+				attachment.setRegDate(rset.getDate("reg_date"));
+      
+				fontAttchmentList.add(attachment);
+			  }
+				
+		
+		return fontAttchmentList;
+	}
+  
 }
