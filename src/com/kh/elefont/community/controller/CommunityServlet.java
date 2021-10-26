@@ -33,9 +33,8 @@ public class CommunityServlet extends HttpServlet {
 		List<Attachment> attachmentList = new ArrayList<>();
 		
 		communityList = communityService.selectAllCommunityList();
-		System.out.println("communityList@servlet : " + communityList);
-		attachmentList = attachmentService.selectAllAttachmentList();
-		System.out.println("attachmentList@servlet : " + attachmentList);
+		attachmentList = attachmentService.selectAllCommAttachmentList();
+		
 		
 		
 		request.setAttribute("communityList", communityList);
