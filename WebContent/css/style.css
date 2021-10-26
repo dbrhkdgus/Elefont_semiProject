@@ -1917,7 +1917,9 @@ p { padding: 5px 0; }
 }
 .test-shop{
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  width: 1190px;
 }
 .test-item{
   margin: 10px;

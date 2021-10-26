@@ -1,3 +1,6 @@
+<%@page import="com.kh.elefont.common.model.vo.Attachment"%>
+<%@page import="com.kh.elefont.font.model.vo.Font"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@include file = "/WEB-INF/views/common/LandingHeader.jsp" %>
@@ -54,113 +57,28 @@
                             <textarea name="" id="" cols="30" rows="10"></textarea>
                            
                         </div>
+ <%
+ 	List<Font> fontList = (List<Font>)request.getAttribute("fontList");
+    List<Attachment> fontAttchmentList = (List<Attachment>)request.getAttribute("fontAttchmentList");
+   
+    for(Font font : fontList){
+    	for(Attachment att : fontAttchmentList){
+    		
+    	}
+%>
                         <div class="test-item">
-                     
-                               <a href="<%= request.getContextPath()%>/shopDetail"><div class="test-item-title"> 광현체 </div></a>
+                            <a href="<%= request.getContextPath()%>/shopDetail"><div class="test-item-title"> <%= font.getFontName()%> </div></a>
                             <textarea name="" id="" cols="30" rows="10"></textarea>
                             <div class="test-item-buttons"> 
                                 <i class="fas fa-heart"></i>  
-                                <i class="fas fa-search-plus"></i></a>
-                             </div>
-                        </div> 
-                        <div class="test-item">
-                              <a href="<%= request.getContextPath()%>/shopDetail"><div class="test-item-title"> 광현체 </div></a>
-                            
-                            <textarea name="" id="" cols="30" rows="10"></textarea>
-                            <div class="test-item-buttons"> 
-                                <i class="fas fa-heart"></i>
-                                 <i class="fas fa-search-plus"></i></a>
-                             </div>
-                        </div>
-                        <div class="test-item">
-                             <a href="<%= request.getContextPath()%>/shopDetail"><div class="test-item-title"> 광현체 </div></a>
-                            <textarea name="" id="" cols="30" rows="10"></textarea>
-                            <div class="test-item-buttons"> 
-                                <i class="fas fa-heart"></i>
-                                <i class="fas fa-search-plus"></i></a>
-                             </div>
-                        </div>
-                       
-                    </div>
-
-                        
-                    </div>
-                    <div class="test-shop">
-                        <div class="test-item">
-                             <a href="<%= request.getContextPath()%>/shopDetail"><div class="test-item-title"> 광현체 </div></a>
-
-                            <textarea name="" id="" cols="30" rows="10"></textarea>
-                            <div class="test-item-buttons"> 
-                               <i class="fas fa-heart"></i>
-                               <i class="fas fa-search-plus"></i>
-                            </div>
-                        </div>
-                        <div class="test-item">
-                             <a href="<%= request.getContextPath()%>/shopDetail"><div class="test-item-title"> 광현체 </div></a>
-                            <textarea name="" id="" cols="30" rows="10"></textarea>
-                            <div class="test-item-buttons"> 
-                                <i class="fas fa-heart"></i>
                                 <i class="fas fa-search-plus"></i>
                              </div>
                         </div> 
-                        <div class="test-item">
-                            <a href="<%= request.getContextPath()%>/shopDetail"><div class="test-item-title"> 광현체 </div></a>
-                            
-                            <textarea name="" id="" cols="30" rows="10"></textarea>
-                            <div class="test-item-buttons"> 
-                                <i class="fas fa-heart"></i>
-                                <i class="fas fa-search-plus"></i>
-                             </div>
-                        </div>
-                        <div class="test-item">
-                             <a href="<%= request.getContextPath()%>/shopDetail"><div class="test-item-title"> 광현체 </div></a>
-                            <textarea name="" id="" cols="30" rows="10"></textarea>
-                            <div class="test-item-buttons"> 
-                                <i class="fas fa-heart"></i>
-                                <i class="fas fa-search-plus"></i>
-                             </div>
-                        </div>
-                       
-                    </div>
 
-                    
-                    <div class="test-shop">
-                        <div class="test-item">
-                            <a href="<%= request.getContextPath()%>/shopDetail"><div class="test-item-title"> 광현체 </div></a>
-
-                            <textarea name="" id="" cols="30" rows="10"></textarea>
-                            <div class="test-item-buttons"> 
-                               <i class="fas fa-heart"></i>
-                               <i class="fas fa-search-plus"></i>
-                            </div>
-                        </div>
-                        <div class="test-item">
-                             <a href="<%= request.getContextPath()%>/shopDetail"><div class="test-item-title"> 광현체 </div></a>
-                            <textarea name="" id="" cols="30" rows="10"></textarea>
-                            <div class="test-item-buttons"> 
-                                <i class="fas fa-heart"></i>
-                                <i class="fas fa-search-plus"></i>
-                             </div>
-                        </div> 
-                        <div class="test-item">
-                             <a href="<%= request.getContextPath()%>/shopDetail"><div class="test-item-title"> 광현체 </div></a>
-                            
-                            <textarea name="" id="" cols="30" rows="10"></textarea>
-                            <div class="test-item-buttons"> 
-                                <i class="fas fa-heart"></i>
-                                <i class="fas fa-search-plus"></i>
-                             </div>
-                        </div>
-                        <div class="test-item">
-                       
-                        
-                             <a href="<%= request.getContextPath()%>/shopDetail"><div class="test-item-title"> 광현체 </div></a>
-                            <textarea name="" id="" cols="30" rows="10"></textarea>
-                            <div class="test-item-buttons"> 
-                                <i class="fas fa-heart"></i>
-                                <i class="fas fa-search-plus"></i>
-                             </div>
-                        </div>
+<%
+    }
+ %>                    
+                      
                        
                     </div>
 
