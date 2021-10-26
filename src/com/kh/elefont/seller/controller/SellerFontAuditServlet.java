@@ -50,15 +50,15 @@ public class SellerFontAuditServlet extends HttpServlet {
 			}
 		}
 		
-		if(!approvalList.isEmpty()) {
+//		if(!approvalList.isEmpty()) {
 			session.setAttribute("approvalList", approvalList);
-		}
-		if(!checkedList.isEmpty()) {
+//		}
+//		if(!checkedList.isEmpty()) {
 			session.setAttribute("checkedList", checkedList);
-		}
-		if(!auditList.isEmpty()) {
+//		}
+//		if(!auditList.isEmpty()) {
 			session.setAttribute("auditList", auditList);
-		}
+//		}
 		System.out.println("approvalList@servlet : " + approvalList);
 		System.out.println("checkedList@servlet : " + checkedList);
 		System.out.println("auditList@servlet : " + auditList);
