@@ -23,6 +23,7 @@ public class Font implements Serializable{
 	private Date fontRegDate;
 	private String fontApproval;
 	
+	
 	private Attachment attach;
 
 	public Font() {

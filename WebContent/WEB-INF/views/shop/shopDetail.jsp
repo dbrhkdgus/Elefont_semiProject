@@ -1,11 +1,14 @@
+<%@page import="com.kh.elefont.font.model.vo.Font"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@include file = "/WEB-INF/views/common/LandingHeader.jsp" %>
 
+<% Font font = (Font)request.getAttribute("font"); %>
+
  <section id="portfolio" class="portfolio section-space-padding">
            <div class="shop-detail">
                 <div class= "shop-detail-top">
-                    <div class="shop-detail-font-name"><h2>Elefont</h2></div>
+                    <div class="shop-detail-font-name"><h2><%= font.getFontName() %></h2></div>
                     <div class="shop-detail-buttons">
                     
                         <button id="purchase-button" name="button" type="button" onclick="location.href='<%= request.getContextPath() %>/member/memberCart';" >구매</button>

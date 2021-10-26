@@ -35,7 +35,7 @@ public class FontFileDownload extends HttpServlet {
 		
 		
 		//2. 업무로직
-		Attachment attach = fontService.selectOneAttachment(fontNo);
+		Attachment attach = fontService.selectOneFontAttachmentByFontNo(fontNo);
 		System.out.println("attach@servlet = " + attach);
 		
 		
