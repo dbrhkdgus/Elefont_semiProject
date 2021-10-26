@@ -1,9 +1,16 @@
+<%@page import="com.kh.elefont.common.model.vo.Attachment"%>
+<%@page import="com.kh.elefont.community.model.vo.Community"%>
+<%@page import="java.util.List"%>
 <%@page import="com.kh.elefont.font.model.vo.Font"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@include file = "/WEB-INF/views/common/LandingHeader.jsp" %>
 
-<% Font font = (Font)request.getAttribute("font"); %>
+<% 
+Font font = (Font)request.getAttribute("font"); 
+List<Community> communityList = (List<Community>)request.getAttribute("communityList");
+List<Attachment> commAttachmentList = (List<Attachment>)request.getAttribute("commAttachmentList");
+%>
 
  <section id="portfolio" class="portfolio section-space-padding">
            <div class="shop-detail">
@@ -40,18 +47,32 @@
                     </div>
                 </div>
                 
-
-                    <div class="sd-review-section">
+					<div class="sd-review-section">
                         <h4 id="shop-detail-review">폰트후기</h4>
+<%
+	String filename = "";
+	for(Community comm : communityList){
+		for(Attachment att : commAttachmentList){
+			if(att.getCommNo().equals(comm.getCommNo())){
+				filename = att.getRenamedFilename();
+			}
+		}
+%>
                         <hr class="liner">
                         <div class="sd-review">
-                            <img src="https://i.ibb.co/bmJDkqr/image.jpg "  id="sd-review-img" >   
+                            <img src="<%=request.getContextPath() %>/upload/community/<%= filename %>"  id="sd-review-img" >   
                             <div class="sd-review-box">
-                                <h2>리뷰제목</h2>
-                                <span id="sd-review-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Pariatur veniam, praesentium labore nesciunt similique doloribus, cumque aperiam laborum ex perferendis delectus? Nesciunt soluta quasi eveniet dolor nisi? Nobis, unde aut!</span>  
+                                <h2><%= comm.getCommTitle() %></h2>
+                                <span id="sd-review-text"><%= comm.getCommContent() %></span>  
                             </div>
                         </div> 
+
+
+<%
+	}
+%>
                     </div>
+                    
                 
                     <div class="sd-copyright-section">
                         <h4 id="sd-copyright-title">저작권 정보</h4>
