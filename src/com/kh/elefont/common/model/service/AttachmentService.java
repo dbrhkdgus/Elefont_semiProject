@@ -47,7 +47,7 @@ public class AttachmentService {
 	        }
 	        return attachmentList;
 	}
-	public List<Attachment> selectAllAttachmentListByMemberNo(String memberNo) {
+	public List<Attachment> selectAllCommAttachmentListByMemberNo(String memberNo) {
 		Connection conn = getConnection();
 		 List<Attachment> attachmentList = new ArrayList<>();
 	        
