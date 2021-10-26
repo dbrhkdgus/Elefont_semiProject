@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.kh.elefont.common.model.service.AttachmentService;
+import com.kh.elefont.common.model.vo.Attachment;
 import com.kh.elefont.font.model.service.FontService;
 import com.kh.elefont.font.model.vo.Font;
 import com.kh.elefont.member.model.service.MemberService;
@@ -23,6 +25,7 @@ public class MemberDetailServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private MemberService memberService = new MemberService();
 	private FontService fontService = new FontService();
+	private AttachmentService attachmentService = new AttachmentService();
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
@@ -41,7 +44,14 @@ public class MemberDetailServlet extends HttpServlet {
 			
 			session.setAttribute("memberList", memberList);
 			session.setAttribute("fontList", fontList);
+		}else if("U".equals(memberRole) || "S".equals(memberRole)) {
+			List<Attachment> commAttachmentList = attachmentService.selectAllCommAttachmentListByMemberNo(loginMember.getMemberNo());
+			
+			request.setAttribute("commAttachmentList", commAttachmentList);
 		}
+		
+		// 회원의 커뮤니티 게시글 조회를 위해 전달할 것
+		
 		
 		request
 			.getRequestDispatcher("/WEB-INF/views/member/memberDetail.jsp")

@@ -1,3 +1,4 @@
+<%@page import="com.kh.elefont.common.model.vo.Attachment"%>
 <%@page import="com.kh.elefont.font.model.vo.Font"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -134,15 +135,20 @@
             </div>
 <%
 	if("U".equals(memberRole)){
-
+	List<Attachment> commAttachmentList = (List<Attachment>)request.getAttribute("commAttachmentList");
 %>
             <div class="member-comm">
                 <h4>내가 쓴 커뮤니티</h4>
                 <div class="member-list">
-                    <a href=""><div class="my-comm-img"></div></a>
-                    <a href=""><div class="my-comm-img"></div></a>
-                    <a href=""><div class="my-comm-img"></div></a>
-                    <a href=""><div class="my-comm-img"></div></a>
+<% for(Attachment att : commAttachmentList){
+	
+%>
+                    <a href="<%=request.getContextPath()%>/community/board"><div class="my-comm-img"><img src="<%=request.getContextPath()%>/upload/community/<%=att.getRenamedFilename()%>" alt="" /></div></a>
+
+<%	
+}
+	%>
+                    
                 </div>
             </div>
             <div class="member-font-like">
