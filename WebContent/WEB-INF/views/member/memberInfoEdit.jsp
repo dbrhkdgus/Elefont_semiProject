@@ -32,7 +32,7 @@
                                         <tr>
                                             <th>아이디<sup>*</sup></th>
                                             <td>
-                                                <input type="text" id="editId" readonly placeholder="">
+                                                <input type="text" id="editId" readonly placeholder="<%= member.getMemberId()%>">
                                             </td>
                                         </tr>
                                         <tr>
