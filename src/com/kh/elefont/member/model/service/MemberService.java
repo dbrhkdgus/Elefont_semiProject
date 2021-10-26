@@ -9,6 +9,11 @@ import com.kh.elefont.member.model.dao.MemberDao;
 import com.kh.elefont.member.model.vo.Member;
 
 public class MemberService {
+	
+	
+	public static final String GENDER_MALE = "M";
+	public static final String GENDER_FEMALE ="F";
+
 	private MemberDao memberDao = new MemberDao();
 	
 	public  Member selectOneMember(String memberId) {
