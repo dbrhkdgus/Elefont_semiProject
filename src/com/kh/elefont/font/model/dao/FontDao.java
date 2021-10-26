@@ -340,6 +340,41 @@ public class FontDao {
 		
 		return result;
 	}
+
+	public List<Font> selectAllApprovedFont(Connection conn) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		List<Font> fontList = new ArrayList<>();
+		
+		String sql = prop.getProperty("selectAllApprovedFont");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				Font font = new Font();
+				font.setFontNo(rset.getString("font_no"));
+				font.setFontName(rset.getString("font_name"));
+				font.setFontUrl(rset.getString("font_url"));
+				font.setFontPrice(rset.getDouble("font_price"));
+				font.setFontDiscountRate(rset.getDouble("font_discount_rate"));
+				font.setFontRegDate(rset.getDate("font_reg_date"));
+				font.setFontApproval(rset.getString("font_approval") == null? " ": rset.getString("font_approval"));
+				font.setMemberId(rset.getString("member_id"));
+				
+				fontList.add(font);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return fontList;
+	}
 	
 
 }

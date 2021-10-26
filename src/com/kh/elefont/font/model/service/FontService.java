@@ -125,5 +125,11 @@ public class FontService {
 		
 		return result;
 	}
+	public List<Font> selectAllApprovedFont() {
+		Connection conn = getConnection();
+		List<Font> fontList = fontDao.selectAllApprovedFont(conn);
+		close(conn);
+		return fontList;
+	}
 
 }

@@ -27,7 +27,7 @@ public class ShopLandingServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// 랜딩 시, 기존 font 테이블 전부 조회
-		List<Font> fontList = fontService.selectAllFont();
+		List<Font> fontList = fontService.selectAllApprovedFont();
 		List<Attachment> fontAttchmentList = attachmentService.selectAllFontAttachmentList();
 		
 		request.setAttribute("fontList", fontList);
