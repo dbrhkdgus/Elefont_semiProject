@@ -11,6 +11,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Properties;
 
 import com.kh.elefont.common.model.vo.Attachment;
@@ -151,7 +152,7 @@ public class FontDao {
 				font.setFontPrice(rset.getDouble("font_price"));
 				font.setFontDiscountRate(rset.getDouble("font_discount_rate"));
 				font.setFontRegDate(rset.getDate("font_reg_date"));
-				font.setFontApproval(rset.getString("font_approval"));
+				font.setFontApproval(rset.getString("font_approval") == null? " ": rset.getString("font_approval"));
 				font.setMemberId(rset.getString("member_id"));
 				
 				fontList.add(font);
@@ -223,6 +224,59 @@ public class FontDao {
 			close(pstmt);
 		}
 		return attach;
+	}
+
+	public List<Font> selectFontByMemberId(Connection conn, String memberId) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		List<Font> list = new ArrayList<>();
+		String sql = prop.getProperty("selectFontByMemberId");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, memberId);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				Font font = new Font();
+				
+				font.setFontNo(rset.getString("font_no"));
+				font.setFontName(rset.getString("font_name"));
+				font.setFontUrl(rset.getString("font_url"));
+				font.setFontPrice(rset.getDouble("font_price"));
+				font.setFontDiscountRate(rset.getDouble("font_discount_rate"));
+				font.setFontRegDate(rset.getDate("font_reg_date"));
+				font.setFontApproval(rset.getString("font_approval") == null? " ": rset.getString("font_approval"));
+				font.setMemberId(rset.getString("member_id"));
+				
+				list.add(font);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return list;
+	}
+
+	public int updateFontAuditCheck(Connection conn, Map<String, Object> param) {
+		PreparedStatement pstmt = null;
+		int result  = 0;
+		String sql = prop.getProperty("updateFontAuditCheck");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, (String)param.get("fontApproval"));
+			pstmt.setString(2, (String)param.get("fontNo"));
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		return result;
 	}
 	
 

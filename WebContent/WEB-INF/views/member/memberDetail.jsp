@@ -434,8 +434,9 @@
 								<tr>
 									<td>
 										<select class="font-approval">
-											<option value="N" <%= "N".equals(f.getFontApproval())?"selected":"" %>>N</option>
-											<option value="Y" <%= "Y".equals(f.getFontApproval())?"selected":"" %>>Y</option>
+											<option value="" <%= (f.getFontApproval() == null)? "selected":"" %>>심사 대기</option>
+											<option value="N" <%= "N".equals(f.getFontApproval())?"selected":"" %>>미승인</option>
+											<option value="Y" <%= "Y".equals(f.getFontApproval())?"selected":"" %>>승인</option>
 										</select>
 										<input type="hidden" name="fontApproval" />
 									</td>

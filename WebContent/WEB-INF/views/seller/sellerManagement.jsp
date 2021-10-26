@@ -1,112 +1,177 @@
+<%@page import="com.kh.elefont.font.model.vo.Font"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@include file = "/WEB-INF/views/common/LandingHeader.jsp" %>
 
+<%
+	List<Font> approvalList = (List<Font>) session.getAttribute("approvalList");
+	List<Font> checkedList = (List<Font>) session.getAttribute("checkedList");
+	List<Font> auditList = (List<Font>) session.getAttribute("auditList");
+%>
      <!-- seller 심사완료1! -->
-        <section id="portfolio" class="portfolio section-space-padding">
-           <div class="seller-management">
-                <div class="seller-management-title">
-                    <h1>SELLER</h1>님의 폰트현황 | <span>폰트등록 0건</span><span> 폰트등록 3건</span> <span>  폰트등록 6건</span> </span><button id="sm-font-button">폰트등록</button>
-                </div>
-                
-               	 <div class="font-enroll">
-        <form action="" method="POST" name="fontEnrollFrm">
-            <h3>등록하실 폰트명</h3>
-            <div class="font-wrpper">
-            <input type="text" name="font-name" id="font-name" placeholder="폰트명을 입력하세요"><i class="fas fa-check-circle"></i>
-            </div>
-            <h3>폰트파일 업로드</h3>
-            <input type="file" name="font-file" id="font-file" />
-            <input type="button" id="font-x-btn" value="취소하기">
-            <input type="button" id="font-submit-btn" value="등록하기">
-            <input type="hidden" name="memberId">
-        </form>
+<section id="portfolio" class="portfolio section-space-padding">
+   <div class="seller-management">
+        <div class="seller-management-title">
+            <h3><%=loginMember.getMemberId() %></h3>님의 폰트현황 &nbsp;&nbsp;&nbsp;
+            <span>폰트 등록<strong><%=checkedList.size() %></strong>건</span>&nbsp;&nbsp;
+            <span>심사 중<strong><%=auditList.size() %></strong>건</span>&nbsp;&nbsp;
+            <span>심사 완료<strong><%=approvalList.size() %></strong>건</span>&nbsp;
+            <button id="sm-font-button">폰트등록</button>
+        </div>
+        
+       	 <div class="font-enroll">
+  			<form action="<%=request.getContextPath() %>/seller/fontEnroll" method="POST" name="fontEnrollFrm" enctype="multipart/form-data">
+	            <h3>등록하실 폰트명</h3>
+	            <div class="font-wrpper">
+	            <input type="text" name="font-name" id="font-name" placeholder="폰트명을 입력하세요"><i class="fas fa-check-circle"></i>
+	            <h4>희망 가격 입력</h4>
+	            <input type="text" name="font-price" id="" value="기본 가격은 200P입니다."/><br />
+	            <h4>폰트 원출처(url) 입력</h4>
+	            <input type="text" name="font-url" id="" value="url 주소를 입력하세요."/><br />
+	            <h3>폰트파일 업로드</h3>
+	            <input type="file" name="font-file" id="font-file" />
+	            </div>
+	            <input type="button" id="font-x-btn" value="취소하기">
+	            <input type="button" id="font-submit-btn" value="등록하기">
+	            <input type="hidden" name="memberId" value="<%= loginMember.getMemberId() %>">
+	            <input type="hidden" name="memberNo" value="<%= loginMember.getMemberNo() %>">
+        	</form>
         </div>
                	 
-                <div class="seller-management-content">
-                    
-                    <div class="sm-enroll-font">
-                        <h4>내가 등록한 폰트</h4>
-                        <div class="sm-enroll-first">                      
-                           <div class="sm-enroll-second">
-                                <span id="sm-enroll-menu">등록일자1</span><br>
-                                <span>2021년 10월 25일</span>
-                            </div>
-    
-                            <div class="sm-enroll-second">
-                                <span id="sm-enroll-menu">등록 폰트명</span><br>
-                                <span>엘리폰트 체</span>
-                            </div>
-    
-                            <div class="sm-enroll-second">
-                                <span id="sm-enroll-menu">등록 폰트파일</span><br>
-                                <span>elefont.zip</span>
-                            </div>
-                        </div>
-                        <hr class="liner">
-                      
-                        <h4>심사중인  폰트</h4>
-                        <div class="sm-enroll-first">                          
-                            <div class="sm-enroll-second">
-                                <span id="sm-enroll-menu">등록일자2</span><br>
-                                <span>2021년 10월 25일</span>
-                            </div>
-    
-                            <div class="sm-enroll-second">
-                                <span id="sm-enroll-menu">등록 폰트명</span><br>
-                                <span>엘리폰트 체</span>
-                            </div>
-    
-                            <div class="sm-enroll-second">
-                                <span id="sm-enroll-menu">등록 폰트파일</span><br>
-                                <span>elefont.zip</span>
-                            </div>
-
-                            <div class="sm-enroll-second">
-                                <span id="sm-enroll-menu">심사결과</span><br>
-                                <span>통과</span>
-                            </div>
-                        </div>
-
-                   
-
-
-                        <hr class="liner">
-                        <h4>심사완료된 폰트</h4>
-                        <div class="sm-enroll-first">
-                            <div class="sm-enroll-second">
-                                <span id="sm-enroll-menu">등록일자3</span><br>
-                                <span>2021년 10월 25일</span>
-                            </div>
-    
-                            <div class="sm-enroll-second">
-                                <span id="sm-enroll-menu">등록 폰트명</span><br>
-                                <span>엘리폰트 체</span>
-                            </div>
-    
-                            <div class="sm-enroll-second">
-                                <span id="sm-enroll-menu">등록 폰트파일</span><br>
-                                <span>2021년 10월 25일</span>
-                            </div>
-                        </div>
-                      
-                        
-                        
-                    </div>
-                
+        <div class="seller-management-content">
+            
+            <div class="sm-enroll-font">
+                <h4>내가 등록한 폰트</h4>
+                <div class="fix-head" id="check-font-head">                      
+                    <table class="fix-tbl">
+                    	<thead>
+                    		<tr>
+	                    		<th>등록 일자</th>
+	                    		<th>폰트명</th>
+	                    		<th>폰트 파일</th>
+                    		</tr>
+                    	</thead>
+                    	<tbody>
+<%
+if(checkedList != null){
+	for(Font f : checkedList){
+%>
+							<tr>
+								<td><%= f.getFontRegDate() %></td>
+								<td><%= f.getFontName() %></td>
+								<td></td>
+							</tr>
+<%
+	}
+}
+%>
+                    	</tbody>
+                    </table>
+                </div>
+                <hr class="liner">
+              
+                <h4>심사중인 폰트</h4>
+                <div class="fix-head" id="audit-font-head">                      
+                    <table class="fix-tbl">
+                    	<thead>
+                    		<tr>
+	                    		<th>등록 일자</th>
+	                    		<th>폰트명</th>
+	                    		<th>폰트 파일</th>
+                    		</tr>
+                    	</thead>
+                    	<tbody>
+<%
+if(auditList != null){
+	for(Font f : auditList){
+%>
+							<tr>
+								<td><%= f.getFontRegDate() %></td>
+								<td><%= f.getFontName() %></td>
+								<td></td>
+							</tr>
+<%
+	}
+}
+%>
+                    	</tbody>
+                    </table>
                 </div>
 
+                <hr class="liner">
+                <h4>심사 결과 확인</h4>
+                <div class="fix-head" id="approval-font-head">                      
+                    <table class="fix-tbl">
+                    	<thead>
+                    		<tr>
+	                    		<th>등록 일자</th>
+	                    		<th>폰트명</th>
+	                    		<th>폰트 파일</th>
+	                    		<th>심사 결과</th>
+	                    		<th>확인 여부</th>
+                    		</tr>
+                    	</thead>
+                    	<tbody>
+<%
+if(approvalList != null){
+	for(Font f : approvalList){
+%>
+							<tr height="25px">
+								<td><%= f.getFontRegDate() %></td>
+								<td><%= f.getFontName() %></td>
+								<td></td>
+								<td><%= f.getFontApproval() %></td>
+								<td>
+									<input type="button" value="확인" id="auditCheckBtn" data-font-no = "<%= f.getFontNo()%>"/>
+								</td>
+							</tr>
+<%
+	}
+}
+%>
+                    	</tbody>
+                    </table>
+                    <form action="<%=request.getContextPath()%>/seller/fontAuditCheck" method="POST" name="fontAuditCheckFrm">
+                    	<input type="hidden" name="fontNo" />
+                    </form>
+                </div>
+              
+                
+                
             </div>
+        
+        </div>
 
+    </div>
 
+</section>
 
-
-
-
-
-
-         </section>
-   <script>
+<script>
+/* 폰트 조회 창 높이 폰트 입력량에 따라 조절*/
+$(window).load((e)=>{
+	const $fixHead = $(".fix-head");
+	$.each($fixHead, function(index, item){
+		let $item = $(item);
+		let length = $(item).find('tr').length;
+		console.log(length);
+		
+		if(length > 4){
+			$fixHead.eq(index).css("height","100px");
+		}
+		else{
+			if(index != 2){
+				length = length*25 + 3;
+				$fixHead.eq(index).css("height", length+"px");
+			}
+			else{
+				length = length*27 + 3;
+				$fixHead.eq(index).css("height", length+"px");
+			}
+		}
+	});
+});
+/* 폰트 등록 모달에서 폰트 등록 시 font테이블에 insert 진행*/
    $("#sm-font-button").click((e)=>{
 		const $fontEnroll = $(".font-enroll");
 		if($fontEnroll.css("display","none")){
@@ -122,7 +187,18 @@
 		}
 		else return;
 	});
-   
-   </script>
+
+/* 폰트 심사 내용 확인 버튼 입력 시 update*/
+	$(auditCheckBtn).click((e)=>{
+		const $this = $(e.target);
+		const $fontNo = $this.data("fontNo");
+		if(confirm("심사 결과를 확인했으며 이에 동의합니다")){
+			const $frm = $(document.fontAuditCheckFrm);
+			$frm.find("[name=fontNo]").val($fontNo);
+			$frm.submit();
+		}
+	});
+
+</script>
         <!-- seller End -->
 <%@ include file = "/WEB-INF/views/common/footer.jsp" %>
