@@ -23,7 +23,12 @@ Member member = (Member) request.getAttribute("member");
 					<h2>회원정보 수정</h2>
 				</div>
 				<div class="editTitle" id="withdrawButton">
-					<input type="button" id="memberwithdrawalBtn" value="탈퇴하기">
+<%
+	if("U".equals(member.getMemberRole()) || "S".equals(member.getMemberRole()) ){
+%>				<input type="button" id="memberwithdrawalBtn" value="탈퇴하기">
+<%
+	}
+%>
 				</div>
 			</div>
 			<hr>
