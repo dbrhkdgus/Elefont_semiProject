@@ -54,7 +54,7 @@
                     	</thead>
                     	<tbody>
 <%
-if(checkedList != null){
+if(!checkedList.isEmpty()){
 	for(Font f : checkedList){
 %>
 							<tr>
@@ -64,6 +64,12 @@ if(checkedList != null){
 							</tr>
 <%
 	}
+}else{
+%>
+							<tr>
+								<td colspan="3">등록한 폰트가 없습니다.</td>
+							</tr>
+<%
 }
 %>
                     	</tbody>
@@ -83,7 +89,7 @@ if(checkedList != null){
                     	</thead>
                     	<tbody>
 <%
-if(auditList != null){
+if(!auditList.isEmpty()){
 	for(Font f : auditList){
 %>
 							<tr>
@@ -93,6 +99,12 @@ if(auditList != null){
 							</tr>
 <%
 	}
+}else{
+%>
+							<tr>
+								<td colspan="3">심사 중인 폰트가 없습니다.</td>
+							</tr>
+<%
 }
 %>
                     	</tbody>
@@ -114,7 +126,7 @@ if(auditList != null){
                     	</thead>
                     	<tbody>
 <%
-if(approvalList != null){
+if(!approvalList.isEmpty()){
 	for(Font f : approvalList){
 %>
 							<tr height="25px">
@@ -128,6 +140,12 @@ if(approvalList != null){
 							</tr>
 <%
 	}
+}else{
+%>
+							<tr>
+								<td colspan="5">심사 결과가 없습니다.</td>
+							</tr>
+<%
 }
 %>
                     	</tbody>
