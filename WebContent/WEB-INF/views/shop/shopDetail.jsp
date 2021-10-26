@@ -50,6 +50,21 @@ List<Attachment> commAttachmentList = (List<Attachment>)request.getAttribute("co
 					<div class="sd-review-section">
                         <h4 id="shop-detail-review">폰트후기</h4>
 <%
+	if(communityList.isEmpty()){
+%>
+						<hr class="liner">
+                        <a href=""> <div class="sd-review">
+                            <img src="https://i.ibb.co/qR84ghW/embarrassed.png"  id="sd-review-img" >   
+                            <div class="sd-review-box">
+                                <h2>아직 등록된 후기가 없어요!</h2>
+                                <span id="sd-review-text"><%= font.getFontName() %>를 이용해 멋진 후기를 남겨보세요!</span>  
+                            </div>
+                        </div></a>
+
+<%		
+	}else{
+		
+	
 	String filename = "";
 	for(Community comm : communityList){
 		for(Attachment att : commAttachmentList){
@@ -59,17 +74,18 @@ List<Attachment> commAttachmentList = (List<Attachment>)request.getAttribute("co
 		}
 %>
                         <hr class="liner">
-                        <div class="sd-review">
+                        <a href=""> <div class="sd-review">
                             <img src="<%=request.getContextPath() %>/upload/community/<%= filename %>"  id="sd-review-img" >   
                             <div class="sd-review-box">
                                 <h2><%= comm.getCommTitle() %></h2>
                                 <span id="sd-review-text"><%= comm.getCommContent() %></span>  
                             </div>
-                        </div> 
+                        </div></a>
 
 
 <%
 	}
+}
 %>
                     </div>
                     
