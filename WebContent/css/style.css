@@ -1595,6 +1595,14 @@ text-align: center;
 #editOuterDiv{
     text-align: left;
 }
+#photoEditButton{
+    text-align: center;
+}
+#personalInfo{
+    display: flex;
+    align-items: center;
+
+}
 /*회원정보수정 끝*/
 
 
@@ -1908,7 +1916,9 @@ p { padding: 5px 0; }
 }
 .test-shop{
   display: flex;
-  justify-content: center;
+  justify-content: flex-start;
+  flex-wrap: wrap;
+  width: 1190px;
 }
 .test-item{
   margin: 10px;

@@ -1,3 +1,4 @@
+<%@page import="com.kh.elefont.common.model.vo.Attachment"%>
 <%@page import="com.kh.elefont.font.model.vo.Font"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -134,15 +135,20 @@
             </div>
 <%
 	if("U".equals(memberRole)){
-
+	List<Attachment> commAttachmentList = (List<Attachment>)request.getAttribute("commAttachmentList");
 %>
             <div class="member-comm">
                 <h4>내가 쓴 커뮤니티</h4>
                 <div class="member-list">
-                    <a href=""><div class="my-comm-img"></div></a>
-                    <a href=""><div class="my-comm-img"></div></a>
-                    <a href=""><div class="my-comm-img"></div></a>
-                    <a href=""><div class="my-comm-img"></div></a>
+<% for(Attachment att : commAttachmentList){
+	
+%>
+                    <a href="<%=request.getContextPath()%>/community/board"><div class="my-comm-img"><img src="<%=request.getContextPath()%>/upload/community/<%=att.getRenamedFilename()%>" alt="" /></div></a>
+
+<%	
+}
+	%>
+                    
                 </div>
             </div>
             <div class="member-font-like">
@@ -494,11 +500,11 @@
 	});
 
 /* 폰트 관리 - 회원 폰트 다운로드 버튼 클릭 시 파일 다운로드 */
-	$(".fontDownloadBtn").click((e)=>{
-		$fontNo = $(e.target).parent().prevAll().eq(2).html();
-		console.log($fontNo);
-		location.href = request.getContextPath() + "/font/fontDownload?fontNo=" + $fontNo; 
-	});
+$(".fontDownloadBtn").click((e)=>{
+    $fontNo = $(e.target).parent().prevAll().eq(2).html();
+    console.log($fontNo);
+    location.href = "<%=request.getContextPath()%>/font/fontDownload?fontNo=" + $fontNo; 
+});
 
 /* 폰트 업데이트 버튼 클릭 시, price와 discountRate에 변경사항이 없을 경우, 기존 값을 전달*/
 	$(fontUpdateBtn).click((e)=>{
@@ -530,13 +536,6 @@
 		$(document.adminFontUpdateFrm).submit();
 		
 	});
-	
-/* 폰트 관리 - 회원 폰트 다운로드 버튼 클릭 시 파일 다운로드 */
-    $(".fontDownloadBtn").click((e)=>{
-        $fontNo = $(e.target).parent().prevAll().eq(2).html();
-        console.log($fontNo);
-        location.href = "<%=request.getContextPath()%>/font/fontDownload?fontNo=" + $fontNo; 
-    });
 </script>
 <%
 }
@@ -563,7 +562,7 @@
 		else return;
 	});
 	$("#btn-member-Info-Edit").click((e)=>{
-		location.href = "<%= request.getContextPath()%>/member/memberInfoEdit";
+		location.href = "<%= request.getContextPath()%>/member/memberInfoEdit?memberId=<%=loginMember.getMemberId() %>";
 	});
 	
 	$("#member-font").click((e)=>{
