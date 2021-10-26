@@ -547,7 +547,7 @@ $(".fontDownloadBtn").click((e)=>{
 		else return;
 	});
 	$("#btn-member-Info-Edit").click((e)=>{
-		location.href = "<%= request.getContextPath()%>/member/memberInfoEdit";
+		location.href = "<%= request.getContextPath()%>/member/memberInfoEdit?memberId=<%=loginMember.getMemberId() %>";
 	});
 	
 	$("#member-font").click((e)=>{

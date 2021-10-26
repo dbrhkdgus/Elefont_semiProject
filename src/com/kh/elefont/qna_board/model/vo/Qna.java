@@ -8,15 +8,16 @@ public class Qna implements Serializable {
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	public int qnaNo;
-	public String qnaPassword;
-	public String qnaWriter;
-	public String qnaContent;
-	public int qnaReadCount;
-	public String qnaCategory;
-	public String qnaLockFlag;
-	public Date qnaRegDate;
-	public Qna() {
+	private int qnaNo;
+	private String qnaPassword;
+	private String qnaWriter;
+	private String qnaContent;
+	private int qnaReadCount;
+	private String qnaCategory;
+	private String qnaLockFlag;
+	private Date qnaRegDate;
+	
+	private Qna() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
