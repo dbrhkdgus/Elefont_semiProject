@@ -192,12 +192,12 @@ public class FontDao {
 		
 		return result;
 	}
-	public Attachment selectOneAttachment(Connection conn, String fontNo) {
+	public Attachment selectOneFontAttachmentByFontNo(Connection conn, String fontNo) {
 		Attachment attach = null;
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		
-		String query = prop.getProperty("selectOneAttachment");
+		String query = prop.getProperty("selectOneFontAttachmentByFontNo");
 		try{
 			//미완성쿼리문을 가지고 객체생성.
 			pstmt = conn.prepareStatement(query);
@@ -274,6 +274,68 @@ public class FontDao {
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+	}
+	
+	public Font selectOneFontByFontNo(Connection conn, String fontNo) {
+		Font font = new Font();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String query = prop.getProperty("selectOneFontByFontNo");
+		try{
+			//미완성쿼리문을 가지고 객체생성.
+			pstmt = conn.prepareStatement(query);
+			//쿼리문미완성
+			pstmt.setString(1, fontNo);
+			//쿼리문실행
+			//완성된 쿼리를 가지고 있는 pstmt실행(파라미터 없음)
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()){
+				font.setFontNo(rset.getString("font_no"));
+				font.setFontName(rset.getString("font_name"));
+				font.setFontUrl(rset.getString("font_url"));
+				font.setFontPrice(rset.getInt("font_price"));
+				font.setFontDiscountRate(rset.getDouble("font_discount_rate"));
+				font.setFontLikeCount(rset.getInt("font_like_count"));
+				font.setFontViewCount(rset.getInt("font_view_count"));
+				font.setFontPurchasedCount(rset.getInt("font_purchased_count"));
+				font.setFontRegDate(rset.getDate("font_reg_date"));
+				font.setFontApproval(rset.getString("font_approval"));
+				font.setMemberId(rset.getString("member_id"));
+			}
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally{
+			close(rset);
+			close(pstmt);
+		}
+		return font;
+	}
+
+	public int updateFontViewCount(Connection conn, String fontNo) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String sql = prop.getProperty("updateFontViewCount");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			
+			pstmt.setString(1, fontNo);
+			
+				
+			result = pstmt.executeUpdate();
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
 		}
 		
 		return result;

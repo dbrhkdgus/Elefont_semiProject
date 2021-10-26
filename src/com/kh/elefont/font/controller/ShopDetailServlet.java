@@ -1,11 +1,23 @@
 package com.kh.elefont.font.controller;
 
 import java.io.IOException;
+import java.util.List;
+
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+
+import com.kh.elefont.common.model.service.AttachmentService;
+import com.kh.elefont.common.model.vo.Attachment;
+import com.kh.elefont.community.model.service.CommunityService;
+import com.kh.elefont.community.model.vo.Community;
+import com.kh.elefont.font.model.service.FontService;
+import com.kh.elefont.font.model.vo.Font;
+
 
 /**
  * Servlet implementation class ShopDetailServlet
@@ -13,15 +25,95 @@ import javax.servlet.http.HttpServletResponse;
 @WebServlet("/shopDetail")
 public class ShopDetailServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private FontService fontService = new FontService();
+	private CommunityService communityService = new CommunityService();
+	private AttachmentService attachmentService = new AttachmentService();
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		request.getRequestDispatcher("/WEB-INF/views/shop/shopDetail.jsp").forward(request, response);
+		try {
+			//1.파리미터 fontNo
+			String fontNo = request.getParameter("fontNo");
+			
+			//2.비지니스로직 호출
+			// 읽음여부 확인(cookie)
+			Cookie[] cookies = request.getCookies();
+			boolean hasRead = false;
+			String fontViewValue = "";
+			
+			if(cookies != null) {
+				for(Cookie c : cookies) {
+					String name = c.getName();
+					String value = c.getValue();
+					System.out.println(name + " : " + value);
+					
+					if("fontView".equals(name)) {
+						fontViewValue = value;
+						// 현재 게시글 읽음여부
+						if(value.contains("|" + fontNo + "|")) {
+							hasRead = true;
+						}
+						break;
+					}
+				}
+			}
+			
+			System.out.printf("hasRead = %b, boardValue = %s%n", hasRead, fontViewValue);
+			
+			// 게시글을 처음 읽는 경우
+			if(!hasRead) {
+				// 게시글 Cookie
+				Cookie cookie = new Cookie("fontView", fontViewValue + "|" + fontNo + "|");
+				cookie.setMaxAge(365 * 24 * 60 * 60);
+				cookie.setPath(request.getContextPath() + "/shopDetail"); // 해당 요청시만 cookie전송
+				response.addCookie(cookie);
+				
+				//조회수 증가
+				int result = fontService.updateFontViewCount(fontNo);			
+			}
+			
+			
+			//업무 로직
+			Font font = fontService.selectOneFontByFontNo(fontNo);
+			
+			List<Community> communityList =  communityService.selectCommunityListByFontNo(fontNo);
+			
+			List<Attachment> commAttachmentList = attachmentService.selectAllCommAttachmentList();
+			
+			//게시글 가져오기에 실패한경우
+			if(font == null){
+				request.getSession().setAttribute("msg", "조회한 폰트가 존재하지 않습니다.");
+				response.sendRedirect(request.getContextPath() + "/board/boardList");
+				return;
+			}
+			
+			// XSS공격대비 
+			// cross-site script공격. 악성코드를 웹페이지삽입하여 클라이언트의 개인정보탈취하는 공격법
+			//String content = MvcUtils.escapeHtml(board.getContent());
+			
+			// 개행문자 br태그 변환처리
+			//content = MvcUtils.convertLineFeedToBr(content);
+			//board.setContent(content);
+			
+			// 댓글목록 가져오기
+			//List<BoardComment> commentList = boardService.selectCommentList(no);
+			//System.out.println("commentList@servlet = " + commentList);
+			
+			//3.view단 처리위임
+			request.setAttribute("font", font);
+			request.setAttribute("communityList", communityList);
+			request.setAttribute("commAttachmentList", commAttachmentList);
+			//request.setAttribute("commentList", commentList);
+			RequestDispatcher reqDispatcher = request.getRequestDispatcher("/WEB-INF/views/shop/shopDetail.jsp");
+			reqDispatcher.forward(request, response);
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
+		}
 	}
+		
 
-	
 
 }
