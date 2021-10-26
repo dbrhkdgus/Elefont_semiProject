@@ -2,6 +2,9 @@
     pageEncoding="UTF-8"%>
 <%@include file = "/WEB-INF/views/common/LandingHeader.jsp" %>
 
+<%
+	Member member = (Member) request.getAttribute("member");
+%>
 
         <!-- 회원정보 수정 section 시작-->
         <section id="portfolio" class="portfolio section-space-padding">
@@ -18,7 +21,7 @@
                                 <div class="defaultphotobox">
                                     <img class="defaultPhoto" src="https://t1.daumcdn.net/cfile/tistory/243FE450575F82662D" alt="프로필기본사진">
                                 </div>
-                                <p>&nbsp;&nbsp;2021.03.03 가입</p>
+                                <p>&nbsp;&nbsp;<%=member.getMemberRegDate() %> 가입</p>
                                 <div id="photoEditButton">
                                     <input type="button" value="프로필 수정">  
                                 </div>  
