@@ -225,16 +225,19 @@
 							<input type="text" name="" id="" placeholder="검색할 내용을 입력하세요."/>
 							<input type="button" value="검색" />
 						</div>
-						<table class="admin-tbl">
-							<tr>
-								<th>회원 구분</th>
-								<th>회원 아이디</th>
-								<th>회원 이름</th>
-								<th>회원 이메일</th>
-								<th>회원 포인트</th>
-								<th>회원 연락처</th>
-								<th>회원 탈퇴 여부</th>
-							</tr>
+						<div class="fix-head">
+						<table class="admin-tbl fix-tbl">
+							<thead>
+								<tr>
+									<th width="80px">회원 구분</th>
+									<th width="130px">회원 아이디</th>
+									<th width="80px">회원 이름</th>
+									<th width="200px">회원 이메일</th>
+									<th width="90px">회원 포인트</th>
+									<th width="130px">회원 연락처</th>
+									<th width="80px">탈퇴 여부</th>
+								</tr>
+							</thead>
 <%
 	if(memberList != null){
 		for(Member m : memberList){
@@ -259,6 +262,7 @@
 	}
 %>
 						</table>
+						</div>
 					</div>
 				</div>
 				<div>
@@ -299,19 +303,24 @@
 							<input type="text" name="" id="" placeholder="검색할 내용을 입력하세요."/>
 							<input type="button" value="검색" />
 						</div>
-					<table class="admin-tbl">
-						<tr>
-							<th>주문 번호</th>
-							<th>주문일</th>
-							<th>주문 회원</th>
-							<th>주문 상품</th>
-							<th>주문 가격</th>
-						</tr>
-					</table>
+					<div class="fix-head">
+						<table class="admin-tbl fix-tbl">
+							<thead>
+								<tr>
+									<th>주문 번호</th>
+									<th>주문일</th>
+									<th>주문 회원</th>
+									<th>주문 상품</th>
+									<th>주문 가격</th>
+								</tr>
+							</thead>
+						</table>
+					</div>
 				</div>
 				<div>
 					<div class="coupon-enroll-wrapper">
 						<form action="" method="POST" name="couponEnrollFrm">
+							
 							<table id="coupon-enroll-tbl">
 								<tr>
 									<th >쿠폰 발행</th>
@@ -352,25 +361,30 @@
 									</td>
 								</tr>							
 							</table>
+							
 						</form>
 						<div class="coupon-result">
 						<!-- 발행된 쿠폰 번호 출력할 div -->
 						</div>
 					</div>
-						<table class="coupon-tbl">
-							<tr>
-								<th>쿠폰 발급일</th>
-								<th>쿠폰 번호</th>
-								<th>쿠폰 종류</th>
-								<th>쿠폰 유효기간</th>
-								<th>쿠폰 사용여부</th>
-								<th>포인트 값/할인율</th>
-								<th>회원 아이디</th>
-							</tr>
+					<div id="coupon-head" class="fix-head">
+						<table id="coupon-tbl"class="fix-tbl">
+							<thead>
+								<tr>
+									<th>쿠폰 발급일</th>
+									<th>쿠폰 번호</th>
+									<th>쿠폰 종류</th>
+									<th>쿠폰 유효기간</th>
+									<th>쿠폰 사용여부</th>
+									<th>포인트 값/할인율</th>
+									<th>회원 아이디</th>
+								</tr>
+							</thead>
 							<tr>
 								<!-- db에서 읽어온 쿠폰 정보 출력 -->
 							</tr>
 						</table>
+					</div>
 				</div>
 				<div>
 					<div class="fontLookup">
@@ -393,17 +407,17 @@
 						</div>
 						<form action="<%=request.getContextPath()%>/admin/fontUpdate" method="POST" name="adminFontUpdateFrm" id="adminFontupdateFrm">
 							<div class="fix-head">
-							<table class="font-tbl">
+							<table id="font-tbl " class="fix-tbl">
 								<thead>
 									<tr>
-										<th>폰트 승인</th>
-										<th>폰트 번호</th>
-										<th>폰트명</th>
-										<th>폰트 가격</th>
-										<th>폰트 할인율</th>
-										<th>폰트 파일</th>
-										<th>판매 회원</th>
-										<th>회원 확인</th>
+										<th width="70px">폰트 승인</th>
+										<th width="180px">폰트 번호</th>
+										<th width="100px">폰트명</th>
+										<th width="100px">폰트 가격</th>
+										<th width="80px">폰트 할인율</th>
+										<th width="100px">폰트 파일</th>
+										<th width="100px">판매 회원</th>
+										<th width="70px">회원 확인</th>
 									</tr>
 								</thead>
 								<tbody>
@@ -413,19 +427,19 @@
 %>
 								<tr>
 									<td>
-										<select name="fontApproval">
+										<select class="font-approval">
 											<option value="N" <%= "N".equals(f.getFontApproval())?"selected":"" %>>N</option>
 											<option value="Y" <%= "Y".equals(f.getFontApproval())?"selected":"" %>>Y</option>
 										</select>
-										
+										<input type="hidden" name="fontApproval" />
 									</td>
 									<td><%= f.getFontNo() %><input type="hidden" name="fontNo" value="<%= f.getFontNo() %>"/></td>
 									<td><%= f.getFontName() %></td>
 									<td>
-										<input type="text" name="fontPrice" placeholder="<%= f.getFontPrice() %>"/>
+										<input type="text" name="fontPrice" id="fPrice" placeholder="<%= f.getFontPrice() %>"/>
 									</td>
 									<td>
-										<input type="text" name="fontDiscountRate" placeholder="<%= f.getFontDiscountRate() %>"/>
+										<input type="text" name="fontDiscountRate" id="fDCRate" placeholder="<%= f.getFontDiscountRate() %>"/>
 									</td>
 									<td>
 <% 
@@ -488,35 +502,36 @@
 
 /* 폰트 업데이트 버튼 클릭 시, price와 discountRate에 변경사항이 없을 경우, 기존 값을 전달*/
 	$(fontUpdateBtn).click((e)=>{
+		console.log("클릭이벤트 발생");
 		const $fontPrice = $("[name = fontPrice]");
 		const $fontDiscountRate = $("[name=fontDiscountRate]");
 		const $fontApproval = $("[name=fontApproval]");
 		
 		$.each($fontApproval, function(index, item){
-			console.log(item);
 			$item = $(item);
-			/* ㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠ */			
-		});
-		
+			let $fontApprYN = $(".font-approval").eq(index).val();
+			$item.val($fontApprYN);
+			console.log($item.val());
+		});	
 		$.each($fontPrice, function(index, item){
 			$item = $(item);
-			if($item.val('')){
+			if(!$item.val()){
 				$item.val($item.attr('placeholder'));
 			}
 		});
 
 		$.each($fontDiscountRate, function(index, item){
 			$item = $(item);
-			if($item.val('')){
+			if(!$item.val()){
 				$item.val($item.attr('placeholder'));
 			}
 		});
 		
-		//$(document.adminFontUpdateFrm).submit();
+		$(document.adminFontUpdateFrm).submit();
 		
 	});
 	
-	/* 폰트 관리 - 회원 폰트 다운로드 버튼 클릭 시 파일 다운로드 */
+/* 폰트 관리 - 회원 폰트 다운로드 버튼 클릭 시 파일 다운로드 */
     $(".fontDownloadBtn").click((e)=>{
         $fontNo = $(e.target).parent().prevAll().eq(2).html();
         console.log($fontNo);
