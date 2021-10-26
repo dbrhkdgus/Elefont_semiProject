@@ -11,6 +11,7 @@ import java.util.List;
 
 import com.kh.elefont.community.model.dao.CommunityDao;
 import com.kh.elefont.community.model.vo.Community;
+import com.kh.elefont.member.model.vo.Member;
 
 
 public class CommunityService {
@@ -85,6 +86,14 @@ public class CommunityService {
 	        return totalCommunityByWriter;
 	}
 
+
+	public Community selectOneCommunity(String commNo) {
+		Connection conn = getConnection();
+		Community community = communityDao.selectOneCommunity(conn, commNo);
+		close(conn);
+		return community;
+  }
+  
 	public List<Community> selectCommunityListByFontNo(String fontNo) {
 		 Connection conn = getConnection();
 		 List<Community> communityList = new ArrayList<>();

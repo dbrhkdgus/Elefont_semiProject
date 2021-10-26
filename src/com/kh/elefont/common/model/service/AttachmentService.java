@@ -12,6 +12,7 @@ import java.util.List;
 import com.kh.elefont.common.model.dao.AttachmentDao;
 import com.kh.elefont.common.model.vo.Attachment;
 import com.kh.elefont.community.model.vo.Community;
+import com.kh.elefont.member.model.vo.Member;
 
 public class AttachmentService {
 	AttachmentDao attachmentDao = new AttachmentDao();
@@ -63,6 +64,16 @@ public class AttachmentService {
 	        }
 	        return attachmentList;
 	}
+
+	
+	public Attachment selectOneAttachment(String commNo) {
+		Connection conn = getConnection();
+		Attachment attachment = attachmentDao.selectOneAttachment(conn, commNo);
+		close(conn);
+		return attachment;
+	}
+
+
 	public List<Attachment> selectAllFontAttachmentList() {
 		 Connection conn = getConnection();
 		 List<Attachment> fontAttchmentList = new ArrayList<>();
@@ -79,5 +90,6 @@ public class AttachmentService {
 	        }
 	        return fontAttchmentList;
 	}
+
 
 }
