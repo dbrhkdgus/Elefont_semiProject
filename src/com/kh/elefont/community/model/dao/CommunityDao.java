@@ -119,4 +119,33 @@ public class CommunityDao {
 		return communityList;
 	}
 
+	public int countTotalCommunityByWriter(Connection conn, String memberNo) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		int totalCommunityByWriter = 0;
+		
+		String sql = prop.getProperty("countTotalCommunityByWriter");
+		
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1,memberNo);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				totalCommunityByWriter = rset.getInt(1);
+			}
+				
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return totalCommunityByWriter;
+	}
+
 }

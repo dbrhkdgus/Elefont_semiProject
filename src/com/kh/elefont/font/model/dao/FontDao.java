@@ -152,6 +152,7 @@ public class FontDao {
 				font.setFontDiscountRate(rset.getDouble("font_discount_rate"));
 				font.setFontRegDate(rset.getDate("font_reg_date"));
 				font.setFontApproval(rset.getString("font_approval"));
+				font.setMemberId(rset.getString("member_id"));
 				
 				fontList.add(font);
 			}
@@ -165,6 +166,31 @@ public class FontDao {
 		return fontList;
 	}
 
+	public int updateFont(Connection conn, Font[] fontArr) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String sql = prop.getProperty("updateFont");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			for(int i = 0; i < fontArr.length; i++) {
+				pstmt.setString(1, fontArr[i].getFontApproval());
+				pstmt.setDouble(2, fontArr[i].getFontPrice());
+				pstmt.setDouble(3, fontArr[i].getFontDiscountRate());
+				pstmt.setString(4, fontArr[i].getFontNo());
+				
+				result = pstmt.executeUpdate();
+				if(result < 0) break;
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
 	public Attachment selectOneAttachment(Connection conn, String fontNo) {
 		Attachment attach = null;
 		PreparedStatement pstmt = null;

@@ -400,6 +400,7 @@
 										<th>폰트 번호</th>
 										<th>폰트명</th>
 										<th>폰트 가격</th>
+										<th>폰트 할인율</th>
 										<th>폰트 파일</th>
 										<th>판매 회원</th>
 										<th>회원 확인</th>
@@ -412,16 +413,19 @@
 %>
 								<tr>
 									<td>
-										<select name="fontApproval" id="">
+										<select name="fontApproval">
 											<option value="N" <%= "N".equals(f.getFontApproval())?"selected":"" %>>N</option>
 											<option value="Y" <%= "Y".equals(f.getFontApproval())?"selected":"" %>>Y</option>
 										</select>
 										
 									</td>
-									<td><%= f.getFontNo() %></td>
+									<td><%= f.getFontNo() %><input type="hidden" name="fontNo" value="<%= f.getFontNo() %>"/></td>
 									<td><%= f.getFontName() %></td>
 									<td>
 										<input type="text" name="fontPrice" placeholder="<%= f.getFontPrice() %>"/>
+									</td>
+									<td>
+										<input type="text" name="fontDiscountRate" placeholder="<%= f.getFontDiscountRate() %>"/>
 									</td>
 									<td>
 <% 
@@ -442,16 +446,16 @@
 	}else{
 %>
 								<tr>
-									<td colspan="7">등록된 폰트가 없습니다</td>
+									<td colspan="8">등록된 폰트가 없습니다</td>
 								</tr>
 <%
 	}
 %>
 							</tbody>
 						</table>
-							<input type="hidden" name="fontNo" />
+							
 						</div>
-							<input type="submit" value="수정" />
+							<input type="button" value="수정" id="fontUpdateBtn"/>
 						</form>
 					</div>
 				</div>
@@ -474,6 +478,45 @@
 		  .css("display","none")
 		  .eq(index).css("display","block");
 	});
+<<<<<<< HEAD
+
+/* 폰트 관리 - 회원 폰트 다운로드 버튼 클릭 시 파일 다운로드 */
+	$(".fontDownloadBtn").click((e)=>{
+		$fontNo = $(e.target).parent().prevAll().eq(2).html();
+		console.log($fontNo);
+		location.href = request.getContextPath() + "/font/fontDownload?fontNo=" + $fontNo; 
+	});
+
+/* 폰트 업데이트 버튼 클릭 시, price와 discountRate에 변경사항이 없을 경우, 기존 값을 전달*/
+	$(fontUpdateBtn).click((e)=>{
+		const $fontPrice = $("[name = fontPrice]");
+		const $fontDiscountRate = $("[name=fontDiscountRate]");
+		const $fontApproval = $("[name=fontApproval]");
+		
+		$.each($fontApproval, function(index, item){
+			console.log(item);
+			$item = $(item);
+			/* ㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠㅠ */			
+		});
+		
+		$.each($fontPrice, function(index, item){
+			$item = $(item);
+			if($item.val('')){
+				$item.val($item.attr('placeholder'));
+			}
+		});
+
+		$.each($fontDiscountRate, function(index, item){
+			$item = $(item);
+			if($item.val('')){
+				$item.val($item.attr('placeholder'));
+			}
+		});
+		
+		//$(document.adminFontUpdateFrm).submit();
+		
+	});
+=======
 	
 	/* 폰트 관리 - 회원 폰트 다운로드 버튼 클릭 시 파일 다운로드 */
     $(".fontDownloadBtn").click((e)=>{
@@ -481,6 +524,7 @@
         console.log($fontNo);
         location.href = "<%=request.getContextPath()%>/font/fontDownload?fontNo=" + $fontNo; 
     });
+>>>>>>> branch 'master' of https://github.com/dbrhkdgus/Elefont_semiProject.git
 </script>
 <%
 }
