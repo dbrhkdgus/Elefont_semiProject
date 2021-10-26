@@ -478,14 +478,13 @@
 		  .css("display","none")
 		  .eq(index).css("display","block");
 	});
-<<<<<<< HEAD
 
 /* 폰트 관리 - 회원 폰트 다운로드 버튼 클릭 시 파일 다운로드 */
-	$(".fontDownloadBtn").click((e)=>{
-		$fontNo = $(e.target).parent().prevAll().eq(2).html();
-		console.log($fontNo);
-		location.href = request.getContextPath() + "/font/fontDownload?fontNo=" + $fontNo; 
-	});
+$(".fontDownloadBtn").click((e)=>{
+    $fontNo = $(e.target).parent().prevAll().eq(2).html();
+    console.log($fontNo);
+    location.href = "<%=request.getContextPath()%>/font/fontDownload?fontNo=" + $fontNo; 
+});
 
 /* 폰트 업데이트 버튼 클릭 시, price와 discountRate에 변경사항이 없을 경우, 기존 값을 전달*/
 	$(fontUpdateBtn).click((e)=>{
@@ -516,15 +515,6 @@
 		//$(document.adminFontUpdateFrm).submit();
 		
 	});
-=======
-	
-	/* 폰트 관리 - 회원 폰트 다운로드 버튼 클릭 시 파일 다운로드 */
-    $(".fontDownloadBtn").click((e)=>{
-        $fontNo = $(e.target).parent().prevAll().eq(2).html();
-        console.log($fontNo);
-        location.href = "<%=request.getContextPath()%>/font/fontDownload?fontNo=" + $fontNo; 
-    });
->>>>>>> branch 'master' of https://github.com/dbrhkdgus/Elefont_semiProject.git
 </script>
 <%
 }
