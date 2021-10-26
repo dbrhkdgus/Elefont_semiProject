@@ -60,7 +60,8 @@
  <%
  	List<Font> fontList = (List<Font>)request.getAttribute("fontList");
     List<Attachment> fontAttchmentList = (List<Attachment>)request.getAttribute("fontAttchmentList");
-   
+   	System.out.println("fontList@jsp : " + fontList);
+   	System.out.println("fontAttchmentList@jsp : " + fontAttchmentList);
     for(Font font : fontList){
     	for(Attachment att : fontAttchmentList){
     		

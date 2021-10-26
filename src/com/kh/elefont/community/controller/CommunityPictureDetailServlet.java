@@ -40,7 +40,7 @@ public class CommunityPictureDetailServlet extends HttpServlet {
 		Attachment attachment = new Attachment();
 		attachment = attachmentService.selectOneAttachment(commNo);
 		
-		List<Attachment> attachmentList = attachmentService.selectAllAttachmentList();
+		List<Attachment> attachmentList = attachmentService.selectAllCommAttachmentListByMemberNo(attachment.getMemberNo());
 		
 		request.setAttribute("community", community);
 		request.setAttribute("attachment", attachment);

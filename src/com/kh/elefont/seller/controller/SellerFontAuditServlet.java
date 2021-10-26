@@ -59,6 +59,10 @@ public class SellerFontAuditServlet extends HttpServlet {
 		if(!auditList.isEmpty()) {
 			session.setAttribute("auditList", auditList);
 		}
+		System.out.println("approvalList@servlet : " + approvalList);
+		System.out.println("checkedList@servlet : " + checkedList);
+		System.out.println("auditList@servlet : " + auditList);
+		
 		
 		//3. view단 연결
 		request.getRequestDispatcher("/WEB-INF/views/seller/sellerManagement.jsp").forward(request, response);
