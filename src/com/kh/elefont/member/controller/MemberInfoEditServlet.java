@@ -32,6 +32,7 @@ public class MemberInfoEditServlet extends HttpServlet {
 		//2. 업무로직
 		Member member = memberService.selectOneMember(memberId);
 		System.out.println("회원정보 수정을 위한 멤버를 잘 받아왔나요?"+member);
+		System.out.println("생일 확인" + member.getMemberBirthday());
 		
 		//3. 뷰단처리
 		request.setAttribute("member", member);
