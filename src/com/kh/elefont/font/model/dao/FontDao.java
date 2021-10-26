@@ -261,6 +261,30 @@ public class FontDao {
 		}
 		return font;
 	}
+
+	public int updateFontViewCount(Connection conn, String fontNo) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String sql = prop.getProperty("updateFontViewCount");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			
+			pstmt.setString(1, fontNo);
+			
+				
+			result = pstmt.executeUpdate();
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
 	
 
 }

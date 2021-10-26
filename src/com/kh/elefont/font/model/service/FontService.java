@@ -81,5 +81,20 @@ public class FontService {
 		close(conn);
 		return font;
 	}
+	public int updateFontViewCount(String fontNo) {
+		Connection conn = getConnection();
+		int result = 0;
+		
+		try {
+			result = fontDao.updateFontViewCount(conn, fontNo);
+			commit(conn);
+		}catch(Exception e) {
+			rollback(conn);
+		}finally {
+			close(conn);
+		}
+		
+		return result;
+	}
 
 }
