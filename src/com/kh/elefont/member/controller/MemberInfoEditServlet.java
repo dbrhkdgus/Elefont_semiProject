@@ -25,18 +25,29 @@ public class MemberInfoEditServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//1. 사용자 입력값
-		
 		String memberId = request.getParameter("memberId");
-		System.out.println("설정을 눌렀을 때 memberId를 잘 받아왔나요 확인!" + memberId);
+
 		
 		//2. 업무로직
 		Member member = memberService.selectOneMember(memberId);
-		System.out.println("회원정보 수정을 위한 멤버를 잘 받아왔나요?"+member);
-		System.out.println("생일 확인" + member.getMemberBirthday());
+
 		
 		//3. 뷰단처리
 		request.setAttribute("member", member);
 		request.getRequestDispatcher("/WEB-INF/views/member/memberInfoEdit.jsp").forward(request, response);
 	}
+	
+	
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		//1. 사용자 입력
+		String memberId = request.getParameter("editId");
+		System.out.println("멤버아이디 잘 받았니?" + memberId);
+		
+		int result = memberService.updateMemberInfo(memberId);
+		
+	}
+
+	
+	
 
 }
