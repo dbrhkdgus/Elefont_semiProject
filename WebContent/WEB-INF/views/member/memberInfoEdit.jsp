@@ -49,81 +49,83 @@ Member member = (Member) request.getAttribute("member");
 						</div>
 					</div>
 					<div id="infoEditInput">
-						<div id="info1" class="info">
-							<table id="editInfo1">
-								<tr>
-									<th>아이디<sup>*</sup></th>
-									<td><input type="text" id="editId" disabled
-										placeholder="<%=member.getMemberId()%>"></td>
-								</tr>
-								<tr>
-									<th>비밀번호<sup>*</sup></th>
-									<td><input type="text" id="editPwd" required></td>
-								</tr>
-								<tr>
-									<th>비밀번호 확인<sup>*</sup>&nbsp;
-									</th>
-									<td><input type="text" id="editPwdDoubleCheck"  name="" required></td>
-								</tr>
-								<tr>
-									<th>생년월일</th>
-									<td><input type="date" id="editBirthday"
-										value="<%=member.getMemberBirthday()%>"></td>
-								</tr>
-							</table>
-						</div>
-						<div id="info2" class="info">
-							<table id="editInfo2">
-								<tr>
-									<th>성별</th>
-									<td><input type="radio" id="male" name="editGender"
-										value="male"
-										<%=MemberService.GENDER_MALE.equals(member.getMemberGender()) ? "checked" : "disabled"%>>
-										<label for="male">남성</label> <input type="radio" id="female"
-										name="eidtGender" value="female"
-										<%=MemberService.GENDER_FEMALE.equals(member.getMemberGender()) ? "checked" : "disabled"%>>
-										<label for="female">여성</label></td>
-								</tr>
-								<tr>
-									<th>이메일&nbsp;</th>
-									<td><input type="email" id="editEmail"
-										placeholder="<%=member.getMemberEmail()%>" disabled></td>
-								</tr>
-								<tr>
-									<th>연락처&nbsp;</th>
-									<td><input type="tel" id="editPhone"
-										placeholder="<%=member.getMemberPhone()%>"></td>
-								</tr>
-								<tr>
-									<%
-									String student = "학생";
-									String designer = "디자이너";
-									String developer = "개발자";
-									String etc = "기타";
-									String none = "대답 안 함";
-									%>
-									<th>직업</th>
-									<td><select name="job" id="editJob">
-											<option value="student"
-												<%=student.equals(member.getMemberJob()) ? "selected" : ""%>>학생</option>
-											<option value="designer"
-												<%=designer.equals(member.getMemberJob()) ? "selected" : ""%>>디자이너</option>
-											<option value="developer"
-												<%=developer.equals(member.getMemberJob()) ? "selected" : ""%>>개발자</option>
-											<option value="etc"
-												<%=etc.equals(member.getMemberJob()) ? "selected" : ""%>>기타</option>
-											<option value="none"
-												<%=none.equals(member.getMemberJob()) ? "selected" : ""%>>대답
-												안 함</option>
-									</select></td>
-								</tr>
-							</table>
-						</div>
+						<form name="editInfoFrm" action="<%=request.getContextPath()%>/member/memberInfoEdit" method="post">
+							<div id="info1" class="info">
+								<table id="editInfo1">
+									<tr>
+										<th>아이디<sup>*</sup></th>
+										<td><input type="text" name ="editId" id="editId" value="<%=member.getMemberId()%>" readonly
+											placeholder="<%=member.getMemberId()%>"></td>
+									</tr>
+									<tr>
+										<th>비밀번호<sup>*</sup></th>
+										<td><input type="text" name="editPwd" id="editPwd" required></td>
+									</tr>
+									<tr>
+										<th>비밀번호 확인<sup>*</sup>&nbsp;
+										</th>
+										<td><input type="text" id="editPwdDoubleCheck"  name="" required></td>
+									</tr>
+									<tr>
+										<th>생년월일</th>
+										<td><input type="date" id="editBirthday"
+											value="<%=member.getMemberBirthday()%>"></td>
+									</tr>
+								</table>
+							</div>
+							<div id="info2" class="info">
+								<table id="editInfo2">
+									<tr>
+										<th>성별</th>
+										<td><input type="radio" id="male" name="editGender"
+											value="male"
+											<%=MemberService.GENDER_MALE.equals(member.getMemberGender()) ? "checked" : "disabled"%>>
+											<label for="male">남성</label> <input type="radio" id="female"
+											name="eidtGender" value="female"
+											<%=MemberService.GENDER_FEMALE.equals(member.getMemberGender()) ? "checked" : "disabled"%>>
+											<label for="female">여성</label></td>
+									</tr>
+									<tr>
+										<th>이메일&nbsp;</th>
+										<td><input type="email" id="editEmail"
+											placeholder="<%=member.getMemberEmail()%>" disabled></td>
+									</tr>
+									<tr>
+										<th>연락처&nbsp;</th>
+										<td><input type="tel" id="editPhone"
+											placeholder="<%=member.getMemberPhone()%>"></td>
+									</tr>
+									<tr>
+										<%
+										String student = "학생";
+										String designer = "디자이너";
+										String developer = "개발자";
+										String etc = "기타";
+										String none = "대답 안 함";
+										%>
+										<th>직업</th>
+										<td><select name="job" id="editJob">
+												<option value="student"
+													<%=student.equals(member.getMemberJob()) ? "selected" : ""%>>학생</option>
+												<option value="designer"
+													<%=designer.equals(member.getMemberJob()) ? "selected" : ""%>>디자이너</option>
+												<option value="developer"
+													<%=developer.equals(member.getMemberJob()) ? "selected" : ""%>>개발자</option>
+												<option value="etc"
+													<%=etc.equals(member.getMemberJob()) ? "selected" : ""%>>기타</option>
+												<option value="none"
+													<%=none.equals(member.getMemberJob()) ? "selected" : ""%>>대답
+													안 함</option>
+										</select></td>
+									</tr>
+								</table>
+							</div>
+						</form>
 					</div>
 				</div>
 				<div id="editButton">
 					<br>
-					<button id= "memberInfoEditBtn">회원정보수정</button>
+					<input type="button" id= "memberInfoEditBtn" value="회원정보수정"></button>
 				</div>
 			</div>
 		</div>
@@ -141,23 +143,12 @@ $("#memberwithdrawalBtn").click((e)=>{
 
 
 $("#memberInfoEditBtn").click(()=>{
+	
+	$(document.editInfoFrm).submit();
+	
 	//유효성 검사해야함
 	const $p1 = $("#editPwd");
 	const $p2 = $("editPwdDoubleCheck");
-	if 
-
-
-	
-	if(/^[a-zA-Z0-9!@#$$%^&*()]{4,}/.test($p1.val()) == false){
-		alert("유효한 패스워드를 입력하세요.");
-		$p1.select();
-		return false;
-	}
-	if($p1.val() != $p2.val()){
-		alert("패스워드가 일치하지 않습니다.");
-		$p1.select();
-		return false;
-	}
 
 })
 
