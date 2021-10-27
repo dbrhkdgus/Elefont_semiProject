@@ -135,7 +135,7 @@ if(!approvalList.isEmpty()){
 								<td></td>
 								<td><%= f.getFontApproval() %></td>
 								<td>
-									<input type="button" value="확인" id="auditCheckBtn" data-font-no = "<%= f.getFontNo()%>"/>
+									<input type="button" value="확인" id="auditCheckBtn" data-font-no = "<%= f.getFontNo()%>" data-font-approval="<%=f.getFontApproval()%>"/>
 								</td>
 							</tr>
 <%
@@ -152,6 +152,7 @@ if(!approvalList.isEmpty()){
                     </table>
                     <form action="<%=request.getContextPath()%>/seller/fontAuditCheck" method="POST" name="fontAuditCheckFrm">
                     	<input type="hidden" name="fontNo" />
+                    	<input type="hidden" name="fontApproval" />
                     </form>
                 </div>
               
@@ -210,9 +211,11 @@ $(window).load((e)=>{
 	$(auditCheckBtn).click((e)=>{
 		const $this = $(e.target);
 		const $fontNo = $this.data("fontNo");
+		const $fontApproval = $this.data("fontApproval");
 		if(confirm("심사 결과를 확인했으며 이에 동의합니다")){
 			const $frm = $(document.fontAuditCheckFrm);
 			$frm.find("[name=fontNo]").val($fontNo);
+			$frm.find("[name=fontApproval]").val($fontApproval);
 			$frm.submit();
 		}
 	});
