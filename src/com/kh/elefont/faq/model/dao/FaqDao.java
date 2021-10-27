@@ -14,13 +14,14 @@ import com.kh.elefont.faq.model.vo.Faq;
 
 public class FaqDao {
 
-	private Properties prop = new Properties();
+	 private Properties prop = new Properties();
 
 	public List<Faq> selectAllFaq(Connection conn) {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		List<Faq> list = new ArrayList<>();
 		String sql = prop.getProperty("selectAllFaq");
+		System.out.println(sql);
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
