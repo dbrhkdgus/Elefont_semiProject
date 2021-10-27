@@ -1603,7 +1603,7 @@ text-align: center;
     align-items: center;
 
 }
-#btnCheckEmail{
+#emailDoubleCheck{
 	background-color: rgb(133, 209, 62);
 	color: white;
 	border-radius: 10px;
