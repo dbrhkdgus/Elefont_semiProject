@@ -34,7 +34,11 @@ public class FontLikeServlet extends HttpServlet {
 		
 		//2. 업무 로직
 		//like_font 테이블에서 조회. DQL이지만 존재 여부 확인 후, DML문 처리가 있을 예정이므로 int값으로 받는다.
+		//json 변환할 데이터 객체 생성
+		Map<String, Object> map = new HashMap<>();
 		int result = fontService.selectFontLike(param);
+		
+		result = fontService.countFontLike(fontNo);
 
 		
 		

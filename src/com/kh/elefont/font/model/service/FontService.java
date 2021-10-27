@@ -178,5 +178,14 @@ public class FontService {
 		}
 		return result;
 	}
+	public int countFontLike(String fontNo) {
+		Connection conn = getConnection();
+		
+		int result = fontDao.countFontLike(conn, fontNo);
+		
+		close(conn);
+		
+		return result;
+	}
 
 }
