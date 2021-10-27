@@ -159,8 +159,20 @@ public class FontService {
 		int result = 0;
 		try {
 			result = fontDao.selectFontLike(conn, param);
+			
+			if(result == 1) {
+				//좋아요 이력이 있는 경우 like_font 테이블에서 내용 삭제 후 font테이블 좋아요 카운트 감소
+				result = fontDao.deleteFontLike(conn,param);
+			}
+			else if(result == 0) {
+				//좋아요 이력이 없는 경우 like_font 테이블에서 내용 추가 후 font테이블 좋아요 카운트 증가
+				result = fontDao.insertFontLike(conn,param);
+			}
+			
+			commit(conn);
 		} catch(Exception e) {
 			e.printStackTrace();
+			rollback(conn);
 		} finally {
 			close(conn);
 		}

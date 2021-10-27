@@ -456,6 +456,46 @@ public class FontDao {
 		}
 		return result;
 	}
+
+	public int deleteFontLike(Connection conn, Map<String, Object> param) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String sql = prop.getProperty("deleteFontLike");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, (String)param.get("fontNo"));
+			pstmt.setString(2, (String)param.get("memberNo"));
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+	}
+
+	public int insertFontLike(Connection conn, Map<String, Object> param) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String sql = prop.getProperty("insertFontLike");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, (String)param.get("memberNo"));
+			pstmt.setString(2, (String)param.get("fontNo"));
+			
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+	}
 	
 
 }

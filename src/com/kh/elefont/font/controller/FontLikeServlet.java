@@ -33,15 +33,9 @@ public class FontLikeServlet extends HttpServlet {
 		param.put("memberNo", memberNo);
 		
 		//2. 업무 로직
-		//like_font 테이블에서 조회. DQL이지만 존재 여부만 확인할 것이므로 int값으로 받는다.
+		//like_font 테이블에서 조회. DQL이지만 존재 여부 확인 후, DML문 처리가 있을 예정이므로 int값으로 받는다.
 		int result = fontService.selectFontLike(param);
-		
-		if(result == 1) {
-			//좋아요 이력이 있는 경우
-		}
-		else if(result == 0) {
-			//좋아요 이력이 없는 경우
-		}
+
 		
 		
 		//3. view단 처리
