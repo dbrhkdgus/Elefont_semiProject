@@ -111,4 +111,21 @@ public class CommunityService {
 	        return communityList;
 	}
 
+	public int updateCommunityViewCount(String commNo) {
+		Connection conn = getConnection();
+		int result = 0;
+		
+		try {
+			result = communityDao.updateCommunityViewCount(conn, commNo);
+			System.out.println("result@dao = "+result);
+			commit(conn);
+		}catch(Exception e) {
+			rollback(conn);
+		}finally {
+			close(conn);
+		}
+		
+		return result;
+	}
+
 }

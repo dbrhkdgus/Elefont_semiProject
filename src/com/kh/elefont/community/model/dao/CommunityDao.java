@@ -221,5 +221,24 @@ public class CommunityDao {
 		return communityList;
   }
 
+	public int updateCommunityViewCount(Connection conn, String commNo) {
+		PreparedStatement pstmt = null;
+		int result  = 0;
+		String sql = prop.getProperty("updateCommunityViewCount");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1,commNo);
+			
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+	}
+
 
 }

@@ -11,8 +11,12 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.kh.elefont.common.model.vo.Attachment;
+import com.kh.elefont.font.model.service.FontCategoryService;
+import com.kh.elefont.font.model.service.FontCopyrightService;
 import com.kh.elefont.font.model.service.FontService;
 import com.kh.elefont.font.model.vo.Font;
+import com.kh.elefont.font.model.vo.FontCategory;
+import com.kh.elefont.font.model.vo.FontCopyright;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.DefaultFileRenamePolicy;
 import com.oreilly.servlet.multipart.FileRenamePolicy;
@@ -24,7 +28,8 @@ import com.oreilly.servlet.multipart.FileRenamePolicy;
 public class SellerFontEnrollServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private FontService fontService = new FontService();
-
+	private FontCategoryService fontCategoryService = new FontCategoryService();
+	private FontCopyrightService fontCopyrightService = new FontCopyrightService();
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
@@ -81,10 +86,11 @@ public class SellerFontEnrollServlet extends HttpServlet {
 			font.setAttach(attach);
 		}
 		
-		// 폰트 카테고리 테이블에 저장
+		// 카테고리 코드 부여해야함!		
+		FontCategory fontCategory = new FontCategory();
 		
+		FontCopyright fontCopyright = new FontCopyright();
 		
-		// 폰트 저작권정보 테이블에 저장
 		
 		
 		
@@ -92,6 +98,12 @@ public class SellerFontEnrollServlet extends HttpServlet {
 		int result = fontService.insertFont(font);
 		String msg = result > 0? "등록되었습니다.":"등록 실패";
 		
+		Font fontForCheck = fontService.selectOneFontByFontnameNFontUrl(fontName, fontUrl);
+		// 폰트 카테고리 테이블에 저장
+		result = fontCategoryService.insertFontCategory(fontForCheck.getFontNo(),fontCategory);
+				
+		// 폰트 저작권정보 테이블에 저장
+		result = fontCopyrightService.insertFontCopyright(fontForCheck.getFontNo(), fontCopyright);	
 		//3. 뷰단 처리
 		HttpSession session = request.getSession();
 		session.setAttribute("msg", msg);
