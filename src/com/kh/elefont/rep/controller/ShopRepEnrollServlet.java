@@ -20,14 +20,19 @@ public class ShopRepEnrollServlet extends HttpServlet {
 	private RepService repService = new RepService();
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+	//1.
 		String fontNo = request.getParameter("font-no");
 		String repInput = request.getParameter("reply-input");
 		String repWriter = request.getParameter("rep-writer");
+		int repLevel = Integer.valueOf(request.getParameter("rep-level"));
+		int repRef = Integer.valueOf(request.getParameter("rep-ref"));
 		
 		Rep rep = new Rep();
 		rep.setRepContent(repInput);
 		rep.setFontNo(fontNo);
 		rep.setRepWriter(repWriter);
+		rep.setRepLevel(repLevel);
+		rep.setRepRef(repRef);
 		
 		int result = repService.insertShopRep(rep);
 		

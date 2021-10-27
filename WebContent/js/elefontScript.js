@@ -12,7 +12,9 @@ $(window).on('load', function() {
 
 	
 
-	/* 회원가입 버튼 클릭 시 회원 가입 모달창 띄우기 */		
+	/* 회원가입 버튼 클릭 시 회원 가입 모달창 띄우기 */	
+	const email = document.getElementsByClassName("_email");	
+	
 	$(memberEnrollBtn).click((e)=>{
 		$(".memberEnroll").fadeToggle();
 		$(".loginBox").fadeOut();
@@ -57,8 +59,8 @@ $(window).on('load', function() {
 	/**
 	* 중복검사 이후 아이디를 수정하는 경우.
 	*/
-	$(_email).change((e) => {
-		$(emailValid).val(0);
+	$("._email").change((e) => {
+		$(".emailValid").val(0);
 	});
 	
 	/**
@@ -66,10 +68,10 @@ $(window).on('load', function() {
 	*/
 	$(btnCheckEmail).click((e) => {
 		//memberEmail 유효성 검사
-		const $memberEmail = $("#_email");
+		const $memberEmail = $("._email");
 		// 4글자 이상(\w = [a-zA-Z0-9_], [\w-.]) @가 나오고
         // 1글자 이상(주소). 글자 가 1~3번 반복됨
-        if(!regExpTest(/^[\w]{4,}@[\w]+(.[\w]+){1,3}$/, _email, "이메일 형식에 어긋납니다."))
+        if(!regExpTest(/^[\w]{4,}@[\w]+(.[\w]+){1,3}$/, email, "이메일 형식에 어긋납니다."))
 			return false;
 		
 		const title = "popupCheckEmail";
@@ -77,7 +79,7 @@ $(window).on('load', function() {
 		const popup = open("", title, spec);
 		
 		const $frm = $(document.checkEmailDuplicateFrm);
-		$frm.find("[name=memberEmail]").val($(_email).val());
+		$frm.find("[name=memberEmail]").val($("._email").val());
 		$frm.attr("target", title) // form제출을 popup에서 진행
 			.submit();
 	});
@@ -129,7 +131,8 @@ $(window).on('load', function() {
 		}
 		
 		//email
-		if(!regExpTest(/^[\w]{4,}@[\w]+(.[\w]+){1,3}$/, _email, "이메일 형식에 어긋납니다."))
+
+		if(!regExpTest(/^[\w]{4,}@[\w]+(.[\w]+){1,3}$/, email, "이메일 형식에 어긋납니다."))
                 return false;
 		
 		//phone
@@ -143,6 +146,12 @@ $(window).on('load', function() {
 			return false;
 		}
 		
+		const emailVaildVal = $(".emailValid").val();
+		
+		if(emailVaildVal !== 1){
+			alert("중복검사를 다시 해주세요"); 
+			return false;	
+		}
 		
 		return true;
 		
@@ -150,12 +159,12 @@ $(window).on('load', function() {
 	
 	/* 이메일 검사 */
 	function regExpTest(regExp, el, msg){
-        if(regExp.test(el.value))
+        if(regExp.test(el[0].value))
             return true;
         //적합한 문자열이 아닌 경우
         alert(msg);
-        el.value="";
-        el.focus();
+        el[0].value="";
+        el[0].focus();
         return false;
     }
     
