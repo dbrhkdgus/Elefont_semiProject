@@ -1,6 +1,7 @@
 package com.kh.elefont.seller.controller;
 
 import java.io.IOException;
+import java.sql.Date;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -93,8 +94,37 @@ public class SellerFontEnrollServlet extends HttpServlet {
 			font.setAttach(attach);
 		}
 		
-		// 카테고리 코드 부여해야함!		
+		// 카테고리 코드 부여해야함!
+		String lang = multipartRequest.getParameter("font-language");
+		String fontStyle = multipartRequest.getParameter("font-style");
+		String fontCategoryCode = "";
+		
+		
+			
+			switch(lang) {
+			case "KO" : fontCategoryCode += "KO-"; break;
+			case "EN" : fontCategoryCode += "EN-"; break;
+			case "AL" : fontCategoryCode += "AL-"; break;
+			}
+		
+			switch(fontStyle) {
+			case "S" :  fontCategoryCode += "S-"; break;
+			case "G" :  fontCategoryCode += "G-"; break;
+			case "H" :  fontCategoryCode += "H-"; break;
+			case "M" :  fontCategoryCode += "M-"; break;
+			}
+		
+		
+		String fontReleaseYear = multipartRequest.getParameter("font-release-year");
+		
+		fontCategoryCode += fontReleaseYear.replace("-", "");
+		
+		System.out.println("fontCategoryCode@serlvet = " + fontCategoryCode);
+		
 		FontCategory fontCategory = new FontCategory();
+		fontCategory.setCategoryCode(fontCategoryCode);
+		//fontCategory.setCategoryReleaseYear();
+		fontCategory.setFontNo(font.getFontNo());
 		
 		FontCopyright fontCopyright = new FontCopyright();
 		
