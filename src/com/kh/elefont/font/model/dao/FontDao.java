@@ -432,6 +432,30 @@ public class FontDao {
 		}
 		return font;
 	}
+
+	public int selectFontLike(Connection conn, Map<String, Object> param) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectFontLike");
+		int result = 0;
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, (String)param.get("fontNo"));
+			pstmt.setString(2, (String)param.get("memberNo"));
+			
+			rset = pstmt.executeQuery();
+			if(!rset.next()) result = 0;
+			else result = 1;
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return result;
+	}
 	
 
 }

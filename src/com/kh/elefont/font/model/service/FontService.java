@@ -154,5 +154,17 @@ public class FontService {
 		close(conn);
 		return font;
 	}
+	public int selectFontLike(Map<String, Object> param) {
+		Connection conn = getConnection();
+		int result = 0;
+		try {
+			result = fontDao.selectFontLike(conn, param);
+		} catch(Exception e) {
+			e.printStackTrace();
+		} finally {
+			close(conn);
+		}
+		return result;
+	}
 
 }
