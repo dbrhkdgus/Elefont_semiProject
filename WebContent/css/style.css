@@ -2306,23 +2306,17 @@ font-size: 16px;
 .font-wrapper{
 	display:flex;
 }
-.font-enroll{
-  width: 700px;
-  height: 450px;
-  background-color: #ECF2F0;
-  position: absolute;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-  text-align: center;
-  padding-top: 40px;
-  padding-left: 40px;
-  display: none;
-  z-index: 999;
+#font-enroll{
+	position: absolute;
+	top: 50%;
+	left: 50%;
+	transform: translate(-50%, -50%);
 }
-.font-enroll>form>*{
-  margin: 21px 0;
-  text-align: left;
+#fontEnrollFrm th, #fontEnrollFrm td{
+	padding: 5px;
+}
+#fontEnrollFrm tr:last-of-type td{
+	text-align: center;
 }
 
 

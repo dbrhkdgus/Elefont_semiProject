@@ -30,6 +30,13 @@ public class SellerFontEnrollServlet extends HttpServlet {
 	private FontService fontService = new FontService();
 	private FontCategoryService fontCategoryService = new FontCategoryService();
 	private FontCopyrightService fontCopyrightService = new FontCopyrightService();
+	
+	
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.getRequestDispatcher("/WEB-INF/views/seller/sellerFontEnroll.jsp").forward(request, response);
+	}
+
+
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
