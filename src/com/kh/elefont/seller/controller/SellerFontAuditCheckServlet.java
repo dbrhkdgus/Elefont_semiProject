@@ -27,12 +27,20 @@ public class SellerFontAuditCheckServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//1. 사용자 입력값 처리
 		String fontNo = request.getParameter("fontNo");
+		String fontApproval = request.getParameter("fontApproval");
 		Map<String, Object> param = new HashMap<>();
 		param.put("fontNo", fontNo);
-		param.put("fontApproval", FONTCHECK);
 		
-		//2. 업무 로직
-		int result = fontService.updateFontAuditCheck(param);
+		if("Y".equals(fontApproval)) {
+			
+			param.put("fontApproval", FONTCHECK);
+			
+			//2. 업무 로직
+			int result = fontService.updateFontAuditCheck(param);
+		}
+		else if("N".equals(fontApproval)) {
+			int result = fontService.deleteFontAudit(fontNo);
+		}
 		
 		//3. view단 처리
 		response.sendRedirect(request.getContextPath() + "/seller/fontAudit");
