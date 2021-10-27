@@ -34,8 +34,14 @@ List<Attachment> commAttachmentList = (List<Attachment>)request.getAttribute("co
                     <div class="shop-detail-reply">
                         <h4  id="shop-detail-rep">댓글</h4>
                         <hr class="liner">
+                        
                             <div class="shop-detail-reblybox">
-                                <input type="text" id="detail-inputbox"name="reply-input" placeholder="댓글을 입력하세요">
+                            <form action="<%=request.getContextPath()%>/rep/ShopRepEnroll" method="POST" >
+                                <input type="text" id="detail-inputbox" name="reply-input" placeholder="댓글을 입력하세요" >
+                                <input type="hidden" name="font-no" value="<%=font.getFontNo()%>"/>
+                                <input type="hidden" name="rep-writer" value="<%=loginMember.getMemberName()%>"/>
+                                <input type="submit" value="등록"/>
+                            </form>
                                 <div class="reply-box"><img src="https://cdn1.vectorstock.com/i/1000x1000/10/05/user-icon-vector-22391005.jpg"  id="user-profile"><span>user: 폰트가 너무 예뻐요</span>
                                 </div>
                             
