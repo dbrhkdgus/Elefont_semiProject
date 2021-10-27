@@ -1,8 +1,12 @@
+<%@page import="java.util.List"%>
+<%@page import="com.kh.elefont.faq.model.vo.Faq"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@include file = "/WEB-INF/views/common/LandingHeader.jsp" %>
 
-
+<% List<Faq> faqList = (List<Faq>)request.getAttribute("faqList"); 
+System.out.println("jsp에 잘 왔슴다!"+faqList);
+%>
 
 
         <section id="portfolio" class="portfolio section-space-padding">     
