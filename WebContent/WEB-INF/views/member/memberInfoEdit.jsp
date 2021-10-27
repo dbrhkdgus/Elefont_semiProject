@@ -93,7 +93,7 @@ Member member = (Member) request.getAttribute("member");
 									<tr>
 										<th>이메일&nbsp;</th>
 										<td><input type="email" id="editEmail"
-											placeholder="<%=member.getMemberEmail()%>" disabled></td>
+											placeholder="<%=member.getMemberEmail()%>" ></td>
 									</tr>
 									<tr>
 										<th>연락처&nbsp;</th>
@@ -154,7 +154,7 @@ $("#memberInfoEditBtn").click(()=>{
 	const $memberName =$("#editName");
 	
 		if(/^[가-힣]{2,}$/.test($memberName.val()) == false){
-			alert("이름은 띄어쓰기 없이 한글 2글자 이상이어야 합니다.");
+			alert("이름은 띄어쓰기 없이 한글 2글자 6글자  이상이어야 합니다.");
 			$memberName.select();
 			return;
 		}
