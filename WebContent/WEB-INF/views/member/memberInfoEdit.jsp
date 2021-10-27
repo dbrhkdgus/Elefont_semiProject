@@ -96,11 +96,14 @@ Member member = (Member) request.getAttribute("member");
 									</tr>
 									<tr>
 										<th>이메일&nbsp;</th>
-										<td><input type="email" class="_email"
-											value="<%=member.getMemberEmail()%>">
-											<input id="emailDoubleCheck" type="button" value="중복검사" 
+										<td><input type="email" class="_email" 
+											value="<%=member.getMemberEmail()%>" name="editEmailk" >
+											<input id="emailDoubleCheck" type="button" value="중복검사"
 											onclick ="checkEmailDuplicate();"/>
 											<input type="hidden" class="emailValid" value="0"/>
+											<script>
+											//console.log(`회원정보수정 value 값\${$(#emailDoubleCheck.children().val())}`)
+											</script>
 											</td>
 									</tr>
 									<tr>
@@ -192,8 +195,9 @@ $("#memberInfoEditBtn").click(()=>{
 			return;
 		}
 		const emailVaildVal = $(".emailValid").val();
+		console.log(emailVaildVal);
 		
-		if(emailVaildVal !== 1){
+		if(emailVaildVal < 1){
 			alert("중복검사를 다시 해주세요"); 
 			return;	
 		}
