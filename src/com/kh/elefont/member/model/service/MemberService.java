@@ -88,12 +88,12 @@ public class MemberService {
 		return result;
 	}
 
-	public int updateMemberInfo(String memberId) {
+	public int updateMemberInfo(Member member) {
 		Connection conn = getConnection();
 		int result =0;
 		
 		try {
-			result = memberDao.updateMemberInfo(conn, memberId);
+			result = memberDao.updateMemberInfo(conn, member);
 			commit(conn);
 		}catch(Exception e) {
 			rollback(conn);

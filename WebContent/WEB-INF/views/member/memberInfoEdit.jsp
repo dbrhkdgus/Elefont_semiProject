@@ -58,13 +58,18 @@ Member member = (Member) request.getAttribute("member");
 											placeholder="<%=member.getMemberId()%>"></td>
 									</tr>
 									<tr>
+									<th>이름<sup>*</sup></th>
+									<td><input type="text" name="editName" id="editName" required
+									value="<%=member.getMemberName()%>"  /></td>
+									</tr>
+									<tr>
 										<th>비밀번호<sup>*</sup></th>
-										<td><input type="text" name="editPwd" id="editPwd" required></td>
+										<td><input type="password" name="editPwd" id="editPwd" onfocus="this.value=''" required></td>
 									</tr>
 									<tr>
 										<th>비밀번호 확인<sup>*</sup>&nbsp;
 										</th>
-										<td><input type="text" id="editPwdDoubleCheck"  name="" required></td>
+										<td><input type="password" id="editPwdDoubleCheck"  name="" required></td>
 									</tr>
 									<tr>
 										<th>생년월일</th>
@@ -93,7 +98,7 @@ Member member = (Member) request.getAttribute("member");
 									<tr>
 										<th>연락처&nbsp;</th>
 										<td><input type="tel" id="editPhone" name="editPhone" value="<%=member.getMemberPhone()%>"
-											placeholder="<%=member.getMemberPhone()%>"></td>
+											 onfocus="this.select()"></td>
 									</tr>
 									<tr>
 										<%
@@ -105,15 +110,15 @@ Member member = (Member) request.getAttribute("member");
 										%>
 										<th>직업</th>
 										<td><select name="job" id="editJob">
-												<option value="student"
+												<option value="학생"
 													<%=student.equals(member.getMemberJob()) ? "selected" : ""%>>학생</option>
-												<option value="designer"
+												<option value="디자이너"
 													<%=designer.equals(member.getMemberJob()) ? "selected" : ""%>>디자이너</option>
-												<option value="developer"
+												<option value="개발자"
 													<%=developer.equals(member.getMemberJob()) ? "selected" : ""%>>개발자</option>
-												<option value="etc"
+												<option value="기타"
 													<%=etc.equals(member.getMemberJob()) ? "selected" : ""%>>기타</option>
-												<option value="jobNone"
+												<option value="대답 안 함"
 													<%=none.equals(member.getMemberJob()) ? "selected" : ""%>>대답
 													안 함</option>
 										</select></td>
@@ -146,7 +151,14 @@ $("#memberInfoEditBtn").click(()=>{
 	const $p1 = $("#editPwd");
 	const $p2 = $("#editPwdDoubleCheck");
 	const $phone = $("#editPhone");
+	const $memberName =$("#editName");
 	
+		if(/^[가-힣]{2,}$/.test($memberName.val()) == false){
+			alert("이름은 띄어쓰기 없이 한글 2글자 이상이어야 합니다.");
+			$memberName.select();
+			return;
+		}
+		
 		if(/^[a-zA-Z0-9!@#$$%^&*()]{4,}/.test($p1.val()) == false){
 			alert("유효한 패스워드를 입력하세요.");
 			$p1.select();
@@ -155,13 +167,13 @@ $("#memberInfoEditBtn").click(()=>{
 		if($p1.val() != $p2.val()){
 			alert("패스워드가 일치하지 않습니다.");
 			$p1.select();
-			return false;
+			return;
 		}
 		
 		$phone.val($phone.val().replace(/[^0-9]/g,""));//숫자만 남게
 		
 		if(/^010[0-9]{8}$/.test($phone.val()) == false){
-			alert("숫자로만 이뤄진 11개의 숫자를 입력해주세요");
+			alert("연락처는 숫자로만 이뤄진 11개의 숫자를 입력해주세요");
 			$phone.select();
 		}else{	
 		$(document.editInfoFrm).submit();
