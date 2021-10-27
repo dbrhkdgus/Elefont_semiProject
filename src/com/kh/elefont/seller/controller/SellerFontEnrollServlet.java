@@ -72,6 +72,7 @@ public class SellerFontEnrollServlet extends HttpServlet {
 		font.setMemberId(memberId);
 		
 		System.out.println("font@servlet = " + font);
+		
 		if(multipartRequest.getFile("font-file") != null) {
 			Attachment attach = new Attachment();
 			attach.setMemberNo(memberNo);
@@ -79,6 +80,13 @@ public class SellerFontEnrollServlet extends HttpServlet {
 			attach.setRenamedFilename(renamedFilename);
 			font.setAttach(attach);
 		}
+		
+		// 폰트 카테고리 테이블에 저장
+		
+		
+		// 폰트 저작권정보 테이블에 저장
+		
+		
 		
 		//2. 업무 로직
 		int result = fontService.insertFont(font);
