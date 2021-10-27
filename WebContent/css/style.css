@@ -2913,33 +2913,6 @@ font-size: 16px;
 
 /* Community Board Enroll */
 /*커뮤니티 등록 css 끝 윤희*/
-#board-container{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-}
-#board-container h2{
-    margin-bottom: 50px;
-}
-table#tbl-board-view {
-	width:500px; 
-	margin:0 auto; 
-	border:1px solid black; 
-	border-collapse:collapse;  
-}
-table#tbl-board-view th {
-	width: 150px; 
-	border:1px solid; 
-	padding: 10px 0; 
-	text-align:center; 
-} 
-table#tbl-board-view td {
-	border:1px solid; 
-	padding: 5px 0 5px 15px; 
-	text-align:left;
-}
-
-
 .commenroll{
 display: flex;
 }
@@ -2952,7 +2925,7 @@ display: flex;
 #tbl-board-view{
     display: flex;
     width: 55vw;
-    margin: 5px 10px 5px 10px;
+    margin: 25px 10px 5px 10px;
     flex-direction: column;
     align-items: flex-start;
 }
@@ -2971,16 +2944,16 @@ display: flex;
 width: 600px;
 border: 0;
 margin: 20px;
-font: inherit;
-color: inherit;
-text-align: center;
-appearance: none;
-border-radius: 0;
+
 background-color: transparent;
 border-bottom: 2px solid #eee; 
 resize: none;
-}  
 
+}  
+#tbl-board-view content{
+    display: inline; 
+    inline-size: -webkit-fill-available;
+}
 .tbl-board-view-attach{
 display: flex;
 align-items: center;
@@ -3005,5 +2978,20 @@ align-items: center;
     height: 40px;
     margin-left: 10px;
 }
+
+
+#tbl-board-view input:focus{
+    outline: none;
+    border-bottom: 2px solid #1bab58;
+}
+#tbl-board-view textarea{
+    border: 0;
+    border:2px solid #eee; 
+}
+#tbl-board-view textarea:focus{
+    outline:.5px solid #1bab58;
+    border-bottom:2px solid #1bab58 ;
+}
+
 
 /*커뮤니티 등록 css 끝*/
