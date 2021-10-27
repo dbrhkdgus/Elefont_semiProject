@@ -131,5 +131,21 @@ public class FontService {
 		close(conn);
 		return fontList;
 	}
+	public int deleteFontAudit(String fontNo) {
+		Connection conn = getConnection();
+		int result = 0;
+		
+		try {
+			result = fontDao.deleteFontAudit(conn, fontNo);
+			
+			commit(conn);
+		}catch(Exception e) {
+			e.printStackTrace();
+			rollback(conn);
+		}finally {
+			close(conn);
+		}
+		return result;
+	}
 
 }

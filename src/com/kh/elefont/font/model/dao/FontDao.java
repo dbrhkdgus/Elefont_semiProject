@@ -375,6 +375,24 @@ public class FontDao {
 		
 		return fontList;
 	}
+
+	public int deleteFontAudit(Connection conn, String fontNo) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String sql = prop.getProperty("deleteFontAudit");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, fontNo);
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+	}
 	
 
 }
