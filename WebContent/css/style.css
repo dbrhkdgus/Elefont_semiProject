@@ -2028,13 +2028,14 @@ p { padding: 5px 0; }
 }
 
 .comm-img{
+  display: flex;
   width: 266px;
   height: 266px;
-  padding-top: 0.5px;
   border: none;
   border-bottom: 1px solid #000;
   border-top: 1px solid #000;
-  
+  align-items: center;
+  justify-content: center;
 }
 
 
