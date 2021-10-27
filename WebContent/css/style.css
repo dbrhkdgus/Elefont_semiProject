@@ -2607,25 +2607,34 @@ font-size: 16px;
 .comm-pic-detail{
     margin-top: 50px;
     display: flex;
+    justify-content: center;
 }
 .comm-board-content{
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
-
+    align-items: flex-start;
+}
+.comm-board-content > h1 {
+	margin-bottom: 50px;
+}
+.comm-board-comment > hr {
+	width: 700px;
 }
 #comm-user-attach-img{
-    width: 270px;
-    height: 270px;
+    width: 430px;
+    height: 430px;
+    margin-right: 30px;
     margin-bottom: 50px;
+}
+.comm-board-img-user-content{
+	display: flex;
 }
 .comm-user-content{
     width: 500px;
 }
 .comm-writer-info{
     text-align: centerk;
-    margin-left: 300px;
 }
 .comm-writer-info-buttons i{
     font-size: 50px;

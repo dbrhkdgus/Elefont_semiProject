@@ -295,13 +295,33 @@ public class MemberDao {
 	}
 
 
-	public int updateMemberInfo(Connection conn, String memberId) {
+	public int updateMemberInfo(Connection conn, Member member) {
 		PreparedStatement pstmt = null;
 		int result =0;
 		String sql = prop.getProperty("updateMemberInfo");
+		//update member set member_pwd =?, member_name = ?, member_birthday = ?, 
+		//member_phone =?, member_job = ? where member_id = ?
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, member.getMemberPwd());
+			pstmt.setString(2, member.getMemberName());
+			pstmt.setDate(3, member.getMemberBirthday());
+			pstmt.setString(4, member.getMemberPhone());
+			pstmt.setString(5, member.getMemberJob());
+			pstmt.setString(6, member.getMemberId());
+			
+			result = pstmt.executeUpdate();
+		
+		}catch(SQLException e) {
+			e.printStackTrace();
+			
+		}finally {
+			close(pstmt);	
+		}
 		
 		
-		return 0;
+		return result;
 	}
 
 
