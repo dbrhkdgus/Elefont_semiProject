@@ -17,6 +17,8 @@ import com.kh.elefont.community.model.service.CommunityService;
 import com.kh.elefont.community.model.vo.Community;
 import com.kh.elefont.font.model.service.FontService;
 import com.kh.elefont.font.model.vo.Font;
+import com.kh.elefont.rep.model.service.RepService;
+import com.kh.elefont.rep.model.vo.Rep;
 
 
 /**
@@ -28,8 +30,9 @@ public class ShopDetailServlet extends HttpServlet {
 	private FontService fontService = new FontService();
 	private CommunityService communityService = new CommunityService();
 	private AttachmentService attachmentService = new AttachmentService();
-
+	private RepService repService = new RepService();
 	/**
+	 * 
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -82,6 +85,7 @@ public class ShopDetailServlet extends HttpServlet {
 			
 			List<Attachment> commAttachmentList = attachmentService.selectAllCommAttachmentList();
 			
+			List<Rep> repList = repService.selectFontRepListByFontNo(fontNo);
 			//게시글 가져오기에 실패한경우
 			if(font == null){
 				request.getSession().setAttribute("msg", "조회한 폰트가 존재하지 않습니다.");
@@ -105,6 +109,7 @@ public class ShopDetailServlet extends HttpServlet {
 			request.setAttribute("font", font);
 			request.setAttribute("communityList", communityList);
 			request.setAttribute("commAttachmentList", commAttachmentList);
+			request.setAttribute("repList", repList);
 			//request.setAttribute("commentList", commentList);
 			RequestDispatcher reqDispatcher = request.getRequestDispatcher("/WEB-INF/views/shop/shopDetail.jsp");
 			reqDispatcher.forward(request, response);

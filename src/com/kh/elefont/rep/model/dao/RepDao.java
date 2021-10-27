@@ -6,9 +6,13 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Properties;
 
+import com.kh.elefont.community.model.vo.Community;
 import com.kh.elefont.font.model.dao.FontDao;
 import com.kh.elefont.rep.model.vo.Rep;
 
@@ -47,6 +51,40 @@ public class RepDao {
 		}
 		
 		return result;
+	}
+
+	public List<Rep> selectFontRepListByFontNo(Connection conn, String fontNo) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		List<Rep> repList = new ArrayList<>();
+		
+		String sql = prop.getProperty("selectFontRepListByFontNo");
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1,fontNo);
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				Rep rep = new Rep();
+				rep.setRepNo(rset.getInt("rep_no"));
+				rep.setRepWriter(rset.getString("rep_writer"));
+				rep.setRepContent(rset.getString("rep_content"));
+				rep.setRepRegDate(rset.getDate("rep_reg_date"));
+				rep.setComnNo(rset.getString("comm_no"));
+				rep.setRepLevel(rset.getInt("rep_level"));
+				rep.setRepRef(rset.getInt("rep_ref"));
+		
+				
+				repList.add(rep);
+				
+			  }
+      } catch (SQLException e) {
+			e.printStackTrace();
+		  } finally {
+			close(rset);
+			close(pstmt);
+		}	
+		return repList;
 	}
 
 }

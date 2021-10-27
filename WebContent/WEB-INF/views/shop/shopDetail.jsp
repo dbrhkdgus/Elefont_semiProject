@@ -1,3 +1,4 @@
+<%@page import="com.kh.elefont.rep.model.vo.Rep"%>
 <%@page import="com.kh.elefont.common.model.vo.Attachment"%>
 <%@page import="com.kh.elefont.community.model.vo.Community"%>
 <%@page import="java.util.List"%>
@@ -10,6 +11,8 @@
 Font font = (Font)request.getAttribute("font"); 
 List<Community> communityList = (List<Community>)request.getAttribute("communityList");
 List<Attachment> commAttachmentList = (List<Attachment>)request.getAttribute("commAttachmentList");
+List<Rep> repList = (List<Rep>)request.getAttribute("repList");
+System.out.println("repList@jsp : " + repList );
 %>
 
  <section id="portfolio" class="portfolio section-space-padding">
@@ -36,12 +39,21 @@ List<Attachment> commAttachmentList = (List<Attachment>)request.getAttribute("co
                         <hr class="liner">
                         
                             <div class="shop-detail-reblybox">
+<%
+if(loginMember!=null){
+%>
+
                             <form action="<%=request.getContextPath()%>/rep/ShopRepEnroll" method="POST" >
                                 <input type="text" id="detail-inputbox" name="reply-input" placeholder="댓글을 입력하세요" >
                                 <input type="hidden" name="font-no" value="<%=font.getFontNo()%>"/>
                                 <input type="hidden" name="rep-writer" value="<%=loginMember.getMemberName()%>"/>
                                 <input type="submit" value="등록"/>
                             </form>
+<%	
+}
+%>
+
+
                                 <div class="reply-box"><img src="https://cdn1.vectorstock.com/i/1000x1000/10/05/user-icon-vector-22391005.jpg"  id="user-profile"><span>user: 폰트가 너무 예뻐요</span>
                                 </div>
                             
