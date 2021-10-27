@@ -295,4 +295,14 @@ public class MemberDao {
 	}
 
 
+	public int updateMemberInfo(Connection conn, String memberId) {
+		PreparedStatement pstmt = null;
+		int result =0;
+		String sql = prop.getProperty("updateMemberInfo");
+		
+		
+		return 0;
+	}
+
+
 }
