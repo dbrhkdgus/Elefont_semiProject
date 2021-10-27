@@ -1890,6 +1890,7 @@ p { padding: 5px 0; }
 
 #style-button{
   padding: 0 15px;
+  width: 150px;
 
 }
 
@@ -1902,7 +1903,7 @@ p { padding: 5px 0; }
   background-color: #fff;
   border-radius: 10px;
   opacity: 1;
-  width: 100px;
+  width: 150px;
   z-index: 999;
   padding: 10px;
   display: none;
@@ -1932,6 +1933,10 @@ p { padding: 5px 0; }
 }
 .test-item textarea{
   resize: none;
+  width: 263px;
+  height: 166px;
+  word-break: break-all;
+  line-height: 100%;
 }
 .test-item-buttons{
   text-align: center;
@@ -1939,6 +1944,9 @@ p { padding: 5px 0; }
 .test-item-buttons i{
   margin: 10px;
   
+}
+#allFontStyle{
+	font-size: 30px;
 }
 /* shop landing 페이지 끝 */
 
