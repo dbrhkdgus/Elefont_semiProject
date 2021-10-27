@@ -57,7 +57,7 @@
 
                             
                            <label for="writer">작성자   </label>
-                                <input type="text" name="writer" value="" readonly/>
+                                <input type="text" name="writer" value="<%= loginMember.getMemberName()%>" readonly/>
                          
                           
                             <label for="font">사용된 폰트  </label> 
