@@ -2607,15 +2607,19 @@ font-size: 16px;
 .comm-pic-detail{
     margin-top: 50px;
     display: flex;
+    justify-content: center;
 }
 .comm-board-content{
     display: flex;
     flex-direction: column;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
 }
 .comm-board-content > h1 {
 	margin-bottom: 50px;
+}
+.comm-board-comment > hr {
+	width: 700px;
 }
 #comm-user-attach-img{
     width: 430px;
@@ -2631,7 +2635,6 @@ font-size: 16px;
 }
 .comm-writer-info{
     text-align: centerk;
-    margin-left: 300px;
 }
 .comm-writer-info-buttons i{
     font-size: 50px;
