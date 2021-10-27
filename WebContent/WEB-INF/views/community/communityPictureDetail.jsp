@@ -11,6 +11,7 @@
 	Attachment attachment = (Attachment)request.getAttribute("attachment");
 	List<Attachment> attachmentList = (List<Attachment>)request.getAttribute("attachmentList");
 	
+	
 %>
 
 
@@ -20,7 +21,13 @@
         <div class="comm-pic-detail">
 
             <div class="comm-board-content">
-	            <h1><%=community.getCommTitle() %></h1>
+            	<div class="comm-board-title-button">
+		            <h1><%=community.getCommTitle() %></h1>
+		            <div class="comm-board-button-box">
+		            <input type="button" id="comm-board-button" value="수정하기" onclick="updateBoard()">
+					<input type="button" id="comm-board-button" value="삭제하기" onclick="deleteBoard()">
+		            </div>
+            	</div>
 	            <div class="comm-board-img-user-content">
 	                <img id="comm-user-attach-img" src="<%= request.getContextPath()%>/upload/community/<%=attachment.getRenamedFilename()%>" alt="">
 	                <div class="comm-user-content">
@@ -67,7 +74,22 @@ for(Attachment att : attachmentList){
         </div>
         </div>
 </section>
-
+<form action="<%= request.getContextPath() %>/community/communityDelete" name="deleteBoardFrm">
+	<input type="hidden" name="no" value="<%= community.getCommNo() %>" />
+</form>
+<script>
+const updateBoard = 
+() => location.href = "<%= request.getContextPath() %>/board/boardUpdate?no=<%= community.getCommNo() %>";
+/**
+ * 삭제할 때 저장된 첨부파일이 있다면, 파일삭제!
+ * - java.io.File API참조
+ */
+const deleteBoard = () => {
+	if(confirm("정말 이 게시물을 삭제하시겠습니까?")){
+		$(document.deleteBoardFrm).submit();
+	}
+};
+</script>
 
 <!-- community user detail 끝 -->
 
