@@ -12,6 +12,7 @@
 	List<Attachment> attachmentList = (List<Attachment>)request.getAttribute("attachmentList");
 	
 %>
+
 <section id="portfolio" class="portfolio section-space-padding">
     <div class="container">
         <div class="comm-pic-detail">
@@ -27,7 +28,7 @@
             <div class="comm-writer-info">
                 <div class="comm-writer-info-buttons">
                     <i class="far fa-heart"></i>
-                    <i class="fas fa-search-plus"></i>
+                    <i class="fas fa-search-plus" onclick="location.href='<%= request.getContextPath() %>/community'"/></i>
                 </div>
                 <div class="comm-writer-img-name">
                     <img class="comm-pic-writer-profile-img" src="https://i.ibb.co/c6SYFNx/free-icon-male-user-74464.png" alt="">
