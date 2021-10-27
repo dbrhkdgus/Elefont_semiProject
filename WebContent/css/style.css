@@ -1868,6 +1868,12 @@ p { padding: 5px 0; }
   justify-content: space-around;
 
 }
+.search-tools{
+	display: flex;
+	
+  	height: 45px;
+    justify-content: space-between;
+}
 /* shop에서 한개의 아이템 div */
 .tools{
   margin: 10px;

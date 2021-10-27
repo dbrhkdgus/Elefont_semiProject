@@ -49,7 +49,7 @@
 </head>
 
 <body>
-<script>
+
 <%
 	
 	String msg = (String)session.getAttribute("msg");
@@ -66,7 +66,7 @@
 	Member loginMember = (Member)session.getAttribute("loginMember");
 
 %>
-</script>
+
     <!-- Preloader Start -->
     <div id="preloader">
         <div class="loader"></div>
