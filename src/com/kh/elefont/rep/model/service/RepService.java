@@ -5,7 +5,10 @@ import static com.kh.elefont.common.JdbcTemplate.getConnection;
 import static com.kh.elefont.common.JdbcTemplate.rollback;
 
 import java.sql.Connection;
+import java.util.ArrayList;
+import java.util.List;
 
+import com.kh.elefont.community.model.vo.Community;
 import com.kh.elefont.rep.model.dao.RepDao;
 import com.kh.elefont.rep.model.vo.Rep;
 
@@ -27,6 +30,24 @@ public class RepService {
 		}
 		close(conn);
 		return result;
+		
+	}
+
+	public List<Rep> selectFontRepListByFontNo(String fontNo) {
+		 Connection conn = getConnection();
+		 List<Rep> repList = new ArrayList<>();
+	        
+	        try {
+	        	repList = repDao.selectFontRepListByFontNo(conn, fontNo);
+	            
+	            commit(conn);
+	        }catch(Exception e) {
+	            rollback(conn);
+	            throw e;
+	        }finally {
+	            close(conn);
+	        }
+	        return repList;
 		
 	}
 
