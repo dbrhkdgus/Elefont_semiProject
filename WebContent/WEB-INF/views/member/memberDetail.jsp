@@ -31,13 +31,17 @@
             <input type="hidden" name="memberId">
         </form>
      </div>
-     <div class="member-container">
+<%
+	}
+%>
+        <div class="member-container">
          <div class="member-profile">
             <i class="fas fa-user"></i>
             <h3><%=loginMember.getMemberId() %></h3>
             <button id="btn-member-Info-Edit">설정</button>
             <hr>
             <div class="member-detail">
+
 <%
 	if("U".equals(memberRole)){
 %>
@@ -110,8 +114,8 @@
 %>
             </div>
 <%
-	if("U".equals(memberRole)){
-	List<Attachment> commAttachmentList = (List<Attachment>)request.getAttribute("commAttachmentList");
+if("U".equals(memberRole)){
+List<Attachment> commAttachmentList = (List<Attachment>)request.getAttribute("commAttachmentList");
 %>
             <div class="member-comm">
                 <h4>내가 쓴 커뮤니티</h4>
@@ -122,8 +126,8 @@
                     <a href="<%=request.getContextPath()%>/community/board"><div class="my-comm-img"><img src="<%=request.getContextPath()%>/upload/community/<%=att.getRenamedFilename()%>" alt="" /></div></a>
 
 <%	
-}
-	%>
+	}
+%>
                     
                 </div>
             </div>
@@ -221,6 +225,7 @@
 								</tr>
 							</thead>
 <%
+
 	if(memberList != null){
 		for(Member m : memberList){
 %>
@@ -426,7 +431,7 @@
 									</td>
 									<td>
 <% 
-		if(f.getAttach() == null){
+		if(f.getAttach() != null){
 %>
 										<input type="button" value="파일 다운로드" class="fontDownloadBtn"/>			
 <%
@@ -447,6 +452,7 @@
 								</tr>
 <%
 	}
+
 %>
 							</tbody>
 						</table>
@@ -517,7 +523,9 @@ $(".fontDownloadBtn").click((e)=>{
 <%
 }
 %>
+
          </div>
+
 
         </div>
 
@@ -541,6 +549,7 @@ $(".fontDownloadBtn").click((e)=>{
 	$("#btn-member-Info-Edit").click((e)=>{
 		location.href = "<%= request.getContextPath()%>/member/memberInfoEdit?memberId=<%=loginMember.getMemberId() %>";
 	});
+	
 	
 </script>
 
