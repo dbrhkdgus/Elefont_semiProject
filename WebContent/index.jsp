@@ -86,7 +86,7 @@
 				<th>직업</th>
 				<td>
 					<select name="job" id="job">
-					<option value="" selected>대답 안 함</option>
+					<option value="대답 안 함" selected>대답 안 함</option>
 					<option value="학생">학생</option>
 					<option value="디자이너">디자이너</option>
 					<option value="개발자">개발자</option>
