@@ -5,7 +5,7 @@
 <%@include file = "/WEB-INF/views/common/LandingHeader.jsp" %>
 
 <section id="font-enroll-page" class="section-space-padding">
-<h3><%=loginMember.getMemberId() %>님의 폰트를 등록합니다.</h3>
+<h3 id="fontEnroll-title"><%=loginMember.getMemberId() %>님의 폰트를 등록합니다.</h3>
 <div id="font-enroll">
    <form action="<%=request.getContextPath() %>/seller/fontEnroll" method="POST" name="fontEnrollFrm" id="fontEnrollFrm" enctype="multipart/form-data">
    		<table>
@@ -16,11 +16,11 @@
    			</tr>
    			<tr>
    				<th>희망 가격</th>
-   				<td><input type="text" name="font-price" id="" placeholder="기본 가격은 200P입니다."/></td>
+   				<td><input type="text" class="font-input" name="font-price" id="" placeholder="기본 가격은 200P입니다."/></td>
    			</tr>
    			<tr>
    				<th>폰트 출처(url)<sup>*</sup></th>
-   				<td><input type="text" name="font-url" id="" placeholder="url 주소를 입력하세요."/></td>
+   				<td><input type="text" class="font-input" name="font-url" id="" placeholder="url 주소를 입력하세요."/></td>
    			</tr>
    			<tr>
    				<th>폰트 파일 업로드<sup>*</sup></th>
@@ -28,15 +28,15 @@
    			</tr>
    			<tr>
    				<th>폰트 제작자명<sup>*</sup></th>
-   				<td><input type="text" name="font-url" id="" placeholder="제작자명을 입력하세요"/></td>
+   				<td><input type="text" class="font-input" name="font-url" id="" placeholder="제작자명을 입력하세요"/></td>
    			</tr>
    			<tr>
    				<th>폰트 제작사명</th>
-   				<td><input type="text" name="font-url" id="" placeholder="제작사명을 입력하세요"/></td>
+   				<td><input type="text" class="font-input" name="font-url" id="" placeholder="제작사명을 입력하세요"/></td>
    			</tr>
    			<tr>
    				<th>회사 홈페이지</th>
-   				<td><input type="text" name="font-url" id="" placeholder="url 주소를 입력하세요."/></td>
+   				<td><input type="text" class="font-input" name="font-url" id="" placeholder="url 주소를 입력하세요."/></td>
    			</tr>
    			<tr>
    				<th>글꼴 스타일<sup>*</sup></th>
@@ -67,6 +67,11 @@
    				<td>
    					<input type="date" name="font-release-year" id="font-release-year" >
    				</td>
+   			</tr>
+   			<tr>
+	   			<td>
+		   			<hr />
+	   			</td>
    			</tr>
    			<tr>
    				<td colspan="2">
