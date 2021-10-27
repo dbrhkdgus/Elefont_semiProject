@@ -142,6 +142,7 @@ $(".font-style").css("color", $(color).val());
 			error: console.log
 		});
 	}); 
+
 	
 </script>
 

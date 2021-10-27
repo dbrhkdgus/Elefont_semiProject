@@ -64,9 +64,9 @@
 			<tr>
 				<th>이메일<sup>*</sup></th>
 				<td>
-					<input type="email" placeholder="abc@xyz.com" name="email" id="_email">
+					<input type="email" placeholder="abc@xyz.com" name="email" class="_email">
 					<input type="button" value="중복검사" id="btnCheckEmail" />
-					<input type="hidden" id="emailValid" value="0"/>
+					<input type="hidden" class="emailValid" value="0"/>
 					<br>
 				</td>
 			</tr>

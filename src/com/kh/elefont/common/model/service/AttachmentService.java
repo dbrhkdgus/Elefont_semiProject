@@ -4,6 +4,10 @@ import static com.kh.elefont.common.JdbcTemplate.close;
 import static com.kh.elefont.common.JdbcTemplate.commit;
 import static com.kh.elefont.common.JdbcTemplate.getConnection;
 import static com.kh.elefont.common.JdbcTemplate.rollback;
+import static com.kh.mvc.common.JdbcTemplate.close;
+import static com.kh.mvc.common.JdbcTemplate.commit;
+import static com.kh.mvc.common.JdbcTemplate.getConnection;
+import static com.kh.mvc.common.JdbcTemplate.rollback;
 
 import java.sql.Connection;
 import java.util.ArrayList;
@@ -89,6 +93,23 @@ public class AttachmentService {
 	            close(conn);
 	        }
 	        return fontAttchmentList;
+	}
+	
+	public int deleteAttachmentByCommNo(String commNo) {
+		Connection conn = getConnection();
+		int result = 0;
+		try {
+			result = attachmentDao.deleteAttachmentByCommNo(conn, commNo);
+			if(result == 0)
+				throw new IllegalArgumentException("해당 첨부파일이 존재하지 않습니다. : " + commNo);
+			commit(conn);
+		} catch(Exception e) {
+			rollback(conn);
+			throw e; //controller가 예외처리를 결정할 수 있도록 넘김.
+		} finally {
+			close(conn);
+		}
+		return result;
 	}
 	
 	

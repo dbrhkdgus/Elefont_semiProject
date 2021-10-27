@@ -44,18 +44,76 @@ if(loginMember!=null){
 %>
 
                             <form action="<%=request.getContextPath()%>/rep/ShopRepEnroll" method="POST" >
-                                <input type="text" id="detail-inputbox" name="reply-input" placeholder="댓글을 입력하세요" >
+                                <input type="text" class="detail-inputbox" name="reply-input" placeholder="댓글을 입력하세요" >
                                 <input type="hidden" name="font-no" value="<%=font.getFontNo()%>"/>
                                 <input type="hidden" name="rep-writer" value="<%=loginMember.getMemberName()%>"/>
+                                <input type="hidden" name="rep-ref" value="0" />
+                                <input type="hidden" name="rep-level" value="1" />
                                 <input type="submit" value="등록"/>
                             </form>
 <%	
 }
+
+for(Rep rep : repList){
+	if(rep.getRepLevel()==1){
+		
+	
+%>
+
+ 
+ 
+   
+								<div class="reply-outer-box">
+                                <div class="reply-box"><img src="https://cdn1.vectorstock.com/i/1000x1000/10/05/user-icon-vector-22391005.jpg"  id="user-profile"><span><%=rep.getRepWriter()%> : <%=rep.getRepContent()%></span>
+                                </div> <i class="fab fa-replyd" style="font-size:35px; color: #005A3C; "></i>
+                                </div>
+                                <form action="<%=request.getContextPath()%>/rep/ShopRepEnroll"  name="reReplyFrm"class="re-rep-inputbox" method="POST" >                         
+                                <input type="text" class ="detail-inputbox" id="re-rep-detail-inputbox"  name="reply-input" placeholder="댓글을 입력하세요" >
+                                <input type="hidden" name="font-no" value="<%=font.getFontNo()%>"/>
+                                <input type="hidden" name="rep-writer" value="<%=loginMember.getMemberName()%>"/>
+                                <input type="hidden" name="rep-level" value="2" />
+                                <input type="hidden" name="rep-ref" value="<%=rep.getRepNo() %>" />
+                                
+                                <input type="submit" value="등록"/>
+                            </form>
+                            
+                            <script>
+                        	
+                      		  $(document.reReplyFrm).hide();
+                      		  //content 클래스를 가진 div를 표시/숨김(토글)
+                      		  $('.fa-replyd').click(function(e)
+                      		  {
+                      			console.log("click");
+                      		    $(e.target).parent().next().slideToggle(500);                     		    
+                      		  });
+                     
+
+                           /*  $(document.reReplyFrm).hide();
+                            $('#btn-re-icon').click((e)=>{
+                            	console.log(e.target)
+                                $(e.target).show();	
+                            }); */
+                            </script>
+
+
+<%
+	} else{
 %>
 
 
-                                <div class="reply-box"><img src="https://cdn1.vectorstock.com/i/1000x1000/10/05/user-icon-vector-22391005.jpg"  id="user-profile"><span>user: 폰트가 너무 예뻐요</span>
-                                </div>
+<!-- 대댓글이 뿌려져야댐!!!!!!! -->
+ <div class="reply-box"><img src="https://cdn1.vectorstock.com/i/1000x1000/10/05/user-icon-vector-22391005.jpg"  id="user-profile"><span><%=rep.getRepWriter()%> : <%=rep.getRepContent()%></span>
+</div>
+
+
+<% 		
+	}
+	
+}
+%>
+
+
+
                             
                         
                         

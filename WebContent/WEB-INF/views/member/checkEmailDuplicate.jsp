@@ -36,22 +36,32 @@ span#duplicate {
 	[ <span id="duplicate"><%= memberEmail %></span> ]는 <br />이미 사용중입니다.
 	<br /><br />
 	<form name="checkEmailDuplicateFrm" action="<%= request.getContextPath() %>/member/checkEmailDuplicate" method="POST">
-		<input type="text" name="memberEmail" />
-		<button type="submit">중복확인</button>
+		<input type="text" name="memberEmail" id="memberEmailtwo"/>
+		<button type="button" id="againDuplicate" >중복확인</button>
 	</form>
 <% } %>
 	</div>
 	<script>
 	const popupClose = () => {
 		// 부모창 opener 의 #_memberId value 설정
-		$("#_email", opener.document).val("<%= memberEmail %>");
+		$("._email", opener.document).val("<%= memberEmail %>");
 		
 		// 부모창의 #idValid value 1로 설정
-		$("#emailValid", opener.document).val("1");
+		$(".emailValid", opener.document).val("1");
 		
 		// popup 닫기
 		close();
 	};
+	$(againDuplicate).click((e)=>{
+		$email = $("#memberEmailtwo");
+		if(/^[\w]S{4,}@[\w]+(.[\w]+){1,3}$/.test($email.val()) == false){
+			alert("이메일 형식에 어긋납니다");
+			return false;
+		}else{
+			
+		$(document.checkEmailDuplicateFrm).submit();		
+		}
+	});
 	</script>
 </body>
 </html>
