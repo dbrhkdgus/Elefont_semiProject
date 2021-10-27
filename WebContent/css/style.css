@@ -2885,6 +2885,7 @@ font-size: 16px;
 /*어바웃디테일 끝*/
 
 /* Community Board Enroll */
+/*커뮤니티 등록 css 끝 윤희*/
 #board-container{
     display: flex;
     flex-direction: column;
@@ -2910,3 +2911,72 @@ table#tbl-board-view td {
 	padding: 5px 0 5px 15px; 
 	text-align:left;
 }
+
+
+.commenroll{
+display: flex;
+}
+
+.comm_container{
+    display: flex;
+    justify-content: center;
+}
+
+#tbl-board-view{
+    display: flex;
+    width: 55vw;
+    margin: 5px 10px 5px 10px;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.upload-name {
+    display: inline-block;
+    height: 40px;
+    padding: 0 10px;
+    vertical-align: middle;
+    border: 1px solid #dddddd;
+    width: 78%;
+    color: #999999;
+}
+
+#tbl-board-view input[type=text],[type=file]{
+width: 600px;
+border: 0;
+margin: 20px;
+font: inherit;
+color: inherit;
+text-align: center;
+appearance: none;
+border-radius: 0;
+background-color: transparent;
+border-bottom: 2px solid #eee; 
+resize: none;
+}  
+
+.tbl-board-view-attach{
+display: flex;
+align-items: center;
+
+}
+#submitBtn{
+    color: #000;
+    background-color: #eee;
+    border: none;
+    justify-content: end;
+    display: inline-block;
+    inline-size: -webkit-fill-available;
+}
+
+#submitBtn-label{
+    display: inline-block;
+    padding: 10px 20px;
+    color: #fff;
+    vertical-align: middle;
+    background-color: #999999;
+    cursor: pointer;
+    height: 40px;
+    margin-left: 10px;
+}
+
+/*커뮤니티 등록 css 끝*/
