@@ -147,5 +147,12 @@ public class FontService {
 		}
 		return result;
 	}
+	public Font selectOneFontByFontnameNFontUrl(String fontName, String fontUrl) {
+		Connection conn = getConnection();
+		Font font = fontDao.selectOneFontByFontnameNFontUrl(conn, fontName, fontUrl);
+		
+		close(conn);
+		return font;
+	}
 
 }

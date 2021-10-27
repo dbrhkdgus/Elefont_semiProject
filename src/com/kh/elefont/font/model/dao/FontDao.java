@@ -393,6 +393,45 @@ public class FontDao {
 		}
 		return result;
 	}
+
+	public Font selectOneFontByFontnameNFontUrl(Connection conn, String fontName, String fontUrl) {
+		Font font = new Font();
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		
+		String query = prop.getProperty("selectOneFontByFontnameNFontUrl");
+		try{
+			//미완성쿼리문을 가지고 객체생성.
+			pstmt = conn.prepareStatement(query);
+			//쿼리문미완성
+			pstmt.setString(1, fontName);
+			pstmt.setString(2, fontUrl);
+			
+			//쿼리문실행
+			//완성된 쿼리를 가지고 있는 pstmt실행(파라미터 없음)
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()){
+				font.setFontNo(rset.getString("font_no"));
+				font.setFontName(rset.getString("font_name"));
+				font.setFontUrl(rset.getString("font_url"));
+				font.setFontPrice(rset.getInt("font_price"));
+				font.setFontDiscountRate(rset.getDouble("font_discount_rate"));
+				font.setFontLikeCount(rset.getInt("font_like_count"));
+				font.setFontViewCount(rset.getInt("font_view_count"));
+				font.setFontPurchasedCount(rset.getInt("font_purchased_count"));
+				font.setFontRegDate(rset.getDate("font_reg_date"));
+				font.setFontApproval(rset.getString("font_approval"));
+				font.setMemberId(rset.getString("member_id"));
+			}
+		}catch(Exception e){
+			e.printStackTrace();
+		}finally{
+			close(rset);
+			close(pstmt);
+		}
+		return font;
+	}
 	
 
 }
