@@ -2028,9 +2028,12 @@ p { padding: 5px 0; }
 }
 
 .comm-img{
-  width: 269px;
-  height: 269px;
-  border: 1px solid #000;
+  width: 266px;
+  height: 266px;
+  padding: 2px;
+  border: none;
+  border-bottom: 1px solid #000;
+  border-top: 1px solid #000;
 }
 
 /*커뮤니티 페이지 윤희*/
