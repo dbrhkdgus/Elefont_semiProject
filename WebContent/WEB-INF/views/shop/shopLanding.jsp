@@ -71,7 +71,7 @@
                             <a href="<%= request.getContextPath()%>/shopDetail?fontNo=<%= font.getFontNo()%>"><div class="test-item-title"> <%= font.getFontName()%> </div></a>
                             <textarea name="" id="" cols="30" rows="10" class="font-style"></textarea>
                             <div class="test-item-buttons"> 
-                                <i class="fas fa-heart"></i>  
+                                <i class="fas fa-heart" onclick="location.href = '<%=request.getContextPath()%>/font/fontLike?fontNo=<%=font.getFontNo()%>'"></i>  
                                 <i class="fas fa-search-plus"></i>
                              </div>
                         </div> 
