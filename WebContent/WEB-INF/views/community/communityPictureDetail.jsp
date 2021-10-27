@@ -27,12 +27,12 @@
                 </div>
             </div>
             
-            <div class="comm-writer-info">
+            <div class="comm-writer-info" >
                 <div class="comm-writer-info-buttons">
                     <i class="far fa-heart"></i>
-                    <i class="fas fa-search-plus" onclick="location.href='<%= request.getContextPath() %>/community'"></i>
+                    <i class="fas fa-search-plus" onclick="location.href='<%= request.getContextPath() %>/shopDetail?fontNo=<%=community.getFontNo()%>'"></i>
                 </div>
-                <div class="comm-writer-img-name">
+                <div class="comm-writer-img-name" onclick="location.href='<%= request.getContextPath()%>/community/writerDetail?commWriter=<%= attachment.getMemberNo() %>'">
                     <img class="comm-pic-writer-profile-img" src="https://i.ibb.co/c6SYFNx/free-icon-male-user-74464.png" alt="">
                     <h4><%=community.getCommWriter() %></h4>
                 </div>
