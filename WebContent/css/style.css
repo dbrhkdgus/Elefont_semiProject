@@ -2605,12 +2605,18 @@ font-size: 16px;
     flex-direction: column;
     justify-content: center;
     align-items: center;
-
+}
+.comm-board-content > h1 {
+	margin-bottom: 50px;
 }
 #comm-user-attach-img{
-    width: 270px;
-    height: 270px;
+    width: 430px;
+    height: 430px;
+    margin-right: 30px;
     margin-bottom: 50px;
+}
+.comm-board-img-user-content{
+	display: flex;
 }
 .comm-user-content{
     width: 500px;

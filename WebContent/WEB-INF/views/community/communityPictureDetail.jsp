@@ -21,10 +21,12 @@
 
             <div class="comm-board-content">
             <h1><%=community.getCommTitle() %></h1>
+            <div class="comm-board-img-user-content">
                 <img id="comm-user-attach-img" src="<%= request.getContextPath()%>/upload/community/<%=attachment.getRenamedFilename()%>" alt="">
                 <div class="comm-user-content">
                    <%=community.getCommContent() %>
                 </div>
+            </div>
             </div>
             
             <div class="comm-writer-info" >
