@@ -1663,11 +1663,26 @@ text-align: center;
     margin: 0px;
   }
 
-#detail-inputbox{
+.detail-inputbox{
     margin-top: 10px;
     width: 80%;
 }
-  
+.re-rep-inputbox{
+	margin-left : 52px;
+	
+}
+#re-rep-detail-inputbox{
+	width :  350px;
+}
+.reply-outer-box{
+	display: flex;
+    flex-direction: row;
+    align-items: center;
+    
+}
+.reply-outer-box i{
+	margin-left:10px;
+}
 #user-profile{
     width: 7%;
     border-radius: 30px;
@@ -1697,7 +1712,7 @@ text-align: center;
     display: flex;
     text-align: center;
     margin-top: 10px;
-    width: 270px;
+    width: 400px;
     height: 30px;
     background-color: #ECF2F0;
     flex-direction: row;
@@ -1706,7 +1721,9 @@ text-align: center;
 
 
 }
-
+.fa-replyd:hover{
+	cursor:pointer;
+}
 .sd-review{
     display: flex;
     align-items: center;

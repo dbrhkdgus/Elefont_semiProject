@@ -79,7 +79,7 @@ for(Attachment att : attachmentList){
 </form>
 <script>
 const updateBoard = 
-() => location.href = "<%= request.getContextPath() %>/board/boardUpdate?no=<%= community.getCommNo() %>";
+() => location.href = "<%= request.getContextPath() %>/community/communityUpdate?no=<%= community.getCommNo() %>";
 /**
  * 삭제할 때 저장된 첨부파일이 있다면, 파일삭제!
  * - java.io.File API참조

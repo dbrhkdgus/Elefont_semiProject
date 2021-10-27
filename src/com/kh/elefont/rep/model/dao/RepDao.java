@@ -40,6 +40,9 @@ public class RepDao {
 			pstmt.setString(1, rep.getRepWriter());
 			pstmt.setString(2, rep.getRepContent());
 			pstmt.setString(3, rep.getFontNo());
+			pstmt.setInt(4, rep.getRepLevel());
+			pstmt.setInt(5, rep.getRepRef() == 0 ? null : rep.getRepRef());
+			
 		
 			
 			result = pstmt.executeUpdate();
