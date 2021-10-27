@@ -1,7 +1,16 @@
+<%@page import="com.kh.elefont.common.model.vo.Attachment"%>
+<%@page import="com.kh.elefont.community.model.vo.Community"%>
+<%@page import="com.kh.elefont.font.model.vo.Font"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
 <%@include file = "/WEB-INF/views/common/LandingHeader.jsp"%>
+
+<%
+	Community community = (Community) request.getAttribute("community");
+	
+	Font font = (Font) request.getAttribute("font");
+%>
     <!-- Community Board Enroll start -->
 <section id="portfolio" class="portfolio section-space-padding">
     <div class="container">
@@ -51,17 +60,16 @@
                         <div id="tbl-board-view">
                        
                             <label for="title">제 목   </label>   
-                            <input type="text" name="title" required></td>
+                            <input type="text" name="title" value="<%= community.getCommTitle() %>" required></td>
                      
 
-							request.setAttribute (생명주기)
-                            session.setAttribute("loginmeember",loginmemebr)
+							
                            <label for="writer">작성자   </label>
-                                <input type="text" name="writer" value="<%= loginMember.getMemberName()%>" readonly/>
+                                <input type="text" name="writer" value="<%= community.getCommWriter() %>" readonly/>
                          
                           
                             <label for="font">사용된 폰트  </label> 
-                                <input type="text" name="font" />
+                                <input type="text" name="font" value="<%= font.getFontName() %>"/>
                             
 
                            
@@ -71,7 +79,7 @@
                            
                       
                             <label for="content">내용</label>
-                            <textarea rows="15" cols="114" name="content" style="resize: none;"></textarea>
+                            <textarea rows="15" cols="114" name="content" style="resize: none;"><%= community.getCommContent() %></textarea>
                        
                             
                             <input type="submit" value="등록하기" id="submitBtn"  >
