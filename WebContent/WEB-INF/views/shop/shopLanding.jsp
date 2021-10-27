@@ -4,7 +4,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@include file = "/WEB-INF/views/common/LandingHeader.jsp" %>
-
 	<!-- Portfolio Start -->
     <section id="portfolio" class="portfolio section-space-padding">
         <div class="container">
@@ -123,18 +122,27 @@ $(".font-style").css("color", $(color).val());
 	});
 	
 	/* 좋아요 버튼 클릭시 사용자 좋아요 여부에 따른 버튼 이벤트 */
-	<%-- $(".fa-heart").click((e)=>{
+ 	$(".fa-heart").click((e)=>{
+<%
+	if(loginMember == null){
+%>
+		alert("로그인 후 이용 가능합니다.");
+		return;
+<%
+	}
+%>
 		$.ajax({
 			url: "<%=request.getContextPath()%>/font/fontLike",
 			dataType: "json",
 			type:"GET",
-			data: "fontNo=" + $(e.target).data(fontNo) +"&memberNo="+<%= loginMember.getMemberNo()%>,
+			data: "fontNo ="+ $(e.target).data("fontNo"),
 			success(data){
 				console.log(data, typeof data);
 			},
-			error: console.log()
+			error: console.log
 		});
-	}); --%>
+	}); 
+
 	
 </script>
 

@@ -496,6 +496,30 @@ public class FontDao {
 		}
 		return result;
 	}
+
+	public int countFontLike(Connection conn, String fontNo) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		int result = 0;
+		String sql = prop.getProperty("countFontLike");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, fontNo);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next())
+				result = rset.getInt(1);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return result;
+	}
 	
 
 }
