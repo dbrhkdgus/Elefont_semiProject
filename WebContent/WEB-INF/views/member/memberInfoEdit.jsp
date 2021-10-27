@@ -96,10 +96,11 @@ Member member = (Member) request.getAttribute("member");
 									</tr>
 									<tr>
 										<th>이메일&nbsp;</th>
-										<td><input type="email" id="editEmail"
-											value="<%=member.getMemberEmail()%>" disabled>
+										<td><input type="email" class="_email"
+											value="<%=member.getMemberEmail()%>">
 											<input id="emailDoubleCheck" type="button" value="중복검사" 
 											onclick ="checkEmailDuplicate();"/>
+											<input type="hidden" class="emailValid" value="0"/>
 											</td>
 									</tr>
 									<tr>
@@ -179,30 +180,37 @@ $("#memberInfoEditBtn").click(()=>{
 		}
 		
 		//email
-		if(/^[\w]{4,}@[\w]+(.[\w]+){1,3}$/.test($email.val()) == false){
+/**	if(/^[\w]{4,}@[\w]+(.[\w]+){1,3}$/.test($email.val()) == false){
 			alert("이메일 형식에 어긋납니다");
 			return;
 		}
-
+*/
 		$phone.val($phone.val().replace(/[^0-9]/g,""));//숫자만 남게
-		
 		if(/^010[0-9]{8}$/.test($phone.val()) == false){
 			alert("연락처는 숫자로만 이뤄진 11개의 숫자를 입력해주세요");
 			$phone.select();
-		}else{	
-		$(document.editInfoFrm).submit();
+			return;
 		}
+		const emailVaildVal = $(".emailValid").val();
 		
+		if(emailVaildVal !== 1){
+			alert("중복검사를 다시 해주세요"); 
+			return;	
+		}
+
+		$(document.editInfoFrm).submit();
+
+
 	
 })
 
 function checkEmailDuplicate() {
-	const title = "popupToDublecheckEmail"
-	const spec = "left=500px, top= 300px, width=500px, height = 200px"
+	const title = "popupToDublecheckEmail";
+	const spec = "left=500px, top= 300px, width=500px, height = 200px";
 	const popup = open("",title,spec);
 	
 	const $frm = $(document.checkEmailDuplicateFrm);
-	$frm.find("[name=memberEmail]").val($(editEmail).val());
+	$frm.find("[name=memberEmail]").val($("._email").val());
 	$frm.attr("target", title) // form 제출을 popup에서 진행
 		.submit();
 
