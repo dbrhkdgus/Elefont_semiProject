@@ -68,7 +68,7 @@ Member member = (Member) request.getAttribute("member");
 									</tr>
 									<tr>
 										<th>생년월일</th>
-										<td><input type="date" id="editBirthday"
+										<td><input type="date" name="editBirthday" id="editBirthday"
 											value="<%=member.getMemberBirthday()%>"></td>
 									</tr>
 								</table>
@@ -92,7 +92,7 @@ Member member = (Member) request.getAttribute("member");
 									</tr>
 									<tr>
 										<th>연락처&nbsp;</th>
-										<td><input type="tel" id="editPhone"
+										<td><input type="tel" id="editPhone" name="editPhone" value="<%=member.getMemberPhone()%>"
 											placeholder="<%=member.getMemberPhone()%>"></td>
 									</tr>
 									<tr>
@@ -113,7 +113,7 @@ Member member = (Member) request.getAttribute("member");
 													<%=developer.equals(member.getMemberJob()) ? "selected" : ""%>>개발자</option>
 												<option value="etc"
 													<%=etc.equals(member.getMemberJob()) ? "selected" : ""%>>기타</option>
-												<option value="none"
+												<option value="jobNone"
 													<%=none.equals(member.getMemberJob()) ? "selected" : ""%>>대답
 													안 함</option>
 										</select></td>
@@ -143,16 +143,31 @@ $("#memberwithdrawalBtn").click((e)=>{
 
 
 $("#memberInfoEditBtn").click(()=>{
-	
-	$(document.editInfoFrm).submit();
-	
-	//유효성 검사해야함
 	const $p1 = $("#editPwd");
-	const $p2 = $("editPwdDoubleCheck");
-
-})
-
+	const $p2 = $("#editPwdDoubleCheck");
+	const $phone = $("#editPhone");
 	
+		if(/^[a-zA-Z0-9!@#$$%^&*()]{4,}/.test($p1.val()) == false){
+			alert("유효한 패스워드를 입력하세요.");
+			$p1.select();
+			return ;
+		}
+		if($p1.val() != $p2.val()){
+			alert("패스워드가 일치하지 않습니다.");
+			$p1.select();
+			return false;
+		}
+		
+		$phone.val($phone.val().replace(/[^0-9]/g,""));//숫자만 남게
+		
+		if(/^010[0-9]{8}$/.test($phone.val()) == false){
+			alert("숫자로만 이뤄진 11개의 숫자를 입력해주세요");
+			$phone.select();
+		}else{	
+		$(document.editInfoFrm).submit();
+		}
+	
+})
 
 </script>
 

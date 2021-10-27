@@ -28,15 +28,15 @@
    			</tr>
    			<tr>
    				<th>폰트 제작자명<sup>*</sup></th>
-   				<td><input type="text" class="font-input" name="font-url" id="" placeholder="제작자명을 입력하세요"/></td>
+   				<td><input type="text" class="font-input" name="font-designer" id="" placeholder="제작자명을 입력하세요"/></td>
    			</tr>
    			<tr>
    				<th>폰트 제작사명</th>
-   				<td><input type="text" class="font-input" name="font-url" id="" placeholder="제작사명을 입력하세요"/></td>
+   				<td><input type="text" class="font-input" name="font-publisher" id="" placeholder="제작사명을 입력하세요"/></td>
    			</tr>
    			<tr>
    				<th>회사 홈페이지</th>
-   				<td><input type="text" class="font-input" name="font-url" id="" placeholder="url 주소를 입력하세요."/></td>
+   				<td><input type="text" class="font-input" name="font-root-url" id="" placeholder="url 주소를 입력하세요."/></td>
    			</tr>
    			<tr>
    				<th>글꼴 스타일<sup>*</sup></th>
