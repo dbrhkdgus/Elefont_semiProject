@@ -114,20 +114,31 @@ public class SellerFontEnrollServlet extends HttpServlet {
 			case "M" :  fontCategoryCode += "M-"; break;
 			}
 		
+		String _fontReleaseYear = multipartRequest.getParameter("font-release-year");
+		Date fontReleaseYear = null;
+		if(_fontReleaseYear != null && !"".equals(_fontReleaseYear))
+			fontReleaseYear = Date.valueOf(_fontReleaseYear);
 		
-		String fontReleaseYear = multipartRequest.getParameter("font-release-year");
-		
-		fontCategoryCode += fontReleaseYear.replace("-", "");
+		fontCategoryCode += _fontReleaseYear.replace("-", "");
 		
 		System.out.println("fontCategoryCode@serlvet = " + fontCategoryCode);
 		
 		FontCategory fontCategory = new FontCategory();
 		fontCategory.setCategoryCode(fontCategoryCode);
-		//fontCategory.setCategoryReleaseYear();
+		fontCategory.setCategoryReleaseYear(fontReleaseYear);
 		fontCategory.setFontNo(font.getFontNo());
 		
-		FontCopyright fontCopyright = new FontCopyright();
 		
+		
+		String fontPublisher = multipartRequest.getParameter("font-publisher");
+		String fontDesigner = multipartRequest.getParameter("font-designer");
+		String fontRootUrl = multipartRequest.getParameter("font-root-url");
+		
+		FontCopyright fontCopyright = new FontCopyright();
+		fontCopyright.setFontNo(font.getFontNo());
+		fontCopyright.setFontPublisher(fontPublisher);
+		fontCopyright.setFontDesigner(fontDesigner);
+		fontCopyright.setFontRootUrl(fontRootUrl);
 		
 		
 		
