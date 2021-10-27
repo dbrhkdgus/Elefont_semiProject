@@ -1603,6 +1603,11 @@ text-align: center;
     align-items: center;
 
 }
+#emailDoubleCheck{
+	background-color: rgb(133, 209, 62);
+	color: white;
+	border-radius: 10px;
+}
 /*회원정보수정 끝*/
 
 
@@ -2938,3 +2943,88 @@ table#tbl-board-view td {
 	padding: 5px 0 5px 15px; 
 	text-align:left;
 }
+
+/*커뮤니티 등록 css 끝 윤희*/
+.commenroll{
+display: flex;
+}
+
+.comm_container{
+    display: flex;
+    justify-content: center;
+}
+
+#tbl-board-view{
+    display: flex;
+    width: 55vw;
+    margin: 25px 10px 5px 10px;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.upload-name {
+    display: inline-block;
+    height: 40px;
+    padding: 0 10px;
+    vertical-align: middle;
+    border: 1px solid #dddddd;
+    width: 78%;
+    color: #999999;
+}
+
+#tbl-board-view input[type=text],[type=file]{
+width: 600px;
+border: 0;
+margin: 20px;
+
+background-color: transparent;
+border-bottom: 2px solid #eee; 
+resize: none;
+
+}  
+#tbl-board-view content{
+    display: inline; 
+    inline-size: -webkit-fill-available;
+}
+.tbl-board-view-attach{
+display: flex;
+align-items: center;
+
+}
+#submitBtn{
+    color: #000;
+    background-color: #eee;
+    border: none;
+    justify-content: end;
+    display: inline-block;
+    inline-size: -webkit-fill-available;
+}
+
+#submitBtn-label{
+    display: inline-block;
+    padding: 10px 20px;
+    color: #fff;
+    vertical-align: middle;
+    background-color: #999999;
+    cursor: pointer;
+    height: 40px;
+    margin-left: 10px;
+}
+
+
+#tbl-board-view input:focus{
+    outline: none;
+    border-bottom: 2px solid #1bab58;
+}
+#tbl-board-view textarea{
+    border: 0;
+    border:2px solid #eee; 
+}
+#tbl-board-view textarea:focus{
+    outline:.5px solid #1bab58;
+    border-bottom:2px solid #1bab58 ;
+}
+
+
+/*커뮤니티 등록 css 끝*/
+

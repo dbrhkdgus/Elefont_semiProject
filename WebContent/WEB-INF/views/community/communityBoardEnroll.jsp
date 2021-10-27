@@ -33,13 +33,13 @@
             });
             </script>
             
-            <section id="portfolio" class="portfolio section-space-padding">
+            <section id="communityEnroll" class="community-enroll-section-space-padding">
             <div class="comm_container">
         
                
                     
                     <section id="board-container">
-                    <h2>커뮤니티 게시글 작성</h2>
+                    <h1>커뮤니티 게시글 작성</h1>
                     <div class="commenroll">
                     <form
                         name="boardEnrollFrm"
@@ -50,25 +50,25 @@
                          
                         <div id="tbl-board-view">
                        
-                            <label for="title">제 목
+                            <label for="title">제 목   </label>   
                             <input type="text" name="title" required></td>
-                        </label>   
+                     
 
 
-                            <!-- <div class="tbl-board-view-inner"> -->
-                           <label for="writer">작성자
+                            
+                           <label for="writer">작성자   </label>
                                 <input type="text" name="writer" value="" readonly/>
-                            </label>
+                         
                           
-                            <label for="font">사용된 폰트  
+                            <label for="font">사용된 폰트  </label> 
                                 <input type="text" name="font" />
-                            </label> 
+                            
 
-                            <!-- </div> -->
-                            <div class="tbl-board-view-attach">
+                           
+                            
                             <label for="upFile">첨부파일</label>
                                 <input type="file" name="upFile" id="file">
-                            </div>
+                           
                       
                             <label for="content">내용</label>
                             <textarea rows="15" cols="114" name="content" style="resize: none;"></textarea>

@@ -71,7 +71,7 @@
                             <a href="<%= request.getContextPath()%>/shopDetail?fontNo=<%= font.getFontNo()%>"><div class="test-item-title"> <%= font.getFontName()%> </div></a>
                             <textarea name="" id="" cols="30" rows="10" class="font-style"></textarea>
                             <div class="test-item-buttons"> 
-                                <i class="fas fa-heart"></i>  
+                                <i class="fas fa-heart" data-font-no="<%=font.getFontNo()%>"></i>  
                                 <i class="fas fa-search-plus"></i>
                              </div>
                         </div> 
@@ -120,6 +120,20 @@ $(".font-style").css("color", $(color).val());
 	/* 전체 폰트 적용에 내용 입력 시 모든 textarea에 적용 */
 	$(allFontStyle).on("propertychange change keyup paste input", (e)=>{
 		$(".font-style").val($(e.target).val());
+	});
+	
+	/* 좋아요 버튼 클릭시 사용자 좋아요 여부에 따른 버튼 이벤트 */
+	$(".fa-heart").click((e)=>{
+		$.ajax({
+			url: "<%=request.getContextPath()%>/font/fontLike",
+			dataType: "json",
+			type:"GET",
+			data: "fontNo=" + $(e.target).data(fontNo) +"&memberNo="+<%= loginMember.getMemberNo()%>,
+			success(data){
+				console.log(data, typeof data);
+			},
+			error: console.log()
+		});
 	});
 	
 </script>
