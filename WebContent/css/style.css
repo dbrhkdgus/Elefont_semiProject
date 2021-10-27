@@ -2308,16 +2308,30 @@ font-size: 16px;
 	display:flex;
 }
 #font-enroll{
-	position: absolute;
+/* 	position: absolute;
 	top: 50%;
 	left: 50%;
-	transform: translate(-50%, -50%);
+	transform: translate(-50%, -50%); */
+	text-align: center;
+}
+#fontEnrollFrm{
+	display: inline-block;
+	padding: 10px 0 10px 5%;
+	border: 1px solid #000;
+	border-radius: 10px;
+	
 }
 #fontEnrollFrm th, #fontEnrollFrm td{
-	padding: 5px;
+	padding: 5px 0 5px 20px;
+	text-align: left;
 }
 #fontEnrollFrm tr:last-of-type td{
 	text-align: center;
+	padding-right: 15%;
+}
+#fontEnroll-title{
+	padding-left: 50px;
+	margin-bottom: 30px;
 }
 
 
