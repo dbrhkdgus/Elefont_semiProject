@@ -2615,6 +2615,24 @@ font-size: 16px;
     justify-content: center;
     align-items: flex-start;
 }
+.comm-board-title-button {
+	display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    width: 920px;
+    margin-bottom: 10px;
+}
+#comm-board-button {
+	background-color: #4CAF50; /* Green */
+	border: 0px;
+	color: white;
+	padding: 10px 12px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 16px;
+}
+.comm-board-title-button > 
 .comm-board-content > h1 {
 	margin-bottom: 50px;
 }
