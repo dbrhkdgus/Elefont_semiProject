@@ -13,6 +13,11 @@
 	
 %>
 
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> branch 'master' of https://github.com/dbrhkdgus/Elefont_semiProject.git
 <section id="portfolio" class="portfolio section-space-padding">
     <div class="container">
         <div class="comm-pic-detail">
@@ -29,6 +34,7 @@
                 <div class="comm-writer-info-buttons">
                     <i class="far fa-heart"></i>
                     <i class="fas fa-search-plus" onclick="location.href='<%= request.getContextPath() %>/community'"/></i>
+
                 </div>
                 <div class="comm-writer-img-name">
                     <img class="comm-pic-writer-profile-img" src="https://i.ibb.co/c6SYFNx/free-icon-male-user-74464.png" alt="">
@@ -61,6 +67,7 @@ for(Attachment att : attachmentList){
 
 
 <!-- community user detail 끝 -->
+
 
 
 
