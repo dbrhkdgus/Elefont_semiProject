@@ -25,7 +25,7 @@ public class FaqLandingServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		//1.사용자 입력 값 필요없음!
+		//1.사용자 입력 값 필요없음! (쿼리문에 물음표가 없어서!)
 		
 
 		//2.업무로직 _db를 갔다옴

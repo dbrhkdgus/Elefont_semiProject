@@ -24,7 +24,7 @@ public class FaqDao {
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
-
+			//조회한 쿼리문 (select 아니면 익스큐트 업데이트지)
 			rset = pstmt.executeQuery(); 
 
  			while(rset.next()) {
