@@ -33,56 +33,58 @@
             });
             </script>
             
-            <section id="board-container">
-            <h2>커뮤니티 게시글 작성</h2>
-            <form
-                name="boardEnrollFrm"
-                action="<%=request.getContextPath() %>/community/boardEnroll" 
-                method="post"
-                enctype="multipart/form-data" 
-                >
-                 
-                <table id="tbl-board-view">
-                <tr>
-                    <th>제 목</th>
-                    <td><input type="text" name="title" required></td>
-                </tr>
-                <tr>
-                    <th>작성자</th>
-                    <td>
-                        <input type="text" name="writer" value="<%= loginMember.getMemberName()%>" readonly/>
-                    </td>
-                </tr>
-                <tr>
-                	<th>사용된 폰트</th>
-                	<td>
-                		<input type="text" name="font" />
-                	</td>
-                </tr>
-                <tr>
-                    <th>첨부파일</th>
-                    <td>			
-                        <input type="file" name="upFile">
+            <section id="portfolio" class="portfolio section-space-padding">
+            <div class="comm_container">
+        
+               
                     
-                    </td>
-                </tr>
-                <tr>
-                    <th>내 용</th>
-                    <td><textarea rows="5" cols="40" name="content"></textarea></td>
-                </tr>
-                <tr>
-                    <th colspan="2">
-                        <input type="submit" value="등록하기">
-                    </th>
-                </tr>
-            </table>
-            </form>
-            </section>
+                    <section id="board-container">
+                    <h2>커뮤니티 게시글 작성</h2>
+                    <div class="commenroll">
+                    <form
+                        name="boardEnrollFrm"
+                        action="<%=request.getContextPath() %>/community/boardEnroll" 
+                        method="post"
+                        enctype="multipart/form-data" 
+                        >
+                         
+                        <div id="tbl-board-view">
+                       
+                            <label for="title">제 목
+                            <input type="text" name="title" required></td>
+                        </label>   
 
 
+                            <!-- <div class="tbl-board-view-inner"> -->
+                           <label for="writer">작성자
+                                <input type="text" name="writer" value="" readonly/>
+                            </label>
+                          
+                            <label for="font">사용된 폰트  
+                                <input type="text" name="font" />
+                            </label> 
 
-    </div>
-</section>
+                            <!-- </div> -->
+                            <div class="tbl-board-view-attach">
+                            <label for="upFile">첨부파일</label>
+                                <input type="file" name="upFile" id="file">
+                            </div>
+                      
+                            <label for="content">내용</label>
+                            <textarea rows="15" cols="114" name="content" style="resize: none;"></textarea>
+                       
+                            
+                            <input type="submit" value="등록하기" id="submitBtn"  >
+                            
+                        </form>
+                    </section>
+                </div>
+        
+                
+            </div>
+        </section>
+        
+
 
 <!-- Community Board Enroll end -->
 <%@ include file = "/WEB-INF/views/common/footer.jsp" %>
