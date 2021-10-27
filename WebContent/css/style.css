@@ -2637,7 +2637,7 @@ font-size: 16px;
 	display: inline-block;
 	font-size: 16px;
 }
-.comm-board-title-button > 
+
 .comm-board-content > h1 {
 	margin-bottom: 50px;
 }
@@ -2671,6 +2671,7 @@ font-size: 16px;
     margin-top: 30px;
     align-items: center;
     justify-content: space-around;
+    cursor: pointer;
 }
 .comm-pic-writer-profile-img{
     width: 100px;
@@ -2917,6 +2918,32 @@ font-size: 16px;
 /*어바웃디테일 끝*/
 
 /* Community Board Enroll */
+#board-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+#board-container h2{
+    margin-bottom: 50px;
+}
+table#tbl-board-view {
+	width:500px; 
+	margin:0 auto; 
+	border:1px solid black; 
+	border-collapse:collapse;  
+}
+table#tbl-board-view th {
+	width: 150px; 
+	border:1px solid; 
+	padding: 10px 0; 
+	text-align:center; 
+} 
+table#tbl-board-view td {
+	border:1px solid; 
+	padding: 5px 0 5px 15px; 
+	text-align:left;
+}
+
 /*커뮤니티 등록 css 끝 윤희*/
 .commenroll{
 display: flex;
@@ -3000,3 +3027,4 @@ align-items: center;
 
 
 /*커뮤니티 등록 css 끝*/
+

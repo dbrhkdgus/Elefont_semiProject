@@ -1,6 +1,7 @@
 package com.kh.elefont.common.model.dao;
 
 import static com.kh.elefont.common.JdbcTemplate.close;
+import static com.kh.mvc.common.JdbcTemplate.close;
 
 import java.io.FileReader;
 import java.io.IOException;
@@ -197,6 +198,27 @@ public class AttachmentDao {
 				
 		
 		return fontAttchmentList;
+	}
+	public int deleteAttachmentByCommNo(Connection conn, String commNo) {
+		int result = 0;
+		PreparedStatement pstmt = null;
+		String query = prop.getProperty("deleteAttachmentByCommNo"); 
+		try {
+			//미완성쿼리문을 가지고 객체생성.
+			pstmt = conn.prepareStatement(query);
+			//쿼리문미완성
+			pstmt.setString(1, commNo);
+			
+			//쿼리문실행 : 완성된 쿼리를 가지고 있는 pstmt실행(파라미터 없음)
+			//DML은 executeUpdate()
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
 	}
   
 }
