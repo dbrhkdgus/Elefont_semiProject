@@ -53,7 +53,7 @@ Member member = (Member) request.getAttribute("member");
 							<table id="editInfo1">
 								<tr>
 									<th>아이디<sup>*</sup></th>
-									<td><input type="text" id="editId" readonly
+									<td><input type="text" id="editId" disabled
 										placeholder="<%=member.getMemberId()%>"></td>
 								</tr>
 								<tr>
@@ -63,7 +63,7 @@ Member member = (Member) request.getAttribute("member");
 								<tr>
 									<th>비밀번호 확인<sup>*</sup>&nbsp;
 									</th>
-									<td><input type="text" name="" required></td>
+									<td><input type="text" id="editPwdDoubleCheck"  name="" required></td>
 								</tr>
 								<tr>
 									<th>생년월일</th>
@@ -87,7 +87,7 @@ Member member = (Member) request.getAttribute("member");
 								<tr>
 									<th>이메일&nbsp;</th>
 									<td><input type="email" id="editEmail"
-										placeholder="<%=member.getMemberEmail()%>"></td>
+										placeholder="<%=member.getMemberEmail()%>" disabled></td>
 								</tr>
 								<tr>
 									<th>연락처&nbsp;</th>
@@ -123,7 +123,7 @@ Member member = (Member) request.getAttribute("member");
 				</div>
 				<div id="editButton">
 					<br>
-					<button>회원정보수정</button>
+					<button id= "memberInfoEditBtn">회원정보수정</button>
 				</div>
 			</div>
 		</div>
@@ -138,7 +138,28 @@ $("#memberwithdrawalBtn").click((e)=>{
 		$(document.withdrawalFrm).submit();
 	}
 });
+
+
+$("#memberInfoEditBtn").click(()=>{
+	//유효성 검사해야함
+	const $p1 = $("#editPwd");
+	const $p2 = $("editPwdDoubleCheck");
+	if 
+
+
 	
+	if(/^[a-zA-Z0-9!@#$$%^&*()]{4,}/.test($p1.val()) == false){
+		alert("유효한 패스워드를 입력하세요.");
+		$p1.select();
+		return false;
+	}
+	if($p1.val() != $p2.val()){
+		alert("패스워드가 일치하지 않습니다.");
+		$p1.select();
+		return false;
+	}
+
+})
 
 	
 
