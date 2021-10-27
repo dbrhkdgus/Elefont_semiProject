@@ -2004,13 +2004,13 @@ p { padding: 5px 0; }
   margin: 10px;
   border: 2px solid black;
 }
-.like-comm a{
+.like-comm > a {
   margin: 0 auto;
   display: flex;
   height: 45px;
   padding-top: 10px;
 }
-.like-comm a *{
+.like-comm > a {
   margin-left: 10px;
 }
 .like-comm-buttons{
@@ -2022,8 +2022,8 @@ p { padding: 5px 0; }
 }
 
 .comm-img{
-  width: 270px;
-  height: 270px;
+  width: 269px;
+  height: 269px;
   border: 1px solid #000;
 }
 
