@@ -1603,6 +1603,11 @@ text-align: center;
     align-items: center;
 
 }
+#emailDoubleCheck{
+	background-color: rgb(133, 209, 62);
+	color: white;
+	border-radius: 10px;
+}
 /*회원정보수정 끝*/
 
 

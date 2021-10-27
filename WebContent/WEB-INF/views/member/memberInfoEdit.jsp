@@ -11,6 +11,10 @@ Member member = (Member) request.getAttribute("member");
 <!-- 회원정보 수정 section 시작-->
 <section id="portfolio" class="portfolio section-space-padding">
 
+<form action="<%= request.getContextPath() %>/member/checkEmailDuplicate" name="checkEmailDuplicateFrm"  method="post">
+	<input type="hidden" name="memberEmail" />
+</form>
+
 	<form name="withdrawalFrm" method="post"
 		action="<%=request.getContextPath()%>/member/withdrawal">
 		<input type="hidden" name="memberId" value="<%=member.getMemberId()%>" />
@@ -93,7 +97,10 @@ Member member = (Member) request.getAttribute("member");
 									<tr>
 										<th>이메일&nbsp;</th>
 										<td><input type="email" id="editEmail"
-											placeholder="<%=member.getMemberEmail()%>" disabled></td>
+											value="<%=member.getMemberEmail()%>" disabled>
+											<input id="emailDoubleCheck" type="button" value="중복검사" 
+											onclick ="checkEmailDuplicate();"/>
+											</td>
 									</tr>
 									<tr>
 										<th>연락처&nbsp;</th>
@@ -136,7 +143,6 @@ Member member = (Member) request.getAttribute("member");
 		</div>
 	</div>
 </section>
-
 <script>
 
 $("#memberwithdrawalBtn").click((e)=>{
@@ -153,8 +159,8 @@ $("#memberInfoEditBtn").click(()=>{
 	const $phone = $("#editPhone");
 	const $memberName =$("#editName");
 	
-		if(/^[가-힣]{2,}$/.test($memberName.val()) == false){
-			alert("이름은 띄어쓰기 없이 한글 2글자 이상이어야 합니다.");
+		if(/^[가-힣]{2,6}$/.test($memberName.val()) == false){
+			alert("이름은 띄어쓰기 없이 한글 2글자~6글자 사이어야 합니다.");
 			$memberName.select();
 			return;
 		}
@@ -180,6 +186,18 @@ $("#memberInfoEditBtn").click(()=>{
 		}
 	
 })
+
+function checkEmailDuplicate() {
+	const title = "popupToDublecheckEmail"
+	const spec = "left=500px, top= 300px, width=500px, height = 200px"
+	const popup = open("",title,spec);
+	
+	const $frm = $(document.checkEmailDuplicateFrm);
+	$frm.find("[name=memberEmail]").val($(editEmail).val());
+	$frm.attr("target", title) // form 제출을 popup에서 진행
+		.submit();
+
+}
 
 </script>
 
