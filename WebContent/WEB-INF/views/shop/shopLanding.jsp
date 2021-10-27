@@ -123,7 +123,7 @@ $(".font-style").css("color", $(color).val());
 	});
 	
 	/* 좋아요 버튼 클릭시 사용자 좋아요 여부에 따른 버튼 이벤트 */
-	$(".fa-heart").click((e)=>{
+	<%-- $(".fa-heart").click((e)=>{
 		$.ajax({
 			url: "<%=request.getContextPath()%>/font/fontLike",
 			dataType: "json",
@@ -134,7 +134,7 @@ $(".font-style").css("color", $(color).val());
 			},
 			error: console.log()
 		});
-	});
+	}); --%>
 	
 </script>
 
