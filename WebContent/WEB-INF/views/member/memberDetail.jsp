@@ -31,31 +31,7 @@
             <input type="hidden" name="memberId">
         </form>
      </div>
-<%
-}else if("S".equals(memberRole)){
-%>
-	<div class="font-enroll">
-        <form action="<%=request.getContextPath() %>/seller/fontEnroll" method="POST" name="fontEnrollFrm" enctype="multipart/form-data">
-            <h3>등록하실 폰트명</h3>
-            <div class="font-wrpper">
-            <input type="text" name="font-name" id="font-name" placeholder="폰트명을 입력하세요"><i class="fas fa-check-circle"></i>
-            <h4>희망 가격 입력</h4>
-            <input type="text" name="font-price" id="" value="기본 가격은 200P입니다."/><br />
-            <h4>폰트 원출처(url) 입력</h4>
-            <input type="text" name="font-url" id="" value="url 주소를 입력하세요."/><br />
-            <h3>폰트파일 업로드</h3>
-            <input type="file" name="font-file" id="font-file" />
-            </div>
-            <input type="button" id="font-x-btn" value="취소하기">
-            <input type="button" id="font-submit-btn" value="등록하기">
-            <input type="hidden" name="memberId" value="<%= loginMember.getMemberId() %>">
-            <input type="hidden" name="memberNo" value="<%= loginMember.getMemberNo() %>">
-        </form>
-<%
-}
-%>
-        </div>
-        <div class="member-container">
+     <div class="member-container">
          <div class="member-profile">
             <i class="fas fa-user"></i>
             <h3><%=loginMember.getMemberId() %></h3>
@@ -128,7 +104,7 @@
 }else if("S".equals(memberRole)){
 %>
                 <span><%=loginMember.getMemberId() %></span>님, 안녕하세요!
-                <button id="member-font">폰트 등록</button>
+                <button id="member-font" onclick="location.href='<%=request.getContextPath()%>/seller/fontEnroll'">폰트 등록</button>
 <%
 }
 %>
@@ -565,23 +541,6 @@ $(".fontDownloadBtn").click((e)=>{
 	$("#btn-member-Info-Edit").click((e)=>{
 		location.href = "<%= request.getContextPath()%>/member/memberInfoEdit?memberId=<%=loginMember.getMemberId() %>";
 	});
-	
-	$("#member-font").click((e)=>{
-		const $fontEnroll = $(".font-enroll");
-		if($fontEnroll.css("display","none")){
-			$fontEnroll.show();
-			
-			$("#font-submit-btn").click((e)=>{
-				$(document.fontEnrollFrm).submit();
-			});
-			$("#font-x-btn").click((e)=>{
-				$fontEnroll.hide();
-			});
-			
-		}
-		else return;
-	});
-	
 	
 </script>
 

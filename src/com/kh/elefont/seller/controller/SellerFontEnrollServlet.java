@@ -24,6 +24,13 @@ import com.oreilly.servlet.multipart.FileRenamePolicy;
 public class SellerFontEnrollServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private FontService fontService = new FontService();
+	
+	
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		request.getRequestDispatcher("/WEB-INF/views/seller/sellerFontEnroll.jsp").forward(request, response);
+	}
+
+
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
