@@ -31,6 +31,7 @@ public class SellerFontAuditCheckServlet extends HttpServlet {
 		Map<String, Object> param = new HashMap<>();
 		param.put("fontNo", fontNo);
 		
+		//	심사 결과에 따른 분기 처리(Y면 승인되어 판매되는 폰트로 이동, N이면 폰트 테이블에서 삭제)
 		if("Y".equals(fontApproval)) {
 			
 			param.put("fontApproval", FONTCHECK);
@@ -39,6 +40,7 @@ public class SellerFontAuditCheckServlet extends HttpServlet {
 			int result = fontService.updateFontAuditCheck(param);
 		}
 		else if("N".equals(fontApproval)) {
+			//2. 업무 로직
 			int result = fontService.deleteFontAudit(fontNo);
 		}
 		
