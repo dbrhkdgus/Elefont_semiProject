@@ -39,12 +39,12 @@ public class CommunityUpdateServlet extends HttpServlet {
 		String fontNo = community.getFontNo();
 		Font font = fontService.selectOneFontByFontNo(fontNo);
 		Attachment attachment = attachmentService.selectOneAttachment(commNo);
-		System.out.println("community@servlet = " + community);
 		
 		// 3.view단 위임
 		request.setAttribute("attachment", attachment);
 		request.setAttribute("community", community);
 		request.setAttribute("font", font);
+		request.setAttribute("attachment", attachment);
 		request
 			.getRequestDispatcher("/WEB-INF/views/community/communityUpdate.jsp")
 			.forward(request, response);
