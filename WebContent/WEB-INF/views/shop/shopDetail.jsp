@@ -54,8 +54,10 @@ if(loginMember!=null){
                             </form>
 <%	
 }
+
 for(Rep rep : repList){
 	int repNo = 0;
+	
 	if(rep.getRepLevel()==1){
 		repNo = rep.getRepNo();
 		
@@ -72,7 +74,7 @@ for(Rep rep : repList){
                                 </div> 
                                 <i class="fab fa-replyd" style="font-size:35px; color: #005A3C; "></i>
 <%
-	if(loginMember.getMemberNo().equals(rep.getMemberNo()) || "A".equals(loginMember.getMemberRole())){
+	if(loginMember!=null &&(loginMember.getMemberNo().equals(rep.getMemberNo()) || "A".equals(loginMember.getMemberRole()))){
 		
 	
 %>
@@ -106,7 +108,7 @@ for(Rep rep : repList){
                                 	<img src="https://cdn1.vectorstock.com/i/1000x1000/10/05/user-icon-vector-22391005.jpg"  id="user-profile">
                                 		<span><%=rep.getRepWriter()%> : <%=rep.getRepContent()%></span>
 <%
-	if(loginMember.getMemberNo().equals(rep.getMemberNo()) || "A".equals(loginMember.getMemberRole())){
+	if(loginMember != null && (loginMember.getMemberNo().equals(rep.getMemberNo()) || "A".equals(loginMember.getMemberRole()))){
 		
 	
 %>
@@ -157,11 +159,6 @@ for(Rep rep : repList){
                                $(e.target).parent().parent().next().slideToggle(500);                                 
                              });
 
-                           /*  $(document.reReplyFrm).hide();
-                            $('#btn-re-icon').click((e)=>{
-                            	console.log(e.target)
-                                $(e.target).show();	
-                            }); */
                             </script>
 
 
