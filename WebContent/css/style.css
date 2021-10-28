@@ -3038,6 +3038,10 @@ align-items: center;
     width: -webkit-fill-available;
 }
 
+.updateBtn{
+	display: flex;
+    width: -webkit-fill-available;
+}
 
 #submitBtn{
     color: #000;

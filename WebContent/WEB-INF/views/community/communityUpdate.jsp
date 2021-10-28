@@ -32,6 +32,10 @@
                                 <input type="text" name="writer" value="<%= community.getCommWriter() %>" readonly/>
                             <label for="font">사용된 폰트  </label>
                                 <input type="text" name="font" value="<%= font.getFontName() %>"/>
+                          
+                          <input type="checkbox" name="delFile" id="delFile" value="<%= attachment.getAttNo() %>" />
+							<label for="delFile">기존파일삭제</label>
+							
                             <label for="upFile">첨부파일</label>
 								<label class="btn btn-primary btn-file">
                             	  파일변경 <input type="file"  name="upFile" style="display: none;">
@@ -41,8 +45,10 @@
                             	 <p id="changedFname" ></p>
                             <label for="content">내용</label>
                             <textarea rows="15" cols="114" name="content" style="resize: none;"><%= community.getCommContent() %></textarea>
+                        	<div class="updateBtn"> 
                             <input type="submit" value="수정하기" id="submitBtn"  >
                             <input type="button" value="취소하기" id="submitBtn" onclick="history.go(-1);"/>
+                        	</div>
                         </form>
                     </section>
                 </div>
