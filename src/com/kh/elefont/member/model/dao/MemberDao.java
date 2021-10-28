@@ -335,8 +335,8 @@ public class MemberDao {
 		String sql = prop.getProperty("insertProfileImage");
 		
 		//insertProfileImage 
-		//= insert into attachment values(seq_attachment_no.nextval,?,null,?,?,default)
-		System.out.println("executeUpdate 날리기 직전 result : " + result);
+		//= insert into attachment values(seq_attachment_no.nextval,?,null,?,?,default,null)
+
 		try {
 			System.out.println(sql);
 			pstmt=conn.prepareStatement(sql);
