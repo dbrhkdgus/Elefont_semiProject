@@ -113,4 +113,25 @@ public class RepDao {
 		return result;
 	}
 
+	public int updateRep(Connection conn, String repNo, String updateRepContent) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String sql = prop.getProperty("updateRep");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, updateRepContent);
+			pstmt.setString(2, repNo);
+
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
 }

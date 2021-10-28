@@ -59,13 +59,14 @@
 
     </style>
     <body>
-    <!-- enctype="multipart/form-data"  -->
-    <form name="imageUploadFrm"  id="imageUploadFrm" method="post"
+    <!-- enctype="multipart/form-data"  
+    <form name="imageUploadFrm"  id="imageUploadFrm" method="post" enctype="multipart/form-data"
     action="<%=request.getContextPath()%>/member/profileFileUpload">
     <input type="hidden" name="memberNo" value="<%=request.getParameter("memberNo")%>" />
-     <% System.out.println("아래에"); %>
-    <% System.out.println(request.getParameter("memberNo")); %>
+     <% //System.out.println("아래에"); %>
+    <% //System.out.println(request.getParameter("memberNo")); %>
     </form>
+    -->
     
     
         <div id="PPOuterBox">
@@ -82,13 +83,17 @@
                 <input type="button" value="기본사진으로 변경">
             </div>
             <div id="dropTheImage">
-                  <table id="PPTable">
-                      <tr>
-                          <td id="tdpp1" class="pptd">이미지 <br/> 첨부파일</td>
-                          <td id="tdpp2" class="pptd"><input type="file" name="profileimage"/>
-                          <hr /><input id="changeImage" type="button" value="이미지바꾸기" onclick="dd();" /></td>
-                      </tr>
-                  </table>
+           	    <form name="imageUploadFrm"  id="imageUploadFrm" method="post" enctype="multipart/form-data"
+   				action="<%=request.getContextPath()%>/member/profileFileUpload">
+	                  <table id="PPTable">
+	                      <tr>
+	                          <td id="tdpp1" class="pptd">이미지 <br/> 첨부파일</td>
+	                          <td id="tdpp2" class="pptd"><input type="file" name="profileimage"/>
+	                          <hr /><input id="changeImage" type="button" value="이미지바꾸기" onclick="dd();" /></td>
+	                          <input type="hidden" name="memberNo" value="<%=request.getParameter("memberNo")%>" />
+	                      </tr>
+	                  </table>
+            	</form>
             </div>
             <div id="confirmBtn">
                 <button>완료</button>
