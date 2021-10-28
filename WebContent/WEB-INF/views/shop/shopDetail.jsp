@@ -38,7 +38,7 @@ System.out.println("repList@jsp : " + repList );
                         <h4  id="shop-detail-rep">댓글</h4>
                         <hr class="liner">
                         
-                            <div class="shop-detail-reblybox">
+                           	<div class="shop-detail-reblybox">
 <%
 if(loginMember!=null){
 %>
@@ -68,7 +68,7 @@ for(Rep rep : repList){
 	                                <div class="reply-box">
 	                                	<img src="https://cdn1.vectorstock.com/i/1000x1000/10/05/user-icon-vector-22391005.jpg"  id="user-profile">
                                 		<span><%=rep.getRepWriter()%> : <%=rep.getRepContent()%></span>
-<<<<<<< HEAD
+
                                 </div> 
                                 <i class="fab fa-replyd" style="font-size:35px; color: #005A3C; "></i>
 <%
@@ -82,23 +82,18 @@ for(Rep rep : repList){
                                 <input type="hidden" name="rep_no" value="<%= rep.getRepNo() %>" />
                                 
                                 <script>
-                                	const $frm = $(document.DeleteUpdateRepFrm);
+                                	let $DeUpfrm = $(document.DeleteUpdateRepFrm);
                                 	$(".btn-rep-update").click((e)=>{
                                 		$("input[name=type]").val("update");
-                                		$frm.submit();
+                                		$DeUpfrm.submit();
                                 	});
                                 	$(".btn-rep-delete").click((e)=>{
                                 		$("input[name=type]").val("delete");
-                                		$frm.submit();
+                                		$DeUpfrm.submit();
                                 	});
                                 </script>
 <% } %>
-=======
-	                                </div> 
-	                                <i class="fab fa-replyd" style="font-size:35px; color: #005A3C; "></i>
-	                                <input type="button" value="수정" id="btn-rep-update"/>
-	                                <input type="button" value="삭제" id="btn-rep-delete"/>
->>>>>>> branch 'master' of https://github.com/dbrhkdgus/Elefont_semiProject.git
+
                                 </div>
    								</form>
 <%
@@ -140,7 +135,7 @@ for(Rep rep : repList){
 	if(loginMember!=null){
 %>       
                                 <form action="<%=request.getContextPath()%>/rep/ShopRepEnroll"  name="reReplyFrm"class="re-rep-inputbox" method="POST" >                         
-                                <input type="text" class ="detail-inputbox" id="re-rep-detail-inputbox"  name="reply-input" placeholder="댓글을 입력하세요" >
+                                <input type="text" class ="detail-inputbox re-rep-detail-inputbox"  name="reply-input" placeholder="댓글을 입력하세요" >
                                 <input type="hidden" name="font-no" value="<%=font.getFontNo()%>"/>
                                 <input type="hidden" name="rep-writer" value="<%=loginMember.getMemberName()%>"/>
 								<input type="hidden" name="member_no" value="<%= loginMember.getMemberNo() %>" />
@@ -158,7 +153,8 @@ for(Rep rep : repList){
                       		 $('.fa-replyd').off('click').on('click', (e)=>
                              {
                                console.log("click");
-                               $(e.target).parent().next().slideToggle(500);                                 
+                               console.log(e.target);
+                               $(e.target).parent().parent().next().slideToggle(500);                                 
                              });
 
                            /*  $(document.reReplyFrm).hide();
