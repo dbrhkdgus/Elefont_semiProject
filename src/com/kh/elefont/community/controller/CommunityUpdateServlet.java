@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.kh.elefont.common.model.service.AttachmentService;
+import com.kh.elefont.common.model.vo.Attachment;
 import com.kh.elefont.community.model.service.CommunityService;
 import com.kh.elefont.community.model.vo.Community;
 import com.kh.elefont.font.model.service.FontService;
@@ -37,9 +38,11 @@ public class CommunityUpdateServlet extends HttpServlet {
 		Community community = communityService.selectOneCommunity(commNo);
 		String fontNo = community.getFontNo();
 		Font font = fontService.selectOneFontByFontNo(fontNo);
+		Attachment attachment = attachmentService.selectOneAttachment(commNo);
 		System.out.println("community@servlet = " + community);
 		
 		// 3.view단 위임
+		request.setAttribute("attachment", attachment);
 		request.setAttribute("community", community);
 		request.setAttribute("font", font);
 		request

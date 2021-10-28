@@ -8,7 +8,7 @@
 
 <%
 	Community community = (Community) request.getAttribute("community");
-	
+	Attachment attachment = (Attachment) request.getAttribute("attachment");
 	Font font = (Font) request.getAttribute("font");
 %>
     <!-- Community Board Enroll start -->
@@ -75,7 +75,13 @@
                            
                             
                             <label for="upFile">첨부파일</label>
-                                <input type="file" name="upFile" id="file">
+                            
+								<label class="btn btn-primary btn-file">
+                            	  파일변경 <input type="file"  name="upFile" style="display: none;">
+								    </label>
+                            	 <span id="fname"><%= attachment.getOriginalFilename() %></span>	
+                                     <img id="comm-user-attach-img" src="<%= request.getContextPath()%>/upload/community/<%=attachment.getRenamedFilename()%>" alt="">
+                            	 
                            
                       
                             <label for="content">내용</label>
