@@ -149,7 +149,7 @@ $(window).on('load', function() {
 		
 		const emailVaildVal = $(".emailValid").val();
 		
-		if(emailVaildVal !== 1){
+		if(emailVaildVal < 1){
 			alert("중복검사를 다시 해주세요"); 
 			return false;	
 		}

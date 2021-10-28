@@ -46,7 +46,7 @@ span#duplicate {
 		// 부모창 opener 의 #_memberId value 설정
 		$("._email", opener.document).val("<%= memberEmail %>");
 		
-		// 부모창의 #idValid value 1로 설정
+		// 부모창의 #emailValid value 1로 설정
 		$(".emailValid", opener.document).val("1");
 		
 		// popup 닫기
