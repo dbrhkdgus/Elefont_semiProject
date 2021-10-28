@@ -86,9 +86,12 @@
                            
                             <label for="content">내용</label>
                             <textarea rows="15" cols="114" name="content" style="resize: none;"><%= community.getCommContent() %></textarea>
-                       
-                            <input type="submit" value="수정하기" id="submitBtn"  >
-                            <input type="button" value="취소하기" id="submitBtn" onclick="history.go(-1);"/>
+                    
+                              <div class="enrollBtn">
+                            <input type="submit" value="등록하기" id="submitBtn"  >
+                            <input type="button" value="취소"  id="submitBtn" onclick="history.go(-1);"/>
+                       		 </div>
+
                         </form>
                     </section>
                 </div>
@@ -96,7 +99,12 @@
                 
             </div>
         </section>
-<script>
+
+        
+ <script>
+
+ 
+
 $("[name=upFile]").change((e) => {
     
     // 파일 선택여부 
