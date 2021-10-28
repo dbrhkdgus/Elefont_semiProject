@@ -2999,10 +2999,8 @@ border-bottom: 2px solid #eee;
 resize: none;
 
 }  
-#tbl-board-view content{
-    display: inline; 
-    inline-size: -webkit-fill-available;
-}
+
+
 .tbl-board-view-attach{
 display: flex;
 align-items: center;
@@ -3034,7 +3032,8 @@ align-items: center;
     border-bottom: 2px solid #1bab58;
 }
 #tbl-board-view textarea{
-    border: 0;
+	display: inline; 
+    inline-size: -webkit-fill-available;
     border:2px solid #eee; 
 }
 #tbl-board-view textarea:focus{
