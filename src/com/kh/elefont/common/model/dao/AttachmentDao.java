@@ -1,7 +1,7 @@
 package com.kh.elefont.common.model.dao;
 
 import static com.kh.elefont.common.JdbcTemplate.close;
-import static com.kh.mvc.common.JdbcTemplate.close;
+import static com.kh.elefont.common.JdbcTemplate.close;
 
 import java.io.FileReader;
 import java.io.IOException;

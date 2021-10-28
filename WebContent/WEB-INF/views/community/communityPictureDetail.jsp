@@ -10,8 +10,6 @@
 	Community community = (Community)request.getAttribute("community");
 	Attachment attachment = (Attachment)request.getAttribute("attachment");
 	List<Attachment> attachmentList = (List<Attachment>)request.getAttribute("attachmentList");
-	
-	
 %>
 
 
@@ -74,7 +72,7 @@ for(Attachment att : attachmentList){
         </div>
         </div>
 </section>
-<form action="<%= request.getContextPath() %>/community/communityUpdate" name="updateCommunityFrm">
+<form action="<%= request.getContextPath() %>/community/communityDelete" name="deleteBoardFrm">
 	<input type="hidden" name="no" value="<%= community.getCommNo() %>" />
 </form>
 <script>
