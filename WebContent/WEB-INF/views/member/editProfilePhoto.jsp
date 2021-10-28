@@ -72,14 +72,15 @@
                 <input type="button" value="기본사진으로 변경">
             </div>
             <div id="dropTheImage">
-                <foam id="imageUploadFrm" method="post" enctype="multipart/form-data">
+                <form id="imageUploadFrm" method="post" enctype="multipart/form-data">
                     <table id="PPTable">
                         <tr>
                             <td id="tdpp1" class="pptd">이미지 <br/> 첨부파일</td>
                             <td id="tdpp2" class="pptd"><input type="file" name="profileimage" id="" /></td>
+                            <input type="hidden" name="memberNo" value="<%= loginMember.getMemberNo() %>"/>
                         </tr>
                     </table>
-                </foam>
+                </form>
             </div>
             <div id="confirmBtn">
                 <button>등록</button>

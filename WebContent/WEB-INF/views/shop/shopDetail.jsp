@@ -54,8 +54,10 @@ if(loginMember!=null){
                             </form>
 <%	
 }
+
 for(Rep rep : repList){
 	int repNo = 0;
+	
 	if(rep.getRepLevel()==1){
 		repNo = rep.getRepNo();
 		
@@ -72,7 +74,7 @@ for(Rep rep : repList){
                                 </div> 
                                 <i class="fab fa-replyd" style="font-size:35px; color: #005A3C; "></i>
 <%
-	if(loginMember.getMemberNo().equals(rep.getMemberNo()) || "A".equals(loginMember.getMemberRole())){
+	if(loginMember!=null &&(loginMember.getMemberNo().equals(rep.getMemberNo()) || "A".equals(loginMember.getMemberRole()))){
 		
 	
 %>
@@ -82,12 +84,13 @@ for(Rep rep : repList){
                                 <input type="hidden" name="rep_no" value="<%= rep.getRepNo() %>" />
                                 
                                 <script>
-                                	let $DeUpfrm = $(document.DeleteUpdateRepFrm);
                                 	$(".btn-rep-update").click((e)=>{
+                                		var $DeUpfrm = $(document.DeleteUpdateRepFrm);
                                 		$("input[name=type]").val("update");
                                 		$DeUpfrm.submit();
                                 	});
                                 	$(".btn-rep-delete").click((e)=>{
+                                		var $DeUpfrm = $(document.DeleteUpdateRepFrm);
                                 		$("input[name=type]").val("delete");
                                 		$DeUpfrm.submit();
                                 	});
@@ -106,24 +109,29 @@ for(Rep rep : repList){
                                 	<img src="https://cdn1.vectorstock.com/i/1000x1000/10/05/user-icon-vector-22391005.jpg"  id="user-profile">
                                 		<span><%=rep.getRepWriter()%> : <%=rep.getRepContent()%></span>
 <%
-	if(loginMember.getMemberNo().equals(rep.getMemberNo()) || "A".equals(loginMember.getMemberRole())){
+	if(loginMember != null && (loginMember.getMemberNo().equals(rep.getMemberNo()) || "A".equals(loginMember.getMemberRole()))){
 		
 	
 %>
-                                <input type="button" value="수정" class="btn-rep-update"/>
-                                <input type="button" value="삭제" class="btn-rep-delete"/>
+                                <input type="button" value="수정" class="btn-re-rep-update"/>
+                                <input type="button" value="삭제" class="btn-re-rep-delete"/>
                                 <input type="hidden" name="type" value="" /> 
                                 <input type="hidden" name="rep_no" value="<%= rep.getRepNo() %>" />
                              </form>
                                 <script>
-                                	const $reFrm = $(document.DeleteUpdateReRepFrm);
-                                	$(".btn-rep-update").click((e)=>{
+                                	$(".btn-re-rep-update").click((e)=>{
+                                		var $reFrm = $(document.DeleteUpdateReRepFrm);
                                 		$("input[name=type]").val("update");
+                                		
                                 		$reFrm.submit();
                                 	});
-                                	$(".btn-rep-delete").click((e)=>{
-                                		$("input[name=type]").val("delete");
-                                		$reFrm.submit();
+                                	$(".btn-re-rep-delete").click((e)=>{
+                                		if(confirm("정말 삭제하시겠습니까?")){
+                                		var $reFrm = $(document.DeleteUpdateReRepFrm);
+	                                		$("input[name=type]").val("delete");
+                                			$reFrm.submit();
+                                		}
+                                		
                                 	});
                                 </script>
 <% } %>
@@ -157,11 +165,6 @@ for(Rep rep : repList){
                                $(e.target).parent().parent().next().slideToggle(500);                                 
                              });
 
-                           /*  $(document.reReplyFrm).hide();
-                            $('#btn-re-icon').click((e)=>{
-                            	console.log(e.target)
-                                $(e.target).show();	
-                            }); */
                             </script>
 
 
