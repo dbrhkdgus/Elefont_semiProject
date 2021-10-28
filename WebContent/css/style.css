@@ -2082,6 +2082,9 @@ p { padding: 5px 0; }
   justify-content: center;
 }
 
+.comm-img > a > img {
+	height: 259px;
+}
 
 
 /*커뮤니티 페이지 윤희*/
@@ -2718,7 +2721,8 @@ font-size: 16px;
 }
 .comm-pic-detail-history img{
     width: 100px;
-    margin: 10px;
+    height: 100px;
+	margin: 10px;
 }
 /* community picture detail 끝*/
 
@@ -3004,7 +3008,7 @@ display: flex;
 }
 
 #tbl-board-view input[type=text],[type=file]{
-width: 600px;
+width: -webkit-fill-available;
 border: 0;
 margin: 20px;
 
@@ -3020,6 +3024,13 @@ display: flex;
 align-items: center;
 
 }
+
+.enrollBtn{
+	display: flex;
+    width: -webkit-fill-available;
+}
+
+
 #submitBtn{
     color: #000;
     background-color: #eee;
@@ -3027,6 +3038,7 @@ align-items: center;
     justify-content: end;
     display: inline-block;
     inline-size: -webkit-fill-available;
+    border: 1px solid #CCC6C6;
 }
 
 #submitBtn-label{
@@ -3053,6 +3065,13 @@ align-items: center;
 #tbl-board-view textarea:focus{
     outline:.5px solid #1bab58;
     border-bottom:2px solid #1bab58 ;
+}
+
+.btn-primary{
+	color: #fff;
+    background-color: #4CAF50;
+    border-color: #2e6da4;
+	
 }
 
 .btn-file{
