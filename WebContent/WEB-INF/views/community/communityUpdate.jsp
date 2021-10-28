@@ -33,8 +33,7 @@
                             <label for="font">사용된 폰트  </label>
                                 <input type="text" name="font" value="<%= font.getFontName() %>"/>
                           
-                          <input type="checkbox" name="delFile" id="delFile" value="<%= attachment.getAttNo() %>" />
-							<label for="delFile">기존파일삭제</label>
+                       
 							
                             <label for="upFile">첨부파일</label>
 								<label class="btn btn-primary btn-file">
