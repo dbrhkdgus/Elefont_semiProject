@@ -15,7 +15,7 @@ Member member = (Member) request.getAttribute("member");
 	<input type="hidden" name="memberEmail" />
 </form>
 
-<form action="<%=request.getContextPath()%>/member/editProfilePhoto" name="profilephotosend">
+<form action="<%=request.getContextPath()%>/member/editProfilePhoto" name="profilephotosendFrm">
 	<input type="hidden" name="memberNo" value="<%=loginMember.getMemberNo()%>"/>
 </form>
 
@@ -232,6 +232,9 @@ $(EditProfilePhoto).click(() =>{
 	const title = "Upload an image for the profile photo"
 	const spec = "left=500px, top= 200px, width=500px, height = 450px";
 	const popup = open ("",title,spec)
+	
+	const $frm = $(document.profilephotosendFrm);
+	$frm.attr("target", title).submit();
 })
 
 </script>
