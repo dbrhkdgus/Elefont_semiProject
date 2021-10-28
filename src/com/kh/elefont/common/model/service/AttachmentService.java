@@ -4,10 +4,7 @@ import static com.kh.elefont.common.JdbcTemplate.close;
 import static com.kh.elefont.common.JdbcTemplate.commit;
 import static com.kh.elefont.common.JdbcTemplate.getConnection;
 import static com.kh.elefont.common.JdbcTemplate.rollback;
-import static com.kh.mvc.common.JdbcTemplate.close;
-import static com.kh.mvc.common.JdbcTemplate.commit;
-import static com.kh.mvc.common.JdbcTemplate.getConnection;
-import static com.kh.mvc.common.JdbcTemplate.rollback;
+
 
 import java.sql.Connection;
 import java.util.ArrayList;
