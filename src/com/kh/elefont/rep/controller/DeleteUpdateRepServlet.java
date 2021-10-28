@@ -7,6 +7,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.kh.elefont.rep.model.service.RepService;
 
@@ -34,10 +35,16 @@ public class DeleteUpdateRepServlet extends HttpServlet {
 		// 업무로직
 		int result = 0;
 		switch(type) {
-		case "update" : result = repService.updateRep(repNo); break;
+		case "update" : String updateRepContent = request.getParameter("update_rep_content"); result = repService.updateRep(repNo, updateRepContent); break;
 		case "delete" : result = repService.deleteRep(repNo); break;
  		}
 		
+		if(result < 0) {
+			
+			String msg = "실패!";
+			HttpSession session = request.getSession();
+			session.setAttribute("msg", msg);
+		}
 		
 		String location = request.getHeader("Referer"); 
 		response.sendRedirect(location);

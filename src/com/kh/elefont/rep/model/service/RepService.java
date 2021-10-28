@@ -51,9 +51,20 @@ public class RepService {
 		
 	}
 
-	public int updateRep(String repNo) {
-		// TODO Auto-generated method stub
-		return 0;
+	public int updateRep(String repNo, String updateRepContent) {
+		Connection conn = getConnection();
+		int result = 0;
+		
+		try {
+			result = repDao.updateRep(conn, repNo, updateRepContent);			
+		
+			commit(conn);
+		}catch(Exception e) {
+			e.printStackTrace();
+			rollback(conn);
+		}
+		close(conn);
+		return result;
 	}
 
 	public int deleteRep(String repNo) {
