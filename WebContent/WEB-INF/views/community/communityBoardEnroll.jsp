@@ -67,8 +67,9 @@
                            
                             
                             <label for="upFile">첨부파일</label>
-                                <input type="file" name="upFile" id="file">
-                           
+                                <label class="btn btn-primary btn-file">
+                            	  파일등록 <input type="file"  name="upFile" style="display: none;">
+								    </label>
                       
                             <label for="content">내용</label>
                             <textarea rows="15" cols="114" name="content" style="resize: none;"></textarea>

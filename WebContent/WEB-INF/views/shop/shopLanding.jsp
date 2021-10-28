@@ -132,14 +132,31 @@ $(".font-style").css("color", $(color).val());
 <%
 	}
 %>
-
+		$target = $(e.target);
+		$fontNo = $target.data("fontNo");
+		
 		$.ajax({
 			url: "<%=request.getContextPath()%>/font/fontLike",
 			dataType: "json",
 			type:"GET",
-			data: "fontNo ="+ $(e.target).data("fontNo"),
+			data: {'fontNo' : $fontNo},
 			success(data){
 				console.log(data, typeof data);
+				console.log(data["likeValid"]);
+				const likeValid = data["likeValid"];
+				const likeCnt = data["likeCnt"];
+				//member 본인의 likeValid가 1이라면 속이 찬 하트, 0이면 속이 빈 하트
+				if(likeValid == 1){
+					$target
+						.removeClass("far")
+						.addClass("fas");
+				}else{
+					$target
+						.removeClass("fas")
+						.addClass("far");
+				}
+				//likeCnt값 적용
+				$target.html(`<span>\${likeCnt}<span>`);
 			},
 			error: console.log
 		});

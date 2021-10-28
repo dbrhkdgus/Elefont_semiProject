@@ -86,12 +86,12 @@ Member member = (Member) request.getAttribute("member");
 								<table id="editInfo2">
 									<tr>
 										<th>성별</th>
-										<td><input type="radio" id="male" name="editGender"
-											value="male"
-											<%=MemberService.GENDER_MALE.equals(member.getMemberGender()) ? "checked" : "disabled"%>>
+										<td><input type="radio" id="male" name="eidtGender"
+											value="M"
+											<%=MemberService.GENDER_MALE.equals(member.getMemberGender()) ? "checked" : ""%>>
 											<label for="male">남성</label> <input type="radio" id="female"
-											name="eidtGender" value="female"
-											<%=MemberService.GENDER_FEMALE.equals(member.getMemberGender()) ? "checked" : "disabled"%>>
+											name="eidtGender" value="F"
+											<%=MemberService.GENDER_FEMALE.equals(member.getMemberGender()) ? "checked" : ""%>>
 											<label for="female">여성</label></td>
 									</tr>
 									<tr>

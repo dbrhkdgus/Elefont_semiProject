@@ -45,6 +45,7 @@ public class MemberInfoEditServlet extends HttpServlet {
 		String memberId = request.getParameter("editId");
 		String pwd = ElefontUtils.getEncryptedPassword(request.getParameter("editPwd"));
 		String name = request.getParameter("editName");
+		String gender = request.getParameter("eidtGender");
 		String email = request.getParameter("editEmailk");
 		String _birthday = request.getParameter("editBirthday");
 		String phone = request.getParameter("editPhone");
@@ -57,12 +58,13 @@ public class MemberInfoEditServlet extends HttpServlet {
 		System.out.println("멤버아이디 잘 받았니?" + memberId);
 		System.out.println("멤버비번 잘 받았니?" +  pwd);
 		System.out.println("멤버이름 잘 받았니?" +  name);
+		System.out.println("멤버성별 잘 받았니?" + gender);
 		System.out.println("멤버이메일 잘 받았니?" +  email);
 		System.out.println("멤버생일 잘 받았니?" +  birthday );
 		System.out.println("멤버연락처 잘 받았니?" +  phone );
 		System.out.println("멤버직업 잘 받았니?" +  job );
 		
-		Member member = new Member (null,memberId,pwd,name,null,email,phone,birthday,job,null,null,null,null,null);
+		Member member = new Member (null,memberId,pwd,name,gender,email,phone,birthday,job,null,null,null,null,null);
 		
 		int result = memberService.updateMemberInfo(member);
 		String msg =(result>0)?"회원정보수정이 완료되었습니다.":"회원정보 수정에 실패하였습니다";
