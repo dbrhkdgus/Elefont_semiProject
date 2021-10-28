@@ -73,7 +73,7 @@ for(Attachment att : attachmentList){
         </div>
         </div>
 </section>
-<form action="<%= request.getContextPath() %>/community/communityDelete" name="deleteBoardFrm">
+<form action="<%= request.getContextPath() %>/community/communityUpdate" name="updateCommunityFrm">
 	<input type="hidden" name="no" value="<%= community.getCommNo() %>" />
 </form>
 <script>
