@@ -225,7 +225,7 @@ function checkEmailDuplicate() {
 
 $(EditProfilePhoto).click(() =>{
 	const title = "Upload an image for the profile photo"
-	const spec = "left=500px, top= 200px, width=400px, height = 450px";
+	const spec = "left=500px, top= 200px, width=500px, height = 450px";
 	const popup = open ("<%=request.getContextPath()%>/member/editProfilePhoto",title,spec)
 })
 
