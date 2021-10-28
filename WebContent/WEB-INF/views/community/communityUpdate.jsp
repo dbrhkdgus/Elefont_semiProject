@@ -51,8 +51,8 @@
                     <h1>커뮤니티 게시글 수정</h1>
                     <div class="commenroll">
                     <form
-                        name="boardEnrollFrm"
-                        action="<%=request.getContextPath() %>/community/boardEnroll" 
+                        name="boardUpdateFrm"
+                        action="<%=request.getContextPath() %>/community/communityUpdate" 
                         method="post"
                         enctype="multipart/form-data" 
                         >
