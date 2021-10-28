@@ -52,8 +52,16 @@ if(loginMember!=null){
                                 <input type="submit" value="등록"/>
                             </form>
 <%	
-}
+} else{
+	for(Rep rep : repList){
+		if(rep.getRepLevel()==1){
+			
 
+%>
+<div class="reply-box"><img src="https://cdn1.vectorstock.com/i/1000x1000/10/05/user-icon-vector-22391005.jpg"  id="user-profile"><span><%=rep.getRepWriter()%> : <%=rep.getRepContent()%></span></div>
+<%
+		}
+}
 for(Rep rep : repList){
 	if(rep.getRepLevel()==1){
 		
@@ -97,17 +105,8 @@ for(Rep rep : repList){
 
 
 <%
-	} else{
-%>
-
-
-<!-- 대댓글이 뿌려져야댐!!!!!!! -->
- <div class="reply-box"><img src="https://cdn1.vectorstock.com/i/1000x1000/10/05/user-icon-vector-22391005.jpg"  id="user-profile"><span><%=rep.getRepWriter()%> : <%=rep.getRepContent()%></span>
-</div>
-
-
-<% 		
 	}
+
 	
 }
 %>
