@@ -25,6 +25,12 @@ public class DeleteUpdateRepServlet extends HttpServlet {
 		String type = request.getParameter("type");
 		String repNo = request.getParameter("rep_no");
 		
+		
+		System.out.println("---------------------------------------");
+		System.out.println("type@servlet : " + type);
+		System.out.println("repNo@servlet : " + repNo);
+		
+		System.out.println("---------------------------------------");
 		// 업무로직
 		int result = 0;
 		switch(type) {
