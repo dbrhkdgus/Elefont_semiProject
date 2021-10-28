@@ -86,23 +86,26 @@ Member member = (Member) request.getAttribute("member");
 								<table id="editInfo2">
 									<tr>
 										<th>성별</th>
-										<td><input type="radio" id="male" name="editGender"
-											value="male"
-											<%=MemberService.GENDER_MALE.equals(member.getMemberGender()) ? "checked" : "disabled"%>>
+										<td><input type="radio" id="male" name="eidtGender"
+											value="M"
+											<%=MemberService.GENDER_MALE.equals(member.getMemberGender()) ? "checked" : ""%>>
 											<label for="male">남성</label> <input type="radio" id="female"
-											name="eidtGender" value="female"
-											<%=MemberService.GENDER_FEMALE.equals(member.getMemberGender()) ? "checked" : "disabled"%>>
+											name="eidtGender" value="F"
+											<%=MemberService.GENDER_FEMALE.equals(member.getMemberGender()) ? "checked" : ""%>>
 											<label for="female">여성</label></td>
 									</tr>
 									<tr>
 										<th>이메일&nbsp;</th>
-										<td><input type="email" class="_email" 
+										<td><input type="email" class="_email" id="editEmailk"
 											value="<%=member.getMemberEmail()%>" name="editEmailk" >
 											<input id="emailDoubleCheck" type="button" value="중복검사"
 											onclick ="checkEmailDuplicate();"/>
-											<input type="hidden" class="emailValid" value="0"/>
+											<input type="hidden" class="emailValid" value="1"/>
 											<script>
-											//console.log(`회원정보수정 value 값\${$(#emailDoubleCheck.children().val())}`)
+											$(editEmailk).change((e) => {
+												console.log("이 칸을 건들였다아")
+												$(".emailValid").val(0);
+											});
 											</script>
 											</td>
 									</tr>
