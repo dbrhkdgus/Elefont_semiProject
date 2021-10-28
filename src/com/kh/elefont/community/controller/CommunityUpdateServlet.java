@@ -47,6 +47,7 @@ public class CommunityUpdateServlet extends HttpServlet {
 		String fontNo = community.getFontNo();
 		Font font = fontService.selectOneFontByFontNo(fontNo);
 		Attachment attachment = attachmentService.selectOneAttachment(commNo);
+	
 		
 		// 3.view단 위임
 		request.setAttribute("attachment", attachment);

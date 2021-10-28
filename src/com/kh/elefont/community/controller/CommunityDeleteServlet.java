@@ -30,7 +30,7 @@ public class CommunityDeleteServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//1.사용자 입력값
 		String commNo = request.getParameter("no");
-		System.out.println("commNo@servlet" + commNo);
+		System.out.println("commNo@servlet+delete" + commNo);
 		//2.업무로직
 		Community community = communityService.selectOneCommunity(commNo);
 		Attachment attachment = attachmentService.selectOneAttachment(commNo);
