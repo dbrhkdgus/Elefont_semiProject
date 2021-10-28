@@ -65,9 +65,10 @@ for(Rep rep : repList){
  
    								<form action="<%= request.getContextPath() %>/rep/DeleteUpdateRep" method="POST" name="DeleteUpdateRepFrm">
 								<div class="reply-outer-box">
-                                <div class="reply-box">
-                                	<img src="https://cdn1.vectorstock.com/i/1000x1000/10/05/user-icon-vector-22391005.jpg"  id="user-profile">
+	                                <div class="reply-box">
+	                                	<img src="https://cdn1.vectorstock.com/i/1000x1000/10/05/user-icon-vector-22391005.jpg"  id="user-profile">
                                 		<span><%=rep.getRepWriter()%> : <%=rep.getRepContent()%></span>
+<<<<<<< HEAD
                                 </div> 
                                 <i class="fab fa-replyd" style="font-size:35px; color: #005A3C; "></i>
 <%
@@ -92,6 +93,12 @@ for(Rep rep : repList){
                                 	});
                                 </script>
 <% } %>
+=======
+	                                </div> 
+	                                <i class="fab fa-replyd" style="font-size:35px; color: #005A3C; "></i>
+	                                <input type="button" value="수정" id="btn-rep-update"/>
+	                                <input type="button" value="삭제" id="btn-rep-delete"/>
+>>>>>>> branch 'master' of https://github.com/dbrhkdgus/Elefont_semiProject.git
                                 </div>
    								</form>
 <%
