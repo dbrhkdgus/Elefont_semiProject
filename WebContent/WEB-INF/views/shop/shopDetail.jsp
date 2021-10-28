@@ -100,13 +100,11 @@ for(Rep rep : repList){
                             <script>
                         	
                       		  $(document.reReplyFrm).hide();
-                      		  console.log($(".fa-replyd"));
-                      		  $(".fa-replyd").click((e) =>{
-                      			 console.log(e.target);
-                      			 $(e.target).parent().next().slideToggle(500);
-                      			 
-                      		  });
-                     
+                      		 $('.fa-replyd').off('click').on('click', (e)=>
+                             {
+                               console.log("click");
+                               $(e.target).parent().next().slideToggle(500);                                 
+                             });
 
                            /*  $(document.reReplyFrm).hide();
                             $('#btn-re-icon').click((e)=>{
