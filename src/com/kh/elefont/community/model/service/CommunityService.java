@@ -4,6 +4,10 @@ import static com.kh.elefont.common.JdbcTemplate.close;
 import static com.kh.elefont.common.JdbcTemplate.commit;
 import static com.kh.elefont.common.JdbcTemplate.getConnection;
 import static com.kh.elefont.common.JdbcTemplate.rollback;
+import static com.kh.mvc.common.JdbcTemplate.close;
+import static com.kh.mvc.common.JdbcTemplate.commit;
+import static com.kh.mvc.common.JdbcTemplate.getConnection;
+import static com.kh.mvc.common.JdbcTemplate.rollback;
 
 import java.sql.Connection;
 import java.util.ArrayList;
@@ -12,6 +16,7 @@ import java.util.List;
 import com.kh.elefont.community.model.dao.CommunityDao;
 import com.kh.elefont.community.model.vo.Community;
 import com.kh.elefont.member.model.vo.Member;
+import com.kh.mvc.board.model.vo.Attachment;
 
 
 public class CommunityService {
@@ -145,21 +150,30 @@ public class CommunityService {
         return result;
     }
 
-	public int communityUpdate(Community community) {
-		 Connection conn = getConnection();
-	        int result = 0;
-	        
-	        try {
-	        	result = communityDao.communityUpdate(conn, community);
-	            
-	            commit(conn);
-	        }catch(Exception e) {
-	            rollback(conn);
-	            throw e;
-	        }finally {
-	            close(conn);
-	        }
-	        return result;
+
+	public int updateCommunity(Community community) {
+		System.out.println("community:updateservice@ :" + community);
+		Connection conn = getConnection();
+		int result = 0;
+		try {
+			// 1.게시글 수정 update board문
+			result = communityDao.updateCommunity(conn, community);
+			
+			// 2.첨부파일이 있는 경우, insert into attachment문 실행
+//			Attachment attach = board.getAttach();
+//			if(attach != null) {
+//				result = boardDao.insertAttachment(conn, attach);
+//			}
+			
+			commit(conn);
+		} catch (Exception e) {
+			rollback(conn);
+			throw e;
+		} finally {
+			close(conn);
+		}
+		
+		return result;
 	}
 
 

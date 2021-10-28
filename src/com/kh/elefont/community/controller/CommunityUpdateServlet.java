@@ -18,7 +18,6 @@ import com.kh.elefont.community.model.service.CommunityService;
 import com.kh.elefont.community.model.vo.Community;
 import com.kh.elefont.font.model.service.FontService;
 import com.kh.elefont.font.model.vo.Font;
-import com.kh.elefont.member.model.service.MemberService;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.FileRenamePolicy;
 
@@ -28,6 +27,7 @@ import com.oreilly.servlet.multipart.FileRenamePolicy;
 @WebServlet("/community/communityUpdate")
 public class CommunityUpdateServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	
 	private CommunityService communityService = new CommunityService();
 	private AttachmentService attachmentService = new AttachmentService();
 	private FontService fontService = new FontService();
@@ -39,7 +39,8 @@ public class CommunityUpdateServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		/// 1.사용자입력값 처리
-		String commNo = request.getParameter("commNo");
+		String commNo = request.getParameter("no");
+
 
 		// 2.업무로직 
 		Community community = communityService.selectOneCommunity(commNo);
@@ -61,86 +62,68 @@ public class CommunityUpdateServlet extends HttpServlet {
 	 * db update 요청!
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// 1. 인코딩
-		String commNo = request.getParameter("commNo");
-		System.out.println("5656565656565"+commNo);
-		
-				// b. 파일저장경로
-						// ServletContext객체로부터  /WebContent/upload/board 절대경로 참조
-						ServletContext application = getServletContext(); 
-						String saveDirectory = application.getRealPath("/upload/community");
+		// 0. MultipartRequest 객체
+		System.out.println("커뮤니티수정doPost서블릿들어옴");
+			String saveDirectory = getServletContext().getRealPath("/upload/community");
+			int maxPostSize = 1024 * 1024 * 10; 
+			String encoding = "utf-8";
+			FileRenamePolicy policy = new ElefontFileRenamePolicy();
+			MultipartRequest multipartRequest = new MultipartRequest(request, saveDirectory, maxPostSize, encoding, policy);
+			
+			// 1. 사용자입력
+			String commNo = multipartRequest.getParameter("no");
+			String title = multipartRequest.getParameter("title");
+			String writer = multipartRequest.getParameter("writer");
+			String content = multipartRequest.getParameter("content");
+			String font = multipartRequest.getParameter("font");
 						
-						
-						// c.최대파일용량 10mb = 1kb * 1000 * 10
-						int maxPostSize = 1024 * 1024 * 10;
-						
-						// d.인코딩
-						String encoding = "utf-8";
-						
-						// e.파일명 재지정 정책 객체
-						FileRenamePolicy policy = new ElefontFileRenamePolicy();
-						
-						MultipartRequest multipartRequest = 
-								new MultipartRequest(
-										request, 
-										saveDirectory, 
-										maxPostSize, 
-										encoding, 
-										policy
-									);
-						
-						// 파일정보 가져오기
-						String originalFilename = multipartRequest.getOriginalFileName("upFile");
-						String renamedFilename = multipartRequest.getFilesystemName("upFile");
-				
-				
-				
-				// 2. 입력값 처리
-				String title = multipartRequest.getParameter("title");
-				String writer = multipartRequest.getParameter("writer");
-				String content = multipartRequest.getParameter("content");
-				String font = multipartRequest.getParameter("font");
-				
-				Community community = new Community();
-				FontService fontService = new FontService();
-				
-				community.setFontNo(fontService.selectFontNoByFontName(font));
-				community.setCommTitle(title);
-				community.setCommWriter(writer);
-				community.setCommContent(content);
-				
-//				System.out.println("community@servlet : " + community);
-				
-				
-				
-				// 3. 업무로직
-				int result = communityService.communityUpdate(community);
-				
-				
-//				if(multipartRequest.getFile("upFile") != null) {
-//					Attachment attach = new Attachment();
-//					attach.setOriginalFilename(originalFilename);
-//					attach.setRenamedFilename(renamedFilename);
-//					MemberService memberService = new MemberService();
-//					System.out.println(memberService.selectMemberNoByMemberName(writer));
-//					attach.setMemberNo(memberService.selectMemberNoByMemberName(writer));
-//					System.out.println(communityService.selectLastCommNo());
-//					attach.setCommNo(communityService.selectLastCommNo());
-//					// attachment insert sql
-//					AttachmentService attachmentService = new AttachmentService();
-//					result = attachmentService.insertAttachment(attach);
-//					
-//					
-//					community.setAttach(attach);
-//				}
-				
-				String msg = result > 0 ? "게시물 등록 성공" : "게시물 등록 실패";
-				
-				HttpSession session = request.getSession();
-				session.setAttribute("msg", msg);
-				response.sendRedirect(request.getContextPath()+"/community");
-				
-			}
+			Community community = new Community();
+			
+			community.setCommNo(commNo);
+			community.setCommTitle(title);
+			community.setCommWriter(writer);
+			community.setCommContent(content);
+			
+			FontService fontService = new FontService();
+			community.setFontNo(fontService.selectFontNoByFontName(font));
+			
+			System.out.println(community);
+			// 첨부파일
+//			File f = multipartRequest.getFile("upFile");
+//			if(f != null) {
+//				Attachment attach = new Attachment();
+//				attach.setBoardNo(no); 
+//				attach.setOriginalFilename(multipartRequest.getOriginalFileName("upFile"));
+//				attach.setRenamedFilename(multipartRequest.getFilesystemName("upFile"));
+//				board.setAttach(attach);
+//			}
+			
+//			System.out.println("board@servlet = " + board);
+//			
+//			// 2. 업무로직 
+			int result = 0;
+//			// 기존파일 삭제 (서버컴퓨터 파일 삭제 + db 레코드삭제)
+//			String delFile = multipartRequest.getParameter("delFile");
+//			if(delFile != null) {
+//				int attachNo = Integer.parseInt(delFile);
+//				Attachment attach = boardService.selectOneAttachment(attachNo);
+//				// 서버컴퓨터 파일 삭제
+//				File _delFile = new File(saveDirectory, attach.getRenamedFilename());
+//				_delFile.delete();
+//				// db 레코드삭제
+//				result = boardService.deleteAttachment(attachNo);
+//				System.out.println(result > 0 ? "첨부파일 삭제 성공!" : "첨부파일 삭제 실패!");
+//			}
+			
+			// 게시물 수정 + 첨부파일 등록
+			result = communityService.updateCommunity(community);
+			String msg = result > 0 ? "게시물 수정 성공!" : "게시물 수정 실패!";
+			
+			// 3. redirect
+			request.getSession().setAttribute("msg", msg);
+			String location = request.getContextPath() + "/community/pictureDetail?commNo=" + commNo;
+			response.sendRedirect(location);
+	}
 
 
 }
