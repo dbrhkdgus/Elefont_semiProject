@@ -15,6 +15,11 @@ Member member = (Member) request.getAttribute("member");
 	<input type="hidden" name="memberEmail" />
 </form>
 
+<form action="<%=request.getContextPath()%>/member/editProfilePhoto" name="profilephotosend">
+	<input type="hidden" name="memberNo" value="<%=loginMember.getMemberNo()%>"/>
+</form>
+
+
 	<form name="withdrawalFrm" method="post"
 		action="<%=request.getContextPath()%>/member/withdrawal">
 		<input type="hidden" name="memberId" value="<%=member.getMemberId()%>" />
@@ -226,7 +231,7 @@ function checkEmailDuplicate() {
 $(EditProfilePhoto).click(() =>{
 	const title = "Upload an image for the profile photo"
 	const spec = "left=500px, top= 200px, width=500px, height = 450px";
-	const popup = open ("<%=request.getContextPath()%>/member/editProfilePhoto",title,spec)
+	const popup = open ("",title,spec)
 })
 
 </script>

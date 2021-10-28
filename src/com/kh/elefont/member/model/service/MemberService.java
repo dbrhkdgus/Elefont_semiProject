@@ -4,6 +4,7 @@ import static com.kh.elefont.common.JdbcTemplate.*;
 import java.sql.Connection;
 import java.util.List;
 
+import com.kh.elefont.common.model.vo.Attachment;
 import com.kh.elefont.member.model.dao.MemberDao;
 import com.kh.elefont.member.model.vo.Member;
 
@@ -102,6 +103,11 @@ public class MemberService {
 			close(conn);
 		}
 		return result;
+	}
+
+	public int insertProfilePhoto(Attachment attach) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 }
