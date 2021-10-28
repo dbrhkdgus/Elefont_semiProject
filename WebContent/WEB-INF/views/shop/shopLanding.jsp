@@ -122,6 +122,7 @@ $(".font-style").css("color", $(color).val());
 	});
 	
 	/* 좋아요 버튼 클릭시 사용자 좋아요 여부에 따른 버튼 이벤트 */
+
  	$(".fa-heart").click((e)=>{
 <%
 	if(loginMember == null){
@@ -131,6 +132,7 @@ $(".font-style").css("color", $(color).val());
 <%
 	}
 %>
+
 		$.ajax({
 			url: "<%=request.getContextPath()%>/font/fontLike",
 			dataType: "json",
