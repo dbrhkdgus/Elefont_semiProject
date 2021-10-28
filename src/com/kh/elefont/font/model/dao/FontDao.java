@@ -571,6 +571,35 @@ public class FontDao {
 		return likeList;
 	}
 
+	public List<Font> selectAllLikedFontByMemberNo(Connection conn, String memberNo) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		List<Font> fontLikeList = new ArrayList<>();
+		String sql = prop.getProperty("selectAllLikedFont");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, memberNo);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				Font font = new Font();
+				font.setFontNo(rset.getString("font_no"));
+				font.setFontName(rset.getString("font_name"));
+				font.setFontUrl(rset.getString("font_url"));
+				
+				fontLikeList.add(font);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return fontLikeList;
+	}
+
 	
 
 }
