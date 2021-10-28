@@ -1,8 +1,8 @@
 package com.kh.elefont.member.controller;
 
+import java.io.File;
 import java.io.IOException;
 
-import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -10,7 +10,6 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.kh.elefont.common.ElefontFileRenamePolicy;
-import com.kh.elefont.common.model.vo.Attachment;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.FileRenamePolicy;
 
@@ -60,9 +59,9 @@ public class profileFileUploadServlet extends HttpServlet {
 		//1.사용자 입력값 
 		String memberNo = multipartRequest.getParameter("memberNo");
 		System.out.println("프로필사진 업로드를 위한 memberNo을 잘 받았나요? : " + memberNo);
-		
-		String originalFilename = multipartRequest.getParameter("profileimage");
-		String renamedFilename = multipartRequest.getFilesystemName("profileimage");
+	
+		//파일 처리
+		File f = mulipartRequest.getFile("upFile");
 		
 		
 		
