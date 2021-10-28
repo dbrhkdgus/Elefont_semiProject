@@ -53,8 +53,10 @@ if(loginMember!=null){
                             </form>
 <%	
 } 
+	int repno = 0;
 			
 for(Rep rep : repList){
+		repno = rep.getRepNo();
 	if(rep.getRepLevel()==1){
 %>
 
@@ -69,7 +71,18 @@ for(Rep rep : repList){
                                 <i class="fab fa-replyd" style="font-size:35px; color: #005A3C; "></i>
                                 </div>
 <%
-if(loginMember!=null){
+	}
+	if(rep.getRepLevel()==2 && repno == rep.getRepRef()){
+	
+%>                                
+                                 <div class="re-reply-box">
+                                	<img src="https://cdn1.vectorstock.com/i/1000x1000/10/05/user-icon-vector-22391005.jpg"  id="user-profile">
+                                		<span><%=rep.getRepWriter()%> : <%=rep.getRepContent()%></span>
+                                </div> 
+<%
+	}
+	
+	if(loginMember!=null){
 %>       
                                 <form action="<%=request.getContextPath()%>/rep/ShopRepEnroll"  name="reReplyFrm"class="re-rep-inputbox" method="POST" >                         
                                 <input type="text" class ="detail-inputbox" id="re-rep-detail-inputbox"  name="reply-input" placeholder="댓글을 입력하세요" >
@@ -106,7 +119,6 @@ if(loginMember!=null){
 	}
 
 	
-}
 %>
 
 
