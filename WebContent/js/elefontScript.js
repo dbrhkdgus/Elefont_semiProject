@@ -60,6 +60,7 @@ $(window).on('load', function() {
 	* 중복검사 이후 아이디를 수정하는 경우.
 	*/
 	$("._email").change((e) => {
+		console.log("이 칸을 건들였다아")
 		$(".emailValid").val(0);
 	});
 	

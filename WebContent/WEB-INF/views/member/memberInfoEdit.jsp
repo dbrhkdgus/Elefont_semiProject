@@ -96,13 +96,16 @@ Member member = (Member) request.getAttribute("member");
 									</tr>
 									<tr>
 										<th>이메일&nbsp;</th>
-										<td><input type="email" class="_email" 
+										<td><input type="email" class="_email" id="editEmailk"
 											value="<%=member.getMemberEmail()%>" name="editEmailk" >
 											<input id="emailDoubleCheck" type="button" value="중복검사"
 											onclick ="checkEmailDuplicate();"/>
-											<input type="hidden" class="emailValid" value="0"/>
+											<input type="hidden" class="emailValid" value="1"/>
 											<script>
-											//console.log(`회원정보수정 value 값\${$(#emailDoubleCheck.children().val())}`)
+											$(editEmailk).change((e) => {
+												console.log("이 칸을 건들였다아")
+												$(".emailValid").val(0);
+											});
 											</script>
 											</td>
 									</tr>
