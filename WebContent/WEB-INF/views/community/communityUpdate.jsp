@@ -75,11 +75,13 @@
                            
                             
                             <label for="upFile">첨부파일</label>
-                                <input type="file" name="upFile" id="file">
-                            	<span id="fname"><%= attachment.getOriginalFilename() %></span>
-                            	<img id="comm-user-attach-img" src="<%= request.getContextPath()%>/upload/community/<%=attachment.getRenamedFilename()%>" alt="">
-                           
-                      
+                            
+								<label class="btn btn-primary btn-file">
+                            	  파일변경 <input type="file"  name="upFile" style="display: none;">
+								    </label>
+                            	 <span id="originalFname"><%= attachment.getOriginalFilename() %></span>	
+                                     <img id="orginalAttachment" src="<%= request.getContextPath()%>/upload/community/<%=attachment.getRenamedFilename()%>" alt="">
+								 <span id="changedFname"></span>
                             <label for="content">내용</label>
                             <textarea rows="15" cols="114" name="content" style="resize: none;"><%= community.getCommContent() %></textarea>
                        
@@ -100,17 +102,16 @@ $("[name=upFile]").change((e) => {
 	console.log($file.val());
 	if($file.val() != ""){
 		// 파일선택한 경우
-		$(fname).hide();
-		$(delFile)
-			.prop("checked", true)
+		$(originalFname).hide();
+		$(orginalAttachment)
 			.hide()
 			.next()
 			.hide();
 	}
 	else {
 		// 파일선택을 취소한 경우
-		$(fname).show();
-		$(delFile)
+		$(originalFname).show();
+		$(orginalAttachment)
 			.show()
 			.next()
 			.show();

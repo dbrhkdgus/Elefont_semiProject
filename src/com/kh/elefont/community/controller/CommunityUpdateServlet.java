@@ -41,6 +41,7 @@ public class CommunityUpdateServlet extends HttpServlet {
 		Attachment attachment = attachmentService.selectOneAttachment(commNo);
 		
 		// 3.view단 위임
+		request.setAttribute("attachment", attachment);
 		request.setAttribute("community", community);
 		request.setAttribute("font", font);
 		request.setAttribute("attachment", attachment);
