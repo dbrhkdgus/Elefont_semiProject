@@ -54,7 +54,7 @@ span#duplicate {
 	};
 	$(againDuplicate).click((e)=>{
 		$email = $("#memberEmailtwo");
-		if(/^[\w]S{4,}@[\w]+(.[\w]+){1,3}$/.test($email.val()) == false){
+		if(/^[\w]{4,}@[\w]+(.[\w]+){1,3}$/.test($email.val()) == false){
 			alert("이메일 형식에 어긋납니다");
 			return false;
 		}else{

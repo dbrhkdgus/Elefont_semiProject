@@ -1,18 +1,18 @@
 package com.kh.elefont.community.controller;
 
-import java.io.File;
 import java.io.IOException;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
-import com.kh.mvc.board.model.vo.Attachment;
-import com.kh.mvc.board.model.vo.Board;
-import com.kh.mvc.common.MvcFileRenamePolicy;
-import com.oreilly.servlet.MultipartRequest;
-import com.oreilly.servlet.multipart.FileRenamePolicy;
+import com.kh.elefont.common.model.service.AttachmentService;
+import com.kh.elefont.community.model.service.CommunityService;
+import com.kh.elefont.community.model.vo.Community;
+import com.kh.elefont.font.model.service.FontService;
+import com.kh.elefont.font.model.vo.Font;
 
 /**
  * Servlet implementation class CommunityUpdateServlet
@@ -20,20 +20,28 @@ import com.oreilly.servlet.multipart.FileRenamePolicy;
 @WebServlet("/community/communityUpdate")
 public class CommunityUpdateServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
+	private CommunityService communityService = new CommunityService();
+	private AttachmentService attachmentService = new AttachmentService();
+	private FontService fontService = new FontService();
 
 	/**
-	 * update form 페이지 요청!
+	 * update form 페이지 요청! 
+	 * 
+	 * 값이 2개 존재하고있음!
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		/// 1.사용자입력값 처리
-		String commNo = request.getParameter("commNo");
+		String commNo = request.getParameter("no");
 		
-		// 2.업무로직 -> 디비갔다오는 업무 -> 우리 손에 결과물이 있어 community  라는 값이 있어
-		Community community = communityService.selectOneBoard(no);
-//		System.out.println("board@servlet = " + board);
+		// 2.업무로직 
+		Community community = communityService.selectOneCommunity(commNo);
+		String fontNo = community.getFontNo();
+		Font font = fontService.selectOneFontByFontNo(fontNo);
+		System.out.println("community@servlet = " + community);
 		
 		// 3.view단 위임
-//		request.setAttribute("board", board);
+		request.setAttribute("community", community);
+		request.setAttribute("font", font);
 		request
 			.getRequestDispatcher("/WEB-INF/views/community/communityUpdate.jsp")
 			.forward(request, response);
