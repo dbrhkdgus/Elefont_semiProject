@@ -52,12 +52,12 @@ if(loginMember!=null){
                                 <input type="submit" value="등록"/>
                             </form>
 <%	
-} 
-	int repno = 0;
-			
+}
 for(Rep rep : repList){
-		repno = rep.getRepNo();
+	int repNo = 0;
 	if(rep.getRepLevel()==1){
+		repNo = rep.getRepNo();
+		
 %>
 
  
@@ -71,15 +71,16 @@ for(Rep rep : repList){
                                 <i class="fab fa-replyd" style="font-size:35px; color: #005A3C; "></i>
                                 </div>
 <%
-	}
-	if(rep.getRepLevel()==2 && repno == rep.getRepRef()){
+	}else{
 	
 %>                                
                                  <div class="re-reply-box">
+                                 	<img src="https://i.ibb.co/chkD19T/image.png" alt="" />
                                 	<img src="https://cdn1.vectorstock.com/i/1000x1000/10/05/user-icon-vector-22391005.jpg"  id="user-profile">
                                 		<span><%=rep.getRepWriter()%> : <%=rep.getRepContent()%></span>
                                 </div> 
 <%
+		
 	}
 	
 	if(loginMember!=null){
@@ -99,11 +100,11 @@ for(Rep rep : repList){
                             <script>
                         	
                       		  $(document.reReplyFrm).hide();
-                      		  //content 클래스를 가진 div를 표시/숨김(토글)
-                      		  $('.fa-replyd').click(function(e)
-                      		  {
-                      			console.log("click");
-                      		    $(e.target).parent().next().slideToggle(500);                     		    
+                      		  console.log($(".fa-replyd"));
+                      		  $(".fa-replyd").click((e) =>{
+                      			 console.log(e.target);
+                      			 $(e.target).parent().next().slideToggle(500);
+                      			 
                       		  });
                      
 

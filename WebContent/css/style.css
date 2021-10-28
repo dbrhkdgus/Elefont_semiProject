@@ -1699,6 +1699,15 @@ text-align: center;
     width: fit-content;
 
 }
+.re-reply-box{
+	display: flex;
+	margin-left: 20px;
+	width: 380px;
+	align-items: center;
+}
+.re-reply-box img{
+	width : 30px;
+}
 /* 서치아이콘 커서 포인터 추가 */
 .fa-search-plus{
 	cursor: pointer;
