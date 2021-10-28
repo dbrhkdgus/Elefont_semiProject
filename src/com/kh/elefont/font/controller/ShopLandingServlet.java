@@ -33,9 +33,14 @@ public class ShopLandingServlet extends HttpServlet {
 		// 랜딩 시, 기존 font 테이블 전부 조회
 		List<Font> fontList = fontService.selectAllApprovedFont();
 		List<Attachment> fontAttchmentList = attachmentService.selectAllFontAttachmentList();
+		List<String> likeList = null;
 		
+		if(loginMember != null) {
+			likeList = fontService.selectAllLikedFont(loginMember.getMemberNo());
+		}
 		request.setAttribute("fontList", fontList);
 		request.setAttribute("fontAttchmentList", fontAttchmentList);
+		request.setAttribute("likeList", likeList);
 		
 		
 		request.getRequestDispatcher("/WEB-INF/views/shop/shopLanding.jsp").forward(request, response);

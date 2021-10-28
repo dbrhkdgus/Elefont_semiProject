@@ -60,6 +60,7 @@
  <%
  	List<Font> fontList = (List<Font>)request.getAttribute("fontList");
     List<Attachment> fontAttchmentList = (List<Attachment>)request.getAttribute("fontAttchmentList");
+    List<String> likeList = (List<String>) request.getAttribute("likeList");
    	//System.out.println("fontList@jsp : " + fontList);
    	//System.out.println("fontAttchmentList@jsp : " + fontAttchmentList);
     for(Font font : fontList){
@@ -71,7 +72,17 @@
                             <a href="<%= request.getContextPath()%>/shopDetail?fontNo=<%= font.getFontNo()%>"><div class="test-item-title"> <%= font.getFontName()%> </div></a>
                             <textarea name="" id="" cols="30" rows="10" class="font-style"></textarea>
                             <div class="test-item-buttons"> 
+<%
+			if(loginMember != null && !likeList.isEmpty() && likeList.contains(font.getFontNo())){
+%>
                                 <i class="fas fa-heart" data-font-no="<%=font.getFontNo()%>"><span><%=font.getFontLikeCount()%></span></i>  
+<%
+			}else{
+%>
+                                <i class="far fa-heart" data-font-no="<%=font.getFontNo()%>"><span><%=font.getFontLikeCount()%></span></i>  
+<%
+			}
+%>
                                 <i class="fas fa-search-plus"></i>
                              </div>
                         </div> 

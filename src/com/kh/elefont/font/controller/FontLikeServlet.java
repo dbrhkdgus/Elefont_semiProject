@@ -49,6 +49,7 @@ public class FontLikeServlet extends HttpServlet {
 
 		map.put("likeValid", likeValid);
 		map.put("likeCnt", likeCnt);
+		map.put("fontNo", fontNo);
 		int result = fontService.updateFontLike(map);
 		
 		//json문자열로 변환

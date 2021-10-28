@@ -513,6 +513,7 @@ public class FontDao {
 			
 			if(rset.next())
 				result = rset.getInt(1);
+				System.out.println("likeCnt@dao = " + result);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -540,6 +541,34 @@ public class FontDao {
 		}
 		
 		return result;
+	}
+
+	public List<String> selectAllLikedFont(Connection conn, String memberNo) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		List<String> likeList = new ArrayList<>();
+		String sql = prop.getProperty("selectAllLikedFont");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, memberNo);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				String fontNo = rset.getString("font_no");
+				
+				likeList.add(fontNo);
+			}
+			System.out.println(likeList);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return likeList;
 	}
 
 	
