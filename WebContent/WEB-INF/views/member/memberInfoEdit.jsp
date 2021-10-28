@@ -49,7 +49,7 @@ Member member = (Member) request.getAttribute("member");
 							가입
 						</p>
 						<div id="photoEditButton">
-							<input type="button" value="프로필 수정">
+							<input type="button" value="프로필 수정" id="EditProfilePhoto">
 						</div>
 					</div>
 					<div id="infoEditInput">
@@ -222,6 +222,12 @@ function checkEmailDuplicate() {
 		.submit();
 
 }
+
+$(EditProfilePhoto).click(() =>{
+	const title = "Upload an image for the profile photo"
+	const spec = "left=500px, top= 200px, width=400px, height = 450px";
+	const popup = open ("<%=request.getContextPath()%>/member/editProfilePhoto",title,spec)
+})
 
 </script>
 
