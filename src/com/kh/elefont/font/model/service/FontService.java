@@ -157,14 +157,17 @@ public class FontService {
 	public int selectFontLike(Map<String, Object> param) {
 		Connection conn = getConnection();
 		int result = 0;
+		int likeValid = 0; //해당 회원이 좋아요를 눌렀는지 안 눌렀는지 체크
 		try {
 			result = fontDao.selectFontLike(conn, param);
+			System.out.println("selectFontLike@service = " + result);
 			
 			if(result == 1) {
 				//좋아요 이력이 있는 경우 like_font 테이블에서 내용 삭제 후 font테이블 좋아요 카운트 감소
 				result = fontDao.deleteFontLike(conn,param);
 			}
 			else if(result == 0) {
+				likeValid = 1;
 				//좋아요 이력이 없는 경우 like_font 테이블에서 내용 추가 후 font테이블 좋아요 카운트 증가
 				result = fontDao.insertFontLike(conn,param);
 			}
@@ -176,7 +179,7 @@ public class FontService {
 		} finally {
 			close(conn);
 		}
-		return result;
+		return likeValid;
 	}
 	public int countFontLike(String fontNo) {
 		Connection conn = getConnection();
@@ -184,6 +187,22 @@ public class FontService {
 		int result = fontDao.countFontLike(conn, fontNo);
 		
 		close(conn);
+		
+		return result;
+	}
+	public int updateFontLike(Map<String, Object> map) {
+		Connection conn = getConnection();
+		int result = 0;
+		try {
+			result = fontDao.updateFontLike(conn, map);
+			commit(conn);
+		}catch(Exception e) {
+			e.printStackTrace();
+			rollback(conn);
+		}finally {
+			close(conn);
+		}
+		
 		
 		return result;
 	}

@@ -447,6 +447,7 @@ public class FontDao {
 			rset = pstmt.executeQuery();
 			if(!rset.next()) result = 0;
 			else result = 1;
+			System.out.println("selectFontLike@dao = " + result);
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -515,6 +516,25 @@ public class FontDao {
 			e.printStackTrace();
 		} finally {
 			close(rset);
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
+	public int updateFontLike(Connection conn, Map<String, Object> map) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String sql = prop.getProperty("updateFontLike");
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, (int)map.get("likeCnt"));
+			pstmt.setString(2, (String)map.get("fontNo"));
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
 			close(pstmt);
 		}
 		
