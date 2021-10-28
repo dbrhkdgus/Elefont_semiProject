@@ -87,9 +87,10 @@
                             <label for="content">내용</label>
                             <textarea rows="15" cols="114" name="content" style="resize: none;"><%= community.getCommContent() %></textarea>
                        
-                            
+                            <div class="enrollBtn">
                             <input type="submit" value="등록하기" id="submitBtn"  >
-                            <input type="button" value="취소" onclick="history.go(-1);"/>
+                            <input type="button" value="취소"  id="submitBtn" onclick="history.go(-1);"/>
+                       		 </div>
                         </form>
                     </section>
                 </div>
@@ -99,9 +100,7 @@
         </section>
         
  <script>
- //var reuploadFname = $("#originalAttachment").attr("src");
- //console.log(reuploadFname);
- 
+
  
 <% if(attachment != null) { %>
 $("[name=upFile]").change((e) => {
