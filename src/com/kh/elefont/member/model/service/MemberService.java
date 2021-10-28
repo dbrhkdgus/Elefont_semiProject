@@ -111,6 +111,26 @@ public class MemberService {
 		return 0;
 	}
 
+
+	public int insertProfileImage(Attachment attach) {
+		System.out.println("서비스단에 왔나요?");
+		Connection conn = getConnection();
+		int result = 0;
+		
+		try {
+			result = memberDao.insertProfileImage(conn, attach);
+			commit(conn);
+		}catch(Exception e){
+		rollback(conn);
+		throw e;
+		}finally {
+			close(conn);
+		}
+		
+		
+		return result;
+	}
+	
 	public List<Member> selectSearchMember(Map<String, Object> param) {
 		Connection conn = getConnection();
 		List<Member> memberList = memberDao.selectSearchMember(conn, param);
@@ -118,5 +138,4 @@ public class MemberService {
 		close(conn);
 		return memberList;
 	}
-
 }

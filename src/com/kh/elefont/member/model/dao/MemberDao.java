@@ -314,6 +314,7 @@ public class MemberDao {
 			pstmt.setString(8, member.getMemberId());
 			
 			result = pstmt.executeUpdate();
+			
 		
 		}catch(SQLException e) {
 			e.printStackTrace();
@@ -327,13 +328,41 @@ public class MemberDao {
 	}
 
 
+	public int insertProfileImage(Connection conn, Attachment attach) {
+		System.out.println("디에오단에 왔나요?");
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String sql = prop.getProperty("insertProfileImage");
+		
+		//insertProfileImage 
+		//= insert into attachment values(seq_attachment_no.nextval,?,null,?,?,default)
+		System.out.println("executeUpdate 날리기 직전 result : " + result);
+		try {
+			System.out.println(sql);
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setString(1, attach.getMemberNo());
+			pstmt.setString(2, attach.getOriginalFilename());
+			pstmt.setString(3, attach.getRenamedFilename());
+			
+			result = pstmt.executeUpdate();
+			
+			System.out.println("executeUpdate 날린 직후 result : " + result);
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		return result;
+	}
+
 	public List<Member> selectSearchMember(Connection conn, Map<String, Object> param) {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		List<Member> memberList = new ArrayList<>();
 		String sql = "";
 		String searchType = (String)param.get("searchType");
-//		String searchKeyword = (String)param.get("searchKeyword");
+	//	String searchKeyword = (String)param.get("searchKeyword");
 		
 		switch(searchType) {
 		case "id" : 
