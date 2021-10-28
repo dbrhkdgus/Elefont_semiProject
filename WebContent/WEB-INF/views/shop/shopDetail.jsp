@@ -72,7 +72,7 @@ for(Rep rep : repList){
                                 </div> 
                                 <i class="fab fa-replyd" style="font-size:35px; color: #005A3C; "></i>
 <%
-	if(loginMember.getMemberNo().equals(rep.getMemberNo()) || "A".equals(loginMember.getMemberRole())){
+	if(loginMember != null &&(loginMember.getMemberNo().equals(rep.getMemberNo()) || "A".equals(loginMember.getMemberRole()))){
 		
 	
 %>
@@ -106,7 +106,7 @@ for(Rep rep : repList){
                                 	<img src="https://cdn1.vectorstock.com/i/1000x1000/10/05/user-icon-vector-22391005.jpg"  id="user-profile">
                                 		<div class="re-reply-writer-content"><span><%=rep.getRepWriter()%> : <%=rep.getRepContent()%> </span></div>
 <%
-	if(loginMember.getMemberNo().equals(rep.getMemberNo()) || "A".equals(loginMember.getMemberRole())){
+	if(loginMember != null && (loginMember.getMemberNo().equals(rep.getMemberNo()) || "A".equals(loginMember.getMemberRole()))){
 		
 	
 %>
