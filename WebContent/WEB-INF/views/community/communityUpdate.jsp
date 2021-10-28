@@ -80,7 +80,7 @@
                             	  파일변경 <input type="file"  name="upFile" style="display: none;">
 								    </label>
                             	 <span id="originalFname"><%= attachment.getOriginalFilename() %></span>	
-                                     <img id="orginalAttachment" src="<%= request.getContextPath()%>/upload/community/<%=attachment.getRenamedFilename()%>" alt="">
+                                 <img id="orginalAttachment" src="<%= request.getContextPath()%>/upload/community/<%=attachment.getRenamedFilename()%>" alt="">
 								 <span id="changedFname"></span>
                             <label for="content">내용</label>
                             <textarea rows="15" cols="114" name="content" style="resize: none;"><%= community.getCommContent() %></textarea>
