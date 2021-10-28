@@ -117,7 +117,7 @@ public class CommunityService {
 		
 		try {
 			result = communityDao.updateCommunityViewCount(conn, commNo);
-			System.out.println("result@dao = "+result);
+//			System.out.println("result@dao = "+result);
 			commit(conn);
 		}catch(Exception e) {
 			rollback(conn);
@@ -144,5 +144,23 @@ public class CommunityService {
         }
         return result;
     }
+
+	public int communityUpdate(Community community) {
+		 Connection conn = getConnection();
+	        int result = 0;
+	        
+	        try {
+	        	result = communityDao.communityUpdate(conn, community);
+	            
+	            commit(conn);
+	        }catch(Exception e) {
+	            rollback(conn);
+	            throw e;
+	        }finally {
+	            close(conn);
+	        }
+	        return result;
+	}
+
 
 }

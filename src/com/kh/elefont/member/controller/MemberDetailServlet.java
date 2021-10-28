@@ -46,8 +46,9 @@ public class MemberDetailServlet extends HttpServlet {
 			session.setAttribute("fontList", fontList);
 		}else if("U".equals(memberRole) || "S".equals(memberRole)) {
 			List<Attachment> commAttachmentList = attachmentService.selectAllCommAttachmentListByMemberNo(loginMember.getMemberNo());
-			
+			List<Font> fontLikeList = fontService.selectAllLikedFontByMemberNo(loginMember.getMemberNo());
 			request.setAttribute("commAttachmentList", commAttachmentList);
+			request.setAttribute("fontLikeList", fontLikeList);
 		}
 		
 		// 회원의 커뮤니티 게시글 조회를 위해 전달할 것
