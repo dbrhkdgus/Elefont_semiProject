@@ -39,13 +39,16 @@ public class CommunityUpdateServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		/// 1.사용자입력값 처리
-		String commNo = request.getParameter("commNo");
+		String commNo = request.getParameter("no");
+		System.out.println("이게왠또널이뜨는거냐고~!서블릿" +commNo);
+		
 
 		// 2.업무로직 
 		Community community = communityService.selectOneCommunity(commNo);
 		String fontNo = community.getFontNo();
 		Font font = fontService.selectOneFontByFontNo(fontNo);
 		Attachment attachment = attachmentService.selectOneAttachment(commNo);
+	
 		
 		// 3.view단 위임
 		request.setAttribute("attachment", attachment);

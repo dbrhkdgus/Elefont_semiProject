@@ -11,7 +11,6 @@
 	Attachment attachment = (Attachment)request.getAttribute("attachment");
 	List<Attachment> attachmentList = (List<Attachment>)request.getAttribute("attachmentList");
 	
-	
 %>
 
 

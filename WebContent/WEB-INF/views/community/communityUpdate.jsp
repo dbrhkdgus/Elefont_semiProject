@@ -10,6 +10,7 @@
 	Community community = (Community) request.getAttribute("community");
 	Attachment attachment = (Attachment) request.getAttribute("attachment");
 	Font font = (Font) request.getAttribute("font");
+	
 %>
     <!-- Community Board Enroll start -->
 <section id="portfolio" class="portfolio section-space-padding">
@@ -41,7 +42,7 @@
                 $(document.boardEnrollFrm).submit(boardValidate);
             });
             </script>
-            
+            <input type="hidden" name="no" value="<%= community.getCommNo() %>" />
             <section id="communityEnroll" class="community-enroll-section-space-padding">
             <div class="comm_container">
         
@@ -58,10 +59,10 @@
                         >
                          
                         <div id="tbl-board-view">
-                       
+                       		
                             <label for="title">제 목   </label>   
                             <input type="text" name="title" value="<%= community.getCommTitle() %>" required></td>
-                     
+                     		
 
 							
                            <label for="writer">작성자   </label>
