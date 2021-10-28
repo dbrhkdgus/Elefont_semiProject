@@ -3,6 +3,7 @@ package com.kh.elefont.member.model.service;
 import static com.kh.elefont.common.JdbcTemplate.*;
 import java.sql.Connection;
 import java.util.List;
+import java.util.Map;
 
 import com.kh.elefont.common.model.vo.Attachment;
 import com.kh.elefont.member.model.dao.MemberDao;
@@ -110,6 +111,7 @@ public class MemberService {
 		return 0;
 	}
 
+
 	public int insertProfileImage(Attachment attach) {
 		System.out.println("서비스단에 왔나요?");
 		Connection conn = getConnection();
@@ -128,5 +130,12 @@ public class MemberService {
 		
 		return result;
 	}
-
+	
+	public List<Member> selectSearchMember(Map<String, Object> param) {
+		Connection conn = getConnection();
+		List<Member> memberList = memberDao.selectSearchMember(conn, param);
+		
+		close(conn);
+		return memberList;
+	}
 }
