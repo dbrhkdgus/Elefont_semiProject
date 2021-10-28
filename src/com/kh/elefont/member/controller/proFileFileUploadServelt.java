@@ -10,6 +10,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.kh.elefont.common.ElefontFileRenamePolicy;
+import com.kh.elefont.common.model.vo.Attachment;
+import com.kh.elefont.member.model.service.MemberService;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.FileRenamePolicy;
 
@@ -24,6 +26,8 @@ public class proFileFileUploadServelt extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		MemberService memberService  = new MemberService();
 		
 		
 		// 0. MultipartRequest 객체
@@ -40,9 +44,26 @@ public class proFileFileUploadServelt extends HttpServlet {
 		
 		File f = multipartRequest.getFile("profileimage");
 		System.out.println(f);
+		//파일 프젝 업로드 폴더에 저장된 거 확인함!
+		
+		Attachment attach = new Attachment();
+		
+		if(f != null) {
+			attach.setMemberNo(memberNo);
+			attach.setOriginalFilename(multipartRequest.getOriginalFileName("profileimage"));
+			attach.setRenamedFilename(multipartRequest.getFilesystemName("profileimage"));
+		}
+		
+		System.out.println(attach);
 		
 		
+		int result = memberService.insertProfileImage(attach);
+		System.out.println(result);
 		
+		if(result>0) {
+			String location = request.getHeader("Referer");
+			response.sendRedirect(location);
+		}
 	}
 
 }
