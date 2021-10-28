@@ -41,7 +41,9 @@ public class RepDao {
 			pstmt.setString(2, rep.getRepContent());
 			pstmt.setString(3, rep.getFontNo());
 			pstmt.setInt(4, rep.getRepLevel());
-			pstmt.setInt(5, rep.getRepRef() == 0 ? null : rep.getRepRef());
+			System.out.println(rep.getRepRef() == 0 ? null : rep.getRepRef());
+			pstmt.setObject(5, rep.getRepRef() == 0 ? null : rep.getRepRef());
+			
 			
 		
 			
