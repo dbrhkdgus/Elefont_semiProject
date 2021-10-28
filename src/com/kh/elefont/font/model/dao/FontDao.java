@@ -1,7 +1,7 @@
 package com.kh.elefont.font.model.dao;
 
 import static com.kh.elefont.common.JdbcTemplate.close;
-
+import static com.kh.elefont.common.JdbcTemplate.getConnection;
 
 import java.io.FileReader;
 import java.io.IOException;
@@ -16,6 +16,7 @@ import java.util.Properties;
 
 import com.kh.elefont.common.model.vo.Attachment;
 import com.kh.elefont.font.model.vo.Font;
+import com.kh.elefont.member.model.vo.Member;
 
 
 public class FontDao {
@@ -598,6 +599,54 @@ public class FontDao {
 			close(pstmt);
 		}
 		return fontLikeList;
+	}
+
+	public List<Font> selectSearchFont(Connection conn, Map<String, Object> param) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		List<Font> fontList = new ArrayList<>();
+		String sql = "";
+		String searchType = (String)param.get("searchType");
+	//	String searchKeyword = (String)param.get("searchKeyword");
+		
+		switch(searchType) {
+		case "font-no" : 
+			sql = prop.getProperty("selectSearchFontByFontNo");
+			break;
+		case "font-name" : 
+			sql = prop.getProperty("selectSearchFontByFontName");
+			break;
+		case "font-seller" : 
+			sql = prop.getProperty("selectSearchFontByFontSeller");
+			break;
+		}
+		
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, "%"+param.get("searchKeyword")+"%");
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				Font font = new Font();
+	
+				font.setFontNo(rset.getString("font_no"));
+				font.setFontName(rset.getString("font_name"));
+				font.setFontPrice(rset.getDouble("font_price"));
+				font.setFontDiscountRate(rset.getDouble("font_discount_rate"));
+				font.setFontApproval(rset.getString("font_approval"));
+				font.setMemberId(rset.getString("member_id"));
+				fontList.add(font);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return fontList;
 	}
 
 	
