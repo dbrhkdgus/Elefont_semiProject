@@ -1703,8 +1703,8 @@ text-align: center;
 }
 .re-reply-box{
 	display: flex;
-	margin-left: 20px;
-	width: 380px;
+	margin-left: 13px;
+	width: 500px;
 	align-items: center;
 }
 .re-reply-box img{
