@@ -56,11 +56,12 @@
                             <textarea name="" id="allFontStyle" cols="30" rows="10"></textarea>
                            
                         </div>
+                       
  <%
  	List<Font> fontList = (List<Font>)request.getAttribute("fontList");
     List<Attachment> fontAttchmentList = (List<Attachment>)request.getAttribute("fontAttchmentList");
-   	System.out.println("fontList@jsp : " + fontList);
-   	System.out.println("fontAttchmentList@jsp : " + fontAttchmentList);
+   	//System.out.println("fontList@jsp : " + fontList);
+   	//System.out.println("fontAttchmentList@jsp : " + fontAttchmentList);
     for(Font font : fontList){
     	for(Attachment att : fontAttchmentList){
     		
@@ -70,7 +71,7 @@
                             <a href="<%= request.getContextPath()%>/shopDetail?fontNo=<%= font.getFontNo()%>"><div class="test-item-title"> <%= font.getFontName()%> </div></a>
                             <textarea name="" id="" cols="30" rows="10" class="font-style"></textarea>
                             <div class="test-item-buttons"> 
-                                <i class="fas fa-heart" data-font-no="<%=font.getFontNo()%>"></i>  
+                                <i class="fas fa-heart" data-font-no="<%=font.getFontNo()%>"><span><%=font.getFontLikeCount()%></span></i>  
                                 <i class="fas fa-search-plus"></i>
                              </div>
                         </div> 
@@ -78,7 +79,6 @@
 <%
     }
  %>                    
-                      
                        
                     </div>
 
@@ -91,6 +91,7 @@
 $("#range-result").html($(range).val()+"px");
 $(".font-style").css("font-size", $(range).val()+"px");
 $(".font-style").css("color", $(color).val());
+
 	/* 샵 랜딩 스타일 체크박스 드롭다운 메뉴 */
 	$("#style-button").click((e)=>{
 		console.log("스타일 버튼 클릭");
@@ -141,8 +142,6 @@ $(".font-style").css("color", $(color).val());
 			type:"GET",
 			data: {'fontNo' : $fontNo},
 			success(data){
-				console.log(data, typeof data);
-				console.log(data["likeValid"]);
 				const likeValid = data["likeValid"];
 				const likeCnt = data["likeCnt"];
 				//member 본인의 likeValid가 1이라면 속이 찬 하트, 0이면 속이 빈 하트

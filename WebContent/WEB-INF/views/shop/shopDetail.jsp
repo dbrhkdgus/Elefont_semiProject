@@ -64,11 +64,11 @@ for(Rep rep : repList){
  
    
 								<div class="reply-outer-box">
-                                <div class="reply-box">
-                                	<img src="https://cdn1.vectorstock.com/i/1000x1000/10/05/user-icon-vector-22391005.jpg"  id="user-profile">
-                                		<span><%=rep.getRepWriter()%> : <%=rep.getRepContent()%></span>
-                                </div> 
-                                <i class="fab fa-replyd" style="font-size:35px; color: #005A3C; "></i>
+	                                <div class="reply-box">
+	                                	<img src="https://cdn1.vectorstock.com/i/1000x1000/10/05/user-icon-vector-22391005.jpg"  id="user-profile">
+	                                		<span><%=rep.getRepWriter()%> : <%=rep.getRepContent()%></span>
+	                                </div> 
+	                                <i class="fab fa-replyd" style="font-size:35px; color: #005A3C; "></i>
                                 </div>
 <%
 	}
@@ -100,7 +100,7 @@ for(Rep rep : repList){
                         	
                       		  $(document.reReplyFrm).hide();
                       		  //content 클래스를 가진 div를 표시/숨김(토글)
-                      		  $('.fa-replyd').click(function(e)
+                      		  $('.fa-replyd').off('click').on('click', (e)=>
                       		  {
                       			console.log("click");
                       		    $(e.target).parent().next().slideToggle(500);                     		    
