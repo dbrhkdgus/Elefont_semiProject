@@ -33,6 +33,7 @@ public class FontLikeServlet extends HttpServlet {
 		//1. 사용자 입력값 처리
 		String fontNo = request.getParameter("fontNo");
 		String memberNo = member.getMemberNo();
+		System.out.println("fontNo, memberNo @ servlet = "+ fontNo + memberNo);
 		Map<String, Object> param = new HashMap<>();
 		param.put("fontNo", fontNo);
 		param.put("memberNo", memberNo);
@@ -41,12 +42,14 @@ public class FontLikeServlet extends HttpServlet {
 		//like_font 테이블에서 조회. DQL이지만 존재 여부 확인 후, DML문 처리가 있을 예정이므로 int값으로 받는다.
 		//json 변환할 데이터 객체 생성
 		Map<String, Object> map = new HashMap<>();
-		int result = fontService.selectFontLike(param);
+		int likeValid = fontService.selectFontLike(param);
+		System.out.println("selectFontLike@servlet = " + likeValid);
 		
-		result = fontService.countFontLike(fontNo);
+		int likeCnt = fontService.countFontLike(fontNo);
 
-		map.put("fontNo", fontNo);
-		map.put("likeCnt", result);
+		map.put("likeValid", likeValid);
+		map.put("likeCnt", likeCnt);
+		int result = fontService.updateFontLike(map);
 		
 		//json문자열로 변환
 		Gson gson = new Gson();
