@@ -90,31 +90,28 @@ public class CommunityUpdateServlet extends HttpServlet {
 			
 			System.out.println(community);
 			// 첨부파일
-//			File f = multipartRequest.getFile("upFile");
-//			if(f != null) {
-//				Attachment attach = new Attachment();
-//				attach.setBoardNo(no); 
-//				attach.setOriginalFilename(multipartRequest.getOriginalFileName("upFile"));
-//				attach.setRenamedFilename(multipartRequest.getFilesystemName("upFile"));
-//				board.setAttach(attach);
-//			}
+			File f = multipartRequest.getFile("upFile");
+			if(f != null) {
+				Attachment attach = new Attachment();
+				attach.setCommNo(commNo); 
+				attach.setOriginalFilename(multipartRequest.getOriginalFileName("upFile"));
+				attach.setRenamedFilename(multipartRequest.getFilesystemName("upFile"));
+				community.setAttach(attach);
+			}
 			
-//			System.out.println("board@servlet = " + board);
-//			
-//			// 2. 업무로직 
+			System.out.println("community@servlet = " + community);
+			
+			// 2. 업무로직 
 			int result = 0;
-//			// 기존파일 삭제 (서버컴퓨터 파일 삭제 + db 레코드삭제)
-//			String delFile = multipartRequest.getParameter("delFile");
-//			if(delFile != null) {
-//				int attachNo = Integer.parseInt(delFile);
-//				Attachment attach = boardService.selectOneAttachment(attachNo);
-//				// 서버컴퓨터 파일 삭제
-//				File _delFile = new File(saveDirectory, attach.getRenamedFilename());
-//				_delFile.delete();
-//				// db 레코드삭제
-//				result = boardService.deleteAttachment(attachNo);
-//				System.out.println(result > 0 ? "첨부파일 삭제 성공!" : "첨부파일 삭제 실패!");
-//			}
+			// 기존파일 삭제 (서버컴퓨터 파일 삭제 + db 레코드삭제)
+			Attachment attach = attachmentService.selectOneAttachment(commNo);
+			// 서버컴퓨터 파일 삭제
+			File _delFile = new File(saveDirectory, attach.getRenamedFilename());
+			_delFile.delete();
+			// db 레코드삭제
+			result = attachmentService.deleteAttachmentByCommNo(commNo);
+			System.out.println(result > 0 ? "첨부파일 삭제 성공!" : "첨부파일 삭제 실패!");
+			
 			
 			// 게시물 수정 + 첨부파일 등록
 			result = communityService.updateCommunity(community);
