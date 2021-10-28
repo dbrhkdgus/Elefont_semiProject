@@ -60,6 +60,10 @@ public class proFileFileUploadServelt extends HttpServlet {
 		int result = memberService.insertProfileImage(attach);
 		System.out.println(result);
 		
+		if(attach != null ) {
+			request.setAttribute("attach", attach);			
+		}
+		
 		if(result>0) {
 			String location = request.getHeader("Referer");
 			response.sendRedirect(location);
