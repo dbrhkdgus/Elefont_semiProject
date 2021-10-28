@@ -116,6 +116,7 @@ if("U".equals(memberRole)){
 <%
 if("U".equals(memberRole)){
 List<Attachment> commAttachmentList = (List<Attachment>)request.getAttribute("commAttachmentList");
+List<Font> fontLikeList = (List<Font>) request.getAttribute("fontLikeList");
 %>
             <div class="member-comm">
                 <h4>내가 쓴 커뮤니티</h4>
@@ -134,10 +135,13 @@ List<Attachment> commAttachmentList = (List<Attachment>)request.getAttribute("co
             <div class="member-font-like">
                 <h4>내 좋아요 리스트</h4>
                 <div class="member-list">
-                    <a href=""><div class="my-font-img"></div></a>
-                    <a href=""><div class="my-font-img"></div></a>
-                    <a href=""><div class="my-font-img"></div></a>
-                    <a href=""><div class="my-font-img"></div></a>
+<%
+	for(Font f : fontLikeList){
+%>
+                    <a href="<%=request.getContextPath()%>/shopDetail?fontNo=<%=f.getFontNo()%>"><div class="my-font-img"><%=f.getFontName() %></div></a>
+<%
+	}
+%>
                 </div>
             </div>
 <%
