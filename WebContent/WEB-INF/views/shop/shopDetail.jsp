@@ -50,6 +50,8 @@ if(loginMember!=null){
                                 <input type="hidden" name="rep-ref" value="0" />
                                 <input type="hidden" name="rep-level" value="1" />
                                 <input type="submit" value="등록"/>
+                                <input type="button" value="수정" id="btn-rep-update"/>
+                                <input type="button" value="삭제" id="btn-rep-delete"/>
                             </form>
 <%	
 }
@@ -69,6 +71,8 @@ for(Rep rep : repList){
                                 		<span><%=rep.getRepWriter()%> : <%=rep.getRepContent()%></span>
                                 </div> 
                                 <i class="fab fa-replyd" style="font-size:35px; color: #005A3C; "></i>
+                                <input type="button" value="수정" id="btn-rep-update"/>
+                                <input type="button" value="삭제" id="btn-rep-delete"/>
                                 </div>
 <%
 	}else{
@@ -78,6 +82,8 @@ for(Rep rep : repList){
                                  	<img src="https://i.ibb.co/chkD19T/image.png" alt="" />
                                 	<img src="https://cdn1.vectorstock.com/i/1000x1000/10/05/user-icon-vector-22391005.jpg"  id="user-profile">
                                 		<span><%=rep.getRepWriter()%> : <%=rep.getRepContent()%></span>
+                                		    <input type="button" value="수정" id="btn-rep-update"/>
+                                			<input type="button" value="삭제" id="btn-rep-delete"/>
                                 </div> 
 <%
 		
