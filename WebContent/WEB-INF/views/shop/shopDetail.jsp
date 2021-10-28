@@ -83,13 +83,13 @@ for(Rep rep : repList){
                                 <input type="hidden" name="rep_no" value="<%= rep.getRepNo() %>" />
                                 
                                 <script>
-                                $(".btn-rep-update").hide();
+                                	$(".btn-rep-update").hide();
                                 	$(".btn-rep-update").click((e)=>{
                                 		var $DeUpfrm = $(document.DeleteUpdateRepFrm);
                                 		$("input[name=type]").val("update");
                                 		$DeUpfrm.submit();
                                 	});
-                                	 $('.btn-rep-transFrm').off('click').on('click', (e)=>{}
+                                	$('.btn-rep-transFrm').off('click').on('click', (e)=>{
                                 		$(".btn-rep-transFrm").hide();
                                 		$(".btn-rep-update").show();
                                 		console.log(this);
@@ -126,29 +126,8 @@ for(Rep rep : repList){
                                 <input type="hidden" name="type" value="" /> 
                                 <input type="hidden" name="rep_no" value="<%= rep.getRepNo() %>" />
                              </form>
-                                <script>
-                                $(".btn-re-rep-update").hide();
-                                	const $reFrm = $(document.DeleteUpdateReRepFrm);
-                                	
-                                	$(".btn-re-rep-update").click((e)=>{
-                                		$("input[name=type]").val("update");
-                                		
-                                		$reFrm.submit();
-                                	});
-                                	
-                                	$(".btn-re-rep-transFrm").click((e)=>{
-                                		$(".btn-re-rep-transFrm").hide();
-                                		$(".btn-rep-update").show();
-                                		
-                                		$('.re-reply-writer-content').html('');
-                                		$('.re-reply-writer-content').html('<span><%=rep.getRepWriter()%> : <input type="text" name="update_rep_content" value="<%=rep.getRepContent()%>"/> </span>');
-                                		/* $reFrm.submit(); */
-                                	});
-                                	$(".btn-rep-delete").click((e)=>{
-                                		$("input[name=type]").val("delete");
-                                		$reFrm.submit();
-                                	});
-                                </script>
+                                
+                               
 <% } %>
                                 </div> 
 <%
@@ -190,12 +169,69 @@ for(Rep rep : repList){
 
 <%
 	}
-
-	
+if(){
 %>
 
 
 
+									<script>
+                                	$(".btn-re-rep-update").hide();
+                                	const $reFrm = $(document.DeleteUpdateReRepFrm);
+                                	
+                                	$(".btn-re-rep-update").click((e)=>{
+                                		$("input[name=type]").val("update");
+                                		
+                                		$reFrm.submit();
+                                	});
+                                	
+                                	$(".btn-re-rep-transFrm").click((e)=>{
+                                		$(".btn-re-rep-transFrm").hide();
+                                		$(".btn-rep-update").show();
+                                		
+                                		$('.re-reply-writer-content').html('');
+                                		$('.re-reply-writer-content').html('<span><%=rep.getRepWriter()%> : <input type="text" name="update_rep_content" value="<%=rep.getRepContent()%>"/> </span>');
+                                		/* $reFrm.submit(); */
+                                	});
+                                	
+                                	$(".btn-rep-delete").click((e)=>{
+                                		$("input[name=type]").val("delete");
+                                		$reFrm.submit();
+                                	});
+                                </script>
+<%	
+} 
+if(){
+%>
+
+
+								 <script>
+                                	$(".btn-re-rep-update").hide();
+                                	const $reFrm = $(document.DeleteUpdateReRepFrm);
+                                	
+                                	$(".btn-re-rep-update").click((e)=>{
+                                		$("input[name=type]").val("update");
+                                		
+                                		$reFrm.submit();
+                                	});
+                                	
+                                	$(".btn-re-rep-transFrm").click((e)=>{
+                                		$(".btn-re-rep-transFrm").hide();
+                                		$(".btn-rep-update").show();
+                                		
+                                		$('.re-reply-writer-content').html('');
+                                		$('.re-reply-writer-content').html('<span><%=rep.getRepWriter()%> : <input type="text" name="update_rep_content" value="<%=rep.getRepContent()%>"/> </span>');
+                                		/* $reFrm.submit(); */
+                                	});
+                                	
+                                	$(".btn-rep-delete").click((e)=>{
+                                		$("input[name=type]").val("delete");
+                                		$reFrm.submit();
+                                	});
+                                </script>
+
+<%
+}
+%>
                             
                         
                         
