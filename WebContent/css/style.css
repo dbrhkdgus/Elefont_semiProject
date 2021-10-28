@@ -2082,6 +2082,9 @@ p { padding: 5px 0; }
   justify-content: center;
 }
 
+.comm-img > a > img {
+	height: 259px;
+}
 
 
 /*커뮤니티 페이지 윤희*/
@@ -2718,7 +2721,8 @@ font-size: 16px;
 }
 .comm-pic-detail-history img{
     width: 100px;
-    margin: 10px;
+    height: 100px;
+	margin: 10px;
 }
 /* community picture detail 끝*/
 
