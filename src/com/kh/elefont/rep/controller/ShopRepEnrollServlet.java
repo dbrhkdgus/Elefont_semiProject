@@ -24,6 +24,8 @@ public class ShopRepEnrollServlet extends HttpServlet {
 		String fontNo = request.getParameter("font-no");
 		String repInput = request.getParameter("reply-input");
 		String repWriter = request.getParameter("rep-writer");
+		String memberNo = request.getParameter("member_no");
+		
 		int repLevel = Integer.valueOf(request.getParameter("rep-level"));
 		int repRef = Integer.valueOf(request.getParameter("rep-ref"));
 		Rep rep = new Rep();
@@ -32,6 +34,7 @@ public class ShopRepEnrollServlet extends HttpServlet {
 		rep.setRepWriter(repWriter);
 		rep.setRepLevel(repLevel);
 		rep.setRepRef(repRef);
+		rep.setMemberNo(memberNo);
 		
 		int result = repService.insertShopRep(rep);
 		

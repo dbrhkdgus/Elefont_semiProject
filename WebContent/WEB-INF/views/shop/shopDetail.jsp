@@ -38,7 +38,7 @@ System.out.println("repList@jsp : " + repList );
                         <h4  id="shop-detail-rep">댓글</h4>
                         <hr class="liner">
                         
-                            <div class="shop-detail-reblybox">
+                           	<div class="shop-detail-reblybox">
 <%
 if(loginMember!=null){
 %>
@@ -47,11 +47,10 @@ if(loginMember!=null){
                                 <input type="text" class="detail-inputbox" name="reply-input" placeholder="댓글을 입력하세요" >
                                 <input type="hidden" name="font-no" value="<%=font.getFontNo()%>"/>
                                 <input type="hidden" name="rep-writer" value="<%=loginMember.getMemberName()%>"/>
+                                <input type="hidden" name="member_no" value="<%= loginMember.getMemberNo() %>" />
                                 <input type="hidden" name="rep-ref" value="0" />
                                 <input type="hidden" name="rep-level" value="1" />
                                 <input type="submit" value="등록"/>
-                                <input type="button" value="수정" id="btn-rep-update"/>
-                                <input type="button" value="삭제" id="btn-rep-delete"/>
                             </form>
 <%	
 }
@@ -64,26 +63,70 @@ for(Rep rep : repList){
 
  
  
-   
+   								<form action="<%= request.getContextPath() %>/rep/DeleteUpdateRep" method="POST" name="DeleteUpdateRepFrm">
 								<div class="reply-outer-box">
-                                <div class="reply-box">
-                                	<img src="https://cdn1.vectorstock.com/i/1000x1000/10/05/user-icon-vector-22391005.jpg"  id="user-profile">
+	                                <div class="reply-box">
+	                                	<img src="https://cdn1.vectorstock.com/i/1000x1000/10/05/user-icon-vector-22391005.jpg"  id="user-profile">
                                 		<span><%=rep.getRepWriter()%> : <%=rep.getRepContent()%></span>
+
                                 </div> 
                                 <i class="fab fa-replyd" style="font-size:35px; color: #005A3C; "></i>
-                                <input type="button" value="수정" id="btn-rep-update"/>
-                                <input type="button" value="삭제" id="btn-rep-delete"/>
+<%
+	if(loginMember.getMemberNo().equals(rep.getMemberNo()) || "A".equals(loginMember.getMemberRole())){
+		
+	
+%>
+                                <input type="button" value="수정" class="btn-rep-update"/>
+                                <input type="button" value="삭제" class="btn-rep-delete"/>
+                                <input type="hidden" name="type" value="" /> 
+                                <input type="hidden" name="rep_no" value="<%= rep.getRepNo() %>" />
+                                
+                                <script>
+                                	let $DeUpfrm = $(document.DeleteUpdateRepFrm);
+                                	$(".btn-rep-update").click((e)=>{
+                                		$("input[name=type]").val("update");
+                                		$DeUpfrm.submit();
+                                	});
+                                	$(".btn-rep-delete").click((e)=>{
+                                		$("input[name=type]").val("delete");
+                                		$DeUpfrm.submit();
+                                	});
+                                </script>
+<% } %>
+
                                 </div>
+   								</form>
 <%
 	}else{
 	
-%>                                
+%>                               
+							<form action="<%= request.getContextPath() %>/rep/DeleteUpdateRep" method="POST" name="DeleteUpdateReRepFrm">
                                  <div class="re-reply-box">
                                  	<img src="https://i.ibb.co/chkD19T/image.png" alt="" />
                                 	<img src="https://cdn1.vectorstock.com/i/1000x1000/10/05/user-icon-vector-22391005.jpg"  id="user-profile">
                                 		<span><%=rep.getRepWriter()%> : <%=rep.getRepContent()%></span>
-                                		    <input type="button" value="수정" id="btn-rep-update"/>
-                                			<input type="button" value="삭제" id="btn-rep-delete"/>
+<%
+	if(loginMember.getMemberNo().equals(rep.getMemberNo()) || "A".equals(loginMember.getMemberRole())){
+		
+	
+%>
+                                <input type="button" value="수정" class="btn-rep-update"/>
+                                <input type="button" value="삭제" class="btn-rep-delete"/>
+                                <input type="hidden" name="type" value="" /> 
+                                <input type="hidden" name="rep_no" value="<%= rep.getRepNo() %>" />
+                             </form>
+                                <script>
+                                	const $reFrm = $(document.DeleteUpdateReRepFrm);
+                                	$(".btn-rep-update").click((e)=>{
+                                		$("input[name=type]").val("update");
+                                		$reFrm.submit();
+                                	});
+                                	$(".btn-rep-delete").click((e)=>{
+                                		$("input[name=type]").val("delete");
+                                		$reFrm.submit();
+                                	});
+                                </script>
+<% } %>
                                 </div> 
 <%
 		
@@ -92,9 +135,10 @@ for(Rep rep : repList){
 	if(loginMember!=null){
 %>       
                                 <form action="<%=request.getContextPath()%>/rep/ShopRepEnroll"  name="reReplyFrm"class="re-rep-inputbox" method="POST" >                         
-                                <input type="text" class ="detail-inputbox" id="re-rep-detail-inputbox"  name="reply-input" placeholder="댓글을 입력하세요" >
+                                <input type="text" class ="detail-inputbox re-rep-detail-inputbox"  name="reply-input" placeholder="댓글을 입력하세요" >
                                 <input type="hidden" name="font-no" value="<%=font.getFontNo()%>"/>
                                 <input type="hidden" name="rep-writer" value="<%=loginMember.getMemberName()%>"/>
+								<input type="hidden" name="member_no" value="<%= loginMember.getMemberNo() %>" />
                                 <input type="hidden" name="rep-level" value="2" />
                                 <input type="hidden" name="rep-ref" value="<%=rep.getRepNo() %>" />
                                 
@@ -109,7 +153,8 @@ for(Rep rep : repList){
                       		 $('.fa-replyd').off('click').on('click', (e)=>
                              {
                                console.log("click");
-                               $(e.target).parent().next().slideToggle(500);                                 
+                               console.log(e.target);
+                               $(e.target).parent().parent().next().slideToggle(500);                                 
                              });
 
                            /*  $(document.reReplyFrm).hide();

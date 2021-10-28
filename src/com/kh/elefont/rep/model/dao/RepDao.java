@@ -41,8 +41,8 @@ public class RepDao {
 			pstmt.setString(2, rep.getRepContent());
 			pstmt.setString(3, rep.getFontNo());
 			pstmt.setInt(4, rep.getRepLevel());
-			System.out.println(rep.getRepRef() == 0 ? null : rep.getRepRef());
 			pstmt.setObject(5, rep.getRepRef() == 0 ? null : rep.getRepRef());
+			pstmt.setString(6, rep.getMemberNo());
 			
 			
 		
@@ -78,6 +78,7 @@ public class RepDao {
 				rep.setComnNo(rset.getString("comm_no"));
 				rep.setRepLevel(rset.getInt("rep_level"));
 				rep.setRepRef(rset.getInt("rep_ref"));
+				rep.setMemberNo(rset.getString("member_no"));
 		
 				
 				repList.add(rep);
@@ -90,6 +91,26 @@ public class RepDao {
 			close(pstmt);
 		}	
 		return repList;
+	}
+
+	public int deleteRep(Connection conn, String repNo) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String sql = prop.getProperty("deleteRep");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, repNo);
+
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
 	}
 
 }
