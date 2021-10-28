@@ -3,11 +3,13 @@ package com.kh.elefont.community.controller;
 import java.io.File;
 import java.io.IOException;
 
+import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.kh.elefont.common.ElefontFileRenamePolicy;
 import com.kh.elefont.common.model.service.AttachmentService;
@@ -38,7 +40,8 @@ public class CommunityUpdateServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		/// 1.사용자입력값 처리
 		String commNo = request.getParameter("no");
-		
+
+
 		// 2.업무로직 
 		Community community = communityService.selectOneCommunity(commNo);
 		String fontNo = community.getFontNo();
@@ -121,5 +124,6 @@ public class CommunityUpdateServlet extends HttpServlet {
 			String location = request.getContextPath() + "/community/pictureDetail?commNo=" + commNo;
 			response.sendRedirect(location);
 	}
+
 
 }

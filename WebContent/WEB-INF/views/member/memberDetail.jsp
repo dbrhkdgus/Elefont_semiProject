@@ -96,9 +96,9 @@
          <div class="member-log">
             <div class="member-title">
 <%
-	if("U".equals(memberRole)){
+if("U".equals(memberRole)){
 %>
-                <span><%=loginMember.getMemberId() %></span>님의 현재 포인트는 <span>15,000</span>점입니다.
+                <span><%=loginMember.getMemberId() %></span>님의 현재 포인트는 <span><%= loginMember.getMemberPoint() %></span>점입니다.
                 <button id="member-coupon">쿠폰 등록</button>
 <%
 }else if("A".equals(memberRole)){
@@ -116,6 +116,7 @@
 <%
 if("U".equals(memberRole)){
 List<Attachment> commAttachmentList = (List<Attachment>)request.getAttribute("commAttachmentList");
+List<Font> fontLikeList = (List<Font>) request.getAttribute("fontLikeList");
 %>
             <div class="member-comm">
                 <h4>내가 쓴 커뮤니티</h4>
@@ -134,10 +135,13 @@ List<Attachment> commAttachmentList = (List<Attachment>)request.getAttribute("co
             <div class="member-font-like">
                 <h4>내 좋아요 리스트</h4>
                 <div class="member-list">
-                    <a href=""><div class="my-font-img"></div></a>
-                    <a href=""><div class="my-font-img"></div></a>
-                    <a href=""><div class="my-font-img"></div></a>
-                    <a href=""><div class="my-font-img"></div></a>
+<%
+	for(Font f : fontLikeList){
+%>
+                    <a href="<%=request.getContextPath()%>/shopDetail?fontNo=<%=f.getFontNo()%>"><div class="my-font-img"><%=f.getFontName() %></div></a>
+<%
+	}
+%>
                 </div>
             </div>
 <%
@@ -192,15 +196,17 @@ List<Attachment> commAttachmentList = (List<Attachment>)request.getAttribute("co
 			<div id="tab-content">
 				<div>
 					<div class="memberLookup">
-						<div class="user-search-bar">
-							<input type="radio" name="memberRole" id="user" value="M" checked>
-							<label for="memberRole0">일반 회원 보기</label>
+						<div class="user-search-bar controlls">
+							<input type="radio" name="memberRole" id="allMember" value=""  checked>
+							<label for="memberRole0">모든 회원 보기</label>
+							<input type="radio" name="memberRole" id="user" value="M" >
+							<label for="memberRole1">일반 회원 보기</label>
 							<input type="radio" name="memberRole" id="seller" value="S">
-							<label for="memberRole1">판매 회원 보기</label>
-							<input type="radio" name="memberRole" id="user" value="A">
-							<label for="memberRole2">관리 회원 보기</label>
-							<input type="radio" name="memberRole" id="seller" value="D">
-							<label for="memberRole3">휴면 회원 보기</label>
+							<label for="memberRole2">판매 회원 보기</label>
+							<input type="radio" name="memberRole" id="admin" value="A">
+							<label for="memberRole3">관리 회원 보기</label>
+						<!-- 	<input type="radio" name="memberRole" id="" value="D">
+							<label for="memberRole4">휴면 회원 보기</label> -->
 							<br />
 							<select name="user-search" id="user-search">
 								<option value="" selected>모든 회원 조회</option>
@@ -229,7 +235,10 @@ List<Attachment> commAttachmentList = (List<Attachment>)request.getAttribute("co
 	if(memberList != null){
 		for(Member m : memberList){
 %>
-							<tr>
+							<tr 
+							class="allMember <%= "U".equals(m.getMemberRole())? "user": "S".equals(m.getMemberRole())? "seller":"admin" %>"
+							>
+							
 								<td><%= m.getMemberRole() %></td>
 								<td><%= m.getMemberId() %></td>
 								<td><%= m.getMemberName() %></td>
@@ -378,7 +387,9 @@ List<Attachment> commAttachmentList = (List<Attachment>)request.getAttribute("co
 						<div class="font-search-bar">
 							<input type="radio" name="fontAuditYN" id="font-a" value="A" checked>
 							<label for="fontAuditYN0">모든 폰트 보기</label>
-							<input type="radio" name="fontAuditYN" id="font-n" value="N" checked>
+							<input type="radio" name="fontAuditYN" id="font-w" value="N">
+							<label for="fontAuditYN1">심사 대기 폰트 보기</label>
+							<input type="radio" name="fontAuditYN" id="font-n" value="N">
 							<label for="fontAuditYN1">미승인 폰트 보기</label>
 							<input type="radio" name="fontAuditYN" id="font-y" value="Y">
 							<label for="fontAuditYN2">승인 폰트 보기</label>
@@ -412,12 +423,12 @@ List<Attachment> commAttachmentList = (List<Attachment>)request.getAttribute("co
 	if(fontList != null){
 		for(Font f : fontList){
 %>
-								<tr>
+								<tr class="font-a <%=f.getFontApproval() == null? "font-w": "N".equals(f.getFontApproval())? "font-n" :"font-y" %>">
 									<td>
 										<select class="font-approval">
 											<option value="" <%= (f.getFontApproval() == null)? "selected":"" %>>심사 대기</option>
 											<option value="N" <%= "N".equals(f.getFontApproval())?"selected":"" %>>미승인</option>
-											<option value="Y" <%= "Y".equals(f.getFontApproval())?"selected":"" %>>승인</option>
+											<option value="Y" <%= ("Y".equals(f.getFontApproval()) || "C".equals(f.getFontApproval()))?"selected":"" %>>승인</option>
 										</select>
 										<input type="hidden" name="fontApproval" />
 									</td>
@@ -440,7 +451,7 @@ List<Attachment> commAttachmentList = (List<Attachment>)request.getAttribute("co
 									</td>
 									<td><%= f.getMemberId() %></td>
 									<td>
-									<%-- 회원 확인 여부를 여기에 출력해야 하는데 어떻게 해야할지 모르겠음! 좀 더 고민해보기 --%>
+									<%="C".equals(f.getFontApproval())? "확인 완료": "" %>
 									</td>
 								</tr>
 <%
@@ -481,6 +492,21 @@ List<Attachment> commAttachmentList = (List<Attachment>)request.getAttribute("co
 		  .css("display","none")
 		  .eq(index).css("display","block");
 	});
+	
+/* 회원 관리 - radio버튼 선택 시 해당 클래스명을 가진 tr 제외 display: none 처리 */
+$("[name=memberRole]").change((e)=>{
+	$filter = $(e.target).attr("id");
+	$(".allMember").hide();
+	$("."+$filter).show();
+	
+});
+/* 폰트 관리 - radio버튼 선택 시 해당 클래스명을 가진 tr 제외 display: none 처리 */
+$("[name=fontAuditYN]").change((e)=>{
+	$filter = $(e.target).attr("id");
+	$(".font-a").hide();
+	$("."+$filter).show();
+	
+});
 
 /* 폰트 관리 - 회원 폰트 다운로드 버튼 클릭 시 파일 다운로드 */
 $(".fontDownloadBtn").click((e)=>{

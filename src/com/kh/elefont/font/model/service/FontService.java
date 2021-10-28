@@ -213,6 +213,14 @@ public class FontService {
 		close(conn);
 		return likeList;
 	}
+	public List<Font> selectAllLikedFontByMemberNo(String memberNo) {
+		Connection conn = getConnection();
+		
+		List<Font> likeFontList = fontDao.selectAllLikedFontByMemberNo(conn, memberNo);
+		
+		close(conn);
+		return likeFontList;
+	}
 
 
 }
