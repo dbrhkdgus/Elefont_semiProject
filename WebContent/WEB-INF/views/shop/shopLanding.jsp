@@ -142,7 +142,13 @@ $(".font-style").css("color", $(color).val());
 		alert("로그인 후 이용 가능합니다.");
 		return;
 <%
-	}
+	}else if("S".equals(loginMember.getMemberRole()) || "A".equals(loginMember.getMemberRole())){
+%>
+	
+		alert("일반 회원만 사용 가능한 기능입니다.");
+		return;
+<%
+ 	}
 %>
 		$target = $(e.target);
 		$fontNo = $target.data("fontNo");

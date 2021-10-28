@@ -513,7 +513,9 @@ ul.portfolio li.active {
     transition: .3s;
 }
 
-
+.fa-heart{
+	cursor: pointer;
+}
 
 
 .overlay {
