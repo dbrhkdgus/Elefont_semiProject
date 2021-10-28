@@ -1,5 +1,6 @@
 package com.kh.elefont.member.controller;
 
+import java.io.File;
 import java.io.IOException;
 
 import javax.servlet.ServletException;
@@ -35,7 +36,13 @@ public class proFileFileUploadServelt extends HttpServlet {
 		
 		System.out.println("잘도착햇나요?");
 		String memberNo = multipartRequest.getParameter("memberNo");
-		System.out.println(memberNo);
+		System.out.println("memberNo : " + memberNo);
+		
+		File f = multipartRequest.getFile("profileimage");
+		System.out.println(f);
+		
+		
+		
 	}
 
 }
