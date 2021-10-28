@@ -1,4 +1,3 @@
-<%@page import="com.kh.elefont.common.model.vo.Attachment"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -60,8 +59,15 @@
 
     </style>
     <body>
+    <!-- enctype="multipart/form-data"  
+    <form name="imageUploadFrm"  id="imageUploadFrm" method="post" enctype="multipart/form-data"
+    action="<%=request.getContextPath()%>/member/profileFileUpload">
+    <input type="hidden" name="memberNo" value="<%=request.getParameter("memberNo")%>" />
+     <% //System.out.println("아래에"); %>
+    <% //System.out.println(request.getParameter("memberNo")); %>
+    </form>
+    -->
     
-    <% Attachment attach = (Attachment) request.getAttribute("attach");%>
     
         <div id="PPOuterBox">
             <div id="EditProfilePhotoTitle">
@@ -98,30 +104,6 @@
  function dd(){
 	 $(document.imageUploadFrm).submit(); 
  }
- 
- 
- //기본이미지할때 기존 파일 지워보자
-<% if(attach != null) { %>
-$("[name=delFile]").click((e) => {
-	
-	// 파일 선택여부 
-	const $file = $(e.target);
-	console.log($file.val());
-	if($file.val() != ""){
-		// 파일선택한 경우
-		$(fname).hide();
-		$(delFile).prop("checked",true);
-		
-	}
-	else {
-		// 파일선택을 취소한 경우
-		$(fname).show();
-	}
-	
-});
-<% } %>
-
-
  
  </script> 
     </body>
