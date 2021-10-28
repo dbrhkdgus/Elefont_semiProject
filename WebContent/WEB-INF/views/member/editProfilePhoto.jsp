@@ -60,7 +60,7 @@
     </style>
     <body>
     <!-- enctype="multipart/form-data"  -->
-    <form name="imageUploadFrm"  id="imageUploadFrm" method="post"
+    <form name="imageUploadFrm"  id="imageUploadFrm" method="post" enctype="multipart/form-data"
     action="<%=request.getContextPath()%>/member/profileFileUpload">
     <input type="hidden" name="memberNo" value="<%=request.getParameter("memberNo")%>" />
      <% System.out.println("아래에"); %>
