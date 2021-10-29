@@ -21,7 +21,7 @@ System.out.println("경로가 궁금하느냐? : " + photoPath);
 
 <form action="<%=request.getContextPath()%>/member/editProfilePhoto" name="profilephotosendFrm">
 	<input type="hidden" name="memberNo" value="<%=loginMember.getMemberNo()%>"/>
-	<input type="hidden" name="profilePhotoPath" value="<%= request.getContextPath() %>/upload/profilephotos/<%=photoPath%>"/>
+	<input type="hidden" name="profilePhotoPath" value="<%=photoPath%>"/>
 </form>
 
 

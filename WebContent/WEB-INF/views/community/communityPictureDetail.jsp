@@ -1,3 +1,4 @@
+<%@page import="com.kh.elefont.member.model.service.MemberService"%>
 <%@page import="com.kh.elefont.community.model.vo.Community"%>
 <%@page import="com.kh.elefont.common.model.vo.Attachment"%>
 <%@page import="java.util.List"%>
@@ -10,6 +11,13 @@
 	Community community = (Community)request.getAttribute("community");
 	Attachment attachment = (Attachment)request.getAttribute("attachment");
 	List<Attachment> attachmentList = (List<Attachment>)request.getAttribute("attachmentList");
+	List<String> commLikeList = (List<String>) request.getAttribute("commLikeList");
+	
+	boolean editable = loginMember != null && (
+			  loginMember.getMemberNo().equals(attachment.getMemberNo())
+			  || MemberService.ADMIN_ROLE.equals(loginMember.getMemberRole())
+			);
+			
 %>
 
 
@@ -21,10 +29,13 @@
             <div class="comm-board-content">
             	<div class="comm-board-title-button">
 		            <h1><%=community.getCommTitle() %></h1>
+		            
+<% 	if(editable){ %>
 		            <div class="comm-board-button-box">
 		            <input type="button" id="comm-board-button" value="수정하기" onclick="updateBoard()">
 					<input type="button" id="comm-board-button" value="삭제하기" onclick="deleteBoard()">
 		            </div>
+<% 	} %>
             	</div>
 	            <div class="comm-board-img-user-content">
 	                <img id="comm-user-attach-img" src="<%= request.getContextPath()%>/upload/community/<%=attachment.getRenamedFilename()%>" alt="">
@@ -40,7 +51,17 @@
             
             <div class="comm-writer-info" >
                 <div class="comm-writer-info-buttons">
-                    <i class="far fa-heart"></i>
+<%
+				if(loginMember != null && !commLikeList.isEmpty() && commLikeList.contains(community.getCommNo())){
+%>
+              <i class="fas fa-heart" data-comm-no="<%=community.getCommNo()%>"><span><%=community.getCommLikeCount() %></span></i>
+<%
+				}else{
+%> 
+     <i class="far fa-heart" data-comm-no="<%=community.getCommNo()%>"><span><%=community.getCommLikeCount() %></span></i>
+<%
+				}
+%>     
                     <i class="fas fa-search-plus" onclick="location.href='<%= request.getContextPath() %>/shopDetail?fontNo=<%=community.getFontNo()%>'"></i>
    
                 </div>
@@ -72,10 +93,58 @@ for(Attachment att : attachmentList){
         </div>
         </div>
 </section>
+<% if(editable){ %>
 <form action="<%= request.getContextPath() %>/community/communityDelete" name="deleteBoardFrm">
 	<input type="hidden" name="no" value="<%= community.getCommNo() %>" />
 </form>
+<%}%>
 <script>
+
+$(".fa-heart").click((e)=>{
+	
+	<%
+	if(loginMember == null){
+	%>
+			alert("로그인 후 사용 가능한 기능입니다.");
+			return;
+	<%
+	}else if("A".equals(loginMember.getMemberRole())){
+	%>
+			alert("일반 회원만 사용 가능합니다.");
+			return;
+	<%
+	}
+	%>
+	let $target = $(e.target);
+	let $commNo = $target.data("commNo");
+	console.log($commNo);
+	
+	$.ajax({
+		url:"<%=request.getContextPath()%>/community/commDetailLike",
+		dataType :"json",
+		type:"GET",
+		data:{'commNo' : $commNo},
+		success(jsonStr){
+			console.log(jsonStr);
+			const likeValid = jsonStr["likeValid"];
+			const likeCnt = jsonStr["likeCnt"];
+			if(likeValid == 1){
+				$target
+					.removeClass("far")
+					.addClass("fas");
+			}else{
+				$target
+					.removeClass("fas")
+					.addClass("far");
+			}
+			$target.html(`<span>\${likeCnt}</span>`);
+		},
+		error: console.log
+	});
+});
+		
+
+<% if(editable){ %>
 const updateBoard = 
 () => location.href = "<%= request.getContextPath() %>/community/communityUpdate?no=<%= community.getCommNo() %>";
 /**
@@ -87,8 +156,8 @@ const deleteBoard = () => {
 		$(document.deleteBoardFrm).submit();
 	}
 };
+<% 	} %>
 </script>
-
 <!-- community user detail 끝 -->
 
 

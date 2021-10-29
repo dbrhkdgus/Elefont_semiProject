@@ -1762,6 +1762,7 @@ text-align: center;
 
 #sd-copyright-content{
     margin-top: 30px;
+    text-align: center;
 }
 .btn-re-rep-transFrm, .btn-re-rep-transFrm{
 	margin-left: 13px;
@@ -3110,3 +3111,12 @@ align-items: center;
 
 /*커뮤니티 등록 css 끝*/
 
+
+/*구매CSS FontPurchase*/
+.purchase-container{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+/*구매CSS FontPurchase end*/
