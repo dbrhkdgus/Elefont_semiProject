@@ -103,7 +103,7 @@ public class MemberDao {
 			pstmt.setInt(10, member.getAttNo().getAttNo());
 			
 			result = pstmt.executeUpdate();
-			System.out.println("result@dao"+ result);
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
