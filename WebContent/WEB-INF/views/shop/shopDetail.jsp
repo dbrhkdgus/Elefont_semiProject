@@ -156,12 +156,9 @@ for(Rep rep : repList){
                                 <input type="hidden" name="rep_no" value="<%= rep.getRepNo() %>" />
                              </form>
                                 <script>
-<<<<<<< HEAD
-                                $(".btn-re-rep-update").hide();
-                                	
-=======
+
                                 	$(".btn-re-rep-update").hide();
->>>>>>> branch 'master' of https://github.com/dbrhkdgus/Elefont_semiProject.git
+
                                 	
                                 	$(".btn-re-rep-update").click((e)=>{
                                 	const $reFrm = $(document.DeleteUpdateReRepFrm);
