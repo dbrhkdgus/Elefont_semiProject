@@ -100,7 +100,6 @@ public class MemberDao {
 			pstmt.setDate(7, member.getMemberBirthday());
 			pstmt.setString(8, member.getMemberJob());
 			pstmt.setString(9, member.getMemberRole());
-			pstmt.setInt(10, member.getAttNo().getAttNo());
 			
 			result = pstmt.executeUpdate();
 			
