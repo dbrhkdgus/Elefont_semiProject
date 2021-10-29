@@ -15,6 +15,7 @@ import javax.servlet.http.HttpSession;
 import com.google.gson.Gson;
 import com.kh.elefont.like_cart.model.service.LikeCartService;
 import com.kh.elefont.like_cart.model.vo.MemberCart;
+import com.kh.elefont.like_cart.model.vo.MemberCartView;
 import com.kh.elefont.member.model.vo.Member;
 
 /**
@@ -48,6 +49,7 @@ public class MemberCartServlet extends HttpServlet {
 				//1. 사용자 입력값 처리
 				String fontNo = request.getParameter("fontNo");
 				String PerCartType = request.getParameter("PerCartType");
+				
 				String cartNo = "cart-" + System.currentTimeMillis();
 				String memberNo = member.getMemberNo();
 				
@@ -65,25 +67,23 @@ public class MemberCartServlet extends HttpServlet {
 				int DeleteCart = 0;
 				
 				// 뷰테이블로 조회해서 해볼 것!!
-				List<MemberCart> memberCartList = likeCartService.selectAllMemberCartByMemberNo(memberNo);
-				List<Cart> cartList = likeCartService.selectAllCartByMemberId(memberNo);
 				
-				for(MemberCart mc : memberCartList) {
-					
+				List<MemberCartView> memberCartViewList = likeCartService.selectAllMemberCartViewByMemberNo(memberNo);
+				boolean flag = false;
+				for(MemberCartView mcv : memberCartViewList) {
+					if(mcv.getFontNo().equals(fontNo)) {
+						flag = true;
+						break;
+					}
 				
 				}
-				
-				if(memberCart == null) {
+				if(flag == false) {
+					
 					insertCart = likeCartService.insertCart(cartNo, fontNo);
 					insertCart = likeCartService.insertMemberCart(memberNo, cartNo);					
-				}else if(memberCart != null) {
-					DeleteCart = likeCartService.deleteCart(memberCart.getCartNo());
-					DeleteCart = likeCartService.deleteMemberCart(memberCart.getCartNo());
 				}
-				
-				if(insertCart == 1 || DeleteCart == 1) {
 					
-				map.put("result", insertCart);
+				map.put("insertCart", insertCart);
 								
 //				//json문자열로 변환
 				Gson gson = new Gson();
@@ -97,4 +97,4 @@ public class MemberCartServlet extends HttpServlet {
 		
 	}
 
-}
+
