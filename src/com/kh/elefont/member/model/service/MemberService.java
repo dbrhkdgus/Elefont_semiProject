@@ -156,4 +156,13 @@ public class MemberService {
 			}
 		return delResult;
 	}
+
+	public Attachment selectOneAttachmentByNo(String memberNo) {
+		Connection conn = getConnection();
+		
+		Attachment attach = memberDao.selectOneAttachmentByNo(conn,memberNo);
+		close(conn);
+
+		return attach;
+	}
 }
