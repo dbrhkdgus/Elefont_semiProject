@@ -111,7 +111,7 @@ $(closeBtn).click(()=>{
 
 	 function ddd(){
 		 if(confirm("프로필 사진을 변경하시겠습니까?")){
-		 $(document.imageUploadFrm).submit();			 
+		 $(document.imageUploadFrm).submit();
 		 }
 	 }
  

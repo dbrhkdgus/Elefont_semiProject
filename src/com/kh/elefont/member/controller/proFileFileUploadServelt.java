@@ -69,8 +69,7 @@ public class proFileFileUploadServelt extends HttpServlet {
 		}
 		
 		if(result>0) {
-			String location = request.getHeader("Referer");
-			response.sendRedirect(location);
+			request.getRequestDispatcher("/WEB-INF/views/member/popUpClose.jsp").forward(request, response);
 		}
 	}
 
