@@ -171,12 +171,20 @@ if(loginMember != null){
 <% }else { %>
 							<script>
   							$(document.reReplyFrm).hide();
+
                             
                                $('.fa-replyd').on('click', (e)=>
                              {
+<<<<<<< HEAD
                             	alert("댓글등록은 로그인 이후 가능합니다.");
                             	$('.loginBox').show();
                             	$(loginId).select();
+=======
+                            	$(".re-reply-box").show();
+                               console.log($(e.target).parent().parent().next());
+                               $(e.target).parent().parent().next().slideToggle(500);                                
+
+>>>>>>> branch 'master' of https://github.com/dbrhkdgus/Elefont_semiProject.git
                              });
                              </script>
 <% } %>
@@ -197,8 +205,11 @@ if(loginMember != null){
                                 	});
                                 	
                                 	$(".btn-rep-delete").click((e)=>{
+                                		if(confirm("정말 삭제하시겠습니까?")){
+                                			
                                 		$("input[name=type]").val("delete");
                                 		$(e.target).parent().parent().next().next().submit(); 
+                                		}
                                 	});
                                 </script>
 
@@ -225,8 +236,11 @@ if(loginMember != null){
                                 	});
                                 	
                                 	$(".btn-re-rep-delete").click((e)=>{
+                                		if(confirm("정말 삭제하시겠습니까?")){
+                                			
                                 		$("input[name=type]").val("delete");
                                 		$(e.target).parent().parent().next().next().submit();
+                                		}
                                 	});
                                 </script>
 
