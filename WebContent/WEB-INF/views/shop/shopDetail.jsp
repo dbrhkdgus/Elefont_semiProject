@@ -17,15 +17,21 @@ List<Rep> repList = (List<Rep>)request.getAttribute("repList");
 System.out.println("repList@jsp : " + repList );
 %>
 
- <section id="portfolio" class="portfolio section-space-padding">
+ <section id="portfolio" class="portfolio section-space-padding" >
            <div class="shop-detail">
                 <div class= "shop-detail-top">
                     <div class="shop-detail-font-name"><h2><%= font.getFontName() %></h2></div>
                     <div class="shop-detail-buttons">
                     
-                        <button id="purchase-button" name="button" type="button" onclick="location.href='<%= request.getContextPath() %>/member/memberCart';" >구매</button>
-                        <button id="cart-button" name="button" type="button">장바구니</button>
-                        <button id="like-button" name="button" type="button">좋아요</button>
+                    	<form action="<%= request.getContextPath() %>/member/memberCart" method="POST" name="PurchaseCartFrm">                    
+                        	<input id="purchase-button" name="button" type="button" value="구매">
+                        	<input id="cart-button" name="button" type="button" value="장바구니">
+                        	<input id="like-button" name="button" type="button" value="좋아요">
+                        	<input type="hidden" name="PerCartType" value = "" />
+                       		<input type="hidden" name="font_no" value="<%= font.getFontNo() %>" />
+                       		<input type="hidden" name="member_no" value="<%= loginMember.getMemberNo() %>" />
+                  	  	</form>
+                    
                     </div>
                 </div>
 
@@ -187,6 +193,7 @@ if(loginMember != null){
                              </script>
 <% } %>
 								<script>
+								/* 공통스크립트 시작 */
 								/* 댓글 스크립트 */
                                 	$(".btn-rep-update").hide();
                                 	$(".btn-rep-update").click((e)=>{
@@ -209,9 +216,7 @@ if(loginMember != null){
                                 		$(e.target).parent().parent().next().next().submit(); 
                                 		}
                                 	});
-                                </script>
-
-   								<script>
+                                
 								/* 대댓글 스크립트 */
                                 	$(".btn-re-rep-update").hide();
 
@@ -240,6 +245,21 @@ if(loginMember != null){
                                 		$(e.target).parent().parent().next().next().submit();
                                 		}
                                 	});
+                                	
+                                	/* 구매하기 버튼 클릭 */
+                                	$("#purchase-button").click((e)=>{
+                                		$("input[name=PerCartType]").val("purchase")
+                                		
+                                	});
+                                	
+                                	/* 장바구니 추가 버튼 클릭 */
+                                	$("#cart-button").click((e)=>{
+                                		$("input[name=PerCartType]").val("cart");
+                                		
+                                		$(document.PurchaseCartFrm).submit();
+                                	});
+                                	
+                                	
                                 </script>
 
                             
@@ -293,12 +313,15 @@ if(loginMember != null){
 %>
                     </div>
                     
-                
+             
                     <div class="sd-copyright-section">
                         <h4 id="sd-copyright-title">저작권 정보</h4>
                         <hr class="liner">
-                        <p id="sd-copyright-content"><%= fontCopyright.toString() %></p>
-                        
+                        <p id="sd-copyright-content">
+                        	본 <%= font.getFontName() %>의 저작권은 <%= fontCopyright.getFontPublisher() %>에 있으며, <%= fontCopyright.getFontDesigner() %>에 의해 만들어졌습니다. 
+                        	<br>저작권 및 자세한 문의사항은 <a href="<%=fontCopyright.getFontRootUrl() %>"> <%=fontCopyright.getFontRootUrl() %></a>에 문의하시길 바랍니다.
+                        </p>
+                      
                     </div>        
                 
                 

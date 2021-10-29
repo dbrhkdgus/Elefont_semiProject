@@ -427,4 +427,41 @@ public class MemberDao {
 	}
 
 
+	public Attachment selectOneAttachmentByNo(Connection conn, String memberNo) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		Attachment attach = null;
+		String sql = prop.getProperty("selectOneAttachmentByNo");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, memberNo);
+			
+			rset = pstmt.executeQuery();
+			System.out.println("rset 체크 : " + rset);
+			
+			if(rset.next()) {
+				attach = new Attachment();
+				
+				attach.setAttNo(rset.getInt("att_no"));
+				attach.setMemberNo(memberNo);
+				attach.setCommNo(rset.getString("comm_no"));
+				attach.setOriginalFilename(rset.getString("original_filename"));
+				attach.setRenamedFilename(rset.getString("renamed_filename"));
+				attach.setRegDate(rset.getDate("reg_date"));
+				attach.setFontNo(rset.getString("font_no"));
+			}
+			System.out.println("Dao에서 attach를 잘 받았나요?" + attach);
+		
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return attach;
+	}
+
+
 }

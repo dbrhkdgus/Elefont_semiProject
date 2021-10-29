@@ -1,3 +1,4 @@
+<%@page import="java.io.File"%>
 <%@page import="java.util.List"%>
 <%@page import="com.kh.elefont.member.model.service.MemberService"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -6,6 +7,9 @@
 
 <%
 Member member = (Member) request.getAttribute("member");
+File profilePhotoAttach = (File) request.getAttribute("profilePhotoAttach");
+String photoPath = profilePhotoAttach.getName();
+System.out.println("경로가 궁금하느냐? : " + photoPath);
 %>
 
 <!-- 회원정보 수정 section 시작-->
@@ -17,6 +21,7 @@ Member member = (Member) request.getAttribute("member");
 
 <form action="<%=request.getContextPath()%>/member/editProfilePhoto" name="profilephotosendFrm">
 	<input type="hidden" name="memberNo" value="<%=loginMember.getMemberNo()%>"/>
+	<input type="hidden" name="profilePhotoPath" value="<%=photoPath%>"/>
 </form>
 
 
@@ -46,7 +51,7 @@ Member member = (Member) request.getAttribute("member");
 					<div id="editPhoto">
 						<div class="defaultphotobox">
 							<img class="defaultPhoto"
-								src="https://t1.daumcdn.net/cfile/tistory/243FE450575F82662D"
+								src="<%= request.getContextPath() %>/upload/profilephotos/<%=photoPath%>"
 								alt="프로필기본사진">
 						</div>
 						<p>
