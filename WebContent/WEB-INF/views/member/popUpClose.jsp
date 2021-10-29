@@ -9,7 +9,8 @@
 <body>
 <script>
 window.onload = function () {
-	self.close();
+	opener.parent.location.reload();
+	window.close();
 }
 
 </script>
