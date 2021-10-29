@@ -40,12 +40,16 @@ public class MemberInfoEditServlet extends HttpServlet {
 		Attachment attach = memberService.selectOneAttachmentByNo(memberNo);
 		System.out.println("MemberInfoEditServlet 에서 attach 잘 받아왔나 확인" + attach);
 
-		// 서버컴퓨터 파일 삭제
-		//File _delFile = new File(saveDirectory, attach.getRenamedFilename());
+		// 서버컴퓨터 파일 
+		String saveDirectory = getServletContext().getRealPath("/upload/profilephotos");
+		File profilePhotoAttach = new File(saveDirectory, attach.getRenamedFilename());
+		System.out.println("여기 뭐가 올렸나?" + profilePhotoAttach);
 
 		
 		//3. 뷰단처리
 		request.setAttribute("member", member);
+		request.setAttribute("profilePhotoAttach", profilePhotoAttach);
+		
 		request.getRequestDispatcher("/WEB-INF/views/member/memberInfoEdit.jsp").forward(request, response);
 	}
 	
