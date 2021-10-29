@@ -46,34 +46,40 @@ public class MemberCartServlet extends HttpServlet {
 				//1. 사용자 입력값 처리
 				String fontNo = request.getParameter("fontNo");
 				String PerCartType = request.getParameter("PerCartType");
+				String cartNo = "cart-" + System.currentTimeMillis();
+				
 				
 				String memberNo = member.getMemberNo();
 				//System.out.println("fontNo, memberNo, PerCartType @ servlet = "+ fontNo + memberNo + PerCartType);
-				
+				System.out.println("cart_no@servlet : "+ cartNo);
 				
 				
 				//2. 업무 로직
 				//like_font 테이블에서 조회. DQL이지만 존재 여부 확인 후, DML문 처리가 있을 예정이므로 int값으로 받는다.
 				//json 변환할 데이터 객체 생성
 				Map<String, Object> map = new HashMap<>();
-				int result = likeCartService.insertCart(fontNo, memberNo);
+				int insertCart = 0;
+				int DeleteCart = 0;
+				int cartValid = likeCartService.selectMemberCartByCartNo(cartNo);
 				
-//				
-//				int likeCnt = fontService.countFontLike(fontNo);
-//
-//				map.put("likeValid", likeValid);
-//				map.put("likeCnt", likeCnt);
-//				map.put("fontNo", fontNo);
-//				int result = fontService.updateFontLike(map);
-//				
+				if(cartValid == 1) {
+					insertCart = likeCartService.insertCart(cartNo, fontNo);
+					insertCart = likeCartService.insertMemberCart(memberNo, cartNo);					
+				}else if(cartValid == 0) {
+					DeleteCart = likeCartService.deleteCart(cartNo);
+					DeleteCart = likeCartService.deleteMemberCart(cartNo);
+				}
+				
+				map.put("result", insertCart);
+								
 //				//json문자열로 변환
-//				Gson gson = new Gson();
-//				String jsonStr = gson.toJson(map);
-//				System.out.println(jsonStr);
+				Gson gson = new Gson();
+				String jsonStr = gson.toJson(map);
+				
 				
 				//3. view단 처리
-//				response.setContentType("application/json; charset = utf-8");
-//				response.getWriter().print(jsonStr);
+				response.setContentType("application/json; charset = utf-8");
+				response.getWriter().print(jsonStr);
 		
 	}
 

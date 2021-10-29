@@ -265,8 +265,10 @@ if(loginMember != null){
                                 			type:"POST",
                                 			data: {'fontNo' : $fontNo, 'PerCartType' : $PerCartType},
                                 			success(data){
-                                				
-                                				alert("장바구니 등록 성공!")
+                                				console.log(data);
+                                				if(result == 1){
+	                                				alert("장바구니 등록 성공!")                               					
+                                				}
                                 			},
                                 			error: console.log
                                 		});
