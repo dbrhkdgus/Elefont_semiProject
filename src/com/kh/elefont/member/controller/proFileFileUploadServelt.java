@@ -42,15 +42,13 @@ public class proFileFileUploadServelt extends HttpServlet {
 		String memberNo = multipartRequest.getParameter("memberNo");
 		System.out.println("memberNo : " + memberNo);
 		
-		int delResult = memberService.deletePrePhoto(memberNo); 
+//		int delResult = memberService.deletePrePhoto(memberNo); 
 		
 		
 		File f = multipartRequest.getFile("profileimage");
 		System.out.println(f);
 		//파일 프젝 업로드 폴더에 저장된 거 확인함!
 		
-		
-//		int delResult = memberService.deletePrePhoto(memberNo);
 		
 		Attachment attach = new Attachment();
 		
@@ -64,15 +62,14 @@ public class proFileFileUploadServelt extends HttpServlet {
 		
 		
 		int result = memberService.insertProfileImage(attach);
-		System.out.println(result);
+		System.out.println("여기가 1이면 디비에 프로필 사진 등록 완료  :  " + result);
 		
 		if(attach != null ) {
 			request.setAttribute("attach", attach);			
 		}
 		
 		if(result>0) {
-			String location = request.getHeader("Referer");
-			response.sendRedirect(location);
+			request.getRequestDispatcher("/WEB-INF/views/member/popUpClose.jsp").forward(request, response);
 		}
 	}
 
