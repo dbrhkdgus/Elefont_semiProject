@@ -31,12 +31,14 @@ public class MemberInfoEditServlet extends HttpServlet {
 		//1. 사용자 입력값
 		String memberId = request.getParameter("memberId");
 		String memberNo = request.getParameter("memberNo");
-		System.out.println("memberId 확인 : " + memberId);
+		System.out.println("MemberInfoEditServlet 에서 memberId 확인 : " + memberId);
+		System.out.println("MemberInfoEditServlet 에서 memberNo 확인 : " + memberNo);
 		
 		//2. 업무로직
 		Member member = memberService.selectOneMember(memberId);
 		
-		//Attachment attach = memberService.selectMyProfilePhoto(memberNo);
+		Attachment attach = memberService.selectOneAttachmentByNo(memberNo);
+		System.out.println("MemberInfoEditServlet 에서 attach 잘 받아왔나 확인" + attach);
 
 		// 서버컴퓨터 파일 삭제
 		//File _delFile = new File(saveDirectory, attach.getRenamedFilename());
