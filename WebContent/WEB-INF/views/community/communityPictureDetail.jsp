@@ -1,3 +1,4 @@
+<%@page import="com.kh.elefont.member.model.service.MemberService"%>
 <%@page import="com.kh.elefont.community.model.vo.Community"%>
 <%@page import="com.kh.elefont.common.model.vo.Attachment"%>
 <%@page import="java.util.List"%>
@@ -12,6 +13,11 @@
 	List<Attachment> attachmentList = (List<Attachment>)request.getAttribute("attachmentList");
 	List<String> commLikeList = (List<String>) request.getAttribute("commLikeList");
 	
+	boolean editable = loginMember != null && (
+			  loginMember.getMemberNo().equals(attachment.getMemberNo())
+			  || MemberService.ADMIN_ROLE.equals(loginMember.getMemberRole())
+			);
+			
 %>
 
 
@@ -23,10 +29,13 @@
             <div class="comm-board-content">
             	<div class="comm-board-title-button">
 		            <h1><%=community.getCommTitle() %></h1>
+		            
+<% 	if(editable){ %>
 		            <div class="comm-board-button-box">
 		            <input type="button" id="comm-board-button" value="수정하기" onclick="updateBoard()">
 					<input type="button" id="comm-board-button" value="삭제하기" onclick="deleteBoard()">
 		            </div>
+<% 	} %>
             	</div>
 	            <div class="comm-board-img-user-content">
 	                <img id="comm-user-attach-img" src="<%= request.getContextPath()%>/upload/community/<%=attachment.getRenamedFilename()%>" alt="">
@@ -84,9 +93,11 @@ for(Attachment att : attachmentList){
         </div>
         </div>
 </section>
+<% if(editable){ %>
 <form action="<%= request.getContextPath() %>/community/communityDelete" name="deleteBoardFrm">
 	<input type="hidden" name="no" value="<%= community.getCommNo() %>" />
 </form>
+<%}%>
 <script>
 
 $(".fa-heart").click((e)=>{
@@ -133,7 +144,7 @@ $(".fa-heart").click((e)=>{
 });
 		
 
-
+<% if(editable){ %>
 const updateBoard = 
 () => location.href = "<%= request.getContextPath() %>/community/communityUpdate?no=<%= community.getCommNo() %>";
 /**
@@ -145,8 +156,8 @@ const deleteBoard = () => {
 		$(document.deleteBoardFrm).submit();
 	}
 };
+<% 	} %>
 </script>
-
 <!-- community user detail 끝 -->
 
 
