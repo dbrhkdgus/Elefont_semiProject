@@ -90,9 +90,10 @@ for(Rep rep : repList){
    								</form>
                                 
 
-<% 		} %>
+<% 	} %>
 
                                 </div>
+                                </form>
    								
                              
 <%
@@ -103,7 +104,7 @@ for(Rep rep : repList){
                                  <div class="re-reply-box">
                                  	<img src="https://i.ibb.co/chkD19T/image.png" alt="" />
                                 	<img src="https://cdn1.vectorstock.com/i/1000x1000/10/05/user-icon-vector-22391005.jpg"  id="user-profile">
-                                		<div class="re-reply-writer-content"><span><%=rep.getRepWriter()%> : </spna><span><%=rep.getRepContent()%></span></div>
+                                	<div class="re-reply-writer-content"><span><%=rep.getRepWriter()%> : </span><span><%=rep.getRepContent()%></span></div>
 <%
 	if(loginMember != null && (loginMember.getMemberNo().equals(rep.getMemberNo()) || "A".equals(loginMember.getMemberRole()))){
 		
@@ -116,9 +117,9 @@ for(Rep rep : repList){
                                 <input type="hidden" name="rep_no" value="<%= rep.getRepNo() %>" />
                              
 <% } %>
-                             </form>
-                             
+                            
                                 </div> 
+                             </form>
 <%
 		
 	}
@@ -154,6 +155,7 @@ if(loginMember != null){
                             <script>
                         	/* 숨김처리관련 스크립트 */
                       		  $(document.reReplyFrm).hide();
+                      		  
                       		 $('.fa-replyd').on('click', (e)=>
                              {
                                console.log("click");
@@ -169,11 +171,14 @@ if(loginMember != null){
 <% }else { %>
 							<script>
   							$(document.reReplyFrm).hide();
-                            $(".re-reply-box").hide();
+
+                            
                                $('.fa-replyd').on('click', (e)=>
                              {
-                               console.log("click");
-                               $(e.target).parent().next().slideToggle(500);                                 
+                            	$(".re-reply-box").show();
+                               console.log($(e.target).parent().parent().next());
+                               $(e.target).parent().parent().next().slideToggle(500);                                
+
                              });
                              </script>
 <% } %>
@@ -213,9 +218,9 @@ if(loginMember != null){
                                 	$(".btn-re-rep-transFrm").click((e)=>{
                                 		$(e.target).hide();
                                 		$(e.target).next().show();
-                                		var oldContent = $(e.target).parent().children("div").children("span").children().text();
-                                		$(e.target).parent().children("div").children("span").children().html('');
-                                		$(e.target).parent().children("div").children("span").children().html(`<input type="text" name="update_rep_content" value = "\${oldContent}" />`);
+                                		var oldContent = $(e.target).parent().children("div").children().next().text();
+                                		$(e.target).parent().children("div").children().next().html('');
+                                		$(e.target).parent().children("div").children().next().html(`<input type="text" name="update_rep_content" value = "\${oldContent}" />`);
                                 		
                                 		
                                 		
