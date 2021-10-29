@@ -293,12 +293,12 @@ if(loginMember != null){
 %>
                     </div>
                     
-                
+             
                     <div class="sd-copyright-section">
                         <h4 id="sd-copyright-title">저작권 정보</h4>
                         <hr class="liner">
-                        <p id="sd-copyright-content"><%= fontCopyright.toString() %></p>
-                        
+                        <p id="sd-copyright-content">본 <%= font.getFontName() %>의 저작권은 <%= fontCopyright.getFontPublisher() %>에 있으며, <%= fontCopyright.getFontDesigner() %>에 의해 만들어졌습니다. <br>저작권 및 자세한 문의사항은 <%=fontCopyright.getFontRootUrl() %>에 문의하시길 바랍니다.</p>
+                      
                     </div>        
                 
                 
