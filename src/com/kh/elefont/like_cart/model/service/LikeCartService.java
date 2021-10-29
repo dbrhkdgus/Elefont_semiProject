@@ -12,10 +12,19 @@ public class LikeCartService {
 
 	
 	public int insertCart(String fontNo, String memberNo) {
-		System.out.println("서비스");
+		
 		Connection conn = getConnection();
 
 		int result = likeCartDao.insertCart(conn, fontNo, memberNo);
+		close(conn);
+		return result;
+	}
+
+
+	public int deleteCart(String cartNo) {
+		Connection conn = getConnection();
+
+		int result = likeCartDao.deleteCart(conn, cartNo);
 		close(conn);
 		return result;
 	}

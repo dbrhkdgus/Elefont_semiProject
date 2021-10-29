@@ -101,7 +101,7 @@ public class MemberDao {
 			pstmt.setString(9, member.getMemberRole());
 			
 			result = pstmt.executeUpdate();
-			System.out.println("result@dao"+ result);
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {

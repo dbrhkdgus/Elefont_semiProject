@@ -25,11 +25,13 @@ System.out.println("repList@jsp : " + repList );
                     
                     	<form action="<%= request.getContextPath() %>/member/memberCart" method="POST" name="PurchaseCartFrm">                    
                         	<input id="purchase-button" name="button" type="button" value="구매">
-                        	<input id="cart-button" name="button" type="button" value="장바구니">
+                        	<input id="cart-button"  data-font-no="<%= font.getFontNo() %>" data-type="cart" name="button" type="button" value="장바구니">
                         	<input id="like-button" name="button" type="button" value="좋아요">
                         	<input type="hidden" name="PerCartType" value = "" />
-                       		<input type="hidden" name="font_no" value="<%= font.getFontNo() %>" />
+<% if(loginMember != null){ %>                        	
                        		<input type="hidden" name="member_no" value="<%= loginMember.getMemberNo() %>" />
+<%} %>    
+                       		<input type="hidden" name="cart_no" value="" />
                   	  	</form>
                     
                     </div>
@@ -255,8 +257,20 @@ if(loginMember != null){
                                 	/* 장바구니 추가 버튼 클릭 */
                                 	$("#cart-button").click((e)=>{
                                 		$("input[name=PerCartType]").val("cart");
+                                		$fontNo = $(e.target).data("fontNo");
+                                		$PerCartType = $(e.target).data("type");
+                                		$.ajax({
+                                			url: "<%=request.getContextPath()%>/member/memberCart",
+                                			dataType: "json",
+                                			type:"POST",
+                                			data: {'fontNo' : $fontNo, 'PerCartType' : $PerCartType},
+                                			success(data){
+                                				
+                                				alert("장바구니 등록 성공!")
+                                			},
+                                			error: console.log
+                                		});
                                 		
-                                		$(document.PurchaseCartFrm).submit();
                                 	});
                                 	
                                 	
