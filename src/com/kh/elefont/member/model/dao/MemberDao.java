@@ -533,8 +533,29 @@ public class MemberDao {
 
 
 	public String selectMemberNoById(Connection conn, String memberId) {
-		// TODO Auto-generated method stub
-		return null;
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String bringNo = null;
+		String sql = prop.getProperty("selectMemberNoById");
+		
+		try {
+			pstmt= conn.prepareStatement(sql);
+			pstmt.setString(1, memberId);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				bringNo = rset.getString("member_no");
+			}
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return bringNo;
 	}
 
 
