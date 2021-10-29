@@ -55,10 +55,10 @@
         margin-top: 30px;
 
     }
-
-
     </style>
     <body>
+    
+    <% String photoPath = (String) request.getParameter("profilePhotoPath");  %>
 
     
         <div id="PPOuterBox">
@@ -68,7 +68,7 @@
             <div id="ppphotobox">
                 <div class="defaultphotobox" id="defaultphotobox">
                     <img class="defaultPhoto" id="previewPhoto"
-                        src="https://t1.daumcdn.net/cfile/tistory/243FE450575F82662D"
+                        src="<%= request.getContextPath() %>/upload/profilephotos/<%=photoPath%>"
                         alt="프로필기본사진">
                 </div>
                 <br>
