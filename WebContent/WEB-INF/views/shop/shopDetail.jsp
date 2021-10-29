@@ -174,9 +174,9 @@ if(loginMember != null){
                             
                                $('.fa-replyd').on('click', (e)=>
                              {
-                            	$(".re-reply-box").show();
-                               console.log($(e.target).parent().parent().next());
-                               $(e.target).parent().parent().next().slideToggle(500);                                
+                            	alert("댓글등록은 로그인 이후 가능합니다.");
+                            	$('.loginBox').show();
+                            	$(loginId).select();
                              });
                              </script>
 <% } %>
