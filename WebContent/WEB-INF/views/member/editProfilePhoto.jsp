@@ -1,4 +1,3 @@
-<%@page import="com.kh.elefont.common.model.vo.Attachment"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -60,8 +59,7 @@
 
     </style>
     <body>
-    
-    <% Attachment attach = (Attachment) request.getAttribute("attach");%>
+
     
         <div id="PPOuterBox">
             <div id="EditProfilePhotoTitle">
@@ -83,7 +81,7 @@
 	                      <tr>
 	                          <td id="tdpp1" class="pptd">이미지 <br/> 첨부파일</td>
 	                          <td id="tdpp2" class="pptd"><input type="file" name="profileimage" onchange="dd();" />
-	                          <hr /><input id="changeImage" name="delFile" type="button" value="이미지바꾸기"/></td>
+	                          <hr /><input id="changeImage" type="button" value="이미지바꾸기"/></td>
 	                          <input type="hidden" name="memberNo" value="<%=request.getParameter("memberNo")%>" />
 	                      </tr>
 	                  </table>
@@ -95,33 +93,25 @@
         </div>
  <script>
  
- function dd(){
-	 $(document.imageUploadFrm).submit(); 
- }
- 
- 
- //기본이미지할때 기존 파일 지워보자
-<% if(attach != null) { %>
-$("[name=delFile]").click((e) => {
-	
-	// 파일 선택여부 
-	const $file = $(e.target);
-	console.log($file.val());
-	if($file.val() != ""){
-		// 파일선택한 경우
-		$(fname).hide();
-		$(delFile).prop("checked",true);
-		
-	}
-	else {
-		// 파일선택을 취소한 경우
-		$(fname).show();
-	}
-	
-});
-<% } %>
+ function dd() {
 
+		$.ajax({
+			url: "<%=request.getContextPath()%>/member/profileFileUpload",
+			data : {memberNo : "<%=request.getParameter("memberNo")%>"},
+			dataType: "text",
+			method: "GET",
+			success(data){	
 
+			},
+			error(xhr, textStatus, err){
+				console.log(xhr, textStatus, err);
+			}
+		});
+	};
+ 
+	 function ddd(){
+		 $(document.imageUploadFrm).submit(); 
+	 }
  
  </script> 
     </body>

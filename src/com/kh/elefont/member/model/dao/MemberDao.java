@@ -406,4 +406,25 @@ public class MemberDao {
 	}
 
 
+	public int deletePrePhoto(Connection conn, String memberNo) {
+		PreparedStatement pstmt = null;
+		int delResult =0;
+		String sql = prop.getProperty("deletePrePhoto");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, memberNo);
+			
+			int result = pstmt.executeUpdate();
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally{
+			close(pstmt);
+		}
+		
+		return 0;
+	}
+
+
 }
