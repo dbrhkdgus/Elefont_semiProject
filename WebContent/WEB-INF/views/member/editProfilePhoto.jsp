@@ -66,8 +66,8 @@
                 <h1>프로필사진 변경하기</h1>
             </div>
             <div id="ppphotobox">
-                <div class="defaultphotobox">
-                    <img class="defaultPhoto"
+                <div class="defaultphotobox" id="defaultphotobox">
+                    <img class="defaultPhoto" id="previewPhoto"
                         src="https://t1.daumcdn.net/cfile/tistory/243FE450575F82662D"
                         alt="프로필기본사진">
                 </div>
@@ -80,7 +80,7 @@
 	                  <table id="PPTable">
 	                      <tr>
 	                          <td id="tdpp1" class="pptd">이미지 <br/> 첨부파일</td>
-	                          <td id="tdpp2" class="pptd"><input type="file" name="profileimage" onchange="dd();" />
+	                          <td id="tdpp2" class="pptd"><input type="file" name="profileimage" onchange='openFile(event)'/>
 	                          <hr /><input id="changeImage" type="button" value="이미지바꾸기"/></td>
 	                          <input type="hidden" name="memberNo" value="<%=request.getParameter("memberNo")%>" />
 	                      </tr>
@@ -88,27 +88,26 @@
             	</form>
             </div>
             <div id="confirmBtn">
-                <button>완료</button>
+                <button id="closeBtn">창닫기</button>
             </div>
         </div>
  <script>
+$(closeBtn).click(()=>{
+	self.close();
+}) 
  
- function dd() {
+ var openFile = function(event) { 
+	var input = event.target; var reader = new FileReader(); 
+	 
+ 	reader.onload = function(){ 
+ 		var dataURL = reader.result; 
+ 		var output = document.getElementById('previewPhoto'); 
+ 		output.src = dataURL; 
+ 		}; 
+ 		
+ 	reader.readAsDataURL(input.files[0]); 
+ 	};
 
-		$.ajax({
-			url: "<%=request.getContextPath()%>/member/profileFileUpload",
-			data : {memberNo : "<%=request.getParameter("memberNo")%>"},
-			dataType: "text",
-			method: "GET",
-			success(data){	
-
-			},
-			error(xhr, textStatus, err){
-				console.log(xhr, textStatus, err);
-			}
-		});
-	};
- 
 	 function ddd(){
 		 $(document.imageUploadFrm).submit(); 
 	 }
