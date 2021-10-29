@@ -37,6 +37,9 @@ public class CommunityPictureDetailServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		Member loginMember = (Member)session.getAttribute("loginMember");
+		List<String> commLikeList = new ArrayList<>();
+		
+		
 		try {
 			//1.파리미터 fontNo
 			String commNo = request.getParameter("commNo");
@@ -110,6 +113,8 @@ public class CommunityPictureDetailServlet extends HttpServlet {
 			//List<BoardComment> commentList = boardService.selectCommentList(no);
 			//System.out.println("commentList@servlet = " + commentList);
 			
+			
+			request.setAttribute("commLikeList", commLikeList);
 			request.setAttribute("community", community);
 			request.setAttribute("attachment", attachment);
 			request.setAttribute("attachmentList", attachmentList);
