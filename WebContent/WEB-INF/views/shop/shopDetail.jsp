@@ -1,3 +1,4 @@
+<%@page import="com.kh.elefont.font.model.vo.FontCopyright"%>
 <%@page import="com.kh.elefont.rep.model.vo.Rep"%>
 <%@page import="com.kh.elefont.common.model.vo.Attachment"%>
 <%@page import="com.kh.elefont.community.model.vo.Community"%>
@@ -9,6 +10,7 @@
 
 <% 
 Font font = (Font)request.getAttribute("font"); 
+FontCopyright fontCopyright = (FontCopyright)request.getAttribute("fontCopyright");
 List<Community> communityList = (List<Community>)request.getAttribute("communityList");
 List<Attachment> commAttachmentList = (List<Attachment>)request.getAttribute("commAttachmentList");
 List<Rep> repList = (List<Rep>)request.getAttribute("repList");
@@ -175,9 +177,11 @@ if(loginMember != null){
                             
                                $('.fa-replyd').on('click', (e)=>
                              {
-                            	$(".re-reply-box").show();
-                               console.log($(e.target).parent().parent().next());
-                               $(e.target).parent().parent().next().slideToggle(500);                                
+
+                            	alert("댓글등록은 로그인 이후 가능합니다.");
+                            	$('.loginBox').show();
+                            	$(loginId).select();
+
 
                              });
                              </script>
@@ -293,7 +297,7 @@ if(loginMember != null){
                     <div class="sd-copyright-section">
                         <h4 id="sd-copyright-title">저작권 정보</h4>
                         <hr class="liner">
-                        <p id="sd-copyright-content">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ducimus totam tempora autem. Totam nemo, distinctio ipsam culpa vel excepturi fugit enim veritatis vitae tempore! Sed architecto voluptatem recusandae facilis dolorum.</p>
+                        <p id="sd-copyright-content"><%= fontCopyright.toString() %></p>
                         
                     </div>        
                 
