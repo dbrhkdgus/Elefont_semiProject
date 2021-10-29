@@ -15,8 +15,10 @@ import com.kh.elefont.common.model.service.AttachmentService;
 import com.kh.elefont.common.model.vo.Attachment;
 import com.kh.elefont.community.model.service.CommunityService;
 import com.kh.elefont.community.model.vo.Community;
+import com.kh.elefont.font.model.service.FontCopyrightService;
 import com.kh.elefont.font.model.service.FontService;
 import com.kh.elefont.font.model.vo.Font;
+import com.kh.elefont.font.model.vo.FontCopyright;
 import com.kh.elefont.rep.model.service.RepService;
 import com.kh.elefont.rep.model.vo.Rep;
 
@@ -31,6 +33,7 @@ public class ShopDetailServlet extends HttpServlet {
 	private CommunityService communityService = new CommunityService();
 	private AttachmentService attachmentService = new AttachmentService();
 	private RepService repService = new RepService();
+	private FontCopyrightService fontCopyrightService = new FontCopyrightService();
 	/**
 	 * 
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
@@ -80,6 +83,7 @@ public class ShopDetailServlet extends HttpServlet {
 			
 			//업무 로직
 			Font font = fontService.selectOneFontByFontNo(fontNo);
+			FontCopyright fontCopyright = fontCopyrightService.selectOneFontCopyrightByFontNo(fontNo);
 			
 			List<Community> communityList =  communityService.selectCommunityListByFontNo(fontNo);
 			
@@ -110,6 +114,7 @@ public class ShopDetailServlet extends HttpServlet {
 			request.setAttribute("communityList", communityList);
 			request.setAttribute("commAttachmentList", commAttachmentList);
 			request.setAttribute("repList", repList);
+			request.setAttribute("fontCopyright", fontCopyright);
 			//request.setAttribute("commentList", commentList);
 			RequestDispatcher reqDispatcher = request.getRequestDispatcher("/WEB-INF/views/shop/shopDetail.jsp");
 			reqDispatcher.forward(request, response);
