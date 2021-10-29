@@ -12,6 +12,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Properties;
 
 import com.kh.elefont.community.model.vo.Community;
@@ -293,6 +294,137 @@ public class CommunityDao {
 		}
 		
 		return result;
+	}
+
+	public int selectCommLike(Connection conn, Map<String, Object> param) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectCommLike");
+		int likeValid = 0;
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, (String)param.get("commNo"));
+			pstmt.setString(2, (String)param.get("memberNo"));
+			
+			rset = pstmt.executeQuery();
+			if(!rset.next()) likeValid = 0;
+			else likeValid = 1;
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return likeValid;
+	}
+
+	public int deleteCommLike(Connection conn, Map<String, Object> param) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String sql = prop.getProperty("deleteCommLike");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, (String)param.get("commNo"));
+			pstmt.setString(2, (String)param.get("memberNo"));
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+
+	public int insertCommLike(Connection conn, Map<String, Object> param) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String sql = prop.getProperty("insertCommLike");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, (String)param.get("memberNo"));
+			pstmt.setString(2, (String)param.get("commNo"));
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return result;
+	}
+
+	public int countCommLike(Connection conn, String commNo) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		int likeCnt = 0;
+		String sql = prop.getProperty("countCommLike");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, commNo);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				likeCnt = rset.getInt(1);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return likeCnt;
+	}
+
+	public int updateCommLike(Connection conn, Map<String, Object> map) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String sql = prop.getProperty("updateCommLike");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, (int)map.get("likeCnt"));
+			pstmt.setString(2, (String)map.get("commNo"));
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+	}
+
+	public List<String> selectAllLikedComm(Connection conn, String memberNo) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		List<String> commLikeList = new ArrayList<>();
+		String sql = prop.getProperty("selectAllLikedComm");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, memberNo);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				String commNo = rset.getString("comm_no");
+				
+				commLikeList.add(commNo);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+	
+		return commLikeList;
 	}
 
 

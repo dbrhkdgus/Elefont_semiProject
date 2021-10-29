@@ -150,8 +150,8 @@ $(".font-style").css("color", $(color).val());
 <%
  	}
 %>
-		$target = $(e.target);
-		$fontNo = $target.data("fontNo");
+		let $target = $(e.target);
+		let $fontNo = $target.data("fontNo");
 		
 		$.ajax({
 			url: "<%=request.getContextPath()%>/font/fontLike",

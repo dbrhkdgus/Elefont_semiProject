@@ -8,6 +8,7 @@ import static com.kh.elefont.common.JdbcTemplate.rollback;
 import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import com.kh.elefont.community.model.dao.CommunityDao;
 import com.kh.elefont.community.model.vo.Community;
@@ -168,6 +169,75 @@ public class CommunityService {
 		}
 		
 		return result;
+	}
+
+	public int selectCommLike(Map<String, Object> param) {
+		Connection conn = getConnection();
+		int result = 0;
+		int likeValid = 0;
+		
+		try {
+			result = communityDao.selectCommLike(conn, param);
+			
+			if(result == 1) {
+				//좋아요 이력이 있는 경우
+				//like_comm 테이블에서 해당 행 삭제
+				result = communityDao.deleteCommLike(conn, param);
+				
+			}
+			else if(result == 0) {
+				//좋아요 이력이 없는 경우
+				likeValid = 1;
+				result = communityDao.insertCommLike(conn, param);
+			}
+			
+			commit(conn);
+		}catch(Exception e) {
+			e.printStackTrace();
+			rollback(conn);
+			
+		}finally {
+			close(conn);
+		}
+		
+		return likeValid;
+	}
+
+	public int countCommLike(String commNo) {
+		Connection conn = getConnection();
+		int likeCnt = 0;
+		
+		likeCnt = communityDao.countCommLike(conn, commNo);
+		
+		close(conn);
+		
+		return likeCnt;
+	}
+
+	public int updateCommLike(Map<String, Object> map) {
+		Connection conn = getConnection();
+		int result = 0;
+		try {
+			result = communityDao.updateCommLike(conn, map);
+			
+			commit(conn);
+		}catch(Exception e) {
+			e.printStackTrace();
+			rollback(conn);
+			
+		}finally {
+			close(conn);
+		}
+		return result;
+	}
+
+	public List<String> selectAllLikedComm(String memberNo) {
+		Connection conn = getConnection();
+		List<String> commLikeList = communityDao.selectAllLikedComm(conn, memberNo);
+		
+		close(conn);
+		
+		return commLikeList;
 	}
 
 
