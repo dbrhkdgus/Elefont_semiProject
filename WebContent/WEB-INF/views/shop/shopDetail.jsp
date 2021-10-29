@@ -258,7 +258,7 @@ if(loginMember != null){
                                 	$("#cart-button").click((e)=>{
                                 		$("input[name=PerCartType]").val("cart");
                                 		$fontNo = $(e.target).data("fontNo");
-                                		$PerCartType = $(e.target).data("type");
+                                		$PerCartType = $(e.target).data("type");                               		
                                 		$.ajax({
                                 			url: "<%=request.getContextPath()%>/member/memberCart",
                                 			dataType: "json",
@@ -266,12 +266,13 @@ if(loginMember != null){
                                 			data: {'fontNo' : $fontNo, 'PerCartType' : $PerCartType},
                                 			success(data){
                                 				console.log(data);
+                                				const insertCart = data["insertCart"];
                                 				if(insertCart == 1){
-	                                				alert("장바구니 등록 성공!")                               					
+	                                				alert("장바구니 등록 성공!");                               					
+                                				}else{
+                                					alert("장바구니에 이미 등록되어 있습니다.")
                                 				}
-                                				if(deleteCart == 1){
-                                					alert("장바구니 삭제 성공!")
-                                				}
+                                				
                                 			},
                                 			error: console.log
                                 		});

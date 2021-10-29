@@ -13,6 +13,7 @@ import java.util.List;
 import java.util.Properties;
 
 import com.kh.elefont.like_cart.model.vo.MemberCart;
+import com.kh.elefont.like_cart.model.vo.MemberCartView;
 
 public class LikeCartDao {
 	
@@ -176,6 +177,44 @@ public class LikeCartDao {
 			close(pstmt);
 		}
 		return memberCartList;
+	}
+
+	public List<MemberCartView> selectAllMemberCartViewByMemberNo(Connection conn, String memberNo) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectAllMemberCartViewByMemberNo");
+		List<MemberCartView> memberCartViewList = new ArrayList<>();
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, memberNo);
+			
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				MemberCartView memberCartView = new MemberCartView();
+				
+				memberCartView.setMemberNo(rset.getString("member_no"));
+				memberCartView.setCartNo(rset.getString("cart_no"));
+				memberCartView.setFontName(rset.getString("font_name"));
+				memberCartView.setFontDiscountRate(rset.getDouble("font_discount_rate"));
+				memberCartView.setFontNo(rset.getString("font_no"));
+				memberCartView.setFontPrice(rset.getInt("font_price"));
+				
+				
+				memberCartViewList.add(memberCartView);
+			}
+			
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return memberCartViewList;
 	}
 
 }
