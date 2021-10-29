@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.kh.elefont.common.ElefontUtils;
+import com.kh.elefont.common.model.vo.Attachment;
 import com.kh.elefont.member.model.service.MemberService;
 import com.kh.elefont.member.model.vo.Member;
 
@@ -42,8 +43,16 @@ public class MemberEnrollServlet extends HttpServlet {
 		if(_birthday != null && !"".equals(_birthday))
 			birthday = Date.valueOf(_birthday);
 		
-		Member member = new Member(null, memberId, password, memberName, memberGender, email, phone, birthday, job, null, null, null, memberRole, null);
+		//default 프로필 사진 넣어주기 시작
+		int defaultAttNo = 211;
+		Attachment attach = memberService.BringDefaultProfilePhoto(memberId,defaultAttNo);
+		
+		
+		////default 프로필 사진 넣어주기  끝
+		
+		Member member = new Member(null, memberId, password, memberName, memberGender, email, phone, birthday, job, null, null, null, memberRole, attach);
 		System.out.println("member@servlet" + member);
+		
 		
 		//업무 로직
 		int result = memberService.insertMember(member);

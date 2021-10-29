@@ -93,8 +93,9 @@
         </div>
  <script>
 $(closeBtn).click(()=>{
-	confirm("프로필 사진 변경을 취소하시겠습니까?");
-	self.close();
+	if(confirm("프로필 사진 변경을 취소하시겠습니까?")){
+		self.close();		
+	};
 }) 
  
  var openFile = function(event) { 
