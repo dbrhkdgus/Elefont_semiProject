@@ -199,8 +199,11 @@ if(loginMember != null){
                                 	});
                                 	
                                 	$(".btn-rep-delete").click((e)=>{
+                                		if(confirm("정말 삭제하시겠습니까?")){
+                                			
                                 		$("input[name=type]").val("delete");
                                 		$(e.target).parent().parent().next().next().submit(); 
+                                		}
                                 	});
                                 </script>
 
@@ -227,8 +230,11 @@ if(loginMember != null){
                                 	});
                                 	
                                 	$(".btn-re-rep-delete").click((e)=>{
+                                		if(confirm("정말 삭제하시겠습니까?")){
+                                			
                                 		$("input[name=type]").val("delete");
                                 		$(e.target).parent().parent().next().next().submit();
+                                		}
                                 	});
                                 </script>
 
