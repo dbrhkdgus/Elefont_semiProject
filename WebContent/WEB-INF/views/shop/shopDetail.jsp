@@ -171,12 +171,14 @@ if(loginMember != null){
 <% }else { %>
 							<script>
   							$(document.reReplyFrm).hide();
+
                             
                                $('.fa-replyd').on('click', (e)=>
                              {
                             	$(".re-reply-box").show();
                                console.log($(e.target).parent().parent().next());
                                $(e.target).parent().parent().next().slideToggle(500);                                
+
                              });
                              </script>
 <% } %>
