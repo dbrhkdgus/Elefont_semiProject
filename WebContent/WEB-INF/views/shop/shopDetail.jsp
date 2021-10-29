@@ -54,6 +54,7 @@ if(loginMember!=null){
                             </form>
 <%	
 }
+
 for(Rep rep : repList){
 	int repNo = 0;
 	if(rep.getRepLevel()==1){
@@ -67,74 +68,33 @@ for(Rep rep : repList){
 								<div class="reply-outer-box">
 	                            <div class="reply-box">
 	                                	<img src="https://cdn1.vectorstock.com/i/1000x1000/10/05/user-icon-vector-22391005.jpg"  id="user-profile">
-                                		<div class="reply-writer-content"><span><%=rep.getRepWriter()%> : <%=rep.getRepContent()%></span></div>
+                                		<div class="reply-writer-content"><span><%=rep.getRepWriter()%> : </spna><span><%=rep.getRepContent()%></span></div>
 
                                 </div> 
                                 <i class="fab fa-replyd" style="font-size:35px; color: #005A3C; "></i>
 <%
-	if(loginMember != null &&(loginMember.getMemberNo().equals(rep.getMemberNo()) || "A".equals(loginMember.getMemberRole()))){
+		if(loginMember != null &&(loginMember.getMemberNo().equals(rep.getMemberNo()) || "A".equals(loginMember.getMemberRole()))){
 		
 	
 %>
                                 <input type="button" value="수정" class="btn-rep-transFrm" click="transFrm"/>
                                 <input type="button" value="등록" class="btn-rep-update"/>
                                 <input type="button" value="삭제" class="btn-rep-delete"/>
-                                <input type="hidden" name="type" value="" /> 
-                                <input type="hidden" name="rep_no" value="<%= rep.getRepNo() %>" />
+                                
                                 
 
-                                <script>
-                                	$(".btn-rep-update").hide();
-                                	$(".btn-rep-update").click((e)=>{
-                                		var $DeUpfrm = $(document.DeleteUpdateRepFrm);
-                                		$("input[name=type]").val("update");
-                                		$DeUpfrm.submit();
-                                	});
-                                	$('.btn-rep-transFrm').off('click').on('click', (e)=>{
-                                		$(".btn-rep-transFrm").hide();
-                                		$(".btn-rep-update").show();
-                                		console.log(this);
-                                		/* $(".btn-rep-transFrm").html(''); */
-                                		<%-- $('.reply-writer-content').html('<span><%=rep.getRepWriter()%> : <input type="text" name="update_rep_content" value="<%=rep.getRepContent()%>"/> </span>'); --%>
-                                	});
-                                	
-                                	$(".btn-rep-delete").click((e)=>{
-                                		$("input[name=type]").val("delete");
-                                		$DeUpfrm.submit();
-                                	});
-                                </script>
-
-<% } %>
-
-                                </div>
-                                <form action="<%= request.getContextPath() %>/rep/DeleteUpdateRep" method="POST" name="DeleteUpdateRepFrm">
+                                <form action="<%= request.getContextPath() %>/rep/DeleteUpdateRep" method="POST" name="DeleteUpdateRepFrm2">
    									<input type="hidden" name="type" value="" /> 
                                 	<input type="hidden" name="rep_no" value="<%= rep.getRepNo() %>" />
+                                	<input type="hidden" name="update_rep_content" value="" />
    								</form>
-   								
-                                <script>
                                 
-                                	$(".btn-rep-update").hide();
-                                	$(".btn-rep-update").click((e)=>{
-                                		
-                                		$("input[name=type]").val("update");
-                                		 $(document.DeleteUpdateRepFrm).submit();
-                                	});
-                                	
-                                	const transFrm = (e)=>{
-                                		 console.log(e.target)
-                                		$(".btn-rep-transFrm").hide();
-                                		$(".btn-rep-update").show();
-                                		
-                                		/* $(".btn-rep-transFrm").html(''); */
-                                		<%-- $('.reply-writer-content').html('<span><%=rep.getRepWriter()%> : <input type="text" name="update_rep_content" value="<%=rep.getRepContent()%>"/> </span>'); --%>
-                                	};
-                                	
-                                	$(".btn-rep-delete").click((e)=>{
-                                		$("input[name=type]").val("delete");
-                                		$(document.DeleteUpdateRepFrm).submit();
-                                	});
-                                </script>
+
+<% 		} %>
+
+                                </div>
+   								
+                             
 <%
 	}else{
 	
@@ -143,7 +103,7 @@ for(Rep rep : repList){
                                  <div class="re-reply-box">
                                  	<img src="https://i.ibb.co/chkD19T/image.png" alt="" />
                                 	<img src="https://cdn1.vectorstock.com/i/1000x1000/10/05/user-icon-vector-22391005.jpg"  id="user-profile">
-                                		<div class="re-reply-writer-content"><span><%=rep.getRepWriter()%> : <%=rep.getRepContent()%> </span></div>
+                                		<div class="re-reply-writer-content"><span><%=rep.getRepWriter()%> : </spna><span><%=rep.getRepContent()%></span></div>
 <%
 	if(loginMember != null && (loginMember.getMemberNo().equals(rep.getMemberNo()) || "A".equals(loginMember.getMemberRole()))){
 		
@@ -151,37 +111,13 @@ for(Rep rep : repList){
 %>
                                 <input type="button" value="수정" class="btn-re-rep-transFrm"/>
                                 <input type="button" value="등록" class="btn-re-rep-update"/>
-                                <input type="button" value="삭제" class="btn-rep-delete"/>
+                                <input type="button" value="삭제" class="btn-re-rep-delete"/>
                                 <input type="hidden" name="type" value="" /> 
                                 <input type="hidden" name="rep_no" value="<%= rep.getRepNo() %>" />
-                             </form>
-                                <script>
-
-                                	$(".btn-re-rep-update").hide();
-
-                                	
-                                	$(".btn-re-rep-update").click((e)=>{
-                                	const $reFrm = $(document.DeleteUpdateReRepFrm);
-                                		$("input[name=type]").val("update");
-                                		
-                                		 $(document.DeleteUpdateReRepFrm).submit();
-                                	});
-                                	
-                                	$(".btn-re-rep-transFrm").click((e)=>{
-                                		$(".btn-re-rep-transFrm").hide();
-                                		$(".btn-rep-update").show();
-                                		
-                                		$('.re-reply-writer-content').html('');
-                                		$('.re-reply-writer-content').html('<span><%=rep.getRepWriter()%> : <input type="text" name="update_rep_content" value="<%=rep.getRepContent()%>"/> </span>');
-                                		
-                                	});
-                                	
-                                	$(".btn-rep-delete").click((e)=>{
-                                		$("input[name=type]").val("delete");
-                                		 $(document.DeleteUpdateReRepFrm).submit();
-                                	});
-                                </script>
+                             
 <% } %>
+                             </form>
+                             
                                 </div> 
 <%
 		
@@ -195,10 +131,16 @@ for(Rep rep : repList){
                                 <input type="hidden" name="rep-writer" value="<%=loginMember.getMemberName()%>"/>
 								<input type="hidden" name="member_no" value="<%= loginMember.getMemberNo() %>" />
                                 <input type="hidden" name="rep-level" value="2" />
-                                <input type="hidden" name="rep-ref" value="<%=rep.getRepNo() %>" />
+                                <input type="hidden" name="rep-ref" value="<%= rep.getRepRef() == 0 ? rep.getRepNo() : rep.getRepRef() %>" />
                                 
                                 <input type="submit" value="등록"/>
                             </form>
+                            
+                            <form action="<%= request.getContextPath() %>/rep/DeleteUpdateRep" method="POST" name="DeleteUpdateReRepFrm2">
+   									<input type="hidden" name="type" value="" /> 
+                                	<input type="hidden" name="rep_no" value="<%=rep.getRepNo() %>" />
+                                	
+   							</form>
 <%
 }
 %>                            
@@ -208,7 +150,6 @@ for(Rep rep : repList){
                       		 $('.fa-replyd').off('click').on('click', (e)=>
                              {
                                console.log("click");
-                               console.log(e.target);
                                $(e.target).parent().parent().next().slideToggle(500);                                 
                              });
 
@@ -223,10 +164,56 @@ for(Rep rep : repList){
 <%
 	}
 
-	
 %>
+								<script>
+								/* 댓글 스크립트 */
+                                	$(".btn-rep-update").hide();
+                                	$(".btn-rep-update").click((e)=>{
+                                		$("input[name=type]").val("update");
+                                		
+                                		$(e.target).parent().parent().submit();
+                                	});
+                                	$('.btn-rep-transFrm').off('click').on('click', (e)=>{
+                                		$(e.target).hide();
+                                		$(e.target).next().show();
+                                		var oldContent = $(e.target).parent().children().children("div").children().children().text();
+                                		$(e.target).parent().children().children("div").children().children().html('');
+                                		$(e.target).parent().children().children("div").children().children().html(`<input type="text" name="update_rep_content" value = "\${oldContent}" />`);
+                                	});
+                                	
+                                	$(".btn-rep-delete").click((e)=>{
+                                		$("input[name=type]").val("delete");
+                                		$(e.target).parent().parent().next().next().submit(); 
+                                	});
+                                </script>
 
+   								<script>
+								/* 대댓글 스크립트 */
+                                	$(".btn-re-rep-update").hide();
 
+                                	
+                                	$(".btn-re-rep-update").click((e)=>{
+                                		$("input[name=type]").val("update");                      
+                                	
+                                		$(e.target).parent().parent().submit(); 
+                                	});
+                                	
+                                	$(".btn-re-rep-transFrm").click((e)=>{
+                                		$(e.target).hide();
+                                		$(e.target).next().show();
+                                		var oldContent = $(e.target).parent().children("div").children("span").children().text();
+                                		$(e.target).parent().children("div").children("span").children().html('');
+                                		$(e.target).parent().children("div").children("span").children().html(`<input type="text" name="update_rep_content" value = "\${oldContent}" />`);
+                                		
+                                		
+                                		
+                                	});
+                                	
+                                	$(".btn-re-rep-delete").click((e)=>{
+                                		$("input[name=type]").val("delete");
+                                		$(e.target).parent().parent().next().next().submit();
+                                	});
+                                </script>
 
                             
                         
