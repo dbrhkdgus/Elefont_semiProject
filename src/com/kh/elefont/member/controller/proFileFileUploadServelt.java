@@ -42,8 +42,8 @@ public class proFileFileUploadServelt extends HttpServlet {
 		String memberNo = multipartRequest.getParameter("memberNo");
 		System.out.println("memberNo : " + memberNo);
 		
-//		int delResult = memberService.deletePrePhoto(memberNo); 
 		
+		int delResult = memberService.deletePrePhoto(memberNo); 
 		
 		File f = multipartRequest.getFile("profileimage");
 		System.out.println(f);

@@ -1,5 +1,6 @@
 package com.kh.elefont.member.controller;
 
+import java.io.File;
 import java.io.IOException;
 import java.sql.Date;
 
@@ -10,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.kh.elefont.common.ElefontUtils;
+import com.kh.elefont.common.model.vo.Attachment;
 import com.kh.elefont.member.model.service.MemberService;
 import com.kh.elefont.member.model.vo.Member;
 
@@ -28,10 +30,16 @@ public class MemberInfoEditServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//1. 사용자 입력값
 		String memberId = request.getParameter("memberId");
-
+		String memberNo = request.getParameter("memberNo");
+		System.out.println("memberId 확인 : " + memberId);
 		
 		//2. 업무로직
 		Member member = memberService.selectOneMember(memberId);
+		
+		//Attachment attach = memberService.selectMyProfilePhoto(memberNo);
+
+		// 서버컴퓨터 파일 삭제
+		//File _delFile = new File(saveDirectory, attach.getRenamedFilename());
 
 		
 		//3. 뷰단처리
