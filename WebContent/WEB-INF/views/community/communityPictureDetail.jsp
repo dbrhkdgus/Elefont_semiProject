@@ -11,6 +11,7 @@
 	Attachment attachment = (Attachment)request.getAttribute("attachment");
 	List<Attachment> attachmentList = (List<Attachment>)request.getAttribute("attachmentList");
 	List<String> commLikeList = (List<String>) request.getAttribute("commLikeList");
+	
 %>
 
 
