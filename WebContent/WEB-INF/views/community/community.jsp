@@ -129,7 +129,7 @@ if(loginMember == null){
 						.removeClass("fas")
 						.addClass("far");
 				}
-				$target.html(`<span>\${likeCnt}</span>`);
+				$target.html(`<span>${likeCnt}</span>`);
 			},
 			error: console.log
 		});
