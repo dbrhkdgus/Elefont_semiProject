@@ -59,15 +59,7 @@
 
     </style>
     <body>
-    <!-- enctype="multipart/form-data"  
-    <form name="imageUploadFrm"  id="imageUploadFrm" method="post" enctype="multipart/form-data"
-    action="<%=request.getContextPath()%>/member/profileFileUpload">
-    <input type="hidden" name="memberNo" value="<%=request.getParameter("memberNo")%>" />
-     <% //System.out.println("아래에"); %>
-    <% //System.out.println(request.getParameter("memberNo")); %>
-    </form>
-    -->
-    
+
     
         <div id="PPOuterBox">
             <div id="EditProfilePhotoTitle">
@@ -89,7 +81,7 @@
 	                      <tr>
 	                          <td id="tdpp1" class="pptd">이미지 <br/> 첨부파일</td>
 	                          <td id="tdpp2" class="pptd"><input type="file" name="profileimage" onchange="dd();" />
-	                          <hr /><input id="changeImage" name="delFile" type="button" value="이미지바꾸기"/></td>
+	                          <hr /><input id="changeImage" type="button" value="이미지바꾸기"/></td>
 	                          <input type="hidden" name="memberNo" value="<%=request.getParameter("memberNo")%>" />
 	                      </tr>
 	                  </table>
@@ -101,9 +93,25 @@
         </div>
  <script>
  
- function dd(){
-	 $(document.imageUploadFrm).submit(); 
- }
+ function dd() {
+
+		$.ajax({
+			url: "<%=request.getContextPath()%>/member/profileFileUpload",
+			data : {memberNo : "<%=request.getParameter("memberNo")%>"},
+			dataType: "text",
+			method: "GET",
+			success(data){	
+
+			},
+			error(xhr, textStatus, err){
+				console.log(xhr, textStatus, err);
+			}
+		});
+	};
+ 
+	 function ddd(){
+		 $(document.imageUploadFrm).submit(); 
+	 }
  
  </script> 
     </body>

@@ -138,4 +138,22 @@ public class MemberService {
 		close(conn);
 		return memberList;
 	}
+
+	public int deletePrePhoto(String memberNo) {
+		System.out.println("서비스단에 memberNo : " + memberNo);
+		Connection conn = getConnection();
+		int delResult = 0;
+		
+		try {
+			delResult = memberDao.deletePrePhoto(conn, memberNo);
+			commit(conn);
+		}catch(Exception e) {
+			e.printStackTrace();
+			rollback(conn);
+			throw e;
+		}finally {
+			close(conn);
+			}
+		return delResult;
+	}
 }
