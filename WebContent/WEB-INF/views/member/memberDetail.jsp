@@ -396,13 +396,14 @@ List<Font> fontLikeList = (List<Font>) request.getAttribute("fontLikeList");
 							<label for="fontAuditYN2">승인 폰트 보기</label>
 							<br />
 							<select name="font-search" id="font-search">
-								<option value="" selected>모든 폰트 조회</option>
+							<!-- 김희 -->
+								<option value="all" selected>모든 폰트 조회</option>
 								<option value="font-no">폰트번호로 검색</option>
 								<option value="font-name">폰트명으로 검색</option>
 								<option value="font-seller">폰트 판매자로 검색</option>
 							</select>
-							<input type="text" name="" id="" placeholder="검색할 내용을 입력하세요."/>
-							<input type="button" value="검색" />
+							<input type="text" name="font-search-keyword" id="" placeholder="검색할 내용을 입력하세요."/>
+							<input type="button"  id="fontFinder" value="검색" />
 						</div>
 						<form action="<%=request.getContextPath()%>/admin/fontUpdate" method="POST" name="adminFontUpdateFrm" id="adminFontupdateFrm">
 							<div class="fix-head">
@@ -510,6 +511,14 @@ $(memberFinder).click((e)=>{
 	location.href = "<%=request.getContextPath()%>/admin/memberFinder?searchType="+$searchType+"&searchKeyword="+$searchKeyword;
 });
 
+/* 폰트 관리 - 폰트 검색 버튼 클릭 시 search-type, search-keyword 전송 */
+$(fontFinder).click((e)=>{
+	const $searchType = $("[name=font-search]").val();
+	const $searchKeyword = $("[name=font-search-keyword]").val();
+	console.log($searchType);
+	console.log($searchKeyword);
+	location.href = "<%=request.getContextPath()%>/admin/fontFinder?searchType="+$searchType+"&searchKeyword="+$searchKeyword;
+});
 
 /* 폰트 관리 - radio버튼 선택 시 해당 클래스명을 가진 tr 제외 display: none 처리 */
 $("[name=fontAuditYN]").change((e)=>{

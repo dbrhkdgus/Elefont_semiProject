@@ -105,6 +105,23 @@ public class AttachmentService {
 		}
 		return result;
 	}
+	public int updateAttachment(Attachment attach) {
+		 Connection conn = getConnection();
+	        int result = 0;
+	        
+	        try {
+	        	result = attachmentDao.updateAttachment(conn, attach);
+	            
+	            commit(conn);
+	        }catch(Exception e) {
+	            rollback(conn);
+	            throw e;
+	        }finally {
+	            close(conn);
+	        }
+	        return result;
+	}
+	
 	
 	
 
