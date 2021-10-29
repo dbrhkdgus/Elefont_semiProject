@@ -88,11 +88,13 @@
             	</form>
             </div>
             <div id="confirmBtn">
-                <button>완료</button>
+                <button id="closeBtn">창닫기</button>
             </div>
         </div>
  <script>
- 
+$(closeBtn).click(()=>{
+	self.close();
+}) 
  
  var openFile = function(event) { 
 	var input = event.target; var reader = new FileReader(); 
