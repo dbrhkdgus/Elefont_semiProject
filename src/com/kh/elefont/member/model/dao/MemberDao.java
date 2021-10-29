@@ -9,6 +9,7 @@ import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
@@ -99,6 +100,7 @@ public class MemberDao {
 			pstmt.setDate(7, member.getMemberBirthday());
 			pstmt.setString(8, member.getMemberJob());
 			pstmt.setString(9, member.getMemberRole());
+			pstmt.setInt(10, member.getAttNo().getAttNo());
 			
 			result = pstmt.executeUpdate();
 			System.out.println("result@dao"+ result);
@@ -462,6 +464,52 @@ public class MemberDao {
 		
 		return attach;
 	}
+
+
+	public Attachment BringDefaultProfilePhoto(Connection conn, int defaultAttNo, String memberId) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		Attachment attach = null;
+		String sql = prop.getProperty("BringDefaultProfilePhoto");
+		//BringDefaultProfilePhoto = select * from attachment where att_no =?
+		
+		
+
+		  
+		  
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setInt(1, defaultAttNo);
+			
+			rset = pstmt.executeQuery();
+						
+			  String currentDate = new SimpleDateFormat("yy-MM-dd").format(new Date(System.currentTimeMillis()));
+			  System.out.println("오늘의 날짜 : "+ currentDate);
+		
+			
+			if(rset.next()) {
+				attach = new Attachment();
+				
+				attach.setAttNo(defaultAttNo);
+				attach.setMemberNo(memberId);
+				attach.setCommNo(rset.getString("comm_no"));
+				attach.setOriginalFilename(rset.getString("original_filename"));
+				attach.setRenamedFilename(rset.getString("renamed_filename"));
+				attach.setRegDate(rset.getDate("reg_date"));
+				attach.setFontNo(rset.getString("font_no"));
+			}
+			System.out.println("Dao에서 attach를 잘 받았나요?" + attach);
+		
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return attach;
+	}
+
 
 
 }
