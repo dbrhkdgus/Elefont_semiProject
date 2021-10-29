@@ -7,6 +7,7 @@ import java.util.List;
 
 import com.kh.elefont.like_cart.model.dao.LikeCartDao;
 import com.kh.elefont.like_cart.model.vo.MemberCart;
+import com.kh.elefont.like_cart.model.vo.MemberCartView;
 
 
 public class LikeCartService {
@@ -65,6 +66,15 @@ public class LikeCartService {
 		List<MemberCart> memberCartList = likeCartDao.selectAllMemberCartByMemberNo(conn, memberNo);
 		close(conn);
 		return memberCartList;
+	}
+
+
+	public List<MemberCartView> selectAllMemberCartViewByMemberNo(String memberNo) {
+		Connection conn = getConnection();
+
+		List<MemberCartView> memberCartViewList = likeCartDao.selectAllMemberCartViewByMemberNo(conn, memberNo);
+		close(conn);
+		return memberCartViewList;
 	}
 
 }
