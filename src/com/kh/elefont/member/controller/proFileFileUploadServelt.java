@@ -24,24 +24,11 @@ public class proFileFileUploadServelt extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 	MemberService memberService = new MemberService();
-	
-	
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String memberNo = (String)request.getParameter("memberNo");
-		System.out.println("비동기로 보낸 memberNo : " + memberNo);
-		
-		
-		response.setContentType("text/html; charset=utf-8");
-		PrintWriter out = response.getWriter();
-		out.append("<span>사진 완료</span>");
-		
-		
-	}
+
 
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
-		기존 파일 먼저 삭제 후 멤버아이디로 저장되어있는 파일 삭제 -memberNo -> input:file 업로드한 사진 디비 등록 
 		
 		
 		// 0. MultipartRequest 객체
@@ -51,12 +38,12 @@ public class proFileFileUploadServelt extends HttpServlet {
 		FileRenamePolicy policy = new ElefontFileRenamePolicy();
 		MultipartRequest multipartRequest = new MultipartRequest(request, saveDirectory, maxPostSize, encoding, policy);
 		
-		
-		int delResult = memberService.deletePrePhoto(memberNo); 
-		
 		System.out.println("잘도착햇나요?");
 		String memberNo = multipartRequest.getParameter("memberNo");
 		System.out.println("memberNo : " + memberNo);
+		
+		int delResult = memberService.deletePrePhoto(memberNo); 
+		
 		
 		File f = multipartRequest.getFile("profileimage");
 		System.out.println(f);
