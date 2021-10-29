@@ -148,8 +148,9 @@ for(Rep rep : repList){
 
 <%
 	}
-
+if(loginMember != null){
 %>
+
                             <script>
                         	/* 숨김처리관련 스크립트 */
                       		  $(document.reReplyFrm).hide();
@@ -165,6 +166,17 @@ for(Rep rep : repList){
                                 $(e.target).show();	
                             }); */
                             </script>
+<% }else { %>
+							<script>
+  							$(document.reReplyFrm).hide();
+                            $(".re-reply-box").hide();
+                               $('.fa-replyd').on('click', (e)=>
+                             {
+                               console.log("click");
+                               $(e.target).parent().next().slideToggle(500);                                 
+                             });
+                             </script>
+<% } %>
 								<script>
 								/* 댓글 스크립트 */
                                 	$(".btn-rep-update").hide();
