@@ -144,10 +144,16 @@ for(Rep rep : repList){
 <%
 }
 %>                            
+
+
+<%
+	}
+
+%>
                             <script>
-                        	
+                        	/* 숨김처리관련 스크립트 */
                       		  $(document.reReplyFrm).hide();
-                      		 $('.fa-replyd').off('click').on('click', (e)=>
+                      		 $('.fa-replyd').on('click', (e)=>
                              {
                                console.log("click");
                                $(e.target).parent().parent().next().slideToggle(500);                                 
@@ -159,12 +165,6 @@ for(Rep rep : repList){
                                 $(e.target).show();	
                             }); */
                             </script>
-
-
-<%
-	}
-
-%>
 								<script>
 								/* 댓글 스크립트 */
                                 	$(".btn-rep-update").hide();
