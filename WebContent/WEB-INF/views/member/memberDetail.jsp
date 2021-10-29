@@ -282,7 +282,7 @@ List<Font> fontLikeList = (List<Font>) request.getAttribute("fontLikeList");
 						<div class="admin-board">
 							<h4>커뮤니티 관리</h4>
 							<ul>
-								<li><a href="">1:1 문의 관리</a></li>
+								<li><a href="<%= request.getContextPath()%>/admin/answerQnA">1:1 문의 관리</a></li>
 								<li><a href="">삭제 게시글/댓글 관리</a></li>
 								<li><a href="<%= request.getContextPath()%>/community">커뮤니티로 이동</a></li>
 							</ul>
