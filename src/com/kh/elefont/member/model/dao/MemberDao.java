@@ -511,5 +511,32 @@ public class MemberDao {
 	}
 
 
+	public int insertDefaultPhoto(Connection conn, String memberNo) {
+		System.out.println("memberNo을 디에이오에서 " + memberNo);
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String sql = prop.getProperty("insertDefaultPhoto");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, memberNo);
+			
+			result = pstmt.executeUpdate();
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
+
+	public String selectMemberNoById(Connection conn, String memberId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
 
 }
