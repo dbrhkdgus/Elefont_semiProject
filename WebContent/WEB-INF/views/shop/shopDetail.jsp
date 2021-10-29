@@ -266,8 +266,11 @@ if(loginMember != null){
                                 			data: {'fontNo' : $fontNo, 'PerCartType' : $PerCartType},
                                 			success(data){
                                 				console.log(data);
-                                				if(result == 1){
+                                				if(insertCart == 1){
 	                                				alert("장바구니 등록 성공!")                               					
+                                				}
+                                				if(deleteCart == 1){
+                                					alert("장바구니 삭제 성공!")
                                 				}
                                 			},
                                 			error: console.log

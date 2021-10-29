@@ -2,6 +2,7 @@ package com.kh.elefont.member.controller;
 
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import javax.servlet.ServletException;
@@ -13,6 +14,7 @@ import javax.servlet.http.HttpSession;
 
 import com.google.gson.Gson;
 import com.kh.elefont.like_cart.model.service.LikeCartService;
+import com.kh.elefont.like_cart.model.vo.MemberCart;
 import com.kh.elefont.member.model.vo.Member;
 
 /**
@@ -47,11 +49,12 @@ public class MemberCartServlet extends HttpServlet {
 				String fontNo = request.getParameter("fontNo");
 				String PerCartType = request.getParameter("PerCartType");
 				String cartNo = "cart-" + System.currentTimeMillis();
-				
-				
 				String memberNo = member.getMemberNo();
+				
+				
+				
 				//System.out.println("fontNo, memberNo, PerCartType @ servlet = "+ fontNo + memberNo + PerCartType);
-				System.out.println("cart_no@servlet : "+ cartNo);
+				//System.out.println("cart_no@servlet : "+ cartNo);
 				
 				
 				//2. 업무 로직
@@ -60,16 +63,26 @@ public class MemberCartServlet extends HttpServlet {
 				Map<String, Object> map = new HashMap<>();
 				int insertCart = 0;
 				int DeleteCart = 0;
-				int cartValid = likeCartService.selectMemberCartByCartNo(cartNo);
 				
-				if(cartValid == 1) {
-					insertCart = likeCartService.insertCart(cartNo, fontNo);
-					insertCart = likeCartService.insertMemberCart(memberNo, cartNo);					
-				}else if(cartValid == 0) {
-					DeleteCart = likeCartService.deleteCart(cartNo);
-					DeleteCart = likeCartService.deleteMemberCart(cartNo);
+				// 뷰테이블로 조회해서 해볼 것!!
+				List<MemberCart> memberCartList = likeCartService.selectAllMemberCartByMemberNo(memberNo);
+				List<Cart> cartList = likeCartService.selectAllCartByMemberId(memberNo);
+				
+				for(MemberCart mc : memberCartList) {
+					
+				
 				}
 				
+				if(memberCart == null) {
+					insertCart = likeCartService.insertCart(cartNo, fontNo);
+					insertCart = likeCartService.insertMemberCart(memberNo, cartNo);					
+				}else if(memberCart != null) {
+					DeleteCart = likeCartService.deleteCart(memberCart.getCartNo());
+					DeleteCart = likeCartService.deleteMemberCart(memberCart.getCartNo());
+				}
+				
+				if(insertCart == 1 || DeleteCart == 1) {
+					
 				map.put("result", insertCart);
 								
 //				//json문자열로 변환
@@ -80,6 +93,7 @@ public class MemberCartServlet extends HttpServlet {
 				//3. view단 처리
 				response.setContentType("application/json; charset = utf-8");
 				response.getWriter().print(jsonStr);
+				}
 		
 	}
 
