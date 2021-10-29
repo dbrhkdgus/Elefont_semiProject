@@ -5,7 +5,9 @@ import static com.kh.elefont.common.JdbcTemplate.getConnection;
 import static com.kh.elefont.common.JdbcTemplate.rollback;
 
 import java.sql.Connection;
+import java.util.List;
 
+import com.kh.elefont.faq.model.vo.Faq;
 import com.kh.elefont.font.model.dao.FontCopyrightDao;
 import com.kh.elefont.font.model.vo.FontCopyright;
 public class FontCopyrightService {
@@ -26,6 +28,15 @@ private FontCopyrightDao fontCopyrightDao = new FontCopyrightDao();
 			close(conn);
 		}
 		return result;
+	}
+
+	public FontCopyright selectOneFontCopyrightByFontNo(String fontNo) {
+		System.out.println("서비스단에 도착했나요?");
+		Connection conn = getConnection();
+		FontCopyright fontCopyright = fontCopyrightDao.selectOneFontCopyrightByFontNo(conn,fontNo);
+		close(conn);
+		
+		return fontCopyright;
 	}
 
 }
