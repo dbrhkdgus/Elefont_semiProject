@@ -2,6 +2,7 @@ package com.kh.elefont.member.model.service;
 
 import static com.kh.elefont.common.JdbcTemplate.*;
 import java.sql.Connection;
+import java.sql.Date;
 import java.util.List;
 import java.util.Map;
 
@@ -168,4 +169,16 @@ public class MemberService {
 
 		return attach;
 	}
+
+
+	public Attachment BringDefaultProfilePhoto(String memberId, int defaultAttNo) {
+		Connection conn = getConnection();
+		Attachment attach = memberDao.BringDefaultProfilePhoto(conn,defaultAttNo,memberId);
+		close(conn);
+
+		return attach;
+	}
+
+	
+
 }
