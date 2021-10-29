@@ -175,16 +175,12 @@ if(loginMember != null){
                             
                                $('.fa-replyd').on('click', (e)=>
                              {
-<<<<<<< HEAD
+
                             	alert("댓글등록은 로그인 이후 가능합니다.");
                             	$('.loginBox').show();
                             	$(loginId).select();
-=======
-                            	$(".re-reply-box").show();
-                               console.log($(e.target).parent().parent().next());
-                               $(e.target).parent().parent().next().slideToggle(500);                                
 
->>>>>>> branch 'master' of https://github.com/dbrhkdgus/Elefont_semiProject.git
+
                              });
                              </script>
 <% } %>
