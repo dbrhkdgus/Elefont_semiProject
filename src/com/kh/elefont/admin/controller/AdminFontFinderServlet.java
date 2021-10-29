@@ -51,6 +51,7 @@ public class AdminFontFinderServlet extends HttpServlet {
 		
 		HttpSession session = request.getSession();
 		session.setAttribute("fontList", fontList);
+		session.setAttribute("tabIndex", 4);
 
 		//3. view단 처리
 		request

@@ -46,6 +46,7 @@ public class AdminMemberFinderServlet extends HttpServlet {
 		
 		HttpSession session = request.getSession();
 		session.setAttribute("memberList", memberList);
+		session.setAttribute("tabIndex", 0);
 		
 		//3. view단 처리
 		request
