@@ -197,6 +197,15 @@ List<Font> fontLikeList = (List<Font>) request.getAttribute("fontLikeList");
 				<div>
 					<div class="memberLookup">
 						<div class="user-search-bar controlls">
+							<select name="search-type" id="user-search">
+								<option value="all" selected>모든 회원 조회</option>
+								<option value="id">Id로 검색</option>
+								<option value="email">이메일로 검색</option>
+								<option value="phone">연락처로 검색</option>
+							</select>
+							<input type="text" name="search-keyword" id="" placeholder="검색할 내용을 입력하세요."/>
+							<input type="button" value="검색" id="memberFinder"/>
+							<br />
 							<input type="radio" name="memberRole" id="allMember" value=""  checked>
 							<label for="memberRole0">모든 회원 보기</label>
 							<input type="radio" name="memberRole" id="user" value="M" >
@@ -207,15 +216,7 @@ List<Font> fontLikeList = (List<Font>) request.getAttribute("fontLikeList");
 							<label for="memberRole3">관리 회원 보기</label>
 						<!-- 	<input type="radio" name="memberRole" id="" value="D">
 							<label for="memberRole4">휴면 회원 보기</label> -->
-							<br />
-							<select name="user-search" id="user-search">
-								<option value="" selected>모든 회원 조회</option>
-								<option value="id">Id로 검색</option>
-								<option value="email">이메일로 검색</option>
-								<option value="phone">연락처로 검색</option>
-							</select>
-							<input type="text" name="" id="" placeholder="검색할 내용을 입력하세요."/>
-							<input type="button" value="검색" />
+
 						</div>
 						<div class="fix-head">
 						<table class="admin-tbl fix-tbl">
@@ -395,13 +396,14 @@ List<Font> fontLikeList = (List<Font>) request.getAttribute("fontLikeList");
 							<label for="fontAuditYN2">승인 폰트 보기</label>
 							<br />
 							<select name="font-search" id="font-search">
-								<option value="" selected>모든 폰트 조회</option>
+							<!-- 김희 -->
+								<option value="all" selected>모든 폰트 조회</option>
 								<option value="font-no">폰트번호로 검색</option>
 								<option value="font-name">폰트명으로 검색</option>
 								<option value="font-seller">폰트 판매자로 검색</option>
 							</select>
-							<input type="text" name="" id="" placeholder="검색할 내용을 입력하세요."/>
-							<input type="button" value="검색" />
+							<input type="text" name="font-search-keyword" id="" placeholder="검색할 내용을 입력하세요."/>
+							<input type="button"  id="fontFinder" value="검색" />
 						</div>
 						<form action="<%=request.getContextPath()%>/admin/fontUpdate" method="POST" name="adminFontUpdateFrm" id="adminFontupdateFrm">
 							<div class="fix-head">
@@ -500,6 +502,24 @@ $("[name=memberRole]").change((e)=>{
 	$("."+$filter).show();
 	
 });
+/* 회원 관리 - 회원 검색 버튼 클릭 시 search-type, search-keyword 전송 */
+$(memberFinder).click((e)=>{
+	const $searchType = $("[name=search-type]").val();
+	const $searchKeyword = $("[name=search-keyword]").val();
+	console.log($searchType);
+	console.log($searchKeyword);
+	location.href = "<%=request.getContextPath()%>/admin/memberFinder?searchType="+$searchType+"&searchKeyword="+$searchKeyword;
+});
+
+/* 폰트 관리 - 폰트 검색 버튼 클릭 시 search-type, search-keyword 전송 */
+$(fontFinder).click((e)=>{
+	const $searchType = $("[name=font-search]").val();
+	const $searchKeyword = $("[name=font-search-keyword]").val();
+	console.log($searchType);
+	console.log($searchKeyword);
+	location.href = "<%=request.getContextPath()%>/admin/fontFinder?searchType="+$searchType+"&searchKeyword="+$searchKeyword;
+});
+
 /* 폰트 관리 - radio버튼 선택 시 해당 클래스명을 가진 tr 제외 display: none 처리 */
 $("[name=fontAuditYN]").change((e)=>{
 	$filter = $(e.target).attr("id");

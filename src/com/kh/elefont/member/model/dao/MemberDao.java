@@ -11,6 +11,7 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Properties;
 
 import com.kh.elefont.common.model.vo.Attachment;
@@ -180,8 +181,7 @@ public class MemberDao {
 				member.setMemberPhone(rset.getString("member_phone"));
 				member.setMemberPoint(rset.getString("member_point"));
 				member.setMemberQuitYN(rset.getString("member_quit_yn"));
-				member.setMemberRole(rset.getString("member_role")!= null? rset.getString("member_role"):"X");
-				System.out.println(member);
+				member.setMemberRole(rset.getString("member_role"));
 				list.add(member);
 			}
 		} catch (SQLException e) {
@@ -314,6 +314,7 @@ public class MemberDao {
 			pstmt.setString(8, member.getMemberId());
 			
 			result = pstmt.executeUpdate();
+			
 		
 		}catch(SQLException e) {
 			e.printStackTrace();
@@ -324,6 +325,84 @@ public class MemberDao {
 		
 		
 		return result;
+	}
+
+
+	public int insertProfileImage(Connection conn, Attachment attach) {
+		System.out.println("디에오단에 왔나요?");
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String sql = prop.getProperty("insertProfileImage");
+		
+		//insertProfileImage 
+		//= insert into attachment values(seq_attachment_no.nextval,?,null,?,?,default,null)
+
+		try {
+			System.out.println(sql);
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setString(1, attach.getMemberNo());
+			pstmt.setString(2, attach.getOriginalFilename());
+			pstmt.setString(3, attach.getRenamedFilename());
+			
+			result = pstmt.executeUpdate();
+			
+			System.out.println("executeUpdate 날린 직후 result : " + result);
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		return result;
+	}
+
+	public List<Member> selectSearchMember(Connection conn, Map<String, Object> param) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		List<Member> memberList = new ArrayList<>();
+		String sql = "";
+		String searchType = (String)param.get("searchType");
+	//	String searchKeyword = (String)param.get("searchKeyword");
+		
+		switch(searchType) {
+		case "id" : 
+			sql = prop.getProperty("selectSearchMemberByMemberId");
+			break;
+		case "email" : 
+			sql = prop.getProperty("selectSearchMemberByMemberEmail");
+			break;
+		case "phone" : 
+			sql = prop.getProperty("selectSearchMemberByMemberPhone");
+			break;
+		}
+		
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, "%"+param.get("searchKeyword")+"%");
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				Member member = new Member();
+				
+				member.setMemberId(rset.getString("member_id"));
+				member.setMemberName(rset.getString("member_name"));
+				member.setMemberEmail(rset.getString("member_email"));
+				member.setMemberPhone(rset.getString("member_phone"));
+				member.setMemberPoint(rset.getString("member_point"));
+				member.setMemberQuitYN(rset.getString("member_quit_yn"));
+				member.setMemberRole(rset.getString("member_role"));
+				memberList.add(member);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return memberList;
 	}
 
 

@@ -221,6 +221,14 @@ public class FontService {
 		close(conn);
 		return likeFontList;
 	}
+	
+	public List<Font> selectSerchFont(Map<String, Object> param) {
+		Connection conn = getConnection();
+		List<Font> fontList = fontDao.selectSearchFont(conn,param);
+		
+		close(conn);
+		return fontList;
+	}
 
 
 }

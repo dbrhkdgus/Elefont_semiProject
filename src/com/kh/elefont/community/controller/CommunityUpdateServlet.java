@@ -47,6 +47,7 @@ public class CommunityUpdateServlet extends HttpServlet {
 		String fontNo = community.getFontNo();
 		Font font = fontService.selectOneFontByFontNo(fontNo);
 		Attachment attachment = attachmentService.selectOneAttachment(commNo);
+	
 		
 		// 3.view단 위임
 		request.setAttribute("attachment", attachment);
@@ -89,41 +90,43 @@ public class CommunityUpdateServlet extends HttpServlet {
 			
 			System.out.println(community);
 			// 첨부파일
-//			File f = multipartRequest.getFile("upFile");
+			//File f = multipartRequest.getFile("upFile");
 //			if(f != null) {
-//				Attachment attach = new Attachment();
-//				attach.setBoardNo(no); 
-//				attach.setOriginalFilename(multipartRequest.getOriginalFileName("upFile"));
-//				attach.setRenamedFilename(multipartRequest.getFilesystemName("upFile"));
-//				board.setAttach(attach);
-//			}
+				Attachment attach = new Attachment();
+				attach.setMemberNo(attach.getMemberNo());
+				attach.setCommNo(commNo); 
+				attach.setOriginalFilename(multipartRequest.getOriginalFileName("upFile"));
+				attach.setRenamedFilename(multipartRequest.getFilesystemName("upFile"));
+				community.setAttach(attach);
+				
 			
-//			System.out.println("board@servlet = " + board);
-//			
-//			// 2. 업무로직 
+			
+			System.out.println("community@servlet = " + community);
+			
+			// 2. 업무로직 
 			int result = 0;
 //			// 기존파일 삭제 (서버컴퓨터 파일 삭제 + db 레코드삭제)
-//			String delFile = multipartRequest.getParameter("delFile");
-//			if(delFile != null) {
-//				int attachNo = Integer.parseInt(delFile);
-//				Attachment attach = boardService.selectOneAttachment(attachNo);
-//				// 서버컴퓨터 파일 삭제
-//				File _delFile = new File(saveDirectory, attach.getRenamedFilename());
-//				_delFile.delete();
-//				// db 레코드삭제
-//				result = boardService.deleteAttachment(attachNo);
-//				System.out.println(result > 0 ? "첨부파일 삭제 성공!" : "첨부파일 삭제 실패!");
-//			}
+			Attachment oldattach = attachmentService.selectOneAttachment(commNo);
+//			// 서버컴퓨터 파일 삭제
+			File _delFile = new File(saveDirectory, oldattach.getRenamedFilename());
+			_delFile.delete();
+//			// db 레코드삭제
+//			result = attachmentService.deleteAttachmentByCommNo(commNo);
+//			System.out.println(result > 0 ? "첨부파일 삭제 성공!" : "첨부파일 삭제 실패!");
+//			
 			
 			// 게시물 수정 + 첨부파일 등록
+			result = attachmentService.updateAttachment(attach);
 			result = communityService.updateCommunity(community);
 			String msg = result > 0 ? "게시물 수정 성공!" : "게시물 수정 실패!";
 			
+			System.out.println("제발삭제되어라"+oldattach.getRenamedFilename());
+	
 			// 3. redirect
 			request.getSession().setAttribute("msg", msg);
 			String location = request.getContextPath() + "/community/pictureDetail?commNo=" + commNo;
 			response.sendRedirect(location);
-	}
 
+	}
 
 }
