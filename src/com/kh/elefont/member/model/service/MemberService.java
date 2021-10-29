@@ -10,6 +10,9 @@ import com.kh.elefont.member.model.dao.MemberDao;
 import com.kh.elefont.member.model.vo.Member;
 
 public class MemberService {
+	
+	public static final String MEMBER_ROLE = "U";
+	public static final String ADMIN_ROLE = "A";
 
 	public static final String GENDER_MALE = "M";
 	public static final String GENDER_FEMALE = "F";
