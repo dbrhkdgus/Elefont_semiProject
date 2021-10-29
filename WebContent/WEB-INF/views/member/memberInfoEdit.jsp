@@ -8,7 +8,7 @@
 <%
 Member member = (Member) request.getAttribute("member");
 File profilePhotoAttach = (File) request.getAttribute("profilePhotoAttach");
-String photoPath = profilePhotoAttach.getPath();
+String photoPath = profilePhotoAttach.getName();
 System.out.println("경로가 궁금하느냐? : " + photoPath);
 %>
 
@@ -50,7 +50,7 @@ System.out.println("경로가 궁금하느냐? : " + photoPath);
 					<div id="editPhoto">
 						<div class="defaultphotobox">
 							<img class="defaultPhoto"
-								src="<%=photoPath %>"
+								src="<%= request.getContextPath() %>/upload/profilephotos/<%=photoPath%>"
 								alt="프로필기본사진">
 						</div>
 						<p>
