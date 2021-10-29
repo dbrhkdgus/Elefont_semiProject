@@ -8,6 +8,7 @@
 	Community community = (Community) request.getAttribute("community");
 	Attachment attachment = (Attachment) request.getAttribute("attachment");
 	Font font = (Font) request.getAttribute("font");
+	String oldRenamedFilename = attachment.getRenamedFilename();
 %>
     <!-- Community Board Enroll start -->
 <section id="portfolio" class="portfolio section-space-padding">
@@ -42,6 +43,10 @@
                             	 <span id="originalfname"><%= attachment.getOriginalFilename() %></span>	
                                      <img id="originalAttachment" src="<%= request.getContextPath()%>/upload/community/<%=attachment.getRenamedFilename()%>"  value="<%= attachment.getAttNo() %>" alt="">
                             	 <p id="changedFname" ></p>
+<%if(oldRenamedFilename.equals(attachment.getRenamedFilename())){ %>
+								<input type="checkbox" name="delFile" id="delFile" value="<%= attachment.getAttNo() %>"/>
+<% } %>
+
                             <label for="content">내용</label>
                             <textarea rows="15" cols="114" name="content" style="resize: none;"><%= community.getCommContent() %></textarea>
                         	<div class="updateBtn"> 
