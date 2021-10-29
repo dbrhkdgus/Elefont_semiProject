@@ -44,6 +44,7 @@ public class MemberDetailServlet extends HttpServlet {
 			
 			session.setAttribute("memberList", memberList);
 			session.setAttribute("fontList", fontList);
+			session.setAttribute("tabIndex", 0);
 		}else if("U".equals(memberRole) || "S".equals(memberRole)) {
 			List<Attachment> commAttachmentList = attachmentService.selectAllCommAttachmentListByMemberNo(loginMember.getMemberNo());
 			List<Font> fontLikeList = fontService.selectAllLikedFontByMemberNo(loginMember.getMemberNo());

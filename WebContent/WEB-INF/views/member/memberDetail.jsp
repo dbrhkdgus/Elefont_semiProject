@@ -182,6 +182,8 @@ List<Font> fontLikeList = (List<Font>) request.getAttribute("fontLikeList");
 }else if("A".equals(memberRole)){
 	List<Member> memberList = (List<Member>) session.getAttribute("memberList");
 	List<Font> fontList = (List<Font>) session.getAttribute("fontList");
+	int tabIndex = (int)session.getAttribute("tabIndex");
+	System.out.println("tabIndex@jsp = " + tabIndex);
 %>
 		<div class="admin-container">
 			<div class="admin-tab-bar">
@@ -479,21 +481,24 @@ List<Font> fontLikeList = (List<Font>) request.getAttribute("fontLikeList");
 		</div>
 <script>
 /* 관리자 사용 메뉴 탭 클릭 시 다른 탭 보이도록 하는 효과 */
-	let $tabBtn = $(".admin-tab-bar>ul>li");  
-	let $tabContent = $("#tab-content>div"); 
-	
+let $tabBtn = $(".admin-tab-bar>ul>li");  
+let $tabContent = $("#tab-content>div"); 
 
-	$tabContent.hide().eq(0).show();
-	
-	$tabBtn.click((e)=>{
-	  const $target = $(e.target).parent();    
-	  const index = $target.index(); 
-	  $tabBtn.removeClass("active");
-	  $target.addClass("active");   
-	  $tabContent
-		  .css("display","none")
-		  .eq(index).css("display","block");
-	});
+
+$tabContent.hide().eq(<%=tabIndex%>).show();
+$tabBtn
+	.removeClass("active")
+	.eq(<%=tabIndex%>).addClass("active"); 
+
+$tabBtn.click((e)=>{
+  const $target = $(e.target).parent();    
+  const index = $target.index(); 
+  $tabBtn.removeClass("active");
+  $target.addClass("active");   
+  $tabContent
+	  .css("display","none")
+	  .eq(index).css("display","block");
+});
 	
 /* 회원 관리 - radio버튼 선택 시 해당 클래스명을 가진 tr 제외 display: none 처리 */
 $("[name=memberRole]").change((e)=>{
