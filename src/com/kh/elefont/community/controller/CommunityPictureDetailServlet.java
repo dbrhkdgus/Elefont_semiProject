@@ -11,6 +11,7 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.kh.elefont.common.model.service.AttachmentService;
 import com.kh.elefont.common.model.vo.Attachment;
@@ -18,6 +19,7 @@ import com.kh.elefont.community.model.service.CommunityService;
 import com.kh.elefont.community.model.vo.Community;
 import com.kh.elefont.font.model.vo.Font;
 import com.kh.elefont.member.model.service.MemberService;
+import com.kh.elefont.member.model.vo.Member;
 
 /**
  * Servlet implementation class CommunityPictureDetailServlet
@@ -33,7 +35,8 @@ public class CommunityPictureDetailServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	
+		HttpSession session = request.getSession();
+		Member loginMember = (Member)session.getAttribute("loginMember");
 		try {
 			//1.파리미터 fontNo
 			String commNo = request.getParameter("commNo");
