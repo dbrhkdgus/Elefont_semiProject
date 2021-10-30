@@ -513,7 +513,9 @@ ul.portfolio li.active {
     transition: .3s;
 }
 
-
+.fa-heart{
+	cursor: pointer;
+}
 
 
 .overlay {
@@ -1619,7 +1621,6 @@ text-align: center;
 .shop-detail-top{
     display: flex;
     justify-content: space-between;
-    align-items: center;
     /* margin: 0px 100px 4px 73px; */
 }
 .shop-detail-font-name >h2{
@@ -1632,20 +1633,9 @@ text-align: center;
     margin:30px 19px 200px;
 }
 #purchase-button,#cart-button,#sd-like-button{
-	cursor:pointer;
+	
 	font-size:30px;
-	margin-right:40px;
-	
 }
-
-
-#purchase-button:hover,#cart-button:hover,#sd-like-button:hover{
-	color: #59C38A;
-	
-}
-
-
-
 
 
 #shop-detail-rep{
@@ -1919,7 +1909,7 @@ p { padding: 5px 0; }
 
 
 
-/* Shop Css 샵랜딩 shop-landing */
+/* Shop Css  */
 #search-tools{
   display: flex;
   border: 2px solid blue;
@@ -2001,24 +1991,12 @@ p { padding: 5px 0; }
   text-align: center;
 }
 .test-item-buttons i{
-  cursor:pointer;
   margin: 10px;
   
-}
-
-.test-item-buttons >i:hover{
-	color: #59C38A;
 }
 #allFontStyle{
 	font-size: 30px;
 }
-
-.sd-buttton-content{
-	font-size: 15px;
-    margin-right: 5px;
-    font-weight: bold;
-}
-
 /* shop landing 페이지 끝 */
 
 /* 
@@ -2761,16 +2739,6 @@ font-size: 16px;
     height: 100px;
 	margin: 10px;
 }
-.comm-detail-reply{
-	display: flex;
-    flex-direction: column;
-}
-.reply-img-txt {
-	display: flex;
-}
-#reply-buttons {
-	display: flex;
-}
 /* community picture detail 끝*/
 
 
@@ -3158,3 +3126,7 @@ align-items: center;
 }
 
 /*구매CSS FontPurchase end*/
+
+
+
+
