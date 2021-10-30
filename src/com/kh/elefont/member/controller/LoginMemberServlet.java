@@ -1,5 +1,6 @@
 package com.kh.elefont.member.controller;
 
+import java.io.File;
 import java.io.IOException;
 
 import javax.servlet.ServletException;
@@ -10,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.kh.elefont.common.ElefontUtils;
+import com.kh.elefont.common.model.vo.Attachment;
 import com.kh.elefont.member.model.service.MemberService;
 import com.kh.elefont.member.model.vo.Member;
 
@@ -44,6 +46,30 @@ public class LoginMemberServlet extends HttpServlet {
 //			 @@@@session유효시간 할건가요??? @@@
 //			 session.setMaxInactiveInterval(60); // 60초
 			
+			
+			
+			//프로필 사진 작업 처리 - 다현
+			
+			//1. 사용자 입력값
+
+			String memberNo = member.getMemberNo();
+			System.out.println("로그인 이후에 memberNo을 잘 받아왔나요?" + memberNo);
+
+			
+			Attachment attach = memberService.selectOneAttachmentByNo(memberNo);
+			System.out.println("MemberInfoEditServlet 에서 attach 잘 받아왔나 확인" + attach);
+
+			// 서버컴퓨터 파일 
+			String saveDirectory = getServletContext().getRealPath("/upload/profilephotos");
+			File profilePhotoAttach = new File(saveDirectory, attach.getRenamedFilename());
+			System.out.println("여기 뭐가 올렸나?" + profilePhotoAttach);
+
+			
+			//3. 뷰단처리
+			session.setAttribute("member", member);
+			session.setAttribute("profilePhotoAttach", profilePhotoAttach);
+			//프로필 작업 끝
+			
 		
 		//view단 처리
 
@@ -52,6 +78,9 @@ public class LoginMemberServlet extends HttpServlet {
 		}else if(member != null &&  !password.equals(member.getMemberPwd())) {
 			session.setAttribute("msg", "비밀번호가 일치하지 않습니다.");
 		}
+		
+		
+		
 		
 		String location = request.getHeader("Referer"); 
 		response.sendRedirect(location);
