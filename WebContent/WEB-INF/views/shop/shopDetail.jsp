@@ -15,6 +15,9 @@ List<Community> communityList = (List<Community>)request.getAttribute("community
 List<Attachment> commAttachmentList = (List<Attachment>)request.getAttribute("commAttachmentList");
 List<Rep> repList = (List<Rep>)request.getAttribute("repList");
 System.out.println("repList@jsp : " + repList );
+int memberLikeValid = (int)request.getAttribute("likeValid");
+System.out.println("likeValid@jsp : " + memberLikeValid );
+System.out.println("likeCnt@jsp : " + font.getFontLikeCount() );
 %>
 
  <section id="portfolio" class="portfolio section-space-padding" >
@@ -23,10 +26,17 @@ System.out.println("repList@jsp : " + repList );
                     <div class="shop-detail-font-name"><h2><%= font.getFontName() %></h2></div>
                     <div class="shop-detail-buttons">
                     
-                    	<form action="<%= request.getContextPath() %>/font/fontOrder" method="GET" name="PurchaseCartFrm">                    
-                        	<input id="purchase-button" name="button" type="button" value="구매">
-                        	<input id="cart-button"  data-font-no="<%= font.getFontNo() %>" data-type="cart" name="button" type="button" value="장바구니">
-                        	<input id="like-button" name="button" type="button" value="좋아요">
+                    	<form action="<%= request.getContextPath() %>/font/fontOrder" class="shop-detail-icon" method="GET" name="PurchaseCartFrm">  
+                    	<i class="fas fa-wallet" id="purchase-button" name="button" font-size="30px" ></i>                  
+                        	<!-- <input id="purchase-button" name="button" type="button" value="구매"> -->
+                        	<i class="fas fa-cart-plus" id="cart-button"  data-font-no="<%= font.getFontNo() %>" data-type="cart" name="button"></i>             
+<%if(loginMember != null && memberLikeValid == 1){ %>                        	
+                        	<i class="fas fa-heart" data-font-no="<%=font.getFontNo()%>" id="sd-like-button"><span><%=font.getFontLikeCount() %></span> </i>
+<% } else{ %>          
+							<i class="far fa-heart" data-font-no="<%=font.getFontNo()%>" id="sd-like-button"><span><%=font.getFontLikeCount() %></span> </i>
+<%
+} 
+%>              
                         	<input type="hidden" name="PerCartType" value = "" />
                         	<input type="hidden" name="font-name" value="<%=font.getFontName()%>"/>
                         	<input type="hidden" name="font-price" value="<%=font.getFontPrice()%>"/>
@@ -258,7 +268,52 @@ if(loginMember != null){
                                 		
                                 	});
                                 	
-                                	
+                                	/*좋아요 버튼 클릭*/
+                                	$(".fa-heart").click((e)=>{
+<%
+	if(loginMember == null){			
+%>
+									alert("로그인 후 이용 가능합니다.");
+									return;
+
+
+<%
+} else if("A".equals(loginMember.getMemberRole())){
+	
+%>
+									alert("일반 회원만 사용 가능한 기능입니다.");
+									return;
+<%
+}
+%>
+									let $target = $(e.target);
+									let $fontNo = $target.data("fontNo");
+									
+									$.ajax({
+										url: "<%=request.getContextPath()%>/font/fontLike",
+										dataType:"json",
+										type:"GET",
+										data: {'fontNo' : $fontNo},
+										success(data){
+											const likeValid = data["likeValid"];
+											const likeCnt = data["likeCnt"];
+											
+											if(likeValid == 1){
+												$target
+													.removeClass("far")
+													.addClass("fas");
+																					
+										  }else{
+											  	$target
+											  		.removeClass("fas")
+											  		.addClass("far");
+										  }
+										  $target.html(`<span>\${likeCnt}</span>`);
+										},
+										error:console.log
+									});
+
+                               	});
                                 	
                                 	/* 장바구니 추가 버튼 클릭 */
                                 	$("#cart-button").click((e)=>{
