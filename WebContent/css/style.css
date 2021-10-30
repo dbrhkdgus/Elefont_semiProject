@@ -1632,11 +1632,19 @@ text-align: center;
     justify-content: space-between;
     margin:30px 19px 200px;
 }
+
 #purchase-button,#cart-button,#sd-like-button{
-	
-	font-size:30px;
+    cursor:pointer;
+    font-size:30px;
+    margin-right:40px;
+    
 }
 
+
+#purchase-button:hover,#cart-button:hover,#sd-like-button:hover{
+    color: #59C38A;
+    
+}
 
 #shop-detail-rep{
     text-align: left;
