@@ -134,4 +134,64 @@ public class RepDao {
 		return result;
 	}
 
+	public int insertCommunityRep(Connection conn, Rep rep) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String sql = prop.getProperty("insertCommunityRep");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, rep.getRepWriter());
+			pstmt.setString(2, rep.getRepContent());
+			pstmt.setString(3, rep.getComnNo());
+			pstmt.setInt(4, rep.getRepLevel());
+			pstmt.setObject(5, rep.getRepRef() == 0 ? null : rep.getRepRef() );
+			pstmt.setString(6, rep.getMemberNo());
+
+			result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
+	public List<Rep> selectAllCommunityRepListByCommNo(Connection conn, String commNo) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		List<Rep> repList = new ArrayList<>();
+		
+		String sql = prop.getProperty("selectAllCommunityRepListByCommNo");
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1,commNo);
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				Rep rep = new Rep();
+				rep.setRepNo(rset.getInt("rep_no"));
+				rep.setRepWriter(rset.getString("rep_writer"));
+				rep.setRepContent(rset.getString("rep_content"));
+				rep.setRepRegDate(rset.getDate("rep_reg_date"));
+				rep.setComnNo(rset.getString("comm_no"));
+				rep.setRepLevel(rset.getInt("rep_level"));
+				rep.setRepRef(rset.getInt("rep_ref"));
+				rep.setMemberNo(rset.getString("member_no"));
+		
+				
+				repList.add(rep);
+				
+			  }
+      } catch (SQLException e) {
+			e.printStackTrace();
+		  } finally {
+			close(rset);
+			close(pstmt);
+		}	
+		return repList;
+	}
+
 }
