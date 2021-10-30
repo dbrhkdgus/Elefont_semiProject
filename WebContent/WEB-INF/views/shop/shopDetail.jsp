@@ -16,8 +16,6 @@ List<Attachment> commAttachmentList = (List<Attachment>)request.getAttribute("co
 List<Rep> repList = (List<Rep>)request.getAttribute("repList");
 System.out.println("repList@jsp : " + repList );
 int memberLikeValid = (int)request.getAttribute("likeValid");
-System.out.println("likeValid@jsp : " + memberLikeValid );
-System.out.println("likeCnt@jsp : " + font.getFontLikeCount() );
 %>
 
  <section id="portfolio" class="portfolio section-space-padding" >
@@ -270,7 +268,7 @@ if(loginMember != null){
                                 	});
                                 	
                                 	/*좋아요 버튼 클릭*/
-                                	$(".fa-heart").click((e)=>{
+                                	$("#sd-like-button").click((e)=>{
 <%
 	if(loginMember == null){			
 %>
@@ -296,8 +294,11 @@ if(loginMember != null){
 										type:"GET",
 										data: {'fontNo' : $fontNo},
 										success(data){
+											console.log(data);
 											const likeValid = data["likeValid"];
 											const likeCnt = data["likeCnt"];
+											console.log("likeValid@jsp = " +likeValid);
+											console.log("likeCnt@jsp = "+likeCnt);
 											
 											if(likeValid == 1){
 												$target
@@ -343,11 +344,6 @@ if(loginMember != null){
                                 	
                                 	
                                 </script>
-
-                            
-                        
-                        
-                        
                             </div>
 
                     </div>
@@ -405,20 +401,9 @@ if(loginMember != null){
                         </p>
                       
                     </div>        
-                
-                
-                
-                
                 </div>
 
-
             </div>
-
-
-
-
-
-
 
 
          </section>
