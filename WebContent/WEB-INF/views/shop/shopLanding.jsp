@@ -151,15 +151,15 @@ $(".font-style").css("color", $(color).val());
  	}
 %>
 		let $target = $(e.target);
-		let $fontNo = $target.data("fontNo");
+		let $fontNo = $target.data("fontNo"); 
 		
 		$.ajax({
 			url: "<%=request.getContextPath()%>/font/fontLike",
 			dataType: "json",
 			type:"GET",
-			data: {'fontNo' : $fontNo},
+			data: {'fontNo' : $fontNo}, 
 			success(data){
-				const likeValid = data["likeValid"];
+				const likeValid = data["likeValid"]; 
 				const likeCnt = data["likeCnt"];
 				//member 본인의 likeValid가 1이라면 속이 찬 하트, 0이면 속이 빈 하트
 				if(likeValid == 1){
@@ -172,7 +172,7 @@ $(".font-style").css("color", $(color).val());
 						.addClass("far");
 				}
 				//likeCnt값 적용
-				$target.html(`<span>\${likeCnt}<span>`);
+				$target.html(`<span>\${likeCnt}</span>`);
 			},
 			error: console.log
 		});
