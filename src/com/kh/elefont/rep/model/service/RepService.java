@@ -83,4 +83,37 @@ public class RepService {
 		return result;
 	}
 
+	public int insertCommunityRep(Rep rep) {
+		Connection conn = getConnection();
+		int result = 0;
+		
+		try {
+			result = repDao.insertCommunityRep(conn, rep);			
+		
+			commit(conn);
+		}catch(Exception e) {
+			e.printStackTrace();
+			rollback(conn);
+		}
+		close(conn);
+		return result;
+	}
+
+	public List<Rep> selectAllCommunityRepListByCommNo(String commNo) {
+		 Connection conn = getConnection();
+		 List<Rep> repList = new ArrayList<>();
+	        
+	        try {
+	        	repList = repDao.selectAllCommunityRepListByCommNo(conn, commNo);
+	            
+	            commit(conn);
+	        }catch(Exception e) {
+	            rollback(conn);
+	            throw e;
+	        }finally {
+	            close(conn);
+	        }
+	        return repList;
+		
+	}
 }

@@ -4,7 +4,6 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.Cookie;
@@ -17,9 +16,9 @@ import com.kh.elefont.common.model.service.AttachmentService;
 import com.kh.elefont.common.model.vo.Attachment;
 import com.kh.elefont.community.model.service.CommunityService;
 import com.kh.elefont.community.model.vo.Community;
-import com.kh.elefont.font.model.vo.Font;
-import com.kh.elefont.member.model.service.MemberService;
 import com.kh.elefont.member.model.vo.Member;
+import com.kh.elefont.rep.model.service.RepService;
+import com.kh.elefont.rep.model.vo.Rep;
 
 /**
  * Servlet implementation class CommunityPictureDetailServlet
@@ -30,7 +29,7 @@ public class CommunityPictureDetailServlet extends HttpServlet {
 	
 	CommunityService communityService = new CommunityService();
 	AttachmentService attachmentService = new AttachmentService();
-
+	RepService repService = new RepService();
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
@@ -38,6 +37,11 @@ public class CommunityPictureDetailServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		Member loginMember = (Member)session.getAttribute("loginMember");
 		List<String> commLikeList = new ArrayList<>();
+		
+		
+		
+		
+		
 		
 		
 		if(loginMember != null) {
@@ -96,7 +100,10 @@ public class CommunityPictureDetailServlet extends HttpServlet {
 			attachment = attachmentService.selectOneAttachment(commNo);
 			
 			List<Attachment> attachmentList = attachmentService.selectAllCommAttachmentListByMemberNo(attachment.getMemberNo());
+			List<Rep> repList = repService.selectAllCommunityRepListByCommNo(commNo);
 			
+			
+			 
 			
 			//게시글 가져오기에 실패한경우
 			if(community == null){
@@ -117,7 +124,7 @@ public class CommunityPictureDetailServlet extends HttpServlet {
 			//List<BoardComment> commentList = boardService.selectCommentList(no);
 			//System.out.println("commentList@servlet = " + commentList);
 			
-			
+			request.setAttribute("repList", repList);
 			request.setAttribute("commLikeList", commLikeList);
 			request.setAttribute("community", community);
 			request.setAttribute("attachment", attachment);
