@@ -38,13 +38,14 @@
 							
                             <label for="upFile">첨부파일</label>
 								<label class="btn btn-primary btn-file">
-                            	  파일변경 <input type="file"  name="upFile" style="display: none;">
+                            	  파일변경 <input type="file"  name="upFile" style="display: none;" id="input-image">
 								    </label>
                             	 <span id="originalfname"><%= attachment.getOriginalFilename() %></span>	
-                                     <img id="originalAttachment" src="<%= request.getContextPath()%>/upload/community/<%=attachment.getRenamedFilename()%>"  value="<%= attachment.getAttNo() %>" alt="">
+                                     <img id="originalAttachment" style="width: 300px;" src="<%= request.getContextPath()%>/upload/community/<%=attachment.getRenamedFilename()%>"  value="<%= attachment.getAttNo() %>" alt="">
                             	 <p id="changedFname" ></p>
+                            	  <img style="width: 300px;" id="preview-image" src="">
 <%if(oldRenamedFilename.equals(attachment.getRenamedFilename())){ %>
-								<input type="checkbox" name="delFile" id="delFile" value="<%= attachment.getAttNo() %>"/>
+								<input type="checkbox" name="delFile" id="delFile" style="display:none;"value="<%= attachment.getAttNo() %>"/>
 <% } %>
 
                             <label for="content">내용</label>
@@ -59,6 +60,28 @@
             </div>
         </section>
 <script>
+function readImage(input) {
+    // 인풋 태그에 파일이 있는 경우
+    if(input.files && input.files[0]) {
+        // 이미지 파일인지 검사 (생략)
+        // FileReader 인스턴스 생성
+        const reader = new FileReader()
+        // 이미지가 로드가 된 경우
+        reader.onload = e => {
+            const previewImage = document.getElementById("preview-image")
+            previewImage.src = e.target.result
+        }
+        // reader가 이미지 읽도록 하기
+        reader.readAsDataURL(input.files[0])
+    }
+}
+
+// input file에 change 이벤트 부여
+const inputImage = document.getElementById("input-image")
+inputImage.addEventListener("change", e => {
+    readImage(e.target)
+})
+
 $("[name=upFile]").change((e) => {
     // 파일 선택여부
     const $file = $(e.target);

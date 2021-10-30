@@ -14,14 +14,14 @@ import com.kh.elefont.order.model.vo.Order;
  * Servlet implementation class FontOrderServlet
  */
 @WebServlet("/font/fontOrder")
-public class FontOrderServlet extends HttpServlet {
+public class FontOrderViewServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	OrderService orderService = new OrderService();
 
 	
 	
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-	
+		String fontNo = request.getParameter("font-no");
 		String memberNo = request.getParameter("member-no");
 		String fontName = request.getParameter("font-name");
 		String fontPrice = request.getParameter("font-price");
@@ -32,12 +32,13 @@ public class FontOrderServlet extends HttpServlet {
 	 
 //		System.out.println("order @Servlet:" + order);
 		
+		request.setAttribute("fontNo", fontNo);
 		request.setAttribute("memberNo", memberNo);
 		request.setAttribute("fontName", fontName);
 		request.setAttribute("fontPrice", fontPrice);
 		request.setAttribute("memberEmail", memberEmail);
 		
-		request.getRequestDispatcher("/WEB-INF/views/member/FontPurchase.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/views/member/fontPurchaseView.jsp").forward(request, response);
 	}
 
 }
