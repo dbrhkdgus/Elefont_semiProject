@@ -25,13 +25,13 @@ int memberLikeValid = (int)request.getAttribute("likeValid");
                     <div class="shop-detail-buttons">
                     
                     	<form action="<%= request.getContextPath() %>/font/fontOrder" class="shop-detail-icon" method="GET" name="PurchaseCartFrm">  
-                    	<i class="fas fa-wallet" id="purchase-button" name="button" font-size="30px" ></i>                  
+                    	<span class="sd-buttton-content">구매</span><i class="fas fa-wallet" id="purchase-button" name="button" font-size="30px" ></i>           
                         	<!-- <input id="purchase-button" name="button" type="button" value="구매"> -->
-                        	<i class="fas fa-cart-plus" id="cart-button"  data-font-no="<%= font.getFontNo() %>" data-type="cart" name="button"></i>             
+                        	<span class="sd-buttton-content">장바구니</span><i class="fas fa-cart-plus" id="cart-button"  data-font-no="<%= font.getFontNo() %>" data-type="cart" name="button"></i>             
 <%if(loginMember != null && memberLikeValid == 1){ %>                        	
-                        	<i class="fas fa-heart" data-font-no="<%=font.getFontNo()%>" id="sd-like-button"><span><%=font.getFontLikeCount() %></span> </i>
+                        	<span class="sd-buttton-content">좋아요 수</span><i class="fas fa-heart" data-font-no="<%=font.getFontNo()%>" id="sd-like-button"><span><%=font.getFontLikeCount() %></span> </i>
 <% } else{ %>          
-							<i class="far fa-heart" data-font-no="<%=font.getFontNo()%>" id="sd-like-button"><span><%=font.getFontLikeCount() %></span> </i>
+							<span class="sd-buttton-content">좋아요 수</span><i class="far fa-heart" data-font-no="<%=font.getFontNo()%>" id="sd-like-button"><span><%=font.getFontLikeCount() %></span> </i>
 <%
 } 
 %>              
