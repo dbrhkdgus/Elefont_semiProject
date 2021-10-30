@@ -24,8 +24,10 @@ public class FontPurchaseServlet extends HttpServlet {
 		
 		
 		//업무처리
-		//1. 테이블에 인서트하기.
-		//2. 회원의 포인트를 차감시키기.
+		//1. 테이블에 인서트하기. view_member_orders
+		
+		
+		//2. 회원의 포인트를 차감시키기. view_member_point
 		
 		// view단 처리
 		
