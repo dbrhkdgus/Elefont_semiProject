@@ -129,10 +129,6 @@ public class ShopDetailServlet extends HttpServlet {
 			
 			int likeValid = fontService.selectFontLike(param);
 			System.out.println("shopDetail@servlet " + likeValid);
-		
-			
-			
-			
 			
 			//3.view단 처리위임
 			request.setAttribute("font", font);
