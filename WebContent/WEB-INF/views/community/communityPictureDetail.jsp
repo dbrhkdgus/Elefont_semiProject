@@ -41,6 +41,7 @@
 	                   <%=community.getCommContent() %>
 	                </div>
 	            </div>
+	            <div class="comm-detail-reply">
 <%if(loginMember!=null){ %>
 	            <form action="<%= request.getContextPath() %>/rep/communityRepEnroll" method="POST"name ="commRepEnrollFrm">
 		            <div class="comm-board-repEnroll">
@@ -60,32 +61,36 @@
 	for(Rep rep : repList){
 		if(rep.getRepLevel()==1){
 %>
-<%
-if(loginMember != null && (loginMember.getMemberNo().equals(rep.getMemberNo()) || "A".equals(loginMember.getMemberRole()))) {
-%>			
-			<form action="<%=request.getContextPath()%>/rep/DeleteUpdateRep" method="POST" name="commRepUpdateFrm">
 			<div class="comm-board-rep-comment">
 				<hr />
 				<div class="reply-box">
-	                 <img src="https://cdn1.vectorstock.com/i/1000x1000/10/05/user-icon-vector-22391005.jpg"  id="user-profile">
-                      	<div class="reply-writer-content">
-             	         	<span><%=rep.getRepWriter()%> : </span>
-                    	  	<span><%=rep.getRepContent()%></span>
-                    	</div>
-				</div> 
-                <i class="fab fa-replyd" style="font-size:35px; color: #005A3C; "></i>
+ 					<div class="reply-img-txt"> 
+	                <img src="https://cdn1.vectorstock.com/i/1000x1000/10/05/user-icon-vector-22391005.jpg"  id="user-profile">
+                   	<div class="reply-writer-content">
+           	         	<span><%=rep.getRepWriter()%> : </span>
+                   	  	<span><%=rep.getRepContent()%></span>
+					</div>
+                 </div>
+					<div class="rereple-icon">
+	                	<i class="fab fa-replyd" style="font-size:35px; color: #005A3C; "></i>
+<%
+if(loginMember != null && (loginMember.getMemberNo().equals(rep.getMemberNo()) || "A".equals(loginMember.getMemberRole()))) {
+%>
+						<form action="<%=request.getContextPath()%>/rep/DeleteUpdateRep" method="POST" name="commRepUpdateFrm">
+							<input type="button" value="수정" class="btn-transform" />
+							<input type="button" value="등록" class="btn-enroll"/>
+							<input type="button" value="삭제" class="btn-delete"/>
+							<input type="hidden" name="type" value=""/>
+							<input type="hidden" name="rep_no" value="<%=rep.getRepNo()%>"/>
+						</form>
+					</div>
+				</div>
 			</div>
-				<input type="button" value="수정" class="btn-transform" />
-				<input type="button" value="등록" class="btn-enroll"/>
-				<input type="button" value="삭제" class="btn-delete"/>
-				<input type="hidden" name="type" value=""/>
-				<input type="hidden" name="rep_no" value="<%=rep.getRepNo()%>"/>
-			</form>
-<% 				
+<%
 }
 if(loginMember!=null){
 %>	
-				 <form action="<%= request.getContextPath() %>/rep/communityRepEnroll" method="POST" name ="commReRepEnrollFrm">
+				 <form id="reply-buttons" action="<%= request.getContextPath() %>/rep/communityRepEnroll" method="POST" name ="commReRepEnrollFrm">
 		            <div class="comm-board-repEnroll">
 		            	<hr />
 						<input type="text" name="rep-content" placeholder="댓글을 입력하세요." />
@@ -104,10 +109,6 @@ if(loginMember!=null){
 		}else{
 %>
 
-<%
-if(loginMember != null && (loginMember.getMemberNo().equals(rep.getMemberNo()) || "A".equals(loginMember.getMemberRole()))) {
-%>						
-			<form action="<%=request.getContextPath()%>/rep/DeleteUpdateRep" method="POST" name="commReRepUpdateFrm">
 						<div class="comm-board-rep-comment">
 							<hr />
 							<div class="reply-box">
@@ -118,12 +119,16 @@ if(loginMember != null && (loginMember.getMemberNo().equals(rep.getMemberNo()) |
 			                    	</div>
 							</div> 
 						</div>
-				<input type="button" value="수정" class="btn-transform" />
-				<input type="button" value="등록" class="btn-enroll"/>
-				<input type="button" value="삭제" class="btn-delete"/>
-				<input type="hidden" name="type" value=""/>
-				<input type="hidden" name="rep_no" value="<%=rep.getRepNo()%>"/>
-			</form>						
+<%
+			if(loginMember != null && (loginMember.getMemberNo().equals(rep.getMemberNo()) || "A".equals(loginMember.getMemberRole()))) {
+%>	
+						<form action="<%=request.getContextPath()%>/rep/DeleteUpdateRep" method="POST" name="commReRepUpdateFrm">
+							<input type="button" value="수정" class="btn-transform" />
+							<input type="button" value="등록" class="btn-enroll"/>
+							<input type="button" value="삭제" class="btn-delete"/>
+							<input type="hidden" name="type" value=""/>
+							<input type="hidden" name="rep_no" value="<%=rep.getRepNo()%>"/>
+						</form>
 	
 <%			
 			}
@@ -131,8 +136,8 @@ if(loginMember != null && (loginMember.getMemberNo().equals(rep.getMemberNo()) |
 /*foreach문 끝남*/
 	}
 %>
-            </div>
-
+            	</div>
+			</div>
             <div class="comm-writer-info" >
                 <div class="comm-writer-info-buttons">
 <%
@@ -187,7 +192,6 @@ $(".btn-enroll").click((e)=>{
 	
 	 $(e.target).parent().submit(); 
 });
-
 $('.btn-transform').on('click', (e)=>{
 	$(e.target).hide();
 	$(e.target).next().show();
@@ -195,7 +199,6 @@ $('.btn-transform').on('click', (e)=>{
 	 $(e.target).parent().children("div").children("div").children("div").children(':nth-child(2)').html('');
 	 $(e.target).parent().children("div").children("div").children("div").children(':nth-child(2)').html(`<input type="text"  name="update_rep_content" value = "\${oldContent}" />`); 
 });
-
 $(".btn-delete").click((e)=>{
 	if(confirm("정말 삭제하시겠습니까?")){
 		
@@ -210,7 +213,7 @@ $(".btn-delete").click((e)=>{
  {
    console.log("click");
    
-   $(e.target).parent().next().next().slideToggle(500);                            
+   $(e.target).parent().next().slideToggle(500);                            
  });
 	 
 	 
