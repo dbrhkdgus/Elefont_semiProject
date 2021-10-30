@@ -12,16 +12,26 @@ String memberNo = (String)request.getAttribute("memberNo");
             <div class="purchase-container">
                 <h1>폰트 구매</h1>
                 <form>
-                    <p class="purchase-menu">구매하신 폰트:<%=fontName %></p>
-                    <p class="purchase-menu">폰트가격:<%=fontPrice %></p>
-                    <p class="purchase-menu">쿠폰등록하기:</p>
+                    <p class="purchase-menu"><span> 구매하신 폰트 : </span><span><%=fontName %></span></p>
+                    <p class="purchase-menu"><span>폰트가격 : </span><span><%=fontPrice %></span></p>
+                    <p class="purchase-menu"><span>쿠폰등록하기 : </span> </p>
                     <button>쿠폰등록</button><span>쿠폰 적용 금액</span><br>
-                    <label for="purchase-email-address">받으실 이메일 주소<%=memberEmail %></label>
-                    <input type="text" name="purchase-email">
+                    <label for="purchase-email-address">받으실 이메일 주소</label>
+                    <input type="text" name="purchase-email" value="<%=memberEmail %>">
                     <input type="hidden"  name="member-no" value="<%=loginMember.getMemberNo()%>"/>
+                    <br />
+                    <input type="button" name ="btn-purchase" value = "구매하기" />
+                    <input type="button" name ="btn-cancle" value = "취소" />
             </div>
                 </form>
          </section>
-    
+         
+    	 <script>
+    	 /* 취소버튼 -> 이전페이지로 돌아가기 */
+    	 $("#[name=btn-cancle]").click((e)=>{
+    		 history.go(-1);
+    	 });
+    	 
+    	 </script>
 
 <%@ include file = "/WEB-INF/views/common/footer.jsp" %>
