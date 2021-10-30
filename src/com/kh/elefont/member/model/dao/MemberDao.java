@@ -558,5 +558,28 @@ public class MemberDao {
 	}
 
 
+	public int updateMemberPoint(Connection conn, String memberNo, String fontPrice) {
+		
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String sql = prop.getProperty("updateMemberPoint");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, fontPrice);
+			pstmt.setString(2, memberNo);
+			
+			
+			result = pstmt.executeUpdate();
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
+
 
 }

@@ -19,4 +19,41 @@ public class OrderService {
 		return order;
 	}
 
+	public int insertOrderFont(Order order) {
+		Connection conn = getConnection();
+		int result = 0;
+		
+		try {
+			result = orderDao.insertOrderFont(conn, order);
+//			System.out.println("result@dao = "+result);
+			commit(conn);
+		}catch(Exception e) {
+			rollback(conn);
+		}finally {
+			close(conn);
+		}
+		
+		return result;
+	}
+
+
+	public int insertOrders(Order order) {
+		Connection conn = getConnection();
+		int result = 0;
+		
+		try {
+			result = orderDao.insertOrders(conn, order);
+//			System.out.println("result@dao = "+result);
+			commit(conn);
+		}catch(Exception e) {
+			rollback(conn);
+		}finally {
+			close(conn);
+		}
+		
+		return result;
+	}
+		
 }
+
+

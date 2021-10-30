@@ -63,4 +63,43 @@ public class OrderDao {
 		
 	}
 
+	public int insertOrderFont(Connection conn, Order order) {
+		PreparedStatement pstmt = null;
+		int result  = 0;
+		String sql = prop.getProperty("insertOrderFont");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1,order.getOrderNo());
+			pstmt.setString(2,order.getMemberNo());
+			
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+	}
+
+	public int insertOrders(Connection conn, Order order) {
+		PreparedStatement pstmt = null;
+		int result  = 0;
+		String sql = prop.getProperty("insertOrders");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1,order.getOrderNo());
+			pstmt.setString(2,order.getFontNo());
+			
+			
+			result = pstmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+	}
 }
