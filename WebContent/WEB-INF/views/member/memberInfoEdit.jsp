@@ -9,6 +9,7 @@
 Member member = (Member) request.getAttribute("member");
 File profilePhotoAttach = (File) request.getAttribute("profilePhotoAttach");
 String photoPath = profilePhotoAttach.getName();
+System.out.println("파일 몇개 궁금하느냐? : " + profilePhotoAttach);
 System.out.println("경로가 궁금하느냐? : " + photoPath);
 %>
 
