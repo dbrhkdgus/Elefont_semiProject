@@ -110,11 +110,6 @@ public class MemberService {
 		return result;
 	}
 
-	public int insertProfilePhoto(Attachment attach) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
 
 	public int insertProfileImage(Attachment attach) {
 		System.out.println("서비스단에 왔나요?");
@@ -177,6 +172,31 @@ public class MemberService {
 		close(conn);
 
 		return attach;
+	}
+
+	public int insertDefaultPhoto(String bringNo) {
+		Connection conn = getConnection();
+		int result = 0;
+
+		try {
+			result = memberDao.insertDefaultPhoto(conn, bringNo);
+
+			commit(conn);
+		} catch (Exception e) {
+			rollback(conn);
+			throw e;
+		} finally {
+			close(conn);
+		}
+		return result;
+	}
+
+	public String selectMemberNoById(String memberId) {
+		Connection conn = getConnection();
+		String memberNo = memberDao.selectMemberNoById(conn, memberId);
+		close(conn);
+
+		return memberNo;
 	}
 
 	
