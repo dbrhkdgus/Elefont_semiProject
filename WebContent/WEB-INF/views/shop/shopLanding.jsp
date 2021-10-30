@@ -157,9 +157,9 @@ $(".font-style").css("color", $(color).val());
 			url: "<%=request.getContextPath()%>/font/fontLike",
 			dataType: "json",
 			type:"GET",
-			data: {'fontNo' : $fontNo},
+			data: {'fontNo' : $fontNo}, 
 			success(data){
-				const likeValid = data["likeValid"];
+				const likeValid = data["likeValid"]; 
 				const likeCnt = data["likeCnt"];
 				//member 본인의 likeValid가 1이라면 속이 찬 하트, 0이면 속이 빈 하트
 				if(likeValid == 1){
