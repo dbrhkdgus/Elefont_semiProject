@@ -1690,7 +1690,7 @@ text-align: center;
 	margin-left:10px;
 }
 #user-profile{
-    width: 7%;
+    width: 25px;
     border-radius: 30px;
     margin-right: 5px;
 }
@@ -1710,6 +1710,7 @@ text-align: center;
 	margin-left: 13px;
 	width: 500px;
 	align-items: center;
+	margin-top: 5px;
 }
 .re-reply-box img{
 	width : 30px;
@@ -2738,6 +2739,27 @@ font-size: 16px;
     width: 100px;
     height: 100px;
 	margin: 10px;
+}
+.comm-detail-reply {
+    width: -webkit-fill-available;
+}
+.comm-detail-reply input {
+	margin-left: 3px;
+	margin-right: 3px;
+}
+.comm-board-rep-comment {
+	display: flex;
+	align-items: flex-end;
+}
+.comm-board-rep-comment i{
+	margin-left: 6px;
+}
+.rep-enroll-area {
+	width: 900px;
+	margin-top: 10px;
+}
+.comm-reply {
+	width: 900px;
 }
 /* community picture detail 끝*/
 
