@@ -40,6 +40,10 @@ public class CommunityPictureDetailServlet extends HttpServlet {
 		List<String> commLikeList = new ArrayList<>();
 		
 		
+		if(loginMember != null) {
+			commLikeList = communityService.selectAllLikedComm(loginMember.getMemberNo());
+		}
+		
 		try {
 			//1.파리미터 fontNo
 			String commNo = request.getParameter("commNo");
