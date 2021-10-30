@@ -2759,6 +2759,16 @@ font-size: 16px;
     height: 100px;
 	margin: 10px;
 }
+.comm-detail-reply{
+	display: flex;
+    flex-direction: column;
+}
+.reply-img-txt {
+	display: flex;
+}
+#reply-buttons {
+	display: flex;
+}
 /* community picture detail 끝*/
 
 
