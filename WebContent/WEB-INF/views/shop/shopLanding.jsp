@@ -151,7 +151,7 @@ $(".font-style").css("color", $(color).val());
  	}
 %>
 		let $target = $(e.target);
-		let $fontNo = $target.data("fontNo");
+		let $fontNo = $target.data("fontNo"); 
 		
 		$.ajax({
 			url: "<%=request.getContextPath()%>/font/fontLike",
@@ -172,7 +172,7 @@ $(".font-style").css("color", $(color).val());
 						.addClass("far");
 				}
 				//likeCnt값 적용
-				$target.html(`<span>\${likeCnt}<span>`);
+				$target.html(`<span>\${likeCnt}</span>`);
 			},
 			error: console.log
 		});

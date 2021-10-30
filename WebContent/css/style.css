@@ -1632,6 +1632,10 @@ text-align: center;
     justify-content: space-between;
     margin:30px 19px 200px;
 }
+#purchase-button,#cart-button,#sd-like-button{
+	
+	font-size:30px;
+}
 
 
 #shop-detail-rep{
