@@ -106,9 +106,10 @@ if(loginMember!=null){
 		}else{
 %>
 
-						<div class="comm-board-rep-comment">
+						<div class="comm-board-re-rep-comment">
 							<hr />
-							<div class="reply-box">
+							<div class="re-reply-box">
+								<img src="https://i.ibb.co/chkD19T/image.png" alt="" />
 				                 <img src="https://cdn1.vectorstock.com/i/1000x1000/10/05/user-icon-vector-22391005.jpg"  id="user-profile">
 			                      	<div class="reply-writer-content">
 			             	         	<span><%=rep.getRepWriter()%> : </span>
