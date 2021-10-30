@@ -82,7 +82,7 @@ for(Rep rep : repList){
 								<div class="reply-outer-box">
 	                            <div class="reply-box">
 	                                	<img src="https://cdn1.vectorstock.com/i/1000x1000/10/05/user-icon-vector-22391005.jpg"  id="user-profile">
-                                		<div class="reply-writer-content"><span><%=rep.getRepWriter()%> : </spna><span><%=rep.getRepContent()%></span></div>
+                                		<div class="reply-writer-content"><span><%=rep.getRepWriter()%> : </span><span><%=rep.getRepContent()%></span></div>
 
                                 </div> 
                                 <i class="fab fa-replyd" style="font-size:35px; color: #005A3C; "></i>
