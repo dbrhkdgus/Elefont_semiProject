@@ -42,7 +42,7 @@
 	                </div>
 	            </div>
 <%if(loginMember!=null){ %>
-	            <form action="<%= request.getContextPath() %>/rep/communityRepEnroll" method="POST">
+	            <form action="<%= request.getContextPath() %>/rep/communityRepEnroll" method="POST"name ="commRepEnrollFrm">
 		            <div class="comm-board-repEnroll">
 		            	<hr />
 						<input type="text" name="rep-content" placeholder="댓글을 입력하세요." />
@@ -56,17 +56,61 @@
 		            </div>
 	            </form>
 	            
-<%} %>	            
-				<div class="comm-board-comment">
-					<hr />
-					
-				
-				
-				
-				</div>	
-							
-				
+<%} 
+	for(Rep rep : repList){
+		if(rep.getRepLevel()==1){
+%>
+			<div class="comm-board-rep-comment">
+				<hr />
+				<div class="reply-box">
+	                 <img src="https://cdn1.vectorstock.com/i/1000x1000/10/05/user-icon-vector-22391005.jpg"  id="user-profile">
+                      	<div class="reply-writer-content">
+             	         	<span><%=rep.getRepWriter()%> : </span>
+                    	  	<span><%=rep.getRepContent()%></span>
+                    	</div>
+				</div> 
+                <i class="fab fa-replyd" style="font-size:35px; color: #005A3C; "></i>
+			</div>
+<% 				
+if(loginMember!=null){
+%>	
+				 <form action="<%= request.getContextPath() %>/rep/communityRepEnroll" method="POST" name ="commReRepEnrollFrm">
+		            <div class="comm-board-repEnroll">
+		            	<hr />
+						<input type="text" name="rep-content" placeholder="댓글을 입력하세요." />
+						
+						<input type="submit" value="등록" />
+						<input type="hidden" name="commNo" value="<%= community.getCommNo() %>" />		            	
+						<input type="hidden" name="memberNo" value="<%= loginMember.getMemberNo() %>" />		            	
+						<input type="hidden" name="repWriter" value="<%= loginMember.getMemberName() %>" />
+						<input type="hidden" name="repLevel" value="2" />		            	
+						<input type="hidden" name="repRef" value="<%= rep.getRepRef() == 0 ? rep.getRepNo() : rep.getRepRef() %>" />
+		            </div>
+	            </form>	
+	            
+<%
+			}
+		}else{
+%>
+
+						<div class="comm-board-rep-comment">
+							<hr />
+							<div class="reply-box">
+				                 <img src="https://cdn1.vectorstock.com/i/1000x1000/10/05/user-icon-vector-22391005.jpg"  id="user-profile">
+			                      	<div class="reply-writer-content">
+			             	         	<span><%=rep.getRepWriter()%> : </span>
+			                    	  	<span><%=rep.getRepContent()%></span>
+			                    	</div>
+							</div> 
+						</div>
+	
+<%			
+		}
+/*foreach문 끝남*/
+	}
+%>
             </div>
+
             <div class="comm-writer-info" >
                 <div class="comm-writer-info-buttons">
 <%
@@ -76,7 +120,7 @@
 <%
 				}else{
 %>
-     <i class="far fa-heart" data-comm-no="<%=community.getCommNo()%>"><span><%=community.getCommLikeCount() %></span></i>
+  		      <i class="far fa-heart" data-comm-no="<%=community.getCommNo()%>"><span><%=community.getCommLikeCount() %></span></i>
 <%
 				}
 %>
@@ -115,8 +159,21 @@ for(Attachment att : attachmentList){
 </form>
 <%}%>
 <script>
+/* 숨김처리관련 스크립트 */
+	 $(document.commReRepEnrollFrm).hide();
+	  
+	 $('.fa-replyd').on('click', (e)=>
+ {
+   console.log("click");
+   
+   $(e.target).parent().next().slideToggle(500);                            
+ });
+	 
+	 
+	 
+	 
+	 
 $(".fa-heart").click((e)=>{
-	
 	<%
 	if(loginMember == null){
 	%>
