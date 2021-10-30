@@ -206,7 +206,7 @@ if(loginMember != null){
                              });
                              </script>
 <% } %>
-								<script>
+								"WebContent/WEB-INF/views/shop/shopDetail.jsp"<script>
 								/* 공통스크립트 시작 */
 								/* 댓글 스크립트 */
                                 	$(".btn-rep-update").hide();
