@@ -60,6 +60,10 @@
 	for(Rep rep : repList){
 		if(rep.getRepLevel()==1){
 %>
+<%
+if(loginMember != null && (loginMember.getMemberNo().equals(rep.getMemberNo()) || "A".equals(loginMember.getMemberRole()))) {
+%>			
+			<form action="<%=request.getContextPath()%>/rep/DeleteUpdateRep" method="POST" name="commRepUpdateFrm">
 			<div class="comm-board-rep-comment">
 				<hr />
 				<div class="reply-box">
@@ -71,7 +75,14 @@
 				</div> 
                 <i class="fab fa-replyd" style="font-size:35px; color: #005A3C; "></i>
 			</div>
+				<input type="button" value="수정" class="btn-transform" />
+				<input type="button" value="등록" class="btn-enroll"/>
+				<input type="button" value="삭제" class="btn-delete"/>
+				<input type="hidden" name="type" value=""/>
+				<input type="hidden" name="rep_no" value="<%=rep.getRepNo()%>"/>
+			</form>
 <% 				
+}
 if(loginMember!=null){
 %>	
 				 <form action="<%= request.getContextPath() %>/rep/communityRepEnroll" method="POST" name ="commReRepEnrollFrm">
@@ -93,6 +104,10 @@ if(loginMember!=null){
 		}else{
 %>
 
+<%
+if(loginMember != null && (loginMember.getMemberNo().equals(rep.getMemberNo()) || "A".equals(loginMember.getMemberRole()))) {
+%>						
+			<form action="<%=request.getContextPath()%>/rep/DeleteUpdateRep" method="POST" name="commReRepUpdateFrm">
 						<div class="comm-board-rep-comment">
 							<hr />
 							<div class="reply-box">
@@ -103,8 +118,15 @@ if(loginMember!=null){
 			                    	</div>
 							</div> 
 						</div>
+				<input type="button" value="수정" class="btn-transform" />
+				<input type="button" value="등록" class="btn-enroll"/>
+				<input type="button" value="삭제" class="btn-delete"/>
+				<input type="hidden" name="type" value=""/>
+				<input type="hidden" name="rep_no" value="<%=rep.getRepNo()%>"/>
+			</form>						
 	
 <%			
+			}
 		}
 /*foreach문 끝남*/
 	}
@@ -159,6 +181,28 @@ for(Attachment att : attachmentList){
 </form>
 <%}%>
 <script>
+$(".btn-enroll").hide();
+$(".btn-enroll").click((e)=>{
+	$("input[name=type]").val("update");
+	
+	 $(e.target).parent().submit(); 
+});
+
+$('.btn-transform').on('click', (e)=>{
+	$(e.target).hide();
+	$(e.target).next().show();
+	 var oldContent = $(e.target).parent().children("div").children("div").children("div").children(':nth-child(2)').text();
+	 $(e.target).parent().children("div").children("div").children("div").children(':nth-child(2)').html('');
+	 $(e.target).parent().children("div").children("div").children("div").children(':nth-child(2)').html(`<input type="text"  name="update_rep_content" value = "\${oldContent}" />`); 
+});
+
+$(".btn-delete").click((e)=>{
+	if(confirm("정말 삭제하시겠습니까?")){
+		
+	$("input[name=type]").val("delete");
+	 $(e.target).parent().submit();  
+	}
+});
 /* 숨김처리관련 스크립트 */
 	 $(document.commReRepEnrollFrm).hide();
 	  
@@ -166,7 +210,7 @@ for(Attachment att : attachmentList){
  {
    console.log("click");
    
-   $(e.target).parent().next().slideToggle(500);                            
+   $(e.target).parent().next().next().slideToggle(500);                            
  });
 	 
 	 
