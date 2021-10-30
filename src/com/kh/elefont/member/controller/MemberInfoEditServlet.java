@@ -9,6 +9,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.kh.elefont.common.ElefontUtils;
 import com.kh.elefont.common.model.vo.Attachment;
@@ -47,6 +48,7 @@ public class MemberInfoEditServlet extends HttpServlet {
 
 		
 		//3. 뷰단처리
+		HttpSession session = request.getSession();
 		request.setAttribute("member", member);
 		request.setAttribute("profilePhotoAttach", profilePhotoAttach);
 		

@@ -1,3 +1,4 @@
+<%@page import="java.io.File"%>
 <%@page import="com.kh.elefont.member.model.vo.Member"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -84,6 +85,10 @@ $(window).on('load', function() {
 
 %>
 </script>
+
+
+
+
     <!-- Preloader Start -->
     <div id="preloader">
         <div class="loader"></div>
@@ -134,8 +139,15 @@ $(window).on('load', function() {
 
 if(loginMember != null){
 	System.out.println(loginMember);
+	
+	Member member = (Member) session.getAttribute("member");
+	File profilePhotoAttach = (File) session.getAttribute("profilePhotoAttach");
+	String photoPath = profilePhotoAttach.getName();
+	System.out.println("LandingHeader.jsp 프로필 경로가 궁금하느냐? : " + photoPath);
+
+	
 %>
-                                     <li ><a class="smoth-scroll" id="profile" href="#user"><img id="profile-img" src="<%=request.getContextPath() %>/images/user.png" ><span id="profile-loginMember-name"><%= loginMember.getMemberName() %></span></a>
+                                     <li ><a class="smoth-scroll" id="profile" href="#user"><img id="profile-img" src="<%= request.getContextPath() %>/upload/profilephotos/<%=photoPath%>" ><span id="profile-loginMember-name"><%= loginMember.getMemberName() %></span></a>
                                         </li> 
 <% 
 }else{
