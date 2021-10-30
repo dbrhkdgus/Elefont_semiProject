@@ -56,6 +56,10 @@ public class MemberEnrollServlet extends HttpServlet {
 		
 		//업무 로직
 		int result = memberService.insertMember(member);
+		String bringNo = memberService.selectMemberNoById(memberId);
+				
+		int result2 = memberService.insertDefaultPhoto(bringNo);
+		
 		String msg = result > 0 ? "회원가입을 축하 드립니다" : "";
 		
 		//응답 처리

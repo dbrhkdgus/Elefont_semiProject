@@ -23,12 +23,15 @@ System.out.println("repList@jsp : " + repList );
                     <div class="shop-detail-font-name"><h2><%= font.getFontName() %></h2></div>
                     <div class="shop-detail-buttons">
                     
-                    	<form action="<%= request.getContextPath() %>/member/memberCart" method="POST" name="PurchaseCartFrm">                    
+                    	<form action="<%= request.getContextPath() %>/font/fontOrder" method="GET" name="PurchaseCartFrm">                    
                         	<input id="purchase-button" name="button" type="button" value="구매">
                         	<input id="cart-button"  data-font-no="<%= font.getFontNo() %>" data-type="cart" name="button" type="button" value="장바구니">
                         	<input id="like-button" name="button" type="button" value="좋아요">
                         	<input type="hidden" name="PerCartType" value = "" />
+                        	<input type="hidden" name="font-name" value="<%=font.getFontName()%>"/>
+                        	<input type="hidden" name="font-price" value="<%=font.getFontPrice()%>"/>
 <% if(loginMember != null){ %>                        	
+                        	<input type="hidden" name="email" value="<%=loginMember.getMemberEmail()%>"/>
                        		<input type="hidden" name="member_no" value="<%= loginMember.getMemberNo() %>" />
 <%} %>    
                        		<input type="hidden" name="cart_no" value="" />
@@ -251,8 +254,11 @@ if(loginMember != null){
                                 	/* 구매하기 버튼 클릭 */
                                 	$("#purchase-button").click((e)=>{
                                 		$("input[name=PerCartType]").val("purchase")
+                                		$(document.PurchaseCartFrm).submit();
                                 		
                                 	});
+                                	
+                                	
                                 	
                                 	/* 장바구니 추가 버튼 클릭 */
                                 	$("#cart-button").click((e)=>{

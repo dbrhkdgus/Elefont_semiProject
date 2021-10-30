@@ -511,5 +511,53 @@ public class MemberDao {
 	}
 
 
+	public int insertDefaultPhoto(Connection conn, String memberNo) {
+		System.out.println("memberNo을 디에이오에서 " + memberNo);
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String sql = prop.getProperty("insertDefaultPhoto");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, memberNo);
+			
+			result = pstmt.executeUpdate();
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
+
+	public String selectMemberNoById(Connection conn, String memberId) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String bringNo = null;
+		String sql = prop.getProperty("selectMemberNoById");
+		
+		try {
+			pstmt= conn.prepareStatement(sql);
+			pstmt.setString(1, memberId);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				bringNo = rset.getString("member_no");
+			}
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return bringNo;
+	}
+
+
 
 }
