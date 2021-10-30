@@ -439,17 +439,17 @@ public class FontDao {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		String sql = prop.getProperty("selectFontLike");
-		int result = 0;
+		int likeValid = 0; //회원이 좋아요를 눌렀다 => likeValid = 1/ 좋아요를 안 눌렀다 => likeValid = 0
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, (String)param.get("fontNo"));
 			pstmt.setString(2, (String)param.get("memberNo"));
 			
-			rset = pstmt.executeQuery();
-			if(!rset.next()) result = 0;
-			else result = 1;
-			System.out.println("selectFontLike@dao = " + result);
+			rset = pstmt.executeQuery(); 
+			if(!rset.next()) likeValid = 0;
+			else likeValid = 1;
+			System.out.println("selectFontLike@dao = " + likeValid);
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -457,7 +457,7 @@ public class FontDao {
 			close(rset);
 			close(pstmt);
 		}
-		return result;
+		return likeValid;
 	}
 
 	public int deleteFontLike(Connection conn, Map<String, Object> param) {
@@ -513,7 +513,7 @@ public class FontDao {
 			rset = pstmt.executeQuery();
 			
 			if(rset.next())
-				result = rset.getInt(1);
+				result = rset.getInt(1); // rset.getInt("count(*)");
 				System.out.println("likeCnt@dao = " + result);
 		} catch (SQLException e) {
 			e.printStackTrace();

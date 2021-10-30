@@ -22,6 +22,14 @@ public class QuestionEnrollServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		// 1. 사용자 입력값 처리
+		
+		String content = request.getParameter("qContent");
+		String writer = request.getParameter("qWriter");
+		
+		// 2. 업무 로직
+		
+		// 3. 응답 처리
 	}
 
 }

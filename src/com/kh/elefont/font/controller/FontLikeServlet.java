@@ -41,16 +41,29 @@ public class FontLikeServlet extends HttpServlet {
 		//2. 업무 로직
 		//like_font 테이블에서 조회. DQL이지만 존재 여부 확인 후, DML문 처리가 있을 예정이므로 int값으로 받는다.
 		//json 변환할 데이터 객체 생성
+		int result = 0;
+		int likeValid = 0;
 		Map<String, Object> map = new HashMap<>();
-		int likeValid = fontService.selectFontLike(param);
+		likeValid = fontService.selectFontLike(param);
 		System.out.println("selectFontLike@servlet = " + likeValid);
+		
+		if(likeValid == 1) {
+			//좋아요 이력이 있는 경우 like_font 테이블에서 내용 삭제 후 font테이블 좋아요 카운트 감소
+			likeValid = 0;
+			result = fontService.deleteFontLike(param);
+		}
+		else if(likeValid == 0) {
+			likeValid = 1;
+			//좋아요 이력이 없는 경우 like_font 테이블에서 내용 추가 후 font테이블 좋아요 카운트 증가
+			result = fontService.insertFontLike(param);
+		}
 		
 		int likeCnt = fontService.countFontLike(fontNo);
 
 		map.put("likeValid", likeValid);
 		map.put("likeCnt", likeCnt);
 		map.put("fontNo", fontNo);
-		int result = fontService.updateFontLike(map);
+		result = fontService.updateFontLike(map);
 		
 		//json문자열로 변환
 		Gson gson = new Gson();

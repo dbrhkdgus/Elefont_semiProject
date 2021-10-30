@@ -1,7 +1,9 @@
 package com.kh.elefont.font.controller;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
@@ -10,6 +12,7 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.kh.elefont.common.model.service.AttachmentService;
 import com.kh.elefont.common.model.vo.Attachment;
@@ -19,6 +22,7 @@ import com.kh.elefont.font.model.service.FontCopyrightService;
 import com.kh.elefont.font.model.service.FontService;
 import com.kh.elefont.font.model.vo.Font;
 import com.kh.elefont.font.model.vo.FontCopyright;
+import com.kh.elefont.member.model.vo.Member;
 import com.kh.elefont.rep.model.service.RepService;
 import com.kh.elefont.rep.model.vo.Rep;
 
@@ -39,6 +43,16 @@ public class ShopDetailServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		HttpSession session = request.getSession();
+		Member loginMember = (Member)session.getAttribute("loginMember");
+		
+		String memberNo = "";
+		if(loginMember != null) 
+			memberNo = loginMember.getMemberNo();
+		
+		
+	
+		
 		try {
 			//1.파리미터 fontNo
 			String fontNo = request.getParameter("fontNo");
@@ -109,12 +123,21 @@ public class ShopDetailServlet extends HttpServlet {
 			//List<BoardComment> commentList = boardService.selectCommentList(no);
 			//System.out.println("commentList@servlet = " + commentList);
 			
+			Map<String,Object> param = new HashMap<>();
+			param.put("fontNo", fontNo);
+			param.put("memberNo", memberNo);
+			
+			int likeValid = fontService.selectFontLike(param);
+			System.out.println("shopDetail@servlet " + likeValid);
+			
 			//3.view단 처리위임
 			request.setAttribute("font", font);
 			request.setAttribute("communityList", communityList);
 			request.setAttribute("commAttachmentList", commAttachmentList);
 			request.setAttribute("repList", repList);
 			request.setAttribute("fontCopyright", fontCopyright);
+			request.setAttribute("likeValid", likeValid);
+			
 			//request.setAttribute("commentList", commentList);
 			RequestDispatcher reqDispatcher = request.getRequestDispatcher("/WEB-INF/views/shop/shopDetail.jsp");
 			reqDispatcher.forward(request, response);
