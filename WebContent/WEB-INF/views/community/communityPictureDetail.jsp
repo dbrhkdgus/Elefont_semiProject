@@ -41,6 +41,7 @@
 	                   <%=community.getCommContent() %>
 	                </div>
 	            </div>
+	              <div class="comm-board-rep-comment outer">
 <%if(loginMember!=null){ %>
 	            <form action="<%= request.getContextPath() %>/rep/communityRepEnroll" method="POST"name ="commRepEnrollFrm">
 		            <div class="comm-board-repEnroll">
@@ -55,7 +56,7 @@
 						<input type="hidden" name="repRef" value="0" />
 		            </div>
 	            </form>
-	            
+	          
 <%} 
 	for(Rep rep : repList){
 		if(rep.getRepLevel()==1){
@@ -81,6 +82,7 @@ if(loginMember != null && (loginMember.getMemberNo().equals(rep.getMemberNo()) |
 				<input type="hidden" name="type" value=""/>
 				<input type="hidden" name="rep_no" value="<%=rep.getRepNo()%>"/>
 			</form>
+			
 <% 				
 }
 if(loginMember!=null){
@@ -114,6 +116,7 @@ if(loginMember!=null){
 			                    	</div>
 							</div> 
 						</div>
+						
 <%
 if(loginMember != null && (loginMember.getMemberNo().equals(rep.getMemberNo()) || "A".equals(loginMember.getMemberRole()))) {
 %>						
@@ -124,13 +127,14 @@ if(loginMember != null && (loginMember.getMemberNo().equals(rep.getMemberNo()) |
 				<input type="hidden" name="type" value=""/>
 				<input type="hidden" name="rep_no" value="<%=rep.getRepNo()%>"/>
 			</form>						
-	
+
 <%			
 			}
 		}
 /*foreach문 끝남*/
 	}
 %>
+				</div>
             </div>
 
             <div class="comm-writer-info" >
@@ -182,6 +186,7 @@ for(Attachment att : attachmentList){
 <%}%>
 <script>
 $(".btn-enroll").hide();
+
 $(".btn-enroll").click((e)=>{
 	$("input[name=type]").val("update");
 	
