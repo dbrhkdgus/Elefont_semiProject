@@ -28,6 +28,7 @@ System.out.println("repList@jsp : " + repList );
                         	<input id="cart-button"  data-font-no="<%= font.getFontNo() %>" data-type="cart" name="button" type="button" value="장바구니">
                         	<input id="like-button" name="button" type="button" value="좋아요">
                         	<input type="hidden" name="PerCartType" value = "" />
+                        	<input type="hidden" name="font-no" value="<%=font.getFontNo()%>"/>
                         	<input type="hidden" name="font-name" value="<%=font.getFontName()%>"/>
                         	<input type="hidden" name="font-price" value="<%=font.getFontPrice()%>"/>
 <% if(loginMember != null){ %>                        	
