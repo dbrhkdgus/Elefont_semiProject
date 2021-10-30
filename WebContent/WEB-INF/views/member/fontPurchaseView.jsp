@@ -12,7 +12,7 @@ String memberNo = (String)request.getAttribute("memberNo");
             
             <div class="purchase-container">
                 <h1>폰트 구매</h1>
-                <form action="<%= request.getContextPath()%>/font/fontPerchase" method="POST" name="fontPerchaseFrm">
+                <form action="<%= request.getContextPath()%>/font/fontPurchase" method="POST" name="fontPurchaseFrm">
                     <p class="purchase-menu"><span> 구매하신 폰트 : </span><span><%=fontName %></span></p>
                     <p class="purchase-menu"><span>폰트가격 : </span><span><%=fontPrice %></span></p>
                     <p class="purchase-menu"><span>쿠폰등록하기 : </span> </p>
@@ -38,11 +38,11 @@ String memberNo = (String)request.getAttribute("memberNo");
     		const memberPoint = "<%= loginMember.getMemberPoint()%>";
     		const fontPrice = "<%= fontPrice%>";
     		if(fontPrice > memberPoint){
-    			alert(`보유하신 포인트가 부족하여 구매를 진행할 수 없습니다. 
+    			alert(`보유하신 포인트가 부족하여 구매를 진행할 수 없습니다.
 (현재 보유 포인트 : \${memberPoint}P)`);
     		}else{
     			if(confirm(`확인 버튼을 클릭 시 보유하신 포인트에서 \${fontPrice}P 차감됩니다.`)){
-    				//$(document.fontPerchaseFrm).submit();
+    				$(document.fontPurchaseFrm).submit();
     			}
     			
     		}
