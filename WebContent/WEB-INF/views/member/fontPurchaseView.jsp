@@ -21,6 +21,8 @@ String memberNo = (String)request.getAttribute("memberNo");
                     <input type="text" name="purchase-email" value="<%=memberEmail %>">
                     <input type="hidden"  name="member-no" value="<%=loginMember.getMemberNo()%>"/>
                     <input type="hidden"  name="font-no" value="<%= fontNo %>"/>
+                    <input type="hidden"  name="font-price" value="<%= fontPrice %>"/>
+                    
                     <br />
                     <input type="button" name ="btn-purchase" value = "구매하기" />
                     <input type="button" name ="btn-cancle" value = "취소" />
@@ -41,7 +43,8 @@ String memberNo = (String)request.getAttribute("memberNo");
     			alert(`보유하신 포인트가 부족하여 구매를 진행할 수 없습니다.
 (현재 보유 포인트 : \${memberPoint}P)`);
     		}else{
-    			if(confirm(`확인 버튼을 클릭 시 보유하신 포인트에서 \${fontPrice}P 차감됩니다.`)){
+    			if(confirm(`확인 버튼을 클릭 시 보유하신 포인트 (\${memberPoint}P)에서 
+\${fontPrice}P 차감됩니다.`)){
     				$(document.fontPurchaseFrm).submit();
     			}
     			

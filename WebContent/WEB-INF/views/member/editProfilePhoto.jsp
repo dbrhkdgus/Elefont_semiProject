@@ -82,6 +82,7 @@
 	                          <td id="tdpp1" class="pptd">이미지 <br/> 첨부파일</td>
 	                          <td id="tdpp2" class="pptd"><input type="file" name="profileimage" onchange='openFile(event)'/>
 	                          <hr /><input id="changeImage" type="button" value="프로필사진 변경하기" onclick="ddd();" /></td>
+	                          <input type="hidden" id="didWePutFile" value="0"/>
 	                          <input type="hidden" name="memberNo" value="<%=request.getParameter("memberNo")%>" />
 	                      </tr>
 	                  </table>
@@ -99,6 +100,9 @@ $(closeBtn).click(()=>{
 }) 
  
  var openFile = function(event) { 
+	
+	$(didWePutFile).val(1);
+	console.log($(didWePutFile).val());
 	var input = event.target; var reader = new FileReader(); 
 	 
  	reader.onload = function(){ 
@@ -111,8 +115,13 @@ $(closeBtn).click(()=>{
  	};
 
 	 function ddd(){
-		 if(confirm("프로필 사진을 변경하시겠습니까?")){
-		 $(document.imageUploadFrm).submit();
+		 const $canWeSubmit = $(didWePutFile).val();
+		 if($canWeSubmit == 1) {
+			 if(confirm("프로필 사진을 변경하시겠습니까?")){
+			 $(document.imageUploadFrm).submit();
+			 }
+		 }else{
+			 alert("파일을 입력하세요");
 		 }
 	 }
  
