@@ -78,7 +78,6 @@ if(loginMember!=null){
                             </form>
 <%	
 }
-
 for(Rep rep : repList){
 	int repNo = 0;
 	if(rep.getRepLevel()==1){
@@ -183,7 +182,6 @@ if(loginMember != null){
                                console.log("click");
                                $(e.target).parent().parent().next().slideToggle(500);                                 
                              });
-
                            /*  $(document.reReplyFrm).hide();
                             $('#btn-re-icon').click((e)=>{
                             	console.log(e.target)
@@ -193,16 +191,12 @@ if(loginMember != null){
 <% }else { %>
 							<script>
   							$(document.reReplyFrm).hide();
-
                             
                                $('.fa-replyd').on('click', (e)=>
                              {
-
                             	alert("댓글등록은 로그인 이후 가능합니다.");
                             	$('.loginBox').show();
                             	$(loginId).select();
-
-
                              });
                              </script>
 <% } %>
@@ -233,7 +227,6 @@ if(loginMember != null){
                                 
 								/* 대댓글 스크립트 */
                                 	$(".btn-re-rep-update").hide();
-
                                 	
                                 	$(".btn-re-rep-update").click((e)=>{
                                 		$("input[name=type]").val("update");                      
@@ -287,8 +280,6 @@ if(loginMember != null){
 %>
 									alert("로그인 후 이용 가능합니다.");
 									return;
-
-
 <%
 } else if("A".equals(loginMember.getMemberRole())){
 	
@@ -327,7 +318,6 @@ if(loginMember != null){
 										},
 										error:console.log
 									});
-
                                	});
                                 	
                                 	/* 장바구니 추가 버튼 클릭 */

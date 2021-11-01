@@ -2769,6 +2769,12 @@ font-size: 16px;
 .comm-reply {
 	width: 900px;
 }
+.re-content-size {
+	width: 90%;
+}
+.re-input-size {
+	width: 90%;
+}
 /* community picture detail 끝*/
 
 
