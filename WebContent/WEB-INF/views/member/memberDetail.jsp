@@ -398,7 +398,7 @@ List<Font> fontPurchasedList = (List<Font>) request.getAttribute("fontPurchasedL
 							</table>
 							
 						</form>
-						<div class="coupon-result">
+						<div id="coupon-result">
 						<!-- 발행된 쿠폰 번호 출력할 div -->
 						</div>
 					</div>
@@ -630,21 +630,28 @@ $(".fontDownloadBtn").click((e)=>{
 /* 쿠폰 발급 이벤트 */
 $(couponEnrollBtn).click((e)=>{
 	//유효성 검사
-	const frmData = new FormData(document.couponEnrollFrm);
-	console.log(frmData);
-	console.log(frmData.get("couponExpired"));
-	console.log(frmData.get("couponCnt"));
-	console.log(frmData.get("couponType"));
+	const $frmData = $(document.couponEnrollFrm);
 	
 	$.ajax({
 		url : "<%=request.getContextPath()%>/coupon/couponEnroll",
-		data : frmData,
+		data : $frmData.serialize(),
 		type: "POST",
-		processData : false,
-		contentType : false,
 		dataType : "json",
 		success(data){
-			console.log(data);
+			console.log(data, typeof data);
+			console.log(data[0]);
+			const $ol = $("<ol></ol>");
+			const $couponResult = $("#coupon-result");
+			$couponResult.html("");
+			if(data.length == 1){
+				$ol.append("<li>"+ data[0] +"</li>");
+			}
+			else{
+				data.forEach(element =>{
+					$ol.append(`<li>\${element}</li>`);
+				});
+			}
+			$couponResult.append($ol);
 		},
 		error: console.log
 	});

@@ -71,12 +71,11 @@ public class CouponDao {
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, coupon.getCouponType());
-			pstmt.setDate(2, coupon.getCouponRegDate());
-			pstmt.setInt(3, coupon.getCouponExpired());
+			pstmt.setInt(2, coupon.getCouponExpired());
 			if("P".equals(coupon.getCouponType()))
-				pstmt.setInt(4, coupon.getCouponPAmount());
+				pstmt.setInt(3, coupon.getCouponPAmount());
 			else
-				pstmt.setDouble(4, coupon.getCouponDiscount());
+				pstmt.setDouble(3, coupon.getCouponDiscount());
 			
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
@@ -94,6 +93,7 @@ public class CouponDao {
 		String sql = prop.getProperty("selectLastCouponNo");
 		
 		try {
+			pstmt = conn.prepareStatement(sql);
 			rset = pstmt.executeQuery();
 			
 			if(rset.next())

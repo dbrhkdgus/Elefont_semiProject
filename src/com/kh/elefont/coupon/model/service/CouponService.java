@@ -30,10 +30,10 @@ public class CouponService {
 			for(int i = 0; i< couponCnt; i++) {
 				String couponNo = "";
 				int result = couponDao.insertCoupon(conn,coupon);
-				if(result > 0) {
-					couponNo = couponDao.selectLastCouponNo(conn);
-					couponList.add(couponNo);
-				}
+				System.out.println("result@couponService = " + result);
+				
+				couponNo = couponDao.selectLastCouponNo(conn);
+				couponList.add(couponNo);
 			}
 			commit(conn);
 		} catch(Exception e) {
