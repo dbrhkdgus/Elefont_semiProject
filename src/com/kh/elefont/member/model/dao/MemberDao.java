@@ -581,5 +581,32 @@ public class MemberDao {
 	}
 
 
+	public int updateDefaultImage(Connection conn, String memberNo) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String sql = prop.getProperty("updateDefaultImage");
+		System.out.println("sql확인 : " + sql);
+		System.out.println(" memberNo확인 : " + memberNo);
+		
+		// updateDefaultImage = update attachment set original_filename = 'defaultProfilePhoto.png', 
+		// renamed_filename = '20211029_224039394_100.png' where memberNo =? 
+		
+		try {
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, memberNo);
+			
+			result = pstmt.executeUpdate();
+			System.out.println("기본사진으로 업데이트 잘 되었나요? : " + result);
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		return result;
+	}
+
+
 
 }

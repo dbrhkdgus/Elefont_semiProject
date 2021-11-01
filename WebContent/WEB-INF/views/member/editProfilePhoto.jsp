@@ -73,7 +73,7 @@
                 </div>
                 <br>
                 <input type="button" value="기본사진으로 변경" onclick="setAsDefaultPhoto();">
-                <form action="<%=request.getContextPath()%>/member/changeAsDefaultPhoto" name="setAsDefaultPhotoFrm" method="post">
+                <form action="<%=request.getContextPath()%>/member/changeAsDefaultPhoto" name="setAsDefaultPhotoFrm" method="POST">
                 	<input type="hidden" name="memberNo" value="<%=request.getParameter("memberNo")%>" />
                 </form>
             </div>
