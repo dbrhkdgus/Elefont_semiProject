@@ -64,6 +64,14 @@ public class OrderService {
 		close(conn);
 		return orderList;
 	}
+
+	public List<Order> selectAllOrderListByOrderNo(String orderNo) {
+		Connection conn = getConnection();
+		List<Order> orderList = orderDao.selectAllOrderListByOrderNo(conn, orderNo);
+		
+		close(conn);
+		return orderList;
+	}
 		
 }
 
