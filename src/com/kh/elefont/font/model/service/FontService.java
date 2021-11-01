@@ -247,6 +247,13 @@ public class FontService {
 		
 		return result;
 	}
+	public List<Font> selectAllPurchasedFontByMemberNo(String memberNo) {
+		Connection conn = getConnection();
+		List<Font> fontPurchasedList = fontDao.selectAllPurchasedFontByMemberNo(conn, memberNo);
+		
+		close(conn);
+		return fontPurchasedList;
+	}
 
 
 }
