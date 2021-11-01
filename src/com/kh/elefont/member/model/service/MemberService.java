@@ -216,6 +216,22 @@ public class MemberService {
 		return result;
 	}
 
+	public int updateDefaultImage(String memberNo) {
+		Connection conn = getConnection();
+		int result = 0;
+		
+		try {
+			result = memberDao.updateDefaultImage(conn,memberNo);
+			commit(conn);
+		}catch(Exception e) {
+			rollback(conn);
+			throw e;
+		}finally {
+			close(conn);
+		}
+		return result;
+	}
+
 	
 
 }
