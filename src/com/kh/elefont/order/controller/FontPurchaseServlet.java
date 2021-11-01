@@ -1,6 +1,7 @@
 package com.kh.elefont.order.controller;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -9,6 +10,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.kh.elefont.common.MailSend;
 import com.kh.elefont.member.model.service.MemberService;
 import com.kh.elefont.member.model.vo.Member;
 import com.kh.elefont.order.model.service.OrderService;
@@ -31,13 +33,14 @@ public class FontPurchaseServlet extends HttpServlet {
 		String memberNo = request.getParameter("member-no");
 		String fontNo = request.getParameter("font-no");
 		String fontPrice = request.getParameter("font-price");
+		String orderNo = "order-" + System.currentTimeMillis();
 		//유일한 값을 위해서
 
 		Order order = new Order();
 		
 		order.setMemberNo(memberNo);
 		order.setFontNo(fontNo);
-		order.setOrderNo("order-" + System.currentTimeMillis());
+		order.setOrderNo(orderNo);
 		
 		
 		//업무처리
@@ -53,6 +56,11 @@ public class FontPurchaseServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		session.removeAttribute("loginMember");
 		session.setAttribute("loginMember", loginMember);
+		
+		
+		List<Order> orderList = orderService.selectAllOrderListByOrderNo(orderNo);
+		
+		new MailSend().purchaseMailSend(orderList);
 		
 		
 		// view단 처리

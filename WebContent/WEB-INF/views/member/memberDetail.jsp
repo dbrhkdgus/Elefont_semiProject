@@ -17,7 +17,6 @@
 %>
      <div class="coupon-enroll">
         <form action="" method="POST" name="couponEnrollFrm">
-            <h5>쿠폰 등록</h5>
             <h2>쿠폰 등록 번호</h2>
             <input type="text" class="coupon-no" name="coupon-no1" id="coupon-no1">
             <span>-</span>
@@ -454,7 +453,6 @@ List<Font> fontPurchasedList = (List<Font>) request.getAttribute("fontPurchasedL
 							<label for="fontAuditYN2">승인 폰트 보기</label>
 							<br />
 							<select name="font-search" id="font-search">
-							<!-- 김희 -->
 								<option value="all" selected>모든 폰트 조회</option>
 								<option value="font-no">폰트번호로 검색</option>
 								<option value="font-name">폰트명으로 검색</option>
