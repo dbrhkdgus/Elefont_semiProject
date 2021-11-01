@@ -52,6 +52,7 @@ public class ShopSearchServlet extends HttpServlet {
 		request.setAttribute("likeList", likeList);
 		
 		
+		
 		request.getRequestDispatcher("/WEB-INF/views/shop/shopSearch.jsp").forward(request, response);
 	}
 

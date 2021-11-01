@@ -637,6 +637,7 @@ public class FontDao {
 				font.setFontDiscountRate(rset.getDouble("font_discount_rate"));
 				font.setFontApproval(rset.getString("font_approval"));
 				font.setMemberId(rset.getString("member_id"));
+				font.setFontLikeCount(rset.getInt("font_like_count"));
 				fontList.add(font);
 			}
 		} catch (SQLException e) {

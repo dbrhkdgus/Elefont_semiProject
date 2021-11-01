@@ -54,6 +54,8 @@ public class ShopLandingServlet extends HttpServlet {
 		request.setAttribute("fontList", fontList);
 		request.setAttribute("fontAttchmentList", fontAttchmentList);
 		request.setAttribute("likeList", likeList);
+		
+		
 		request.setAttribute("sort", sort);
 		
 		
