@@ -220,14 +220,12 @@ CREATE TABLE rep (
     constraint fk_rep_ref foreign key(rep_ref) references rep(rep_no) on delete cascade
 );
 
-
+select * from point;
 CREATE TABLE point (
 	point_no	varchar2(200)	not null ,
-	point_code	varchar2(1) not null ,
 	point_val	varchar2(500)	not null ,
 	point_date	Date	DEFAULT sysdate not null,
-    point_name varchar2(200),
-    constraint  fk_point_point_code foreign key(point_code) references point_category(point_code)
+    point_name varchar2(200)
 );
 ALTER TABLE point ADD CONSTRAINT PK_POINT_POINT_NO PRIMARY KEY (
 	point_no
@@ -558,35 +556,68 @@ create sequence seq_font_no;
 
 commit;
 
+-- 혜진&다현 테이블에 on delete cascade 조건 추가 10/31일
+-- 변경 후 커밋 끝난 건입니다. 테이블 삭제 후 재생성 외에는 추가 변경 필요 없습니다.
 
-
-
-alter table attachment drop constraint fk_attachment_member_no;
-alter table attachment add constraint fk_attachment_member_no foreign key (member_no) references member(member_no) on delete cascade;
-
-alter table attachment drop constraint fk_attachment_comm_no;
-alter table attachment add constraint fk_attachment_comm_no foreign key (comm_no) references community (comm_no) on delete cascade;
-
-alter table font_copyright drop constraint fk_font_copyright_font_no;
-alter table font_copyright add constraint fk_font_copyright_font_no foreign key (font_no) references font(font_no) on delete cascade;
-
-alter table font_category drop constraint fk_font_category_font_no;
-alter table font_category add constraint fk_font_category_font_no foreign key (font_no) references font(font_no) on delete cascade;
-
-
-alter table like_font drop constraint fk_like_font_member_no;
-alter table like_font drop constraint fk_like_font_font_no;
-
-alter table like_font add constraint fk_like_font_member_no foreign key (member_no) references member(member_no) on delete cascade;
-alter table like_font add constraint fk_like_font_font_no foreign key (font_no) references font (font_no) on delete cascade;
-
-
-alter table cart drop constraint fk_cart_font_no;
-alter table cart add constraint fk_cart_font_no foreign key (font_no) references font (font_no) on delete cascade;
-
-alter table member_cart drop constraint fk_member_cart_cart_no;
-alter table member_cart add constraint fk_member_cart_cart_no  foreign key (cart_no) references cart (cart_no) on delete cascade;
-
-
-alter table member_cart drop constraint fk_member_cart_member_no;
-
+---- 회원-장바구니
+--ALTER TABLE member_cart DROP CONSTRAINT  fk_member_cart_cart_no;
+--ALTER TABLE member_cart DROP CONSTRAINT  fk_member_cart_member_no ;
+--ALTER TABLE member_cart ADD constraint fk_member_cart_cart_no FOREIGN KEY (cart_no) REFERENCES cart (cart_no) ON DELETE CASCADE ;
+--ALTER TABLE member_cart ADD constraint fk_member_cart_member_no FOREIGN KEY (member_no) REFERENCES member (member_no) ON DELETE CASCADE ;
+--
+---- 장바구니
+--alter table cart drop constraint fk_cart_font_no;
+--alter table cart add constraint fk_cart_font_no foreign key (font_no) references font (font_no) on delete cascade;
+--
+---- 회원- 첨부파일/후기-첨부파일
+--alter table attachment drop constraint fk_attachment_member_no;
+--alter table attachment add constraint fk_attachment_member_no foreign key (member_no) references member(member_no) on delete cascade;
+--
+--alter table attachment drop constraint fk_attachment_comm_no;
+--alter table attachment add constraint fk_attachment_comm_no foreign key (comm_no) references community (comm_no) on delete cascade;
+--alter table attachment drop constraint fk_attachment_font_no;
+--alter table attachment add constraint fk_attachment_font_no  foreign key(font_no) references font(font_no) on delete cascade;
+--
+----회원-주문
+--alter table member_orders drop constraint fk_member_order_member_no;
+--alter table member_orders add constraint fk_member_order_member_no foreign key(member_no) references member(member_no) on delete cascade;
+--
+---- 회원- 커뮤니티 좋아요
+--alter table like_community drop constraint fk_like_community_member_no;
+--alter table like_community drop constraint fk_like_community_comm_no;
+--alter table like_community add constraint fk_like_community_member_no foreign key(member_no) references member(member_no) on delete cascade;
+--alter table like_community add constraint fk_like_community_comm_no foreign key(comm_no) references community(comm_no) on delete cascade;
+--
+---- 회원-포인트
+--alter table member_point drop constraint fk_member_point_point_no;
+--alter table member_point drop constraint fk_member_point_member_no;
+--alter table member_point add constraint fk_member_point_point_no foreign key(point_no) references point(point_no) on delete cascade;
+--alter table member_point add constraint fk_member_point_member_no foreign key(member_no) references member(member_no) on delete cascade;
+--
+---- 쿠폰
+--alter table coupon drop constraint fk_coupon_member_no;
+--alter table coupon add constraint fk_coupon_member_no foreign key(member_no) references member(member_no) on delete cascade;
+--
+---- 후기
+--alter table community drop constraint fk_community_font_no;
+--alter table community add constraint fk_community_font_no foreign key(font_no) references font(font_no) on delete cascade;
+--
+---- 주문
+--alter table orders drop constraint fk_font_no;
+--alter table orders drop constraint fk_order_no;
+--alter table orders add constraint fk_font_no foreign key(font_no) references font(font_no) on delete cascade;
+--alter table orders add constraint fk_order_no foreign key(order_no) references member_orders(order_no) on delete cascade;
+--
+---- 폰트 저작권
+--alter table font_copyright drop constraint fk_font_copyright_font_no;
+--alter table font_copyright add constraint fk_font_copyright_font_no foreign key (font_no) references font(font_no) on delete cascade;
+--
+---- 폰트 카테고리
+--alter table font_category drop constraint fk_font_category_font_no;
+--alter table font_category add constraint fk_font_category_font_no foreign key (font_no) references font(font_no) on delete cascade;
+--
+----폰트 좋아요
+--alter table like_font drop constraint fk_like_font_member_no;
+--alter table like_font drop constraint fk_like_font_font_no;
+--alter table like_font add constraint fk_like_font_member_no foreign key (member_no) references member(member_no) on delete cascade;
+--alter table like_font add constraint fk_like_font_font_no foreign key (font_no) references font (font_no) on delete cascade;
