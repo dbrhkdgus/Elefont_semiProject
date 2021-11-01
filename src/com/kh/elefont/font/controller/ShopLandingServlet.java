@@ -38,16 +38,16 @@ public class ShopLandingServlet extends HttpServlet {
 		List<Font> fontList = new ArrayList<>();
 		
 		List<String> categoryList = session.getAttribute("categoryList") == null ? new ArrayList<>() : (List<String>)session.getAttribute("categoryList");
-		
+		System.out.println("flag@servlet : " + request.getParameter("flag"));
+		categoryList.remove(request.getParameter("flag"));
 		if(request.getParameter("add") != null || request.getParameter("category") != null ) {
-			if(request.getParameter("flag") == null) {
+				
 				categoryList.add(request.getParameter("add"));				
-			}else{
-				categoryList.remove(request.getParameter("flag"));
 
-			}
+			
 		}
 		
+		System.out.println("categoryList@Servlet : " + categoryList);
 		switch(sort) {
 		case "popular" : fontList = fontService.selectAllApprovedFontOrderByPopular(); break;
 		case "view" : fontList = fontService.selectAllApprovedFontOrderByView(); break;
