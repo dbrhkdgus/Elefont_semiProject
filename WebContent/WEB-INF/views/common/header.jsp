@@ -124,7 +124,7 @@ if(loginMember != null){
 	Member member = (Member) session.getAttribute("member");
 	File profilePhotoAttach = (File) session.getAttribute("profilePhotoAttach");
 	String photoPath = profilePhotoAttach.getName();
-	System.out.println("Header.jsp 프로필 경로가 궁금하느냐? : " + photoPath);
+	/* System.out.println("Header.jsp 프로필 경로가 궁금하느냐? : " + photoPath); */
 %>
                                         <li ><a class="smoth-scroll" id="profile" href="#user"><img id="profile-img" src="<%= request.getContextPath() %>/upload/profilephotos/<%=photoPath%>" ><span id="profile-loginMember-name"><%= loginMember.getMemberName() %></span></a>
                                         </li> 

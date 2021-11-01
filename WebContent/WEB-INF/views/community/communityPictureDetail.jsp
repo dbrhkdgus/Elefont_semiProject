@@ -5,7 +5,7 @@
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@include file = "/WEB-INF/views/common/LandingHeader.jsp" %>   
+<%@include file = "/WEB-INF/views/common/LandingHeader.jsp" %>
 <%
 	Community community = (Community)request.getAttribute("community");
 	Attachment attachment = (Attachment)request.getAttribute("attachment");
@@ -202,22 +202,25 @@ $(".btn-enroll").hide();
 $(".btn-enroll").click((e)=>{
 	$("input[name=type]").val("update");
 	
-	 $(e.target).parent().submit(); 
+	 $(e.target).parent().parent().eq(0).submit(); 
 });
 
 $('.btn-transform').on('click', (e)=>{
 	$(e.target).hide();
 	$(e.target).next().show();
-	 var oldContent = $(e.target).parent().children("div").children("div").children("div").children(':nth-child(2)').text();
-	 $(e.target).parent().children("div").children("div").children("div").children(':nth-child(2)').html('');
-	 $(e.target).parent().children("div").children("div").children("div").children(':nth-child(2)').html(`<input type="text"  name="update_rep_content" value = "\${oldContent}" />`); 
+	 var oldContent = $(e.target).parent("div").find("span").eq(1).text();
+	 console.log(oldContent);
+	 $(e.target).parent("div").find("span").eq(1).html('');
+	 $(e.target).parent("div").find("span").eq(1).html(`<input type="text"  name="update_rep_content" value = "\${oldContent}" />`); 
 });
+<%
 
+%>
 $(".btn-delete").click((e)=>{
 	if(confirm("정말 삭제하시겠습니까?")){
 		
 	$("input[name=type]").val("delete");
-	 $(e.target).parent().submit();  
+	 $(e.target).parent().parent().submit();  
 	}
 });
 /* 숨김처리관련 스크립트 */
@@ -227,7 +230,7 @@ $(".btn-delete").click((e)=>{
  {
    console.log("click");
    
-   $(e.target).parent().next().next().slideToggle(500);                            
+   $(e.target).parent().parent().next().slideToggle(500);                            
  });
 	 
 	 

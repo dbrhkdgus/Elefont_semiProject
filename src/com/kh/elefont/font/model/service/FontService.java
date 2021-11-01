@@ -125,9 +125,9 @@ public class FontService {
 		
 		return result;
 	}
-	public List<Font> selectAllApprovedFont() {
+	public List<Font> selectAllApprovedFontOrderByDate() {
 		Connection conn = getConnection();
-		List<Font> fontList = fontDao.selectAllApprovedFont(conn);
+		List<Font> fontList = fontDao.selectAllApprovedFontOrderByDate(conn);
 		close(conn);
 		return fontList;
 	}
@@ -253,6 +253,38 @@ public class FontService {
 		
 		close(conn);
 		return fontPurchasedList;
+	}
+	public List<String> selectAllFontName() {
+		Connection conn = getConnection();
+		List<String> fontNameList = fontDao.selectAllFontName(conn);
+		
+		close(conn);
+		return fontNameList;
+	}
+	public List<Font> selectFontListByFontName(Map<String, Object> param) {
+		Connection conn = getConnection();
+		List<Font> fontList = fontDao.selectSearchFont(conn,param);
+		
+		close(conn);
+		return fontList;
+	}
+	public List<Font> selectAllApprovedFontOrderByPopular() {
+		Connection conn = getConnection();
+		List<Font> fontList = fontDao.selectAllApprovedFontOrderByPopular(conn);
+		close(conn);
+		return fontList;
+	}
+	public List<Font> selectAllApprovedFontOrderByView() {
+		Connection conn = getConnection();
+		List<Font> fontList = fontDao.selectAllApprovedFontOrderByView(conn);
+		close(conn);
+		return fontList;
+	}
+	public List<Font> selectAllApprovedFontOrderByOrder() {
+		Connection conn = getConnection();
+		List<Font> fontList = fontDao.selectAllApprovedFontOrderByOrder(conn);
+		close(conn);
+		return fontList;
 	}
 
 

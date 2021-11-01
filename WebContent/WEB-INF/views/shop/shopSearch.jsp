@@ -4,10 +4,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@include file = "/WEB-INF/views/common/LandingHeader.jsp" %>
-<%
-	String sort = request.getParameter("sort") == null? "newest" : request.getParameter("sort");	
-	System.out.println("sort@jsp : " + sort);
-%>
 	<!-- Portfolio Start -->
     <section id="portfolio" class="portfolio section-space-padding">
         <div class="container">
@@ -45,11 +41,10 @@
                         </div>
                         <div class="tools font-sort-selector">
                             <select name="font-sort" id="font-sort">
-                                <option value="popular" <%= "popular".equals(sort) ? "selected" : "" %>>인기순</option>
-                                <option value="view" <%= "view".equals(sort) ? "selected" : "" %>>조회순</option>
-                                <option value="order" <%= "order".equals(sort) ? "selected" : "" %>>판매순</option>
-                                <option value="recommand" <%= "recommand".equals(sort) ? "selected" : "" %>>MD추천순</option>
-                                <option value="newest" <%= "newest".equals(sort) ? "selected" : "" %>>최신순</option>
+                                <option value="popular" selected>인기순</option>
+                                <option value="view">조회순</option>
+                                <option value="order">판매순</option>
+                                <option value="recommand">MD추천순</option>
                             </select>
                         </div>
                     </div>
@@ -105,6 +100,7 @@
 
     </section>
 <script>
+
 $("#range-result").html($(range).val()+"px");
 $(".font-style").css("font-size", $(range).val()+"px");
 $(".font-style").css("color", $(color).val());
@@ -213,10 +209,6 @@ $(".font-style").css("color", $(color).val());
 	
 	$("#btn-search").click((e)=>{
 		location.href = `<%=request.getContextPath()%>/shopSearch?fontName=\${$(font_search).val()}`;
-	});
-	$('#font-sort').change((e)=>{
-		console.log($('#font-sort').val());
-		location.href = `<%=request.getContextPath()%>/shop?sort=\${$('#font-sort').val()}`
 	});
 </script>
 
