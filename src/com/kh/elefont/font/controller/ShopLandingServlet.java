@@ -33,6 +33,7 @@ public class ShopLandingServlet extends HttpServlet {
 		Member loginMember = (Member)session.getAttribute("loginMember");
 		// 랜딩 시, 기존 font 테이블 전부 조회
 		String sort = request.getParameter("sort") == null ? "newest" : request.getParameter("sort");
+		String category = request.getParameter("category") == null ? "" : request.getParameter("category");
 		List<Font> fontList = new ArrayList<>();
 		
 		switch(sort) {
@@ -44,6 +45,7 @@ public class ShopLandingServlet extends HttpServlet {
 		default : fontList = fontService.selectAllApprovedFontOrderByDate(); break;
 		
 		}
+		
 		
 		List<Attachment> fontAttchmentList = attachmentService.selectAllFontAttachmentList();
 		List<String> likeList = null;
@@ -57,7 +59,7 @@ public class ShopLandingServlet extends HttpServlet {
 		
 		
 		request.setAttribute("sort", sort);
-		
+		request.setAttribute("category", category);
 		
 		request.getRequestDispatcher("/WEB-INF/views/shop/shopLanding.jsp").forward(request, response);
 	}
