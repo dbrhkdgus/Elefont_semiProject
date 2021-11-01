@@ -405,6 +405,35 @@ public class MemberDao {
 		
 		return memberList;
 	}
+	
+	public List<String> selectSearchMember(Connection conn, String searchId) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		List<String> searchedIdList = new ArrayList<>();
+		String sql = prop.getProperty("selectSearchMemberByMemberId");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, "%"+ searchId +"%");
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				String memberId;
+				
+				memberId = rset.getString("member_id");
+				
+				searchedIdList.add(memberId);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return searchedIdList;
+	}
 
 
 	public int deletePrePhoto(Connection conn, String memberNo) {
@@ -606,6 +635,9 @@ public class MemberDao {
 		}
 		return result;
 	}
+
+
+
 
 
 
