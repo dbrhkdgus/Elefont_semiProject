@@ -63,19 +63,35 @@ public class CouponDao {
 	public int insertCoupon(Connection conn, Coupon coupon) {
 		PreparedStatement pstmt = null;
 		int result = 0;
-		String sql = 
-				("P".equals(coupon.getCouponType()))?
-						prop.getProperty("insertPointCoupon")
-						: prop.getProperty("insertDiscountCoupon");
+		String sql = "";
+		
+		//회원 번호를 입력했는지, 쿠폰 종류가 무엇인지에 따라 분기 처리
+		if(!coupon.getMemberNo().isBlank()) {
+			if(("P".equals(coupon.getCouponType())))
+				sql = prop.getProperty("insertPointCouponToMember");
+			else
+				sql = prop.getProperty("insertDiscountCouponToMember");
+		}
+		else {
+			if(("P".equals(coupon.getCouponType())))
+				sql = prop.getProperty("insertPointCoupon");
+			else
+				sql = prop.getProperty("insertDiscountCoupon");
+		}
+		System.out.println("sql@couponDao = " + sql);
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, coupon.getCouponType());
 			pstmt.setInt(2, coupon.getCouponExpired());
+			
 			if("P".equals(coupon.getCouponType()))
 				pstmt.setInt(3, coupon.getCouponPAmount());
 			else
 				pstmt.setDouble(3, coupon.getCouponDiscount());
+			
+			if(!coupon.getMemberNo().isBlank())
+				pstmt.setString(4, coupon.getMemberNo());
 			
 			result = pstmt.executeUpdate();
 		} catch (SQLException e) {
