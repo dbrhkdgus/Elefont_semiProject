@@ -59,7 +59,7 @@ public class MailSend {
 			msg.setSentDate(new Date());
 			new MailAuth();
 			msg.setFrom(new InternetAddress(MailAuth.MAILID, "Elefont"));
-			InternetAddress to = new InternetAddress("jinjin7794@gmail.com");
+			InternetAddress to = new InternetAddress(order.getMemberEmail());
 			msg.setRecipient(Message.RecipientType.TO, to);
 			
 //			Multipart multipart = new MimeMultipart();
