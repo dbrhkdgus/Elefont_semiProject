@@ -10,33 +10,35 @@ public class Coupon implements Serializable{
 	 */
 	private static final long serialVersionUID = 1L;
 	
-	private String couponNO;
+	private String couponNo;
 	private String couponType;
 	private Date couponRegDate;
 	private int couponExpired;
-	private boolean couponUsed;
-	private int couponPAmout;
+	private String couponUsed;
+	private int couponPAmount;
 	private double couponDiscount;
+	private String memberNo;
 	public Coupon() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Coupon(String couponNO, String couponType, Date couponRegDate, int couponExpired, boolean couponUsed,
-			int couponPAmout, double couponDiscount) {
+	public Coupon(String couponNO, String couponType, Date couponRegDate, int couponExpired, String couponUsed,
+			int couponPAmout, double couponDiscount, String memberNo) {
 		super();
-		this.couponNO = couponNO;
+		this.couponNo = couponNO;
 		this.couponType = couponType;
 		this.couponRegDate = couponRegDate;
 		this.couponExpired = couponExpired;
 		this.couponUsed = couponUsed;
-		this.couponPAmout = couponPAmout;
+		this.couponPAmount = couponPAmout;
 		this.couponDiscount = couponDiscount;
+		this.memberNo = memberNo;
 	}
-	public String getCouponNO() {
-		return couponNO;
+	public String getCouponNo() {
+		return couponNo;
 	}
-	public void setCouponNO(String couponNO) {
-		this.couponNO = couponNO;
+	public void setCouponNo(String couponNO) {
+		this.couponNo = couponNO;
 	}
 	public String getCouponType() {
 		return couponType;
@@ -56,17 +58,17 @@ public class Coupon implements Serializable{
 	public void setCouponExpired(int couponExpired) {
 		this.couponExpired = couponExpired;
 	}
-	public boolean isCouponUsed() {
+	public String getCouponUsed() {
 		return couponUsed;
 	}
-	public void setCouponUsed(boolean couponUsed) {
+	public void setCouponUsed(String couponUsed) {
 		this.couponUsed = couponUsed;
 	}
-	public int getCouponPAmout() {
-		return couponPAmout;
+	public int getCouponPAmount() {
+		return couponPAmount;
 	}
-	public void setCouponPAmout(int couponPAmout) {
-		this.couponPAmout = couponPAmout;
+	public void setCouponPAmount(int couponPAmout) {
+		this.couponPAmount = couponPAmout;
 	}
 	public double getCouponDiscount() {
 		return couponDiscount;
@@ -74,12 +76,19 @@ public class Coupon implements Serializable{
 	public void setCouponDiscount(double couponDiscount) {
 		this.couponDiscount = couponDiscount;
 	}
+	public String getMemberNo() {
+		return memberNo;
+	}
+	public void setMemberNo(String memberNo) {
+		this.memberNo = memberNo;
+	}
 	@Override
 	public String toString() {
-		return "Coupon [couponNO=" + couponNO + ", couponType=" + couponType + ", couponExpired=" + couponExpired
-				+ ", couponUsed=" + couponUsed + ", couponPAmout=" + couponPAmout + ", couponDiscount=" + couponDiscount
-				+ "]";
+		return "Coupon [couponNo=" + couponNo + ", couponType=" + couponType + ", couponRegDate=" + couponRegDate
+				+ ", couponExpired=" + couponExpired + ", couponUsed=" + couponUsed + ", couponPAmout=" + couponPAmount
+				+ ", couponDiscount=" + couponDiscount + ", memberNo=" + memberNo + "]";
 	}
+	
 	
 	
 

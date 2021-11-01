@@ -332,10 +332,10 @@ ALTER TABLE faq ADD CONSTRAINT PK_FAQ_FAQ_NO PRIMARY KEY (
 
 create table coupon(
     coupon_no varchar2(200),
-    coupon_type char(1) not null,
+    coupon_type varchar2(2) not null,
     coupon_reg_date date default sysdate,
     coupon_expired number,
-    coupon_used char(1) default 'N',
+    coupon_used varchar2(2) default 'N',
     coupon_p_amount number,
     coupon_discount number,
     member_no varchar2(200),
