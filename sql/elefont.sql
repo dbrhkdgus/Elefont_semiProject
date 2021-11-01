@@ -27,6 +27,8 @@ CREATE TABLE attachment(
     
     constraint pk_attachment_att_no primary key(att_no)
 );
+
+
 create sequence seq_attachment_no;
 
 
@@ -555,3 +557,36 @@ create sequence seq_font_no;
 
 
 commit;
+
+
+
+
+alter table attachment drop constraint fk_attachment_member_no;
+alter table attachment add constraint fk_attachment_member_no foreign key (member_no) references member(member_no) on delete cascade;
+
+alter table attachment drop constraint fk_attachment_comm_no;
+alter table attachment add constraint fk_attachment_comm_no foreign key (comm_no) references community (comm_no) on delete cascade;
+
+alter table font_copyright drop constraint fk_font_copyright_font_no;
+alter table font_copyright add constraint fk_font_copyright_font_no foreign key (font_no) references font(font_no) on delete cascade;
+
+alter table font_category drop constraint fk_font_category_font_no;
+alter table font_category add constraint fk_font_category_font_no foreign key (font_no) references font(font_no) on delete cascade;
+
+
+alter table like_font drop constraint fk_like_font_member_no;
+alter table like_font drop constraint fk_like_font_font_no;
+
+alter table like_font add constraint fk_like_font_member_no foreign key (member_no) references member(member_no) on delete cascade;
+alter table like_font add constraint fk_like_font_font_no foreign key (font_no) references font (font_no) on delete cascade;
+
+
+alter table cart drop constraint fk_cart_font_no;
+alter table cart add constraint fk_cart_font_no foreign key (font_no) references font (font_no) on delete cascade;
+
+alter table member_cart drop constraint fk_member_cart_cart_no;
+alter table member_cart add constraint fk_member_cart_cart_no  foreign key (cart_no) references cart (cart_no) on delete cascade;
+
+
+alter table member_cart drop constraint fk_member_cart_member_no;
+
