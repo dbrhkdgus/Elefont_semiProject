@@ -145,6 +145,36 @@ List<Order> orderList = (List<Order>) request.getAttribute("orderList");
 %>
                 </div>
             </div>
+            <div class="">
+                <h4>구매한 폰트 리스트</h4>
+                <div class="">
+                   <table class="orderList">
+							<thead>
+								<tr>
+									<th width="80px">폰트 이름</th>
+									<th width="130px">폰트 가격</th>
+									<th width="80px">폰트 구매일</th>
+									
+								</tr>
+							</thead>
+<%
+	for(Order order : orderList){
+%>
+							<tr 
+							class="allOrders"
+							>
+							
+								<td> <a href="<%= request.getContextPath()%>/shopDetail?fontNo=<%=order.getFontNo()%>"> <%= order.getFontName() %></a></td>
+								<td><%= order.getFontPrice() %></td>
+								<td><%= order.getMemberOrderDate() %></td>
+								
+							</tr>
+
+<%
+	}
+%>
+                </div>
+            </div>
 <%
 }else if("S".equals(memberRole)){
 %>
