@@ -2560,12 +2560,18 @@ font-size: 16px;
 #coupon-enroll-tbl tr:first-of-type td{
 	text-align:right;
 }
-.coupon-result{
+#coupon-result{
 	width: 400px;
 	height: 140px;
 	background-color: #A0BFB5;
 	border-radius: 10px;
 	overflow:auto;
+}
+#coupon-result ol{
+	text-align : center;
+	color : #fff;
+    padding-inline-start: 0;
+    padding : 25px 0;
 }
 .font-search-bar{
 	text-align: right;
@@ -2993,6 +2999,7 @@ font-size: 16px;
 .left.image{
 	text-align: center;
 }
+
 .leftbox.active{
     display: flex;
 }

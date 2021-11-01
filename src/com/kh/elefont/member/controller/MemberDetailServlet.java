@@ -12,12 +12,12 @@ import javax.servlet.http.HttpSession;
 
 import com.kh.elefont.common.model.service.AttachmentService;
 import com.kh.elefont.common.model.vo.Attachment;
+import com.kh.elefont.coupon.model.service.CouponService;
+import com.kh.elefont.coupon.model.vo.Coupon;
 import com.kh.elefont.font.model.service.FontService;
 import com.kh.elefont.font.model.vo.Font;
 import com.kh.elefont.member.model.service.MemberService;
 import com.kh.elefont.member.model.vo.Member;
-import com.kh.elefont.order.model.service.OrderService;
-import com.kh.elefont.order.model.vo.Order;
 
 /**
  * Servlet implementation class MemberDetailServlet
@@ -28,7 +28,7 @@ public class MemberDetailServlet extends HttpServlet {
 	private MemberService memberService = new MemberService();
 	private FontService fontService = new FontService();
 	private AttachmentService attachmentService = new AttachmentService();
-	private OrderService orderService = new OrderService();
+	private CouponService couponService = new CouponService();
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
@@ -44,9 +44,11 @@ public class MemberDetailServlet extends HttpServlet {
 		if("A".equals(memberRole)) {
 			List<Member> memberList = memberService.selectAllMember();
 			List<Font> fontList = fontService.selectAllFont();
+			List<Coupon> couponList = couponService.selectAllCoupon();
 			
 			session.setAttribute("memberList", memberList);
 			session.setAttribute("fontList", fontList);
+			session.setAttribute("couponList", couponList);
 			session.setAttribute("tabIndex", 0);
 		}else if("U".equals(memberRole) || "S".equals(memberRole)) {
 			List<Attachment> commAttachmentList = attachmentService.selectAllCommAttachmentListByMemberNo(loginMember.getMemberNo());
