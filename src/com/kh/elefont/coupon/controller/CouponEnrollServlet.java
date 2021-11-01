@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import com.google.gson.Gson;
 import com.kh.elefont.coupon.model.service.CouponService;
 import com.kh.elefont.coupon.model.vo.Coupon;
+import com.kh.elefont.member.model.service.MemberService;
 
 /**
  * Servlet implementation class CouponEnrollServlet
@@ -20,6 +21,7 @@ import com.kh.elefont.coupon.model.vo.Coupon;
 public class CouponEnrollServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private CouponService couponService = new CouponService();
+	private MemberService memberService = new MemberService();
 
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
@@ -32,8 +34,14 @@ public class CouponEnrollServlet extends HttpServlet {
 		double couponDiscountRate = 0;
 		String _couponExpired = request.getParameter("couponExpired");
 		int couponExpired = Integer.parseInt(_couponExpired);
-		String memberNo = request.getParameter("memberNo");
+		String memberId = request.getParameter("memberId");
+		System.out.println("memberId@servlet = " + memberId);
 		int couponCnt = Integer.parseInt(request.getParameter("couponCnt"));
+		String memberNo = "";
+		
+		if(!memberId.isBlank()) {
+			memberNo = memberService.selectOneMember(memberId).getMemberNo();
+		}
 		
 		if("P".equals(couponType)) {
 			couponPAmount = Integer.parseInt(request.getParameter("couponRate"));

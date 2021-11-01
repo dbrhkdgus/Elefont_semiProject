@@ -21,7 +21,6 @@ public class MemberService {
 	private MemberDao memberDao = new MemberDao();
 
 	public Member selectOneMember(String memberId) {
-		System.out.println("서비스");
 		Connection conn = getConnection();
 
 		Member member = memberDao.selectOneMember(conn, memberId);
@@ -138,6 +137,14 @@ public class MemberService {
 		return memberList;
 	}
 
+	public List<String> selectSearchMember(String searchId) {
+		Connection conn = getConnection();
+		List<String> searchedIdList = memberDao.selectSearchMember(conn, searchId);
+		
+		close(conn);
+		return searchedIdList;
+	}
+
 	public int deletePrePhoto(String memberNo) {
 		System.out.println("서비스단에 memberNo : " + memberNo);
 		Connection conn = getConnection();
@@ -231,6 +238,7 @@ public class MemberService {
 		}
 		return result;
 	}
+
 
 	
 

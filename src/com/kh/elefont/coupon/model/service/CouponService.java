@@ -32,7 +32,10 @@ public class CouponService {
 				int result = couponDao.insertCoupon(conn,coupon);
 				System.out.println("result@couponService = " + result);
 				
-				couponNo = couponDao.selectLastCouponNo(conn);
+				if(!coupon.getMemberNo().isBlank())
+					couponNo = "Complete";
+				else
+					couponNo = couponDao.selectLastCouponNo(conn);
 				couponList.add(couponNo);
 			}
 			commit(conn);

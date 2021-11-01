@@ -1,3 +1,4 @@
+<%@page import="java.util.ArrayList"%>
 <%@page import="com.kh.elefont.common.model.vo.Attachment"%>
 <%@page import="com.kh.elefont.font.model.vo.Font"%>
 <%@page import="java.util.List"%>
@@ -7,8 +8,15 @@
 <%
 	String sort = request.getParameter("sort") == null? "newest" : request.getParameter("sort");	
 	System.out.println("sort@jsp : " + sort);
-	String category = request.getParameter("category") == null? "" : request.getParameter("category");	
-	System.out.println(category.equals("S") ? "checked" : "");
+	List<String> categoryList = (List<String>)session.getAttribute("categoryList");
+	String str = "";
+	for( String c : categoryList){
+		str += c;
+		
+				
+	};
+	
+	System.out.println("categoryList@jsp : " +categoryList);
 %>
 	<!-- Portfolio Start -->
     <section id="portfolio" class="portfolio section-space-padding">
@@ -38,10 +46,10 @@
                         <div class="tools font-style-category">                   
                             <button id="style-button">폰트 형태</button>
                             <div class="font-style-chkbox">
-                              <input type="checkbox" name="font-style" id="font-style1" value="S"><label for="font-style1"  checked=<%= "S".equals(category) ? "checked" : "" %>>Serif</label><br>
-                                <input type="checkbox" name="font-style" id="font-style2" value="G"><label for="font-style2"  <%= category.equals("G") ? "checked" : "" %>>Sans Serif</label><br>
-                                <input type="checkbox" name="font-style" id="font-style3" value="H"><label for="font-style3"  <%= category.equals("H") ? "checked" : "" %>>Handwriting</label><br>
-                                <input type="checkbox" name="font-style" id="font-style4" value="M"><label for="font-style4"  <%= category.equals("M") ? "checked" : "" %>>Monospace</label>
+                              <input type="checkbox" name="font-style" id="font-style1" value="S" <%= str.contains("S") ? "checked" : "" %>><label for="font-style1" >Serif</label><br>
+                                <input type="checkbox" name="font-style" id="font-style2" value="G" <%= str.contains("G") ? "checked" : "" %>><label for="font-style2"  >Sans Serif</label><br>
+                                <input type="checkbox" name="font-style" id="font-style3" value="H" <%= str.contains("H") ? "checked" : "" %>><label for="font-style3"  >Handwriting</label><br>
+                                <input type="checkbox" name="font-style" id="font-style4" value="M"  <%= str.contains("M") ? "checked" : "" %>><label for="font-style4" >Monospace</label>
                                 
                             </div>
                         </div>
@@ -118,18 +126,30 @@ $(".font-style").css("color", $(color).val());
 	 
 	});
 	
-  $("input[name='font-style']").change(()=>{
-        var len = $("input[name='font-style']:checked").length;
-        if(len > 0){ //개수를 체크하고 2개부터는 each함수를 통해 각각 가져온다.
-            $("input[name='font-style']:checked").each(function(e){
-                console.log($(this).val()) 
-             /*    var $category = "";
-                $category.append($(this).val()); */
-                location.href = `<%=request.getContextPath()%>/shop?category=\${$(this).val()}`;
-                
-            })
-        }
-    }) 
+	
+	/* 글씨체 체크박스  */
+	
+   		$("input[name='font-style']").on('change',function(){
+        	if($("input[name='font-style']").is(':checked')){
+        	 console.log("check")
+<%if(!categoryList.isEmpty()){%>
+                 var categoryList = "<%=str %>";
+
+                location.href = `<%=request.getContextPath()%>/shop?category=\${categoryList}&add=\${$(this).val()}`; 
+<%}else{%>
+  				location.href = `<%=request.getContextPath()%>/shop?add=\${$(this).val()}`; 			
+<%}%>                     
+         }else{
+        	 location.href = `<%=request.getContextPath()%>/shop?flag=\${$(this).val()}`; 
+        	 console.log("uncheck")
+         }
+  }); 
+  
+
+
+
+
+    
     
      
 	  

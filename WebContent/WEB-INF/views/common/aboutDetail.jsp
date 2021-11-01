@@ -43,7 +43,7 @@
                                  <div class="aboutdetail leftbox"  > 
                                  <input type="hidden" value="<%=kdh%>"  class="input-val"/> 
                                     <div class="left image">   
-                                   <img src="https://i.ibb.co/yyhZB9x/924514.png" alt=""  id="bigImg" >
+                                   <img src="https://cdn.discordapp.com/attachments/893374121449254916/904649352100851762/DSC07028_2.jpg" alt=""  id="bigImg" >
                                    <p>김다현</p>
                                    </div>
                                        <div class="left content ">
