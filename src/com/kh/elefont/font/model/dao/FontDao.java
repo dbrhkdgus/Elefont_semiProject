@@ -787,6 +787,68 @@ public class FontDao {
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
+			System.out.println("sql @dao : " + sql);
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				Font font = new Font();
+				font.setFontNo(rset.getString("font_no"));
+				font.setFontName(rset.getString("font_name"));
+				font.setFontUrl(rset.getString("font_url"));
+				font.setFontPrice(rset.getDouble("font_price"));
+				font.setFontDiscountRate(rset.getDouble("font_discount_rate"));
+				font.setFontRegDate(rset.getDate("font_reg_date"));
+				font.setFontApproval(rset.getString("font_approval") == null? " ": rset.getString("font_approval"));
+				font.setMemberId(rset.getString("member_id"));
+				font.setFontLikeCount(rset.getInt("font_like_count"));
+				
+				fontList.add(font);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return fontList;
+	}
+
+	public List<Font> selectAllApproveByCategory(Connection conn, List<String> categoryList) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		List<Font> fontList = new ArrayList<>();
+		
+		String sql = "select * from view_font_font_category where " ; 
+		System.out.println("categorylist @dao" + categoryList);
+		if(categoryList.contains("S")) {
+			if(categoryList.indexOf("S")!= 0) {
+				sql += "or ";
+			}
+			sql += "category_code like '%S%'";		
+		}
+		if(categoryList.contains("G")) {
+			if(categoryList.indexOf("G")!= 0) {
+				sql += "or ";
+			}
+			sql += "category_code like '%G%'";
+		}
+		if(categoryList.contains("H")) {
+			if(categoryList.indexOf("H")!= 0) {
+				sql += "or ";
+			}
+			sql += "category_code like '%H%'";
+		}
+		if(categoryList.contains("M")) {
+			if(categoryList.indexOf("M")!= 0) {
+				sql += "or ";
+			}
+			sql += "category_code like '%M%'";
+		}
+		
+		System.out.println("sql @Dao :" + sql);
+		try {
+			pstmt = conn.prepareStatement(sql);
 			
 			rset = pstmt.executeQuery();
 			

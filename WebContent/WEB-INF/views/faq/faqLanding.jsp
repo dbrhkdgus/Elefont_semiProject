@@ -8,7 +8,6 @@
 
 <% 
 List<Faq> faqList = (List<Faq>)request.getAttribute("faqList");
-List<Question> questionList = (List<Question>) request.getAttribute("questionList");
 
 %>
 
@@ -35,19 +34,6 @@ for(Faq f : faqList) {
             <div id ="chatMessage">
                 <div id="chatMsg">
                 	<ul class="question-balloon">
-<%
-if(!questionList.isEmpty()){
-	for(Question q : questionList){
-		boolean isMember = loginMember.getMemberNo().equals(q.getqWriter());
-%>
-					<li class="new-balloon <%= isMember? "member":"admin"%>">
-						<div><%= q.getqWriter() %></div>
-						<div><%= q.getqContent() %></div>
-					</li>
-<%
-	}
-}
-%>
 					</ul>
                 </div>
                 <hr>
@@ -55,7 +41,7 @@ if(!questionList.isEmpty()){
                     <form id="chatInputFrm" action="">
                         <textarea name="qContent" id="textareaMsg" cols="30" rows="3">메세지를 입력하세요</textarea>
                         <input type="button" value="전송" id="chatInputBtn">
-                        <input type="hidden" name="qWriter" value="<%=loginMember.getMemberNo() %>" />
+                        <input type="hidden" name="qWriter" value="" />
                     </form>
                 </div>
             </div>        
@@ -84,22 +70,6 @@ if(!questionList.isEmpty()){
         }    
     }
     
-/* 메세지 전송 시 form 제출(ajax) */
-$(chatInputBtn).click((e)=>{
-	const frmData = new FormData(document.chatInputFrm);
-	$.ajax({
-		url: "<%=request.getContextPath()%>/question/questionEnroll",
-		dataType: "json",
-		type: "POST",
-		processData: false,
-		contentType: false,
-		data: frmData,
-		success(data){
-			console.log(data);
-		},
-		error: console.log
-	});
-});
 
 </script>
 
