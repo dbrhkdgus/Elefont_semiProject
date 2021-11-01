@@ -89,35 +89,33 @@ for(Rep rep : repList){
  
  
    								<form action="<%= request.getContextPath() %>/rep/DeleteUpdateRep" method="POST" name="DeleteUpdateRepFrm">
-								<div class="reply-outer-box">
-	                            <div class="reply-box">
-	                                	<img src="https://cdn1.vectorstock.com/i/1000x1000/10/05/user-icon-vector-22391005.jpg"  id="user-profile">
-                                		<div class="reply-writer-content"><span><%=rep.getRepWriter()%> : </span><span><%=rep.getRepContent()%></span></div>
+									<div class="reply-outer-box">
+	                            		<div class="reply-box">
+	                                		<img src="https://cdn1.vectorstock.com/i/1000x1000/10/05/user-icon-vector-22391005.jpg"  id="user-profile">
+                                			<div class="reply-writer-content"><span><%=rep.getRepWriter()%> : </span><span><%=rep.getRepContent()%></span></div>
 
-                                </div> 
-                                <i class="fab fa-replyd" style="font-size:35px; color: #005A3C; "></i>
+                               		 	</div> 
+                                	<i class="fab fa-replyd" style="font-size:35px; color: #005A3C; "></i>
 <%
 		if(loginMember != null &&(loginMember.getMemberNo().equals(rep.getMemberNo()) || "A".equals(loginMember.getMemberRole()))){
 		
 	
 %>
-                                <input type="button" value="수정" class="btn-rep-transFrm" click="transFrm"/>
-                                <input type="button" value="등록" class="btn-rep-update"/>
-                                <input type="button" value="삭제" class="btn-rep-delete"/>
+                                	<input type="button" value="수정" class="btn-rep-transFrm" click="transFrm"/>
+                                	<input type="button" value="등록" class="btn-rep-update"/>
+                                	<input type="button" value="삭제" class="btn-rep-delete"/>
+                                	<input type="hidden" name="type" value=""/>
+                                	<input type="hidden" name="rep_no" value="<%= rep.getRepNo() %>"/>
                                 
+                                </form>
                                 
 
-                                <form action="<%= request.getContextPath() %>/rep/DeleteUpdateRep" method="POST" name="DeleteUpdateRepFrm2">
-   									<input type="hidden" name="type" value="" /> 
-                                	<input type="hidden" name="rep_no" value="<%= rep.getRepNo() %>" />
-                                	<input type="hidden" name="update_rep_content" value="" />
-   								</form>
+                                
                                 
 
 <% 	} %>
 
                                 </div>
-                                </form>
    								
                              
 <%
@@ -208,7 +206,7 @@ if(loginMember != null){
                              });
                              </script>
 <% } %>
-								"WebContent/WEB-INF/views/shop/shopDetail.jsp"<script>
+								<script>
 								/* 공통스크립트 시작 */
 								/* 댓글 스크립트 */
                                 	$(".btn-rep-update").hide();
@@ -220,9 +218,9 @@ if(loginMember != null){
                                 	$('.btn-rep-transFrm').off('click').on('click', (e)=>{
                                 		$(e.target).hide();
                                 		$(e.target).next().show();
-                                		var oldContent = $(e.target).parent().children().children("div").children().children().text();
-                                		$(e.target).parent().children().children("div").children().children().html('');
-                                		$(e.target).parent().children().children("div").children().children().html(`<input type="text" name="update_rep_content" value = "\${oldContent}" />`);
+                                		var oldContent = $(e.target).parent().children().children("div").children(":nth-child(2)").text();
+                                		$(e.target).parent().children().children("div").children(":nth-child(2)").html('');
+                                		$(e.target).parent().children().children("div").children(":nth-child(2)").html(`<input type="text" name="update_rep_content" value = "\${oldContent}" />`);
                                 	});
                                 	
                                 	$(".btn-rep-delete").click((e)=>{
