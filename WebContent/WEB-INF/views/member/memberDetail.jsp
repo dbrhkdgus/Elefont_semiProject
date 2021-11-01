@@ -120,6 +120,7 @@ if("U".equals(memberRole)){
 List<Attachment> commAttachmentList = (List<Attachment>)request.getAttribute("commAttachmentList");
 List<Font> fontLikeList = (List<Font>) request.getAttribute("fontLikeList");
 List<Font> fontPurchasedList = (List<Font>) request.getAttribute("fontPurchasedList");
+
 %>
             <div class="member-comm">
                 <h4>내가 쓴 커뮤니티</h4>
@@ -147,6 +148,7 @@ List<Font> fontPurchasedList = (List<Font>) request.getAttribute("fontPurchasedL
 %>
                 </div>
             </div>
+
             <div class="member-font-purchase">
                 <h4>내 구매내역</h4>
                 <div class="fix-head">
@@ -181,6 +183,7 @@ List<Font> fontPurchasedList = (List<Font>) request.getAttribute("fontPurchasedL
 						</table>
                 </div>
             </div>
+
 <%
 }else if("S".equals(memberRole)){
 %>

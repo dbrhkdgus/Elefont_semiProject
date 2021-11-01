@@ -1,8 +1,9 @@
 package com.kh.elefont.font.controller;
 
 import java.io.IOException;
-import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -18,10 +19,10 @@ import com.kh.elefont.font.model.vo.Font;
 import com.kh.elefont.member.model.vo.Member;
 
 /**
- * Servlet implementation class ShopLandingServlet
+ * Servlet implementation class ShopSearchServlet
  */
-@WebServlet("/shop")
-public class ShopLandingServlet extends HttpServlet {
+@WebServlet("/shopSearch")
+public class ShopSearchServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private FontService fontService = new FontService();
 	private AttachmentService attachmentService = new AttachmentService();
@@ -29,22 +30,17 @@ public class ShopLandingServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String fontName = request.getParameter("fontName");
+		System.out.println("fontName@Servlet : " + fontName);
 		HttpSession session = request.getSession();
 		Member loginMember = (Member)session.getAttribute("loginMember");
 		// 랜딩 시, 기존 font 테이블 전부 조회
-		String sort = request.getParameter("sort") == null ? "newest" : request.getParameter("sort");
-		List<Font> fontList = new ArrayList<>();
+		Map<String, Object> param = new HashMap<>();
+		param.put("searchKeyword", fontName);
+		param.put("searchType", "font-name");
 		
-		switch(sort) {
-		case "popular" : fontList = fontService.selectAllApprovedFontOrderByPopular(); break;
-		case "view" : fontList = fontService.selectAllApprovedFontOrderByView(); break;
-		case "order" : fontList = fontService.selectAllApprovedFontOrderByOrder(); break;
-		case "recommand" : fontList = fontService.selectAllApprovedFontOrderByDate(); break;
-		case "newest" : fontList = fontService.selectAllApprovedFontOrderByDate(); break;
-		default : fontList = fontService.selectAllApprovedFontOrderByDate(); break;
-		
-		}
-		
+		List<Font> fontList = fontService.selectSerchFont(param);
+		System.out.println("fontList@servlet : " + fontList);
 		List<Attachment> fontAttchmentList = attachmentService.selectAllFontAttachmentList();
 		List<String> likeList = null;
 		
@@ -56,10 +52,8 @@ public class ShopLandingServlet extends HttpServlet {
 		request.setAttribute("likeList", likeList);
 		
 		
-		request.setAttribute("sort", sort);
 		
-		
-		request.getRequestDispatcher("/WEB-INF/views/shop/shopLanding.jsp").forward(request, response);
+		request.getRequestDispatcher("/WEB-INF/views/shop/shopSearch.jsp").forward(request, response);
 	}
 
 }

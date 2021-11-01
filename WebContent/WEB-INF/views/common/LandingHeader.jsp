@@ -44,7 +44,7 @@
 	   <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
 	   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
-
+	<script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
 
 
 </head>
@@ -143,7 +143,7 @@ if(loginMember != null){
 	Member member = (Member) session.getAttribute("member");
 	File profilePhotoAttach = (File) session.getAttribute("profilePhotoAttach");
 	String photoPath = profilePhotoAttach.getName();
-	System.out.println("LandingHeader.jsp 프로필 경로가 궁금하느냐? : " + photoPath);
+	/* System.out.println("LandingHeader.jsp 프로필 경로가 궁금하느냐? : " + photoPath); */
 
 	
 %>
