@@ -36,7 +36,6 @@ public class DeleteUpdateRepServlet extends HttpServlet {
 		int result = 0;
 		switch(type) {
 		case "update" : String updateRepContent = request.getParameter("update_rep_content");
-		
 		result = repService.updateRep(repNo, updateRepContent); 
 		break;
 		case "delete" : result = repService.deleteRep(repNo); break;

@@ -51,7 +51,7 @@ public class CommunityRepEnrollServlet extends HttpServlet {
 		session.setAttribute("msg", msg);
 		//view단처리
 		
-		
+		System.out.println("repContent@Servlet = " +repContent);
 		String location = request.getHeader("Referer"); 
 		response.sendRedirect(location);
 		
