@@ -16,6 +16,8 @@ import com.kh.elefont.font.model.service.FontService;
 import com.kh.elefont.font.model.vo.Font;
 import com.kh.elefont.member.model.service.MemberService;
 import com.kh.elefont.member.model.vo.Member;
+import com.kh.elefont.order.model.service.OrderService;
+import com.kh.elefont.order.model.vo.Order;
 
 /**
  * Servlet implementation class MemberDetailServlet
@@ -26,6 +28,7 @@ public class MemberDetailServlet extends HttpServlet {
 	private MemberService memberService = new MemberService();
 	private FontService fontService = new FontService();
 	private AttachmentService attachmentService = new AttachmentService();
+	private OrderService orderService = new OrderService();
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)

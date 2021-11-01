@@ -5,7 +5,7 @@
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@include file = "/WEB-INF/views/common/LandingHeader.jsp" %>
+<%@include file = "/WEB-INF/views/common/LandingHeader.jsp" %>   
 <%
 	Community community = (Community)request.getAttribute("community");
 	Attachment attachment = (Attachment)request.getAttribute("attachment");
@@ -28,12 +28,16 @@
             	<div class="comm-board-title-button">
 		            <h1><%=community.getCommTitle() %></h1>
 		           
-<% 	if(editable){ %>
+<% 	
+if(editable){ 
+%>
 		            <div class="comm-board-button-box">
 		            <input type="button" id="comm-board-button" value="수정하기" onclick="updateBoard()">
 					<input type="button" id="comm-board-button" value="삭제하기" onclick="deleteBoard()">
 		            </div>
-<% 	} %>
+<% 	
+} 
+%>
             	</div>
 	            <div class="comm-board-img-user-content">
 	                <img id="comm-user-attach-img" src="<%= request.getContextPath()%>/upload/community/<%=attachment.getRenamedFilename()%>" alt="">
@@ -41,12 +45,17 @@
 	                   <%=community.getCommContent() %>
 	                </div>
 	            </div>
-	              <div class="comm-board-rep-comment outer">
-<%if(loginMember!=null){ %>
+	            <div class="comm-detail-reply">
+	            		<h4 id="shop-detail-rep">댓글</h4>
+		            	<hr class="liner"/>
+		            	
+<%
+if(loginMember!=null)   
+{ 
+%>
 	            <form action="<%= request.getContextPath() %>/rep/communityRepEnroll" method="POST"name ="commRepEnrollFrm">
 		            <div class="comm-board-repEnroll">
-		            	<hr />
-						<input type="text" name="rep-content" placeholder="댓글을 입력하세요." />
+						<input type="text" class="rep-enroll-area" name="rep-content" placeholder="댓글을 입력하세요." />
 						
 						<input type="submit" value="등록" />
 						<input type="hidden" name="commNo" value="<%= community.getCommNo() %>" />		            	
@@ -57,39 +66,41 @@
 		            </div>
 	            </form>
 	          
-<%} 
-	for(Rep rep : repList){
-		if(rep.getRepLevel()==1){
+<%
+} 
+
+for(Rep rep : repList){
+	if(rep.getRepLevel()==1) {
 %>
+			<form action="<%=request.getContextPath()%>/rep/DeleteUpdateRep" method="POST" name="commRepUpdateFrm" >
 			<div class="comm-board-rep-comment">
-				<hr />
-				<div class="reply-box">
+				<div class="comm-reply reply-box">
 	                 <img src="https://cdn1.vectorstock.com/i/1000x1000/10/05/user-icon-vector-22391005.jpg"  id="user-profile">
                       	<div class="reply-writer-content">
              	         	<span><%=rep.getRepWriter()%> : </span>
                     	  	<span><%=rep.getRepContent()%></span>
                     	</div>
 				</div> 
-                <i class="fab fa-replyd" style="font-size:35px; color: #005A3C; "></i>
-			</div>
+            	<i class="fab fa-replyd" style="font-size:35px; color: #005A3C;"></i>
 <%
-if(loginMember != null && (loginMember.getMemberNo().equals(rep.getMemberNo()) || "A".equals(loginMember.getMemberRole()))) {
+		if(loginMember != null && (loginMember.getMemberNo().equals(rep.getMemberNo()) || "A".equals(loginMember.getMemberRole()))) {
 %>			
-			<form action="<%=request.getContextPath()%>/rep/DeleteUpdateRep" method="POST" name="commRepUpdateFrm">
-				<input type="button" value="수정" class="btn-transform" />
-				<input type="button" value="등록" class="btn-enroll"/>
-				<input type="button" value="삭제" class="btn-delete"/>
-				<input type="hidden" name="type" value=""/>
-				<input type="hidden" name="rep_no" value="<%=rep.getRepNo()%>"/>
-			</form>
-			
+					<input type="button" value="수정" class="btn-transform" />
+					<input type="button" value="등록" class="btn-enroll"/>
+					<input type="button" value="삭제" class="btn-delete"/>
+					<input type="hidden" name="type" value=""/>
+					<input type="hidden" name="rep_no" value="<%=rep.getRepNo()%>"/>
 <% 				
-}
-if(loginMember!=null){
+		}
+%>
+					</div>
+				</form>
+			
+<%
+		if(loginMember!=null) {
 %>	
 				 <form action="<%= request.getContextPath() %>/rep/communityRepEnroll" method="POST" name ="commReRepEnrollFrm">
-		            <div class="comm-board-repEnroll">
-		            	<hr />
+		            <div class="comm-board-re-repEnroll">
 						<input type="text" name="rep-content" placeholder="댓글을 입력하세요." />
 						
 						<input type="submit" value="등록" />
@@ -102,38 +113,38 @@ if(loginMember!=null){
 	            </form>	
 	            
 <%
-			}
-		}else{
-%>
-
-						<div class="comm-board-re-rep-comment">
-							<hr />
-							<div class="re-reply-box">
-								<img src="https://i.ibb.co/chkD19T/image.png" alt="" />
-				                 <img src="https://cdn1.vectorstock.com/i/1000x1000/10/05/user-icon-vector-22391005.jpg"  id="user-profile">
-			                      	<div class="reply-writer-content">
-			             	         	<span><%=rep.getRepWriter()%> : </span>
-			                    	  	<span><%=rep.getRepContent()%></span>
-			                    	</div>
-							</div> 
-						</div>
-						
-<%
-if(loginMember != null && (loginMember.getMemberNo().equals(rep.getMemberNo()) || "A".equals(loginMember.getMemberRole()))) {
-%>						
-			<form action="<%=request.getContextPath()%>/rep/DeleteUpdateRep" method="POST" name="commReRepUpdateFrm">
-				<input type="button" value="수정" class="btn-transform" />
-				<input type="button" value="등록" class="btn-enroll"/>
-				<input type="button" value="삭제" class="btn-delete"/>
-				<input type="hidden" name="type" value=""/>
-				<input type="hidden" name="rep_no" value="<%=rep.getRepNo()%>"/>
-			</form>						
-
-<%			
-			}
 		}
-/*foreach문 끝남*/
+	} else {
+%>
+					<form action="<%=request.getContextPath()%>/rep/DeleteUpdateRep" method="POST" name="commReRepUpdateFrm">
+					<div class="comm-board-re-rep-comment">
+						<div class="re-reply-box">
+							<img src="https://i.ibb.co/chkD19T/image.png" alt="" />
+			                 <img src="https://cdn1.vectorstock.com/i/1000x1000/10/05/user-icon-vector-22391005.jpg"  id="user-profile">
+		                      	<div class="reply-writer-content">
+		             	         	<span><%=rep.getRepWriter()%> : </span>
+		                    	  	<span><%=rep.getRepContent()%></span>
+		                    	</div>
+
+<%
+		if(loginMember != null && (loginMember.getMemberNo().equals(rep.getMemberNo()) || "A".equals(loginMember.getMemberRole()))) {
+%>						
+								<input type="button" value="수정" class="btn-transform" />
+								<input type="button" value="등록" class="btn-enroll"/>
+								<input type="button" value="삭제" class="btn-delete"/>
+								<input type="hidden" name="type" value=""/>
+								<input type="hidden" name="rep_no" value="<%=rep.getRepNo()%>"/>
+<%			
+		}
+%>
+						</div> 
+					</div>						
+					</form>
+
+<%
 	}
+/*foreach문 끝남*/
+}
 %>
 				</div>
             </div>
