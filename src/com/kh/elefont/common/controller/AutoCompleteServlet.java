@@ -1,6 +1,10 @@
 package com.kh.elefont.common.controller;
 
 import java.io.IOException;
+import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -20,16 +24,27 @@ public class AutoCompleteServlet extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		response.getWriter().append("Served at: ").append(request.getContextPath());
+		//1. 사용자 입력값
+		String searchName = request.getParameter("searchName");
+		System.out.println("searchName@servlet = " + searchName);
+		
+		//2. 업무 로직
+		List<String> filteredList = new ArrayList<>();
+		for(String name : list) {
+			if(name.contains(searchName))
+				filteredList.add(name);
+		}
+		
+		//3. 응답 csv
+		response.setContentType("text/csv; charset=utf-8");
+		PrintWriter out = response.getWriter();
+		for(int i = 0; i < filteredList.size(); i++) {
+			out.print(filteredList.get(i));
+			if(i != filteredList.size() - 1)
+				out.print("\n");
+		}
 	}
 
-	/**
-	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-	 */
-	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// TODO Auto-generated method stub
-		doGet(request, response);
-	}
+	
 
 }
