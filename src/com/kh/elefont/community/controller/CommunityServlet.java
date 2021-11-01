@@ -36,7 +36,7 @@ public class CommunityServlet extends HttpServlet {
 		List<Community> communityList = new ArrayList<>();
 		List<Attachment> attachmentList = new ArrayList<>();
 		List<String> commLikeList = new ArrayList<>();
-		
+			
 		communityList = communityService.selectAllCommunityList();
 		attachmentList = attachmentService.selectAllCommAttachmentList();
 		

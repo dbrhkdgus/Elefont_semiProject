@@ -10,6 +10,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import com.kh.elefont.common.model.vo.Attachment;
 import com.kh.elefont.community.model.dao.CommunityDao;
 import com.kh.elefont.community.model.vo.Community;
 
@@ -234,6 +235,15 @@ public class CommunityService {
 	public List<String> selectAllLikedComm(String memberNo) {
 		Connection conn = getConnection();
 		List<String> commLikeList = communityDao.selectAllLikedComm(conn, memberNo);
+		
+		close(conn);
+		
+		return commLikeList;
+	}
+
+	public List<Community> selectAllLikedCommList(String memberNo) {
+		Connection conn = getConnection();
+		List<Community> commLikeList = communityDao.selectAllLikedCommList(conn, memberNo);
 		
 		close(conn);
 		
