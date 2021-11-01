@@ -1,3 +1,4 @@
+<%@page import="com.kh.elefont.order.model.vo.Order"%>
 <%@page import="com.kh.elefont.common.model.vo.Attachment"%>
 <%@page import="com.kh.elefont.font.model.vo.Font"%>
 <%@page import="java.util.List"%>
@@ -117,6 +118,7 @@ if("U".equals(memberRole)){
 if("U".equals(memberRole)){
 List<Attachment> commAttachmentList = (List<Attachment>)request.getAttribute("commAttachmentList");
 List<Font> fontLikeList = (List<Font>) request.getAttribute("fontLikeList");
+List<Order> orderList = (List<Order>) request.getAttribute("orderList");
 %>
             <div class="member-comm">
                 <h4>내가 쓴 커뮤니티</h4>
@@ -139,6 +141,36 @@ List<Font> fontLikeList = (List<Font>) request.getAttribute("fontLikeList");
 	for(Font f : fontLikeList){
 %>
                     <a href="<%=request.getContextPath()%>/shopDetail?fontNo=<%=f.getFontNo()%>"><div class="my-font-img"><%=f.getFontName() %></div></a>
+<%
+	}
+%>
+                </div>
+            </div>
+            <div class="">
+                <h4>구매한 폰트 리스트</h4>
+                <div class="">
+                   <table class="orderList">
+							<thead>
+								<tr>
+									<th width="80px">폰트 이름</th>
+									<th width="130px">폰트 가격</th>
+									<th width="80px">폰트 구매일</th>
+									
+								</tr>
+							</thead>
+<%
+	for(Order order : orderList){
+%>
+							<tr 
+							class="allOrders"
+							>
+							
+								<td> <a href="<%= request.getContextPath()%>/shopDetail?fontNo=<%=order.getFontNo()%>"> <%= order.getFontName() %></a></td>
+								<td><%= order.getFontPrice() %></td>
+								<td><%= order.getMemberOrderDate() %></td>
+								
+							</tr>
+
 <%
 	}
 %>

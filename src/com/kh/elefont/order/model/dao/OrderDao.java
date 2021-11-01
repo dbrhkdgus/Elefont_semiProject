@@ -8,9 +8,11 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Properties;
 
-
+import com.kh.elefont.font.model.vo.Font;
 import com.kh.elefont.order.model.vo.Order;
 
 public class OrderDao {
@@ -101,5 +103,38 @@ public class OrderDao {
 			close(pstmt);
 		}
 		return result;
+	}
+
+	public List<Order> selectAllOrderListByMemberNo(Connection conn, String memberNo) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		List<Order> orderList = new ArrayList<>();
+		String sql = prop.getProperty("selectAllOrderListByMemberNo");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, memberNo);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				Order order = new Order();
+				order.setMemberNo(rset.getString("member_no"));
+				order.setMemberOrderDate(rset.getDate("member_order_date"));
+				order.setOrderNo(rset.getString("order_no"));
+				order.setFontNo(rset.getString("font_no"));
+				order.setFontName(rset.getString("font_name"));
+				order.setFontPrice(rset.getInt("font_price"));
+				order.setFontDiscoutRate(rset.getDouble("font_discount_rate"));
+				
+				orderList.add(order);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return orderList;
 	}
 }
