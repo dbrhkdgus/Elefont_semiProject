@@ -5,7 +5,7 @@
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@include file = "/WEB-INF/views/common/LandingHeader.jsp" %>
+<%@include file = "/WEB-INF/views/common/LandingHeader.jsp" %>   
 <%
 	Community community = (Community)request.getAttribute("community");
 	Attachment attachment = (Attachment)request.getAttribute("attachment");
