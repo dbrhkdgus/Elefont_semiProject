@@ -55,7 +55,7 @@ if(loginMember!=null)
 %>
 	            <form action="<%= request.getContextPath() %>/rep/communityRepEnroll" method="POST"name ="commRepEnrollFrm">
 		            <div class="comm-board-repEnroll">
-						<input type="text" class="rep-enroll-area" name="rep-content" placeholder="댓글을 입력하세요." />
+						<input type="text" class="rep-enroll-area" name="rep-content" placeholder="댓글을 입력하세요." maxlength='77' />
 						
 						<input type="submit" value="등록" />
 						<input type="hidden" name="commNo" value="<%= community.getCommNo() %>" />		            	
