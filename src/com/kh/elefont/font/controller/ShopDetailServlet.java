@@ -47,6 +47,7 @@ public class ShopDetailServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
+		session.removeAttribute("categoryList");
 		Member loginMember = (Member)session.getAttribute("loginMember");
 		
 		String memberNo = "";
