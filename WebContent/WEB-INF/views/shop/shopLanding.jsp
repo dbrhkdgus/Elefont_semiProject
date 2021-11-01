@@ -7,6 +7,8 @@
 <%
 	String sort = request.getParameter("sort") == null? "newest" : request.getParameter("sort");	
 	System.out.println("sort@jsp : " + sort);
+	String category = request.getParameter("category") == null? "" : request.getParameter("category");	
+	System.out.println(category.equals("S") ? "checked" : "");
 %>
 	<!-- Portfolio Start -->
     <section id="portfolio" class="portfolio section-space-padding">
@@ -33,13 +35,13 @@
                             <span id="range-result"></span>
                             <input type="range" min="10" max="50" step="2" value="20" id="range" />
                         </div>
-                        <div class="tools font-style-category">
+                        <div class="tools font-style-category">                   
                             <button id="style-button">폰트 형태</button>
                             <div class="font-style-chkbox">
-                                <input type="checkbox" name="font-style" id="font-style1"><label for="font-style1">Serif</label><br>
-                                <input type="checkbox" name="font-style" id="font-style2"><label for="font-style2">Sans Serif</label><br>
-                                <input type="checkbox" name="font-style" id="font-style3"><label for="font-style3">Handwriting</label><br>
-                                <input type="checkbox" name="font-style" id="font-style4"><label for="font-style4">Monospace</label>
+                              <input type="checkbox" name="font-style" id="font-style1" value="S"><label for="font-style1"  checked=<%= "S".equals(category) ? "checked" : "" %>>Serif</label><br>
+                                <input type="checkbox" name="font-style" id="font-style2" value="G"><label for="font-style2"  <%= category.equals("G") ? "checked" : "" %>>Sans Serif</label><br>
+                                <input type="checkbox" name="font-style" id="font-style3" value="H"><label for="font-style3"  <%= category.equals("H") ? "checked" : "" %>>Handwriting</label><br>
+                                <input type="checkbox" name="font-style" id="font-style4" value="M"><label for="font-style4"  <%= category.equals("M") ? "checked" : "" %>>Monospace</label>
                                 
                             </div>
                         </div>
@@ -113,7 +115,27 @@ $(".font-style").css("color", $(color).val());
 	$("#style-button").click((e)=>{
 		console.log("스타일 버튼 클릭");
 	    $(".font-style-chkbox").toggle();
+	 
 	});
+	
+  $("input[name='font-style']").change(()=>{
+        var len = $("input[name='font-style']:checked").length;
+        if(len > 0){ //개수를 체크하고 2개부터는 each함수를 통해 각각 가져온다.
+            $("input[name='font-style']:checked").each(function(e){
+                console.log($(this).val()) 
+             /*    var $category = "";
+                $category.append($(this).val()); */
+                location.href = `<%=request.getContextPath()%>/shop?category=\${$(this).val()}`;
+                
+            })
+        }
+    }) 
+    
+     
+	  
+
+	
+
 	/* 폰트 사이즈 조절 바 px크기 입력, textarea에 반영*/
 	
 	$(range).change((e)=>{
@@ -218,6 +240,13 @@ $(".font-style").css("color", $(color).val());
 		console.log($('#font-sort').val());
 		location.href = `<%=request.getContextPath()%>/shop?sort=\${$('#font-sort').val()}`
 	});
+	
+	
+	
+	
+
+
+	
 </script>
 
 <%@ include file = "/WEB-INF/views/common/footer.jsp" %>
