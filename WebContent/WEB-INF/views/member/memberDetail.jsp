@@ -1,3 +1,4 @@
+<%@page import="com.kh.elefont.font.model.vo.FontExt"%>
 <%@page import="com.kh.elefont.common.model.vo.Attachment"%>
 <%@page import="com.kh.elefont.font.model.vo.Font"%>
 <%@page import="java.util.List"%>
@@ -117,6 +118,7 @@ if("U".equals(memberRole)){
 if("U".equals(memberRole)){
 List<Attachment> commAttachmentList = (List<Attachment>)request.getAttribute("commAttachmentList");
 List<Font> fontLikeList = (List<Font>) request.getAttribute("fontLikeList");
+List<Font> fontPurchasedList = (List<Font>) request.getAttribute("fontPurchasedList");
 %>
             <div class="member-comm">
                 <h4>내가 쓴 커뮤니티</h4>
@@ -142,6 +144,40 @@ List<Font> fontLikeList = (List<Font>) request.getAttribute("fontLikeList");
 <%
 	}
 %>
+                </div>
+            </div>
+            <div class="member-font-purchase">
+                <h4>내 구매내역</h4>
+                <div class="fix-head">
+						<table class="admin-tbl fix-tbl">
+							<thead>
+								<tr>
+									<th width="80px">주문 일자</th>
+									<th width="130px">주문 번호</th>
+									<th width="200px">구매 폰트</th>
+									<th width="130px">폰트 가격</th>
+									<th width="90px">할인율</th>
+									<th width="130px">결제 가격</th>
+								</tr>
+							</thead>
+							<tbody>
+<%
+	for(Font _fe : fontPurchasedList){
+			FontExt fe = (FontExt) _fe;
+%>
+								<tr>
+									<td><%=fe.getMemberOrderDate() %></td>
+									<td><%=fe.getMemberOrderNo() %></td>
+									<td><%=fe.getFontName() %></td>
+									<td><%=fe.getFontPrice() %></td>
+									<td><%=fe.getFontDiscountRate() %></td>
+									<td><%=fe.getFontPrice()*fe.getFontDiscountRate() %></td>
+								</tr>
+<%
+	}
+%>
+							</tbody>
+						</table>
                 </div>
             </div>
 <%
