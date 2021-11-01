@@ -5,7 +5,8 @@
     pageEncoding="UTF-8"%>
 <%@include file = "/WEB-INF/views/common/LandingHeader.jsp" %>
 <%
-	String sort = request.getParameter("sort");
+	String sort = request.getParameter("sort") == null? "newest" : request.getParameter("sort");	
+	System.out.println("sort@jsp : " + sort);
 %>
 	<!-- Portfolio Start -->
     <section id="portfolio" class="portfolio section-space-padding">
@@ -44,11 +45,11 @@
                         </div>
                         <div class="tools font-sort-selector">
                             <select name="font-sort" id="font-sort">
-                                <option value="popular" >인기순</option>
-                                <option value="view">조회순</option>
-                                <option value="order">판매순</option>
-                                <option value="recommand">MD추천순</option>
-                                <option value="newest">최신순</option>
+                                <option value="popular" <%= "popular".equals(sort) ? "selected" : "" %>>인기순</option>
+                                <option value="view" <%= "view".equals(sort) ? "selected" : "" %>>조회순</option>
+                                <option value="order" <%= "order".equals(sort) ? "selected" : "" %>>판매순</option>
+                                <option value="recommand" <%= "recommand".equals(sort) ? "selected" : "" %>>MD추천순</option>
+                                <option value="newest" <%= "newest".equals(sort) ? "selected" : "" %>>최신순</option>
                             </select>
                         </div>
                     </div>
