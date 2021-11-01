@@ -70,9 +70,14 @@ public class FontPurchaseServlet extends HttpServlet {
 			orderFonts.add(fNo);
 		}
 		
-		List<Attachment> attachList = attachmentService.selectAllAttachListByFontNo(orderFonts);
+		List<String> attachList = attachmentService.selectAllAttachByFontNo(orderFonts);
+		String filepath = getServletContext().getRealPath("/upload/font");
+		for(int i = 0; i < attachList.size(); i++) {
+			String filename = attachList.get(i);
+			attachList.set(i, filepath  + "/" + filename);
+		}
 		
-		new MailSend().purchaseMailSend(orderList);
+		new MailSend().purchaseMailSend(orderList, attachList);
 		
 		
 		// view단 처리

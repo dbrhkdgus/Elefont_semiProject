@@ -23,7 +23,7 @@ import com.kh.elefont.order.util.MailAuth;
 
 public class MailSend {
 
-	public void purchaseMailSend(List<Order> orderList) {
+	public void purchaseMailSend(List<Order> orderList, List<String> attachList) {
 		Properties prop = System.getProperties();
 		OrderExt order = (OrderExt) orderList.get(0);
 		String memberId = order.getMemberId();
@@ -49,10 +49,10 @@ public class MailSend {
 		//메일 출력 텍스트
 		StringBuffer sb = new StringBuffer();
 		sb.append("<h3>" + memberId + "님 안녕하세요</h3>");
-		sb.append("<h5>Elefont를 이용해 주셔서 감사합니다.</h5>");
-		sb.append("<h5>"+ memberId+"님께서 구매하신 폰트는 </h5>");
-		sb.append("<h5>"+ fontNames.toString() +"입니다.</h5>");
-		sb.append("<h5>앞으로도 많은 이용 부탁 드립니다.</h5>");
+		sb.append("<span>Elefont를 이용해 주셔서 감사합니다.</span></br>");
+		sb.append("<span>"+ memberId+"님께서 구매하신 폰트는 다음과 같습니다.</span></br>");
+		sb.append("<h4>"+ fontNames.toString() +"</h4>");
+		sb.append("<span>앞으로도 많은 이용 부탁 드립니다.</span></br>");
 		sb.append("<h5>감사합니다.</h5>");
 		
 		String html = sb.toString();
@@ -73,10 +73,22 @@ public class MailSend {
 			mTextPart.setText(html, "UTF-8", "html");
 			multipart.addBodyPart(mTextPart);
 			
-			FileDataSource fds = new FileDataSource(file.getAbsolutePath());
-			mFilePart.setDataHandler(new DataHandler(fds));
-			mFilePart.setFileName(fds.getName());
-			multipart.addBodyPart(mFilePart);
+			//보낼 첨부파일이 여러개일 경우
+			if(attachList.size() > 1) {
+				for(int i = 0; i < attachList.size(); i++) {
+					FileDataSource fds = new FileDataSource(attachList.get(i));
+					mFilePart.setDataHandler(new DataHandler(fds));
+					mFilePart.setFileName(fds.getName());
+					multipart.addBodyPart(mFilePart);
+					
+				}
+			}else {
+				FileDataSource fds = new FileDataSource(attachList.get(0));
+				mFilePart.setDataHandler(new DataHandler(fds));
+				mFilePart.setFileName(fds.getName());
+				multipart.addBodyPart(mFilePart);
+			}
+			
 			
 			msg.setContent(multipart);
 			

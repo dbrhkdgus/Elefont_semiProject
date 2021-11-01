@@ -819,7 +819,7 @@ public class FontDao {
 		ResultSet rset = null;
 		List<Font> fontList = new ArrayList<>();
 		
-		String sql = "select * from view_font_font_category where " ; 
+		String sql = "select * from view_font_font_category where "; 
 		System.out.println("categorylist @dao" + categoryList);
 		if(categoryList.contains("S")) {
 			if(categoryList.indexOf("S")!= 0) {

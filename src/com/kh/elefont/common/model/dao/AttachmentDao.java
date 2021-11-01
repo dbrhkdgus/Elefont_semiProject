@@ -248,5 +248,32 @@ public class AttachmentDao {
 		
 		return result;
 	}
+	public List<String> selectAllAttachByFontNo(Connection conn, List<String> orderFonts) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		List<String> attachList = new ArrayList<>();
+		String sql = prop.getProperty("selectAllAttachByFontNo");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			for(String f : orderFonts) {
+				pstmt.setString(1, f);
+				
+				rset = pstmt.executeQuery();
+				
+				if(rset.next()) {
+					attachList.add(rset.getString("renamed_filename"));
+				}
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return attachList;
+	}
   
 }
