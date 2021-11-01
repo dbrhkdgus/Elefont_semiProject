@@ -17,6 +17,7 @@ import com.kh.elefont.community.model.service.CommunityService;
 import com.kh.elefont.community.model.vo.Community;
 import com.kh.elefont.font.model.service.FontService;
 import com.kh.elefont.member.model.service.MemberService;
+import com.kh.elefont.member.model.vo.Member;
 import com.oreilly.servlet.MultipartRequest;
 import com.oreilly.servlet.multipart.FileRenamePolicy;
 
@@ -36,7 +37,9 @@ public class CommunityBoardEnrollServlet extends HttpServlet {
 	}
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		// 1. 인코딩
+		HttpSession session = request.getSession();
+		Member loginMember = (Member)session.getAttribute("loginMember");
+		String memberNo = loginMember.getMemberNo();
 		
 		// b. 파일저장경로
 				// ServletContext객체로부터  /WebContent/upload/board 절대경로 참조
@@ -79,7 +82,8 @@ public class CommunityBoardEnrollServlet extends HttpServlet {
 		community.setCommTitle(title);
 		community.setCommWriter(writer);
 		community.setCommContent(content);
-		
+		community.setMemberNo(font);
+		community.setMemberNo(memberNo);
 		
 		
 		FontService fontService = new FontService();
@@ -112,7 +116,6 @@ public class CommunityBoardEnrollServlet extends HttpServlet {
 		
 		String msg = result > 0 ? "게시물 등록 성공" : "게시물 등록 실패";
 		
-		HttpSession session = request.getSession();
 		session.setAttribute("msg", msg);
 		response.sendRedirect(request.getContextPath()+"/community");
 		
