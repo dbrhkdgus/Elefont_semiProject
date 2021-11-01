@@ -121,6 +121,10 @@ public class AttachmentService {
 	        }
 	        return result;
 	}
+	public List<Attachment> selectAllAttachListByFontNo(List<String> orderFonts) {
+		Connection conn = getConnection();
+		return null;
+	}
 	
 	
 	

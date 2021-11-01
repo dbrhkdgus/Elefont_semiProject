@@ -5,6 +5,8 @@ import java.util.Date;
 import java.util.List;
 import java.util.Properties;
 
+import javax.activation.DataHandler;
+import javax.activation.FileDataSource;
 import javax.mail.Authenticator;
 import javax.mail.Message;
 import javax.mail.Multipart;
@@ -62,15 +64,21 @@ public class MailSend {
 			InternetAddress to = new InternetAddress(order.getMemberEmail());
 			msg.setRecipient(Message.RecipientType.TO, to);
 			
-//			Multipart multipart = new MimeMultipart();
-//			MimeBodyPart mTextPart = new MimeBodyPart();
-//			MimeBodyPart mFilePart = null;
+			Multipart multipart = new MimeMultipart();
+			MimeBodyPart mTextPart = new MimeBodyPart();
+			MimeBodyPart mFilePart = new MimeBodyPart();
 			
 			msg.setSubject( memberId + "님, 구매해 주셔서 감사합니다.");
-			msg.setText(html, "UTF-8", "html");
-//			multipart.addBodyPart(mTextPart);
+//			msg.setText(html, "UTF-8", "html");
+			mTextPart.setText(html, "UTF-8", "html");
+			multipart.addBodyPart(mTextPart);
 			
-//			msg.setContent(multipart);
+			FileDataSource fds = new FileDataSource(file.getAbsolutePath());
+			mFilePart.setDataHandler(new DataHandler(fds));
+			mFilePart.setFileName(fds.getName());
+			multipart.addBodyPart(mFilePart);
+			
+			msg.setContent(multipart);
 			
 			Transport.send(msg);
 		} catch (Exception e) {
