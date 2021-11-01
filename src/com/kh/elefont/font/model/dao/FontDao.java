@@ -1,7 +1,6 @@
 package com.kh.elefont.font.model.dao;
 
 import static com.kh.elefont.common.JdbcTemplate.close;
-import static com.kh.elefont.common.JdbcTemplate.getConnection;
 
 import java.io.FileReader;
 import java.io.IOException;
@@ -16,7 +15,7 @@ import java.util.Properties;
 
 import com.kh.elefont.common.model.vo.Attachment;
 import com.kh.elefont.font.model.vo.Font;
-import com.kh.elefont.member.model.vo.Member;
+import com.kh.elefont.font.model.vo.FontExt;
 
 
 public class FontDao {
@@ -342,12 +341,12 @@ public class FontDao {
 		return result;
 	}
 
-	public List<Font> selectAllApprovedFont(Connection conn) {
+	public List<Font> selectAllApprovedFontOrderByDate(Connection conn) {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		List<Font> fontList = new ArrayList<>();
 		
-		String sql = prop.getProperty("selectAllApprovedFont");
+		String sql = prop.getProperty("selectAllApprovedFontOrderByDate");
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
@@ -607,7 +606,8 @@ public class FontDao {
 		List<Font> fontList = new ArrayList<>();
 		String sql = "";
 		String searchType = (String)param.get("searchType");
-	//	String searchKeyword = (String)param.get("searchKeyword");
+//		String searchKeyword = (String)param.get("searchKeyword");
+		System.out.println("param.get(\"searchKeyword\")@Dao : " + param.get("searchKeyword"));
 		
 		switch(searchType) {
 		case "font-no" : 
@@ -649,6 +649,173 @@ public class FontDao {
 		return fontList;
 	}
 
+	public List<Font> selectAllPurchasedFontByMemberNo(Connection conn, String memberNo) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		List<Font> fontPurchasedList = new ArrayList<>();
+		String sql = prop.getProperty("selectAllPurchasedFontByMemberNo");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, memberNo);
+			
+			rset = pstmt.executeQuery();
+			while(rset.next()) {
+				FontExt font = new FontExt();
+				font.setFontNo(rset.getString("font_no"));
+				font.setFontName(rset.getString("font_name"));
+				font.setFontPrice(rset.getDouble("font_price"));
+				font.setFontDiscountRate(rset.getDouble("font_discount_rate"));
+				font.setMemberOrderDate(rset.getDate("member_order_date"));
+				font.setMemberOrderNo(rset.getString("order_no"));
+				
+				fontPurchasedList.add(font);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return fontPurchasedList;
+	}
+
+	public List<String> selectAllFontName(Connection conn) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		List<String> fontNameList = new ArrayList<>();
+		String sql = prop.getProperty("selectAllFontName");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			
+			rset = pstmt.executeQuery();
+			while(rset.next()) {
+				fontNameList.add(rset.getString("font_name"));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return fontNameList;
+	}
+
+	public List<Font> selectAllApprovedFontOrderByPopular(Connection conn) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		List<Font> fontList = new ArrayList<>();
+		
+		String sql = prop.getProperty("selectAllApprovedFontOrderByPopular");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				Font font = new Font();
+				font.setFontNo(rset.getString("font_no"));
+				font.setFontName(rset.getString("font_name"));
+				font.setFontUrl(rset.getString("font_url"));
+				font.setFontPrice(rset.getDouble("font_price"));
+				font.setFontDiscountRate(rset.getDouble("font_discount_rate"));
+				font.setFontRegDate(rset.getDate("font_reg_date"));
+				font.setFontApproval(rset.getString("font_approval") == null? " ": rset.getString("font_approval"));
+				font.setMemberId(rset.getString("member_id"));
+				font.setFontLikeCount(rset.getInt("font_like_count"));
+				
+				fontList.add(font);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return fontList;
+	}
+
+	public List<Font> selectAllApprovedFontOrderByView(Connection conn) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		List<Font> fontList = new ArrayList<>();
+		
+		String sql = prop.getProperty("selectAllApprovedFontOrderByView");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				Font font = new Font();
+				font.setFontNo(rset.getString("font_no"));
+				font.setFontName(rset.getString("font_name"));
+				font.setFontUrl(rset.getString("font_url"));
+				font.setFontPrice(rset.getDouble("font_price"));
+				font.setFontDiscountRate(rset.getDouble("font_discount_rate"));
+				font.setFontRegDate(rset.getDate("font_reg_date"));
+				font.setFontApproval(rset.getString("font_approval") == null? " ": rset.getString("font_approval"));
+				font.setMemberId(rset.getString("member_id"));
+				font.setFontLikeCount(rset.getInt("font_like_count"));
+				
+				fontList.add(font);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return fontList;
+	}
+
+	public List<Font> selectAllApprovedFontOrderByOrder(Connection conn) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		List<Font> fontList = new ArrayList<>();
+		
+		String sql = prop.getProperty("selectAllApprovedFontOrderByOrder");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				Font font = new Font();
+				font.setFontNo(rset.getString("font_no"));
+				font.setFontName(rset.getString("font_name"));
+				font.setFontUrl(rset.getString("font_url"));
+				font.setFontPrice(rset.getDouble("font_price"));
+				font.setFontDiscountRate(rset.getDouble("font_discount_rate"));
+				font.setFontRegDate(rset.getDate("font_reg_date"));
+				font.setFontApproval(rset.getString("font_approval") == null? " ": rset.getString("font_approval"));
+				font.setMemberId(rset.getString("member_id"));
+				font.setFontLikeCount(rset.getInt("font_like_count"));
+				
+				fontList.add(font);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return fontList;
+	}
+}
+
 	
 
-}
+	
+
+

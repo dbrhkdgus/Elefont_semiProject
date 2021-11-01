@@ -2,13 +2,13 @@ package com.kh.elefont.member.controller;
 
 import java.io.File;
 import java.io.IOException;
-import java.io.PrintWriter;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import javax.servlet.http.HttpSession;
 
 import com.kh.elefont.common.ElefontFileRenamePolicy;
 import com.kh.elefont.common.model.vo.Attachment;
@@ -20,7 +20,7 @@ import com.oreilly.servlet.multipart.FileRenamePolicy;
  * Servlet implementation class proFileFileUploadServelt
  */
 @WebServlet("/member/profileFileUpload")
-public class proFileFileUploadServelt extends HttpServlet {
+public class ProFileFileUploadServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 	MemberService memberService = new MemberService();
@@ -29,6 +29,7 @@ public class proFileFileUploadServelt extends HttpServlet {
 	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
+		HttpSession session = request.getSession();
 		
 		
 		// 0. MultipartRequest 객체
@@ -64,8 +65,12 @@ public class proFileFileUploadServelt extends HttpServlet {
 		int result = memberService.insertProfileImage(attach);
 		System.out.println("여기가 1이면 디비에 프로필 사진 등록 완료  :  " + result);
 		
+		File profilePhotoAttach = new File(saveDirectory, attach.getRenamedFilename());
+		System.out.println("덮어씌우기용  profilePhotoAttach 확인 : " +  profilePhotoAttach);
+		
 		if(attach != null ) {
-			request.setAttribute("attach", attach);			
+			request.setAttribute("attach", attach);		
+			session.setAttribute("profilePhotoAttach",profilePhotoAttach);
 		}
 		
 		if(result>0) {

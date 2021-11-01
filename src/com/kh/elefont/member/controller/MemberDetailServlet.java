@@ -16,6 +16,8 @@ import com.kh.elefont.font.model.service.FontService;
 import com.kh.elefont.font.model.vo.Font;
 import com.kh.elefont.member.model.service.MemberService;
 import com.kh.elefont.member.model.vo.Member;
+import com.kh.elefont.order.model.service.OrderService;
+import com.kh.elefont.order.model.vo.Order;
 
 /**
  * Servlet implementation class MemberDetailServlet
@@ -26,6 +28,7 @@ public class MemberDetailServlet extends HttpServlet {
 	private MemberService memberService = new MemberService();
 	private FontService fontService = new FontService();
 	private AttachmentService attachmentService = new AttachmentService();
+	private OrderService orderService = new OrderService();
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
@@ -48,8 +51,10 @@ public class MemberDetailServlet extends HttpServlet {
 		}else if("U".equals(memberRole) || "S".equals(memberRole)) {
 			List<Attachment> commAttachmentList = attachmentService.selectAllCommAttachmentListByMemberNo(loginMember.getMemberNo());
 			List<Font> fontLikeList = fontService.selectAllLikedFontByMemberNo(loginMember.getMemberNo());
+			List<Font> fontPurchasedList = fontService.selectAllPurchasedFontByMemberNo(loginMember.getMemberNo());
 			request.setAttribute("commAttachmentList", commAttachmentList);
 			request.setAttribute("fontLikeList", fontLikeList);
+			request.setAttribute("fontPurchasedList", fontPurchasedList);
 		}
 		
 		// 회원의 커뮤니티 게시글 조회를 위해 전달할 것

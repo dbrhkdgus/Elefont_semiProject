@@ -471,7 +471,6 @@ from
                 join font f
                     on o.font_no = f.font_no;
                     
-select * from question where q_questioner = 'hyejin' order by q_date asc;
     
 
 
