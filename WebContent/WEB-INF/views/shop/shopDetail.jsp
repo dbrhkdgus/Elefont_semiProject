@@ -1,3 +1,4 @@
+<%@page import="com.kh.elefont.order.model.vo.Order"%>
 <%@page import="com.kh.elefont.font.model.vo.FontCopyright"%>
 <%@page import="com.kh.elefont.rep.model.vo.Rep"%>
 <%@page import="com.kh.elefont.common.model.vo.Attachment"%>
@@ -14,6 +15,7 @@ FontCopyright fontCopyright = (FontCopyright)request.getAttribute("fontCopyright
 List<Community> communityList = (List<Community>)request.getAttribute("communityList");
 List<Attachment> commAttachmentList = (List<Attachment>)request.getAttribute("commAttachmentList");
 List<Rep> repList = (List<Rep>)request.getAttribute("repList");
+List<Order> orderList = (List<Order>) request.getAttribute("orderList");
 System.out.println("repList@jsp : " + repList );
 int memberLikeValid = (int)request.getAttribute("likeValid");
 %>
