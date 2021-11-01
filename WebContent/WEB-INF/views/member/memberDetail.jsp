@@ -1,3 +1,4 @@
+<%@page import="com.kh.elefont.coupon.model.vo.Coupon"%>
 <%@page import="com.kh.elefont.font.model.vo.FontExt"%>
 <%@page import="com.kh.elefont.common.model.vo.Attachment"%>
 <%@page import="com.kh.elefont.font.model.vo.Font"%>
@@ -218,6 +219,7 @@ List<Font> fontPurchasedList = (List<Font>) request.getAttribute("fontPurchasedL
 }else if("A".equals(memberRole)){
 	List<Member> memberList = (List<Member>) session.getAttribute("memberList");
 	List<Font> fontList = (List<Font>) session.getAttribute("fontList");
+	List<Coupon> couponList = (List<Coupon>) session.getAttribute("couponList");
 	int tabIndex = (int)session.getAttribute("tabIndex");
 	System.out.println("tabIndex@jsp = " + tabIndex);
 %>
@@ -310,9 +312,7 @@ List<Font> fontPurchasedList = (List<Font>) request.getAttribute("fontPurchasedL
 									<th>분류명</th>
 									<th>관리</th>
 								</tr>
-<%
-/* 폰트 카테고리 불러와서 세션에 저장해놓고 불러올 것. 값이 null이면 폰트 카테고리가 없습니다 뜨게 하기. */
-%>
+
 							</table>
 						</div>
 						<div class="admin-board">
@@ -355,7 +355,6 @@ List<Font> fontPurchasedList = (List<Font>) request.getAttribute("fontPurchasedL
 				<div>
 					<div class="coupon-enroll-wrapper">
 						<form action="" method="POST" name="couponEnrollFrm">
-							
 							<table id="coupon-enroll-tbl">
 								<tr>
 									<th >쿠폰 발행</th>
@@ -365,7 +364,6 @@ List<Font> fontPurchasedList = (List<Font>) request.getAttribute("fontPurchasedL
 										<input type="radio" name="couponType" id="discount" value="D">
 										<label for="couponType1">할인 쿠폰</label>
 									</td>
-
 								</tr>
 								<tr>
 									<td>
@@ -377,22 +375,21 @@ List<Font> fontPurchasedList = (List<Font>) request.getAttribute("fontPurchasedL
 										<input type="number" name="couponCnt" id="couponCnt" value="1"/>
 									</td>
 									<td rowspan="2">
-										<input type="submit" value="발행" />
+										<input type="button" value="발행" id="couponEnrollBtn"/>
 									</td>
 								</tr>
 								<tr>
 									<td>
 										<span>쿠폰 유효기간</span>
-										<input type="text" name="couponExpiration" id="couponExpiration" placeholder="발급일로부터 일"/>
+										<input type="text" name="couponExpired" id="couponExpired" placeholder="발급일로부터 일"/>
 									</td>
 									<td>
-										<span>회원 아이디 입력</span>
-										<input type="text" name="memberId" placeholder="아이디를 입력하세요" />
+										<span>회원 번호 입력</span>
+										<input type="text" name="memberNo" placeholder="회원번호를 입력하세요" />
 									</td>
 								</tr>
 								<tr>
 									<td colspan="2">
-										
 									</td>
 								</tr>							
 							</table>
@@ -412,12 +409,32 @@ List<Font> fontPurchasedList = (List<Font>) request.getAttribute("fontPurchasedL
 									<th>쿠폰 유효기간</th>
 									<th>쿠폰 사용여부</th>
 									<th>포인트 값/할인율</th>
-									<th>회원 아이디</th>
+									<th>회원 번호</th>
 								</tr>
 							</thead>
-							<tr>
-								<!-- db에서 읽어온 쿠폰 정보 출력 -->
-							</tr>
+<%
+	if(!couponList.isEmpty()){
+		for(Coupon c : couponList){	
+%>
+								<tr>
+									<td><%= c.getCouponRegDate() %></td>
+									<td><%= c.getCouponNo() %></td>
+									<td><%= "P".equals(c.getCouponType())? "포인트 쿠폰" : "할인 쿠폰" %></td>
+									<td><%= c.getCouponRegDate() %>~<%= c.getCouponExpired()%>일 이내</td>
+									<td><%= "Y".equals(c.getCouponUsed())? "사용 완료" : "미사용" %></td>
+									<td><%= "P".equals(c.getCouponType())? c.getCouponPAmount()+"p":c.getCouponDiscount()+"%" %></td>
+									<td><%= c.getMemberNo() %></td>
+								</tr>								
+<%
+		}
+	}else{
+%>
+								<tr>
+									<td colspan="7">쿠폰이 없습니다.</td>
+								</tr>
+<%
+	}
+%>
 						</table>
 					</div>
 				</div>
@@ -606,6 +623,30 @@ $(".fontDownloadBtn").click((e)=>{
 		$(document.adminFontUpdateFrm).submit();
 		
 	});
+
+/* 쿠폰 발급 이벤트 */
+$(couponEnrollBtn).click((e)=>{
+	//유효성 검사
+	const frmData = new FormData(document.couponEnrollFrm);
+	console.log(frmData);
+	console.log(frmData.get("couponExpired"));
+	console.log(frmData.get("couponCnt"));
+	console.log(frmData.get("couponType"));
+	
+	$.ajax({
+		url : "<%=request.getContextPath()%>/coupon/couponEnroll",
+		data : frmData,
+		type: "POST",
+		processData : false,
+		contentType : false,
+		dataType : "json",
+		success(data){
+			console.log(data);
+		},
+		error: console.log
+	});
+});
+
 </script>
 <%
 }
