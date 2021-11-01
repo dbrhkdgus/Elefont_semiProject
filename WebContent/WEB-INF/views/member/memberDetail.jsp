@@ -387,8 +387,8 @@ List<Font> fontPurchasedList = (List<Font>) request.getAttribute("fontPurchasedL
 										<input type="text" name="couponExpired" id="couponExpired" placeholder="발급일로부터 일"/>
 									</td>
 									<td>
-										<span>회원 번호 입력</span>
-										<input type="text" name="memberNo" placeholder="회원번호를 입력하세요" />
+										<span>회원 아이디 입력</span>
+										<input type="text" name="memberId" id="memberId" placeholder="회원 아이디를 입력하세요" />
 									</td>
 								</tr>
 								<tr>
@@ -426,7 +426,7 @@ List<Font> fontPurchasedList = (List<Font>) request.getAttribute("fontPurchasedL
 									<td><%= c.getCouponRegDate() %>~<%= c.getCouponExpired()%>일 이내</td>
 									<td><%= "Y".equals(c.getCouponUsed())? "사용 완료" : "미사용" %></td>
 									<td><%= "P".equals(c.getCouponType())? c.getCouponPAmount()+"p":c.getCouponDiscount()+"%" %></td>
-									<td><%= c.getMemberNo() %></td>
+									<td><%= c.getMemberNo() == null? "사용자 없음" : c.getMemberNo() %></td>
 								</tr>								
 <%
 		}
@@ -631,6 +631,7 @@ $(".fontDownloadBtn").click((e)=>{
 $(couponEnrollBtn).click((e)=>{
 	//유효성 검사
 	const $frmData = $(document.couponEnrollFrm);
+	let couponMemberId = $("#memberId").val();
 	
 	$.ajax({
 		url : "<%=request.getContextPath()%>/coupon/couponEnroll",
@@ -638,13 +639,12 @@ $(couponEnrollBtn).click((e)=>{
 		type: "POST",
 		dataType : "json",
 		success(data){
-			console.log(data, typeof data);
-			console.log(data[0]);
 			const $ol = $("<ol></ol>");
 			const $couponResult = $("#coupon-result");
 			$couponResult.html("");
 			if(data.length == 1){
-				$ol.append("<li>"+ data[0] +"</li>");
+				if(data[0] === "Complete") alert(`\${couponMemberId}님에게 정상적으로 쿠폰이 발급되었습니다.`);
+				else $ol.append("<li>"+ data[0] +"</li>");
 			}
 			else{
 				data.forEach(element =>{
@@ -656,6 +656,28 @@ $(couponEnrollBtn).click((e)=>{
 		error: console.log
 	});
 });
+
+/* 쿠폰 이벤트 - 회원 아이디 입력 시 해당하는 회원 아이디와 번호 보여주기 */
+$(memberId).autocomplete({
+	source(request, response){
+		const {term : searchId} = request;
+		$.ajax({
+			url: "<%=request.getContextPath()%>/member/autocomplete",
+			data: {searchId},
+			success(data){
+				let temp = $.map(data, (element)=>{
+					return{
+						label : element,
+						value : element
+					}
+				});
+				response(temp);
+			},
+			error : console.log
+		});
+	}
+});
+
 
 </script>
 <%
