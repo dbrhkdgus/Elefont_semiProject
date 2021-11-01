@@ -117,6 +117,7 @@ if("U".equals(memberRole)){
 if("U".equals(memberRole)){
 List<Attachment> commAttachmentList = (List<Attachment>)request.getAttribute("commAttachmentList");
 List<Font> fontLikeList = (List<Font>) request.getAttribute("fontLikeList");
+List<Order> orderList = (List<Order>) request.getAttribute("orderList");
 %>
             <div class="member-comm">
                 <h4>내가 쓴 커뮤니티</h4>
