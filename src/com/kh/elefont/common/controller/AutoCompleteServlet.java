@@ -11,13 +11,16 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.kh.elefont.font.model.service.FontService;
+
 /**
  * Servlet implementation class AutoCompleteServlet
  */
 @WebServlet("/autocomplete")
 public class AutoCompleteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-       
+	private FontService fontService = new FontService();
+    
    
 
 	/**
@@ -29,8 +32,10 @@ public class AutoCompleteServlet extends HttpServlet {
 		System.out.println("searchName@servlet = " + searchName);
 		
 		//2. 업무 로직
+		List<String> fontNameList = fontService.selectAllFontName();
+		System.out.println("fontNameList@Servlet : " + fontNameList);
 		List<String> filteredList = new ArrayList<>();
-		for(String name : list) {
+		for(String name : fontNameList) {
 			if(name.contains(searchName))
 				filteredList.add(name);
 		}
