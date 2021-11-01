@@ -26,9 +26,12 @@ public class MemberLogoutServlet extends HttpServlet {
         // - true : 세션객체가 존재하면 해당세션객체를, 존재하지 않으면 새로운 session객체를 리턴.
         // - false : 세션객체가 존재하면 해당세션객체를, 존재하지 않으면 null을 리턴.
       HttpSession session = request.getSession(false);
-      if(session != null)
+      if(session != null) {
           session.invalidate();
-		
+      };
+      if(session.getAttribute("categoryList") != null) {
+    	  session.removeAttribute("categoryList");    	  
+      }
 	
         // 2.redirect - url을 변경
         String location = request.getContextPath() + "/";

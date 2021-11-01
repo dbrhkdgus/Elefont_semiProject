@@ -39,18 +39,18 @@ public class ShopLandingServlet extends HttpServlet {
 
 		List<Font> fontList = new ArrayList<>();
 
-		List<String> categoryList = session.getAttribute("categoryList") == null ? new ArrayList<>()
-				: (List<String>) session.getAttribute("categoryList");
-		System.out.println("flag@servlet : " + request.getParameter("flag"));
+		List<String> categoryList = session.getAttribute("categoryList") == null ? new ArrayList<>() : (List<String>) session.getAttribute("categoryList");
+		
+		
 		categoryList.remove(request.getParameter("flag"));
 		if (request.getParameter("add") != null || request.getParameter("category") != null) {
 			categoryList.add(request.getParameter("add"));
 		}
 
-		System.out.println("categoryList@Servlet : " + categoryList);
+		
 
 		fontList = fontService.selectAllApproveByCategory(categoryList);
-
+		
 		if(categoryList.isEmpty()) {
 			 switch(sort) {
 			 case "popular" : fontList = fontService.selectAllApprovedFontOrderByPopular(); break; 
@@ -71,13 +71,15 @@ public class ShopLandingServlet extends HttpServlet {
 		if (loginMember != null) {
 			likeList = fontService.selectAllLikedFont(loginMember.getMemberNo());
 		}
-		request.setAttribute("fontList", fontList);
+		
+		
+		
 		request.setAttribute("fontAttchmentList", fontAttchmentList);
 		request.setAttribute("likeList", likeList);
 
 		request.setAttribute("sort", sort);
 		session.setAttribute("categoryList", categoryList);
-
+		session.setAttribute("fontList", fontList);
 		request.getRequestDispatcher("/WEB-INF/views/shop/shopLanding.jsp").forward(request, response);
 	}
 

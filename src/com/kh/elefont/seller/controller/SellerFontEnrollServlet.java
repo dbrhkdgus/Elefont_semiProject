@@ -77,12 +77,17 @@ public class SellerFontEnrollServlet extends HttpServlet {
 		String fontUrl = multipartRequest.getParameter("font-url");
 		
 		String memberNo = multipartRequest.getParameter("memberNo");
+		String fontFamily = multipartRequest.getParameter("font-family");
+		String fontWeight = multipartRequest.getParameter("font-weight");
+		
 		
 		Font font = new Font();
 		font.setFontName(fontName);
 		font.setFontPrice(fontPrice);
 		font.setFontUrl(fontUrl);
 		font.setMemberId(memberId);
+		font.setFontFamily(fontFamily);
+		font.setFontWeight(fontWeight);
 		
 		System.out.println("font@servlet = " + font);
 		

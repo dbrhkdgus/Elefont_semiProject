@@ -42,6 +42,9 @@ public class FontDao {
 			pstmt.setString(2, font.getFontUrl());
 			pstmt.setDouble(3, font.getFontPrice());
 			pstmt.setString(4, font.getMemberId());
+			pstmt.setString(5, font.getFontFamily());
+			pstmt.setString(6, font.getFontWeight());
+			
 			
 			result = pstmt.executeUpdate();
 			
@@ -154,8 +157,13 @@ public class FontDao {
 				font.setFontRegDate(rset.getDate("font_reg_date"));
 				font.setFontApproval(rset.getString("font_approval") == null? " ": rset.getString("font_approval"));
 				font.setMemberId(rset.getString("member_id"));
+				font.setFontLikeCount(rset.getInt("font_like_count"));
+				font.setFontFamily(rset.getString("font_family"));
+				font.setFontWeight(rset.getString("font_weight"));
 				
 				fontList.add(font);
+				
+				
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -364,8 +372,12 @@ public class FontDao {
 				font.setFontApproval(rset.getString("font_approval") == null? " ": rset.getString("font_approval"));
 				font.setMemberId(rset.getString("member_id"));
 				font.setFontLikeCount(rset.getInt("font_like_count"));
+				font.setFontFamily(rset.getString("font_family"));
+				font.setFontWeight(rset.getString("font_weight"));
 				
 				fontList.add(font);
+				
+			
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -448,7 +460,7 @@ public class FontDao {
 			rset = pstmt.executeQuery(); 
 			if(!rset.next()) likeValid = 0;
 			else likeValid = 1;
-			System.out.println("selectFontLike@dao = " + likeValid);
+			
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -513,7 +525,7 @@ public class FontDao {
 			
 			if(rset.next())
 				result = rset.getInt(1); // rset.getInt("count(*)");
-				System.out.println("likeCnt@dao = " + result);
+				
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -560,7 +572,7 @@ public class FontDao {
 				
 				likeList.add(fontNo);
 			}
-			System.out.println(likeList);
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -607,7 +619,7 @@ public class FontDao {
 		String sql = "";
 		String searchType = (String)param.get("searchType");
 //		String searchKeyword = (String)param.get("searchKeyword");
-		System.out.println("param.get(\"searchKeyword\")@Dao : " + param.get("searchKeyword"));
+//		System.out.println("param.get(\"searchKeyword\")@Dao : " + param.get("searchKeyword"));
 		
 		switch(searchType) {
 		case "font-no" : 
@@ -729,6 +741,8 @@ public class FontDao {
 				font.setFontApproval(rset.getString("font_approval") == null? " ": rset.getString("font_approval"));
 				font.setMemberId(rset.getString("member_id"));
 				font.setFontLikeCount(rset.getInt("font_like_count"));
+				font.setFontFamily(rset.getString("font_family"));
+				font.setFontWeight(rset.getString("font_weight"));
 				
 				fontList.add(font);
 			}
@@ -765,6 +779,8 @@ public class FontDao {
 				font.setFontApproval(rset.getString("font_approval") == null? " ": rset.getString("font_approval"));
 				font.setMemberId(rset.getString("member_id"));
 				font.setFontLikeCount(rset.getInt("font_like_count"));
+				font.setFontFamily(rset.getString("font_family"));
+				font.setFontWeight(rset.getString("font_weight"));
 				
 				fontList.add(font);
 			}
@@ -787,7 +803,7 @@ public class FontDao {
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
-			System.out.println("sql @dao : " + sql);
+			
 			rset = pstmt.executeQuery();
 			
 			while(rset.next()) {
@@ -801,6 +817,8 @@ public class FontDao {
 				font.setFontApproval(rset.getString("font_approval") == null? " ": rset.getString("font_approval"));
 				font.setMemberId(rset.getString("member_id"));
 				font.setFontLikeCount(rset.getInt("font_like_count"));
+				font.setFontFamily(rset.getString("font_family"));
+				font.setFontWeight(rset.getString("font_weight"));
 				
 				fontList.add(font);
 			}
@@ -818,8 +836,9 @@ public class FontDao {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		List<Font> fontList = new ArrayList<>();
-		
-		String sql = "select * from view_font_font_category where "; 
+		if(!categoryList.isEmpty()) {
+			
+		String sql = "select * from view_font_font_category where " ; 
 		System.out.println("categorylist @dao" + categoryList);
 		if(categoryList.contains("S")) {
 			if(categoryList.indexOf("S")!= 0) {
@@ -846,7 +865,8 @@ public class FontDao {
 			sql += "category_code like '%M%'";
 		}
 		
-		System.out.println("sql @Dao :" + sql);
+		System.out.println("sql@Dao :" + sql);
+	
 		try {
 			pstmt = conn.prepareStatement(sql);
 			
@@ -863,6 +883,8 @@ public class FontDao {
 				font.setFontApproval(rset.getString("font_approval") == null? " ": rset.getString("font_approval"));
 				font.setMemberId(rset.getString("member_id"));
 				font.setFontLikeCount(rset.getInt("font_like_count"));
+				font.setFontFamily(rset.getString("FONT_FAMILY"));
+				font.setFontWeight(rset.getString("font_weight"));
 				
 				fontList.add(font);
 			}
@@ -873,6 +895,7 @@ public class FontDao {
 			close(pstmt);
 		}
 		
+		}
 		return fontList;
 	}
 }
