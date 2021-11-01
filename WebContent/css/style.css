@@ -1715,6 +1715,7 @@ text-align: center;
 }
 .re-reply-box{
 	display: flex;
+	width: 86%;
 	margin-left: 13px;
 	align-items: flex-start;
 	margin-top: 5px;
