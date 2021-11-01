@@ -18,15 +18,15 @@ public class AboutDetailServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 				//1.사용자입력값
 				String name = request.getParameter("name");
-				System.out.println(name);
-					
+				System.out.println("어바웃디테일서블릿"+name);
+				
 				
 				//2.업무?
 					
 						
 				//3.뷰단
 				request.setAttribute("name",name);
-		request.getRequestDispatcher("/WEB-INF/views/common/aboutDetail.jsp").forward(request, response);
+				request.getRequestDispatcher("/WEB-INF/views/common/aboutDetail.jsp").forward(request, response);
 	}
 
 	
