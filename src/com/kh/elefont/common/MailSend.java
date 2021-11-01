@@ -69,7 +69,6 @@ public class MailSend {
 			MimeBodyPart mFilePart = new MimeBodyPart();
 			
 			msg.setSubject( memberId + "님, 구매해 주셔서 감사합니다.");
-//			msg.setText(html, "UTF-8", "html");
 			mTextPart.setText(html, "UTF-8", "html");
 			multipart.addBodyPart(mTextPart);
 			
