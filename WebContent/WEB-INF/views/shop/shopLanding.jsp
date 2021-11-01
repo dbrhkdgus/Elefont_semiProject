@@ -129,18 +129,19 @@ $(".font-style").css("color", $(color).val());
 	
 	/* 글씨체 체크박스  */
 	
-   		$("input[name='font-style']").on('change',function(){
-        	if($("input[name='font-style']").is(':checked')){
+   		$("input[name='font-style']").change((e)=>{
+   			
+   	
+        	if($(e.target).is(':checked')){
         	 console.log("check")
 <%if(!categoryList.isEmpty()){%>
                  var categoryList = "<%=str %>";
-
-                location.href = `<%=request.getContextPath()%>/shop?category=\${categoryList}&add=\${$(this).val()}`; 
+                location.href = `<%=request.getContextPath()%>/shop?category=\${categoryList}&add=\${$(e.target).val()}`;  
 <%}else{%>
-  				location.href = `<%=request.getContextPath()%>/shop?add=\${$(this).val()}`; 			
+  				 location.href = `<%=request.getContextPath()%>/shop?add=\${$(e.target).val()}`; 		
 <%}%>                     
          }else{
-        	 location.href = `<%=request.getContextPath()%>/shop?flag=\${$(this).val()}`; 
+        	  location.href = `<%=request.getContextPath()%>/shop?flag=\${$(e.target).val()}`;  
         	 console.log("uncheck")
          }
   }); 
