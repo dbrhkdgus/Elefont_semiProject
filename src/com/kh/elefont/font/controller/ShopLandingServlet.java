@@ -33,8 +33,20 @@ public class ShopLandingServlet extends HttpServlet {
 		Member loginMember = (Member)session.getAttribute("loginMember");
 		// 랜딩 시, 기존 font 테이블 전부 조회
 		String sort = request.getParameter("sort") == null ? "newest" : request.getParameter("sort");
-		String category = request.getParameter("category") == null ? "" : request.getParameter("category");
+		
+
 		List<Font> fontList = new ArrayList<>();
+		
+		List<String> categoryList = session.getAttribute("categoryList") == null ? new ArrayList<>() : (List<String>)session.getAttribute("categoryList");
+		
+		if(request.getParameter("add") != null || request.getParameter("category") != null ) {
+			if(request.getParameter("flag") == null) {
+				categoryList.add(request.getParameter("add"));				
+			}else{
+				categoryList.remove(request.getParameter("flag"));
+
+			}
+		}
 		
 		switch(sort) {
 		case "popular" : fontList = fontService.selectAllApprovedFontOrderByPopular(); break;
@@ -59,8 +71,8 @@ public class ShopLandingServlet extends HttpServlet {
 		
 		
 		request.setAttribute("sort", sort);
-		request.setAttribute("category", category);
-		
+		session.setAttribute("categoryList", categoryList);
+	
 		request.getRequestDispatcher("/WEB-INF/views/shop/shopLanding.jsp").forward(request, response);
 	}
 
