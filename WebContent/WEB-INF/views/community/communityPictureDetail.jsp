@@ -173,7 +173,7 @@ for(Rep rep : repList){
 int cnt = 0;
 for(Attachment att : attachmentList){
 	
-	if(attachment.getMemberNo().equals(att.getMemberNo()) && !(community.getCommNo().equals(att.getCommNo())) && cnt < 5) {
+	if(attachment.getMemberNo().equals(att.getMemberNo()) && !(community.getCommNo().equals(att.getCommNo())) && cnt < 4) {
 				
 %>
 					<a href="<%= request.getContextPath()%>/community/pictureDetail?commNo=<%= att.getCommNo() %>">
@@ -181,8 +181,10 @@ for(Attachment att : attachmentList){
                     </a>
 <%
 		cnt++;
-	} else if(attachment.getMemberNo().equals(att.getMemberNo()) && !(community.getCommNo().equals(att.getCommNo())) && cnt >= 5) {
-		System.out.println("오늘의집처럼 더보기 추가하기");
+	} else if(attachment.getMemberNo().equals(att.getMemberNo()) && !(community.getCommNo().equals(att.getCommNo())) && cnt >= 4) {
+%>
+					<p onclick="location.href='<%=request.getContextPath()%>/member/commLikeList?memberNo=<%= att.getMemberNo() %>'">더보기<p>
+<%
 	}
 }
  %>

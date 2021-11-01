@@ -1715,6 +1715,7 @@ text-align: center;
 }
 .re-reply-box{
 	display: flex;
+	width: 86%;
 	margin-left: 13px;
 	align-items: flex-start;
 	margin-top: 5px;
@@ -1897,7 +1898,7 @@ p { padding: 5px 0; }
   
     width: 1800px;
     height: 180px;
-    border: 1px solid #000;
+    border: .5px solid #eee;
     margin: 10px 10px;
    
 }
@@ -1910,6 +1911,13 @@ p { padding: 5px 0; }
 .about.inner >input{
     position: relative;
     top: 10px;
+    border: none;
+}
+
+.about.inner >input:hover{
+    position: relative;
+    top: 10px;
+    background-color:#fff;
 }
 
 
@@ -2963,6 +2971,7 @@ font-size: 16px;
     height: 20px;
     top: 5px;
     line-height: 18px;
+    border: none;
     
 }
 
