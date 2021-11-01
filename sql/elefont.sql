@@ -27,6 +27,8 @@ CREATE TABLE attachment(
     
     constraint pk_attachment_att_no primary key(att_no)
 );
+
+
 create sequence seq_attachment_no;
 
 
@@ -553,7 +555,6 @@ create sequence seq_font_no;
 
 
 commit;
-
 
 -- 혜진&다현 테이블에 on delete cascade 조건 추가 10/31일
 -- 변경 후 커밋 끝난 건입니다. 테이블 삭제 후 재생성 외에는 추가 변경 필요 없습니다.
