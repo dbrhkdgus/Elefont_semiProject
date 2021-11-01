@@ -1,3 +1,4 @@
+<%@page import="com.kh.elefont.order.model.vo.Order"%>
 <%@page import="com.kh.elefont.font.model.vo.FontCopyright"%>
 <%@page import="com.kh.elefont.rep.model.vo.Rep"%>
 <%@page import="com.kh.elefont.common.model.vo.Attachment"%>
@@ -14,6 +15,7 @@ FontCopyright fontCopyright = (FontCopyright)request.getAttribute("fontCopyright
 List<Community> communityList = (List<Community>)request.getAttribute("communityList");
 List<Attachment> commAttachmentList = (List<Attachment>)request.getAttribute("commAttachmentList");
 List<Rep> repList = (List<Rep>)request.getAttribute("repList");
+List<Order> orderList = (List<Order>) request.getAttribute("orderList");
 System.out.println("repList@jsp : " + repList );
 int memberLikeValid = (int)request.getAttribute("likeValid");
 %>
@@ -262,6 +264,19 @@ if(loginMember != null){
                                 	
                                 	/* 구매하기 버튼 클릭 */
                                 	$("#purchase-button").click((e)=>{
+                                		<% 
+                                		for(Order order : orderList){ 
+	                                		if(font.getFontNo().equals(order.getFontNo())){
+	                                	%>
+	                                	
+	                                		alert("이미 구매한 폰트입니다.");
+	                                		return false;
+	                                	
+	                                	<%	
+	                                			break;
+	                                		}
+                                		}
+	                                	%>
                                 		$("input[name=PerCartType]").val("purchase")
                                 		$(document.PurchaseCartFrm).submit();
                                 		
@@ -319,6 +334,19 @@ if(loginMember != null){
                                 	
                                 	/* 장바구니 추가 버튼 클릭 */
                                 	$("#cart-button").click((e)=>{
+                                		<% 
+                                		for(Order order : orderList){ 
+	                                		if(font.getFontNo().equals(order.getFontNo())){
+	                                	%>
+	                                	
+	                                		alert("이미 구매한 폰트입니다.");
+	                                		return false;
+	                                	
+	                                	<%	
+	                                			break;
+	                                		}
+                                		}
+	                                	%>
                                 		$("input[name=PerCartType]").val("cart");
                                 		$fontNo = $(e.target).data("fontNo");
                                 		$PerCartType = $(e.target).data("type");                               		
