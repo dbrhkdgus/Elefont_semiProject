@@ -286,6 +286,13 @@ public class FontService {
 		close(conn);
 		return fontList;
 	}
+	public List<Font> selectAllApproveByCategory(List<String> categoryList) {
+		Connection conn = getConnection();
+		List<Font> fontList = fontDao.selectAllApproveByCategory(conn ,categoryList);
+
+		close(conn);
+		return fontList;
+	}
 
 
 }
