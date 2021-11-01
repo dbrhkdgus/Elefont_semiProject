@@ -523,11 +523,8 @@ from
 -- community 테이블 title, attach 컬럼 추가
 ALTER TABLE community ADD(comm_title VARCHAR2(200)); 
 
-
 --drop table community CASCADE CONSTRAINTS;
 --drop table attachment CASCADE CONSTRAINTS;
-
-
 
 select * from USER_SEQUENCES;
 --select SEQ_COMMUNITY_NO.CURRVAL from dual;
@@ -620,3 +617,7 @@ commit;
 --alter table like_font drop constraint fk_like_font_font_no;
 --alter table like_font add constraint fk_like_font_member_no foreign key (member_no) references member(member_no) on delete cascade;
 --alter table like_font add constraint fk_like_font_font_no foreign key (font_no) references font (font_no) on delete cascade;
+
+-- 김다현 11월 01일 회원 탈퇴시 커뮤니티 글 삭제 위한 컬럼 추가
+--alter Table community add(member_no varchar2(200));
+--alter table community add constraint fk_community_member_no foreign key(member_no) references member(member_no) on delete cascade;
