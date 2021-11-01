@@ -1,6 +1,7 @@
 package com.kh.elefont.order.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -11,6 +12,8 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.kh.elefont.common.MailSend;
+import com.kh.elefont.common.model.service.AttachmentService;
+import com.kh.elefont.common.model.vo.Attachment;
 import com.kh.elefont.member.model.service.MemberService;
 import com.kh.elefont.member.model.vo.Member;
 import com.kh.elefont.order.model.service.OrderService;
@@ -25,6 +28,7 @@ public class FontPurchaseServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	OrderService orderService = new OrderService();
 	MemberService memberService = new MemberService();
+	AttachmentService attachmentService = new AttachmentService();
 	
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
@@ -59,6 +63,14 @@ public class FontPurchaseServlet extends HttpServlet {
 		
 		
 		List<Order> orderList = orderService.selectAllOrderListByOrderNo(orderNo);
+		
+		List<String> orderFonts = new ArrayList<>();
+		for(Order o : orderList) {
+			String fNo = o.getFontNo();
+			orderFonts.add(fNo);
+		}
+		
+		List<Attachment> attachList = attachmentService.selectAllAttachListByFontNo(orderFonts);
 		
 		new MailSend().purchaseMailSend(orderList);
 		
