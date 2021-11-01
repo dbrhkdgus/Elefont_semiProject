@@ -428,5 +428,39 @@ public class CommunityDao {
 		return commLikeList;
 	}
 
+	public List<Community> selectAllLikedCommList(Connection conn, String memberNo) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		List<Community> communitLikeyList = new ArrayList<>();
+		
+		String sql = prop.getProperty("selectAllLikedCommList");
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1,memberNo);
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				Community community = new Community();
+				community.setCommNo(rset.getString("comm_no"));
+				community.setCommWriter(rset.getString("comm_writer"));
+				community.setCommContent(rset.getString("comm_content"));
+				community.setCommViewCount(rset.getInt("comm_view_count"));
+				community.setCommLikeCount(rset.getInt("comm_like_count"));
+				community.setCommRegDate(rset.getDate("comm_reg_date"));
+				community.setFontNo(rset.getString("font_no"));
+				community.setCommTitle(rset.getString("comm_title"));
+				
+				communitLikeyList.add(community);
+				
+			  }
+      } catch (SQLException e) {
+			e.printStackTrace();
+		  } finally {
+			close(rset);
+			close(pstmt);
+		}	
+		return communitLikeyList;
+  }
+
 
 }
