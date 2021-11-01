@@ -42,10 +42,11 @@ public class CommunityDao {
 			//미완성쿼리문을 가지고 객체생성.
 			pstmt = conn.prepareStatement(query);
 			//쿼리문미완성
-			pstmt.setString(1,community.getCommWriter());
+			pstmt.setString(1, community.getCommWriter());
 			pstmt.setString(2, community.getCommContent());
 			pstmt.setString(3, community.getFontNo());
 			pstmt.setString(4, community.getCommTitle());
+			pstmt.setString(5, community.getMemberNo());
 			
 			
 			//쿼리문실행 : 완성된 쿼리를 가지고 있는 pstmt실행(파라미터 없음)

@@ -25,7 +25,7 @@
 
 
     <!-- Back to Top Start -->
-    <a href="#" class="scroll-to-top"><i class="fas fa-angle-double-up"></i></i></a>
+    <a href="#" class="scroll-to-top"><i class="fas fa-angle-double-up"></i></a>
     <!-- Back to Top End -->
 
 
