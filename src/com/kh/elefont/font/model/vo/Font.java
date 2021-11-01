@@ -22,6 +22,9 @@ public class Font implements Serializable{
 	private int fontPurchasedCount;
 	private Date fontRegDate;
 	private String fontApproval;
+	private String fontFamily;
+	private String fontWeight;
+	
 	
 	
 	private Attachment attach;
@@ -31,10 +34,9 @@ public class Font implements Serializable{
 		// TODO Auto-generated constructor stub
 	}
 
-
 	public Font(String fontNo, String fontName, String fontUrl, String memberId, double fontPrice,
 			double fontDiscountRate, int fontLikeCount, int fontViewCount, int fontPurchasedCount, Date fontRegDate,
-			String fontApproval, Attachment attach) {
+			String fontApproval, String fontFamily, String fontWeight, Attachment attach) {
 		super();
 		this.fontNo = fontNo;
 		this.fontName = fontName;
@@ -47,9 +49,10 @@ public class Font implements Serializable{
 		this.fontPurchasedCount = fontPurchasedCount;
 		this.fontRegDate = fontRegDate;
 		this.fontApproval = fontApproval;
+		this.fontFamily = fontFamily;
+		this.fontWeight = fontWeight;
 		this.attach = attach;
 	}
-
 
 	public String getFontNo() {
 		return fontNo;
@@ -73,6 +76,14 @@ public class Font implements Serializable{
 
 	public void setFontUrl(String fontUrl) {
 		this.fontUrl = fontUrl;
+	}
+
+	public String getMemberId() {
+		return memberId;
+	}
+
+	public void setMemberId(String memberId) {
+		this.memberId = memberId;
 	}
 
 	public double getFontPrice() {
@@ -123,17 +134,29 @@ public class Font implements Serializable{
 		this.fontRegDate = fontRegDate;
 	}
 
-	public String getMemberId() {
-		return memberId;
+	public String getFontApproval() {
+		return fontApproval;
 	}
 
-
-
-	public void setMemberId(String memberId) {
-		this.memberId = memberId;
+	public void setFontApproval(String fontApproval) {
+		this.fontApproval = fontApproval;
 	}
 
+	public String getFontFamily() {
+		return fontFamily;
+	}
 
+	public void setFontFamily(String fontFamily) {
+		this.fontFamily = fontFamily;
+	}
+
+	public String getFontWeight() {
+		return fontWeight;
+	}
+
+	public void setFontWeight(String fontWeight) {
+		this.fontWeight = fontWeight;
+	}
 
 	public Attachment getAttach() {
 		return attach;
@@ -142,26 +165,18 @@ public class Font implements Serializable{
 	public void setAttach(Attachment attach) {
 		this.attach = attach;
 	}
-	
-	
-
-	public String getFontApproval() {
-		return fontApproval;
-	}
-
-
-	public void setFontApproval(String fontApproval) {
-		this.fontApproval = fontApproval;
-	}
-
 
 	@Override
 	public String toString() {
 		return "Font [fontNo=" + fontNo + ", fontName=" + fontName + ", fontUrl=" + fontUrl + ", memberId=" + memberId
 				+ ", fontPrice=" + fontPrice + ", fontDiscountRate=" + fontDiscountRate + ", fontLikeCount="
 				+ fontLikeCount + ", fontViewCount=" + fontViewCount + ", fontPurchasedCount=" + fontPurchasedCount
-				+ ", fontRegDate=" + fontRegDate + ", fontApproval=" + fontApproval + ", attach=" + attach + "]";
+				+ ", fontRegDate=" + fontRegDate + ", fontApproval=" + fontApproval + ", fontFamily=" + fontFamily
+				+ ", fontWeight=" + fontWeight + ", attach=" + attach + "]";
 	}
+
+
+	
 
 
 	

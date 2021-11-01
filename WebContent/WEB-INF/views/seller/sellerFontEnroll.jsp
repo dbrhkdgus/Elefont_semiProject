@@ -16,39 +16,60 @@
    			</tr>
    			<tr>
    				<th>희망 가격</th>
-   				<td><input type="text" class="font-input" name="font-price" id="" placeholder="기본 가격은 200P입니다."/></td>
+   				<td><input type="text" class="font-input" name="font-price"  placeholder="기본 가격은 200P입니다."/></td>
    			</tr>
    			<tr>
-   				<th>폰트 출처(url)<sup>*</sup></th>
-   				<td><input type="text" class="font-input" name="font-url" id="" placeholder="url 주소를 입력하세요."/></td>
+   				<th>소스 url<sup>*</sup></th>
+   				<td><input type="text" class="font-input" name="font-url"  placeholder="소스 url 주소를 입력하세요."/></td>
    			</tr>
+   			<tr>
+   				<th>폰트 패밀리명 (정확하게 기입해주세요.)<sup>*</sup></th>
+   				<td><input type="text" class="font-input" name="font-family"  placeholder="폰트 패밀리명을 입력하세요."/></td>
+   			</tr>
+   			
    			<tr>
    				<th>폰트 파일 업로드<sup>*</sup></th>
    				<td><input type="file" name="font-file" id="font-file" /></td>
    			</tr>
    			<tr>
    				<th>폰트 제작자명<sup>*</sup></th>
-   				<td><input type="text" class="font-input" name="font-designer" id="" placeholder="제작자명을 입력하세요"/></td>
+   				<td><input type="text" class="font-input" name="font-designer"  placeholder="제작자명을 입력하세요"/></td>
    			</tr>
    			<tr>
    				<th>폰트 제작사명</th>
-   				<td><input type="text" class="font-input" name="font-publisher" id="" placeholder="제작사명을 입력하세요"/></td>
+   				<td><input type="text" class="font-input" name="font-publisher"  placeholder="제작사명을 입력하세요"/></td>
    			</tr>
    			<tr>
    				<th>회사 홈페이지</th>
-   				<td><input type="text" class="font-input" name="font-root-url" id="" placeholder="url 주소를 입력하세요."/></td>
+   				<td><input type="text" class="font-input" name="font-root-url"  placeholder="url 주소를 입력하세요."/></td>
    			</tr>
    			<tr>
    				<th>글꼴 스타일<sup>*</sup></th>
    				<td>
-   					<input type="radio" name="font-style" id="font-style0" value="S" checked>
+   					<input type="radio" name="font-style" id="font-style0" value="S" >
 					<label for="font-style0">Serif</label>
 					<input type="radio" name="font-style" id="font-style1" value="G">
 					<label for="font-style1">Sans Serif</label><br />
 					<input type="radio" name="font-style" id="font-style2" value="H">
 					<label for="font-style2">Handwriting</label>
 					<input type="radio" name="font-style" id="font-style3" value="M">
-					<label for="font-style3">Monospace</label>
+					<label for="font-style3">Monospace</label><br />
+					<input type="radio" name="font-style" id="font-style4" value="M" checked>
+					<label for="font-style4">Nomal</label>
+   				</td>
+   			</tr>
+   			<tr>
+   				<th>글꼴 굵기<sup>*</sup></th>
+   				<td>
+   					<input type="radio" name="font-weight" id="font-weight1" value="nomal" checked>
+					<label for="font-weight1">nomal</label>
+					<input type="radio" name="font-weight" id="font-weight2" value="100">
+					<label for="font-weight2">100</label><br />
+					<input type="radio" name="font-weight" id="font-weight3" value="200">
+					<label for="font-weight3">200</label>
+					<input type="radio" name="font-weight" id="font-weight4" value="300">
+					<label for="font-weight4">300</label> <br />
+					<input type="text" name = "font-weight" placeholder="직접기입" />
    				</td>
    			</tr>
    			<tr>
