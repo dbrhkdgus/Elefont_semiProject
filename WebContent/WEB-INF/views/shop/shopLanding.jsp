@@ -128,32 +128,28 @@ $(".font-style").css("color", $(color).val());
 	
 	
 	/* 글씨체 체크박스  */
-  $("input[name='font-style']").change(()=>{
-        var len = $("input[name='font-style']:checked").length;
-        if(len > 0){ //개수를 체크하고 2개부터는 each함수를 통해 각각 가져온다.
-            $("input[name='font-style']:checked").each(function(e){
-            	 if($("input[name='font-style']").is(":checked")){
+	
+   		$("input[name='font-style']").on('change',function(){
+        	if($("input[name='font-style']").is(':checked')){
+        	 console.log("check")
 <%if(!categoryList.isEmpty()){%>
-                     var categoryList = "<%=str %>";
-                     console.log(categoryList);
-                  /*    var $category = "";
-                     $category.append($(this).val()); */
-                    location.href = `<%=request.getContextPath()%>/shop?category=\${categoryList}&add=\${$(this).val()}`; 
- <%}else{%>
-      				location.href = `<%=request.getContextPath()%>/shop?add=\${$(this).val()}`; 			
- <%}%>                       
-				
- 				
- 				
-                 }else{
-                	 location.href = `<%=request.getContextPath()%>/shop?flag=\${$(this).val()}`;
-                  
-                    	
-                 }            	
-                console.log($(this).val());   
-            })
-        }
-    }) 
+                 var categoryList = "<%=str %>";
+
+                location.href = `<%=request.getContextPath()%>/shop?category=\${categoryList}&add=\${$(this).val()}`; 
+<%}else{%>
+  				location.href = `<%=request.getContextPath()%>/shop?add=\${$(this).val()}`; 			
+<%}%>                     
+         }else{
+        	 location.href = `<%=request.getContextPath()%>/shop?flag=\${$(this).val()}`; 
+        	 console.log("uncheck")
+         }
+  }); 
+  
+
+
+
+
+    
     
      
 	  
