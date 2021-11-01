@@ -18,10 +18,10 @@ public class FontService {
 		
 		try {
 			result = fontDao.insertFont(conn, font);
-			System.out.println("result@service = " + result);
+			
 			
 			String fontNo = fontDao.selectLastFontNo(conn); 
-			System.out.println("fontNo@service = "+fontNo);
+			
 			
 			font.setFontNo(fontNo);
 			
@@ -58,7 +58,7 @@ public class FontService {
 		
 		try {
 			result = fontDao.updateFont(conn, fontArr);
-			System.out.println("result@dao = "+result);
+			
 			commit(conn);
 		}catch(Exception e) {
 			rollback(conn);
@@ -71,7 +71,7 @@ public class FontService {
 	public Attachment selectOneFontAttachmentByFontNo(String fontNo) {
 		Connection conn = getConnection();
 		Attachment attach = fontDao.selectOneFontAttachmentByFontNo(conn, fontNo);
-		System.out.println("제가 attach 객체를 잘 받아왔나요?! " + attach);
+		
 		close(conn);
 		return attach;
 	}
@@ -159,7 +159,7 @@ public class FontService {
 		int likeValid = 0;
 		try {
 			likeValid = fontDao.selectFontLike(conn, param);
-			System.out.println("selectFontLike@service = " + likeValid);
+			
 			
 		} catch(Exception e) {
 			e.printStackTrace();
@@ -283,6 +283,13 @@ public class FontService {
 	public List<Font> selectAllApprovedFontOrderByOrder() {
 		Connection conn = getConnection();
 		List<Font> fontList = fontDao.selectAllApprovedFontOrderByOrder(conn);
+		close(conn);
+		return fontList;
+	}
+	public List<Font> selectAllApproveByCategory(List<String> categoryList) {
+		Connection conn = getConnection();
+		List<Font> fontList = fontDao.selectAllApproveByCategory(conn ,categoryList);
+
 		close(conn);
 		return fontList;
 	}

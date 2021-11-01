@@ -5,9 +5,10 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@include file = "/WEB-INF/views/common/LandingHeader.jsp" %>
+<%@include file = "/css/fontApply.jsp" %>
 <%
 	String sort = request.getParameter("sort") == null? "newest" : request.getParameter("sort");	
-	System.out.println("sort@jsp : " + sort);
+	
 	List<String> categoryList = (List<String>)session.getAttribute("categoryList");
 	String str = "";
 	for( String c : categoryList){
@@ -16,7 +17,7 @@
 				
 	};
 	
-	System.out.println("categoryList@jsp : " +categoryList);
+	
 %>
 	<!-- Portfolio Start -->
     <section id="portfolio" class="portfolio section-space-padding">
@@ -74,7 +75,7 @@
                         </div>
                        
  <%
- 	List<Font> fontList = (List<Font>)request.getAttribute("fontList");
+ 	
     List<Attachment> fontAttchmentList = (List<Attachment>)request.getAttribute("fontAttchmentList");
     List<String> likeList = (List<String>) request.getAttribute("likeList");
    	//System.out.println("fontList@jsp : " + fontList);
@@ -86,7 +87,7 @@
 %>
                         <div class="test-item">
                             <a href="<%= request.getContextPath()%>/shopDetail?fontNo=<%= font.getFontNo()%>"><div class="test-item-title"> <%= font.getFontName()%> </div></a>
-                            <textarea name="" id="" cols="30" rows="10" class="font-style"></textarea>
+                            <textarea name="" id="<%= font.getFontNo() %>" cols="30" rows="10" class="font-style" style="font-family: '<%= font.getFontFamily() %>';" ></textarea>
                             <div class="test-item-buttons"> 
 <%
 			if(loginMember != null && !likeList.isEmpty() && likeList.contains(font.getFontNo())){

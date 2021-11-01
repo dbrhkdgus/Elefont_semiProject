@@ -458,18 +458,23 @@ create or replace view view_member_orders
 as
 select
     mo.member_no,
+    mo.member_id,
+    mo.member_email,
     mo.member_order_date,
     o.order_no,
         f.font_no,
     f.font_name,
     f.font_price,
-    f.font_discount_rate
+    f.font_discount_rate,
+    f.font_url
 from
-    member_orders mo
-        join orders o
-            on mo.order_no = o.order_no
-                join font f
-                    on o.font_no = f.font_no;
+    member m 
+        join member_orders mo
+            on m.member_no = mo.member_no
+                join orders o
+                    on mo.order_no = o.order_no
+                        join font f
+                            on o.font_no = f.font_no;
                     
     
 

@@ -121,6 +121,13 @@ public class AttachmentService {
 	        }
 	        return result;
 	}
+	public List<String> selectAllAttachByFontNo(List<String> orderFonts) {
+		Connection conn = getConnection();
+		List<String> attachList = attachmentDao.selectAllAttachByFontNo(conn, orderFonts);
+		
+		close(conn);
+		return attachList;
+	}
 	
 	
 	
