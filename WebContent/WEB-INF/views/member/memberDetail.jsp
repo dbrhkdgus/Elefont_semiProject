@@ -118,7 +118,6 @@ if("U".equals(memberRole)){
 if("U".equals(memberRole)){
 List<Attachment> commAttachmentList = (List<Attachment>)request.getAttribute("commAttachmentList");
 List<Font> fontLikeList = (List<Font>) request.getAttribute("fontLikeList");
-List<Order> orderList = (List<Order>) request.getAttribute("orderList");
 %>
             <div class="member-comm">
                 <h4>내가 쓴 커뮤니티</h4>
@@ -146,41 +145,7 @@ List<Order> orderList = (List<Order>) request.getAttribute("orderList");
 %>
                 </div>
             </div>
-            
-            
-          <h4>폰트 구매이력 리스트</h4>
-					<table class="boardList">
-							<tr>
-							 <th class="my-fontlist-head" width="130px">폰트이름</th>
-							 <th class="my-fontlist-head" width="130px">폰트가격</th>
-							 <th class="my-fontlist-head" width="130px">폰트 구매일</th>
-							</tr>
-							
 
-
-<%
-	for(Order order : orderList){
-%>
-				
-							
-							<tr width="130px">
-								<td width="130px"> <a href="<%= request.getContextPath()%>/shopDetail?fontNo=<%=order.getFontNo()%>"> <%= order.getFontName() %></a></td>
-								<td width="130px"> <%= order.getFontPrice() %></td>
-								<td width="130px"><%= order.getMemberOrderDate() %></td><br>
-							</tr>
-			
-							
-
-
-	
-
-<%
-	}
-
-%>
-					</table>
-                </div>
-            </div>
 <%
 }else if("S".equals(memberRole)){
 %>
