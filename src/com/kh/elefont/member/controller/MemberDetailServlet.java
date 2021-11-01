@@ -28,7 +28,6 @@ public class MemberDetailServlet extends HttpServlet {
 	private MemberService memberService = new MemberService();
 	private FontService fontService = new FontService();
 	private AttachmentService attachmentService = new AttachmentService();
-	private OrderService orderService = new OrderService();
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
