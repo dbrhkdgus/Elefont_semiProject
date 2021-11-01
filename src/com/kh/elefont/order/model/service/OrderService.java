@@ -2,7 +2,9 @@ package com.kh.elefont.order.model.service;
 import static com.kh.elefont.common.JdbcTemplate.*;
 
 import java.sql.Connection;
+import java.util.List;
 
+import com.kh.elefont.font.model.vo.Font;
 import com.kh.elefont.member.model.vo.Member;
 import com.kh.elefont.order.model.dao.OrderDao;
 import com.kh.elefont.order.model.vo.Order;
@@ -52,6 +54,15 @@ public class OrderService {
 		}
 		
 		return result;
+	}
+
+	public List<Order> selectAllOrderListByMemberNo(String memberNo) {
+		Connection conn = getConnection();
+		
+		List<Order> orderList = orderDao.selectAllOrderListByMemberNo(conn, memberNo);
+		
+		close(conn);
+		return orderList;
 	}
 		
 }
