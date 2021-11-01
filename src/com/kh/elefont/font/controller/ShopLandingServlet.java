@@ -41,10 +41,7 @@ public class ShopLandingServlet extends HttpServlet {
 		System.out.println("flag@servlet : " + request.getParameter("flag"));
 		categoryList.remove(request.getParameter("flag"));
 		if(request.getParameter("add") != null || request.getParameter("category") != null ) {
-				
-				categoryList.add(request.getParameter("add"));				
-
-			
+				categoryList.add(request.getParameter("add"));							
 		}
 		
 		System.out.println("categoryList@Servlet : " + categoryList);
