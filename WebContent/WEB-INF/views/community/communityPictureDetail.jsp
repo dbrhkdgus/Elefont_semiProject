@@ -50,7 +50,7 @@ if(editable){
 		            	<hr class="liner"/>
 		            	
 <%
-if(loginMember!=null)
+if(loginMember!=null)   
 { 
 %>
 	            <form action="<%= request.getContextPath() %>/rep/communityRepEnroll" method="POST"name ="commRepEnrollFrm">
