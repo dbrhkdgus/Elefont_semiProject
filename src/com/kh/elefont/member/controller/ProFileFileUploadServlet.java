@@ -20,7 +20,7 @@ import com.oreilly.servlet.multipart.FileRenamePolicy;
  * Servlet implementation class proFileFileUploadServelt
  */
 @WebServlet("/member/profileFileUpload")
-public class proFileFileUploadServelt extends HttpServlet {
+public class ProFileFileUploadServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 	MemberService memberService = new MemberService();

@@ -72,7 +72,10 @@
                         alt="프로필기본사진">
                 </div>
                 <br>
-                <input type="button" value="기본사진으로 변경">
+                <input type="button" value="기본사진으로 변경" onclick="setAsDefaultPhoto();">
+                <form action="<%=request.getContextPath()%>/member/changeAsDefaultPhoto" name="setAsDefaultPhotoFrm" method="post">
+                	<input type="hidden" name="memberNo" value="<%=request.getParameter("memberNo")%>" />
+                </form>
             </div>
             <div id="dropTheImage">
            	    <form name="imageUploadFrm"  id="imageUploadFrm" method="post" enctype="multipart/form-data"
@@ -122,6 +125,13 @@ $(closeBtn).click(()=>{
 			 }
 		 }else{
 			 alert("파일을 입력하세요");
+		 }
+	 }
+	 
+	 function setAsDefaultPhoto() {
+		 if(confirm("프로필 사진을 기본 이미지로 변경하시겠습니까?")){
+			 $(document.setAsDefaultPhotoFrm).submit();
+			 
 		 }
 	 }
  
