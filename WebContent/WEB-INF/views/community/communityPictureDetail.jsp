@@ -55,7 +55,7 @@ if(loginMember!=null)
 %>
 	            <form action="<%= request.getContextPath() %>/rep/communityRepEnroll" method="POST"name ="commRepEnrollFrm">
 		            <div class="comm-board-repEnroll">
-						<input type="text" class="rep-enroll-area" name="rep-content" placeholder="댓글을 입력하세요." />
+						<input type="text" class="rep-enroll-area" name="rep-content" placeholder="댓글을 입력하세요." maxlength='77' />
 						
 						<input type="submit" value="등록" />
 						<input type="hidden" name="commNo" value="<%= community.getCommNo() %>" />		            	
@@ -101,7 +101,7 @@ for(Rep rep : repList){
 %>	
 				 <form action="<%= request.getContextPath() %>/rep/communityRepEnroll" method="POST" name ="commReRepEnrollFrm">
 		            <div class="comm-board-re-repEnroll">
-						<input type="text" name="rep-content" placeholder="댓글을 입력하세요." />
+						<input type="text" class="rep-enroll-area" name="rep-content" placeholder="댓글을 입력하세요." />
 						
 						<input type="submit" value="등록" />
 						<input type="hidden" name="commNo" value="<%= community.getCommNo() %>" />		            	
@@ -211,7 +211,7 @@ $('.btn-transform').on('click', (e)=>{
 	 var oldContent = $(e.target).parent("div").find("span").eq(1).text();
 	 console.log(oldContent);
 	 $(e.target).parent("div").find("span").eq(1).html('');
-	 $(e.target).parent("div").find("span").eq(1).html(`<input type="text"  name="update_rep_content" value = "\${oldContent}" />`); 
+	 $(e.target).parent("div").find("span").eq(1).html(`<input type="text" class="re-input-size" name="update_rep_content" value = "\${oldContent}" />`); 
 });
 
 $(".btn-delete").click((e)=>{
@@ -224,7 +224,7 @@ $(".btn-delete").click((e)=>{
 
 
 /*대댓글 스크립트*/
-$(".btn-re-nroll").hide();
+$(".btn-re-enroll").hide();
                           	
 $(".btn-re-enroll").click((e)=>{
 	$("input[name=type]").val("update");                      
@@ -253,14 +253,23 @@ $(".btn-re-delete").click((e)=>{
 
 
 /* 숨김처리관련 스크립트 */
-	 $(document.commReRepEnrollFrm).hide();
+	$(document.commReRepEnrollFrm).hide();
 	  
-	 $('.fa-replyd').on('click', (e)=>
- {
-   console.log("click");
-   
-   $(e.target).parent().parent().next().slideToggle(500);                            
- });
+	$('.fa-replyd').on('click', (e)=> {
+<%
+if(loginMember!=null) {
+%>	
+   		$(e.target).parent().parent().next().slideToggle(500);                            
+<%
+} else {
+%>
+		alert("댓글등록은 로그인 이후 가능합니다.");
+		$('.loginBox').show();
+		$(loginId).select();
+<%
+}
+%>
+	});
 	 
 	 
 	 

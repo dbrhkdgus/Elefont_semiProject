@@ -17,6 +17,7 @@ public class Community implements Serializable {
 	private int commLikeCount;
 	private Date commRegDate;
 	private String fontNo;
+	private String memberNo;
 	
 	private Attachment attach;
 	public Community() {
@@ -24,7 +25,7 @@ public class Community implements Serializable {
 		// TODO Auto-generated constructor stub
 	}
 	public Community(String commNo, String commTitle, String commWriter, String commContent, int commViewCount,
-			int commLikeCount, Date commRegDate, String fontNo, Attachment attach) {
+			int commLikeCount, Date commRegDate, String fontNo, String memberNo, Attachment attach) {
 		super();
 		this.commNo = commNo;
 		this.commTitle = commTitle;
@@ -34,6 +35,7 @@ public class Community implements Serializable {
 		this.commLikeCount = commLikeCount;
 		this.commRegDate = commRegDate;
 		this.fontNo = fontNo;
+		this.memberNo = memberNo;
 		this.attach = attach;
 	}
 	public String getCommNo() {
@@ -84,6 +86,12 @@ public class Community implements Serializable {
 	public void setFontNo(String fontNo) {
 		this.fontNo = fontNo;
 	}
+	public String getMemberNo() {
+		return memberNo;
+	}
+	public void setMemberNo(String memberNo) {
+		this.memberNo = memberNo;
+	}
 	public Attachment getAttach() {
 		return attach;
 	}
@@ -94,7 +102,8 @@ public class Community implements Serializable {
 	public String toString() {
 		return "Community [commNo=" + commNo + ", commTitle=" + commTitle + ", commWriter=" + commWriter
 				+ ", commContent=" + commContent + ", commViewCount=" + commViewCount + ", commLikeCount="
-				+ commLikeCount + ", commRegDate=" + commRegDate + ", fontNo=" + fontNo + ", attach=" + attach + "]";
+				+ commLikeCount + ", commRegDate=" + commRegDate + ", fontNo=" + fontNo + ", memberNo=" + memberNo
+				+ ", attach=" + attach + "]";
 	}
 	
 

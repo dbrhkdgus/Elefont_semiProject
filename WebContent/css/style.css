@@ -1716,8 +1716,7 @@ text-align: center;
 .re-reply-box{
 	display: flex;
 	margin-left: 13px;
-	width: 500px;
-	align-items: center;
+	align-items: flex-start;
 	margin-top: 5px;
 }
 .re-reply-box img{
@@ -1734,16 +1733,12 @@ text-align: center;
 }
 .reply-box{
     display: flex;
-    text-align: center;
     margin-top: 10px;
     width: 400px;
-    height: 30px;
     background-color: #ECF2F0;
     flex-direction: row;
     flex-wrap: nowrap;
-    align-items: center;
-
-
+    align-items: flex-start;
 }
 
 #btn-rep-update{
@@ -2564,12 +2559,18 @@ font-size: 16px;
 #coupon-enroll-tbl tr:first-of-type td{
 	text-align:right;
 }
-.coupon-result{
+#coupon-result{
 	width: 400px;
 	height: 140px;
 	background-color: #A0BFB5;
 	border-radius: 10px;
 	overflow:auto;
+}
+#coupon-result ol{
+	text-align : center;
+	color : #fff;
+    padding-inline-start: 0;
+    padding : 25px 0;
 }
 .font-search-bar{
 	text-align: right;
@@ -2766,8 +2767,14 @@ font-size: 16px;
 	width: 92%;
 	margin-top: 10px;
 }
+.comm-board-re-repEnroll{
+	margin-left: 20px;	
+}
 .comm-reply {
 	width: 900px;
+}
+.re-input-size {
+	width: 700px;
 }
 /* community picture detail 끝*/
 
