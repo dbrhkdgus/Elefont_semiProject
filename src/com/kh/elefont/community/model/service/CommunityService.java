@@ -241,6 +241,16 @@ public class CommunityService {
 		return commLikeList;
 	}
 
+
+	public List<Community> selectAllCommListByMemberNo(String memberNo) {
+		Connection conn = getConnection();
+		List<Community> communityList = communityDao.selectAllCommListByMemberNo(conn, memberNo);
+		
+		close(conn);
+		
+		return communityList;
+	}
+	
 	public List<Community> selectAllLikedCommList(String memberNo) {
 		Connection conn = getConnection();
 		List<Community> commLikeList = communityDao.selectAllLikedCommList(conn, memberNo);
