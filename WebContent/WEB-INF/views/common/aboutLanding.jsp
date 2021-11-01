@@ -19,28 +19,35 @@
                         	 <div class="about outer">
                             
                             	<div class="about inner">
+                                	<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTMrq_-30ha8PqOeFBq1zwtpnjUPwdJubwKXg&usqp=CAU" alt=""  />
   			            			<input type="submit" name="name" onclick="submitMember();" value="권혜진" > </input>
                             	</div>   
 
                              	<div class="about inner">
+                             		<img src="https://cdn.discordapp.com/attachments/893374121449254916/904649352100851762/DSC07028_2.jpg" alt="" />
                                		<input type="submit" name="name" onclick="submitMember();" value="김다현" > </input>
                           		</div>   
 
                               
                                 <div class="about inner">
+                                	<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTMrq_-30ha8PqOeFBq1zwtpnjUPwdJubwKXg&usqp=CAU" alt="" />
                               		<input type="submit" name="name" onclick="submitMember();" value="김은희" > </input>
                                 </div>   
 
                                 <div class="about inner">
+                                	<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTMrq_-30ha8PqOeFBq1zwtpnjUPwdJubwKXg&usqp=CAU" alt="" />
                               		<input type="submit" name="name" onclick="submitMember();" value="백지영" > </input>
                                 </div>   
 
                                 <div class="about inner">
+                                	<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTMrq_-30ha8PqOeFBq1zwtpnjUPwdJubwKXg&usqp=CAU" alt="" />
                                		<input type="submit" name="name" onclick="submitMember();" value="유광현" > </input>
                                 </div>   
 
                                 <div class="about inner">
+                                	<img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTMrq_-30ha8PqOeFBq1zwtpnjUPwdJubwKXg&usqp=CAU" alt="" />
      		                  		<input type="submit" name="name" onclick="submitMember();" value="이윤희" > </input>
+                                	
                                 </div>   
                         	 </div>
 
