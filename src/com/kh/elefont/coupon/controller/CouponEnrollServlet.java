@@ -45,11 +45,11 @@ public class CouponEnrollServlet extends HttpServlet {
 		
 		if("P".equals(couponType)) {
 			couponPAmount = Integer.parseInt(request.getParameter("couponRate"));
-			coupon = new Coupon(null, couponType, null, couponExpired, null, couponPAmount, 0, memberNo);
+			coupon = new Coupon(null, couponType, null, null, couponExpired, null, couponPAmount, 0, memberNo);
 		}
 		else {
 			couponDiscountRate = Double.parseDouble(request.getParameter("couponRate"));
-			coupon = new Coupon(null, couponType, null, couponExpired, null, 0, couponDiscountRate, memberNo);
+			coupon = new Coupon(null, couponType, null, null, couponExpired, null, 0, couponDiscountRate, memberNo);
 		}
 		
 		//2. 업무 로직

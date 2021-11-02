@@ -26,18 +26,17 @@
                             <table>
                                 <tr>
                                     <th rowspan="2"><i class="fas fa-user"></i></th>
-                                    <th>유저 아이디</th>
-                                    <th colspan="2">좋아요목록</th>
+                                    <th><%=loginMember.getMemberId() %>님 좋아요목록</th>
+                                    <!-- th colspan="2">좋아요목록</th> -->
                                 </tr>
                                 <tr>
-                                    <td>좋아요 카운트 수</td>
-                                    <td><button id="member-font">Font</button></td>
-                                    <td><button id="member-comm">Community</button></td>
+                                    <!-- <td>좋아요 카운트 수</td> -->
+                                     <td><button id="member-font">Font</button><button id="member-comm">Community</button></td>
                                 </tr>
                             </table>
                             
                         </div>
-                        <div class="tools comm-like-search">
+                    <!--     <div class="tools comm-like-search">
                             <select name="comm-sort" id="comm-sort">
                                 <option value="title" selected>제목으로 검색</option>
                                 <option value="writer">작성자로 검색</option>
@@ -48,7 +47,7 @@
                             <input type="text" name="comm-search" id="comm-search" placeholder="커뮤니티 검색">
                             <button><i class="fas fa-search"></i></button>
                             
-                        </div>
+                        </div> -->
                     </div>
                     <div class="comm-like-list">
 
@@ -59,6 +58,7 @@
 		String commNo = "";
 		String commWriter ="";
 		String commTitle ="";
+		int commLikeCount =0;
 		
 		
 			
@@ -72,7 +72,7 @@
 							memberNo = att.getMemberNo();
 							attachFilename = att.getRenamedFilename();
 							commTitle=comm.getCommTitle();
-				
+							commLikeCount=comm.getCommLikeCount();
 					}
 				}
 				
@@ -86,10 +86,23 @@
                              <a href="<%= request.getContextPath()%>/community/writerDetail?commWriter=<%= memberNo  %>"><i class="fas fa-user"></i><div class="like-comm-writer"> <%= commWriter %> </div></a>
                             <div class="comm-img">
                             <a href="<%= request.getContextPath()%>/community/pictureDetail?commNo=<%= commNo %>">
-                            <img src="<%=request.getContextPath() %>/upload/community/<%=attachFilename %>" alt="" /></a></div>
-                            <div class="like-comm-buttons"> 
+                            <img src="<%=request.getContextPath() %>/upload/community/<%=attachFilename %>" alt="" />
+                            </a>
+                            </div>
                            
-                                <i class="fas fa-heart"></i>
+                            <div class="like-comm-buttons"> 
+<%
+				
+				if(loginMember != null && !commLikeList.isEmpty() && commLikeList.contains(commNo)){
+%>
+						<i class="far fa-heart" data-comm-no="<%=commNo%>"><span><%=commLikeCount %></span></i>
+<%
+				}else{
+%>                                    
+						<i class="fas fa-heart" data-comm-no="<%=commNo%>"><span><%=commLikeCount %></span></i>
+<%
+				}
+%>                              
                                 <i class="fas fa-search-plus"></i>
                              </div>
                              <div class="like-comm-content">
@@ -115,6 +128,40 @@
 
     <!-- Portfolio End -->
 <script>
+
+/* 좋아요 버튼 클릭시 사용자 좋아요 여부에 따른 버튼 이벤트 */
+/* 좋아요 버튼 클릭시 사용자 좋아요 여부에 따른 버튼 이벤트 */
+	$(".fa-heart").click((e)=>{
+		
+
+		let $target = $(e.target);
+		let $commNo = $target.data("commNo");
+		console.log($commNo);
+		
+		$.ajax({
+			url: "<%= request.getContextPath()%>/community/commLike",
+			dataType: "json",
+			type: "GET",
+			data: {'commNo' : $commNo},
+			success(jsonStr){
+				console.log(jsonStr);
+				const likeValid = jsonStr["likeValid"];
+				const likeCnt = jsonStr["likeCnt"];
+				
+				if(likeValid == 1){
+					$target
+						.removeClass("far")
+						.addClass("fas");
+				}else{
+					$target
+						.removeClass("fas")
+						.addClass("far");
+				}
+				$target.html(`<span>\${likeCnt}</span>`);
+			},
+			error: console.log
+		});
+	});
 $("#member-font").click((e)=>{
 	console.log("클릭");
 	location.href = "<%=request.getContextPath()%>/member/fontLikeList"

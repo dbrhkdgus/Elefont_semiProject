@@ -9,15 +9,17 @@ List<Coupon> couponList = (List<Coupon>) request.getAttribute("couponList");
 <div class="coupon-enroll">
     <form action="#" method="POST" name="userCouponEnrollFrm">
         <h2>쿠폰 등록 번호</h2>
-        <input type="text" class="coupon-no" name="coupon-no1" id="coupon-no1">
+        <input type="text" class="coupon-no" name="coupon-no1" id="coupon-no1" value="elpo" readonly>
         <span>-</span>
         <input type="text" class="coupon-no" name="coupon-no2" id="coupon-no2">
         <span>-</span>
         <input type="text" class="coupon-no" name="coupon-no3" id="coupon-no3">
+        <input type="button" id="checkIfIHave" value="조회"></button>
         <br>
         <input type="hidden" name="memberNoToReg" id="memberNoToReg" value="<%=loginMember.getMemberNo()%>"/>
         <span>총 금액</span>
-        <h3 class="coupon-total">0P</h3>
+        <h3 id="coupon-total"></h3>
+
 
         <input type="button" id="coupon-x-btn" value="취소하기">
         <input type="button" id="coupon-submit-btn" value="등록하기" onclick="">
@@ -171,7 +173,7 @@ $("#member-coupon").click((e)=>{
 		$couponEnroll.show();
 		
 		/*User 쿠폰 사용 이벤트 - 다현 - */
-		$("#coupon-submit-btn").click((e)=>{
+		$("#checkIfIHave").click((e)=>{
 			const $frmData = $(document.userCouponEnrollFrm);
 			
 			let couponMemberNo = $("#memberNoToReg").val();
@@ -188,8 +190,19 @@ $("#member-coupon").click((e)=>{
 				success(data) {
 					console.log(`데이터 받아왔나요? : \${data}`);
 					
+					//포인트 얼마인지 보여주기
+					const couponPAmount = data["couponPAmount"]; 
+					console.log(`포인트 얼마? \${couponPAmount}`);			
+					document.getElementById("coupon-total").innerHTML = `\${couponPAmount} 원`;
+
+					
+					
 				},
-				error : console.log
+				error(xhr, textStatus, err){
+					console.log(xhr, textStatus, err);
+					alert("유효하지 않은 쿠폰입니다");
+				}
+
 				
 				
 			});
