@@ -125,7 +125,7 @@ for(Rep rep : repList){
 
                             </div><!-- 혜진추가 -->
                        </form>
-                    </div>
+                    
    								
                              
 <%
@@ -192,7 +192,7 @@ if(loginMember != null){
                              {
                                console.log("click");
                                /* $(e.target).parent().parent().next().slideToggle(500); */                                 
-                               $(e.target).parent().parent().parent().next().slideToggle(500);                                 
+                               $(e.target).parent().parent().next().slideToggle(500);                                 
                              });
                            /*  $(document.reReplyFrm).hide();
                             $('#btn-re-icon').click((e)=>{
