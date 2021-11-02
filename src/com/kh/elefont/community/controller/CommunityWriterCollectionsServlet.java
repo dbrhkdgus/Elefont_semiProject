@@ -20,7 +20,7 @@ import com.kh.elefont.member.model.vo.Member;
 /**
  * Servlet implementation class CommunityWriterCollectionsServlet
  */
-@WebServlet("/member/writerCollections")
+@WebServlet("/community/writerCollections")
 public class CommunityWriterCollectionsServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private MemberService memberService = new MemberService();
@@ -33,16 +33,18 @@ public class CommunityWriterCollectionsServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		String memberNo = request.getParameter("memberNo");
-		Member member = memberService.selectOneMemberByMemberNo(memberNo);
 		
 		List<Community> communityList = new ArrayList<>();
 		List<Attachment> attachmentList = new ArrayList<>();
+		Member member = memberService.selectOneMemberByMemberNo(memberNo);
+		Attachment profileAttachment = attachmentService.selectProfileAttachment(memberNo);
 		
 		communityList = communityService.selectAllCommListByMemberNo(memberNo);
 		attachmentList = attachmentService.selectAllCommAttachmentListByMemberNo(memberNo);
 		
 		request.setAttribute("communityList", communityList);
 		request.setAttribute("attachmentList", attachmentList);
+		request.setAttribute("profileAttachment", profileAttachment);
 		request.setAttribute("member", member);
 		
 		request.getRequestDispatcher("/WEB-INF/views/community/communityWriterCollections.jsp").forward(request, response);

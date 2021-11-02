@@ -128,6 +128,12 @@ public class AttachmentService {
 		close(conn);
 		return attachList;
 	}
+	public Attachment selectProfileAttachment(String memberNo) {
+		Connection conn = getConnection();
+		Attachment attachment = attachmentDao.selectProfileAttachment(conn, memberNo);
+		close(conn);
+		return attachment;
+	}
 	
 	
 	

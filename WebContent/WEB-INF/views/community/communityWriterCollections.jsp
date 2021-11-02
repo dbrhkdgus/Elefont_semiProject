@@ -8,6 +8,7 @@
 	List<Community> communityList = (List<Community>)request.getAttribute("communityList");
 	List<Attachment> attachmentList = (List<Attachment>)request.getAttribute("attachmentList");
 	Member member = (Member) request.getAttribute("member");
+	Attachment profileAttachment = (Attachment) request.getAttribute("profileAttachment");
 %>
 	
         <section id="comm-writer-collection" class="comm-writer-collection section-space-padding">
@@ -15,7 +16,7 @@
 			<div class="container">
                 
 				<div class="comm-like-list">
-					<img src="<%= request.getContextPath()%>/community/pictureDetail?commNo=<%= commNo %>">
+					<img src="<%= request.getContextPath()%>/upload/profilephotos/<%=profileAttachment.getRenamedFilename()%>">
 					<h4><%= member.getMemberName() %></h4>
 				</div>
  						<div class="like-comm">
