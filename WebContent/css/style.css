@@ -1442,6 +1442,11 @@ text-align: center;
     margin-left: 90px;
     align-items: center;
 }
+
+#cartFrm{
+	width:100%;
+	margin-left: 300px;
+}
 .cart_title{
     margin-top: 30px;
     text-align: left;
@@ -1517,6 +1522,12 @@ text-align: center;
 .cart_bottom_buttons{
 	margin-left:327px;
 }
+
+.member_cart_null_box{
+	text-align: center;
+    width: 25%;
+}
+   
 /* 장바구니 - 결제창 */
 
 .payment_window{
