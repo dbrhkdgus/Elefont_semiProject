@@ -19,7 +19,7 @@ String memberRole = loginMember.getMemberRole();
 if("U".equals(memberRole)){
 %>
      <div class="coupon-enroll">
-        <form action="" method="POST" name="couponEnrollFrm">
+        <form action="#" method="POST" name="userCouponEnrollFrm">
             <h2>쿠폰 등록 번호</h2>
             <input type="text" class="coupon-no" name="coupon-no1" id="coupon-no1">
             <span>-</span>
@@ -27,12 +27,13 @@ if("U".equals(memberRole)){
             <span>-</span>
             <input type="text" class="coupon-no" name="coupon-no3" id="coupon-no3">
             <br>
+            <input type="hidden" id="memberNoToReg" name="memberNoToReg" value=<%=loginMember.getMemberNo() %> />
             <span>총 금액</span>
             <h3 class="coupon-total">0P</h3>
 
             <input type="button" id="coupon-x-btn" value="취소하기">
             <input type="button" id="coupon-submit-btn" value="등록하기">
-            <input type="hidden" name="memberId">
+            <input type="hidden" id="memberIdToReg" name="memberIdToReg" value ="<%=loginMember.getMemberId()%>">
         </form>
      </div>
 <%
@@ -750,6 +751,9 @@ $(couponEnrollBtn).click((e)=>{
 	});
 });
 
+
+
+
 /* 쿠폰 이벤트 - 회원 아이디 입력 시 해당하는 회원 아이디와 번호 보여주기 */
 $(memberId).autocomplete({
 	source(request, response){
@@ -789,9 +793,30 @@ $("#member-coupon").click((e)=>{
 	if($couponEnroll.css("display","none")){
 		$couponEnroll.show();
 		
+		/*User 쿠폰 사용 이벤트 - 다현 - */
 		$("#coupon-submit-btn").click((e)=>{
-			$(document.couponEnrollFrm).submit();
+			const $frmData = $(document.userCouponEnrollFrm);
+			console.log("안녕");
+			
+			let couponMemberNo = $("#memberNoToReg").val();
+			console.log(couponMemberNo);
+			
+			let couponMemberId = $("#memberIdToReg").val();
+			console.log(`쿠폰\${couponMemberId}`);
+			
+			$.ajax({
+				url : "<%=request.getContextPath()%>/coupon/isThisCouponVaild",
+				method : "post",
+				contentType : "json",
+				
+				
+			})
+			
 		});
+		
+		/*User 쿠폰 사용 이벤트 끝 - 다현 - */
+		
+		
 		$("#coupon-x-btn").click((e)=>{
 			$couponEnroll.hide();
 		});
@@ -827,8 +852,7 @@ $(window).load((e)=>{
 		}
 	});
 });
-	
-	
+
 </script>
 
     <!-- Portfolio End -->
