@@ -4,13 +4,14 @@
 
 
 <%@include file = "/WEB-INF/views/common/header.jsp" %>
+
 <%session.removeAttribute("categoryList"); session.removeAttribute("fontList"); %>
 <script>
 const commNo = [];
 const renamedFilename = [];
 const commTitle = [];
 const commContent = [];
-$.ajax({
+ $.ajax({
 	url: "<%=request.getContextPath()%>/mainLanding",
 	dataType: "json",
 	type:"GET",
@@ -19,8 +20,23 @@ $.ajax({
 		const communityList = data["communityList"];
 		const attachmentList = data["attachmentList"];
 		console.log(communityList);
+		
 		for(let i = 0; i < fontList.length; i++){
-			$("#fonts-box").append(`<div class="test-item"> <div class="landing-fontName-textarea-box"><a href="<%=request.getContextPath()%>/shopDetail?fontNo=\${fontList[i].fontNo}">\${fontList[i].fontName}</a> </div><textarea name="" id="\${fontList[i].fontNo}" cols="30" rows="10" class="font-style" style="font-family: '\${fontList[i].fontFamily}</div>';" ></textarea><\div></div>`);
+			$("header").append(`<style>
+					@font-face {
+				    font-family: '\${fontList[i].fontFamily}';
+				    src: url('\${fontList[i].fontUrl}') format('woff');
+				    font-weight: normal;
+				    font-style: normal;
+				}
+					#\${fontList[i].fontNo}{
+						font-size : 40px;
+					}
+					
+					
+					</style>`);
+			$("#fonts-box").append(`<div class="test-item"> <div class="landing-fontName-textarea-box"><a href="<%=request.getContextPath()%>/shopDetail?fontNo=\${fontList[i].fontNo}">\${fontList[i].fontName}</a> </div><textarea name="" id="\${fontList[i].fontNo}" cols="30" rows="10" class="font-style" style="font-family:'\${fontList[i].fontFamily}';" ></textarea><\div></div>`);
+			
 		};
 		
 		
@@ -84,7 +100,10 @@ $.ajax({
 					$("body").append(`<style>
 					#rp\${i}{
 						background-image : url(<%=request.getContextPath()%>/upload/community/\${renamedFilename[i]});
+						
 					}
+					
+					
 					</style>`);
 					
 				}
@@ -93,7 +112,7 @@ $.ajax({
 		};
 	},
 	error: console.log
-});
+}); 
 
 
 
@@ -239,14 +258,7 @@ $.ajax({
                 </div>
             </div>
 
-            <div class="row">
-                <ul class="portfolio">
-                    <li class="filter" data-filter="all">MD추천</li>
-                    <li class="filter" data-filter=".filter-sale">Sale</li> <!-- 세일중인 애 -->
-                    <li class="filter" data-filter=".filter-like">좋아요순</li>
-                    <li class="filter" data-filter=".filter-view">조회순</li>
-                </ul>
-            </div>
+            
 
             <div class="portfolio-inner">
                 <div class="row" id="fonts-box">
@@ -289,9 +301,7 @@ $.ajax({
                         <h2></h2>
                         <p>
                         </p>
-                            <div class="like-button">
-                                  <i class="heart-icon"></i>
-                            </div>
+                            
                     </div>
                 </div>
 
@@ -304,9 +314,7 @@ $.ajax({
                         <h2></h2>
                         <p>
                             </p>
-                            <div class="like-button">
-                                  <i class="heart-icon"></i>
-                            </div>
+                            
                     </div>
                 </div>
 
@@ -316,10 +324,7 @@ $.ajax({
                     <div class="review-content" id="rc3">
                         <h2></h2>
                         <p></p>
-                            <div class="like-button">
-                                   <i class="heart-icon"></i>
-                                   
-                            </div>
+                           
                     </div>
                 </div>
 		
