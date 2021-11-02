@@ -67,9 +67,21 @@ List<Coupon> couponList = (List<Coupon>) request.getAttribute("couponList");
            <h4>내 좋아요 리스트</h4>
            <div class="member-list">
 <%
-	for(Font f : fontLikeList){
+	if(fontLikeList.size() < 4){	
+		for(Font f : fontLikeList){
 %>
               <a href="<%=request.getContextPath()%>/shopDetail?fontNo=<%=f.getFontNo()%>"><div class="my-font-img"><%=f.getFontName() %></div></a>
+<%
+		}
+	}else{
+		for(int i = 0; i < 3; i++){
+			Font f = fontLikeList.get(i);
+%>
+              <a href="<%=request.getContextPath()%>/shopDetail?fontNo=<%=f.getFontNo()%>"><div class="my-font-img"><%=f.getFontName() %></div></a>
+<%
+		}
+%>
+              <a href="<%=request.getContextPath()%>/member/fontLikeList"><div class="my-font-img">더보기</div></a>
 <%
 	}
 %>
@@ -92,7 +104,7 @@ List<Coupon> couponList = (List<Coupon>) request.getAttribute("couponList");
 				</thead>
 				<tbody>
 <%
-	if(fontPurchasedList != null){
+	if(!fontPurchasedList.isEmpty()){
 		for(Font _fe : fontPurchasedList){
 				FontExt fe = (FontExt) _fe;
 %>
@@ -134,7 +146,7 @@ List<Coupon> couponList = (List<Coupon>) request.getAttribute("couponList");
 				</thead>
 				<tbody>
 <%
-	if(couponList != null){
+	if(!couponList.isEmpty()){
 		for(Coupon c : couponList){
 %>
 					<tr>
@@ -215,16 +227,12 @@ $(window).load((e)=>{
 		
 		if(length > 4){
 			$fixHead.eq(index).css("height","100px");
-		}
-		else{
-			if(index != 2){
-				length = length*25 + 3;
-				$fixHead.eq(index).css("height", length+"px");
-			}
-			else{
-				length = length*27 + 3;
-				$fixHead.eq(index).css("height", length+"px");
-			}
+		}else if(length < 3){
+			length = 2*25 + 3;
+			$fixHead.eq(index).css("height", length+"px");
+		}else{
+			length = length*25 + 3;
+			$fixHead.eq(index).css("height", length+"px");
 		}
 	});
 });
