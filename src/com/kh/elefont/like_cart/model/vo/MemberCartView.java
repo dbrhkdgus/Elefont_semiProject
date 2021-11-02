@@ -5,7 +5,7 @@ import java.sql.Date;
 
 public class MemberCartView implements Serializable{
 
-	/**
+	/**	
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
@@ -17,12 +17,19 @@ public class MemberCartView implements Serializable{
 	private String fontName;
 	private int fontPrice;
 	private double fontDiscountRate;
+	private Date cartRegDate;
+	
+	
+	
 	public MemberCartView() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
+
+
+
 	public MemberCartView(String memberNo, String fontNo, String cartNo, Date fontRegDate, String fontName,
-			int fontPrice, double fontDiscountRate) {
+			int fontPrice, double fontDiscountRate, Date cartRegDate) {
 		super();
 		this.memberNo = memberNo;
 		this.fontNo = fontNo;
@@ -31,57 +38,118 @@ public class MemberCartView implements Serializable{
 		this.fontName = fontName;
 		this.fontPrice = fontPrice;
 		this.fontDiscountRate = fontDiscountRate;
+		this.cartRegDate = cartRegDate;
 	}
+
+
+
 	public String getMemberNo() {
 		return memberNo;
 	}
+
+
+
 	public void setMemberNo(String memberNo) {
 		this.memberNo = memberNo;
 	}
+
+
+
 	public String getFontNo() {
 		return fontNo;
 	}
+
+
+
 	public void setFontNo(String fontNo) {
 		this.fontNo = fontNo;
 	}
+
+
+
 	public String getCartNo() {
 		return cartNo;
 	}
+
+
+
 	public void setCartNo(String cartNo) {
 		this.cartNo = cartNo;
 	}
+
+
+
 	public Date getFontRegDate() {
 		return fontRegDate;
 	}
+
+
+
 	public void setFontRegDate(Date fontRegDate) {
 		this.fontRegDate = fontRegDate;
 	}
+
+
+
 	public String getFontName() {
 		return fontName;
 	}
+
+
+
 	public void setFontName(String fontName) {
 		this.fontName = fontName;
 	}
+
+
+
 	public int getFontPrice() {
 		return fontPrice;
 	}
+
+
+
 	public void setFontPrice(int fontPrice) {
 		this.fontPrice = fontPrice;
 	}
+
+
+
 	public double getFontDiscountRate() {
 		return fontDiscountRate;
 	}
+
+
+
 	public void setFontDiscountRate(double fontDiscountRate) {
 		this.fontDiscountRate = fontDiscountRate;
 	}
+
+
+
+	public Date getCartRegDate() {
+		return cartRegDate;
+	}
+
+
+
+	public void setCartRegDate(Date cartRegDate) {
+		this.cartRegDate = cartRegDate;
+	}
+
+
+
 	@Override
 	public String toString() {
 		return "MemberCartView [memberNo=" + memberNo + ", fontNo=" + fontNo + ", cartNo=" + cartNo + ", fontRegDate="
 				+ fontRegDate + ", fontName=" + fontName + ", fontPrice=" + fontPrice + ", fontDiscountRate="
-				+ fontDiscountRate + "]";
+				+ fontDiscountRate + ", cartRegDate=" + cartRegDate + "]";
 	}
 	
 	
+	
+	
+
 	
 
 }
