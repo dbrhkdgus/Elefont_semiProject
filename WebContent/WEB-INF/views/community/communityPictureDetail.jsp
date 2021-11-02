@@ -9,6 +9,7 @@
 <%
 	Community community = (Community)request.getAttribute("community");
 	Attachment attachment = (Attachment)request.getAttribute("attachment");
+	Attachment profileAttachment = (Attachment)request.getAttribute("profileAttachment");
 	List<Attachment> attachmentList = (List<Attachment>)request.getAttribute("attachmentList");
 	List<String> commLikeList = (List<String>) request.getAttribute("commLikeList");
 	List<Rep> repList = (List<Rep>)request.getAttribute("repList");

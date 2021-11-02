@@ -2123,6 +2123,11 @@ p { padding: 5px 0; }
 
 
 /*커뮤니티 페이지 윤희*/
+.community-profile {
+	cursor: pointer;
+	display: flex;
+    align-items: center;
+}
 .community-profile-box {
 	display: flex;
     align-items: center;
@@ -2134,7 +2139,7 @@ p { padding: 5px 0; }
     height: 28px; 
     border-radius: 70%;
     overflow: hidden;
-    margin-right: 10px;
+    margin-right: 7px;
 }
 .enrollBtn{
     display: flex;
