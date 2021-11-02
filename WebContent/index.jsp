@@ -24,23 +24,43 @@ $.ajax({
 				if(communityList[i].commNo == attachmentList[j].commNo){
 					$("#landing-community-box").append(`
 							<div class="testimonial-word text-center">
-		                    <div class="review-photo"  id="\${communityList[i].commNo}" style="background-image: url('<%=request.getContextPath()%>/upload/community/\${attachmentList[j].renamedFilename}');"></div>
+		                    	<div class="review-photo" id="\${communityList[i].commNo}" style="background-image: url('<%=request.getContextPath()%>/upload/community/\${attachmentList[j].renamedFilename}');"></div>
 		                    
-		                    <div class="review-content">
-		                        <h2>\${communityList[i].commTitle}</h2>
-		                        <p>\${communityList[i].commContent}</p>
-		                            <div class="like-button">
-		                                   <i class="heart-icon"></i>
-		                                   
-		                            </div>
-		                    </div>
-		                </div>
+		                    		<div class="review-content">
+		                        		<h2>\${communityList[i].commTitle}</h2>
+		                        		<p>\${communityList[i].commContent}</p>
+		                            	<div class="like-button">
+		                                	<i class="heart-icon"></i>  
+		                          	 	</div>
+		                    		</div>
+		               			</div>
+		               		</div>
 		                
 	                    `);
 					$("body").append(`<script>
 						$("#\${communityList[i].commNo}").click((e)=>{
 							location.href = "<%=request.getContextPath()%>/community/pictureDetail?commNo=\${communityList[i].commNo}";
-						});<\/script>`);
+						});
+						
+						/* Testimonial Carousel/Slider */
+
+						$(".testimonial-carousel-list").owlCarousel({
+						    items: 1,
+						    autoPlay: true,
+						    stopOnHover: false,
+						    navigation: true,
+						    navigationText: ["<i class='fa fa-long-arrow-left fa-2x owl-navi'></i>", "<i class='fa fa-long-arrow-right fa-2x owl-navi'></i>"],
+						    itemsDesktop: [1199, 1],
+						    itemsDesktopSmall: [980, 1],
+						    itemsTablet: [768, 1],
+						    itemsTabletSmall: false,
+						    itemsMobile: [479, 1],
+						    autoHeight: true,
+						    pagination: false,
+						    transitionStyle : "backSlide"
+						});
+						
+						<\/script>`);
 					
 				}
 			
@@ -234,7 +254,7 @@ $.ajax({
         </div>
 
         <div class="row">
-            <div class="testimonial-carousel-list margin-top-20" id="landing-community-box">
+            <div class="testimonial-carousel-list margin-top-20 " id="landing-community-box">
 
                 
 		
