@@ -20,7 +20,7 @@ $.ajax({
 		const attachmentList = data["attachmentList"];
 		console.log(communityList);
 		for(let i = 0; i < fontList.length; i++){
-			$("#fonts-box").append(`<a href="<%=request.getContextPath()%>/shopDetail?fontNo=\${fontList[i].fontNo}"><div class="test-item"> <div class="landing-fontName-textarea-box">\${fontList[i].fontName} </div><textarea name="" id="\${fontList[i].fontNo}" cols="30" rows="10" class="font-style" style="font-family: '\${fontList[i].fontFamily}</div>';" ></textarea><\div></div></a>`);
+			$("#fonts-box").append(`<div class="test-item"> <div class="landing-fontName-textarea-box"><a href="<%=request.getContextPath()%>/shopDetail?fontNo=\${fontList[i].fontNo}">\${fontList[i].fontName}</a> </div><textarea name="" id="\${fontList[i].fontNo}" cols="30" rows="10" class="font-style" style="font-family: '\${fontList[i].fontFamily}</div>';" ></textarea><\div></div>`);
 		};
 		
 		

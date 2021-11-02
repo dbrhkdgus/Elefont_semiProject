@@ -18,7 +18,6 @@ List<Attachment> commAttachmentList = (List<Attachment>)request.getAttribute("co
 List<Rep> repList = (List<Rep>)request.getAttribute("repList");
 List<Order> orderList = (List<Order>) request.getAttribute("orderList");
 List<Attachment> profileAttachList = (List<Attachment>) request.getAttribute("profileAttachList");
-System.out.println("repList@jsp : " + repList );
 int memberLikeValid = (int)request.getAttribute("likeValid");
 %>
 
