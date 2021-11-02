@@ -2691,24 +2691,28 @@ font-size: 16px;
 }
 .comm-writer-detail{
     display: flex;
-    align-items: center;
-   	 justify-content: center;
-   	 height: 1000px;
+    align-items: flex-start;
+   	justify-content: center;
 }
 .comm-writer-info{
+	position: fixed;
+	display: block;
     text-align: center;
 }
 .writer-profile-img{
+	margin-top: 80px;
     width: 270px;
     height: 270px;
 }
 .comm-writer-history{
-    margin-left: 150px;
+    margin-left: 100px;
 }
 .comm-writer-comm-history{
-   
     text-align: left;
     margin-bottom: 50px;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
 }
 .comm-writer-font-history{
     text-align: left;
@@ -2726,12 +2730,18 @@ font-size: 16px;
 	zoom : 0.8;
 }
 .comm-writer-comm-history-content{
+    width: 645px;
     display: flex;
-    justify-content: space-around;
-    margin-bottom: 30px;
+    justify-content: flex-start;
+    /* margin: 10px; */
+    flex-wrap: wrap;
+    align-items: center;
 }
 .comm-writer-comm-history-content img{
     width: 150px;
+    height: 150px;
+    margin-bottom: 9px;
+    margin-right: 10px;
 }
 
 
@@ -2786,7 +2796,7 @@ font-size: 16px;
 }
 .comm-user-content{
 	padding-left: 15px;
-    width: 400px;
+    width: 490px;
 }
 .comm-writer-info{
     text-align: centerk;
