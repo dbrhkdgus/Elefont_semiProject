@@ -5,16 +5,17 @@ List<Attachment> commAttachmentList = (List<Attachment>)request.getAttribute("co
 List<Font> fontLikeList = (List<Font>) request.getAttribute("fontLikeList");
 List<Font> fontPurchasedList = (List<Font>) request.getAttribute("fontPurchasedList");
 List<Coupon> couponList = (List<Coupon>) request.getAttribute("couponList");
+Attachment profile = (Attachment) request.getAttribute("profile");
 %>
 <div class="coupon-enroll">
-    <form action="#" method="POST" name="userCouponEnrollFrm">
+    <form action="<%=request.getContextPath()%>/coupon/redeemCoupon" method="POST" name="userCouponEnrollFrm">
         <h2>쿠폰 등록 번호</h2>
         <input type="text" class="coupon-no" name="coupon-no1" id="coupon-no1" value="elpo" readonly>
         <span>-</span>
         <input type="text" class="coupon-no" name="coupon-no2" id="coupon-no2">
         <span>-</span>
         <input type="text" class="coupon-no" name="coupon-no3" id="coupon-no3">
-        <input type="button" id="checkIfIHave" value="조회"></button>
+        <input type="button" id="checkIfIHave" value="조회">
         <br>
         <input type="hidden" name="memberNoToReg" id="memberNoToReg" value="<%=loginMember.getMemberNo()%>"/>
         <span>총 금액</span>
@@ -28,7 +29,9 @@ List<Coupon> couponList = (List<Coupon>) request.getAttribute("couponList");
 </div>
 <div class="member-container">
    <div class="member-profile">
-      <i class="fas fa-user"></i>
+      <div id="my-profile-img">
+      	<img id="my-profile-pic" src="<%= request.getContextPath()%>/upload/profilephotos/<%=profile.getRenamedFilename()%>" alt="" />
+      </div>
       <h3><%=loginMember.getMemberId() %></h3>
       <button id="btn-member-Info-Edit">설정</button>
       <hr>
@@ -53,26 +56,51 @@ List<Coupon> couponList = (List<Coupon>) request.getAttribute("couponList");
       <button id="member-coupon">쿠폰 등록</button>
     </div>
        <div class="member-comm">
-           <h4>내가 쓴 커뮤니티</h4>
+           <h4><a href="<%=request.getContextPath()%>/community/writerCollections?memberNo=<%=loginMember.getMemberNo()%>">내가 쓴 커뮤니티</a></h4>
            <div class="member-list">
-<% for(Attachment att : commAttachmentList){
+<% 
+	if(commAttachmentList.size() < 4){
+		for(Attachment att : commAttachmentList){
 	
 %>
               <a href="<%=request.getContextPath()%>/community/board"><div class="my-comm-img"><img src="<%=request.getContextPath()%>/upload/community/<%=att.getRenamedFilename()%>" alt="" /></div></a>
 
 <%	
+		}
+	}else{
+		for(int i = 0; i < 3; i++){
+			Attachment att = commAttachmentList.get(i);
+%>
+              <a href="<%=request.getContextPath()%>/community/board"><div class="my-comm-img"><img src="<%=request.getContextPath()%>/upload/community/<%=att.getRenamedFilename()%>" alt="" /></div></a>
+<%
+		}
+%>
+              <a href="<%=request.getContextPath()%>/community/writerCollections?memberNo=<%=loginMember.getMemberNo()%>"><div class="my-comm-img">더보기</div></a>
+<%
 	}
 %>
                     
            </div>
        </div>
        <div class="member-font-like">
-           <h4>내 좋아요 리스트</h4>
+           <h4><a href="<%=request.getContextPath()%>/member/fontLikeList?memberNo=<%=loginMember.getMemberNo()%>">내 좋아요 리스트</a></h4>
            <div class="member-list">
 <%
-	for(Font f : fontLikeList){
+	if(fontLikeList.size() < 4){	
+		for(Font f : fontLikeList){
 %>
               <a href="<%=request.getContextPath()%>/shopDetail?fontNo=<%=f.getFontNo()%>"><div class="my-font-img"><%=f.getFontName() %></div></a>
+<%
+		}
+	}else{
+		for(int i = 0; i < 3; i++){
+			Font f = fontLikeList.get(i);
+%>
+              <a href="<%=request.getContextPath()%>/shopDetail?fontNo=<%=f.getFontNo()%>"><div class="my-font-img"><%=f.getFontName() %></div></a>
+<%
+		}
+%>
+              <a href="<%=request.getContextPath()%>/member/fontLikeList?memberNo=<%=loginMember.getMemberNo()%>"><div class="my-font-img">더보기</div></a>
 <%
 	}
 %>
@@ -95,7 +123,7 @@ List<Coupon> couponList = (List<Coupon>) request.getAttribute("couponList");
 				</thead>
 				<tbody>
 <%
-	if(fontPurchasedList != null){
+	if(!fontPurchasedList.isEmpty()){
 		for(Font _fe : fontPurchasedList){
 				FontExt fe = (FontExt) _fe;
 %>
@@ -137,7 +165,7 @@ List<Coupon> couponList = (List<Coupon>) request.getAttribute("couponList");
 				</thead>
 				<tbody>
 <%
-	if(couponList != null){
+	if(!couponList.isEmpty()){
 		for(Coupon c : couponList){
 %>
 					<tr>
@@ -165,7 +193,7 @@ List<Coupon> couponList = (List<Coupon>) request.getAttribute("couponList");
           </div>
       </div>
     </div>
-</div>       
+</div> 
 <script>
 $("#member-coupon").click((e)=>{
 	const $couponEnroll = $(".coupon-enroll");
@@ -197,6 +225,7 @@ $("#member-coupon").click((e)=>{
 					$("#couponCheckVaild").val(1);
 					
 				},
+				//유효하지 않은 쿠폰일 시 alert 띄우고 input 값 지우기
 				error(xhr, textStatus, err){
 					console.log(xhr, textStatus, err);
 					alert("유효하지 않은 쿠폰입니다");
@@ -204,10 +233,7 @@ $("#member-coupon").click((e)=>{
 					coupons[1].value = "";
 					coupons[2].value = "";
 					document.getElementById("coupon-total").innerHTML = "";
-				}
-
-				
-				
+				}			
 			});
 			
 		});
@@ -237,19 +263,16 @@ $(window).load((e)=>{
 		
 		if(length > 4){
 			$fixHead.eq(index).css("height","100px");
-		}
-		else{
-			if(index != 2){
-				length = length*25 + 3;
-				$fixHead.eq(index).css("height", length+"px");
-			}
-			else{
-				length = length*27 + 3;
-				$fixHead.eq(index).css("height", length+"px");
-			}
+		}else if(length < 3){
+			length = 2*25 + 3;
+			$fixHead.eq(index).css("height", length+"px");
+		}else{
+			length = length*25 + 3;
+			$fixHead.eq(index).css("height", length+"px");
 		}
 	});
 });
+
 	
 	function LetsRegCoupon(){
 		const $vaild = $("#couponCheckVaild").val();
@@ -258,5 +281,21 @@ $(window).load((e)=>{
 		if($vaild !=1){
 			alert("쿠폰 조회가 필요합니다");
 		}
+		if($vaild == 1){
+			if(confirm("쿠폰을 등록하시겠습니까?")) {
+				$(document.userCouponEnrollFrm).submit()				
+			}
+			
+		}
 	}
+	
+	$("#coupon-no2").change(() => {
+		$("#couponCheckVaild").val(0);
+		
+	});
+	
+	$("#coupon-no3").change(() => {
+		$("#couponCheckVaild").val(0);
+		
+	});
 </script>          

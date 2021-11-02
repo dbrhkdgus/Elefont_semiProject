@@ -4,10 +4,13 @@
 List<Font> approvalList = (List<Font>)request.getAttribute("approvalList");
 List<Font> checkedList = (List<Font>)request.getAttribute("checkedList");
 List<Font> auditList = (List<Font>)request.getAttribute("auditList");
+Attachment profile = (Attachment) request.getAttribute("profile");
 %>
         <div class="member-container">
          <div class="member-profile">
-            <i class="fas fa-user"></i>
+            <div id="my-profile-img">
+		      	<img id="my-profile-pic" src="<%= request.getContextPath()%>/upload/profilephotos/<%=profile.getRenamedFilename()%>" alt="" />
+		     </div>
             <h3><%=loginMember.getMemberId() %></h3>
             <button id="btn-member-Info-Edit">설정</button>
             <hr>

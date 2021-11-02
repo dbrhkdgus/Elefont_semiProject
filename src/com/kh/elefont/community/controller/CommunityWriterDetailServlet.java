@@ -36,7 +36,7 @@ public class CommunityWriterDetailServlet extends HttpServlet {
 		// 업무로직
 		Member writerMember = new Member();
 		writerMember = memberService.selectOneMemberByMemberNo(memberNo);
-		
+		Attachment profileAttachment = attachmentService.selectProfileAttachment(memberNo);
 		
 		
 		// 게시물 수 
@@ -48,6 +48,7 @@ public class CommunityWriterDetailServlet extends HttpServlet {
 		request.setAttribute("writerMember", writerMember);
 		request.setAttribute("totalCommunityByWriter", totalCommunityByWriter);
 		request.setAttribute("attachmentList", attachmentList);
+		request.setAttribute("profileAttachment", profileAttachment);
 		
 		request.getRequestDispatcher("/WEB-INF/views/community/communityWriterDetail.jsp").forward(request, response);
 	}

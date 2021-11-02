@@ -637,6 +637,31 @@ public class MemberDao {
 	}
 
 
+	public int updateMemberPoint(Connection conn, int couponPrice, String memberNo) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String sql = prop.getProperty("updateCouponPoint");
+		System.out.println("dao에서 받은 쿠폰 충전 금액은 :" + couponPrice);
+		//updateCouponPoint = update member set member_point = member_point + ? 
+		//where member_no =?
+		
+		try {
+			pstmt=conn.prepareStatement(sql);
+			pstmt.setInt(1, couponPrice);
+			pstmt.setString(2, memberNo);
+			
+			result = pstmt.executeUpdate();
+			
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		return result;
+	}
+
+
 
 
 
