@@ -109,6 +109,7 @@ public class CommunityDao {
 				community.setCommRegDate(rset.getDate("comm_reg_date"));
 				community.setFontNo(rset.getString("font_no"));
 				community.setCommTitle(rset.getString("comm_title"));
+				community.setMemberNo(rset.getString("member_no"));
 				
 				communityList.add(community);
 				

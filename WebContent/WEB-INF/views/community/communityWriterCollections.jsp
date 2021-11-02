@@ -15,9 +15,19 @@
           
 			<div class="container">
                 
-				<div class="comm-like-list">
-					<img src="<%= request.getContextPath()%>/upload/profilephotos/<%=profileAttachment.getRenamedFilename()%>">
+				<div class="writer-collection-profile" onclick="location.href='<%= request.getContextPath()%>/community/writerDetail?commWriter=<%= profileAttachment.getMemberNo() %>'">
+					<div class= "writer-profile-photo-box">
+					<img class="community-profile-photo" src="<%= request.getContextPath()%>/upload/profilephotos/<%=profileAttachment.getRenamedFilename()%>">
+					</div>
 					<h4><%= member.getMemberName() %></h4>
+				</div>
+				<div>
+					<ul class="writer-collection-menu">
+						<li class="writer-collection-list">커뮤니티 이력</li>
+						<li class="writer-collection-list">좋아요한 폰트</li>
+						<li class="writer-collection-list">좋아요한 커뮤니티</li>
+					</ul>
+				
 				</div>
  						<div class="like-comm">
 <%--                            <a href="<%= request.getContextPath()%>/community/writerDetail?writer=<% userId%>"><i class="fas fa-user"></i><div class="like-comm-writer"> user id </div></a> --%>

@@ -306,5 +306,79 @@ public class AttachmentDao {
 		
 		return attachment;
 	}
+	public List<Attachment> selectAllprofileAttachmentList(Connection conn) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		List<Attachment> profileAttachmentList = new ArrayList<>();
+		
+		String sql = prop.getProperty("selectAllprofileAttachmentList");
+		
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				Attachment attachment = new Attachment();
+				attachment.setAttNo(rset.getInt("att_no"));
+				attachment.setMemberNo(rset.getString("member_no"));
+				attachment.setCommNo(rset.getString("comm_no"));
+				attachment.setFontNo(rset.getString("font_no"));
+				attachment.setOriginalFilename(rset.getString("original_filename"));
+				attachment.setRenamedFilename(rset.getString("renamed_filename"));
+				attachment.setRegDate(rset.getDate("reg_date"));
+				
+				
+				profileAttachmentList.add(attachment);
+				
+			}
+				
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		System.out.println("profileAttachmentListDao@" + profileAttachmentList);
+		return profileAttachmentList;
+	}
+	public List<Attachment> selectAllAttachmentList(Connection conn) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		List<Attachment> allAttachmentList = new ArrayList<>();
+		
+		String sql = prop.getProperty("selectAllAttachmentList");
+		
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				Attachment attachment = new Attachment();
+				attachment.setAttNo(rset.getInt("att_no"));
+				attachment.setMemberNo(rset.getString("member_no"));
+				attachment.setCommNo(rset.getString("comm_no"));
+				attachment.setFontNo(rset.getString("font_no"));
+				attachment.setOriginalFilename(rset.getString("original_filename"));
+				attachment.setRenamedFilename(rset.getString("renamed_filename"));
+				attachment.setRegDate(rset.getDate("reg_date"));
+				
+				
+				allAttachmentList.add(attachment);
+				
+			}
+				
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		System.out.println("allAttachmentListDao@" + allAttachmentList);
+		return allAttachmentList;
+	}
   
 }
