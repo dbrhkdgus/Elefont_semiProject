@@ -24,6 +24,7 @@ $.ajax({
 			
 			console.log(fontList[i].fontName);
 			$("#fonts-box").append(`<a href="<%=request.getContextPath()%>/shopDetail?fontNo=\${fontList[i].fontNo}"><div class="test-item"> <div class="landing-fontName-textarea-box">\${fontList[i].fontName} </div><textarea name="" id="\${fontList[i].fontNo}" cols="30" rows="10" class="font-style" style="font-family: '\${fontList[i].fontFamily}</div>';" ></textarea><\div></div></a>`);
+			$("#landing-community-box").append(``);
 		}	
 	},
 	error: console.log
@@ -211,50 +212,9 @@ $.ajax({
         </div>
 
         <div class="row">
-            <div class="testimonial-carousel-list margin-top-20">
+            <div class="testimonial-carousel-list margin-top-20" id="landing-community-box">
 
-                <div class="testimonial-word text-center">
-                    <div class="review-photo" style="background-image: url(https://cdn.crowdpic.net/list-thumb/thumb_l_6E3D0D96ADF1E2E821C86602AF03B960.jpg);"></div>
-                    <div class="review-content">
-                        <h2>BEST-REVIEW1</h2>
-                        <p>quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                            Duisauteiruredolor in reprehenderit in voluptate.
-                        </p>
-                            <div class="like-button">
-                                  <i class="heart-icon"></i>
-                            </div>
-                    </div>
-                </div>
-
-                <div class="testimonial-word text-center">
-                	
-                	<!-- 이미지에 호버시 마우스 커서 모양 변경처리하기 -->
-                    <div class="review-photo"  style="background-image: url(http://image.kmib.co.kr/online_image/2020/0825/612212110014937570_1.jpg);" onclick = "location.href='<%= request.getContextPath()%>/review/?~';"></div>
-                    
-                    <div class="review-content">
-                        <h2>BEST-REVIEW2</h2>
-                        <p>quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                            Duisauteiruredolor in reprehenderit in voluptate.
-                            </p>
-                            <div class="like-button">
-                                  <i class="heart-icon"></i>
-                            </div>
-                    </div>
-                </div>
-
-                <div class="testimonial-word text-center">
-                    <div class="review-photo"  style="background-image: url(https://cdn.imweb.me/upload/S2017101359e025984d346/bff36a6d2ced4.jpg);"></div>
-                    
-                    <div class="review-content">
-                        <h2>BEST-REVIEW3</h2>
-                        <p>quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-                            Duisauteiruredolor in reprehenderit in voluptate.</p>
-                            <div class="like-button">
-                                   <i class="heart-icon"></i>
-                                   
-                            </div>
-                    </div>
-                </div>
+                
 		
             </div>
         </div>
