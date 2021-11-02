@@ -8,19 +8,20 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 /**
- * Servlet implementation class isThisCouponVaild
+ * Servlet implementation class IsThisCouponVaild
  */
 @WebServlet("/coupon/isThisCouponVaild")
-public class isThisCouponVaild extends HttpServlet {
+public class IsThisCouponVaild extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	/**
-	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
+	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		String memberNo = request.getParameter("memberNo");
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String memberNo = request.getParameter("memberNoToReg");
 		System.out.println("비동기로 쿠폰 있는 지 확인하기 위한 memberNo : " + memberNo);
+		
+		
 	}
-
 
 }
