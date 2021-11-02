@@ -703,6 +703,13 @@ text-align: center;
     line-height: 25px;
     text-align: left;
 }
+#landing-community-box{
+	display: flex;
+    flex-direction: row;
+}
+
+
+
 /* 좋아요 버튼시작 */
 
 .like-button {
