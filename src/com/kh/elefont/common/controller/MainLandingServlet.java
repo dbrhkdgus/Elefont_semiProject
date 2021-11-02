@@ -12,6 +12,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import com.google.gson.Gson;
+import com.kh.elefont.common.model.service.AttachmentService;
+import com.kh.elefont.common.model.vo.Attachment;
 import com.kh.elefont.community.model.service.CommunityService;
 import com.kh.elefont.community.model.vo.Community;
 import com.kh.elefont.font.model.service.FontService;
@@ -25,6 +27,7 @@ public class MainLandingServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private FontService fontService = new FontService();
 	private CommunityService communityService = new CommunityService();
+	private AttachmentService attachmentService = new AttachmentService();
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
@@ -33,11 +36,12 @@ public class MainLandingServlet extends HttpServlet {
 		
 		//업무로직
 		List<Font> fontList =  fontService.selectAllApprovedFontOrderByDate();
-		List<Community> communityList = communityService.selectAllCommunityList();
-		
+		List<Community> communityList = communityService.selectAllCommunityListByLikeCount();
+		List<Attachment> attachmentList = attachmentService.selectAllCommAttachmentList();
 		Map<String, Object> map = new HashMap<>();
 		map.put("fontList", fontList);
 		map.put("communityList", communityList);
+		map.put("attachmentList", attachmentList);
 		
 		
 		Gson gson = new Gson();
