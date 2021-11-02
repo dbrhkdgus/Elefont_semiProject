@@ -182,11 +182,17 @@ $("#member-coupon").click((e)=>{
 			
 			$.ajax({
 				url : "<%=request.getContextPath()%>/coupon/isThisCouponVaild",
+				data : $frmData.serialize(),
 				method : "post",
-				contentType : "json",
+				dataType : "json",
+				success(data) {
+					console.log(`데이터 받아왔나요? : \${data}`);
+					
+				},
+				error : console.log
 				
 				
-			})
+			});
 			
 		});
 		
