@@ -1,3 +1,6 @@
+<%@page import="com.kh.elefont.font.model.vo.FontCategory"%>
+<%@page import="com.kh.elefont.order.model.vo.OrderExt"%>
+<%@page import="com.kh.elefont.order.model.vo.Order"%>
 <%@page import="com.kh.elefont.coupon.model.vo.Coupon"%>
 <%@page import="com.kh.elefont.font.model.vo.FontExt"%>
 <%@page import="com.kh.elefont.common.model.vo.Attachment"%>
@@ -165,7 +168,7 @@ List<Coupon> couponList = (List<Coupon>) request.getAttribute("couponList");
 						</thead>
 						<tbody>
 <%
-	if(!fontPurchasedList.isEmpty()){
+	if(fontPurchasedList != null){
 		for(Font _fe : fontPurchasedList){
 				FontExt fe = (FontExt) _fe;
 %>
@@ -207,7 +210,7 @@ List<Coupon> couponList = (List<Coupon>) request.getAttribute("couponList");
 						</thead>
 						<tbody>
 <%
-	if(!couponList.isEmpty()){
+	if(couponList != null){
 		for(Coupon c : couponList){
 %>
 							<tr>
@@ -271,9 +274,11 @@ List<Coupon> couponList = (List<Coupon>) request.getAttribute("couponList");
 			</div>
 <%
 }else if("A".equals(memberRole)){
-	List<Member> memberList = (List<Member>) session.getAttribute("memberList");
-	List<Font> fontList = (List<Font>) session.getAttribute("fontList");
-	List<Coupon> couponList = (List<Coupon>) session.getAttribute("couponList");
+	List<Member> memberList = (List<Member>) request.getAttribute("memberList");
+	List<Font> fontList = (List<Font>) request.getAttribute("fontList");
+	List<Coupon> couponList = (List<Coupon>) request.getAttribute("couponList");
+	List<Order> orderList = (List<Order>) request.getAttribute("orderList");
+	List<FontCategory> categoryList = (List<FontCategory>) request.getAttribute("categoryList");
 	int tabIndex = (int)session.getAttribute("tabIndex");
 	System.out.println("tabIndex@jsp = " + tabIndex);
 %>
@@ -327,7 +332,7 @@ List<Coupon> couponList = (List<Coupon>) request.getAttribute("couponList");
 							</thead>
 <%
 
-	if(memberList != null){
+	if(!memberList.isEmpty()){
 		for(Member m : memberList){
 %>
 							<tr 
@@ -358,14 +363,27 @@ List<Coupon> couponList = (List<Coupon>) request.getAttribute("couponList");
 				</div>
 				<div>
 					<div id="admin-board-section">
-						<div class="admin-board">
-							<h4>폰트 카테고리 관리</h4>
+						<div class="admin-board fc-fix" >
+						<h4>폰트 카테고리 관리</h4>
 							<table id="font-category-tbl">
 								<tr>
 									<th>No.</th>
-									<th>분류명</th>
-									<th>관리</th>
+									<th>분류코드</th>
+									<th>폰트번호</th>
 								</tr>
+<%
+	if(!categoryList.isEmpty()){
+		for(FontCategory fc : categoryList){
+%>
+								<tr>
+									<td><%= categoryList.indexOf(fc) %></td>
+									<td><%= fc.getCategoryCode() %></td>
+									<td><%= fc.getFontNo() %></td>
+								</tr>
+<%
+		}
+	}
+%>
 
 							</table>
 						</div>
@@ -403,6 +421,28 @@ List<Coupon> couponList = (List<Coupon>) request.getAttribute("couponList");
 									<th>주문 가격</th>
 								</tr>
 							</thead>
+<%
+	if(!orderList.isEmpty()){
+		for(Order _oe : orderList){
+			OrderExt oe = (OrderExt) _oe; 
+%>
+								<tr>
+									<td><%=oe.getOrderNo() %></td>
+									<td><%=oe.getMemberOrderDate() %></td>
+									<td><%=oe.getMemberId() %></td>
+									<td><%=oe.getFontName() %></td>
+									<td><%=oe.getFontPrice()*oe.getFontDiscoutRate() %></td>
+								</tr>
+<%
+		}
+	}else{
+%>
+								<tr>
+									<td colspan="5">주문 내역이 없습니다.</td>
+								</tr>
+<%
+	}
+%>
 						</table>
 					</div>
 				</div>
@@ -457,13 +497,13 @@ List<Coupon> couponList = (List<Coupon>) request.getAttribute("couponList");
 						<table id="coupon-tbl"class="fix-tbl">
 							<thead>
 								<tr>
-									<th>쿠폰 발급일</th>
-									<th>쿠폰 번호</th>
-									<th>쿠폰 종류</th>
-									<th>쿠폰 유효기간</th>
-									<th>쿠폰 사용여부</th>
-									<th>포인트 값/할인율</th>
-									<th>회원 번호</th>
+									<th width="80px">쿠폰 발급일</th>
+									<th width="120px">쿠폰 번호</th>
+									<th width="80px">쿠폰 종류</th>
+									<th width="200px">쿠폰 유효기간</th>
+									<th width="80px">쿠폰 사용여부</th>
+									<th width="90px">포인트 값/할인율</th>
+									<th width="150px">회원 번호</th>
 								</tr>
 							</thead>
 <%
@@ -530,7 +570,7 @@ List<Coupon> couponList = (List<Coupon>) request.getAttribute("couponList");
 								</thead>
 								<tbody>
 <%
-	if(fontList != null){
+	if(!fontList.isEmpty()){
 		for(Font f : fontList){
 %>
 								<tr class="font-a <%=f.getFontApproval() == null? "font-w": "N".equals(f.getFontApproval())? "font-n" :"font-y" %>">
@@ -761,7 +801,7 @@ $("#btn-member-Info-Edit").click((e)=>{
 
 /* 조회 창 높이 행 입력량에 따라 조절*/
 $(window).load((e)=>{
-	const $fixHead = $(".fix-head");
+	const $fixHead = $(".member-tbl").parent();
 	$.each($fixHead, function(index, item){
 		let $item = $(item);
 		let length = $(item).find('tr').length;
