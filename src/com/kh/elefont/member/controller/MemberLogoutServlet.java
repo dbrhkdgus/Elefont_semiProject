@@ -29,9 +29,15 @@ public class MemberLogoutServlet extends HttpServlet {
       if(session != null) {
           session.invalidate();
       };
-      if(session.getAttribute("categoryList") != null) {
-    	  session.removeAttribute("categoryList");    	  
-      }
+     
+      try {
+		if(session.getAttribute("categoryList") != null) {
+			  session.removeAttribute("categoryList");    	  
+		  }
+	} catch (Exception e) {
+		// TODO Auto-generated catch block
+		e.printStackTrace();
+	}
 	
         // 2.redirect - url을 변경
         String location = request.getContextPath() + "/";
