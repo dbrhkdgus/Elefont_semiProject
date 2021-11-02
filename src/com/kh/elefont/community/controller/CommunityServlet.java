@@ -36,12 +36,10 @@ public class CommunityServlet extends HttpServlet {
 		List<Community> communityList = new ArrayList<>();
 		List<Attachment> attachmentList = new ArrayList<>();
 		List<String> commLikeList = new ArrayList<>();
-		List<Attachment> profileAttachmentList = new ArrayList<>();
 		List<Attachment> allAttachmentList = new ArrayList<>();
 			
 		communityList = communityService.selectAllCommunityList();
 		attachmentList = attachmentService.selectAllCommAttachmentList();
-		profileAttachmentList = attachmentService.selectAllprofileAttachmentList();
 		allAttachmentList = attachmentService.selectAllAttachmentList();
 		
 		if(loginMember != null) {
@@ -51,7 +49,6 @@ public class CommunityServlet extends HttpServlet {
 		request.setAttribute("communityList", communityList);
 		request.setAttribute("attachmentList", attachmentList);
 		request.setAttribute("commLikeList", commLikeList);
-		request.setAttribute("profileAttachmentList", profileAttachmentList);
 		request.setAttribute("allAttachmentList", allAttachmentList);
 		
 		request.getRequestDispatcher("/WEB-INF/views/community/community.jsp").forward(request, response);
