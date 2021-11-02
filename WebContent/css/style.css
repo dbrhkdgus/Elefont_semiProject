@@ -1435,7 +1435,18 @@ text-align: center;
 }
 
 /* 장바구니 css */
+#cart-container{
+	display: flex;
+	margin-left: 165px;
+    flex-direction: column;
+    margin-left: 90px;
+    align-items: center;
+}
 
+#cartFrm{
+	width:100%;
+	margin-left: 300px;
+}
 .cart_title{
     margin-top: 30px;
     text-align: left;
@@ -1456,8 +1467,7 @@ text-align: center;
     display: flex;
     align-items: center;
     border: 1px solid skyblue;
-    margin: 10px;
-    
+    margin: 10px; 
     height: 150px;
     width: 80%;
     
@@ -1488,7 +1498,7 @@ text-align: center;
     width: 100%;
     text-align: left;
     align-items: center;
-    margin-left: 125px;
+   /*  margin-left: 125px; */
     margin-right: 200px;
 }
 .cart_buttons button{
@@ -1500,8 +1510,8 @@ text-align: center;
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-right: 460px;
-    margin-left: 10px;
+   /*  margin-right: 460px; */
+    margin-left: 235px;
 }
 .check_all_box input[type=checkbox]{
     transform: scale(1.7);
@@ -1509,6 +1519,15 @@ text-align: center;
     margin-bottom: 10px;
 }
 
+.cart_bottom_buttons{
+	margin-left:327px;
+}
+
+.member_cart_null_box{
+	text-align: center;
+    width: 25%;
+}
+   
 /* 장바구니 - 결제창 */
 
 .payment_window{
