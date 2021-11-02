@@ -1,6 +1,7 @@
 package com.kh.elefont.member.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -14,8 +15,8 @@ import javax.servlet.http.HttpSession;
 
 import com.google.gson.Gson;
 import com.kh.elefont.like_cart.model.service.LikeCartService;
-import com.kh.elefont.like_cart.model.vo.MemberCart;
 import com.kh.elefont.like_cart.model.vo.MemberCartView;
+import com.kh.elefont.member.model.service.MemberCartService;
 import com.kh.elefont.member.model.vo.Member;
 
 /**
@@ -26,21 +27,11 @@ public class MemberCartServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private LikeCartService likeCartService = new LikeCartService();
 
+
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		//2.사용자 값 
-		
-		//3.업무로직
-		
-		//4.
-		request
-		.getRequestDispatcher("/WEB-INF/views/member/memberCart.jsp")
-		.forward(request, response);
-
-	}
+	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		// 현재 loginMember가 좋아요를 눌렀는지 안 눌렀는지 확인 -> 안 눌렀으면 카운트 올리기/ 눌렀으면 카운트 빼기
@@ -71,18 +62,19 @@ public class MemberCartServlet extends HttpServlet {
 				List<MemberCartView> memberCartViewList = likeCartService.selectAllMemberCartViewByMemberNo(memberNo);
 				boolean flag = false;
 				for(MemberCartView mcv : memberCartViewList) {
-					if(mcv.getFontNo().equals(fontNo)) {
+					if(mcv.getFontNo().equals(fontNo) ) {
 						flag = true;
 						break;
 					}
 				
 				}
-				if(flag == false) {
+				if(!flag) {
 					
 					insertCart = likeCartService.insertCart(cartNo, fontNo);
 					insertCart = likeCartService.insertMemberCart(memberNo, cartNo);					
 				}
-					
+				
+			
 				map.put("insertCart", insertCart);
 								
 //				//json문자열로 변환
@@ -94,6 +86,29 @@ public class MemberCartServlet extends HttpServlet {
 				response.setContentType("application/json; charset = utf-8");
 				response.getWriter().print(jsonStr);
 				}
+
+	
+	//김은희가 만든부분........틀리면여기부터...보시오..
+		protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+			HttpSession session = request.getSession();
+			Member member = (Member)session.getAttribute("loginMember");
+			
+			
+			String cartNo = request.getParameter("cartNo");
+			String memberNo = member.getMemberNo();
+
+
+			
+			List<MemberCartView> memberCartList = new ArrayList<>();
+			memberCartList = likeCartService.selectMemberCartList(memberNo ,cartNo);
+			System.out.println("memberCartList@servlet"+ memberCartList );
+			
+				request.setAttribute("memberCartList", memberCartList);
+				request
+				.getRequestDispatcher("/WEB-INF/views/member/memberCart.jsp")
+				.forward(request, response);
+
+			}
 		
 	}
 
