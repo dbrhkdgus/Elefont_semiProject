@@ -33,7 +33,7 @@ if("U".equals(memberRole)){
 
             <input type="button" id="coupon-x-btn" value="취소하기">
             <input type="button" id="coupon-submit-btn" value="등록하기">
-            <input type="hidden" name="memberId">
+            <input type="hidden" id="memberIdToReg" name="memberIdToReg" value ="<%=loginMember.getMemberId()%>">
         </form>
      </div>
 <%
@@ -801,11 +801,21 @@ $("#member-coupon").click((e)=>{
 			let couponMemberNo = $("#memberNoToReg").val();
 			console.log(couponMemberNo);
 			
-			$.ajax
+			let couponMemberId = $("#memberIdToReg").val();
+			console.log(`쿠폰\${couponMemberId}`);
+			
+			$.ajax({
+				url : "<%=request.getContextPath()%>/coupon/isThisCouponVaild",
+				method : "post",
+				contentType : "json",
+				
+				
+			})
 			
 		});
 		
 		/*User 쿠폰 사용 이벤트 끝 - 다현 - */
+		
 		
 		$("#coupon-x-btn").click((e)=>{
 			$couponEnroll.hide();
