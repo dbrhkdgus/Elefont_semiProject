@@ -14,7 +14,8 @@
     <section id="portfolio" class="portfolio section-space-padding">
         <div class="cart_outter">
 
-            <div class="container">
+            <div class="container" id= "cart-container">
+            
                 <div class="cart_title">
                     <span>주문내역</span>
                     <hr>
@@ -59,6 +60,7 @@ for(MemberCartView mcv : memberCartList){
                         <input type="checkbox" name="check_all" id="check_all">
                         <label for="check_all">전체 선택</label>
                     </div>
+                    <button>전체 삭제하기</button>
                     <button>선택한 상품 삭제하기</button>
                     <button>선택한 상품 주문하기</button>
                 </div>
