@@ -25,16 +25,15 @@
 for(MemberCartView mcv : memberCartList){
 	int disresult = (int)(mcv.getFontPrice()-(mcv.getFontPrice() * mcv.getFontDiscountRate()));
 %>
-  				<form name="cartFrm"  
+  				<%-- <form name="cartFrm"  
                   	 action="<%=request.getContextPath() %>/member/memberCartDelete"
                   	 method="post"
                         enctype="multipart/form-data"
-                        >
+                        > --%>
 	                 <div class="cart_content">
 	                 
-	                        <input type="checkbox" name="cart-checklist" id="" value=<%=mcv.getFontNo()%>>
-	                        <input type="hidden" name="cart-checklist" id="" value=<%=mcv.getCartNo()%>>
-	                        <input type="hidden" name="cart-checklist" id="" value=<%=mcv.getCartRegDate()%>>
+	                        <input type="checkbox" name="font_no" id="" value=<%=mcv.getFontNo()%>>
+	                
 	                        <img src="./images/shop_test_img.png" alt="" class="cart_content_img cart_content_margin">
 	                        <div class="cart_content_font_name cart_content_margin">
 	                            <h3>상품명</h3>
@@ -45,7 +44,7 @@ for(MemberCartView mcv : memberCartList){
 	                        <div class="cart_content_font_price cart_content_margin">
 	                            <h3>판매가</h3>
 	                            <div class="cart_font_price">
-	                                <p name="chk[]"><%=mcv.getFontPrice() %></p>
+	                                <p><%=mcv.getFontPrice() %></p>
 	                                <p class="cart_price_explain">회원 할인<%=mcv.getFontDiscountRate() %> %</p>
 	                            </div>
 	                        </div>
@@ -58,7 +57,7 @@ for(MemberCartView mcv : memberCartList){
 	                            <button class="btn-order-from-cart">상품 주문하기</button>  
 	                        </div>
 	                    </div>
-              </form>
+       <!--        </form> -->
 
 <%
 }
@@ -71,9 +70,12 @@ for(MemberCartView mcv : memberCartList){
                         <label for="check_all">전체 선택</label>
                     </div>
                     <div class= "cart_bottom_buttons">
-	                    <button id="check_all_delete">전체 삭제하기</button>
-	                    <button id="selected_cart_delete">선택한 상품 삭제하기</button>
-	                    <button id="select_order_font">선택한 상품 주문하기</button>
+                    	<input type="submit"  id="check_all_delete" value="전체 삭제하기"/>
+                    	<input type="submit"  id="selected_cart_delete" value="선택한 상품 삭제하기"/>
+                    	<input type="submit"  id="select_order_font" value="선택한 상품 주문하기"/>
+	                  <!--   <button id="check_all_delete">전체 삭제하기</button> -->
+	                 <!--    <button id="selected_cart_delete">선택한 상품 삭제하기</button> -->
+	         		 <!--  <button id="select_order_font">선택한 상품 주문하기</button> -->
                     </div>
                 </div>
                 

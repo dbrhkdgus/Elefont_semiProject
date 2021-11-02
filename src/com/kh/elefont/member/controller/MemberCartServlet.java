@@ -16,7 +16,7 @@ import javax.servlet.http.HttpSession;
 import com.google.gson.Gson;
 import com.kh.elefont.like_cart.model.service.LikeCartService;
 import com.kh.elefont.like_cart.model.vo.MemberCartView;
-import com.kh.elefont.member.model.service.MemberCartService;
+
 import com.kh.elefont.member.model.vo.Member;
 
 /**
@@ -91,6 +91,7 @@ public class MemberCartServlet extends HttpServlet {
 	//김은희가 만든부분........틀리면여기부터...보시오..
 		protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 			HttpSession session = request.getSession();
+			
 			Member member = (Member)session.getAttribute("loginMember");
 			
 			
