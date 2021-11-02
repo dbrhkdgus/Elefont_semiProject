@@ -13,6 +13,7 @@ public class Coupon implements Serializable{
 	private String couponNo;
 	private String couponType;
 	private Date couponRegDate;
+	private Date couponExpDate;
 	private int couponExpired;
 	private String couponUsed;
 	private int couponPAmount;
@@ -22,12 +23,13 @@ public class Coupon implements Serializable{
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public Coupon(String couponNO, String couponType, Date couponRegDate, int couponExpired, String couponUsed,
+	public Coupon(String couponNO, String couponType, Date couponRegDate, Date couponExpDate, int couponExpired, String couponUsed,
 			int couponPAmout, double couponDiscount, String memberNo) {
 		super();
 		this.couponNo = couponNO;
 		this.couponType = couponType;
 		this.couponRegDate = couponRegDate;
+		this.couponExpDate = couponExpDate;
 		this.couponExpired = couponExpired;
 		this.couponUsed = couponUsed;
 		this.couponPAmount = couponPAmout;
@@ -51,6 +53,13 @@ public class Coupon implements Serializable{
 	}
 	public void setCouponRegDate(Date couponRegDate) {
 		this.couponRegDate = couponRegDate;
+	}
+	
+	public Date getCouponExpDate() {
+		return couponExpDate;
+	}
+	public void setCouponExpDate(Date couponExpDate) {
+		this.couponExpDate = couponExpDate;
 	}
 	public int getCouponExpired() {
 		return couponExpired;
@@ -85,9 +94,11 @@ public class Coupon implements Serializable{
 	@Override
 	public String toString() {
 		return "Coupon [couponNo=" + couponNo + ", couponType=" + couponType + ", couponRegDate=" + couponRegDate
-				+ ", couponExpired=" + couponExpired + ", couponUsed=" + couponUsed + ", couponPAmout=" + couponPAmount
-				+ ", couponDiscount=" + couponDiscount + ", memberNo=" + memberNo + "]";
+				+ ", couponExpDate=" + couponExpDate + ", couponExpired=" + couponExpired + ", couponUsed=" + couponUsed
+				+ ", couponPAmount=" + couponPAmount + ", couponDiscount=" + couponDiscount + ", memberNo=" + memberNo
+				+ "]";
 	}
+
 	
 	
 	

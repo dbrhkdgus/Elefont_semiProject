@@ -15,6 +15,7 @@ import com.kh.elefont.common.model.service.AttachmentService;
 import com.kh.elefont.common.model.vo.Attachment;
 import com.kh.elefont.community.model.service.CommunityService;
 import com.kh.elefont.community.model.vo.Community;
+import com.kh.elefont.like_cart.model.vo.CommLike;
 import com.kh.elefont.member.model.vo.Member;
 
 /**
@@ -36,15 +37,23 @@ public class CommLikeListServlet extends HttpServlet {
 		
 		List<Community> communityList = new ArrayList<>();
 		List<Attachment> attachmentList = new ArrayList<>();
-		List<Community> commLikeList = new ArrayList<>();
+//		List<String> commLikeList = new ArrayList<>();
+		List<CommLike> commLikeList = new ArrayList<>();
+		Community community = new Community();
 		
+		community =  communityService.selectOneCommunity(loginMember.getMemberNo());
 		communityList = communityService.selectAllCommunityList();
 		attachmentList = attachmentService.selectAllCommAttachmentList();
 		
 		if(loginMember != null) {
+			//commLikeList = communityService.selectAllLikedComm(loginMember.getMemberNo());
 			commLikeList = communityService.selectAllLikedCommList(loginMember.getMemberNo());
 		}
 		
+		System.out.println("컴라이크리스트서블릿!" + commLikeList);
+	
+		
+		request.setAttribute("community", community);
 		request.setAttribute("communityList", communityList);
 		request.setAttribute("attachmentList", attachmentList);
 		request.setAttribute("commLikeList", commLikeList);

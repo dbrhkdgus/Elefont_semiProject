@@ -15,6 +15,7 @@ import java.util.Properties;
 
 import com.kh.elefont.common.model.vo.Attachment;
 import com.kh.elefont.font.model.vo.Font;
+import com.kh.elefont.font.model.vo.FontCategory;
 import com.kh.elefont.font.model.vo.FontExt;
 
 
@@ -162,8 +163,6 @@ public class FontDao {
 				font.setFontWeight(rset.getString("font_weight"));
 				
 				fontList.add(font);
-				
-				
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -257,6 +256,8 @@ public class FontDao {
 				font.setFontRegDate(rset.getDate("font_reg_date"));
 				font.setFontApproval(rset.getString("font_approval") == null? " ": rset.getString("font_approval"));
 				font.setMemberId(rset.getString("member_id"));
+				font.setFontPurchasedCount(rset.getInt("font_purchased_count"));
+				font.setFontLikeCount(rset.getInt("font_like_count"));
 				
 				list.add(font);
 			}
@@ -898,6 +899,58 @@ public class FontDao {
 		}
 		return fontList;
 	}
+
+	public List<FontCategory> selectAllFontCategory(Connection conn) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		List<FontCategory> categoryList = new ArrayList<>();
+		String sql = prop.getProperty("selectAllFontCategory");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			rset = pstmt.executeQuery();
+			while(rset.next()) {
+				FontCategory fc = new FontCategory();
+				fc.setCategoryCode(rset.getString("category_code"));
+				fc.setFontNo(rset.getString("font_no"));
+				fc.setCategoryReleaseYear(rset.getDate("category_release_year"));
+				
+				categoryList.add(fc);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return categoryList;
+	}
+	public int updateFontPurchaseCount(Connection conn, Font font) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String sql = prop.getProperty("updateFontPurchaseCount");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			
+				pstmt.setInt(1, font.getFontPurchasedCount());
+				pstmt.setString(2, font.getFontNo());
+				
+				
+				result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
+
 }
 
 	

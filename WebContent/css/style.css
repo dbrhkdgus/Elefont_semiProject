@@ -2549,10 +2549,24 @@ font-size: 16px;
 #font-category-tbl{
 	border: 2px solid #000;
 	border-collapse:collapse;
-	width: 250px;
+	width: 350px;
 }
-#font-category-tbl th, #font-tbl td{
+#font-category-tbl th, #font-category-tbl td{
 	border: 1px solid #000;
+	text-align: center;
+}
+#font-category-tbl th{
+	position: sticky;
+	top: 0px;
+	background-color: #005A3C;
+	color: #fff;
+}
+.fc-fix{
+	border: 1px solid #000;
+	overflow:auto;
+	height:180px;
+	width: 350px;
+	margin: 10px auto;
 }
 
 .user-search-bar{
@@ -2596,6 +2610,7 @@ font-size: 16px;
 	border: 1px solid #000;
 	font-size: 1rem;
 	background-color: #fff;
+	text-align: center;
 }
 #adminFontupdateFrm{
 	text-align: center;
