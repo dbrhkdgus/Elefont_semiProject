@@ -1,7 +1,29 @@
+<%@page import="com.kh.elefont.like_cart.model.vo.LikeFont"%>
+<%@page import="java.util.ArrayList"%>
+<%@page import="com.kh.elefont.common.model.vo.Attachment"%>
+<%@page import="com.kh.elefont.font.model.vo.Font"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@include file = "/WEB-INF/views/common/LandingHeader.jsp" %>
+<%@include file = "/css/fontApply.jsp" %>
+<%
 
+
+	String sort = request.getParameter("sort") == null? "newest" : request.getParameter("sort");	
+	
+	List<LikeFont> likeFontList = (List<LikeFont>)request.getAttribute("likeFontList");
+	System.out.println("라이크폰트 jsp == " + likeFontList);
+	List<String> categoryList = (List<String>)session.getAttribute("categoryList");
+	String str = "";
+	for( String c : categoryList){
+		str += c;
+		
+				
+	};
+	
+	
+%>
      <!-- Portfolio Start -->
         <section id="font-likelist" class="font-likelist section-space-padding">
             <div class="container">
@@ -39,110 +61,66 @@
                         </div>
 
                   
-                        <div class="like-list">
-                            <div class="like-item">
+                          <div class="test-shop">
+                        <div class="test-item">
                                 <div class="like-item-title"> 전체 폰트 적용 </div>
     
                                 <textarea name="" id="" cols="30" rows="10"></textarea>
                                
                             </div>
-                            <div class="like-item">
-                                <a href=""><div class="like-item-title"> 광현체 </div></a>
-                                <textarea name="" id="" cols="30" rows="10"></textarea>
-                                <div class="like-item-buttons"> 
+                            
+  <%
+ 	
+    List<Attachment> fontAttchmentList = (List<Attachment>)request.getAttribute("fontAttchmentList");
+    List<String> likeList = (List<String>) request.getAttribute("likeList");
+   	//System.out.println("fontList@jsp : " + fontList);
+   	//System.out.println("fontAttchmentList@jsp : " + fontAttchmentList);
+   
+   
+   	String fontNo ="";
+   	String fontName ="";
+   	String fontFamily="";
+   	
+   	
+   	
+   	for(LikeFont fontLike : likeFontList){
+   		fontNo=fontLike.getFontNo();
+   	for(Font font : fontList){
+   		if(font.getFontNo().equals(fontNo))
+    	for(Attachment att : fontAttchmentList){
+ 	   		fontName = font.getFontName();
+    		fontFamily = font.getFontFamily();	
+    		
+    		
+   		 	}
+    	}
+%>                       
+							 <div class="test-item">
+                            <a href="<%= request.getContextPath()%>/shopDetail?fontNo=<%=fontNo %>"><div class="test-item-title"> <%=fontName %> </div></a>
+                            <textarea name="" id="<%= fontNo%>" cols="30" rows="10" class="font-style" style="font-family: '<%= fontFamily %>';" ></textarea>
+                            <div class="test-item-buttons"> 
+                                 
                                     <i class="fas fa-heart"></i>
-                                 </div>
-                            </div> 
-                            <div class="like-item">
-                                <a href=""><div class="like-item-title"> 광현체 </div></a>
                                 
-                                <textarea name="" id="" cols="30" rows="10"></textarea>
-                                <div class="like-item-buttons"> 
-                                    <i class="fas fa-heart"></i>
-                                 </div>
-                            </div>
-                            <div class="like-item">
-                                <a href=""><div class="like-item-title"> 광현체 </div></a>
-                                <textarea name="" id="" cols="30" rows="10"></textarea>
-                                <div class="like-item-buttons"> 
-                                    <i class="fas fa-heart"></i>
-                                 </div>
-                            </div>
+ 
+                          </div> 
+                 </div>         
+<%
+   		
+    }
+ %>                    
+                   
                            
-                        </div>
-                           
-                        <div class="like-list">
-                            <div class="like-item">
-                                <a href=""><div class="like-item-title"> 광현체 </div></a>
-                                <textarea name="" id="" cols="30" rows="10"></textarea>
-                                <div class="like-item-buttons"> 
-                                    <i class="fas fa-heart"></i>
-                                 </div>
-                            </div> 
-                            <div class="like-item">
-                                <a href=""><div class="like-item-title"> 광현체 </div></a>
-                                <textarea name="" id="" cols="30" rows="10"></textarea>
-                                <div class="like-item-buttons"> 
-                                    <i class="fas fa-heart"></i>
-                                 </div>
-                            </div> 
-                            <div class="like-item">
-                                <a href=""><div class="like-item-title"> 광현체 </div></a>
-                                
-                                <textarea name="" id="" cols="30" rows="10"></textarea>
-                                <div class="like-item-buttons"> 
-                                    <i class="fas fa-heart"></i>
-                                 </div>
-                            </div>
-                            <div class="like-item">
-                                <a href=""><div class="like-item-title"> 광현체 </div></a>
-                                <textarea name="" id="" cols="30" rows="10"></textarea>
-                                <div class="like-item-buttons"> 
-                                    <i class="fas fa-heart"></i>
-                                 </div>
-                            </div>
-                           
-                        </div>
-                           
-                        <div class="like-list">
-                            <div class="like-item">
-                                <a href=""><div class="like-item-title"> 광현체 </div></a>
-                                <textarea name="" id="" cols="30" rows="10"></textarea>
-                                <div class="like-item-buttons"> 
-                                    <i class="fas fa-heart"></i>
-                                 </div>
-                            </div> 
-                            <div class="like-item">
-                                <a href=""><div class="like-item-title"> 광현체 </div></a>
-                                <textarea name="" id="" cols="30" rows="10"></textarea>
-                                <div class="like-item-buttons"> 
-                                    <i class="fas fa-heart"></i>
-                                 </div>
-                            </div> 
-                            <div class="like-item">
-                                <a href=""><div class="like-item-title"> 광현체 </div></a>
-                                
-                                <textarea name="" id="" cols="30" rows="10"></textarea>
-                                <div class="like-item-buttons"> 
-                                    <i class="fas fa-heart"></i>
-                                 </div>
-                            </div>
-                            <div class="like-item">
-                                <a href=""><div class="like-item-title"> 광현체 </div></a>
-                                <textarea name="" id="" cols="30" rows="10"></textarea>
-                                <div class="like-item-buttons"> 
-                                    <i class="fas fa-heart"></i>
-                                 </div>
-                            </div>
-                           
-                        </div>
-                           
-                        </div>
-    
-    
+                    
+                      
+                          
+                         
+                            
+                            
+                 
                     </div>
                 </div>
-            </div>
+       
         </section>
     
         <!-- Portfolio End -->
