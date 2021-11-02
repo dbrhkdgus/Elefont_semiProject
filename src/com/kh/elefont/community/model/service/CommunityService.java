@@ -263,6 +263,15 @@ public class CommunityService {
 		
 		return commLikeList;
 	}
+
+	public List<Community> selectAllCommunityListByLikeCount() {
+		Connection conn = getConnection();
+		List<Community> communityList = communityDao.selectAllCommunityListByLikeCount(conn);
+		
+		close(conn);
+		
+		return communityList;
+	}
 	
 
 }
