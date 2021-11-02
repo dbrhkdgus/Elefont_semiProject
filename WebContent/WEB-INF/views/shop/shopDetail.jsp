@@ -8,6 +8,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@include file = "/WEB-INF/views/common/LandingHeader.jsp" %>
+<%@include file = "/css/fontApply.jsp" %>
 
 <% 
 Font font = (Font)request.getAttribute("font"); 
@@ -55,7 +56,7 @@ int memberLikeValid = (int)request.getAttribute("likeValid");
                     <div class="sd-font-previewer">
                         <h4  id="font-previewer-title">폰트미리보기</h4 >
                         <hr class="liner">
-                        <textarea id="shop-detail-textarea" name="shop-detail-previewer" rows="5" cols="60"></textarea>
+                        <textarea id="shop-detail-textarea" name="shop-detail-previewer" rows="5" cols="60" style="font-family: '<%= font.getFontFamily() %>';"></textarea>
                     </div>    
                     
                     <div class="shop-detail-reply">

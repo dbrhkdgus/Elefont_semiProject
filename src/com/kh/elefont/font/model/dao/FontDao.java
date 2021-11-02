@@ -316,6 +316,7 @@ public class FontDao {
 				font.setFontRegDate(rset.getDate("font_reg_date"));
 				font.setFontApproval(rset.getString("font_approval"));
 				font.setMemberId(rset.getString("member_id"));
+				font.setFontFamily(rset.getString("font_family"));
 			}
 		}catch(Exception e){
 			e.printStackTrace();
