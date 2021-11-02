@@ -72,6 +72,13 @@ public class OrderService {
 		close(conn);
 		return orderList;
 	}
+
+	public List<Order> selectAllOrder() {
+		Connection conn = getConnection();
+		List<Order> orderList = orderDao.selectAllOrderList(conn);
+		close(conn);
+		return orderList;
+	}
 		
 }
 
