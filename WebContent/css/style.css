@@ -679,6 +679,9 @@ text-align: center;
  .review-photo:hover{
     cursor:pointer;
 }
+.review-content{
+	width: 100%;
+}
 
 .testimonial-word img {
 	margin: 0px 90px 0px 0px;
@@ -700,6 +703,13 @@ text-align: center;
     line-height: 25px;
     text-align: left;
 }
+#landing-community-box{
+	display: flex;
+    flex-direction: row;
+}
+
+
+
 /* 좋아요 버튼시작 */
 
 .like-button {
@@ -2123,6 +2133,11 @@ p { padding: 5px 0; }
 
 
 /*커뮤니티 페이지 윤희*/
+.community-profile {
+	cursor: pointer;
+	display: flex;
+    align-items: center;
+}
 .community-profile-box {
 	display: flex;
     align-items: center;
@@ -2134,7 +2149,7 @@ p { padding: 5px 0; }
     height: 28px; 
     border-radius: 70%;
     overflow: hidden;
-    margin-right: 10px;
+    margin-right: 7px;
 }
 .enrollBtn{
     display: flex;
@@ -2566,7 +2581,7 @@ font-size: 16px;
 #font-category-tbl{
 	border: 2px solid #000;
 	border-collapse:collapse;
-	width: 350px;
+	width: 100%;
 }
 #font-category-tbl th, #font-category-tbl td{
 	border: 1px solid #000;
@@ -2579,10 +2594,9 @@ font-size: 16px;
 	color: #fff;
 }
 .fc-fix{
-	border: 1px solid #000;
 	overflow:auto;
 	height:180px;
-	width: 350px;
+	width: 370px;
 	margin: 10px auto;
 }
 
@@ -2640,7 +2654,6 @@ font-size: 16px;
 	text-align: center;
 }
 .fix-head{
-	border: 1px solid #000;
 	overflow:auto;
 	height:180px;
 	width: 820px;
