@@ -183,7 +183,7 @@ for(Attachment att : attachmentList){
 		cnt++;
 	} else if(attachment.getMemberNo().equals(att.getMemberNo()) && !(community.getCommNo().equals(att.getCommNo())) && cnt >= 4) {
 %>
-					<p onclick="location.href='<%=request.getContextPath()%>/member/writerCollections?memberNo=<%= att.getMemberNo() %>'">더보기<p>
+					<p onclick="location.href='<%=request.getContextPath()%>/community/writerCollections?memberNo=<%= att.getMemberNo() %>'">더보기<p>
 <%
 	}
 }
