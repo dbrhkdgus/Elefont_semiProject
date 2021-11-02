@@ -60,18 +60,22 @@ if("U".equals(memberRole)){
                 </a>
 <%
 }else if("S".equals(memberRole)){
+	List<Font> approvalList = (List<Font>)session.getAttribute("approvalList");
+	List<Font> checkedList = (List<Font>)session.getAttribute("checkedList");
+	List<Font> auditList = (List<Font>)session.getAttribute("auditList");
+	
 %>
                 <div>
                     <span>폰트 등록</span><br />
-                    <div class="font-audit">2</div>
+                    <div class="font-audit"><%=checkedList.size() %></div>
                 </div>
                 <div>
                     <span>심사중</span><br />
-                    <div class="font-audit">0</div>
+                    <div class="font-audit"><%=auditList.size() %></div>
                 </div>
                 <a href="<%=request.getContextPath()%>/seller/fontAudit">
                     <span>심사 완료</span><br />
-                    <div class="font-audit">3</div>
+                    <div class="font-audit"><%=approvalList.size() %></div>
                 </a>
 <%
 }else if("A".equals(memberRole)){
@@ -237,20 +241,18 @@ List<Coupon> couponList = (List<Coupon>) request.getAttribute("couponList");
 
 <%
 }else if("S".equals(memberRole)){
+	
 %>
 			<div class="data-graphs">
 				<div>
 					<h4>내 폰트 판매 현황</h4>
 					<div class="data-bars">
+
+
 						<div class="data-bar">
-							<div data-width="3">혜진체<span>3건</span></div>
+							<div data-width="3">?<span>?</span></div>
 						</div>
-						<div class="data-bar">
-							<div data-width="4">광현체<span>4건</span></div>
-						</div>
-						<div class="data-bar">
-							<div data-width="5">윤희체<span>5건</span></div>
-						</div>
+				
 					</div>
 				</div>
 				<div>
@@ -270,6 +272,7 @@ List<Coupon> couponList = (List<Coupon>) request.getAttribute("couponList");
 				</div>
 			</div>
 <%
+	
 }else if("A".equals(memberRole)){
 	List<Member> memberList = (List<Member>) session.getAttribute("memberList");
 	List<Font> fontList = (List<Font>) session.getAttribute("fontList");
