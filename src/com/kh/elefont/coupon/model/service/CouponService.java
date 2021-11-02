@@ -59,4 +59,31 @@ public class CouponService {
 		return couponList;
 	}
 
+	public int selectCouponPrice(String couponNo) {
+		Connection conn = getConnection();
+		
+		int couponPrice = couponDao.selectCouponPrice(conn,couponNo);
+		
+		close(conn);
+		return couponPrice;
+	}
+
+	public int deleteUsedCoupon(String couponNo) {
+		Connection conn = getConnection();
+		int result =0;
+		
+		try {
+			result = couponDao.deleteUsedCoupon(conn,couponNo);
+			commit(conn);
+		}catch(Exception e) {
+			rollback(conn);
+			throw e;
+		}finally {
+			close(conn);
+		}
+		
+		return result;
+	}
+
+
 }

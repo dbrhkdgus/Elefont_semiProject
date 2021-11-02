@@ -239,6 +239,20 @@ public class MemberService {
 		return result;
 	}
 
+	public int updateMemberPoint(int couponPrice, String memberNo) {
+		Connection conn = getConnection();
+		int result = 0;
+		try {
+			result = memberDao.updateMemberPoint(conn, couponPrice, memberNo);
+			commit(conn);
+		}catch(Exception e) {
+			rollback(conn);
+			throw e;
+		}
+		close(conn);
+		return result;
+	}
+
 
 	
 
