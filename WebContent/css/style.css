@@ -2574,7 +2574,7 @@ font-size: 16px;
 #font-category-tbl{
 	border: 2px solid #000;
 	border-collapse:collapse;
-	width: 350px;
+	width: 100%;
 }
 #font-category-tbl th, #font-category-tbl td{
 	border: 1px solid #000;
@@ -2587,10 +2587,9 @@ font-size: 16px;
 	color: #fff;
 }
 .fc-fix{
-	border: 1px solid #000;
 	overflow:auto;
 	height:180px;
-	width: 350px;
+	width: 370px;
 	margin: 10px auto;
 }
 
@@ -2648,7 +2647,6 @@ font-size: 16px;
 	text-align: center;
 }
 .fix-head{
-	border: 1px solid #000;
 	overflow:auto;
 	height:180px;
 	width: 820px;
