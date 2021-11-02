@@ -7,7 +7,7 @@ List<Font> fontPurchasedList = (List<Font>) request.getAttribute("fontPurchasedL
 List<Coupon> couponList = (List<Coupon>) request.getAttribute("couponList");
 %>
 <div class="coupon-enroll">
-    <form action="#" method="POST" name="userCouponEnrollFrm">
+    <form action="<%=request.getContextPath()%>/coupon/redeemCoupon" method="POST" name="userCouponEnrollFrm">
         <h2>쿠폰 등록 번호</h2>
         <input type="text" class="coupon-no" name="coupon-no1" id="coupon-no1" value="elpo" readonly>
         <span>-</span>
@@ -217,10 +217,7 @@ $("#member-coupon").click((e)=>{
 					coupons[1].value = "";
 					coupons[2].value = "";
 					document.getElementById("coupon-total").innerHTML = "";
-				}
-
-				
-				
+				}			
 			});
 			
 		});
@@ -267,6 +264,12 @@ $(window).load((e)=>{
 		console.log($vaild);
 		if($vaild !=1){
 			alert("쿠폰 조회가 필요합니다");
+		}
+		if($vaild == 1){
+			if(confirm("쿠폰을 등록하시겠습니까?")) {
+				$(document.userCouponEnrollFrm).submit()				
+			}
+			
 		}
 	}
 	
