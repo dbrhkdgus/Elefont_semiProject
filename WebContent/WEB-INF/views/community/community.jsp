@@ -8,78 +8,85 @@
 	List<Community> communityList = (List<Community>)request.getAttribute("communityList");
 	List<Attachment> attachmentList = (List<Attachment>)request.getAttribute("attachmentList");
 	List<String> commLikeList = (List<String>) request.getAttribute("commLikeList");
+	List<Attachment> profileAttachmentList = (List<Attachment>)request.getAttribute("profileAttachmentList");
+	List<Attachment> allAttachmentList = (List<Attachment>)request.getAttribute("allAttachmentList");
 %>
 	
-        <section id="comm-likelist" class="comm-likelist section-space-padding">
+	<section id="comm-likelist" class="comm-likelist section-space-padding">
           
-            <div class="container">
-                <div class="enrollBtn">
+		<div class="container">
+			<div class="enrollBtn">
 <%
-	if(loginMember != null){
+if(loginMember != null){
 %>
 
-                    <button id="btn-comm-board-enroll">글 작성하기</button>
+				<button id="btn-comm-board-enroll">글 작성하기</button>
 <%
 	}
 %>
-                    </div>
-                        <div class="comm-like-list">
+			</div>
+			<div class="comm-like-list">
 <%
 		String attachFilename = "";
 		String memberNo = "";
 		String commNo = "";
+		String profileAttachFilename = "";
 		
 		for(Community comm : communityList){
-			for(Attachment att : attachmentList){
+			for(Attachment att : allAttachmentList){
 				
-				if(att.getCommNo().equals(comm.getCommNo())){
+				if(att.getCommNo() != null && att.getCommNo().equals(comm.getCommNo())){
 					attachFilename = att.getRenamedFilename();
 					memberNo = att.getMemberNo();
 					commNo = att.getCommNo();
 				}
+				if(att.getCommNo() == null && att.getFontNo() == null && att.getMemberNo().equals(comm.getMemberNo())){
+					profileAttachFilename = att.getRenamedFilename();
+				}
 			}
 %>
 
- 						<div class="like-comm">
-<%--                            <a href="<%= request.getContextPath()%>/community/writerDetail?writer=<% userId%>"><i class="fas fa-user"></i><div class="like-comm-writer"> user id </div></a> --%>
-                                <a href="<%= request.getContextPath()%>/community/writerDetail?commWriter=<%= memberNo  %>"><i class="fas fa-user"></i><div class="like-comm-writer"> <%= comm.getCommWriter() %> </div></a>
-                                <div class="comm-img">
-                               		<a href="<%= request.getContextPath()%>/community/pictureDetail?commNo=<%= commNo %>">
-                               		<img src="<%= request.getContextPath()%>/upload/community/<%=attachFilename%>" alt="" />
-                               		</a>
-                               		
-                                </div>
-                                <div class="like-comm-buttons"> 
+				<div class="like-comm">
+					<div class="community-profile-box">
+						<div class="community-profile-photo-box" onclick="location.href='<%= request.getContextPath()%>/community/writerDetail?commWriter=<%= memberNo %>'">
+							<img class="community-profile-photo" src="<%= request.getContextPath()%>/upload/profilephotos/<%=profileAttachFilename%>"> 
+						</div>
+						<span><%= comm.getCommWriter() %></span>
+					</div>
+					<div class="comm-img">
+						<a href="<%= request.getContextPath()%>/community/pictureDetail?commNo=<%= commNo %>">
+						<img src="<%= request.getContextPath()%>/upload/community/<%=attachFilename%>" alt="" />
+						</a>
+	                               		
+					</div>
+					<div class="like-comm-buttons"> 
 <%
 				if(loginMember != null && !commLikeList.isEmpty() && commLikeList.contains(comm.getCommNo())){
 %>
-                                    <i class="fas fa-heart" data-comm-no="<%=comm.getCommNo()%>"><span><%=comm.getCommLikeCount() %></span></i>
+						<i class="fas fa-heart" data-comm-no="<%=comm.getCommNo()%>"><span><%=comm.getCommLikeCount() %></span></i>
 <%
 				}else{
 %>                                    
-                                    <i class="far fa-heart" data-comm-no="<%=comm.getCommNo()%>"><span><%=comm.getCommLikeCount() %></span></i>
+						<i class="far fa-heart" data-comm-no="<%=comm.getCommNo()%>"><span><%=comm.getCommLikeCount() %></span></i>
 <%
 				}
 %>                                    
-                                    <i class="fas fa-search-plus"></i>
-                                 </div>
-                                 <div class="like-comm-content">
-                                    <span><%= comm.getCommTitle() %></span>
-                                 </div>
-                            </div> 
+						<i class="fas fa-search-plus"></i>
+					</div>
+					<div class="like-comm-content">
+						<span><%= comm.getCommTitle() %></span>
+					</div>
+				</div> 
 
 <%
 		}
 	
 %>
-              
-                           
-                        </div>
-
-                    </div>
-                </div>
-            </div>
-        </section>
+			</div>
+		</div>
+	</section>
+	
+	
 <script>
 	$(".comm-img").click((e) =>{
 		<%-- location.href = "<%= request.getContextPath()%>/community/board?commNo="; --%>
