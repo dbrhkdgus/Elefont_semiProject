@@ -217,4 +217,43 @@ public class LikeCartDao {
 		return memberCartViewList;
 	}
 
+	public List<MemberCartView> selectMemberCartList(Connection conn, String memberNo) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectMemberCartList");
+		List<MemberCartView> memberCartList = new ArrayList<>();
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, memberNo);
+			
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				MemberCartView memberCartView = new MemberCartView();
+				
+				memberCartView.setMemberNo(rset.getString("member_no"));
+				memberCartView.setCartNo(rset.getString("cart_no"));
+				memberCartView.setFontName(rset.getString("font_name"));
+				memberCartView.setFontDiscountRate(rset.getDouble("font_discount_rate"));
+				memberCartView.setFontNo(rset.getString("font_no"));
+				memberCartView.setFontPrice(rset.getInt("font_price"));
+				memberCartView.setCartRegDate(rset.getDate("cart_regdate"));
+				
+				
+				memberCartList.add(memberCartList);
+			}
+			
+			
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return memberCartList;
+	}
+
 }
