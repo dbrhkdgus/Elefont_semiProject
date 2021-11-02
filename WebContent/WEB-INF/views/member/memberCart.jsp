@@ -20,35 +20,45 @@
                     <span>주문내역</span>
                     <hr>
                 </div>
+      
 <%
 for(MemberCartView mcv : memberCartList){
 	int disresult = (int)(mcv.getFontPrice()-(mcv.getFontPrice() * mcv.getFontDiscountRate()));
 %>
-                 <div class="cart_content">
-                        <input type="checkbox" name="chk[]" id="" >
-                        <img src="./images/shop_test_img.png" alt="" class="cart_content_img cart_content_margin">
-                        <div class="cart_content_font_name cart_content_margin">
-                            <h3>상품명</h3>
-                            <div class="cart_font_name">
-                                <p><%=mcv.getFontName() %></p>
-                            </div>
-                        </div>
-                        <div class="cart_content_font_price cart_content_margin">
-                            <h3>판매가</h3>
-                            <div class="cart_font_price">
-                                <p name="chk[]"><%=mcv.getFontPrice() %></p>
-                                <p class="cart_price_explain">회원 할인<%=mcv.getFontDiscountRate() %> %</p>
-                            </div>
-                        </div>
-                        
-                        <div class="cart_content_pay_price">
-                            <h3>주문금액</h3>
-                            <p><%=disresult %>P</p>
-                        </div>
-                        <div class="cart_order  cart_content_margin">
-                            <button class="btn-order-from-cart">상품 주문하기</button>  
-                        </div>
-                    </div>
+  				<form name="cartFrm"  
+                  	 action="<%=request.getContextPath() %>/member/memberCartDelete"
+                  	 method="post"
+                        enctype="multipart/form-data"
+                        >
+	                 <div class="cart_content">
+	                 
+	                        <input type="checkbox" name="cart-checklist" id="" value=<%=mcv.getFontNo()%>>
+	                        <input type="hidden" name="cart-checklist" id="" value=<%=mcv.getCartNo()%>>
+	                        <input type="hidden" name="cart-checklist" id="" value=<%=mcv.getCartRegDate()%>>
+	                        <img src="./images/shop_test_img.png" alt="" class="cart_content_img cart_content_margin">
+	                        <div class="cart_content_font_name cart_content_margin">
+	                            <h3>상품명</h3>
+	                            <div class="cart_font_name">
+	                                <p><%=mcv.getFontName() %></p>
+	                            </div>
+	                        </div>
+	                        <div class="cart_content_font_price cart_content_margin">
+	                            <h3>판매가</h3>
+	                            <div class="cart_font_price">
+	                                <p name="chk[]"><%=mcv.getFontPrice() %></p>
+	                                <p class="cart_price_explain">회원 할인<%=mcv.getFontDiscountRate() %> %</p>
+	                            </div>
+	                        </div>
+	                        
+	                        <div class="cart_content_pay_price">
+	                            <h3>주문금액</h3>
+	                            <p><%=disresult %>P</p>
+	                        </div>
+	                        <div class="cart_order  cart_content_margin">
+	                            <button class="btn-order-from-cart">상품 주문하기</button>  
+	                        </div>
+	                    </div>
+              </form>
 
 <%
 }
@@ -132,19 +142,19 @@ for(MemberCartView mcv : memberCartList){
 	});
 	
 	/* 선택된걸 배열에 넣어보는거야 */
-	$("#cart_bottom_buttons").click((e)=>{
+/* 	$("#check_all_delete").click((e)=>{
 		var chk_arr = $("input[name='chk[]']"); 
 		var chk_data = []; 
 		for( var i=0; i<chk_arr.length; i++ ) { 
-			if( chk_arr[i].checked == true ) { 
-				chk_data.push(chk_arr[i].value);
+			if( chk_arr.eq(i).is(":checked") == true ) { 
+				chk_data.push(chk_arr.eq(i).value);
 				} 
 			}
 		console.log("chk_data@jsp = "+chk_data);
-	});
+	}); */
 
 
-	/* $("#selected_cart_delete").click((e)=>{
+	/* $("#selected_cart_delete").click((e)=>{-
 		let checkedCart = $('')
 	}); */
 </script>
