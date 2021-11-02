@@ -20,14 +20,10 @@
         <div class="container">
          
 
-            <div class="commlist-inner">
-                <div class="test-shop-box">
-
-                    <div class="commlist-tools">
-                        <div class="tools commlist-change">
-                            <table>
-                                <tr>
-                                
+             <div class="test-shop-box">
+    
+                        <div class="likelist-tools">
+                               
 <%
 String likeProfilepic ="";
 	for(Attachment att : allAttachmentList ){
@@ -36,23 +32,22 @@ String likeProfilepic ="";
 			System.out.println("likeProfilepic" + likeProfilepic);
 
 %>                                
-                                    <th rowspan="2">
-                                     <div class="community-profile-photo-box">
+                                <div class="communitylike-profile-photo-box">
                                      <img src="<%= request.getContextPath()%>/upload/profilephotos/<%=likeProfilepic%>" alt="" />
                                      </div>
-                                     </th>
-                                    <th><%=loginMember.getMemberId() %>님 좋아요목록</th>
-                                    <!-- th colspan="2">좋아요목록</th> -->
+                                   <div class="likeList-profile">
+                                     
+                                   <p><%=loginMember.getMemberId() %>님 좋아요목록</p>
+                                   
 <%
 	}
 }
 %>
-                                </tr>
-                                <tr>
-                                    <!-- <td>좋아요 카운트 수</td> -->
-                                     <td><button id="member-font">Font</button><button id="member-comm">Community</button></td>
-                                </tr>
-                            </table>
+                                
+                                
+                                        <div class="likeList-profile-button">
+                                        <button id="member-font">Font</button><button id="member-comm">Community</button>
+                                        </div>
                             
                         </div>
                     <!--     <div class="tools comm-like-search">
@@ -79,6 +74,7 @@ String likeProfilepic ="";
 		String commTitle ="";
 		int commLikeCount =0;
 		String profileAttachFilename = "";
+		String writerNo ="";
 		
 		
 			
@@ -93,17 +89,18 @@ String likeProfilepic ="";
 							attachFilename = att.getRenamedFilename();
 							commTitle=comm.getCommTitle();
 							commLikeCount=comm.getCommLikeCount();
+							writerNo = comm.getMemberNo();
 							
-							
-						if(att.getFontNo() == null && att.getMemberNo().equals(memberNo)){
-							profileAttachFilename = att.getRenamedFilename();
-							System.out.println("profileAttachFilename" + profileAttachFilename);
+								for(Attachment attpic : allAttachmentList)	
+								if(attpic.getCommNo() == null && attpic.getFontNo() == null && attpic.getMemberNo().equals(writerNo)){
+									profileAttachFilename = attpic.getRenamedFilename();
+									System.out.println("profileAttachFilename@@@@@@@" + profileAttachFilename);
 						}
 					}
 				}
 			}
 		}
-			
+		
 %>
                   
                         <div class="like-comm">
