@@ -17,70 +17,80 @@ List<Community> communityList = (List<Community>)request.getAttribute("community
 List<Attachment> commAttachmentList = (List<Attachment>)request.getAttribute("commAttachmentList");
 List<Rep> repList = (List<Rep>)request.getAttribute("repList");
 List<Order> orderList = (List<Order>) request.getAttribute("orderList");
+List<Attachment> profileAttachList = (List<Attachment>) request.getAttribute("profileAttachList");
 System.out.println("repList@jsp : " + repList );
 int memberLikeValid = (int)request.getAttribute("likeValid");
 %>
 
  <section id="portfolio" class="portfolio section-space-padding" >
-           <div class="shop-detail">
-                <div class= "shop-detail-top">
-                    <div class="shop-detail-font-name"><h2><%= font.getFontName() %></h2></div>
-                    <div class="shop-detail-buttons">
-                    
-                    	<form action="<%= request.getContextPath() %>/font/fontOrder" class="shop-detail-icon" method="GET" name="PurchaseCartFrm">  
-                    	<span class="sd-buttton-content">구매</span><i class="fas fa-wallet" id="purchase-button" name="button" font-size="30px" ></i>           
-                        	<!-- <input id="purchase-button" name="button" type="button" value="구매"> -->
-                        	<span class="sd-buttton-content">장바구니</span><i class="fas fa-cart-plus" id="cart-button"  data-font-no="<%= font.getFontNo() %>" data-type="cart" name="button"></i>             
+    <div class="shop-detail">
+       <div class= "shop-detail-top">
+           <div class="shop-detail-font-name"><h2><%= font.getFontName() %></h2></div>
+           <div class="shop-detail-buttons">
+           
+	           	<form action="<%= request.getContextPath() %>/font/fontOrder" class="shop-detail-icon" method="GET" name="PurchaseCartFrm">  
+	           		<span class="sd-buttton-content">구매</span><i class="fas fa-wallet" id="purchase-button" name="button" font-size="30px" ></i>           
+               	<!-- <input id="purchase-button" name="button" type="button" value="구매"> -->
+               		<span class="sd-buttton-content">장바구니</span><i class="fas fa-cart-plus" id="cart-button"  data-font-no="<%= font.getFontNo() %>" data-type="cart" name="button"></i>             
 <%if(loginMember != null && memberLikeValid == 1){ %>                        	
-                        	<span class="sd-buttton-content">좋아요 수</span><i class="fas fa-heart" data-font-no="<%=font.getFontNo()%>" id="sd-like-button"><span><%=font.getFontLikeCount() %></span> </i>
+                    <span class="sd-buttton-content">좋아요 수</span><i class="fas fa-heart" data-font-no="<%=font.getFontNo()%>" id="sd-like-button"><span><%=font.getFontLikeCount() %></span> </i>
 <% } else{ %>          
-							<span class="sd-buttton-content">좋아요 수</span><i class="far fa-heart" data-font-no="<%=font.getFontNo()%>" id="sd-like-button"><span><%=font.getFontLikeCount() %></span> </i>
+					<span class="sd-buttton-content">좋아요 수</span><i class="far fa-heart" data-font-no="<%=font.getFontNo()%>" id="sd-like-button"><span><%=font.getFontLikeCount() %></span> </i>
 <%
 } 
 %>              
-                        	<input type="hidden" name="PerCartType" value = "" />
-                        	<input type="hidden" name="font-no" value="<%=font.getFontNo()%>"/>
-                        	<input type="hidden" name="font-name" value="<%=font.getFontName()%>"/>
-                        	<input type="hidden" name="font-price" value="<%=font.getFontPrice()%>"/>
+                    <input type="hidden" name="PerCartType" value = "" />
+                    <input type="hidden" name="font-no" value="<%=font.getFontNo()%>"/>
+                    <input type="hidden" name="font-name" value="<%=font.getFontName()%>"/>
+                    <input type="hidden" name="font-price" value="<%=font.getFontPrice()%>"/>
 <% if(loginMember != null){ %>                        	
-                        	<input type="hidden" name="email" value="<%=loginMember.getMemberEmail()%>"/>
-                       		<input type="hidden" name="member_no" value="<%= loginMember.getMemberNo() %>" />
+                    <input type="hidden" name="email" value="<%=loginMember.getMemberEmail()%>"/>
+                    <input type="hidden" name="member_no" value="<%= loginMember.getMemberNo() %>" />
 <%} %>    
-                       		<input type="hidden" name="cart_no" value="" />
-                  	  	</form>
+                    <input type="hidden" name="cart_no" value="" />
+                </form>
                     
-                    </div>
-                </div>
+			</div>
+		</div>
 
-                <div class="shop-detail-middle">
-                    <div class="sd-font-previewer">
-                        <h4  id="font-previewer-title">폰트미리보기</h4 >
-                        <hr class="liner">
-                        <textarea id="shop-detail-textarea" name="shop-detail-previewer" rows="5" cols="60" style="font-family: '<%= font.getFontFamily() %>';"></textarea>
-                    </div>    
+            <div class="shop-detail-middle">
+                <div class="sd-font-previewer">
+                    <h4  id="font-previewer-title">폰트미리보기</h4 >
+                    <hr class="liner">
+                    <textarea id="shop-detail-textarea" name="shop-detail-previewer" rows="5" cols="60" style="font-family: '<%= font.getFontFamily() %>';"></textarea>
+                </div>    
+                
+                <div class="shop-detail-reply">
+                    <h4  id="shop-detail-rep">댓글</h4>
+                    <hr class="liner">
                     
-                    <div class="shop-detail-reply">
-                        <h4  id="shop-detail-rep">댓글</h4>
-                        <hr class="liner">
-                        
-                           	<div class="shop-detail-reblybox">
+                    <div class="shop-detail-reblybox">
 <%
 if(loginMember!=null){
 %>
 
-                            <form action="<%=request.getContextPath()%>/rep/ShopRepEnroll" method="POST" >
-                                <input type="text" class="detail-inputbox" name="reply-input" placeholder="댓글을 입력하세요" >
-                                <input type="hidden" name="font-no" value="<%=font.getFontNo()%>"/>
-                                <input type="hidden" name="rep-writer" value="<%=loginMember.getMemberName()%>"/>
-                                <input type="hidden" name="member_no" value="<%= loginMember.getMemberNo() %>" />
-                                <input type="hidden" name="rep-ref" value="0" />
-                                <input type="hidden" name="rep-level" value="1" />
-                                <input type="submit" value="등록"/>
-                            </form>
+	                      <form action="<%=request.getContextPath()%>/rep/ShopRepEnroll" method="POST" >
+	                          <input type="text" class="detail-inputbox" name="reply-input" placeholder="댓글을 입력하세요" >
+	                          <input type="hidden" name="font-no" value="<%=font.getFontNo()%>"/>
+	                          <input type="hidden" name="rep-writer" value="<%=loginMember.getMemberName()%>"/>
+	                          <input type="hidden" name="member_no" value="<%= loginMember.getMemberNo() %>" />
+	                          <input type="hidden" name="rep-ref" value="0" />
+	                          <input type="hidden" name="rep-level" value="1" />
+	                          <input type="submit" value="등록"/>
+	                      </form>
 <%	
 }
+
 for(Rep rep : repList){
 	int repNo = 0;
+	String renamedProfile = "";
+	for(Attachment a : profileAttachList){
+	String memberNo = a.getMemberNo();
+	if(memberNo.equals(rep.getMemberNo())){
+		renamedProfile = a.getRenamedFilename();
+		break;
+		}
+	}
 	if(rep.getRepLevel()==1){
 		repNo = rep.getRepNo();
 		
@@ -88,45 +98,45 @@ for(Rep rep : repList){
 
  
  
-   								<form action="<%= request.getContextPath() %>/rep/DeleteUpdateRep" method="POST" name="DeleteUpdateRepFrm">
-									<div class="reply-outer-box">
-	                            		<div class="reply-box">
-	                                		<img src="https://cdn1.vectorstock.com/i/1000x1000/10/05/user-icon-vector-22391005.jpg"  id="user-profile">
-                                			<div class="reply-writer-content"><span><%=rep.getRepWriter()%> : </span><span><%=rep.getRepContent()%></span></div>
+						<form action="<%= request.getContextPath() %>/rep/DeleteUpdateRep" method="POST" name="DeleteUpdateRepFrm">
+							<div class="reply-outer-box">
+                   				<div class="reply-box">
+                       				<div class="font-rep-profile"><img src="<%=request.getContextPath() %>/upload/profilephotos/<%=renamedProfile%>"  id="user-profile"></div>
+                      				<div class="reply-writer-content"><span><%=rep.getRepWriter()%> : </span><span><%=rep.getRepContent()%></span></div>
 
-                               		 	</div> 
-                                	<i class="fab fa-replyd" style="font-size:35px; color: #005A3C; "></i>
+                          		</div> 
+                           		<i class="fab fa-replyd" style="font-size:35px; color: #005A3C; "></i>
 <%
 		if(loginMember != null &&(loginMember.getMemberNo().equals(rep.getMemberNo()) || "A".equals(loginMember.getMemberRole()))){
 		
 	
 %>
-                                	<input type="button" value="수정" class="btn-rep-transFrm" click="transFrm"/>
-                                	<input type="button" value="등록" class="btn-rep-update"/>
-                                	<input type="button" value="삭제" class="btn-rep-delete"/>
-                                	<input type="hidden" name="type" value=""/>
-                                	<input type="hidden" name="rep_no" value="<%= rep.getRepNo() %>"/>
-                                
-                                </form>
+                               	<input type="button" value="수정" class="btn-rep-transFrm" click="transFrm"/>
+                               	<input type="button" value="등록" class="btn-rep-update"/>
+                               	<input type="button" value="삭제" class="btn-rep-delete"/>
+                               	<input type="hidden" name="type" value=""/>
+                               	<input type="hidden" name="rep_no" value="<%= rep.getRepNo() %>"/>
                                 
 
                                 
                                 
 
-<% 	} %>
+<% 		} %>
 
-                                </div>
+                            </div><!-- 혜진추가 -->
+                       </form>
+                    
    								
                              
 <%
 	}else{
 	
 %>                               
-							<form action="<%= request.getContextPath() %>/rep/DeleteUpdateRep" method="POST" name="DeleteUpdateReRepFrm">
-                                 <div class="re-reply-box">
-                                 	<img src="https://i.ibb.co/chkD19T/image.png" alt="" />
-                                	<img src="https://cdn1.vectorstock.com/i/1000x1000/10/05/user-icon-vector-22391005.jpg"  id="user-profile">
-                                	<div class="re-reply-writer-content"><span><%=rep.getRepWriter()%> : </span><span><%=rep.getRepContent()%></span></div>
+						<form action="<%= request.getContextPath() %>/rep/DeleteUpdateRep" method="POST" name="DeleteUpdateReRepFrm">
+                           <div class="re-reply-box">
+                           		<img src="https://i.ibb.co/chkD19T/image.png" alt="" />
+                         	 	<div class="font-rep-profile"><img src="<%=request.getContextPath() %>/upload/profilephotos/<%=renamedProfile%>"  id="user-profile"></div>
+                          		<div class="re-reply-writer-content"><span><%=rep.getRepWriter()%> : </span><span><%=rep.getRepContent()%></span></div>
 <%
 	if(loginMember != null && (loginMember.getMemberNo().equals(rep.getMemberNo()) || "A".equals(loginMember.getMemberRole()))){
 		
@@ -140,30 +150,30 @@ for(Rep rep : repList){
                              
 <% } %>
                             
-                                </div> 
-                             </form>
+                           </div> 
+                        </form>
 <%
 		
 	}
 	
 	if(loginMember!=null){
 %>       
-                                <form action="<%=request.getContextPath()%>/rep/ShopRepEnroll"  name="reReplyFrm"class="re-rep-inputbox" method="POST" >                         
-                                <input type="text" class ="detail-inputbox re-rep-detail-inputbox"  name="reply-input" placeholder="댓글을 입력하세요" >
-                                <input type="hidden" name="font-no" value="<%=font.getFontNo()%>"/>
-                                <input type="hidden" name="rep-writer" value="<%=loginMember.getMemberName()%>"/>
-								<input type="hidden" name="member_no" value="<%= loginMember.getMemberNo() %>" />
-                                <input type="hidden" name="rep-level" value="2" />
-                                <input type="hidden" name="rep-ref" value="<%= rep.getRepRef() == 0 ? rep.getRepNo() : rep.getRepRef() %>" />
+                       <form action="<%=request.getContextPath()%>/rep/ShopRepEnroll"  name="reReplyFrm"class="re-rep-inputbox" method="POST" >                         
+	                       <input type="text" class ="detail-inputbox re-rep-detail-inputbox"  name="reply-input" placeholder="댓글을 입력하세요" >
+	                       <input type="hidden" name="font-no" value="<%=font.getFontNo()%>"/>
+	                       <input type="hidden" name="rep-writer" value="<%=loginMember.getMemberName()%>"/>
+							<input type="hidden" name="member_no" value="<%= loginMember.getMemberNo() %>" />
+	                       <input type="hidden" name="rep-level" value="2" />
+	                       <input type="hidden" name="rep-ref" value="<%= rep.getRepRef() == 0 ? rep.getRepNo() : rep.getRepRef() %>" />
                                 
-                                <input type="submit" value="등록"/>
-                            </form>
+                           <input type="submit" value="등록"/>
+                      </form>
                             
-                            <form action="<%= request.getContextPath() %>/rep/DeleteUpdateRep" method="POST" name="DeleteUpdateReRepFrm2">
-   									<input type="hidden" name="type" value="" /> 
-                                	<input type="hidden" name="rep_no" value="<%=rep.getRepNo() %>" />
+                      <form action="<%= request.getContextPath() %>/rep/DeleteUpdateRep" method="POST" name="DeleteUpdateReRepFrm2">
+   							<input type="hidden" name="type" value="" /> 
+                            <input type="hidden" name="rep_no" value="<%=rep.getRepNo() %>" />
                                 	
-   							</form>
+						</form>
 <%
 }
 %>                            
@@ -181,6 +191,7 @@ if(loginMember != null){
                       		 $('.fa-replyd').on('click', (e)=>
                              {
                                console.log("click");
+                               /* $(e.target).parent().parent().next().slideToggle(500); */                                 
                                $(e.target).parent().parent().next().slideToggle(500);                                 
                              });
                            /*  $(document.reReplyFrm).hide();
