@@ -5,6 +5,7 @@ List<Attachment> commAttachmentList = (List<Attachment>)request.getAttribute("co
 List<Font> fontLikeList = (List<Font>) request.getAttribute("fontLikeList");
 List<Font> fontPurchasedList = (List<Font>) request.getAttribute("fontPurchasedList");
 List<Coupon> couponList = (List<Coupon>) request.getAttribute("couponList");
+Attachment profile = (Attachment) request.getAttribute("profile");
 %>
 <div class="coupon-enroll">
     <form action="<%=request.getContextPath()%>/coupon/redeemCoupon" method="POST" name="userCouponEnrollFrm">
@@ -28,7 +29,9 @@ List<Coupon> couponList = (List<Coupon>) request.getAttribute("couponList");
 </div>
 <div class="member-container">
    <div class="member-profile">
-      <i class="fas fa-user"></i>
+      <div id="my-profile-img">
+      	<img id="my-profile-pic" src="<%= request.getContextPath()%>/upload/profilephotos/<%=profile.getRenamedFilename()%>" alt="" />
+      </div>
       <h3><%=loginMember.getMemberId() %></h3>
       <button id="btn-member-Info-Edit">설정</button>
       <hr>
@@ -53,21 +56,34 @@ List<Coupon> couponList = (List<Coupon>) request.getAttribute("couponList");
       <button id="member-coupon">쿠폰 등록</button>
     </div>
        <div class="member-comm">
-           <h4>내가 쓴 커뮤니티</h4>
+           <h4><a href="<%=request.getContextPath()%>/community/writerCollections?memberNo=<%=loginMember.getMemberNo()%>">내가 쓴 커뮤니티</a></h4>
            <div class="member-list">
-<% for(Attachment att : commAttachmentList){
+<% 
+	if(commAttachmentList.size() < 4){
+		for(Attachment att : commAttachmentList){
 	
 %>
               <a href="<%=request.getContextPath()%>/community/board"><div class="my-comm-img"><img src="<%=request.getContextPath()%>/upload/community/<%=att.getRenamedFilename()%>" alt="" /></div></a>
 
 <%	
+		}
+	}else{
+		for(int i = 0; i < 3; i++){
+			Attachment att = commAttachmentList.get(i);
+%>
+              <a href="<%=request.getContextPath()%>/community/board"><div class="my-comm-img"><img src="<%=request.getContextPath()%>/upload/community/<%=att.getRenamedFilename()%>" alt="" /></div></a>
+<%
+		}
+%>
+              <a href="<%=request.getContextPath()%>/community/writerCollections?memberNo=<%=loginMember.getMemberNo()%>"><div class="my-comm-img">더보기</div></a>
+<%
 	}
 %>
                     
            </div>
        </div>
        <div class="member-font-like">
-           <h4>내 좋아요 리스트</h4>
+           <h4><a href="<%=request.getContextPath()%>/member/fontLikeList?memberNo=<%=loginMember.getMemberNo()%>">내 좋아요 리스트</a></h4>
            <div class="member-list">
 <%
 	if(fontLikeList.size() < 4){	
@@ -84,7 +100,7 @@ List<Coupon> couponList = (List<Coupon>) request.getAttribute("couponList");
 <%
 		}
 %>
-              <a href="<%=request.getContextPath()%>/member/fontLikeList"><div class="my-font-img">더보기</div></a>
+              <a href="<%=request.getContextPath()%>/member/fontLikeList?memberNo=<%=loginMember.getMemberNo()%>"><div class="my-font-img">더보기</div></a>
 <%
 	}
 %>

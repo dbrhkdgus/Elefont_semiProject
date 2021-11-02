@@ -41,14 +41,14 @@ public class FontLikeListServlet extends HttpServlet {
 		List<LikeFont> likeFontList = new ArrayList<>(); 
 
 		List<String> categoryList = session.getAttribute("categoryList") == null ? new ArrayList<>() : (List<String>) session.getAttribute("categoryList");
-		
+		List<Attachment> allAttachmentList = new ArrayList<>();
 		
 		categoryList.remove(request.getParameter("flag"));
 		if (request.getParameter("add") != null || request.getParameter("category") != null) {
 			categoryList.add(request.getParameter("add"));
 		}
 
-		
+		allAttachmentList = attachmentService.selectAllAttachmentList();
 		likeFontList = fontService.selectAllLikeFontListByMemberNo(loginMember.getMemberNo());
 		fontList = fontService.selectAllApproveByCategory(categoryList);
 		
@@ -80,9 +80,9 @@ public class FontLikeListServlet extends HttpServlet {
 		request.setAttribute("likeList", likeList);
 
 		request.setAttribute("sort", sort);
+		request.setAttribute("allAttachmentList", allAttachmentList);
 		session.setAttribute("categoryList", categoryList);
 		session.setAttribute("fontList", fontList);
-		
 		
 		
 		

@@ -46,6 +46,10 @@ public class MemberDetailServlet extends HttpServlet {
 		String memberRole = loginMember.getMemberRole();
 //		System.out.println(memberRole);
 		
+		//회원 프로필 사진 불러오기
+		Attachment profile = attachmentService.selectProfileAttachment(loginMember.getMemberNo());
+		request.setAttribute("profile", profile);
+		
 		if("A".equals(memberRole)) {
 			List<Member> memberList = memberService.selectAllMember();
 			List<Font> fontList = fontService.selectAllFont();

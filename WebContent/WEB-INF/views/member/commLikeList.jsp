@@ -9,7 +9,9 @@
 	List<Community> communityList = (List<Community>)request.getAttribute("communityList");
 	List<Attachment> attachmentList = (List<Attachment>)request.getAttribute("attachmentList");
 	List<CommLike> commLikeList = (List<CommLike>) request.getAttribute("commLikeList");
-
+	List<Attachment> allAttachmentList = (List<Attachment>)request.getAttribute("allAttachmentList");
+	
+	
 	System.out.println("commlike@jsp"+ commLikeList );
 %>
   
@@ -18,22 +20,34 @@
         <div class="container">
          
 
-            <div class="commlist-inner">
-                <div class="test-shop-box">
+             <div class="test-shop-box">
+    
+                        <div class="likelist-tools">
+                               
+<%
+String likeProfilepic ="";
+	for(Attachment att : allAttachmentList ){
+		if(att.getCommNo() == null && att.getFontNo() == null && att.getMemberNo().equals(loginMember.getMemberNo())){
+			likeProfilepic = att.getRenamedFilename();
+			System.out.println("likeProfilepic" + likeProfilepic);
 
-                    <div class="commlist-tools">
-                        <div class="tools commlist-change">
-                            <table>
-                                <tr>
-                                    <th rowspan="2"><i class="fas fa-user"></i></th>
-                                    <th><%=loginMember.getMemberId() %>님 좋아요목록</th>
-                                    <!-- th colspan="2">좋아요목록</th> -->
-                                </tr>
-                                <tr>
-                                    <!-- <td>좋아요 카운트 수</td> -->
-                                     <td><button id="member-font">Font</button><button id="member-comm">Community</button></td>
-                                </tr>
-                            </table>
+%>                                
+                                <div class="communitylike-profile-photo-box">
+                                     <img src="<%= request.getContextPath()%>/upload/profilephotos/<%=likeProfilepic%>" alt="" />
+                                     </div>
+                                   <div class="likeList-profile">
+                                     
+                                   <p><%=loginMember.getMemberId() %>님 좋아요목록</p>
+                                   
+<%
+	}
+}
+%>
+                                
+                                
+                                        <div class="likeList-profile-button">
+                                        <button id="member-font">Font</button><button id="member-comm">Community</button>
+                                        </div>
                             
                         </div>
                     <!--     <div class="tools comm-like-search">
@@ -59,6 +73,8 @@
 		String commWriter ="";
 		String commTitle ="";
 		int commLikeCount =0;
+		String profileAttachFilename = "";
+		String writerNo ="";
 		
 		
 			
@@ -73,17 +89,27 @@
 							attachFilename = att.getRenamedFilename();
 							commTitle=comm.getCommTitle();
 							commLikeCount=comm.getCommLikeCount();
+							writerNo = comm.getMemberNo();
+							
+								for(Attachment attpic : allAttachmentList)	
+								if(attpic.getCommNo() == null && attpic.getFontNo() == null && attpic.getMemberNo().equals(writerNo)){
+									profileAttachFilename = attpic.getRenamedFilename();
+									System.out.println("profileAttachFilename@@@@@@@" + profileAttachFilename);
+						}
 					}
 				}
-				
 			}
 		}
-			
+		
 %>
                   
                         <div class="like-comm">
 		  				   	
-                             <a href="<%= request.getContextPath()%>/community/writerDetail?commWriter=<%= memberNo  %>"><i class="fas fa-user"></i><div class="like-comm-writer"> <%= commWriter %> </div></a>
+                             <a href="<%= request.getContextPath()%>/community/writerDetail?commWriter=<%= memberNo  %>">
+                            <div class="community-profile-photo-box">
+								<img class="community-profile-photo" src="<%= request.getContextPath()%>/upload/profilephotos/<%=profileAttachFilename%>"> 
+							</div>
+                             <div class="like-comm-writer"> <%= commWriter %> </div></a>
                             <div class="comm-img">
                             <a href="<%= request.getContextPath()%>/community/pictureDetail?commNo=<%= commNo %>">
                             <img src="<%=request.getContextPath() %>/upload/community/<%=attachFilename %>" alt="" />
