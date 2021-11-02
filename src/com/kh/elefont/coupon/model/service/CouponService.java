@@ -59,4 +59,20 @@ public class CouponService {
 		return couponList;
 	}
 
+	public int selectCouponPrice(String couponNo) {
+		Connection conn = getConnection();
+		
+		int couponPrice = couponDao.selectCouponPrice(conn,couponNo);
+		
+		close(conn);
+		return couponPrice;
+	}
+
+	public int insertPoint(int couponPrice) {
+		Connection conn = getConnection();
+		int result = couponDao.insertPoint(conn, couponPrice);
+		close(conn);			
+		return 0;
+	}
+
 }

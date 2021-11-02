@@ -220,28 +220,6 @@ CREATE TABLE rep (
     constraint fk_rep_ref foreign key(rep_ref) references rep(rep_no) on delete cascade
 );
 
-select * from point;
-CREATE TABLE point (
-	point_no	varchar2(200)	not null ,
-	point_val	varchar2(500)	not null ,
-	point_date	Date	DEFAULT sysdate not null,
-    point_name varchar2(200)
-);
-ALTER TABLE point ADD CONSTRAINT PK_POINT_POINT_NO PRIMARY KEY (
-	point_no
-);
-
-
-CREATE TABLE member_point (
-	point_no	varchar2(200)	not null ,
-	member_no	varchar2(200)	not null ,
-    constraint  fk_member_point_point_no foreign key (point_no) references point(point_no),
-    constraint  fk_member_point_member_no foreign key(member_no) references member(member_no)
-);
-ALTER TABLE member_point ADD CONSTRAINT PK_member_POINT_POINT_NO PRIMARY KEY (
-	point_no, member_no
-);
-
 --FK제약 없는테이블
 CREATE TABLE community_deleted (
 	comm_no	varchar2(500)		,
