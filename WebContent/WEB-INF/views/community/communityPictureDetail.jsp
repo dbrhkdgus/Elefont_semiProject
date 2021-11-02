@@ -11,6 +11,7 @@
 	Attachment attachment = (Attachment)request.getAttribute("attachment");
 	Attachment profileAttachment = (Attachment)request.getAttribute("profileAttachment");
 	List<Attachment> attachmentList = (List<Attachment>)request.getAttribute("attachmentList");
+	List<Attachment> allAttachmentList = (List<Attachment>)request.getAttribute("allAttachmentList");
 	List<String> commLikeList = (List<String>) request.getAttribute("commLikeList");
 	List<Rep> repList = (List<Rep>)request.getAttribute("repList");
 	
@@ -69,18 +70,28 @@ if(loginMember!=null)
 	          
 <%
 } 
+String profileAttachFilename = "";
 
 for(Rep rep : repList){
+	for(Attachment att : allAttachmentList) {
+		if(att.getMemberNo().equals(rep.getMemberNo()) && att.getCommNo() == null && att.getFontNo() == null) {
+			System.out.println("att@picturedetailjsp : " + att);
+			profileAttachFilename = att.getRenamedFilename();
+			System.out.println("atprofileAttachFilename@jsp : " +profileAttachFilename);
+		}
+	}
 	if(rep.getRepLevel()==1) {
 %>
 			<form action="<%=request.getContextPath()%>/rep/DeleteUpdateRep" method="POST" name="commRepUpdateFrm" >
 			<div class="comm-board-rep-comment">
 				<div class="comm-reply reply-box">
-	                 <img src="https://cdn1.vectorstock.com/i/1000x1000/10/05/user-icon-vector-22391005.jpg"  id="user-profile">
-                      	<div class="reply-writer-content">
-             	         	<span><%=rep.getRepWriter()%> : </span>
-                    	  	<span><%=rep.getRepContent()%></span>
-                    	</div>
+					<div class="comm-reply-profile">
+	                	<img class="community-profile-photo" src="<%= request.getContextPath()%>/upload/profilephotos/<%=profileAttachFilename%>">
+					</div>
+                     <div class="reply-writer-content">
+             	         <span><%=rep.getRepWriter()%> : </span>
+                    	 <span><%=rep.getRepContent()%></span>
+                     </div>
 				</div> 
             	<i class="fab fa-replyd" style="font-size:35px; color: #005A3C;"></i>
 <%
@@ -166,7 +177,9 @@ for(Rep rep : repList){
                     <i class="fas fa-search-plus" onclick="location.href='<%= request.getContextPath() %>/shopDetail?fontNo=<%=community.getFontNo()%>'"></i>
                 </div>
                 <div class="comm-writer-img-name" onclick="location.href='<%= request.getContextPath()%>/community/writerDetail?commWriter=<%= attachment.getMemberNo() %>'">
-                    <img class="comm-pic-writer-profile-img" src="https://i.ibb.co/c6SYFNx/free-icon-male-user-74464.png" alt="">
+                    <div class="community-detail-profile-photo-box">
+	                    <img class="community-profile-photo" src="<%= request.getContextPath()%>/upload/profilephotos/<%=profileAttachment.getRenamedFilename()%>">
+                    </div>
                     <h4><%=community.getCommWriter() %></h4>
                 </div>
                 <div class="comm-writer-comm-history-content comm-pic-detail-history">

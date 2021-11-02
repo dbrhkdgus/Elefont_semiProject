@@ -96,7 +96,7 @@ public class CommunityPictureDetailServlet extends HttpServlet {
 			
 			List<Attachment> attachmentList = attachmentService.selectAllCommAttachmentListByMemberNo(attachment.getMemberNo());
 			List<Rep> repList = repService.selectAllCommunityRepListByCommNo(commNo);
-			
+			List<Attachment> allAttachmentList = attachmentService.selectAllAttachmentList();
 			
 			 
 			
@@ -125,6 +125,7 @@ public class CommunityPictureDetailServlet extends HttpServlet {
 			request.setAttribute("attachment", attachment);
 			request.setAttribute("attachmentList", attachmentList);
 			request.setAttribute("profileAttachment", profileAttachment);
+			request.setAttribute("allAttachmentList", allAttachmentList);
 			request.getRequestDispatcher("/WEB-INF/views/community/communityPictureDetail.jsp").forward(request, response);
 		} catch (Exception e) {
 			e.printStackTrace();
