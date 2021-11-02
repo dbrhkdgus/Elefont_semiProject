@@ -31,8 +31,8 @@ public class MemberLogoutServlet extends HttpServlet {
       };
      
       try {
-		if(session.getAttribute("categoryList") != null) {
-			  session.removeAttribute("categoryList");    	  
+		if(request.getAttribute("categoryList") != null) {
+			  request.removeAttribute("categoryList");    	  
 		  }
 	} catch (Exception e) {
 		// TODO Auto-generated catch block
