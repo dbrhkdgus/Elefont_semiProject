@@ -7,7 +7,7 @@ List<Font> fontPurchasedList = (List<Font>) request.getAttribute("fontPurchasedL
 List<Coupon> couponList = (List<Coupon>) request.getAttribute("couponList");
 %>
 <div class="coupon-enroll">
-    <form action="" method="POST" name="couponEnrollFrm">
+    <form action="#" method="POST" name="userCouponEnrollFrm">
         <h2>쿠폰 등록 번호</h2>
         <input type="text" class="coupon-no" name="coupon-no1" id="coupon-no1">
         <span>-</span>
@@ -15,12 +15,13 @@ List<Coupon> couponList = (List<Coupon>) request.getAttribute("couponList");
         <span>-</span>
         <input type="text" class="coupon-no" name="coupon-no3" id="coupon-no3">
         <br>
+        <input type="hidden" name="memberNoToReg" id="memberNoToReg" value="<%=loginMember.getMemberNo()%>"/>
         <span>총 금액</span>
         <h3 class="coupon-total">0P</h3>
 
         <input type="button" id="coupon-x-btn" value="취소하기">
-        <input type="button" id="coupon-submit-btn" value="등록하기">
-        <input type="hidden" name="memberId">
+        <input type="button" id="coupon-submit-btn" value="등록하기" onclick="">
+        <input type="hidden" name="memberIdToReg" id="memberIdToReg" value="<%=loginMember.getMemberId()%>">
     </form>
 </div>
 <div class="member-container">
@@ -67,21 +68,9 @@ List<Coupon> couponList = (List<Coupon>) request.getAttribute("couponList");
            <h4>내 좋아요 리스트</h4>
            <div class="member-list">
 <%
-	if(fontLikeList.size() < 4){	
-		for(Font f : fontLikeList){
+	for(Font f : fontLikeList){
 %>
               <a href="<%=request.getContextPath()%>/shopDetail?fontNo=<%=f.getFontNo()%>"><div class="my-font-img"><%=f.getFontName() %></div></a>
-<%
-		}
-	}else{
-		for(int i = 0; i < 3; i++){
-			Font f = fontLikeList.get(i);
-%>
-              <a href="<%=request.getContextPath()%>/shopDetail?fontNo=<%=f.getFontNo()%>"><div class="my-font-img"><%=f.getFontName() %></div></a>
-<%
-		}
-%>
-              <a href="<%=request.getContextPath()%>/member/fontLikeList"><div class="my-font-img">더보기</div></a>
 <%
 	}
 %>
@@ -104,7 +93,7 @@ List<Coupon> couponList = (List<Coupon>) request.getAttribute("couponList");
 				</thead>
 				<tbody>
 <%
-	if(!fontPurchasedList.isEmpty()){
+	if(fontPurchasedList != null){
 		for(Font _fe : fontPurchasedList){
 				FontExt fe = (FontExt) _fe;
 %>
@@ -146,7 +135,7 @@ List<Coupon> couponList = (List<Coupon>) request.getAttribute("couponList");
 				</thead>
 				<tbody>
 <%
-	if(!couponList.isEmpty()){
+	if(couponList != null){
 		for(Coupon c : couponList){
 %>
 					<tr>
@@ -184,13 +173,12 @@ $("#member-coupon").click((e)=>{
 		/*User 쿠폰 사용 이벤트 - 다현 - */
 		$("#coupon-submit-btn").click((e)=>{
 			const $frmData = $(document.userCouponEnrollFrm);
-			console.log("안녕");
 			
 			let couponMemberNo = $("#memberNoToReg").val();
-			console.log(couponMemberNo);
+			console.log(`쿠폰 사용할 memberId : \${couponMemberNo}`);
 			
 			let couponMemberId = $("#memberIdToReg").val();
-			console.log(`쿠폰\${couponMemberId}`);
+			console.log(`쿠폰 사용할 memberId : \${couponMemberId}`);
 			
 			$.ajax({
 				url : "<%=request.getContextPath()%>/coupon/isThisCouponVaild",
@@ -233,12 +221,16 @@ $(window).load((e)=>{
 		
 		if(length > 4){
 			$fixHead.eq(index).css("height","100px");
-		}else if(length < 3){
-			length = 2*25 + 3;
-			$fixHead.eq(index).css("height", length+"px");
-		}else{
-			length = length*25 + 3;
-			$fixHead.eq(index).css("height", length+"px");
+		}
+		else{
+			if(index != 2){
+				length = length*25 + 3;
+				$fixHead.eq(index).css("height", length+"px");
+			}
+			else{
+				length = length*27 + 3;
+				$fixHead.eq(index).css("height", length+"px");
+			}
 		}
 	});
 });
