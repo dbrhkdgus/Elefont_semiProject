@@ -17,11 +17,57 @@ import javax.mail.internet.MimeBodyPart;
 import javax.mail.internet.MimeMessage;
 import javax.mail.internet.MimeMultipart;
 
+import com.kh.elefont.member.model.vo.Member;
 import com.kh.elefont.order.model.vo.Order;
 import com.kh.elefont.order.model.vo.OrderExt;
 import com.kh.elefont.order.util.MailAuth;
 
 public class MailSend {
+	
+	public void enrollMailSend(Member member) {
+		Properties prop = System.getProperties();
+		String memberId = member.getMemberId();
+		String memberEmail = member.getMemberEmail();
+		
+		prop.put("mail.transport.protocol", "smtp");
+		prop.put("mail.smtp.starttls.enable", "true");
+		prop.put("mail.smtp.host", "smtp.gmail.com");
+		prop.put("mail.smtp.auth", "true");
+		prop.put("mail.smtp.port", "587");
+		
+		Authenticator auth = new MailAuth();
+		Session session = Session.getDefaultInstance(prop, auth);
+		
+		MimeMessage msg = new MimeMessage(session);
+		
+		//메일 출력 텍스트
+		StringBuffer sb = new StringBuffer();
+		sb.append("<h3>" + memberId + "님 안녕하세요</h3>");
+		sb.append("<span>회원가입을 축하합니다.</span><br>");
+		sb.append("<span><strong>"+ memberId+"</strong>님께서 Elefont에서 딱 맞는 폰트를 찾으시길 바랍니다.</span><br>");
+		sb.append("<span>감사의 의미로 회원가입 <strong>200p</strong>가 증정되었습니다.</span><br>");
+		sb.append("<span>앞으로도 많은 이용 부탁 드립니다.</span><br>");
+		sb.append("<h4>감사합니다.</h4>");
+		
+		String html = sb.toString();
+		
+		try {
+			msg.setSentDate(new Date());
+			new MailAuth();
+			msg.setFrom(new InternetAddress(MailAuth.MAILID, "Elefont"));
+			InternetAddress to = new InternetAddress(memberEmail);
+			msg.setRecipient(Message.RecipientType.TO, to);
+			
+			msg.setSubject( memberId + "님, Elefont 회원가입을 축하드립니다.");
+			msg.setText(html, "UTF-8", "html");
+			
+			Transport.send(msg);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+		
+	}
 
 	public void purchaseMailSend(List<Order> orderList, List<String> attachList) {
 		Properties prop = System.getProperties();
@@ -49,11 +95,11 @@ public class MailSend {
 		//메일 출력 텍스트
 		StringBuffer sb = new StringBuffer();
 		sb.append("<h3>" + memberId + "님 안녕하세요</h3>");
-		sb.append("<span>Elefont를 이용해 주셔서 감사합니다.</span></br>");
-		sb.append("<span>"+ memberId+"님께서 구매하신 폰트는 다음과 같습니다.</span></br>");
+		sb.append("<span>Elefont를 이용해 주셔서 감사합니다.</span><br>");
+		sb.append("<span><strong>"+ memberId+"</strong>님께서 구매하신 폰트는 다음과 같습니다.</span><br>");
 		sb.append("<h4>"+ fontNames.toString() +"</h4>");
-		sb.append("<span>앞으로도 많은 이용 부탁 드립니다.</span></br>");
-		sb.append("<h5>감사합니다.</h5>");
+		sb.append("<span>앞으로도 많은 이용 부탁 드립니다.</span><br>");
+		sb.append("<h4>감사합니다.</h4>");
 		
 		String html = sb.toString();
 		

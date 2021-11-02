@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import com.kh.elefont.common.ElefontUtils;
+import com.kh.elefont.common.MailSend;
 import com.kh.elefont.common.model.vo.Attachment;
 import com.kh.elefont.member.model.service.MemberService;
 import com.kh.elefont.member.model.vo.Member;
@@ -61,6 +62,8 @@ public class MemberEnrollServlet extends HttpServlet {
 		int result2 = memberService.insertDefaultPhoto(bringNo);
 		
 		String msg = result > 0 ? "회원가입을 축하 드립니다" : "";
+		
+		new MailSend().enrollMailSend(member);
 		
 		//응답 처리
 		HttpSession session = request.getSession();
