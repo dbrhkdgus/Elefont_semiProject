@@ -23,7 +23,7 @@ public class FontExt extends Font implements Serializable{
 			double fontDiscountRate, int fontLikeCount, int fontViewCount, int fontPurchasedCount, Date fontRegDate,
 			String fontApproval, Attachment attach, Date memberOrderDate, String memberOrderNo) {
 		super(fontNo, fontName, fontUrl, memberId, fontPrice, fontDiscountRate, fontLikeCount, fontViewCount,
-				fontPurchasedCount, fontRegDate, fontApproval, attach);
+				fontPurchasedCount, fontRegDate, fontApproval, memberOrderNo, memberOrderNo, attach);
 		this.memberOrderDate = memberOrderDate;
 		this.memberOrderNo = memberOrderNo;
 	}
