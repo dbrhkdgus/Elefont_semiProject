@@ -101,8 +101,9 @@ public class MemberCartServlet extends HttpServlet {
 			
 			List<MemberCartView> memberCartList = new ArrayList<>();
 			memberCartList = likeCartService.selectMemberCartList(memberNo ,cartNo);
+			System.out.println("memberCartList@servlet"+ memberCartList );
 			
-			
+				request.setAttribute("memberCartList", memberCartList);
 				request
 				.getRequestDispatcher("/WEB-INF/views/member/memberCart.jsp")
 				.forward(request, response);

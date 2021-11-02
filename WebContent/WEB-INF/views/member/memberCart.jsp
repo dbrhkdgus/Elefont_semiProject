@@ -1,7 +1,15 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@include file = "/WEB-INF/views/common/LandingHeader.jsp" %>
+<%@page import="com.kh.elefont.font.model.vo.Font"%>
+<%@page import="java.util.List"%>
+<%@page import="com.kh.elefont.font.model.vo.Font"%>
+<%@page import="com.kh.elefont.like_cart.model.vo.MemberCartView"%>
 
+<%
+	List<MemberCartView> memberCartList= (List<MemberCartView>)request.getAttribute("memberCartList");
+	System.out.println("memberCartList@jsp"+ memberCartList );
+%>
    <!-- 장바구니 기본 폼 시작-->
     <section id="portfolio" class="portfolio section-space-padding">
         <div class="cart_outter">
@@ -13,7 +21,43 @@
                 </div>
                 
                 <div class="cart_content_box">
+
                     <div class="cart_content">
+
+                        <input type="checkbox" name="chose" id="" >
+                        <img src="./images/shop_test_img.png" alt="" class="cart_content_img cart_content_margin">
+                        <div class="cart_content_font_name cart_content_margin">
+
+                       <h3>상품명</h3>
+                            <div class="cart_font_name">
+                                <p><%-- <%=mcv.getFontName()%> --%></p>
+                            </div>
+
+                        </div>
+                        <div class="cart_content_font_price cart_content_margin">
+                            <h3>판매가</h3>
+                            <div class="cart_font_price">
+                                <p><%-- <%=mcv.getFontPrice()%> --%></p>
+                                <p class="cart_price_explain"><<%-- %=mcv.getFontDiscountRate()%> --%></p>
+                            </div>
+                        </div>
+                        
+                        <div class="cart_content_pay_price">
+                            <h3>주문금액</h3>
+                            <p>640P</p>
+                        </div>
+                        <div class="cart_order  cart_content_margin">
+                            <button class="btn-order-from-cart">상품 주문하기</button>  
+                        </div>
+<%--                         <%
+for(MemberCartView mcv : memberCartList){
+%>
+<%
+}
+%>        --%>         
+                    </div>
+
+                 <!--    <div class="cart_content">
                         <input type="checkbox" name="chose" id="" >
                         <img src="./images/shop_test_img.png" alt="" class="cart_content_img cart_content_margin">
                         <div class="cart_content_font_name cart_content_margin">
@@ -63,32 +107,7 @@
                             <button class="btn-order-from-cart">상품 주문하기</button>  
                         </div>
                     </div>
-                    <div class="cart_content">
-                        <input type="checkbox" name="chose" id="" >
-                        <img src="./images/shop_test_img.png" alt="" class="cart_content_img cart_content_margin">
-                        <div class="cart_content_font_name cart_content_margin">
-                            <h3>상품명</h3>
-                            <div class="cart_font_name">
-                                <p>고운돋움 Regular</p>
-                            </div>
-                        </div>
-                        <div class="cart_content_font_price cart_content_margin">
-                            <h3>판매가</h3>
-                            <div class="cart_font_price">
-                                <p>800P</p>
-                                <p class="cart_price_explain">회원할인 20%</p>
-                            </div>
-                        </div>
-                        
-                        <div class="cart_content_pay_price">
-                            <h3>주문금액</h3>
-                            <p>640P</p>
-                        </div>
-                        <div class="cart_order  cart_content_margin">
-                            <button class="btn-order-from-cart">상품 주문하기</button>  
-                        </div>
-                    </div>
-                    
+                     -->
                    
                     
                 </div>
