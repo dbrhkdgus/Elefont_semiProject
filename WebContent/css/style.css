@@ -1703,8 +1703,12 @@ text-align: center;
 	margin-left:10px;
 }
 #user-profile{
+	border: 1px solid gold;
+	border-radius: 70px;
+	-moz-border-radius: 70px;
+	-khtml-border-radius: 70px;
+	-webkit-border-radius: 70px;
     width: 25px;
-    border-radius: 30px;
     margin-right: 5px;
 }
 #shop-detail-revimg{
@@ -2136,7 +2140,7 @@ p { padding: 5px 0; }
 }
 .community-profile-photo-box {
 	width: 30px;
-    height: 28px; 
+    height: 30px; 
     border-radius: 70%;
     overflow: hidden;
     margin-right: 7px;
@@ -2779,7 +2783,7 @@ font-size: 16px;
     display: flex;
     margin-top: 30px;
     align-items: center;
-    justify-content: space-around;
+    justify-content: center;
     cursor: pointer;
 }
 .comm-pic-writer-profile-img{
@@ -2787,7 +2791,7 @@ font-size: 16px;
     height: 100px;
 }
 .comm-pic-detail-history{
-    margin-top: 50px;
+    margin-top: 25px;
     width: 250px;
     display: flex;
     flex-wrap: wrap;
@@ -2824,7 +2828,20 @@ font-size: 16px;
 	width: 900px;
 }
 .re-input-size {
-	width: 700px;
+	width: 600px;
+}
+.community-detail-profile-photo-box {
+	margin-right: 10px;
+	width: 50px;
+    height: 50px; 
+    border-radius: 70%;
+    overflow: hidden;
+}
+.comm-reply-profile {
+	width: 20px;
+    height: 20px; 
+    border-radius: 70%;
+    overflow: hidden;
 }
 /* community picture detail 끝*/
 
