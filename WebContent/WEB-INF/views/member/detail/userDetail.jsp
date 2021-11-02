@@ -20,9 +20,9 @@ List<Coupon> couponList = (List<Coupon>) request.getAttribute("couponList");
         <span>총 금액</span>
         <h3 id="coupon-total"></h3>
 
-
+		<input type="hidden" name="couponCheckVaild" id="couponCheckVaild" value ="0"/>
         <input type="button" id="coupon-x-btn" value="취소하기">
-        <input type="button" id="coupon-submit-btn" value="등록하기" onclick="">
+        <input type="button" id="coupon-submit-btn" value="등록하기" onclick="LetsRegCoupon();">
         <input type="hidden" name="memberIdToReg" id="memberIdToReg" value="<%=loginMember.getMemberId()%>">
     </form>
 </div>
@@ -194,13 +194,16 @@ $("#member-coupon").click((e)=>{
 					const couponPAmount = data["couponPAmount"]; 
 					console.log(`포인트 얼마? \${couponPAmount}`);			
 					document.getElementById("coupon-total").innerHTML = `\${couponPAmount} 원`;
-
-					
+					$("#couponCheckVaild").val(1);
 					
 				},
 				error(xhr, textStatus, err){
 					console.log(xhr, textStatus, err);
 					alert("유효하지 않은 쿠폰입니다");
+					var coupons = document.getElementsByClassName("coupon-no");
+					coupons[1].value = "";
+					coupons[2].value = "";
+					document.getElementById("coupon-total").innerHTML = "";
 				}
 
 				
@@ -248,5 +251,12 @@ $(window).load((e)=>{
 	});
 });
 	
-	
+	function LetsRegCoupon(){
+		const $vaild = $("#couponCheckVaild").val();
+		console.log("vaild 값은 : ")
+		console.log($vaild);
+		if($vaild !=1){
+			alert("쿠폰 조회가 필요합니다");
+		}
+	}
 </script>          
