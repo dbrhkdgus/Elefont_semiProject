@@ -80,9 +80,9 @@ public class MemberDetailServlet extends HttpServlet {
 				}
 			}
 			
-			session.setAttribute("approvalList", approvalList);
-			session.setAttribute("checkedList", checkedList);
-			session.setAttribute("auditList", auditList);
+			request.setAttribute("approvalList", approvalList);
+			request.setAttribute("checkedList", checkedList);
+			request.setAttribute("auditList", auditList);
 			
 
 		}

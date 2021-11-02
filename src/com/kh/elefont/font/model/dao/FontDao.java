@@ -257,6 +257,8 @@ public class FontDao {
 				font.setFontRegDate(rset.getDate("font_reg_date"));
 				font.setFontApproval(rset.getString("font_approval") == null? " ": rset.getString("font_approval"));
 				font.setMemberId(rset.getString("member_id"));
+				font.setFontPurchasedCount(rset.getInt("font_purchased_count"));
+				font.setFontLikeCount(rset.getInt("font_like_count"));
 				
 				list.add(font);
 			}
