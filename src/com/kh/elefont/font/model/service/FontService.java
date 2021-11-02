@@ -293,6 +293,22 @@ public class FontService {
 		close(conn);
 		return fontList;
 	}
+	public int updateFontPurchaseCount(Font font) {
+		Connection conn = getConnection();
+		int result = 0;
+		try {
+			result = fontDao.updateFontPurchaseCount(conn,font);
+			commit(conn);
+		}catch(Exception e) {
+			e.printStackTrace();
+			rollback(conn);
+		}finally {
+			close(conn);
+		}
+		
+		return result;
+	}
+
 
 
 }

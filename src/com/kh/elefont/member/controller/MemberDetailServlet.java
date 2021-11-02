@@ -1,6 +1,7 @@
 package com.kh.elefont.member.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -50,13 +51,36 @@ public class MemberDetailServlet extends HttpServlet {
 			session.setAttribute("fontList", fontList);
 			session.setAttribute("couponList", couponList);
 			session.setAttribute("tabIndex", 0);
-		}else if("U".equals(memberRole) || "S".equals(memberRole)) {
+		}else if("U".equals(memberRole)) {
 			List<Attachment> commAttachmentList = attachmentService.selectAllCommAttachmentListByMemberNo(loginMember.getMemberNo());
 			List<Font> fontLikeList = fontService.selectAllLikedFontByMemberNo(loginMember.getMemberNo());
 			List<Font> fontPurchasedList = fontService.selectAllPurchasedFontByMemberNo(loginMember.getMemberNo());
 			request.setAttribute("commAttachmentList", commAttachmentList);
 			request.setAttribute("fontLikeList", fontLikeList);
 			request.setAttribute("fontPurchasedList", fontPurchasedList);
+		}else if("S".equals(memberRole)) {
+			List<Font> list = fontService.selectFontByMemberId(loginMember.getMemberId());
+			List<Font> approvalList = new ArrayList<>();
+			List<Font> checkedList = new ArrayList<>();
+			List<Font> auditList = new ArrayList<>();
+			
+			//	memberId로 조회한 폰트 목록들을 심사 대기중(audit)/심사 승인/심사 미승인/판매자 체크로 나누어 분리하고 분리한 리스트가 비어 있지 않은 경우 session에 저장
+			for(Font f : list) {
+				if("Y".equals(f.getFontApproval()) || "N".equals(f.getFontApproval())){
+					approvalList.add(f);
+				}
+				else if("C".equals(f.getFontApproval())) {
+					checkedList.add(f);
+				}
+				else {
+					auditList.add(f);
+				}
+			}
+			
+			session.setAttribute("approvalList", approvalList);
+			session.setAttribute("checkedList", checkedList);
+			session.setAttribute("auditList", auditList);
+			
 		}
 		
 		// 회원의 커뮤니티 게시글 조회를 위해 전달할 것

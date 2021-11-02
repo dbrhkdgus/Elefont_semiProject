@@ -898,6 +898,32 @@ public class FontDao {
 		}
 		return fontList;
 	}
+
+	public int updateFontPurchaseCount(Connection conn, Font font) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String sql = prop.getProperty("updateFontPurchaseCount");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			
+				pstmt.setInt(1, font.getFontPurchasedCount());
+				pstmt.setString(2, font.getFontNo());
+				
+				
+				result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
+
 }
 
 	
