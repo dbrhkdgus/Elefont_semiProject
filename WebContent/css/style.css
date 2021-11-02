@@ -1713,17 +1713,12 @@ text-align: center;
 	margin-left:10px;
 }
 #user-profile{
-<<<<<<< HEAD
-	width: 25px;
-    border-radius: 50%;
-=======
 	border: 1px solid gold;
 	border-radius: 70px;
 	-moz-border-radius: 70px;
 	-khtml-border-radius: 70px;
 	-webkit-border-radius: 70px;
     width: 25px;
->>>>>>> branch 'master' of https://github.com/dbrhkdgus/Elefont_semiProject.git
     margin-right: 5px;
     height: 25px;
 }
