@@ -679,6 +679,9 @@ text-align: center;
  .review-photo:hover{
     cursor:pointer;
 }
+.review-content{
+	width: 100%;
+}
 
 .testimonial-word img {
 	margin: 0px 90px 0px 0px;

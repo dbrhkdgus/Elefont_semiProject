@@ -6,12 +6,6 @@
 <%@include file = "/WEB-INF/views/common/header.jsp" %>
 <%session.removeAttribute("categoryList"); session.removeAttribute("fontList"); %>
 <script>
-<%-- 	<div class="col-md-4 col-sm-6 col-xs-12 mix filter-like filter-sale">
-<div class="test-item">
-	<a href="<%= request.getContextPath()%>/shopDetail?fontNo=\${fontList.fontNO}"><div class="test-item-title"> \${fontlist.fontName} </div></a>
-	<textarea name="" id="\${fontList.fontNo}" cols="30" rows="10" class="font-style" style="font-family: '\${fontList.fontFamily}';" ></textarea>
-<\div>
-</div>  --%>
 $.ajax({
 	url: "<%=request.getContextPath()%>/mainLanding",
 	dataType: "json",
@@ -19,16 +13,44 @@ $.ajax({
 	success(data){
 		const fontList = data["fontList"]; 
 		const communityList = data["communityList"];
-		console.log("fontList@jsp + ", fontList)
+		const attachmentList = data["attachmentList"];
+		console.log(communityList);
 		for(let i = 0; i < fontList.length; i++){
-			
-			console.log(fontList[i].fontName);
 			$("#fonts-box").append(`<a href="<%=request.getContextPath()%>/shopDetail?fontNo=\${fontList[i].fontNo}"><div class="test-item"> <div class="landing-fontName-textarea-box">\${fontList[i].fontName} </div><textarea name="" id="\${fontList[i].fontNo}" cols="30" rows="10" class="font-style" style="font-family: '\${fontList[i].fontFamily}</div>';" ></textarea><\div></div></a>`);
-			$("#landing-community-box").append(``);
-		}	
+		};
+		
+		for(let i = 0; i < 3; i++){
+			for(let j = 0; j <attachmentList.length; j++){
+				if(communityList[i].commNo == attachmentList[j].commNo){
+					$("#landing-community-box").append(`
+							<div class="testimonial-word text-center">
+		                    <div class="review-photo"  id="\${communityList[i].commNo}" style="background-image: url('<%=request.getContextPath()%>/upload/community/\${attachmentList[j].renamedFilename}');"></div>
+		                    
+		                    <div class="review-content">
+		                        <h2>\${communityList[i].commTitle}</h2>
+		                        <p>\${communityList[i].commContent}</p>
+		                            <div class="like-button">
+		                                   <i class="heart-icon"></i>
+		                                   
+		                            </div>
+		                    </div>
+		                </div>
+		                
+	                    `);
+					$("body").append(`<script>
+						$("#\${communityList[i].commNo}").click((e)=>{
+							location.href = "<%=request.getContextPath()%>/community/pictureDetail?commNo=\${communityList[i].commNo}";
+						});<\/script>`);
+					
+				}
+			
+			}
+		};
 	},
 	error: console.log
 });
+
+
 </script>
 
 <form name="checkIdDuplicateFrm" action="<%= request.getContextPath() %>/member/checkIdDuplicate" method="POST">
@@ -222,6 +244,10 @@ $.ajax({
  
 </section>
 <!-- 리뷰 End -->
+
+
+
+
 
 
 
