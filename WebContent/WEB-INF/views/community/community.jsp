@@ -8,7 +8,6 @@
 	List<Community> communityList = (List<Community>)request.getAttribute("communityList");
 	List<Attachment> attachmentList = (List<Attachment>)request.getAttribute("attachmentList");
 	List<String> commLikeList = (List<String>) request.getAttribute("commLikeList");
-	List<Attachment> profileAttachmentList = (List<Attachment>)request.getAttribute("profileAttachmentList");
 	List<Attachment> allAttachmentList = (List<Attachment>)request.getAttribute("allAttachmentList");
 %>
 	
@@ -48,10 +47,12 @@ if(loginMember != null){
 
 				<div class="like-comm">
 					<div class="community-profile-box">
-						<div class="community-profile-photo-box" onclick="location.href='<%= request.getContextPath()%>/community/writerDetail?commWriter=<%= memberNo %>'">
-							<img class="community-profile-photo" src="<%= request.getContextPath()%>/upload/profilephotos/<%=profileAttachFilename%>"> 
+						<div class="community-profile" onclick="location.href='<%= request.getContextPath()%>/community/writerDetail?commWriter=<%= memberNo %>'">
+							<div class="community-profile-photo-box">
+								<img class="community-profile-photo" src="<%= request.getContextPath()%>/upload/profilephotos/<%=profileAttachFilename%>"> 
+							</div>
+							<span><%= comm.getCommWriter() %></span>
 						</div>
-						<span><%= comm.getCommWriter() %></span>
 					</div>
 					<div class="comm-img">
 						<a href="<%= request.getContextPath()%>/community/pictureDetail?commNo=<%= commNo %>">

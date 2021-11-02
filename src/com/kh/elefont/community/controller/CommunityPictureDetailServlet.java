@@ -38,12 +38,6 @@ public class CommunityPictureDetailServlet extends HttpServlet {
 		Member loginMember = (Member)session.getAttribute("loginMember");
 		List<String> commLikeList = new ArrayList<>();
 		
-		
-		
-		
-		
-		
-		
 		if(loginMember != null) {
 			commLikeList = communityService.selectAllLikedComm(loginMember.getMemberNo());
 		}
@@ -98,6 +92,7 @@ public class CommunityPictureDetailServlet extends HttpServlet {
 			
 			Attachment attachment = new Attachment();
 			attachment = attachmentService.selectOneAttachment(commNo);
+			Attachment profileAttachment = attachmentService.selectProfileAttachment(attachment.getMemberNo());
 			
 			List<Attachment> attachmentList = attachmentService.selectAllCommAttachmentListByMemberNo(attachment.getMemberNo());
 			List<Rep> repList = repService.selectAllCommunityRepListByCommNo(commNo);
@@ -129,6 +124,7 @@ public class CommunityPictureDetailServlet extends HttpServlet {
 			request.setAttribute("community", community);
 			request.setAttribute("attachment", attachment);
 			request.setAttribute("attachmentList", attachmentList);
+			request.setAttribute("profileAttachment", profileAttachment);
 			request.getRequestDispatcher("/WEB-INF/views/community/communityPictureDetail.jsp").forward(request, response);
 		} catch (Exception e) {
 			e.printStackTrace();
