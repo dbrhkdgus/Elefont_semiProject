@@ -55,9 +55,12 @@ public class MemberDetailServlet extends HttpServlet {
 			List<Attachment> commAttachmentList = attachmentService.selectAllCommAttachmentListByMemberNo(loginMember.getMemberNo());
 			List<Font> fontLikeList = fontService.selectAllLikedFontByMemberNo(loginMember.getMemberNo());
 			List<Font> fontPurchasedList = fontService.selectAllPurchasedFontByMemberNo(loginMember.getMemberNo());
+			List<Coupon> coupounList = couponService.selectAllCouponByMemberNo(loginMember.getMemberNo());
 			request.setAttribute("commAttachmentList", commAttachmentList);
 			request.setAttribute("fontLikeList", fontLikeList);
 			request.setAttribute("fontPurchasedList", fontPurchasedList);
+			request.setAttribute("couponList", coupounList);
+
 		}else if("S".equals(memberRole)) {
 			List<Font> list = fontService.selectFontByMemberId(loginMember.getMemberId());
 			List<Font> approvalList = new ArrayList<>();
@@ -81,6 +84,7 @@ public class MemberDetailServlet extends HttpServlet {
 			session.setAttribute("checkedList", checkedList);
 			session.setAttribute("auditList", auditList);
 			
+
 		}
 		
 		// 회원의 커뮤니티 게시글 조회를 위해 전달할 것

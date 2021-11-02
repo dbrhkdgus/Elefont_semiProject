@@ -9,11 +9,11 @@
 
      <!-- Portfolio Start -->
 <%
-	String memberRole = loginMember.getMemberRole();
+String memberRole = loginMember.getMemberRole();
 %>
      <section id="member-mypage" class="member-mypage section-space-padding">
 <%
-	if("U".equals(memberRole)){
+if("U".equals(memberRole)){
 %>
      <div class="coupon-enroll">
         <form action="" method="POST" name="couponEnrollFrm">
@@ -33,7 +33,7 @@
         </form>
      </div>
 <%
-	}
+}
 %>
         <div class="member-container">
          <div class="member-profile">
@@ -44,7 +44,7 @@
             <div class="member-detail">
 
 <%
-	if("U".equals(memberRole)){
+if("U".equals(memberRole)){
 %>
                 <a href="">
                     <span><%=memberRole %></span><br>
@@ -123,6 +123,7 @@ if("U".equals(memberRole)){
 List<Attachment> commAttachmentList = (List<Attachment>)request.getAttribute("commAttachmentList");
 List<Font> fontLikeList = (List<Font>) request.getAttribute("fontLikeList");
 List<Font> fontPurchasedList = (List<Font>) request.getAttribute("fontPurchasedList");
+List<Coupon> couponList = (List<Coupon>) request.getAttribute("couponList");
 
 %>
             <div class="member-comm">
@@ -155,35 +156,86 @@ List<Font> fontPurchasedList = (List<Font>) request.getAttribute("fontPurchasedL
             <div class="member-font-purchase">
                 <h4>내 구매내역</h4>
                 <div class="fix-head">
-						<table class="admin-tbl fix-tbl">
-							<thead>
-								<tr>
-									<th width="80px">주문 일자</th>
-									<th width="130px">주문 번호</th>
-									<th width="200px">구매 폰트</th>
-									<th width="130px">폰트 가격</th>
-									<th width="90px">할인율</th>
-									<th width="130px">결제 가격</th>
-								</tr>
-							</thead>
-							<tbody>
+					<table class="member-tbl fix-tbl">
+						<thead>
+							<tr>
+								<th width="80px">주문 일자</th>
+								<th width="130px">주문 번호</th>
+								<th width="200px">구매 폰트</th>
+								<th width="130px">폰트 가격</th>
+								<th width="90px">할인율</th>
+								<th width="130px">결제 가격</th>
+							</tr>
+						</thead>
+						<tbody>
 <%
-	for(Font _fe : fontPurchasedList){
-			FontExt fe = (FontExt) _fe;
+	if(!fontPurchasedList.isEmpty()){
+		for(Font _fe : fontPurchasedList){
+				FontExt fe = (FontExt) _fe;
 %>
-								<tr>
-									<td><%=fe.getMemberOrderDate() %></td>
-									<td><%=fe.getMemberOrderNo() %></td>
-									<td><%=fe.getFontName() %></td>
-									<td><%=fe.getFontPrice() %></td>
-									<td><%=fe.getFontDiscountRate() %></td>
-									<td><%=fe.getFontPrice()*fe.getFontDiscountRate() %></td>
-								</tr>
+							<tr>
+								<td><%=fe.getMemberOrderDate() %></td>
+								<td><%=fe.getMemberOrderNo() %></td>
+								<td><%=fe.getFontName() %></td>
+								<td><%=fe.getFontPrice() %></td>
+								<td><%=fe.getFontDiscountRate() %></td>
+								<td><%=fe.getFontPrice()*fe.getFontDiscountRate() %></td>
+							</tr>
+<%
+		}
+	}else{
+%>
+							<tr>
+								<td colspan="6">구매 내역이 없습니다.</td>
+							</tr>
 <%
 	}
 %>
-							</tbody>
-						</table>
+						</tbody>
+					</table>
+                </div>
+            </div>
+            <div class="member-coupon-list">
+                <h4>내 쿠폰 내역</h4>
+                <div class="fix-head">
+					<table class="member-tbl fix-tbl">
+						<thead>
+							<tr>
+								<th width="80px">발급 일자</th>
+								<th width="130px">쿠폰 종류</th>
+								<th width="200px">쿠폰 번호</th>
+								<th width="130px">할인율/포인트</th>
+								<th width="130px">유효기간</th>
+								<th width="90px">사용 여부</th>
+							</tr>
+						</thead>
+						<tbody>
+<%
+	if(!couponList.isEmpty()){
+		for(Coupon c : couponList){
+%>
+							<tr>
+								<td><%=c.getCouponRegDate() %></td>
+								<td><%=c.getCouponType() %></td>
+								<td><%=c.getCouponNo() %></td>
+								<td>
+									<%="P".equals(c.getCouponType())? c.getCouponPAmount()+"p" : c.getCouponDiscount()+"%" %>
+								</td>
+								<td><%= c.getCouponExpDate() %>일 까지</td>
+								<td><%= c.getCouponUsed() %></td>
+							</tr>
+<%
+		}
+	}else{
+%>
+							<tr>
+								<td colspan="6">사용 가능한 쿠폰이 없습니다</td>
+							</tr>
+<%
+	}
+%>
+						</tbody>
+					</table>
                 </div>
             </div>
 
@@ -425,7 +477,7 @@ List<Font> fontPurchasedList = (List<Font>) request.getAttribute("fontPurchasedL
 									<td><%= c.getCouponRegDate() %></td>
 									<td><%= c.getCouponNo() %></td>
 									<td><%= "P".equals(c.getCouponType())? "포인트 쿠폰" : "할인 쿠폰" %></td>
-									<td><%= c.getCouponRegDate() %>~<%= c.getCouponExpired()%>일 이내</td>
+									<td><%= c.getCouponRegDate() %>~<%= c.getCouponExpDate()%></td>
 									<td><%= "Y".equals(c.getCouponUsed())? "사용 완료" : "미사용" %></td>
 									<td><%= "P".equals(c.getCouponType())? c.getCouponPAmount()+"p":c.getCouponDiscount()+"%" %></td>
 									<td><%= c.getMemberNo() == null? "사용자 없음" : c.getMemberNo() %></td>
@@ -599,7 +651,6 @@ $(".fontDownloadBtn").click((e)=>{
 
 /* 폰트 업데이트 버튼 클릭 시, price와 discountRate에 변경사항이 없을 경우, 기존 값을 전달*/
 	$(fontUpdateBtn).click((e)=>{
-		console.log("클릭이벤트 발생");
 		const $fontPrice = $("[name = fontPrice]");
 		const $fontDiscountRate = $("[name=fontDiscountRate]");
 		const $fontApproval = $("[name=fontApproval]");
@@ -630,7 +681,6 @@ $(".fontDownloadBtn").click((e)=>{
 
 /* 쿠폰 발급 이벤트 */
 $(couponEnrollBtn).click((e)=>{
-	//유효성 검사
 	const $frmData = $(document.couponEnrollFrm);
 	let couponMemberId = $("#memberId").val();
 	
@@ -692,25 +742,49 @@ $(memberId).autocomplete({
 
     </section>
 <script>
-	$("#member-coupon").click((e)=>{
-		const $couponEnroll = $(".coupon-enroll");
-		if($couponEnroll.css("display","none")){
-			$couponEnroll.show();
-			
-			$("#coupon-submit-btn").click((e)=>{
-				$(document.couponEnrollFrm).submit();
-			});
-			$("#coupon-x-btn").click((e)=>{
-				$couponEnroll.hide();
-			});
-			
+$("#member-coupon").click((e)=>{
+	const $couponEnroll = $(".coupon-enroll");
+	if($couponEnroll.css("display","none")){
+		$couponEnroll.show();
+		
+		$("#coupon-submit-btn").click((e)=>{
+			$(document.couponEnrollFrm).submit();
+		});
+		$("#coupon-x-btn").click((e)=>{
+			$couponEnroll.hide();
+		});
+		
+	}
+	else return;
+});
+
+$("#btn-member-Info-Edit").click((e)=>{
+	location.href = "<%= request.getContextPath()%>/member/memberInfoEdit?memberId=<%=loginMember.getMemberId()%>&memberNo=<%=loginMember.getMemberNo()%>";
+});
+
+/* 폰트 조회 창 높이 폰트 입력량에 따라 조절*/
+$(window).load((e)=>{
+	const $fixHead = $(".fix-head");
+	$.each($fixHead, function(index, item){
+		let $item = $(item);
+		let length = $(item).find('tr').length;
+		console.log(length);
+		
+		if(length > 4){
+			$fixHead.eq(index).css("height","100px");
 		}
-		else return;
+		else{
+			if(index != 2){
+				length = length*25 + 3;
+				$fixHead.eq(index).css("height", length+"px");
+			}
+			else{
+				length = length*27 + 3;
+				$fixHead.eq(index).css("height", length+"px");
+			}
+		}
 	});
-	
-	$("#btn-member-Info-Edit").click((e)=>{
-		location.href = "<%= request.getContextPath()%>/member/memberInfoEdit?memberId=<%=loginMember.getMemberId()%>&memberNo=<%=loginMember.getMemberNo()%>";
-	});
+});
 	
 	
 </script>
