@@ -25,7 +25,7 @@ for(MemberCartView mcv : memberCartList){
 	int disresult = (int)(mcv.getFontPrice()-(mcv.getFontPrice() * mcv.getFontDiscountRate()));
 %>
                  <div class="cart_content">
-                        <input type="checkbox" name="chose" id="" >
+                        <input type="checkbox" name="chk[]" id="" >
                         <img src="./images/shop_test_img.png" alt="" class="cart_content_img cart_content_margin">
                         <div class="cart_content_font_name cart_content_margin">
                             <h3>상품명</h3>
@@ -36,7 +36,7 @@ for(MemberCartView mcv : memberCartList){
                         <div class="cart_content_font_price cart_content_margin">
                             <h3>판매가</h3>
                             <div class="cart_font_price">
-                                <p><%=mcv.getFontPrice() %></p>
+                                <p name="chk[]"><%=mcv.getFontPrice() %></p>
                                 <p class="cart_price_explain">회원 할인<%=mcv.getFontDiscountRate() %> %</p>
                             </div>
                         </div>
@@ -121,7 +121,32 @@ for(MemberCartView mcv : memberCartList){
 	$("#btn-payment-cancle").click((e)=>{
 		$(".payment_window").hide();
 	});
+	
+	/* 전체선택해제버튼 */
+	$("#check_all").click((e)=>{
+		if($("input:checkbox[id='check_all']").prop("checked")){
+			$("input[type=checkbox]").prop("checked" ,true);
+		} else {
+			$("input[type=checkbox]").prop("checked" ,false);
+		}
+	});
+	
+	/* 선택된걸 배열에 넣어보는거야 */
+	$("#cart_bottom_buttons").click((e)=>{
+		var chk_arr = $("input[name='chk[]']"); 
+		var chk_data = []; 
+		for( var i=0; i<chk_arr.length; i++ ) { 
+			if( chk_arr[i].checked == true ) { 
+				chk_data.push(chk_arr[i].value);
+				} 
+			}
+		console.log("chk_data@jsp = "+chk_data);
+	});
 
+
+	/* $("#selected_cart_delete").click((e)=>{
+		let checkedCart = $('')
+	}); */
 </script>
 
 
