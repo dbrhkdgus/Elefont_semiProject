@@ -9,7 +9,9 @@
 	List<Community> communityList = (List<Community>)request.getAttribute("communityList");
 	List<Attachment> attachmentList = (List<Attachment>)request.getAttribute("attachmentList");
 	List<CommLike> commLikeList = (List<CommLike>) request.getAttribute("commLikeList");
-
+	List<Attachment> allAttachmentList = (List<Attachment>)request.getAttribute("allAttachmentList");
+	
+	
 	System.out.println("commlike@jsp"+ commLikeList );
 %>
   
@@ -25,9 +27,26 @@
                         <div class="tools commlist-change">
                             <table>
                                 <tr>
-                                    <th rowspan="2"><i class="fas fa-user"></i></th>
+                                
+<%
+String likeProfilepic ="";
+	for(Attachment att : allAttachmentList ){
+		if(att.getCommNo() == null && att.getFontNo() == null && att.getMemberNo().equals(loginMember.getMemberNo())){
+			likeProfilepic = att.getRenamedFilename();
+			System.out.println("likeProfilepic" + likeProfilepic);
+
+%>                                
+                                    <th rowspan="2">
+                                     <div class="community-profile-photo-box">
+                                     <img src="<%= request.getContextPath()%>/upload/profilephotos/<%=likeProfilepic%>" alt="" />
+                                     </div>
+                                     </th>
                                     <th><%=loginMember.getMemberId() %>님 좋아요목록</th>
                                     <!-- th colspan="2">좋아요목록</th> -->
+<%
+	}
+}
+%>
                                 </tr>
                                 <tr>
                                     <!-- <td>좋아요 카운트 수</td> -->
@@ -59,6 +78,7 @@
 		String commWriter ="";
 		String commTitle ="";
 		int commLikeCount =0;
+		String profileAttachFilename = "";
 		
 		
 			
@@ -73,9 +93,14 @@
 							attachFilename = att.getRenamedFilename();
 							commTitle=comm.getCommTitle();
 							commLikeCount=comm.getCommLikeCount();
+							
+							
+						if(att.getFontNo() == null && att.getMemberNo().equals(memberNo)){
+							profileAttachFilename = att.getRenamedFilename();
+							System.out.println("profileAttachFilename" + profileAttachFilename);
+						}
 					}
 				}
-				
 			}
 		}
 			
@@ -83,7 +108,11 @@
                   
                         <div class="like-comm">
 		  				   	
-                             <a href="<%= request.getContextPath()%>/community/writerDetail?commWriter=<%= memberNo  %>"><i class="fas fa-user"></i><div class="like-comm-writer"> <%= commWriter %> </div></a>
+                             <a href="<%= request.getContextPath()%>/community/writerDetail?commWriter=<%= memberNo  %>">
+                            <div class="community-profile-photo-box">
+								<img class="community-profile-photo" src="<%= request.getContextPath()%>/upload/profilephotos/<%=profileAttachFilename%>"> 
+							</div>
+                             <div class="like-comm-writer"> <%= commWriter %> </div></a>
                             <div class="comm-img">
                             <a href="<%= request.getContextPath()%>/community/pictureDetail?commNo=<%= commNo %>">
                             <img src="<%=request.getContextPath() %>/upload/community/<%=attachFilename %>" alt="" />

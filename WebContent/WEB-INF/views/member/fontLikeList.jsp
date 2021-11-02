@@ -7,13 +7,17 @@
     pageEncoding="UTF-8"%>
 <%@include file = "/WEB-INF/views/common/LandingHeader.jsp" %>
 <%@include file = "/css/fontApply.jsp" %>
+
+
 <%
 
-
 	String sort = request.getParameter("sort") == null? "newest" : request.getParameter("sort");	
-	
+	List<Attachment> allAttachmentList = (List<Attachment>)request.getAttribute("allAttachmentList");
 	List<LikeFont> likeFontList = (List<LikeFont>)request.getAttribute("likeFontList");
 	
+	
+	
+	System.out.println(allAttachmentList);
 	List<String> categoryList = (List<String>)session.getAttribute("categoryList");
 	String str = "";
 	for( String c : categoryList){
@@ -36,11 +40,27 @@
                             <div class="tools likelist-change">
                                 <table>
                                     <tr>
-                                        <th rowspan="2"><i class="fas fa-user"></i></th>
-                                        <th><%=loginMember.getMemberId() %>님 좋아요목록</th>
-                                       <!-- <th colspan="2">좋아요목록</th> -->
-                                    </tr>
-                                    <tr>
+<%
+	String likeProfilepic ="";
+	for(Attachment att : allAttachmentList ){
+		if(att.getCommNo() == null && att.getFontNo() == null && att.getMemberNo().equals(loginMember.getMemberNo())){
+			likeProfilepic = att.getRenamedFilename();
+			System.out.println("likeProfilepic" + likeProfilepic);
+
+%>                                
+                                    <th rowspan="2">
+                                     <div class="communitylike-profile-photo-box">
+                                     <img src="<%= request.getContextPath()%>/upload/profilephotos/<%=likeProfilepic%>" alt="" />
+                                     </div>
+                                     </th>
+                                    <th><%=loginMember.getMemberId() %>님 좋아요목록</th>
+                                    <!-- th colspan="2">좋아요목록</th> -->
+<%
+	}
+}
+%>
+                                </tr>
+                                <tr>
                                         <!-- <td>좋아요 카운트 수</td> -->
                                         
                                         <td><button id="member-font">Font</button><button id="member-comm">Community</button></td>
@@ -58,28 +78,7 @@
                             <span id="range-result"></span>
                             <input type="range" min="10" max="50" step="2" value="20" id="range" />
                         </div>
-                   <%--      <div class="tools font-style-category">                   
-                            <button id="style-button">폰트 형태</button>
-                            <div class="font-style-chkbox">
-                              <input type="checkbox" name="font-style" id="font-style1" value="S" <%= str.contains("S") ? "checked" : "" %>><label for="font-style1" >Serif</label><br>
-                                <input type="checkbox" name="font-style" id="font-style2" value="G" <%= str.contains("G") ? "checked" : "" %>><label for="font-style2"  >Sans Serif</label><br>
-                                <input type="checkbox" name="font-style" id="font-style3" value="H" <%= str.contains("H") ? "checked" : "" %>><label for="font-style3"  >Handwriting</label><br>
-                                <input type="checkbox" name="font-style" id="font-style4" value="M"  <%= str.contains("M") ? "checked" : "" %>><label for="font-style4" >Monospace</label>
-                                
-                            </div>
-                        </div> --%>
-                        
-                   <%--      <div class="tools font-sort-selector">
-                            <select name="font-sort" id="font-sort">
-                                <option value="popular" <%= "popular".equals(sort) ? "selected" : "" %>>인기순</option>
-                                <option value="view" <%= "view".equals(sort) ? "selected" : "" %>>조회순</option>
-                                <option value="order" <%= "order".equals(sort) ? "selected" : "" %>>판매순</option>
-                                <option value="recommand" <%= "recommand".equals(sort) ? "selected" : "" %>>MD추천순</option>
-                                <option value="newest" <%= "newest".equals(sort) ? "selected" : "" %>>최신순</option>
-                            </select>
-                        </div>
- --%>
-              
+        
                     </div>
                     <div class="test-shop">
                         <div class="test-item">

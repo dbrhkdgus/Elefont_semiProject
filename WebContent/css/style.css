@@ -3285,4 +3285,13 @@ align-items: center;
 }
 
 
+/*회원 폰트커뮤니티 좋아요 */
+.communitylike-profile-photo-box>img{
+	width: 80px;
+	height:80px;
+	border-radius:50%;
+	margin: 10px;
+	
+}
+
 
