@@ -257,6 +257,8 @@ public class FontDao {
 				font.setFontRegDate(rset.getDate("font_reg_date"));
 				font.setFontApproval(rset.getString("font_approval") == null? " ": rset.getString("font_approval"));
 				font.setMemberId(rset.getString("member_id"));
+				font.setFontPurchasedCount(rset.getInt("font_purchased_count"));
+				font.setFontLikeCount(rset.getInt("font_like_count"));
 				
 				list.add(font);
 			}
@@ -898,6 +900,32 @@ public class FontDao {
 		}
 		return fontList;
 	}
+
+	public int updateFontPurchaseCount(Connection conn, Font font) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String sql = prop.getProperty("updateFontPurchaseCount");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			
+				pstmt.setInt(1, font.getFontPurchasedCount());
+				pstmt.setString(2, font.getFontNo());
+				
+				
+				result = pstmt.executeUpdate();
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		
+		return result;
+	}
+
+
 }
 
 	
