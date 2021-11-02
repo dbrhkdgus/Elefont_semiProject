@@ -24,6 +24,7 @@
             <span>-</span>
             <input type="text" class="coupon-no" name="coupon-no3" id="coupon-no3">
             <br>
+            hidden
             <span>총 금액</span>
             <h3 class="coupon-total">0P</h3>
 
