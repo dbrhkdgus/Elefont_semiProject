@@ -17,6 +17,7 @@ List<Community> communityList = (List<Community>)request.getAttribute("community
 List<Attachment> commAttachmentList = (List<Attachment>)request.getAttribute("commAttachmentList");
 List<Rep> repList = (List<Rep>)request.getAttribute("repList");
 List<Order> orderList = (List<Order>) request.getAttribute("orderList");
+List<Attachment> profileAttachList = (List<Attachment>) request.getAttribute("profileAttachList");
 System.out.println("repList@jsp : " + repList );
 int memberLikeValid = (int)request.getAttribute("likeValid");
 %>
@@ -82,6 +83,14 @@ if(loginMember!=null){
 
 for(Rep rep : repList){
 	int repNo = 0;
+	String renamedProfile = "";
+	for(Attachment a : profileAttachList){
+	String memberNo = a.getMemberNo();
+	if(memberNo.equals(rep.getMemberNo())){
+		renamedProfile = a.getRenamedFilename();
+		break;
+		}
+	}
 	if(rep.getRepLevel()==1){
 		repNo = rep.getRepNo();
 		
@@ -92,7 +101,7 @@ for(Rep rep : repList){
 						<form action="<%= request.getContextPath() %>/rep/DeleteUpdateRep" method="POST" name="DeleteUpdateRepFrm">
 							<div class="reply-outer-box">
                    				<div class="reply-box">
-                       				<img src="https://cdn1.vectorstock.com/i/1000x1000/10/05/user-icon-vector-22391005.jpg"  id="user-profile">
+                       				<div class="font-rep-profile"><img src="<%=request.getContextPath() %>/upload/profilephotos/<%=renamedProfile%>"  id="user-profile"></div>
                       				<div class="reply-writer-content"><span><%=rep.getRepWriter()%> : </span><span><%=rep.getRepContent()%></span></div>
 
                           		</div> 
@@ -126,7 +135,7 @@ for(Rep rep : repList){
 						<form action="<%= request.getContextPath() %>/rep/DeleteUpdateRep" method="POST" name="DeleteUpdateReRepFrm">
                            <div class="re-reply-box">
                            		<img src="https://i.ibb.co/chkD19T/image.png" alt="" />
-                         	 	<img src="https://cdn1.vectorstock.com/i/1000x1000/10/05/user-icon-vector-22391005.jpg"  id="user-profile">
+                         	 	<div class="font-rep-profile"><img src="<%=request.getContextPath() %>/upload/profilephotos/<%=renamedProfile%>"  id="user-profile"></div>
                           		<div class="re-reply-writer-content"><span><%=rep.getRepWriter()%> : </span><span><%=rep.getRepContent()%></span></div>
 <%
 	if(loginMember != null && (loginMember.getMemberNo().equals(rep.getMemberNo()) || "A".equals(loginMember.getMemberRole()))){
