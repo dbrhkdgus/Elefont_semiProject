@@ -13,6 +13,7 @@ import java.util.Map;
 import com.kh.elefont.common.model.vo.Attachment;
 import com.kh.elefont.community.model.dao.CommunityDao;
 import com.kh.elefont.community.model.vo.Community;
+import com.kh.elefont.like_cart.model.vo.CommLike;
 
 
 public class CommunityService {
@@ -242,6 +243,8 @@ public class CommunityService {
 	}
 
 
+
+
 	public List<Community> selectAllCommListByMemberNo(String memberNo) {
 		Connection conn = getConnection();
 		List<Community> communityList = communityDao.selectAllCommListByMemberNo(conn, memberNo);
@@ -251,14 +254,15 @@ public class CommunityService {
 		return communityList;
 	}
 	
-	public List<Community> selectAllLikedCommList(String memberNo) {
+	public List<CommLike> selectAllLikedCommList(String memberNo) {
+
 		Connection conn = getConnection();
-		List<Community> commLikeList = communityDao.selectAllLikedCommList(conn, memberNo);
+		List<CommLike> commLikeList = communityDao.selectAllLikedCommList(conn, memberNo);
 		
 		close(conn);
 		
 		return commLikeList;
 	}
-
+	
 
 }

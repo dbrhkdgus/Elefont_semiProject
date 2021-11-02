@@ -13,7 +13,8 @@ import javax.servlet.http.HttpSession;
 
 import com.kh.elefont.common.MailSend;
 import com.kh.elefont.common.model.service.AttachmentService;
-import com.kh.elefont.common.model.vo.Attachment;
+import com.kh.elefont.font.model.service.FontService;
+import com.kh.elefont.font.model.vo.Font;
 import com.kh.elefont.member.model.service.MemberService;
 import com.kh.elefont.member.model.vo.Member;
 import com.kh.elefont.order.model.service.OrderService;
@@ -29,6 +30,7 @@ public class FontPurchaseServlet extends HttpServlet {
 	OrderService orderService = new OrderService();
 	MemberService memberService = new MemberService();
 	AttachmentService attachmentService = new AttachmentService();
+	FontService fontService = new FontService();
 	
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
@@ -79,7 +81,10 @@ public class FontPurchaseServlet extends HttpServlet {
 		
 		new MailSend().purchaseMailSend(orderList, attachList);
 		
-		
+		// 폰트의 purchaseCount 올리기
+		Font font = fontService.selectOneFontByFontNo(fontNo);
+		font.setFontPurchasedCount(font.getFontPurchasedCount()+1);
+		result = fontService.updateFontPurchaseCount(font);
 		// view단 처리
 		
 		response.sendRedirect(request.getContextPath()+"/shopDetail?fontNo="+fontNo);

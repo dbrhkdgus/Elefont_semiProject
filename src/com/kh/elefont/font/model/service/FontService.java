@@ -8,6 +8,7 @@ import java.util.Map;
 import com.kh.elefont.common.model.vo.Attachment;
 import com.kh.elefont.font.model.dao.FontDao;
 import com.kh.elefont.font.model.vo.Font;
+import com.kh.elefont.font.model.vo.FontCategory;
 
 public class FontService {
 	private FontDao fontDao = new FontDao();
@@ -293,6 +294,28 @@ public class FontService {
 		close(conn);
 		return fontList;
 	}
+	public List<FontCategory> selectAllFontCategory() {
+		Connection conn = getConnection();
+		List<FontCategory> categoryList = fontDao.selectAllFontCategory(conn);
+		close(conn);
+		return categoryList;
+	}
+	public int updateFontPurchaseCount(Font font) {
+		Connection conn = getConnection();
+		int result = 0;
+		try {
+			result = fontDao.updateFontPurchaseCount(conn,font);
+			commit(conn);
+		}catch(Exception e) {
+			e.printStackTrace();
+			rollback(conn);
+		}finally {
+			close(conn);
+		}
+		
+		return result;
+	}
+
 
 
 }

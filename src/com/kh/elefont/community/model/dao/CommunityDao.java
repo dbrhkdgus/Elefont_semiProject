@@ -1,12 +1,10 @@
 package com.kh.elefont.community.model.dao;
 
 import static com.kh.elefont.common.JdbcTemplate.close;
-import static com.kh.elefont.common.JdbcTemplate.close;
 
 import java.io.FileReader;
 import java.io.IOException;
 import java.sql.Connection;
-import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -16,7 +14,7 @@ import java.util.Map;
 import java.util.Properties;
 
 import com.kh.elefont.community.model.vo.Community;
-import com.kh.elefont.member.model.vo.Member;
+import com.kh.elefont.like_cart.model.vo.CommLike;
 
 
 public class CommunityDao {
@@ -430,6 +428,8 @@ public class CommunityDao {
 	}
 
 
+	
+
 	public List<Community> selectAllCommListByMemberNo(Connection conn, String memberNo) {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
@@ -466,10 +466,11 @@ public class CommunityDao {
 		return communityList;
 	}
 
-	public List<Community> selectAllLikedCommList(Connection conn, String memberNo) {
+	public List<CommLike> selectAllLikedCommList(Connection conn, String memberNo) {
+
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
-		List<Community> communitLikeyList = new ArrayList<>();
+		List<CommLike> commlikeList = new ArrayList<>();
 		
 		String sql = prop.getProperty("selectAllLikedCommList");
 		try {
@@ -478,17 +479,14 @@ public class CommunityDao {
 			rset = pstmt.executeQuery();
 			
 			while(rset.next()) {
-				Community community = new Community();
-				community.setCommNo(rset.getString("comm_no"));
-				community.setCommWriter(rset.getString("comm_writer"));
-				community.setCommContent(rset.getString("comm_content"));
-				community.setCommViewCount(rset.getInt("comm_view_count"));
-				community.setCommLikeCount(rset.getInt("comm_like_count"));
-				community.setCommRegDate(rset.getDate("comm_reg_date"));
-				community.setFontNo(rset.getString("font_no"));
-				community.setCommTitle(rset.getString("comm_title"));
+				CommLike commLike = new CommLike();
 				
-				communitLikeyList.add(community);
+				commLike.setMemberNo(rset.getString("member_no"));
+				commLike.setCommNo(rset.getString("comm_no"));
+				commLike.setLikeCommRegDate(rset.getDate("like_comm_reg_date"));
+
+				
+				commlikeList.add(commLike);
 				
 			  }
       } catch (SQLException e) {
@@ -497,9 +495,9 @@ public class CommunityDao {
 			close(rset);
 			close(pstmt);
 		}	
-		return communitLikeyList;
+		return commlikeList;
   }
-
+	
 
 
 }
