@@ -71,8 +71,7 @@ public class CouponService {
 	public int insertPoint(int couponPrice) {
 		Connection conn = getConnection();
 		int result = couponDao.insertPoint(conn, couponPrice);
-		close(conn);
-				
+		close(conn);			
 		return 0;
 	}
 

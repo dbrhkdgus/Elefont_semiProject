@@ -48,6 +48,8 @@ public class RedeemCoupon extends HttpServlet {
 		int couponPrice = couponService.selectCouponPrice(couponNo);
 		System.out.println("이 쿠폰의 충전 금액은 : " + couponPrice);
 		
+		int result = couponService.insertPoint(couponPrice);
+		
 		
 	}
 
