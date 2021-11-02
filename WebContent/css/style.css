@@ -1742,6 +1742,7 @@ text-align: center;
     margin-left: 50px;
 }
 .reply-box{
+	padding: 5px;
     display: flex;
     margin-top: 10px;
     width: 400px;
