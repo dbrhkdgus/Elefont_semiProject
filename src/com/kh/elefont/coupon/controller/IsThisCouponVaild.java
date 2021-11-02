@@ -20,6 +20,8 @@ public class IsThisCouponVaild extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String memberNo = request.getParameter("memberNoToReg");
 		System.out.println("비동기로 쿠폰 있는 지 확인하기 위한 memberNo : " + memberNo);
+		
+		
 	}
 
 }
