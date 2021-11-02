@@ -181,20 +181,24 @@ public class CouponDao {
 		return couponPrice;
 	}
 
-	public int insertPoint(Connection conn, int couponPrice) {
+	public int deleteUsedCoupon(Connection conn, String couponNo) {
 		PreparedStatement pstmt = null;
 		int result = 0;
-		String sql =prop.getProperty("insertPoint");
+		String sql = prop.getProperty("deleteUsedCoupon");
+		//deleteUsedCoupon = delete from coupon where coupon_no = ?
 		
-		try {
-			pstmt =conn.prepareStatement(sql);
-
+		try {	
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, couponNo);
+			
+			result = pstmt.executeUpdate();
+			
 		}catch(SQLException e) {
 			e.printStackTrace();
 		}finally {
 			close(pstmt);
 		}
-		return 0;
+		return result;
 	}
 
 }
