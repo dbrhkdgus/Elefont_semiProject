@@ -6,6 +6,10 @@
 <%@include file = "/WEB-INF/views/common/header.jsp" %>
 <%session.removeAttribute("categoryList"); session.removeAttribute("fontList"); %>
 <script>
+const commNo = [];
+const renamedFilename = [];
+const commTitle = [];
+const commContent = [];
 $.ajax({
 	url: "<%=request.getContextPath()%>/mainLanding",
 	dataType: "json",
@@ -19,24 +23,39 @@ $.ajax({
 			$("#fonts-box").append(`<a href="<%=request.getContextPath()%>/shopDetail?fontNo=\${fontList[i].fontNo}"><div class="test-item"> <div class="landing-fontName-textarea-box">\${fontList[i].fontName} </div><textarea name="" id="\${fontList[i].fontNo}" cols="30" rows="10" class="font-style" style="font-family: '\${fontList[i].fontFamily}</div>';" ></textarea><\div></div></a>`);
 		};
 		
+		
 		for(let i = 0; i < 3; i++){
 			for(let j = 0; j <attachmentList.length; j++){
 				if(communityList[i].commNo == attachmentList[j].commNo){
-					$("#landing-community-box").append(`
+					commNo.push(communityList[i].commNo);
+					renamedFilename.push(attachmentList[j].renamedFilename);
+					commTitle.push(communityList[i].commTitle);
+					commContent.push(communityList[i].commContent);
+					<%-- $("#landing-community-box").append(`
 							<div class="testimonial-word text-center">
-		                    	<div class="review-photo" id="\${communityList[i].commNo}" style="background-image: url('<%=request.getContextPath()%>/upload/community/\${attachmentList[j].renamedFilename}');"></div>
+		                    	<div class="review-photo " id="\${communityList[i].commNo}" style="background-image: url('<%=request.getContextPath()%>/upload/community/\${attachmentList[j].renamedFilename}');"></div>
 		                    
 		                    		<div class="review-content">
+		                    		
 		                        		<h2>\${communityList[i].commTitle}</h2>
 		                        		<p>\${communityList[i].commContent}</p>
+		                        		
 		                            	<div class="like-button">
 		                                	<i class="heart-icon"></i>  
 		                          	 	</div>
+		                          	 	
 		                    		</div>
-		               			</div>
 		               		</div>
+		               		
 		                
-	                    `);
+	                    `); --%>
+	                    for(let i = 0; i < 3; i++){
+	                    	$(`#rc\${i+1}`).children("h2").text(`\${commTitle[i]}`);
+	    	                $(`#rc\${i+1}`).children("p").text(`\${commContent[i]}`);
+	    	               
+	                    }
+	                
+	                
 					$("body").append(`<script>
 						$("#\${communityList[i].commNo}").click((e)=>{
 							location.href = "<%=request.getContextPath()%>/community/pictureDetail?commNo=\${communityList[i].commNo}";
@@ -60,7 +79,13 @@ $.ajax({
 						    transitionStyle : "backSlide"
 						});
 						
-						<\/script>`);
+						<\/script>
+						`);
+					$("body").append(`<style>
+					#rp\${i}{
+						background-image : url(<%=request.getContextPath()%>/upload/community/\${renamedFilename[i]});
+					}
+					</style>`);
 					
 				}
 			
@@ -69,6 +94,8 @@ $.ajax({
 	},
 	error: console.log
 });
+
+
 
 
 </script>
@@ -254,9 +281,47 @@ $.ajax({
         </div>
 
         <div class="row">
-            <div class="testimonial-carousel-list margin-top-20 " id="landing-community-box">
+            <div class="testimonial-carousel-list margin-top-20" id="landing-community-box">
 
-                
+                <div class="testimonial-word text-center">
+                    <div class="review-photo" id="rp1"></div>
+                    <div class="review-content" id="rc1">
+                        <h2></h2>
+                        <p>
+                        </p>
+                            <div class="like-button">
+                                  <i class="heart-icon"></i>
+                            </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-word text-center">
+                	
+                	<!-- 이미지에 호버시 마우스 커서 모양 변경처리하기 -->
+                    <div class="review-photo"  id="rp2" ></div>
+                    
+                    <div class="review-content" id="rc2">
+                        <h2></h2>
+                        <p>
+                            </p>
+                            <div class="like-button">
+                                  <i class="heart-icon"></i>
+                            </div>
+                    </div>
+                </div>
+
+                <div class="testimonial-word text-center">
+                    <div class="review-photo"  id="rp3"></div>
+                    
+                    <div class="review-content" id="rc3">
+                        <h2></h2>
+                        <p></p>
+                            <div class="like-button">
+                                   <i class="heart-icon"></i>
+                                   
+                            </div>
+                    </div>
+                </div>
 		
             </div>
         </div>
