@@ -23,7 +23,7 @@ $.ajax({
 		for(let i = 0; i < fontList.length; i++){
 			
 			console.log(fontList[i].fontName);
-			$("#fonts-box").append(` <div class="landing-font-item"><h1>폰트 이름 : \${fontList[i].fontName}</h1><br> <textarea name="" id="" cols="30" rows="10"></textarea></div>`);
+			$("#fonts-box").append(`<div class="test-item"> <div class="landing-fontName-textarea-box">\${fontList[i].fontName} </div><textarea name="" id="\${fontList[i].fontNo}" cols="30" rows="10" class="font-style" style="font-family: '\${fontList[i].fontFamily}</div>';" ></textarea><\div></div>`);
 		}	
 	},
 	error: console.log
