@@ -2352,6 +2352,15 @@ font-size: 16px;
 /* 멤버 디테일 시작*/
 #member-mypage{
   position: relative;
+  
+}
+
+#my-profile-pic{
+	display: inline-block;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 1px solid gold;
 }
 /* 일반 회원  */
 .coupon-enroll{
@@ -2386,7 +2395,7 @@ font-size: 16px;
   border-radius: 10px;
   text-align: center;
   margin-top: 20px;
-  padding-top: 10%;
+  padding-top: 100px;
   margin-right: 30px;
 }
 .member-detail{
@@ -2768,15 +2777,16 @@ font-size: 16px;
 }
 #comm-user-attach-img{
     width: 430px;
-    height: 430px;
-    margin-right: 30px;
+    /* height: 430px; */
+    /* margin-right: 15px; */
     margin-bottom: 50px;
 }
 .comm-board-img-user-content{
 	display: flex;
 }
 .comm-user-content{
-    width: 500px;
+	padding-left: 15px;
+    width: 400px;
 }
 .comm-writer-info{
     text-align: centerk;
@@ -2835,7 +2845,7 @@ font-size: 16px;
 }
 .comm-reply {
 	display: flex;
-	width: 900px;
+	width: 800px;
 }
 .re-input-size {
 	width: 600px;
