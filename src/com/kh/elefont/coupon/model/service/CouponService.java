@@ -49,4 +49,14 @@ public class CouponService {
 		return couponList;
 	}
 
+	public List<Coupon> selectAllCouponByMemberNo(String memberNo) {
+		Connection conn = getConnection();
+		
+		List<Coupon> couponList = couponDao.selectAllCouponByMemberNo(conn, memberNo);
+		
+		close(conn);
+		
+		return couponList;
+	}
+
 }

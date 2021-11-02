@@ -457,12 +457,12 @@ from
 create or replace view view_member_orders
 as
 select
-    mo.member_no,
-    mo.member_id,
-    mo.member_email,
+    m.member_no,
+    m.member_id,
+    m.member_email,
     mo.member_order_date,
     o.order_no,
-        f.font_no,
+    f.font_no,
     f.font_name,
     f.font_price,
     f.font_discount_rate,
