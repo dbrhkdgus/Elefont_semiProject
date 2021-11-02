@@ -33,6 +33,7 @@ public class ShopLandingServlet extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response)
 			throws ServletException, IOException {
 		HttpSession session = request.getSession();
+		session.removeAttribute("fontList");
 		Member loginMember = (Member) session.getAttribute("loginMember");
 		// 랜딩 시, 기존 font 테이블 전부 조회
 		String sort = request.getParameter("sort") == null ? "newest" : request.getParameter("sort");

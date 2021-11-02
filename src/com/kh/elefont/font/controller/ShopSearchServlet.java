@@ -47,6 +47,7 @@ public class ShopSearchServlet extends HttpServlet {
 		if(loginMember != null) {
 			likeList = fontService.selectAllLikedFont(loginMember.getMemberNo());
 		}
+		session.setAttribute("fontList", fontList);
 		request.setAttribute("fontList", fontList);
 		request.setAttribute("fontAttchmentList", fontAttchmentList);
 		request.setAttribute("likeList", likeList);
