@@ -60,9 +60,11 @@ for(MemberCartView mcv : memberCartList){
                         <input type="checkbox" name="check_all" id="check_all">
                         <label for="check_all">전체 선택</label>
                     </div>
-                    <button>전체 삭제하기</button>
-                    <button>선택한 상품 삭제하기</button>
-                    <button>선택한 상품 주문하기</button>
+                    <div class= "cart_bottom_buttons">
+	                    <button id="check_all_delete">전체 삭제하기</button>
+	                    <button id="selected_cart_delete">선택한 상품 삭제하기</button>
+	                    <button id="select_order_font">선택한 상품 주문하기</button>
+                    </div>
                 </div>
                 
                 
