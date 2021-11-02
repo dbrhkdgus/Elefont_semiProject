@@ -2352,6 +2352,15 @@ font-size: 16px;
 /* 멤버 디테일 시작*/
 #member-mypage{
   position: relative;
+  
+}
+
+#my-profile-pic{
+	display: inline-block;
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    border: 1px solid gold;
 }
 /* 일반 회원  */
 .coupon-enroll{
@@ -2386,7 +2395,7 @@ font-size: 16px;
   border-radius: 10px;
   text-align: center;
   margin-top: 20px;
-  padding-top: 10%;
+  padding-top: 100px;
   margin-right: 30px;
 }
 .member-detail{
@@ -3302,7 +3311,18 @@ align-items: center;
 	height:80px;
 	border-radius:50%;
 	margin: 10px;
+}
+.likeList-profile-button>button{
+	border:none;
+	margin-left:5px;
 	
 }
+
+.likeList-profile>p{
+	margin-bottom:1px;
+	margin-left:5px;
+}
+
+
 
 

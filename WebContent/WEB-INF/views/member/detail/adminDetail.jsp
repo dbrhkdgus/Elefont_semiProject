@@ -6,13 +6,16 @@ List<Font> fontList = (List<Font>) request.getAttribute("fontList");
 List<Coupon> couponList = (List<Coupon>) request.getAttribute("couponList");
 List<Order> orderList = (List<Order>) request.getAttribute("orderList");
 List<FontCategory> categoryList = (List<FontCategory>) request.getAttribute("categoryList");
+Attachment profile = (Attachment) request.getAttribute("profile");
 int tabIndex = (int)session.getAttribute("tabIndex");
 System.out.println("tabIndex@jsp = " + tabIndex);
 %>
 
      <div class="member-container">
          <div class="member-profile">
-            <i class="fas fa-user"></i>
+            <div id="my-profile-img">
+		      	<img id="my-profile-pic" src="<%= request.getContextPath()%>/upload/profilephotos/<%=profile.getRenamedFilename()%>" alt="" />
+		     </div>
             <h3><%=loginMember.getMemberId() %></h3>
             <button id="btn-member-Info-Edit">설정</button>
             <hr>

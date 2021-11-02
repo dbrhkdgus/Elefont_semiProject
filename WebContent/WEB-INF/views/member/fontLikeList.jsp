@@ -33,13 +33,13 @@
             <div class="container">
              
     
-                <div class="likelist-inner">
+              
                     <div class="test-shop-box">
     
                         <div class="likelist-tools">
-                            <div class="tools likelist-change">
-                                <table>
-                                    <tr>
+                            
+                             
+                                    
 <%
 	String likeProfilepic ="";
 	for(Attachment att : allAttachmentList ){
@@ -48,24 +48,25 @@
 			System.out.println("likeProfilepic" + likeProfilepic);
 
 %>                                
-                                    <th rowspan="2">
                                      <div class="communitylike-profile-photo-box">
                                      <img src="<%= request.getContextPath()%>/upload/profilephotos/<%=likeProfilepic%>" alt="" />
                                      </div>
-                                     </th>
-                                    <th><%=loginMember.getMemberId() %>님 좋아요목록</th>
-                                    <!-- th colspan="2">좋아요목록</th> -->
+                                   <div class="likeList-profile">
+                                     
+                                   <p><%=loginMember.getMemberId() %>님 좋아요목록</p>
+                                   
 <%
 	}
 }
 %>
-                                </tr>
-                                <tr>
-                                        <!-- <td>좋아요 카운트 수</td> -->
-                                        
-                                        <td><button id="member-font">Font</button><button id="member-comm">Community</button></td>
-                                    </tr>
-                                </table>
+                                
+                                
+                                       
+                                        <div class="likeList-profile-button">
+                                        <button id="member-font">Font</button><button id="member-comm">Community</button>
+                                        </div>
+                                      
+                                
                                 
                             </div>
                              <div class="tools font-color-previewer">
