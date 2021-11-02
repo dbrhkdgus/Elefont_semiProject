@@ -29,18 +29,7 @@ public class MemberCartServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		
-		//2.사용자 값 
-		
-		//3.업무로직
-		
-		//4.
-		request
-		.getRequestDispatcher("/WEB-INF/views/member/memberCart.jsp")
-		.forward(request, response);
-
-	}
+	
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		
 		// 현재 loginMember가 좋아요를 눌렀는지 안 눌렀는지 확인 -> 안 눌렀으면 카운트 올리기/ 눌렀으면 카운트 빼기
@@ -94,6 +83,20 @@ public class MemberCartServlet extends HttpServlet {
 				response.setContentType("application/json; charset = utf-8");
 				response.getWriter().print(jsonStr);
 				}
+	
+		protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+			HttpSession session = request.getSession();
+			Member loginMember = (Member)session.getAttribute("loginMember");
+				//2.사용자 값 
+				
+				//3.업무로직
+				
+				//4.
+				request
+				.getRequestDispatcher("/WEB-INF/views/member/memberCart.jsp")
+				.forward(request, response);
+
+			}
 		
 	}
 
