@@ -19,98 +19,41 @@
                     <span>주문내역</span>
                     <hr>
                 </div>
-                
-                <div class="cart_content_box">
-
-                    <div class="cart_content">
-
+<%
+for(MemberCartView mcv : memberCartList){
+	int disresult = (int)(mcv.getFontPrice()-(mcv.getFontPrice() * mcv.getFontDiscountRate()));
+%>
+                 <div class="cart_content">
                         <input type="checkbox" name="chose" id="" >
                         <img src="./images/shop_test_img.png" alt="" class="cart_content_img cart_content_margin">
                         <div class="cart_content_font_name cart_content_margin">
-
-                       <h3>상품명</h3>
+                            <h3>상품명</h3>
                             <div class="cart_font_name">
-                                <p><%-- <%=mcv.getFontName()%> --%></p>
+                                <p><%=mcv.getFontName() %></p>
                             </div>
-
                         </div>
                         <div class="cart_content_font_price cart_content_margin">
                             <h3>판매가</h3>
                             <div class="cart_font_price">
-                                <p><%-- <%=mcv.getFontPrice()%> --%></p>
-                                <p class="cart_price_explain"><<%-- %=mcv.getFontDiscountRate()%> --%></p>
+                                <p><%=mcv.getFontPrice() %></p>
+                                <p class="cart_price_explain">회원 할인<%=mcv.getFontDiscountRate() %> %</p>
                             </div>
                         </div>
                         
                         <div class="cart_content_pay_price">
                             <h3>주문금액</h3>
-                            <p>640P</p>
+                            <p><%=disresult %>P</p>
                         </div>
                         <div class="cart_order  cart_content_margin">
                             <button class="btn-order-from-cart">상품 주문하기</button>  
                         </div>
-<%--                         <%
-for(MemberCartView mcv : memberCartList){
-%>
+                    </div>
+
 <%
 }
-%>        --%>         
-                    </div>
-
-                 <!--    <div class="cart_content">
-                        <input type="checkbox" name="chose" id="" >
-                        <img src="./images/shop_test_img.png" alt="" class="cart_content_img cart_content_margin">
-                        <div class="cart_content_font_name cart_content_margin">
-                            <h3>상품명</h3>
-                            <div class="cart_font_name">
-                                <p>고운돋움 Regular</p>
-                            </div>
-                        </div>
-                        <div class="cart_content_font_price cart_content_margin">
-                            <h3>판매가</h3>
-                            <div class="cart_font_price">
-                                <p>800P</p>
-                                <p class="cart_price_explain">회원할인 20%</p>
-                            </div>
-                        </div>
-                        
-                        <div class="cart_content_pay_price">
-                            <h3>주문금액</h3>
-                            <p>640P</p>
-                        </div>
-                        <div class="cart_order  cart_content_margin">
-                            <button class="btn-order-from-cart">상품 주문하기</button>  
-                        </div>
-                    </div>
-                    <div class="cart_content">
-                        <input type="checkbox" name="chose" id="" >
-                        <img src="./images/shop_test_img.png" alt="" class="cart_content_img cart_content_margin">
-                        <div class="cart_content_font_name cart_content_margin">
-                            <h3>상품명</h3>
-                            <div class="cart_font_name">
-                                <p>고운돋움 Regular</p>
-                            </div>
-                        </div>
-                        <div class="cart_content_font_price cart_content_margin">
-                            <h3>판매가</h3>
-                            <div class="cart_font_price">
-                                <p>800P</p>
-                                <p class="cart_price_explain">회원할인 20%</p>
-                            </div>
-                        </div>
-                        
-                        <div class="cart_content_pay_price">
-                            <h3>주문금액</h3>
-                            <p>640P</p>
-                        </div>
-                        <div class="cart_order  cart_content_margin">
-                            <button class="btn-order-from-cart">상품 주문하기</button>  
-                        </div>
-                    </div>
-                     -->
-                   
-                    
-                </div>
+%>                
+      
+              
                 <div class="cart_buttons">
                     <div class="check_all_box">
                         <input type="checkbox" name="check_all" id="check_all">
