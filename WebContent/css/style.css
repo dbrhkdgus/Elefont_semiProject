@@ -3301,7 +3301,18 @@ align-items: center;
 	height:80px;
 	border-radius:50%;
 	margin: 10px;
+}
+.likeList-profile-button>button{
+	border:none;
+	margin-left:5px;
 	
 }
+
+.likeList-profile>p{
+	margin-bottom:1px;
+	margin-left:5px;
+}
+
+
 
 
