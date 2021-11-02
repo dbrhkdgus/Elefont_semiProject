@@ -128,6 +128,26 @@ public class AttachmentService {
 		close(conn);
 		return attachList;
 	}
+	public Attachment selectProfileAttachment(String memberNo) {
+		Connection conn = getConnection();
+		Attachment attachment = attachmentDao.selectProfileAttachment(conn, memberNo);
+		close(conn);
+		return attachment;
+	}
+	public List<Attachment> selectAllprofileAttachmentList() {
+		Connection conn = getConnection();
+		List<Attachment> profileAttachmentList = new ArrayList<>();
+		profileAttachmentList = attachmentDao.selectAllprofileAttachmentList(conn);
+        close(conn);
+        return profileAttachmentList;
+	}
+	public List<Attachment> selectAllAttachmentList() {
+		Connection conn = getConnection();
+		List<Attachment> allAttachmentList = new ArrayList<>();
+		allAttachmentList = attachmentDao.selectAllAttachmentList(conn);
+        close(conn);
+        return allAttachmentList;
+	}
 	
 	
 	
