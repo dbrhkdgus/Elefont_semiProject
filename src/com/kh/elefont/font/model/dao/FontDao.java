@@ -17,6 +17,7 @@ import com.kh.elefont.common.model.vo.Attachment;
 import com.kh.elefont.font.model.vo.Font;
 import com.kh.elefont.font.model.vo.FontCategory;
 import com.kh.elefont.font.model.vo.FontExt;
+import com.kh.elefont.like_cart.model.vo.LikeFont;
 
 
 public class FontDao {
@@ -652,8 +653,12 @@ public class FontDao {
 				font.setFontApproval(rset.getString("font_approval"));
 				font.setMemberId(rset.getString("member_id"));
 				font.setFontLikeCount(rset.getInt("font_like_count"));
+				font.setFontFamily(rset.getString("font_family"));
+				font.setFontUrl(rset.getString("font_url"));
+				font.setFontWeight(rset.getString("font_weight"));
 				fontList.add(font);
 			}
+			System.out.println("fontList@Dao : " + fontList);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -951,6 +956,36 @@ public class FontDao {
 		return result;
 	}
 
+	public List<LikeFont> selectAllLikeFontListByMemberNo(Connection conn, String memberNo) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		List<LikeFont> likefontList = new ArrayList<>();
+		
+		String sql = prop.getProperty("selectAllLikeFontListByMemberNo");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, memberNo);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				LikeFont likefont = new LikeFont();
+				likefont.setMemberNo(rset.getString("member_no"));
+				likefont.setFontNo(rset.getString("font_no"));
+				likefont.setLikeFontRegDate(rset.getDate("like_font_reg_date"));
+				
+				likefontList.add(likefont);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return likefontList;
+	}
 
 }
 

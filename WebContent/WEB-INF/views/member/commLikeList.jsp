@@ -50,7 +50,7 @@
                             
                         </div>
                     </div>
-                    
+                    <div class="comm-like-list">
 
 <%
  		
@@ -68,7 +68,8 @@
 				if(commNo.equals(comm.getCommNo())){
 				for(Attachment att : attachmentList){
 					if(att.getCommNo().equals(comm.getCommNo())){
-							commWriter=comm.getCommWriter();				
+							commWriter=comm.getCommWriter();
+							memberNo = att.getMemberNo();
 							attachFilename = att.getRenamedFilename();
 							commTitle=comm.getCommTitle();
 				
@@ -79,10 +80,13 @@
 		}
 			
 %>
-                  <div class="comm-like-list">
+                  
                         <div class="like-comm">
-                            <a href=""><i class="fas fa-user"></i><div class="like-comm-writer"> <%=commWriter%> </div></a>
-                            <div class="comm-img"><img src="<%=request.getContextPath() %>/upload/community/<%=attachFilename %>" alt="" /></div>
+		  				   	
+                             <a href="<%= request.getContextPath()%>/community/writerDetail?commWriter=<%= memberNo  %>"><i class="fas fa-user"></i><div class="like-comm-writer"> <%= commWriter %> </div></a>
+                            <div class="comm-img">
+                            <a href="<%= request.getContextPath()%>/community/pictureDetail?commNo=<%= commNo %>">
+                            <img src="<%=request.getContextPath() %>/upload/community/<%=attachFilename %>" alt="" /></a></div>
                             <div class="like-comm-buttons"> 
                            
                                 <i class="fas fa-heart"></i>
@@ -92,14 +96,14 @@
                                 <span><%=commTitle %></span>
                              </div>
                         </div> 
-                    </div>
+                   
                     
 <%
 				
 		}
 	
 %>                  
-                        
+            </div>             
                        
                        
 

@@ -8,7 +8,10 @@ import java.util.Map;
 import com.kh.elefont.common.model.vo.Attachment;
 import com.kh.elefont.font.model.dao.FontDao;
 import com.kh.elefont.font.model.vo.Font;
+import com.kh.elefont.like_cart.model.vo.LikeFont;
+
 import com.kh.elefont.font.model.vo.FontCategory;
+
 
 public class FontService {
 	private FontDao fontDao = new FontDao();
@@ -314,6 +317,14 @@ public class FontService {
 		}
 		
 		return result;
+	}
+	
+	
+	public List<LikeFont> selectAllLikeFontListByMemberNo(String memberNo) {
+		Connection conn = getConnection();
+		List<LikeFont> likefontList = fontDao.selectAllLikeFontListByMemberNo(conn,memberNo);
+		close(conn);
+		return likefontList;
 	}
 
 

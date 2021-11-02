@@ -37,8 +37,8 @@ String memberNo = (String)request.getAttribute("memberNo");
     	 });
     	 
     	 $("input[name=btn-purchase]").click((e)=>{
-    		const memberPoint = "<%= loginMember.getMemberPoint()%>";
-    		const fontPrice = "<%= fontPrice%>";
+    		const memberPoint = <%= loginMember.getMemberPoint()%>;
+    		const fontPrice = <%= fontPrice%>;
     		if(fontPrice > memberPoint){
     			alert(`보유하신 포인트가 부족하여 구매를 진행할 수 없습니다.
 (현재 보유 포인트 : \${memberPoint}P)`);
