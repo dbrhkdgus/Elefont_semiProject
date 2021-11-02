@@ -112,6 +112,8 @@ public class ShopDetailServlet extends HttpServlet {
 			List<Order> orderList = orderService.selectAllOrderListByMemberNo(memberNo);
 			
 			List<Attachment> profileAttachList = attachmentService.selectAllprofileAttachmentList();
+			
+			List<Font> fontList = fontService.selectAllFont();
 			//게시글 가져오기에 실패한경우
 			if(font == null){
 				request.getSession().setAttribute("msg", "조회한 폰트가 존재하지 않습니다.");
@@ -147,6 +149,7 @@ public class ShopDetailServlet extends HttpServlet {
 			request.setAttribute("likeValid", likeValid);
 			request.setAttribute("orderList", orderList);
 			request.setAttribute("profileAttachList", profileAttachList);
+			session.setAttribute("fontList", fontList);
 			
 			//request.setAttribute("commentList", commentList);
 			RequestDispatcher reqDispatcher = request.getRequestDispatcher("/WEB-INF/views/shop/shopDetail.jsp");
