@@ -116,29 +116,37 @@ System.out.println("tabIndex@jsp = " + tabIndex);
 				</div>
 				<div>
 					<div id="admin-board-section">
-						<div class="admin-board fc-fix" >
-						<h4>폰트 카테고리 관리</h4>
-							<table id="font-category-tbl">
-								<tr>
-									<th>No.</th>
-									<th>분류코드</th>
-									<th>폰트번호</th>
-								</tr>
+						<div class="admin-board" >
+							<h4>폰트 카테고리 관리</h4>
+							<div class="fc-fix">
+								<table id="font-category-tbl">
+									<tr>
+										<th>No.</th>
+										<th>분류코드</th>
+										<th>폰트번호</th>
+									</tr>
 <%
 	if(!categoryList.isEmpty()){
 		for(FontCategory fc : categoryList){
 %>
-								<tr>
-									<td><%= categoryList.indexOf(fc) %></td>
-									<td><%= fc.getCategoryCode() %></td>
-									<td><%= fc.getFontNo() %></td>
-								</tr>
+									<tr>
+										<td><%= categoryList.indexOf(fc) %></td>
+										<td><%= fc.getCategoryCode() %></td>
+										<td><%= fc.getFontNo() %></td>
+									</tr>
 <%
 		}
+	}else{
+%>
+									<tr>
+										<td colspan="3">카테고리가 없습니다.</td>
+									</tr>
+<%
 	}
 %>
-
-							</table>
+	
+								</table>
+							</div>
 						</div>
 						<div class="admin-board">
 							<h4>커뮤니티 관리</h4>
