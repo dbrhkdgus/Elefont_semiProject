@@ -7,7 +7,7 @@ List<Font> fontPurchasedList = (List<Font>) request.getAttribute("fontPurchasedL
 List<Coupon> couponList = (List<Coupon>) request.getAttribute("couponList");
 %>
 <div class="coupon-enroll">
-    <form action="" method="POST" name="couponEnrollFrm">
+    <form action="#" method="POST" name="userCouponEnrollFrm">
         <h2>쿠폰 등록 번호</h2>
         <input type="text" class="coupon-no" name="coupon-no1" id="coupon-no1">
         <span>-</span>
@@ -15,12 +15,13 @@ List<Coupon> couponList = (List<Coupon>) request.getAttribute("couponList");
         <span>-</span>
         <input type="text" class="coupon-no" name="coupon-no3" id="coupon-no3">
         <br>
+        <input type="hidden" name="memberNoToReg" id="memberNoToReg" value="<%=loginMember.getMemberNo()%>"/>
         <span>총 금액</span>
         <h3 class="coupon-total">0P</h3>
 
         <input type="button" id="coupon-x-btn" value="취소하기">
-        <input type="button" id="coupon-submit-btn" value="등록하기">
-        <input type="hidden" name="memberId">
+        <input type="button" id="coupon-submit-btn" value="등록하기" onclick="">
+        <input type="hidden" name="memberIdToReg" id="memberIdToReg" value="<%=loginMember.getMemberId()%>">
     </form>
 </div>
 <div class="member-container">
@@ -172,21 +173,26 @@ $("#member-coupon").click((e)=>{
 		/*User 쿠폰 사용 이벤트 - 다현 - */
 		$("#coupon-submit-btn").click((e)=>{
 			const $frmData = $(document.userCouponEnrollFrm);
-			console.log("안녕");
 			
 			let couponMemberNo = $("#memberNoToReg").val();
-			console.log(couponMemberNo);
+			console.log(`쿠폰 사용할 memberId : \${couponMemberNo}`);
 			
 			let couponMemberId = $("#memberIdToReg").val();
-			console.log(`쿠폰\${couponMemberId}`);
+			console.log(`쿠폰 사용할 memberId : \${couponMemberId}`);
 			
 			$.ajax({
 				url : "<%=request.getContextPath()%>/coupon/isThisCouponVaild",
+				data : $frmData.serialize(),
 				method : "post",
-				contentType : "json",
+				dataType : "json",
+				success(data) {
+					console.log(`데이터 받아왔나요? : \${data}`);
+					
+				},
+				error : console.log
 				
 				
-			})
+			});
 			
 		});
 		
