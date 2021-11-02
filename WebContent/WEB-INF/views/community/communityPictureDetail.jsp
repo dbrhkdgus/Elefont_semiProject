@@ -85,13 +85,13 @@ for(Rep rep : repList){
 			<form action="<%=request.getContextPath()%>/rep/DeleteUpdateRep" method="POST" name="commRepUpdateFrm" >
 			<div class="comm-board-rep-comment">
 				<div class="comm-reply reply-box">
-					<div class="comm-reply-profile">
-	                	<img class="community-profile-photo" src="<%= request.getContextPath()%>/upload/profilephotos/<%=profileAttachFilename%>">
+					<div class="reply-writer-profile-photo" onclick="location.href='<%= request.getContextPath()%>/community/writerDetail?commWriter=<%= rep.getMemberNo() %>'">
+	                	<img src="<%= request.getContextPath()%>/upload/profilephotos/<%=profileAttachFilename%>" id="user-profile">
 					</div>
-                     <div class="reply-writer-content">
-             	         <span><%=rep.getRepWriter()%> : </span>
-                    	 <span><%=rep.getRepContent()%></span>
-                     </div>
+                    <div class="reply-writer-content">
+            	        <span onclick="location.href='<%= request.getContextPath()%>/community/writerDetail?commWriter=<%= rep.getMemberNo() %>'"><%=rep.getRepWriter()%> : </span>
+                    	<span><%=rep.getRepContent()%></span>
+                    </div>
 				</div> 
             	<i class="fab fa-replyd" style="font-size:35px; color: #005A3C;"></i>
 <%
@@ -132,7 +132,7 @@ for(Rep rep : repList){
 					<div class="comm-board-re-rep-comment">
 						<div class="re-reply-box">
 							<img src="https://i.ibb.co/chkD19T/image.png" alt="" />
-			                 <img src="https://cdn1.vectorstock.com/i/1000x1000/10/05/user-icon-vector-22391005.jpg"  id="user-profile">
+			                 <img src="<%= request.getContextPath()%>/upload/profilephotos/<%=profileAttachFilename%>"  id="user-profile">
 		                      	<div class="reply-writer-content">
 		             	         	<span><%=rep.getRepWriter()%> : </span>
 		                    	  	<span><%=rep.getRepContent()%></span>
