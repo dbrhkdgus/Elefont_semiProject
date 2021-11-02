@@ -1,9 +1,27 @@
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
 
 <%@include file = "/WEB-INF/views/common/header.jsp" %>
 <%session.removeAttribute("categoryList"); session.removeAttribute("fontList"); %>
+<script>
+$.ajax({
+	url: "<%=request.getContextPath()%>/mainLanding",
+	dataType: "json",
+	type:"GET",
+	success(data){
+		const fontList = data["fontList"]; 
+		const communityList = data["communityList"];
+		
+		for(var i = 0; i < fontList.length; i++){
+			console.log(i);
+		};
+	},
+	error: console.log
+});
+</script>
+
 <form name="checkIdDuplicateFrm" action="<%= request.getContextPath() %>/member/checkIdDuplicate" method="POST">
 <input type="hidden" name="memberId" />
 </form>
@@ -155,7 +173,6 @@
             <div class="portfolio-inner">
                 <div class="row">
 
-
                     <div class="col-md-4 col-sm-6 col-xs-12 mix filter-sale ">
                         <div class="item">
                             <a href="images/portfolio/1.jpg" class="portfolio-popup item-img" title="Project Title">
@@ -289,6 +306,7 @@
  
 </section>
 <!-- 리뷰 End -->
+
 
 
 <%@ include file = "/WEB-INF/views/common/footer.jsp" %>
