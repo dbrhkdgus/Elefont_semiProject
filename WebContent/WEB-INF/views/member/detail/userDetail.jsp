@@ -9,18 +9,20 @@ List<Coupon> couponList = (List<Coupon>) request.getAttribute("couponList");
 <div class="coupon-enroll">
     <form action="#" method="POST" name="userCouponEnrollFrm">
         <h2>쿠폰 등록 번호</h2>
-        <input type="text" class="coupon-no" name="coupon-no1" id="coupon-no1">
+        <input type="text" class="coupon-no" name="coupon-no1" id="coupon-no1" value="elpo" readonly>
         <span>-</span>
         <input type="text" class="coupon-no" name="coupon-no2" id="coupon-no2">
         <span>-</span>
         <input type="text" class="coupon-no" name="coupon-no3" id="coupon-no3">
+        <input type="button" id="checkIfIHave" value="조회">
         <br>
         <input type="hidden" name="memberNoToReg" id="memberNoToReg" value="<%=loginMember.getMemberNo()%>"/>
         <span>총 금액</span>
-        <h3 class="coupon-total">0P</h3>
+        <h3 id="coupon-total"></h3>
 
+		<input type="hidden" name="couponCheckVaild" id="couponCheckVaild" value ="0"/>
         <input type="button" id="coupon-x-btn" value="취소하기">
-        <input type="button" id="coupon-submit-btn" value="등록하기" onclick="">
+        <input type="button" id="coupon-submit-btn" value="등록하기" onclick="LetsRegCoupon();">
         <input type="hidden" name="memberIdToReg" id="memberIdToReg" value="<%=loginMember.getMemberId()%>">
     </form>
 </div>
@@ -68,9 +70,21 @@ List<Coupon> couponList = (List<Coupon>) request.getAttribute("couponList");
            <h4>내 좋아요 리스트</h4>
            <div class="member-list">
 <%
-	for(Font f : fontLikeList){
+	if(fontLikeList.size() < 4){	
+		for(Font f : fontLikeList){
 %>
               <a href="<%=request.getContextPath()%>/shopDetail?fontNo=<%=f.getFontNo()%>"><div class="my-font-img"><%=f.getFontName() %></div></a>
+<%
+		}
+	}else{
+		for(int i = 0; i < 3; i++){
+			Font f = fontLikeList.get(i);
+%>
+              <a href="<%=request.getContextPath()%>/shopDetail?fontNo=<%=f.getFontNo()%>"><div class="my-font-img"><%=f.getFontName() %></div></a>
+<%
+		}
+%>
+              <a href="<%=request.getContextPath()%>/member/fontLikeList"><div class="my-font-img">더보기</div></a>
 <%
 	}
 %>
@@ -93,7 +107,7 @@ List<Coupon> couponList = (List<Coupon>) request.getAttribute("couponList");
 				</thead>
 				<tbody>
 <%
-	if(fontPurchasedList != null){
+	if(!fontPurchasedList.isEmpty()){
 		for(Font _fe : fontPurchasedList){
 				FontExt fe = (FontExt) _fe;
 %>
@@ -135,7 +149,7 @@ List<Coupon> couponList = (List<Coupon>) request.getAttribute("couponList");
 				</thead>
 				<tbody>
 <%
-	if(couponList != null){
+	if(!couponList.isEmpty()){
 		for(Coupon c : couponList){
 %>
 					<tr>
@@ -163,7 +177,7 @@ List<Coupon> couponList = (List<Coupon>) request.getAttribute("couponList");
           </div>
       </div>
     </div>
-</div>       
+</div> 
 <script>
 $("#member-coupon").click((e)=>{
 	const $couponEnroll = $(".coupon-enroll");
@@ -171,7 +185,7 @@ $("#member-coupon").click((e)=>{
 		$couponEnroll.show();
 		
 		/*User 쿠폰 사용 이벤트 - 다현 - */
-		$("#coupon-submit-btn").click((e)=>{
+		$("#checkIfIHave").click((e)=>{
 			const $frmData = $(document.userCouponEnrollFrm);
 			
 			let couponMemberNo = $("#memberNoToReg").val();
@@ -188,8 +202,23 @@ $("#member-coupon").click((e)=>{
 				success(data) {
 					console.log(`데이터 받아왔나요? : \${data}`);
 					
+					//포인트 얼마인지 보여주기
+					const couponPAmount = data["couponPAmount"]; 
+					console.log(`포인트 얼마? \${couponPAmount}`);			
+					document.getElementById("coupon-total").innerHTML = `\${couponPAmount} 원`;
+					$("#couponCheckVaild").val(1);
+					
 				},
-				error : console.log
+				//유효하지 않은 쿠폰일 시 alert 띄우고 input 값 지우기
+				error(xhr, textStatus, err){
+					console.log(xhr, textStatus, err);
+					alert("유효하지 않은 쿠폰입니다");
+					var coupons = document.getElementsByClassName("coupon-no");
+					coupons[1].value = "";
+					coupons[2].value = "";
+					document.getElementById("coupon-total").innerHTML = "";
+				}
+
 				
 				
 			});
@@ -221,19 +250,33 @@ $(window).load((e)=>{
 		
 		if(length > 4){
 			$fixHead.eq(index).css("height","100px");
-		}
-		else{
-			if(index != 2){
-				length = length*25 + 3;
-				$fixHead.eq(index).css("height", length+"px");
-			}
-			else{
-				length = length*27 + 3;
-				$fixHead.eq(index).css("height", length+"px");
-			}
+		}else if(length < 3){
+			length = 2*25 + 3;
+			$fixHead.eq(index).css("height", length+"px");
+		}else{
+			length = length*25 + 3;
+			$fixHead.eq(index).css("height", length+"px");
 		}
 	});
 });
+
 	
+	function LetsRegCoupon(){
+		const $vaild = $("#couponCheckVaild").val();
+		console.log("vaild 값은 : ")
+		console.log($vaild);
+		if($vaild !=1){
+			alert("쿠폰 조회가 필요합니다");
+		}
+	}
 	
+	$("#coupon-no2").change(() => {
+		$("#couponCheckVaild").val(0);
+		
+	});
+	
+	$("#coupon-no3").change(() => {
+		$("#couponCheckVaild").val(0);
+		
+	});
 </script>          
