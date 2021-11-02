@@ -651,8 +651,12 @@ public class FontDao {
 				font.setFontApproval(rset.getString("font_approval"));
 				font.setMemberId(rset.getString("member_id"));
 				font.setFontLikeCount(rset.getInt("font_like_count"));
+				font.setFontFamily(rset.getString("font_family"));
+				font.setFontUrl(rset.getString("font_url"));
+				font.setFontWeight(rset.getString("font_weight"));
 				fontList.add(font);
 			}
+			System.out.println("fontList@Dao : " + fontList);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {

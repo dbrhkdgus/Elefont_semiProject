@@ -6,6 +6,12 @@
 <%@include file = "/WEB-INF/views/common/header.jsp" %>
 <%session.removeAttribute("categoryList"); session.removeAttribute("fontList"); %>
 <script>
+<%-- 	<div class="col-md-4 col-sm-6 col-xs-12 mix filter-like filter-sale">
+<div class="test-item">
+	<a href="<%= request.getContextPath()%>/shopDetail?fontNo=\${fontList.fontNO}"><div class="test-item-title"> \${fontlist.fontName} </div></a>
+	<textarea name="" id="\${fontList.fontNo}" cols="30" rows="10" class="font-style" style="font-family: '\${fontList.fontFamily}';" ></textarea>
+<\div>
+</div>  --%>
 $.ajax({
 	url: "<%=request.getContextPath()%>/mainLanding",
 	dataType: "json",
@@ -13,10 +19,12 @@ $.ajax({
 	success(data){
 		const fontList = data["fontList"]; 
 		const communityList = data["communityList"];
-		
-		for(var i = 0; i < fontList.length; i++){
-			console.log(i);
-		};
+		console.log("fontList@jsp + ", fontList)
+		for(let i = 0; i < fontList.length; i++){
+			
+			console.log(fontList[i].fontName);
+			$("#fonts-box").append(` <div class="landing-font-item"><h1>폰트 이름 : \${fontList[i].fontName}</h1><br> <textarea name="" id="" cols="30" rows="10"></textarea></div>`);
+		}	
 	},
 	error: console.log
 });
@@ -152,7 +160,7 @@ $.ajax({
     <!-- Portfolio Start -->
     <section id="portfolio" class="portfolio section-space-padding">
         <div class="container">
-            <div class="row">
+            <div class="row" >
                 <div class="col-sm-12">
                     <div class="section-title">
                         <h2>Shop</h2>
@@ -171,61 +179,9 @@ $.ajax({
             </div>
 
             <div class="portfolio-inner">
-                <div class="row">
+                <div class="row" id="fonts-box">
 
-                    <div class="col-md-4 col-sm-6 col-xs-12 mix filter-sale ">
-                        <div class="item">
-                            <a href="images/portfolio/1.jpg" class="portfolio-popup item-img" title="Project Title">
-                                <img src="images/portfolio/1.jpg" alt="">
-                            </a>
-                            
-                        </div>
-                    </div>
-
-                    <div class="col-md-4 col-sm-6 col-xs-12 mix filter-like filter-sale">
-                        <div class="item">
-                            <a href="images/portfolio/2.jpg" class="portfolio-popup item-img" title="Project Title">
-                                <img src="images/portfolio/2.jpg" alt="">
-                            </a>
-                           
-                        </div>
-                    </div>
-
-                    <div class="col-md-4 col-sm-6 col-xs-12 mix filter-sale">
-                        <div class="item">
-                            <a href="images/portfolio/3.jpg" class="portfolio-popup item-img" title="Project Title">
-                                <img src="images/portfolio/3.jpg" alt="">
-                            </a>
-                        
-                        </div>
-                    </div>
-
-                    <div class="col-md-4 col-sm-6 col-xs-12 mix filter-like filter-view">
-                        <div class="item">
-                            <a href="images/portfolio/4.jpg" class="portfolio-popup item-img" title="Project Title">
-                                <img src="images/portfolio/4.jpg" alt="">
-                            </a>
-                           
-                        </div>
-                    </div>
-
-                    <div class="col-md-4 col-sm-6 col-xs-12 mix filter-view filter-sale">
-                        <div class="item">
-                            <a href="images/portfolio/5.jpg" class="portfolio-popup item-img" title="Project Title">
-                                <img src="images/portfolio/5.jpg" alt="">
-                            </a>
-                       
-                        </div>
-                    </div>
-
-                    <div class="col-md-4 col-sm-6 col-xs-12 mix filter-sale filter-like filter-view" title="Project Title">
-                        <div class="item">
-                            <a href="images/portfolio/6.jpg" class="portfolio-popup item-img">
-                                <img src="images/portfolio/6.jpg" alt="">
-                            </a>
-                           
-                        </div>
-                    </div>
+                    
 
                 </div>
             </div>
