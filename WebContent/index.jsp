@@ -3,7 +3,7 @@
 
 
 <%@include file = "/WEB-INF/views/common/header.jsp" %>
-<%session.removeAttribute("categoryList");%>
+<%session.removeAttribute("categoryList"); session.removeAttribute("fontList"); %>
 <form name="checkIdDuplicateFrm" action="<%= request.getContextPath() %>/member/checkIdDuplicate" method="POST">
 <input type="hidden" name="memberId" />
 </form>

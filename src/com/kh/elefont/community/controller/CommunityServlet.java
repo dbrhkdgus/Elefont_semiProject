@@ -23,8 +23,8 @@ import com.kh.elefont.member.model.vo.Member;
 @WebServlet("/community")
 public class CommunityServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
-	CommunityService communityService = new CommunityService();
-	AttachmentService attachmentService = new AttachmentService();
+	private CommunityService communityService = new CommunityService();
+	private AttachmentService attachmentService = new AttachmentService();
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */

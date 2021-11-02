@@ -43,7 +43,7 @@ public class CouponDao {
 				coupon.setCouponNo(rset.getString("coupon_no"));
 				coupon.setCouponType(rset.getString("coupon_type"));
 				coupon.setCouponRegDate(rset.getDate("coupon_reg_date"));
-				coupon.setCouponExpired(rset.getInt("coupon_expired"));
+				coupon.setCouponExpDate(rset.getDate("coupon_exp_date"));
 				coupon.setCouponUsed(rset.getString("coupon_used"));
 				coupon.setCouponPAmount(rset.getInt("coupon_p_amount"));
 				coupon.setCouponDiscount(rset.getDouble("coupon_discount"));
@@ -122,6 +122,40 @@ public class CouponDao {
 		}
 		
 		return couponNo;
+	}
+
+	public List<Coupon> selectAllCouponByMemberNo(Connection conn, String memberNo) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		List<Coupon> couponList = new ArrayList<>();
+		String sql = prop.getProperty("selectAllCouponByMemberNo");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, memberNo);
+			
+			rset = pstmt.executeQuery();
+			while(rset.next()) {
+				Coupon coupon = new Coupon();
+				coupon.setCouponNo(rset.getString("coupon_no"));
+				coupon.setCouponType(rset.getString("coupon_type"));
+				coupon.setCouponRegDate(rset.getDate("coupon_reg_date"));
+				coupon.setCouponExpDate(rset.getDate("coupon_exp_date"));
+				if("P".equals(coupon.getCouponType()))
+					coupon.setCouponPAmount(rset.getInt("coupon_p_amount"));
+				else
+					coupon.setCouponDiscount(rset.getDouble("coupon_discount"));
+				coupon.setMemberNo(memberNo);
+				
+				couponList.add(coupon);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return couponList;
 	}
 
 }
