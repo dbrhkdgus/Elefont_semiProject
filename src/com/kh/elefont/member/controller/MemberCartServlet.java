@@ -62,18 +62,19 @@ public class MemberCartServlet extends HttpServlet {
 				List<MemberCartView> memberCartViewList = likeCartService.selectAllMemberCartViewByMemberNo(memberNo);
 				boolean flag = false;
 				for(MemberCartView mcv : memberCartViewList) {
-					if(mcv.getFontNo().equals(fontNo)) {
+					if(mcv.getFontNo().equals(fontNo) ) {
 						flag = true;
 						break;
 					}
 				
 				}
-				if(flag == false) {
+				if(!flag) {
 					
 					insertCart = likeCartService.insertCart(cartNo, fontNo);
 					insertCart = likeCartService.insertMemberCart(memberNo, cartNo);					
 				}
-					
+				
+			
 				map.put("insertCart", insertCart);
 								
 //				//json문자열로 변환
