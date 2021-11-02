@@ -2708,15 +2708,14 @@ font-size: 16px;
 #writer-detail{
     margin-left: 10%;
 }
+.comm-detail-writer-info {
+	position: sticky;
+	top: 81px;
+}
 .comm-writer-detail{
     display: flex;
     align-items: flex-start;
    	justify-content: center;
-}
-.comm-writer-info{
-	position: fixed;
-	display: block;
-    text-align: center;
 }
 .writer-profile-img{
 	margin-top: 80px;
@@ -2742,8 +2741,10 @@ font-size: 16px;
     height: 500px;
 }
 .like-item-comm{
-	height : 210px;
-	margin-right: 10px;
+	border: 1px solid black;
+    width: 150px;
+    height: 150px;
+    text-align: center;
 }
 .like-item-comm{
 	zoom : 0.8;
@@ -2818,7 +2819,7 @@ font-size: 16px;
     width: 490px;
 }
 .comm-writer-info{
-    text-align: centerk;
+    text-align: center;
 }
 .comm-writer-info-buttons i{
     font-size: 50px;
