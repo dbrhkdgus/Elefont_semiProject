@@ -68,11 +68,22 @@ public class CouponService {
 		return couponPrice;
 	}
 
-	public int insertPoint(int couponPrice) {
+	public int deleteUsedCoupon(String couponNo) {
 		Connection conn = getConnection();
-		int result = couponDao.insertPoint(conn, couponPrice);
-		close(conn);			
-		return 0;
+		int result =0;
+		
+		try {
+			result = couponDao.deleteUsedCoupon(conn,couponNo);
+			commit(conn);
+		}catch(Exception e) {
+			rollback(conn);
+			throw e;
+		}finally {
+			close(conn);
+		}
+		
+		return result;
 	}
+
 
 }
