@@ -8,50 +8,64 @@
 
 <%
 	List<MemberCartView> memberCartList= (List<MemberCartView>)request.getAttribute("memberCartList");
-	System.out.println("memberCartList@jsp"+ memberCartList );
 %>
    <!-- 장바구니 기본 폼 시작-->
     <section id="portfolio" class="portfolio section-space-padding">
         <div class="cart_outter">
 
-            <div class="container">
+            <div class="container" id= "cart-container">
+<%
+if(!memberCartList.isEmpty()){
+%>
                 <div class="cart_title">
                     <span>주문내역</span>
                     <hr>
                 </div>
+     	<form name="cartFrm"  action="<%=request.getContextPath() %>/member/memberCartDelete" method="post"  >
 <%
 for(MemberCartView mcv : memberCartList){
+	
 	int disresult = (int)(mcv.getFontPrice()-(mcv.getFontPrice() * mcv.getFontDiscountRate()));
 %>
-                 <div class="cart_content">
-                        <input type="checkbox" name="chose" id="" >
-                        <img src="./images/shop_test_img.png" alt="" class="cart_content_img cart_content_margin">
-                        <div class="cart_content_font_name cart_content_margin">
-                            <h3>상품명</h3>
-                            <div class="cart_font_name">
-                                <p><%=mcv.getFontName() %></p>
-                            </div>
-                        </div>
-                        <div class="cart_content_font_price cart_content_margin">
-                            <h3>판매가</h3>
-                            <div class="cart_font_price">
-                                <p><%=mcv.getFontPrice() %></p>
-                                <p class="cart_price_explain">회원 할인<%=mcv.getFontDiscountRate() %> %</p>
-                            </div>
-                        </div>
-                        
-                        <div class="cart_content_pay_price">
-                            <h3>주문금액</h3>
-                            <p><%=disresult %>P</p>
-                        </div>
-                        <div class="cart_order  cart_content_margin">
-                            <button class="btn-order-from-cart">상품 주문하기</button>  
-                        </div>
-                    </div>
-
+  	
+	                 <div class="cart_content" style="width:'100%';">
+	                 
+	                		<input type="hidden" name="cart_no" value=<%=mcv.getCartNo() %>>
+	                        <input type="checkbox" name="chk_cart_no" value=<%=mcv.getCartNo()%>>
+	                        <img src="./images/shop_test_img.png" alt="" class="cart_content_img cart_content_margin">
+	                        <div class="cart_content_font_name cart_content_margin">
+	                            <h3>상품명</h3>
+	                            <div class="cart_font_name">
+	                                <p><%=mcv.getFontName() %></p>
+	                            </div>
+	                        </div>
+	                        <div class="cart_content_font_price cart_content_margin">
+	                            <h3>판매가</h3>
+	                            <div class="cart_font_price">
+	                                <p><%=mcv.getFontPrice() %></p>
+	                                <p class="cart_price_explain">회원 할인<%=mcv.getFontDiscountRate() %> %</p>
+	                            </div>
+	                        </div>
+	                        
+	                        <div class="cart_content_pay_price">
+	                            <h3>주문금액</h3>
+	                            <p><%=disresult %>P</p>
+	                        </div>
+	                        <div class="cart_order  cart_content_margin">
+	                        	<input type="button" class="btn-delete-from-cart" value="삭제하기"/>
+	                            <!-- <button class="btn-delete-from-cart">삭제하기</button>   -->
+	                        </div>
+	                    </div>
+	         
+       
 <%
 }
-%>                
+%>              
+		 </form> 	
+		
+			            
+       	      
+        
       
               
                 <div class="cart_buttons">
@@ -59,17 +73,31 @@ for(MemberCartView mcv : memberCartList){
                         <input type="checkbox" name="check_all" id="check_all">
                         <label for="check_all">전체 선택</label>
                     </div>
-                    <button>선택한 상품 삭제하기</button>
-                    <button>선택한 상품 주문하기</button>
+                    <div class= "cart_bottom_buttons">
+                    	<input type="button"  id="check_all_delete" value="전체 삭제하기">
+                    	<input type="button"  id="selected_cart_delete" value="선택한 상품 삭제하기">  
+                    	<input type="button"  id="select_order_font" value="주문하기">	                
+                    </div>
                 </div>
                 
                 
                 
             </div>
+<%
+}else{
+%>    
+			
+		<div class="member_cart_null_box" >
+			<img alt="우는코끼리" src="https://i.ibb.co/DzynHD7/image.png">
+			<h1>장바구니가 텅~</h1>
+		</div>
+<%
+}
+%>
+		        
             
-            
-        </section>
     </div>
+  </section>
 
     <!-- 장바구니 기본 폼 끝 -->
 
@@ -111,13 +139,60 @@ for(MemberCartView mcv : memberCartList){
         </div>
 <script>
 	$(".payment_window").hide();
-	$(".btn-order-from-cart").click((e) =>{
-		$(".payment_window").show();
+	
+	/* 선택한 단일 폰트 삭제 */
+	$(".btn-delete-from-cart").click((e) =>{
+		/* $(".payment_window").show(); */
+		if(confirm("해당 상품을 삭제하시겠습니까?") ){
+			/* console.log(`\${$(e.target).parent().parent().children("input").val()}`); */
+			location.href= `<%=request.getContextPath() %>/member/memberCartDelete?cartNo=\${$(e.target).parent().parent().children("input").val()}`; 
+		}
 	});
+	
+	/* 선택한 상품 다중 삭제 */
+	$("#selected_cart_delete").click((e)=>{
+		$(document.cartFrm).submit();
+	});
+	
+	
 	$("#btn-payment-cancle").click((e)=>{
 		$(".payment_window").hide();
 	});
+	
+	/* 전체선택해제버튼 */
+	$("#check_all").click((e)=>{
+		if($("input:checkbox[id='check_all']").prop("checked")){
+			$("input[type=checkbox]").prop("checked" ,true);
+		} else {
+			$("input[type=checkbox]").prop("checked" ,false);
+		}
+	});
+	
+	
+   
+   
+	/*전체삭제하기 버튼*/
+	$("#check_all_delete").click((e)=>{		
+		$("input[type=checkbox]").prop("checked" ,true);			
+		$(document.cartFrm).submit();		
+	});
+	
+	/* 선택된걸 배열에 넣어보는거야 */
+/* 	$("#check_all_delete").click((e)=>{
+		var chk_arr = $("input[name='chk[]']"); 
+		var chk_data = []; 
+		for( var i=0; i<chk_arr.length; i++ ) { 
+			if( chk_arr.eq(i).is(":checked") == true ) { 
+				chk_data.push(chk_arr.eq(i).value);
+				} 
+			}
+		console.log("chk_data@jsp = "+chk_data);
+	}); */
 
+
+	/* $("#selected_cart_delete").click((e)=>{-
+		let checkedCart = $('')
+	}); */
 </script>
 
 
