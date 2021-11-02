@@ -1658,7 +1658,12 @@ text-align: center;
 }
 #shop-detail-textarea{
     margin-top: 10px;
+    padding: 10px;
     width: 500px;
+    resize: none;
+    font-size: 30px;
+    line-height: 100%;
+    
 }
 #font-previewer-title{
  
@@ -2549,10 +2554,24 @@ font-size: 16px;
 #font-category-tbl{
 	border: 2px solid #000;
 	border-collapse:collapse;
-	width: 250px;
+	width: 350px;
 }
-#font-category-tbl th, #font-tbl td{
+#font-category-tbl th, #font-category-tbl td{
 	border: 1px solid #000;
+	text-align: center;
+}
+#font-category-tbl th{
+	position: sticky;
+	top: 0px;
+	background-color: #005A3C;
+	color: #fff;
+}
+.fc-fix{
+	border: 1px solid #000;
+	overflow:auto;
+	height:180px;
+	width: 350px;
+	margin: 10px auto;
 }
 
 .user-search-bar{
@@ -3181,6 +3200,15 @@ align-items: center;
 
 /*구매CSS FontPurchase end*/
 
+/* 랜딩페이지 폰트 구현 css */
+#fonts-box{
+	margin-top: 50px;
+    margin-left: auto;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    width: 90%;
+}
 
 
 

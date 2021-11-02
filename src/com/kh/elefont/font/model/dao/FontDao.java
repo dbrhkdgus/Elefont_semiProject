@@ -15,6 +15,7 @@ import java.util.Properties;
 
 import com.kh.elefont.common.model.vo.Attachment;
 import com.kh.elefont.font.model.vo.Font;
+import com.kh.elefont.font.model.vo.FontCategory;
 import com.kh.elefont.font.model.vo.FontExt;
 import com.kh.elefont.like_cart.model.vo.LikeFont;
 
@@ -163,8 +164,6 @@ public class FontDao {
 				font.setFontWeight(rset.getString("font_weight"));
 				
 				fontList.add(font);
-				
-				
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -318,6 +317,7 @@ public class FontDao {
 				font.setFontRegDate(rset.getDate("font_reg_date"));
 				font.setFontApproval(rset.getString("font_approval"));
 				font.setMemberId(rset.getString("member_id"));
+				font.setFontFamily(rset.getString("font_family"));
 			}
 		}catch(Exception e){
 			e.printStackTrace();
@@ -653,8 +653,12 @@ public class FontDao {
 				font.setFontApproval(rset.getString("font_approval"));
 				font.setMemberId(rset.getString("member_id"));
 				font.setFontLikeCount(rset.getInt("font_like_count"));
+				font.setFontFamily(rset.getString("font_family"));
+				font.setFontUrl(rset.getString("font_url"));
+				font.setFontWeight(rset.getString("font_weight"));
 				fontList.add(font);
 			}
+			System.out.println("fontList@Dao : " + fontList);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -902,6 +906,32 @@ public class FontDao {
 		return fontList;
 	}
 
+	public List<FontCategory> selectAllFontCategory(Connection conn) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		List<FontCategory> categoryList = new ArrayList<>();
+		String sql = prop.getProperty("selectAllFontCategory");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			rset = pstmt.executeQuery();
+			while(rset.next()) {
+				FontCategory fc = new FontCategory();
+				fc.setCategoryCode(rset.getString("category_code"));
+				fc.setFontNo(rset.getString("font_no"));
+				fc.setCategoryReleaseYear(rset.getDate("category_release_year"));
+				
+				categoryList.add(fc);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return categoryList;
+	}
 	public int updateFontPurchaseCount(Connection conn, Font font) {
 		PreparedStatement pstmt = null;
 		int result = 0;

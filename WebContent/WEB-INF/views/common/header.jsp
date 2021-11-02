@@ -119,7 +119,7 @@
 <%
 
 if(loginMember != null){
-	System.out.println(loginMember);
+	
 	
 	Member member = (Member) session.getAttribute("member");
 	File profilePhotoAttach = (File) session.getAttribute("profilePhotoAttach");

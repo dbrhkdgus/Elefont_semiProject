@@ -10,6 +10,9 @@ import com.kh.elefont.font.model.dao.FontDao;
 import com.kh.elefont.font.model.vo.Font;
 import com.kh.elefont.like_cart.model.vo.LikeFont;
 
+import com.kh.elefont.font.model.vo.FontCategory;
+
+
 public class FontService {
 	private FontDao fontDao = new FontDao();
 
@@ -293,6 +296,12 @@ public class FontService {
 
 		close(conn);
 		return fontList;
+	}
+	public List<FontCategory> selectAllFontCategory() {
+		Connection conn = getConnection();
+		List<FontCategory> categoryList = fontDao.selectAllFontCategory(conn);
+		close(conn);
+		return categoryList;
 	}
 	public int updateFontPurchaseCount(Font font) {
 		Connection conn = getConnection();

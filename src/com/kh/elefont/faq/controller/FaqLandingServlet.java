@@ -37,7 +37,7 @@ public class FaqLandingServlet extends HttpServlet {
 
 		//2.업무로직 _db를 갔다옴
 		 List<Faq> faqList = faqService.selectAllFaq();
-		 System.out.println("디비를 잘 갔다오셨나요?" + faqList);
+		 
 		 
 		 List<Question> questionList = new ArrayList<>();
 		 

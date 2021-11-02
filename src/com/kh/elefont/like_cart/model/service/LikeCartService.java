@@ -77,4 +77,13 @@ public class LikeCartService {
 		return memberCartViewList;
 	}
 
+
+	public List<MemberCartView> selectMemberCartList(String memberNo, String cartNo) {
+		Connection conn = getConnection();
+
+		List<MemberCartView> memberCartList = likeCartDao.selectMemberCartList(conn, memberNo);
+		close(conn);
+		return memberCartList;
+	}
+
 }
