@@ -242,7 +242,7 @@ public class LikeCartDao {
 				memberCartView.setCartRegDate(rset.getDate("cart_regdate"));
 				
 				
-				memberCartList.add(memberCartList);
+				memberCartList.add(memberCartView);
 			}
 			
 			
