@@ -37,7 +37,6 @@ public class CommLikeListServlet extends HttpServlet {
 		
 		List<Community> communityList = new ArrayList<>();
 		List<Attachment> attachmentList = new ArrayList<>();
-//		List<String> commLikeList = new ArrayList<>();
 		List<CommLike> commLikeList = new ArrayList<>();
 		Community community = new Community();
 		
@@ -50,7 +49,7 @@ public class CommLikeListServlet extends HttpServlet {
 			commLikeList = communityService.selectAllLikedCommList(loginMember.getMemberNo());
 		}
 		
-		System.out.println("컴라이크리스트서블릿!" + commLikeList);
+		
 	
 		
 		request.setAttribute("community", community);
