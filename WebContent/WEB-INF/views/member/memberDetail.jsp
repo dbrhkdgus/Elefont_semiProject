@@ -212,13 +212,13 @@ List<Coupon> couponList = (List<Coupon>) request.getAttribute("couponList");
 %>
 							<tr>
 								<td><%=c.getCouponRegDate() %></td>
-								<td><%=c.getCouponType() %></td>
+								<td><%="P".equals(c.getCouponType())? "포인트 쿠폰" : "할인 쿠폰" %></td>
 								<td><%=c.getCouponNo() %></td>
 								<td>
 									<%="P".equals(c.getCouponType())? c.getCouponPAmount()+"p" : c.getCouponDiscount()+"%" %>
 								</td>
 								<td><%= c.getCouponExpDate() %>일 까지</td>
-								<td><%= c.getCouponUsed() %></td>
+								<td><%= "Y".equals(c.getCouponUsed())? "사용 완료" : "미사용" %></td>
 							</tr>
 <%
 		}
@@ -759,7 +759,7 @@ $("#btn-member-Info-Edit").click((e)=>{
 	location.href = "<%= request.getContextPath()%>/member/memberInfoEdit?memberId=<%=loginMember.getMemberId()%>&memberNo=<%=loginMember.getMemberNo()%>";
 });
 
-/* 폰트 조회 창 높이 폰트 입력량에 따라 조절*/
+/* 조회 창 높이 행 입력량에 따라 조절*/
 $(window).load((e)=>{
 	const $fixHead = $(".fix-head");
 	$.each($fixHead, function(index, item){
