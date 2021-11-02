@@ -28,7 +28,7 @@
             <h3 class="coupon-total">0P</h3>
 
             <input type="button" id="coupon-x-btn" value="취소하기">
-            <input type="button" id="coupon-submit-btn" value="등록하기">
+            <input type="button" id="coupon-submit-btn" value="등록하기" onclick="checkIfVaild();">
             <input type="hidden" name="memberId">
         </form>
      </div>
@@ -709,6 +709,19 @@ $(memberId).autocomplete({
 		location.href = "<%= request.getContextPath()%>/member/memberInfoEdit?memberId=<%=loginMember.getMemberId()%>&memberNo=<%=loginMember.getMemberNo()%>";
 	});
 	
+	function checkIfVaild() {
+		$.ajax({
+			url: "<%=request.getContextPath()%>/coupon/isThisCouponVaild",
+			data : {memberNo : "<%=loginMember.getMemberNo()%>"},
+			dataType: "json",
+			method: "Get",
+			success(data){		
+				console.log("받아옴" + data);
+			},
+			error : console.log
+		});
+
+	};
 	
 </script>
 
