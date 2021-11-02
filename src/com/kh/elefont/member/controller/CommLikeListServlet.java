@@ -39,10 +39,13 @@ public class CommLikeListServlet extends HttpServlet {
 		List<Attachment> attachmentList = new ArrayList<>();
 		List<CommLike> commLikeList = new ArrayList<>();
 		Community community = new Community();
+		List<Attachment> allAttachmentList = new ArrayList<>();
 		
 		community =  communityService.selectOneCommunity(loginMember.getMemberNo());
 		communityList = communityService.selectAllCommunityList();
 		attachmentList = attachmentService.selectAllCommAttachmentList();
+		allAttachmentList = attachmentService.selectAllAttachmentList();
+		
 		
 		if(loginMember != null) {
 			//commLikeList = communityService.selectAllLikedComm(loginMember.getMemberNo());
@@ -56,6 +59,7 @@ public class CommLikeListServlet extends HttpServlet {
 		request.setAttribute("communityList", communityList);
 		request.setAttribute("attachmentList", attachmentList);
 		request.setAttribute("commLikeList", commLikeList);
+		request.setAttribute("allAttachmentList", allAttachmentList);
 		request
 			.getRequestDispatcher("/WEB-INF/views/member/commLikeList.jsp")
 			.forward(request, response);
