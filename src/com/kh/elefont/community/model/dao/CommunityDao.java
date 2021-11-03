@@ -14,6 +14,7 @@ import java.util.Map;
 import java.util.Properties;
 
 import com.kh.elefont.community.model.vo.Community;
+import com.kh.elefont.font.model.vo.Font;
 import com.kh.elefont.like_cart.model.vo.CommLike;
 
 
@@ -590,6 +591,33 @@ public class CommunityDao {
 		}
 	
 		return list;
+	}
+
+	public List<Community> selectAllLikedCommunity(Connection conn, String memberNo) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		List<Community> likeCommunityList = new ArrayList<>();
+		String sql = prop.getProperty("selectAllLikedCommunity");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, memberNo);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				Community community = new Community();
+				community.setCommNo(rset.getString("comm_no"));
+				
+				likeCommunityList.add(community);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return likeCommunityList;
 	}
 	
 

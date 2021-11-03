@@ -5,6 +5,18 @@
     font-style: normal;
 }
 
+@font-face {
+    font-family: 'SDSamliphopangche_Basic';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts-20-12@1.0/SDSamliphopangche_Basic.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Somi';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/naverfont_10@1.0/Somi.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
 /*
    
     Template Name : Rolling - Freelancer Portfolio Template
@@ -199,11 +211,12 @@ fieldset {
 	color: #fff;
 	overflow: hidden;
 }
-
+/*숍으로이동하기  */
 .button-style:hover,
 .button-style:active,
 .button-style:focus {
-	background: #24b662;
+	background-image:url(https://kabekin.com/iphone/uploads/cache/1735676553/kabekin18-300x505-MM-100.jpg);
+	/* background: #24b662;  */
 	color: #ffffff !important;
 }
 
@@ -219,7 +232,7 @@ fieldset {
 }
 
 .button-style:active:before {
-	color: #17954c;
+	/* color: #17954c; */
 }
 
 .button-style-icon:before {
@@ -340,7 +353,7 @@ body.loaded #preloader{
 .home-section-background {
     position: relative;
     height: 100%;
-    background: url(../images/bg/bg.jpg);
+	background: url(https://media.istockphoto.com/photos/white-wrinkle-paper-texture-background-picture-id672298630?k=20&m=672298630&s=170667a&w=0&h=v1WOVP4bNtXfzTt9ApogY95YJLiOEkFwl8m9hkHs72g=);
     background-size: cover;
     z-index: 1;
 }
@@ -371,7 +384,7 @@ body.loaded #preloader{
 
 .home-section-background h2 {
     color: #f8f8f8;
-    font-size: 50px;
+    font-size: 65px;
     letter-spacing: 5px;
     margin: 0;
 }
@@ -1681,7 +1694,13 @@ text-align: center;
     background-color: #59C38A;
     width: fit-content;
 }
-
+.h1_font_style{
+	margin-left: 35px;
+	width: 100%;
+	font-style: bold; 
+	font-weight: bold;
+	font-family: 'SDSamliphopangche_Basic';
+}
 .sd-font-previewer{
     width: 500px;
     
@@ -2930,6 +2949,13 @@ font-size: 16px;
 	display: flex;
     align-items: center;
     justify-content: center;
+    cursor: pointer;
+}
+
+.writer-collection-profile-menu {
+	position: sticky;
+    top: 10px;
+    background-color:white;
 }
 
 .writer-profile-photo-box {
@@ -2978,6 +3004,35 @@ font-size: 16px;
 	width: 100%;
     height: 100%;
     object-fit: cover;
+}
+.like-font-collection-box {
+    display: flex;
+    justify-content: center;
+}
+.like-font-collection {
+    display: flex;
+    flex-wrap: wrap;
+    width: 996px;
+}
+
+.collection-like-font-box {
+	border: 1px solid black;
+    width: 230px;
+    height: 230px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 20px;
+    margin: 9.5px;
+}
+
+.collection-user-like-font-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+.like-font-name {
+	font-size: 25px;
 }
 /* community writer collection 끝*/
 
