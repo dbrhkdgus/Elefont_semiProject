@@ -60,8 +60,14 @@ const commContent = [];
 	    	               
 	                    }
 	                
-	                
-						$("body").append(`<script>$("#\${communityList[i].commNo}").click((e)=>{location.href = "<%=request.getContextPath()%>/community/pictureDetail?commNo=\${communityList[i].commNo}";});`);
+	                	var f1 = $("#\${communityList[i].commNo}").click((e)=>{
+							location.href = "<%=request.getContextPath()%>/community/pictureDetail?commNo=\${communityList[i].commNo}";
+						});
+						$("body").append(`
+								<script>
+								
+
+								
 						
 						/* Testimonial Carousel/Slider */
 
@@ -81,8 +87,7 @@ const commContent = [];
 						    transitionStyle : "backSlide"
 						});
 						
-						<\/script>
-						`);
+						<\/script>`);
 					
 					
 					
@@ -97,7 +102,7 @@ const commContent = [];
 	error: console.log
 }); 
 
-
+ 
 
 
 </script>
