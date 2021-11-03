@@ -11,6 +11,8 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.kh.elefont.common.model.service.AttachmentService;
+import com.kh.elefont.common.model.vo.Attachment;
 import com.kh.elefont.font.model.service.FontService;
 import com.kh.elefont.font.model.vo.Font;
 import com.kh.elefont.member.model.vo.Member;
@@ -22,6 +24,7 @@ import com.kh.elefont.member.model.vo.Member;
 public class SellerFontAuditServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private FontService fontService = new FontService();
+	private AttachmentService attachmentService = new AttachmentService(); 
 
 	/**
 	 * @author hyejin 폰트 심사 페이지로 들어갈 때 해당 아이디가 들어가 있는 폰트 정보들을 불러와 view단에 출력
@@ -36,6 +39,7 @@ public class SellerFontAuditServlet extends HttpServlet {
 		List<Font> approvalList = new ArrayList<>();
 		List<Font> checkedList = new ArrayList<>();
 		List<Font> auditList = new ArrayList<>();
+		List<Attachment> attachmentList = new ArrayList<>();
 		
 		//	memberId로 조회한 폰트 목록들을 심사 대기중(audit)/심사 승인/심사 미승인/판매자 체크로 나누어 분리하고 분리한 리스트가 비어 있지 않은 경우 session에 저장
 		for(Font f : list) {
@@ -59,12 +63,15 @@ public class SellerFontAuditServlet extends HttpServlet {
 //		if(!auditList.isEmpty()) {
 			session.setAttribute("auditList", auditList);
 //		}
+			
+		attachmentList = attachmentService.selectAllFontAttachmentList();
 		System.out.println("approvalList@servlet : " + approvalList);
 		System.out.println("checkedList@servlet : " + checkedList);
 		System.out.println("auditList@servlet : " + auditList);
 		
 		
 		//3. view단 연결
+		request.setAttribute("attachmentList", attachmentList);
 		request.getRequestDispatcher("/WEB-INF/views/seller/sellerManagement.jsp").forward(request, response);
 		
 	}
