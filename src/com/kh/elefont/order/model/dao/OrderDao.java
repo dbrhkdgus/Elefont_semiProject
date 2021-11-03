@@ -10,8 +10,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Properties;
 
+import com.kh.elefont.font.model.vo.Font;
 import com.kh.elefont.order.model.vo.Order;
 import com.kh.elefont.order.model.vo.OrderExt;
 
@@ -209,5 +211,62 @@ public class OrderDao {
 		}
 		
 		return orderList;
+	}
+
+	public List<Order> selectSerchOrder(Connection conn, Map<String, Object> param) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		List<Font> fontList = new ArrayList<>();
+		String sql = "";
+		String searchType = (String)param.get("searchType");
+//		String searchKeyword = (String)param.get("searchKeyword");
+//		System.out.println("param.get(\"searchKeyword\")@Dao : " + param.get("searchKeyword"));
+		
+		switch(searchType) {
+		case "orderNo" : 
+			sql = prop.getProperty("selectSearchOrderByorderNo");
+			break;
+		case "orderDate" : 
+			sql = prop.getProperty("selectSearchFontByorderDate");
+			break;
+		case "orderId" : 
+			sql = prop.getProperty("selectSearchFontByorderId");
+			break;
+		case "orderFont" : 
+			sql = prop.getProperty("selectSearchFontByorderFont");
+			break;
+		}
+		
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, "%"+param.get("searchKeyword")+"%");
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				OrderExt font = new OrderExt();
+	
+				font.setFontNo(rset.getString("font_no"));
+				font.setFontName(rset.getString("font_name"));
+				font.setFontPrice(rset.getDouble("font_price"));
+				font.setFontDiscountRate(rset.getDouble("font_discount_rate"));
+				font.setFontApproval(rset.getString("font_approval"));
+				font.setMemberId(rset.getString("member_id"));
+				font.setFontLikeCount(rset.getInt("font_like_count"));
+				font.setFontFamily(rset.getString("font_family"));
+				font.setFontUrl(rset.getString("font_url"));
+				font.setFontWeight(rset.getString("font_weight"));
+				fontList.add(font);
+			}
+			System.out.println("fontList@Dao : " + fontList);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return fontList;
 	}
 }
