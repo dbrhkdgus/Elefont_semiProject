@@ -410,13 +410,13 @@ if(loginMember != null){
 	if(communityList.isEmpty()){
 %>
 						<hr class="liner">
-                        <a href=""> <div class="sd-review">
+                        <div class="sd-review">
                             <img src="https://i.ibb.co/DzynHD7/image.png" id="sd-review-img" >   
                             <div class="sd-review-box">
                                 <h2>아직 등록된 후기가 없어요!</h2>
                                 <span id="sd-review-text"><%= font.getFontName() %>를 이용해 멋진 후기를 남겨보세요!</span>  
                             </div>
-                        </div></a>
+                        </div>
 
 <%		
 	}else{
@@ -431,7 +431,7 @@ if(loginMember != null){
 		}
 %>
                         <hr class="liner">
-                        <a href=""> <div class="sd-review">
+                        <a href="<%=request.getContextPath()%>/community/pictureDetail?commNo=<%=comm.getCommNo()%>"> <div class="sd-review">
                             <img src="<%=request.getContextPath() %>/upload/community/<%= filename %>"  id="sd-review-img" >   
                             <div class="sd-review-box">
                                 <h2><%= comm.getCommTitle() %></h2>
