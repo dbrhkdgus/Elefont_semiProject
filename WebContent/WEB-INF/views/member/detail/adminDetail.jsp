@@ -1,3 +1,5 @@
+<%@page import="com.kh.elefont.font.model.vo.Font"%>
+<%@page import="com.kh.elefont.common.model.vo.Attachment"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
@@ -9,6 +11,8 @@ List<FontCategory> categoryList = (List<FontCategory>) request.getAttribute("cat
 Attachment profile = (Attachment) request.getAttribute("profile");
 int tabIndex = (int)session.getAttribute("tabIndex");
 System.out.println("tabIndex@jsp = " + tabIndex);
+List<Attachment> attachmentList = (List<Attachment>) request.getAttribute("attachmentList");
+System.out.println("attachmentList" + attachmentList);	
 %>
 
      <div class="member-container">
@@ -356,11 +360,14 @@ System.out.println("tabIndex@jsp = " + tabIndex);
 									</td>
 									<td>
 <% 
-		if(f.getAttach() != null){
+	
+	for(Attachment fontAtt :attachmentList){
+		if(f.getFontNo().equals(fontAtt.getFontNo()))
+				
 %>
 										<input type="button" value="파일 다운로드" class="fontDownloadBtn"/>			
 <%
-		}
+	}
 %>	
 									</td>
 									<td><%= f.getMemberId() %></td>
