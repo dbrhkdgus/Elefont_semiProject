@@ -267,20 +267,33 @@ if(loginMember != null){
                                 	/* 구매하기 버튼 클릭 */
                                 	$("#purchase-button").click((e)=>{
                                 		<% 
-                                		for(Order order : orderList){ 
-	                                		if(font.getFontNo().equals(order.getFontNo())){
+                                		if(loginMember == null){
+                                		%>
+                                		alert("로그인 후 이용이 가능합니다.");
+                                		$('.loginBox').show();
+                                    	$(loginId).select();
+                                		<%
+                                		}else{
+                                			for(Order order : orderList){ 
+	                                			if(font.getFontNo().equals(order.getFontNo())){
 	                                	%>
 	                                	
-	                                		alert("이미 구매한 폰트입니다.");
-	                                		return false;
+	                                			alert("이미 구매한 폰트입니다.");
+	                                			return false;
 	                                	
 	                                	<%	
-	                                			break;
-	                                		}
-                                		}
-	                                	%>
+	                                				break;
+	                                			}
+                                			}
+                                			
+                                		%>
+                                		
                                 		$("input[name=PerCartType]").val("purchase")
                                 		$(document.PurchaseCartFrm).submit();
+                                		
+                                		<%
+                                		}
+	                                	%>
                                 		
                                 	});
                                 	
@@ -290,6 +303,8 @@ if(loginMember != null){
 	if(loginMember == null){			
 %>
 									alert("로그인 후 이용 가능합니다.");
+									$('.loginBox').show();
+	                            	$(loginId).select();
 									return;
 <%
 } else if("A".equals(loginMember.getMemberRole())){
@@ -334,18 +349,28 @@ if(loginMember != null){
                                 	/* 장바구니 추가 버튼 클릭 */
                                 	$("#cart-button").click((e)=>{
                                 		<% 
-                                		for(Order order : orderList){ 
-	                                		if(font.getFontNo().equals(order.getFontNo())){
+                                		if(loginMember == null){
+                                		%>
+                                		alert("로그인 후 이용이 가능합니다.");
+                                		$('.loginBox').show();
+                                    	$(loginId).select();
+                                		
+                                		<%}else{ 
+                                			for(Order order : orderList){ 
+	                                			if(font.getFontNo().equals(order.getFontNo())){
 	                                	%>
 	                                	
-	                                		alert("이미 구매한 폰트입니다.");
-	                                		return false;
+	                                			alert("이미 구매한 폰트입니다.");
+	                                			return false;
 	                                	
 	                                	<%	
-	                                			break;
-	                                		}
-                                		}
-	                                	%>
+	                                				break;
+	                                			}
+                                			}
+                                			
+                                		%>
+                                		
+                                		
                                 		$("input[name=PerCartType]").val("cart");
                                 		$fontNo = $(e.target).data("fontNo");
                                 		$PerCartType = $(e.target).data("type");                               		
@@ -366,6 +391,9 @@ if(loginMember != null){
                                 			},
                                 			error: console.log
                                 		});
+                                		<%
+                                		}
+	                                	%>
                                 		
                                 	});
                                 	
@@ -382,13 +410,13 @@ if(loginMember != null){
 	if(communityList.isEmpty()){
 %>
 						<hr class="liner">
-                        <a href=""> <div class="sd-review">
+                        <div class="sd-review">
                             <img src="https://i.ibb.co/DzynHD7/image.png" id="sd-review-img" >   
                             <div class="sd-review-box">
                                 <h2>아직 등록된 후기가 없어요!</h2>
                                 <span id="sd-review-text"><%= font.getFontName() %>를 이용해 멋진 후기를 남겨보세요!</span>  
                             </div>
-                        </div></a>
+                        </div>
 
 <%		
 	}else{
@@ -403,7 +431,7 @@ if(loginMember != null){
 		}
 %>
                         <hr class="liner">
-                        <a href=""> <div class="sd-review">
+                        <a href="<%=request.getContextPath()%>/community/pictureDetail?commNo=<%=comm.getCommNo()%>"> <div class="sd-review">
                             <img src="<%=request.getContextPath() %>/upload/community/<%= filename %>"  id="sd-review-img" >   
                             <div class="sd-review-box">
                                 <h2><%= comm.getCommTitle() %></h2>

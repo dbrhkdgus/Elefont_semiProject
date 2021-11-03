@@ -86,4 +86,13 @@ public class LikeCartService {
 		return memberCartList;
 	}
 
+
+	public int selectCartCountByMemberNo(String memberNo) {
+		Connection conn = getConnection();
+
+		int cnt = likeCartDao.selectCartCountByMemberNo(conn, memberNo);
+		close(conn);
+		return cnt;
+	}
+
 }

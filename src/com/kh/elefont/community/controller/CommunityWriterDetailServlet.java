@@ -53,13 +53,19 @@ public class CommunityWriterDetailServlet extends HttpServlet {
 		
 		List<String> categoryList = session.getAttribute("categoryList") == null ? new ArrayList<>() : (List<String>) session.getAttribute("categoryList");
 		List<Attachment> attachmentList = attachmentService.selectAllCommAttachmentListByMemberNo(memberNo);
-		List<Font> fontList = fontService.selectAllLikedFontByMemberNo(memberNo);
+		List<Font> fontLikeList = fontService.selectAllLikedFontByMemberNo(memberNo);
+		List<Font> allFontList = fontService.selectAllFont();
+		System.out.println("폰트리스트@@서블릿 : "+ fontLikeList);
+		
+		
+		
 		
 		request.setAttribute("writerMember", writerMember);
 		request.setAttribute("totalCommunityByWriter", totalCommunityByWriter);
 		request.setAttribute("attachmentList", attachmentList);
 		request.setAttribute("profileAttachment", profileAttachment);
-		request.setAttribute("fontList", fontList);
+		request.setAttribute("fontLikeList", fontLikeList);
+		request.setAttribute("allFontList", allFontList);
 		
 		request.getRequestDispatcher("/WEB-INF/views/community/communityWriterDetail.jsp").forward(request, response);
 	}

@@ -4,8 +4,8 @@
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
 <%@include file = "/WEB-INF/views/common/LandingHeader.jsp" %>
+<%@include file = "/css/fontApply.jsp" %>
     
     <!-- community writer detail 시작 -->
 <%
@@ -13,8 +13,9 @@
 	Attachment profileAttachment = (Attachment)request.getAttribute("profileAttachment");
 	int totalCommunityByWriter = (int)request.getAttribute("totalCommunityByWriter");
 	List<Attachment> attachmentList = (List<Attachment>)request.getAttribute("attachmentList");
-	List<Font> fontList = (List<Font>)request.getAttribute("fontList");
-	System.out.println(fontList);
+	List<Font> fontLikeList = (List<Font>)request.getAttribute("fontLikeList");
+	List<Font> allFontList = (List<Font>)request.getAttribute("allFontList");
+	System.out.println(fontLikeList);
 %>
 <section id="portfolio" class="portfolio section-space-padding">
     <div id="writer-detail"class="container"> 
@@ -38,19 +39,27 @@
  		System.out.println(att.getMemberNo());
  		if(cnt < 8) {
  %>
- 						<img src="<%= request.getContextPath()%>/upload/community/<%=att.getRenamedFilename()%>" alt="" width=16px/>
+ 						<div onclick="location.href='<%= request.getContextPath()%>/community/pictureDetail?commNo=<%= att.getCommNo() %>'">
+ 						<img class="comm-history-content-img" src="<%= request.getContextPath()%>/upload/community/<%=att.getRenamedFilename()%>" alt="" width=16px/>
+ 						</div>
  
  <%	
  			cnt++;
- 		} else if(cnt >=8 ) {
- %>
- 		<p>전체보기</p>
- <%
  		}
+ 	}
+ %>
+                    </div>
+ 
+ <%
+ 	if(cnt >= 8) {
+ %>
+ 		<div class="more-btn-align">
+ 			<span class="more-btn-text-algin" onclick="location.href='<%=request.getContextPath()%>/community/writerCollections?memberNo=<%= profileAttachment.getMemberNo() %>'">전체보기</span>
+ 		</div>
+ <%
  	}
  %>                       
             
-                    </div>
                    
                 </div>
                 <div class="comm-writer-font-history">
@@ -58,26 +67,43 @@
                 <div class="comm-writer-font-history-content">
 <%
 	int fontCnt = 0;
-	for(Font font : fontList) {
+	String fontFamily = "";
+	
+	for(Font f : fontLikeList) {
+		for(Font allFont : allFontList) {
+			if(f.getFontNo().equals(allFont.getFontNo())) {
+				f.setFontFamily(allFont.getFontFamily());
+				fontFamily = f.getFontFamily();
+				
+			}
+		}
 		if(fontCnt < 4) {
 %>
-                        <div class="like-item-comm">
-                            <p><%=font.getFontName() %></p>
-                        </div>
+						<div class="user-like-font-box" onclick="location.href='<%= request.getContextPath()%>/shopDetail?fontNo=<%= f.getFontNo() %>'">
+	                        <div class="like-item-comm">
+	                            <p style="font-family: <%= fontFamily %>;"><%=f.getFontName() %></p>
+	                        </div>
+	                        <div class="user-like-font-name">
+	                        	<p><%= f.getFontName() %></p>
+	                        </div>
+						</div>
 <%
-			
-			fontCnt++;
-		} else if(fontCnt >= 4) {
-			
-%>
-                    </div>
-			<p onclick="location.href='<%=request.getContextPath() %>/member/fontLikeList?memberNo=<%= writerMember.getMemberNo() %>'">전체보기</p>
-<%
+				fontCnt++;
 		}
+				System.out.println("전체보기cnt@jsp : " + fontCnt);
 	}
 %>
-                </div>
-            </div>
+                    </div>
+<%
+	if(fontCnt >= 4) {
+%>
+					<div class="more-btn-align">
+						<span class="more-btn-text-algin" onclick="location.href='<%=request.getContextPath()%>/community/writerCollections?memberNo=<%= profileAttachment.getMemberNo() %>'">전체보기</span>
+					</div>
+<%
+	}
+			
+%>
             
         </div>
             
