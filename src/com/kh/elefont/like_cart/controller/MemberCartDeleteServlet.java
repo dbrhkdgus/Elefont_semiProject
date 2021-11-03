@@ -71,6 +71,13 @@ public class MemberCartDeleteServlet extends HttpServlet {
 					int result = 0;
 					for (String cartNo : cartNoList) {
 						//업무
+						
+						
+						
+						
+						
+						
+						
 						if (result < 0) {
 							session.setAttribute("msg", "실패");
 							break;
