@@ -83,6 +83,7 @@ public class FontLikeListServlet extends HttpServlet {
 		request.setAttribute("allAttachmentList", allAttachmentList);
 		session.setAttribute("categoryList", categoryList);
 		session.setAttribute("fontList", fontList);
+		session.setAttribute("loginMember", loginMember);
 		
 		
 		
