@@ -142,7 +142,7 @@ public class FontDao {
 		ResultSet rset = null;
 		List<Font> fontList = new ArrayList<>();
 		
-		String sql = prop.getProperty("selectAllFont");
+		String sql = prop.getProperty("selectAllApprovedFontOrderByDate");
 		
 		try {
 			pstmt = conn.prepareStatement(sql);

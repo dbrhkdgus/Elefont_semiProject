@@ -10,9 +10,7 @@ List<Order> orderList = (List<Order>) request.getAttribute("orderList");
 List<FontCategory> categoryList = (List<FontCategory>) request.getAttribute("categoryList");
 Attachment profile = (Attachment) request.getAttribute("profile");
 int tabIndex = (int)session.getAttribute("tabIndex");
-System.out.println("tabIndex@jsp = " + tabIndex);
 List<Attachment> attachmentList = (List<Attachment>) request.getAttribute("attachmentList");
-System.out.println("attachmentList" + attachmentList);	
 %>
 
      <div class="member-container">
@@ -441,11 +439,12 @@ $(memberFinder).click((e)=>{
 });
 
 /* 폰트 관리 - 폰트 검색 버튼 클릭 시 search-type, search-keyword 전송 */
-$(fontFinder).click((e)=>{
+$("#fontFinder").click((e)=>{
 	const $searchType = $("[name=font-search]").val();
 	const $searchKeyword = $("[name=font-search-keyword]").val();
-	console.log($searchType);
-	console.log($searchKeyword);
+	console.log(`searchType = \${$searchType}`);
+	console.log(`searchKeyword = \${$searchKeyword}`);
+	
 	location.href = "<%=request.getContextPath()%>/admin/fontFinder?searchType="+$searchType+"&searchKeyword="+$searchKeyword;
 });
 
