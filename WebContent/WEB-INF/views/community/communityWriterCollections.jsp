@@ -8,6 +8,8 @@
     pageEncoding="UTF-8"%>
 <%@include file = "/WEB-INF/views/common/LandingHeader.jsp" %>
 <%
+	int tabIndex = (int)session.getAttribute("tabIndex");
+
 	List<Community> communityList = (List<Community>)request.getAttribute("communityList");
 	List<Attachment> attachmentList = (List<Attachment>)request.getAttribute("attachmentList");
 	Member member = (Member) request.getAttribute("member");
@@ -52,29 +54,31 @@ if(!allFontList.isEmpty()){
 						</div>
 						<h4><%= member.getMemberName() %></h4>
 					</div>
-					<div>
+					<div class="collection-tab-bar">
 						<ul class="writer-collection-menu">
-							<a href="#"><li class="writer-collection-list">커뮤니티 이력</li></a>
+							<a class="active" href="#"><li class="writer-collection-list">커뮤니티 이력</li></a>
 							<a href="#"><li class="writer-collection-list">좋아요한 폰트</li></a>
 							<a href="#"><li class="writer-collection-list">좋아요한 커뮤니티</li></a>
 						</ul>
 					</div>
                 </div>
-				<div class="collection-list-center">
-					<div class="writer-collection-comm-list">
+                <div id="tab-content">
+                
+					<div class="collection-list-center">
+						<div class="writer-collection-comm-list">
 <%
 for(Attachment att : attachmentList) {
 %>	
-						<div class="collection-comm-img-box" onclick="location.href='<%= request.getContextPath()%>/community/pictureDetail?commNo=<%= att.getCommNo() %>'">
-							<img class="collection-comm-img" src="<%= request.getContextPath()%>/upload/community/<%=att.getRenamedFilename()%>" alt="" />
-						</div>
+							<div class="collection-comm-img-box" onclick="location.href='<%= request.getContextPath()%>/community/pictureDetail?commNo=<%= att.getCommNo() %>'">
+								<img class="collection-comm-img" src="<%= request.getContextPath()%>/upload/community/<%=att.getRenamedFilename()%>" alt="" />
+							</div>
 <%
 }
 %>
+						</div>
 					</div>
-				</div>
-				<div class="like-font-collection-box">
-                	<div class="like-font-collection">
+					<div class="like-font-collection-box">
+	                	<div class="like-font-collection">
 <%
 String fontFamily = "";
 
@@ -87,21 +91,21 @@ for(Font f : likeFontList) {
 		}
 	}
 %>
-						<div class="collection-user-like-font-box" onclick="location.href='<%= request.getContextPath()%>/shopDetail?fontNo=<%= f.getFontNo() %>'">
-							<div class="collection-like-font-box">
-								<p class="like-font-name" style="font-family: <%= fontFamily %>;"><%= f.getFontName() %></p>
+							<div class="collection-user-like-font-box" onclick="location.href='<%= request.getContextPath()%>/shopDetail?fontNo=<%= f.getFontNo() %>'">
+								<div class="collection-like-font-box">
+									<p class="like-font-name" style="font-family: <%= fontFamily %>;"><%= f.getFontName() %></p>
+								</div>
+								<div class="user-like-font-name">
+		                        	<p><%= f.getFontName() %></p>
+		                        </div>
 							</div>
-							<div class="user-like-font-name">
-	                        	<p><%= f.getFontName() %></p>
-	                        </div>
-						</div>
 <%
 }
 %>
-					</div>
-                </div>
-                <div class="like-community-collection-box">
-                	<div class="like-community-collection">
+						</div>
+	                </div>
+	                <div class="collection-list-center">
+	                	<div class="writer-collection-comm-list">
 <%
 String filename = "";
 
@@ -113,18 +117,36 @@ for(Community community : commLikeList) {
 	}
 
 %>
-						<div class="like-comm-img-box" onclick="location.href='<%= request.getContextPath()%>/community/pictureDetail?commNo=<%= community.getCommNo() %>'">
-							<img class="like-comm-img" src="<%= request.getContextPath()%>/upload/community/<%= filename %>" alt="" />
-						</div>
+							<div class="collection-comm-img-box" onclick="location.href='<%= request.getContextPath()%>/community/pictureDetail?commNo=<%= community.getCommNo() %>'">
+								<img class="collection-comm-img" src="<%= request.getContextPath()%>/upload/community/<%= filename %>" alt="" />
+							</div>
 <%
 } 
 %>                	
+                		</div>
                 	</div>
                 </div>
 			</div>
         </section>
 <script>
-	
+let $tabBtn = $(".collection-tab-bar>ul>a");
+let $tabContent = $("#tab-content>div");
+
+$tabContent.hide().eq(<%=tabIndex%>).show();
+$tabBtn
+	.removeClass("active")
+	.eq(<%=tabIndex%>).addClass("active"); 
+
+$tabBtn.click((e)=>{
+	  const $target = $(e.target).parent();    
+	  const index = $target.index(); 
+	  $tabBtn.removeClass("active");
+	  $target.addClass("active");
+	  $tabContent
+		  .css("display","none")
+		  .eq(index).css("display","flex");
+});
+
 </script>
         <!-- Portfolio End -->
 		
