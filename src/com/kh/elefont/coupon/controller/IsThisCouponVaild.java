@@ -70,15 +70,11 @@ public class IsThisCouponVaild extends HttpServlet {
 				System.out.println("양수인가 음수인가? : " + canWeUseTime);
 				
 				if(canWeUseTime >0) { 
-					System.out.println(couponNo + "이 쿠폰은 사용할 수 있는 쿠폰입니다");						
 					//3. 응답 처리
 					response.setContentType("application/json; charset=utf-8");
 					new Gson().toJson(coupon, response.getWriter());					
 				}else {
-					
-					
-					response.setContentType("application/json; charset=utf-8");
-					
+									
 				}
 			}
 		}
