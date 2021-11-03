@@ -148,6 +148,12 @@ public class AttachmentService {
         close(conn);
         return allAttachmentList;
 	}
+	public Attachment selectOneAttachmentByFontNo(String fontNo) {
+		Connection conn = getConnection();
+		Attachment attachment = attachmentDao.selectOneAttachmentByFontNo(conn, fontNo);
+		close(conn);
+		return attachment;
+	}
 	
 	
 	

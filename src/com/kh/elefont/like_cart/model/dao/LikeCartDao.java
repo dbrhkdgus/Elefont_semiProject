@@ -259,4 +259,34 @@ public class LikeCartDao {
 		return memberCartList;
 	}
 
+	public int selectCartCountByMemberNo(Connection conn, String memberNo) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectCartCountByMemberNo");
+		int cnt = 0;
+		
+		
+		try {
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, memberNo);
+			
+			
+			rset = pstmt.executeQuery();
+
+			
+			if(rset.next()) {
+				cnt= rset.getInt(1);
+
+			}
+		
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return cnt;
+	}
+
 }

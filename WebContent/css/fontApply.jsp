@@ -8,8 +8,9 @@
 
 <style>
 <% 
-for(Font font : fontList){
-	if(font.getFontFamily() != null){
+if(!fontList.isEmpty()){
+	for(Font font : fontList){
+		if(font.getFontFamily() != null){
 %>
 
 
@@ -21,8 +22,9 @@ for(Font font : fontList){
 }
 
 <% 
-	}
-} 
+		}
+	} 
+}
 %>
 </style>
 

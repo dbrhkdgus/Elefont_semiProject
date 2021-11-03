@@ -2181,7 +2181,7 @@ p { padding: 5px 0; }
     margin-bottom: 10px;
 }
 
-.enrollBtn>button{
+#btn-comm-board-enroll{
 background-color: #4CAF50; /* Green */
 border: 0px;
 color: white;
@@ -2735,7 +2735,7 @@ font-size: 16px;
 }
 .comm-writer-comm-history{
     text-align: left;
-    margin-bottom: 50px;
+    margin-bottom: 25px;
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;
@@ -2746,7 +2746,7 @@ font-size: 16px;
 }
 .comm-writer-font-history-content{
     display: flex;
-    height: 500px;
+    height: 190px;
 }
 .like-item-comm{
 	border: 1px solid black;
@@ -2756,6 +2756,7 @@ font-size: 16px;
     display: flex;
     align-items: center;
     justify-content: center;
+    font-size: 20px;
 }
 .like-item-comm{
 	zoom : 0.8;
@@ -2774,8 +2775,25 @@ font-size: 16px;
     margin-bottom: 9px;
     margin-right: 10px;
 }
-
-
+.user-like-font-name {
+    text-align: center;
+    font-size: 15px;
+    width: 152px;
+}
+.more-btn-align {
+	text-align: right;
+}
+.more-btn-text-algin {
+	padding-right: 18px;
+	cursor: pointer;
+	margin-top: 5px;
+}
+.comm-history-content-img {
+	cursor: pointer;
+}
+.user-like-font-box {
+	cursor: pointer;
+}
 /* community writer detail 끝 */
 
 
@@ -3379,6 +3397,20 @@ align-items: center;
 	margin-left:5px;
 }
 
+/*커뮤니티 랜딩페이지 검색창 스타일 윤희*/
+#comm-search-container{
+	display:flex;
+	align-items: center;
+}
+
+.comm-search-type{
+	margin-right:12px;
+	margin-left:10px;
+}
+.comm-search-type input{
+	margin-right:7px;
+	margin-left:10px;
+}
 
 
 
