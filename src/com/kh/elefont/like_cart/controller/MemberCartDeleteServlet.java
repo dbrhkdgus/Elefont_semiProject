@@ -41,8 +41,7 @@ public class MemberCartDeleteServlet extends HttpServlet {
 		response.sendRedirect(location);
 	}
 
-	protected void doPost(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		HttpSession session = request.getSession();
 		List<String> cartNoList = new ArrayList<>();
 		String[] cartNoArr = request.getParameterValues("chk_cart_no");
