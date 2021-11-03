@@ -33,6 +33,7 @@ for(MemberCartView mcv : memberCartList){
 	                		<input type="hidden" name="cart_no" value=<%=mcv.getCartNo() %>>
 	                		<input type="hidden" name="font_no" value=<%=mcv.getFontNo()%>>
 	                		<input type="hidden" name="member_no" value=<%=mcv.getMemberNo()%>>
+	                		<input type="hidden" name="font_price" value=<%=mcv.getFontPrice()%>>
 	                        <input type="checkbox" name="chk_cart_no" value=<%=mcv.getCartNo()%>>
 	                        <img src="./images/shop_test_img.png" alt="" class="cart_content_img cart_content_margin">
 	                        <div class="cart_content_font_name cart_content_margin">
@@ -149,7 +150,7 @@ for(MemberCartView mcv : memberCartList){
 		/* $(".payment_window").show(); */
 		if(confirm("해당 상품을 삭제하시겠습니까?") ){
 			/* console.log(`\${$(e.target).parent().parent().children("input").val()}`); */
-			location.href= `<%=request.getContextPath() %>/member/memberCartDelete?cartNo=\${$(e.target).parent().parent().children("input").val()&type=delete}`; 
+			location.href= `<%=request.getContextPath() %>/member/memberCartDelete?cartNo=\${$(e.target).parent().parent().children("input").val()}`; 
 		}
 	});
 	
@@ -186,7 +187,17 @@ for(MemberCartView mcv : memberCartList){
 	
 	/* 주문하기 버튼 */
 	$("#select_order_font").click((e)=>{
+		var memberPoint = <%=loginMember.getMemberPoint() %>;
+		var fontName = [];
+		var price = 0;
+		
+		
 	
+				
+				
+			$("input[name='type']").val('purchase');
+			$(document.cartFrm).submit();	
+			
 		
 		
 		

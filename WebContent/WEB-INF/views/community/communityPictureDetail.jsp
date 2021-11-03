@@ -15,8 +15,6 @@
 	List<String> commLikeList = (List<String>) request.getAttribute("commLikeList");
 	List<Rep> repList = (List<Rep>)request.getAttribute("repList");
 	
-	
-	
 	boolean editable = loginMember != null && (
 			  loginMember.getMemberNo().equals(attachment.getMemberNo())
 			  || MemberService.ADMIN_ROLE.equals(loginMember.getMemberRole())
@@ -75,9 +73,7 @@ String profileAttachFilename = "";
 for(Rep rep : repList){
 	for(Attachment att : allAttachmentList) {
 		if(att.getMemberNo().equals(rep.getMemberNo()) && att.getCommNo() == null && att.getFontNo() == null) {
-			System.out.println("att@picturedetailjsp : " + att);
 			profileAttachFilename = att.getRenamedFilename();
-			System.out.println("atprofileAttachFilename@jsp : " +profileAttachFilename);
 		}
 	}
 	if(rep.getRepLevel()==1) {
@@ -195,13 +191,15 @@ for(Attachment att : attachmentList){
                     </a>
 <%
 		cnt++;
-	} else if(attachment.getMemberNo().equals(att.getMemberNo()) && !(community.getCommNo().equals(att.getCommNo())) && cnt >= 4) {
-%>
-					<p onclick="location.href='<%=request.getContextPath()%>/community/writerCollections?memberNo=<%= att.getMemberNo() %>'">더보기<p>
-<%
 	}
 }
+if(cnt >= 4) {
+%>
+					<p onclick="location.href='<%=request.getContextPath()%>/community/writerCollections?memberNo=<%= profileAttachment.getMemberNo() %>'">더보기<p>
+<%
+}
  %>
+ 
                 </div>
             </div>
         </div>

@@ -2708,9 +2708,17 @@ font-size: 16px;
 #writer-detail{
     margin-left: 10%;
 }
+.comm-detail-writer-photo {
+	width: 225px;
+    height: 225px; 
+    border-radius: 70%;
+    overflow: hidden;
+    margin-top: 50px;
+}
 .comm-detail-writer-info {
 	position: sticky;
-	top: 81px;
+    top: 100px;
+    text-align: center;
 }
 .comm-writer-detail{
     display: flex;
@@ -2718,9 +2726,9 @@ font-size: 16px;
    	justify-content: center;
 }
 .writer-profile-img{
-	margin-top: 80px;
-    width: 270px;
-    height: 270px;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 .comm-writer-history{
     margin-left: 100px;
@@ -2742,9 +2750,12 @@ font-size: 16px;
 }
 .like-item-comm{
 	border: 1px solid black;
-    width: 150px;
-    height: 150px;
-    text-align: center;
+    width: 190px;
+    height: 190px;
+    margin-right: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 .like-item-comm{
 	zoom : 0.8;
@@ -2919,10 +2930,35 @@ font-size: 16px;
 .writer-collection-menu {
 	text-align: center;
 	border-bottom: 1px solid #000;
+	margin: 10px;
+    padding: 10px;
 }
 
 .writer-collection-list {
 	display: inline-block;
+}
+.collection-list-center {
+	display: flex;
+	justify-content: center;
+}
+.writer-collection-comm-list {
+	display: flex;
+    flex-wrap: wrap;
+    width: 996px;
+}
+.collection-comm-img-box {
+	border: none;
+	display: flex;
+    width: 230px;
+    height: 230px;
+    align-items: center;
+    justify-content: center;
+    margin: 9.5px;
+}
+.collection-comm-img {
+	width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 /* community writer collection 끝*/
 

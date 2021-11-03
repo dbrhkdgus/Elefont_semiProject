@@ -326,6 +326,18 @@ public class FontService {
 		close(conn);
 		return likefontList;
 	}
+	public String selectFontNoByCartNo(String cartNo) {
+		Connection conn = getConnection();
+		String cartNom = fontDao.selectFontNoByCartNo(conn,cartNo);
+		close(conn);
+		return cartNom;
+	}
+	public String selectFontNameByFontNO(String fontNo) {
+		Connection conn = getConnection();
+		String cartName = fontDao.selectFontNameByFontNO(conn,fontNo);
+		close(conn);
+		return cartName;
+	}
 
 
 

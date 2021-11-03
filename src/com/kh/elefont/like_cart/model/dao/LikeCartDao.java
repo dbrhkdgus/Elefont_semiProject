@@ -225,13 +225,13 @@ public class LikeCartDao {
 		
 		
 		try {
-			System.out.println(sql);
+			
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, memberNo);
 			
 			
 			rset = pstmt.executeQuery();
-			System.out.println("executeUpdate 날린 직후 result : " + rset);
+
 			
 			while(rset.next()) {
 				MemberCartView memberCartView = new MemberCartView();
@@ -248,7 +248,7 @@ public class LikeCartDao {
 				memberCartList.add(memberCartView);
 			}
 			
-			System.out.println("memberCartList@dao"+ memberCartList );
+
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
