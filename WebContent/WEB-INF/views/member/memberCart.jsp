@@ -21,7 +21,7 @@ if(!memberCartList.isEmpty()){
                     <span>주문내역</span>
                     <hr>
                 </div>
-     	<form name="cartFrm"  action="<%=request.getContextPath() %>/member/memberCartDelete" method="post"  >
+     	<form name="cartFrm"  action="<%=request.getContextPath() %>/member/memberCartDelete" method="post" id="cartFrm" >
 <%
 for(MemberCartView mcv : memberCartList){
 	
