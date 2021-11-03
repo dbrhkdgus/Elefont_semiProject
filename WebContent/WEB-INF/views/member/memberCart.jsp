@@ -34,7 +34,7 @@ for(MemberCartView mcv : memberCartList){
 	                		<input type="hidden" name="font_no" value=<%=mcv.getFontNo()%>>
 	                		<input type="hidden" name="member_no" value=<%=mcv.getMemberNo()%>>
 	                		<input type="hidden" name="font_price" value=<%=mcv.getFontPrice()%>>
-	                        <input type="checkbox" name="chk_cart_no" value=<%=mcv.getCartNo()%>>
+	                        <input type="checkbox" name="chk_cart_no" class="check-box" value=<%=mcv.getCartNo()%>>
 	                        <img src="./images/shop_test_img.png" alt="" class="cart_content_img cart_content_margin">
 	                        <div class="cart_content_font_name cart_content_margin">
 	                            <h3>상품명</h3>
@@ -187,16 +187,23 @@ for(MemberCartView mcv : memberCartList){
 	
 	/* 주문하기 버튼 */
 	$("#select_order_font").click((e)=>{
-		var memberPoint = <%=loginMember.getMemberPoint() %>;
-		var fontName = [];
-		var price = 0;
-		
-		
-	
-				
-				
-			$("input[name='type']").val('purchase');
-			$(document.cartFrm).submit();	
+		var chekObj = document.getElementsByClassName("check-box");
+        console.log(chekObj);
+        var lenth = chekObj.length;
+        var memberPoint = <%=loginMember.getMemberPoint() %>;
+        var fontName = [];
+        var price = 0;
+        
+          for (i = 0; i < lenth; i++) {
+                if (chekObj[i].checked === true) {
+                  
+                  
+                  console.log(chekObj[i].getAttribute("value"));
+                }
+              }
+                     
+            $("input[name='type']").val('purchase');
+            //$(document.cartFrm).submit();    
 			
 		
 		
