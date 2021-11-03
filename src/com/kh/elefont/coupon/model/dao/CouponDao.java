@@ -238,4 +238,24 @@ public class CouponDao {
 		return coupon;
 	}
 
+	public int updateCouponByMemberNo(Connection conn, String couponNo, String memberNo) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String sql = prop.getProperty("updateCouponByMemberNo");
+		//updateCouponByMemberNo = update coupon set member_no = ? where coupon_no = ?
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, memberNo);
+			pstmt.setString(2, couponNo);
+			
+			result = pstmt.executeUpdate();
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		return result;
+	}
+
 }

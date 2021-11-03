@@ -18,7 +18,7 @@ import com.kh.elefont.coupon.model.vo.Coupon;
  * Servlet implementation class IsThisCouponVaild
  */
 @WebServlet("/coupon/isThisCouponVaild")
-public class IsThisCouponVaild extends HttpServlet {
+public class IsThisCouponVaildServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	CouponService couponService = new CouponService();
@@ -55,9 +55,7 @@ public class IsThisCouponVaild extends HttpServlet {
 		System.out.println("sbtoString : " + couponNo);
 
 		Coupon coupon = couponService.selectOneCouponByCouponNo(couponNo);
-		
-		
-		
+				
 		if(coupon != null) {
 			if(memberNo.equals(coupon.getMemberNo()) || coupon.getMemberNo() == null) {
 				String couponNumber = coupon.getCouponNo();
@@ -74,7 +72,10 @@ public class IsThisCouponVaild extends HttpServlet {
 					response.setContentType("application/json; charset=utf-8");
 					new Gson().toJson(coupon, response.getWriter());					
 				}else {
-									
+					
+					String msg = "유효기간이 경과된 쿠폰입니다.";
+					response.setContentType("application/json; charset=utf-8");
+					new Gson().toJson(msg, response.getWriter());
 				}
 			}
 		}

@@ -94,6 +94,23 @@ public class CouponService {
 		return coupon;
 	}
 
+	public int updateCouponByMemberNo(String couponNo, String memberNo) {
+		Connection conn = getConnection();
+		int result = 0;
+
+		try {
+			result = couponDao. updateCouponByMemberNo(conn, couponNo, memberNo);
+			commit(conn);
+		}catch(Exception e) {
+			rollback(conn);
+			throw e;
+		}finally {
+			close(conn);			
+		}
+		
+		return result;
+	}
+
 
 
 
