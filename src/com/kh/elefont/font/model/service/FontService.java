@@ -338,6 +338,13 @@ public class FontService {
 		close(conn);
 		return cartName;
 	}
+	public List<Font> selectShopFontByFontName(String fontName) {
+		Connection conn = getConnection();
+		List<Font> fontList = fontDao.selectShopFontByFontName(conn,fontName);
+		
+		close(conn);
+		return fontList;
+	}
 
 
 
