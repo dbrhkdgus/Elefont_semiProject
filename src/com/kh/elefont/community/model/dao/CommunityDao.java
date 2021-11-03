@@ -536,6 +536,61 @@ public class CommunityDao {
 		
 		return communityList;
 	}
+
+	public List<Community> findCommListByMap(Connection conn, Map<String, Object> param) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		List<Community> list = new ArrayList<>();
+		String sql = null;
+		System.out.println("param@Dao = " + param);
+		String searchType = (String) param.get("searchType");
+		switch(searchType) {
+		case "writerName":
+			sql = prop.getProperty("findCommListByWriterName");
+			param.put("searchKeyword", "%" + param.get("searchKeyword") + "%"); 
+			break;
+		case "title":
+			sql = prop.getProperty("findCommListByTitle");
+			param.put("searchKeyword", "%" + param.get("searchKeyword") + "%");
+			break;
+		case "content":
+			sql = prop.getProperty("findCommListByContent");
+			param.put("searchKeyword", "%" + param.get("searchKeyword") + "%"); 
+			break;
+		}
+		System.out.println("sql@dao = " + sql);
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, (String) param.get("searchKeyword"));
+			
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				Community community = new Community();
+				community.setCommNo(rset.getString("comm_no"));
+				community.setCommWriter(rset.getString("comm_writer"));
+				community.setCommContent(rset.getString("comm_content"));
+				community.setCommViewCount(rset.getInt("comm_view_count"));
+				community.setCommLikeCount(rset.getInt("comm_like_count"));
+				community.setCommRegDate(rset.getDate("comm_reg_date"));
+				community.setFontNo(rset.getString("font_no"));
+				community.setCommTitle(rset.getString("comm_title"));
+				community.setMemberNo("member_no");
+				
+				list.add(community);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+	
+		return list;
+	}
 	
 
 
