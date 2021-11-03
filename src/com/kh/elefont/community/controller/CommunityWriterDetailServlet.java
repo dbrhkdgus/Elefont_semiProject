@@ -46,7 +46,8 @@ public class CommunityWriterDetailServlet extends HttpServlet {
 		Member writerMember = new Member();
 		writerMember = memberService.selectOneMemberByMemberNo(memberNo);
 		Attachment profileAttachment = attachmentService.selectProfileAttachment(memberNo);
-		
+		System.out.println("커뮤니티라이터디테일서블릿 멤버넘버 " +writerMember.getMemberNo());
+		System.out.println("커뮤니티라이터디테일서블릿 프로필어태치넘버 " + profileAttachment);
 		// 게시물 수 
 		int totalCommunityByWriter = communityService.countTotalCommunityByWriter(writerMember.getMemberNo());
 		
