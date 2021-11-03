@@ -36,6 +36,7 @@ for(MemberCartView mcv : memberCartList){
 	                		<input type="hidden" name="font_name" value=<%=mcv.getFontName()%>>
 	                        <input type="checkbox" name="chk_cart_no" class="check-box" value=<%=mcv.getCartNo()%>>
 	                		<input type="hidden" name="font_price" value=<%=mcv.getFontPrice()%>>
+
 	                        <img src="./images/shop_test_img.png" alt="" class="cart_content_img cart_content_margin">
 	                        <div class="cart_content_font_name cart_content_margin">
 	                            <h3>상품명</h3>
@@ -218,6 +219,8 @@ for(MemberCartView mcv : memberCartList){
 	
 				
 				
+			$("input[name='type']").val('purchase');
+			$(document.cartFrm).submit();	
 			
 		
 		
@@ -226,7 +229,6 @@ for(MemberCartView mcv : memberCartList){
 	
 	
 	
-
 </script>
 
 
