@@ -211,11 +211,12 @@ fieldset {
 	color: #fff;
 	overflow: hidden;
 }
-
+/*숍으로이동하기  */
 .button-style:hover,
 .button-style:active,
 .button-style:focus {
-	background: #24b662;
+	background-image:url(https://kabekin.com/iphone/uploads/cache/1735676553/kabekin18-300x505-MM-100.jpg);
+	/* background: #24b662;  */
 	color: #ffffff !important;
 }
 
@@ -383,7 +384,7 @@ body.loaded #preloader{
 
 .home-section-background h2 {
     color: #f8f8f8;
-    font-size: 50px;
+    font-size: 65px;
     letter-spacing: 5px;
     margin: 0;
 }
