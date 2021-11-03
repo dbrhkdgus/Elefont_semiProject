@@ -111,6 +111,13 @@ public class CouponService {
 		return result;
 	}
 
+	public double selectCouponDiscountRate(String couponNo) {
+		Connection conn = getConnection();
+		double couponDiscountRate = couponDao.selectCouponDiscountRate(conn, couponNo);
+		close(conn);
+		return couponDiscountRate;
+	}
+
 
 
 

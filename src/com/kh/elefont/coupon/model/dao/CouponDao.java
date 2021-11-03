@@ -258,4 +258,31 @@ public class CouponDao {
 		return result;
 	}
 
+	public double selectCouponDiscountRate(Connection conn, String couponNo) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		double couponDiscountRate = 0;
+		String sql = prop.getProperty("selectOneCouponByCouponNo");
+		
+		try {
+			
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, couponNo);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				couponDiscountRate = rset.getDouble("coupon_discount");
+			}
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return couponDiscountRate;
+	}
+
 }

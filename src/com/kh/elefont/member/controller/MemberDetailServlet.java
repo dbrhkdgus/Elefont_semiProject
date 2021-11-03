@@ -18,6 +18,7 @@ import com.kh.elefont.coupon.model.vo.Coupon;
 import com.kh.elefont.font.model.service.FontService;
 import com.kh.elefont.font.model.vo.Font;
 import com.kh.elefont.font.model.vo.FontCategory;
+import com.kh.elefont.like_cart.model.service.LikeCartService;
 import com.kh.elefont.member.model.service.MemberService;
 import com.kh.elefont.member.model.vo.Member;
 import com.kh.elefont.order.model.service.OrderService;
@@ -34,7 +35,7 @@ public class MemberDetailServlet extends HttpServlet {
 	private AttachmentService attachmentService = new AttachmentService();
 	private CouponService couponService = new CouponService();
 	private OrderService orderService = new OrderService();
-
+	private LikeCartService likeCartService = new LikeCartService();
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
@@ -55,8 +56,10 @@ public class MemberDetailServlet extends HttpServlet {
 			List<Font> fontList = fontService.selectAllFont();
 			List<Coupon> couponList = couponService.selectAllCoupon();
 			List<Order> orderList = orderService.selectAllOrder();
-			List<FontCategory> categoryList = fontService.selectAllFontCategory(); 
+			List<FontCategory> categoryList = fontService.selectAllFontCategory();
+			List<Attachment> attachmentList = attachmentService.selectAllFontAttachmentList();
 			
+			request.setAttribute("attachmentList", attachmentList);
 			request.setAttribute("memberList", memberList);
 			request.setAttribute("fontList", fontList);
 			request.setAttribute("couponList", couponList);
@@ -68,11 +71,12 @@ public class MemberDetailServlet extends HttpServlet {
 			List<Font> fontLikeList = fontService.selectAllLikedFontByMemberNo(loginMember.getMemberNo());
 			List<Font> fontPurchasedList = fontService.selectAllPurchasedFontByMemberNo(loginMember.getMemberNo());
 			List<Coupon> coupounList = couponService.selectAllCouponByMemberNo(loginMember.getMemberNo());
+			int cartCount = likeCartService.selectCartCountByMemberNo(loginMember.getMemberNo());
 			request.setAttribute("commAttachmentList", commAttachmentList);
 			request.setAttribute("fontLikeList", fontLikeList);
 			request.setAttribute("fontPurchasedList", fontPurchasedList);
 			request.setAttribute("couponList", coupounList);
-
+			request.setAttribute("cartCount", cartCount);
 		}else if("S".equals(memberRole)) {
 			List<Font> list = fontService.selectFontByMemberId(loginMember.getMemberId());
 			List<Font> approvalList = new ArrayList<>();
@@ -95,6 +99,7 @@ public class MemberDetailServlet extends HttpServlet {
 			request.setAttribute("approvalList", approvalList);
 			request.setAttribute("checkedList", checkedList);
 			request.setAttribute("auditList", auditList);
+			
 			
 
 		}

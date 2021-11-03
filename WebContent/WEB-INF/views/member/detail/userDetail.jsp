@@ -6,6 +6,7 @@ List<Font> fontLikeList = (List<Font>) request.getAttribute("fontLikeList");
 List<Font> fontPurchasedList = (List<Font>) request.getAttribute("fontPurchasedList");
 List<Coupon> couponList = (List<Coupon>) request.getAttribute("couponList");
 Attachment profile = (Attachment) request.getAttribute("profile");
+int cartCount = (int)request.getAttribute("cartCount");
 %>
 <div class="coupon-enroll">
     <form action="<%=request.getContextPath()%>/coupon/redeemCoupon" method="POST" name="userCouponEnrollFrm">
@@ -42,8 +43,8 @@ Attachment profile = (Attachment) request.getAttribute("profile");
               <span><%=memberRole %></span><br>
               <span>회원등급</span>
           </a>
-          <a href="<%=request.getContextPath()%>/cart/memberCart">
-              <span>3</span><br>
+          <a href="<%=request.getContextPath()%>/member/memberCart">
+              <span><%=cartCount%></span><br>
               <span>장바구니</span>
           </a>
           <a href="<%=request.getContextPath()%>/member/fontLikeList">

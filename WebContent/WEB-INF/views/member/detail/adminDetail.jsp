@@ -1,3 +1,5 @@
+<%@page import="com.kh.elefont.font.model.vo.Font"%>
+<%@page import="com.kh.elefont.common.model.vo.Attachment"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
@@ -9,6 +11,8 @@ List<FontCategory> categoryList = (List<FontCategory>) request.getAttribute("cat
 Attachment profile = (Attachment) request.getAttribute("profile");
 int tabIndex = (int)session.getAttribute("tabIndex");
 System.out.println("tabIndex@jsp = " + tabIndex);
+List<Attachment> attachmentList = (List<Attachment>) request.getAttribute("attachmentList");
+System.out.println("attachmentList" + attachmentList);	
 %>
 
      <div class="member-container">
@@ -336,6 +340,7 @@ System.out.println("tabIndex@jsp = " + tabIndex);
 <%
 	if(!fontList.isEmpty()){
 		for(Font f : fontList){
+			String targetFontNo = f.getFontNo();
 %>
 								<tr class="font-a <%=f.getFontApproval() == null? "font-w": "N".equals(f.getFontApproval())? "font-n" :"font-y" %>">
 									<td>
@@ -356,11 +361,16 @@ System.out.println("tabIndex@jsp = " + tabIndex);
 									</td>
 									<td>
 <% 
-		if(f.getAttach() != null){
+	
+	for(Attachment fontAtt :attachmentList){
+		if(targetFontNo.equals(fontAtt.getFontNo()))
+				
 %>
-										<input type="button" value="파일 다운로드" class="fontDownloadBtn"/>			
+										<input type="button" value="파일 다운로드" class="fontDownloadBtn"/>
+										<input type="hidden" name="renamedFileName" value="<%= fontAtt.getRenamedFilename()%>"/>			
 <%
-		}
+		break;
+	}
 %>	
 									</td>
 									<td><%= f.getMemberId() %></td>
@@ -449,7 +459,7 @@ $("[name=fontAuditYN]").change((e)=>{
 
 /* 폰트 관리 - 회원 폰트 다운로드 버튼 클릭 시 파일 다운로드 */
 $(".fontDownloadBtn").click((e)=>{
-    $fontNo = $(e.target).parent().prevAll().eq(2).html();
+    $fontNo = $(e.target).parent().prevAll().eq(3).text();
     console.log($fontNo);
     location.href = "<%=request.getContextPath()%>/font/fontDownload?fontNo=" + $fontNo; 
 });
