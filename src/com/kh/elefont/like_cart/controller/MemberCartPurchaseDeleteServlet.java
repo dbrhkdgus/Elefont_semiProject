@@ -25,7 +25,7 @@ import com.kh.elefont.order.model.vo.Order;
  * Servlet implementation class MemberCartDelete
  */
 @WebServlet("/member/memberCartDelete")
-public class MemberCartDeleteServlet extends HttpServlet {
+public class MemberCartPurchaseDeleteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private LikeCartService likeCartService = new LikeCartService();
 	private OrderService orderService = new OrderService();
@@ -124,23 +124,25 @@ public class MemberCartDeleteServlet extends HttpServlet {
 				}
 				
 			}
+			attachList = attachmentService.selectAllAttachByFontNo(fontNoList);
+			String filepath = getServletContext().getRealPath("/upload/font");
+			for(int i = 0; i < attachList.size(); i++) {
+				String filename = attachList.get(i);
+				attachList.set(i, filepath  + "/" + filename);
+			}
+			
+				
+			
+				
+			
+			
+			new MailSend().purchaseMailSend(orderList, attachList);
+			session.setAttribute("msg", "구매가 완료되었습니다. 구매하신 폰트는 메일로 보내드렸습니당");
 			
 		}
 		
-		attachList = attachmentService.selectAllAttachByFontNo(fontNoList);
-		String filepath = getServletContext().getRealPath("/upload/font");
-		for(int i = 0; i < attachList.size(); i++) {
-			String filename = attachList.get(i);
-			attachList.set(i, filepath  + "/" + filename);
-		}
-		
-			
-		
-			
 		
 		
-		new MailSend().purchaseMailSend(orderList, attachList);
-	
 		String location = request.getHeader("Referer");
 		response.sendRedirect(location);
 		
