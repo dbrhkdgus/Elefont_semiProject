@@ -60,7 +60,7 @@ public class MemberCartDeleteServlet extends HttpServlet {
 		List<String> fontNoList = new ArrayList<>();
 		String[] cartNoArr = request.getParameterValues("chk_cart_no");
 		String type = request.getParameter("type");
-		System.out.println("type@servlet : " + type);
+		
 		
 		String memberNo = request.getParameter("member_no");
 		String fontPrice = request.getParameter("font_price");
@@ -91,19 +91,23 @@ public class MemberCartDeleteServlet extends HttpServlet {
 					//업무
 					
 					String fontNo = fontService.selectFontNoByCartNo(cartNo);
-					System.out.println("fontNo@servlet : " + fontNo);
-						String orderNo = "order-" + System.currentTimeMillis();
+						
 						int result = 0;
 						
 						Order order = new Order();
 						order.setMemberNo(memberNo);
 						order.setFontNo(fontNo);
-						order.setOrderNo(orderNo);
+						order.setOrderNo( "order-" + System.currentTimeMillis());
 						
-						orderList.add(order);
+						
+						
+						
 						fontNoList.add(fontNo);
 						result = orderService.insertOrderFont(order);
 						result = orderService.insertOrders(order);
+						
+						List<Order> oList = orderService.selectAllOrderListByOrderNo(order.getOrderNo());
+						orderList.addAll(0,oList);
 						
 						result = memberService.updateMemberPoint(memberNo,fontPrice);
 						

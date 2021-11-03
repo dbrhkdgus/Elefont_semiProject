@@ -1013,6 +1013,33 @@ public class FontDao {
 		return fontNom;
 	}
 
+	public String selectFontNameByFontNO(Connection conn, String fontNo) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String fontNom = "";
+		
+		String sql = prop.getProperty("selectFontNameByFontNO");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, fontNo);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				fontNom = rset.getString(1);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return fontNom;
+	
+	}
+
 }
 
 	
