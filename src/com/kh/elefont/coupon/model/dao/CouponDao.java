@@ -201,4 +201,61 @@ public class CouponDao {
 		return result;
 	}
 
+	public Coupon selectOneCouponByCouponNo(Connection conn, String couponNo) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		Coupon coupon = null;
+		String sql = prop.getProperty("selectOneCouponByCouponNo");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, couponNo);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				coupon = new Coupon();
+				coupon.setCouponNo(couponNo);
+				coupon.setCouponType(rset.getString("coupon_type"));
+				coupon.setCouponRegDate(rset.getDate("coupon_reg_date"));
+				coupon.setCouponExpDate(rset.getDate("coupon_exp_date"));
+				if("P".equals(coupon.getCouponType()))
+					coupon.setCouponPAmount(rset.getInt("coupon_p_amount"));
+				else
+					coupon.setCouponDiscount(rset.getDouble("coupon_discount"));
+				
+				coupon.setMemberNo(rset.getString("member_no"));
+				
+			}
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return coupon;
+	}
+
+	public int updateCouponByMemberNo(Connection conn, String couponNo, String memberNo) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String sql = prop.getProperty("updateCouponByMemberNo");
+		//updateCouponByMemberNo = update coupon set member_no = ? where coupon_no = ?
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, memberNo);
+			pstmt.setString(2, couponNo);
+			
+			result = pstmt.executeUpdate();
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		return result;
+	}
+
 }

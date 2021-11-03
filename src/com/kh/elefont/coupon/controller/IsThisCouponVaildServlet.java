@@ -1,7 +1,8 @@
 package com.kh.elefont.coupon.controller;
 
 import java.io.IOException;
-import java.util.List;
+import java.sql.Date;
+import java.text.SimpleDateFormat;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -17,7 +18,7 @@ import com.kh.elefont.coupon.model.vo.Coupon;
  * Servlet implementation class IsThisCouponVaild
  */
 @WebServlet("/coupon/isThisCouponVaild")
-public class IsThisCouponVaild extends HttpServlet {
+public class IsThisCouponVaildServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 
 	CouponService couponService = new CouponService();
@@ -49,31 +50,35 @@ public class IsThisCouponVaild extends HttpServlet {
 		
 		System.out.println("쿠폰 연결한 값 " + sb);
 		
-		String sbtoString = sb.toString();
+		String couponNo = sb.toString();
 		
-		System.out.println("sbtoString : " + sbtoString);
-		
-		
-		List<Coupon> couponList = couponService.selectAllCouponByMemberNo(memberNo);
-		System.out.println("couponList " + couponList );
-		
-		if(couponList != null) {
-			for(Coupon coupon : couponList) {
+		System.out.println("sbtoString : " + couponNo);
+
+		Coupon coupon = couponService.selectOneCouponByCouponNo(couponNo);
+				
+		if(coupon != null) {
+			if(memberNo.equals(coupon.getMemberNo()) || coupon.getMemberNo() == null) {
 				String couponNumber = coupon.getCouponNo();
 				System.out.println("couponNumber는 " + couponNumber );
 				
-				if(sbtoString.equals(couponNumber)) {
-					System.out.println(sbtoString + "이 쿠폰은 사용할 수 있는 쿠폰입니다");
-					
+				long expiredMilisecond = coupon.getCouponExpDate().getTime();
+				long currentMilisecond = System.currentTimeMillis();
+				
+				long canWeUseTime = expiredMilisecond - currentMilisecond;
+				System.out.println("양수인가 음수인가? : " + canWeUseTime);
+				
+				if(canWeUseTime >0) { 
 					//3. 응답 처리
 					response.setContentType("application/json; charset=utf-8");
 					new Gson().toJson(coupon, response.getWriter());					
+				}else {
+					
+					String msg = "유효기간이 경과된 쿠폰입니다.";
+					response.setContentType("application/json; charset=utf-8");
+					new Gson().toJson(msg, response.getWriter());
 				}
-		
+			}
 		}
-		
-		}
-		
 	}
 
 }

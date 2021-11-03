@@ -18,13 +18,15 @@ Attachment profile = (Attachment) request.getAttribute("profile");
         <input type="button" id="checkIfIHave" value="조회">
         <br>
         <input type="hidden" name="memberNoToReg" id="memberNoToReg" value="<%=loginMember.getMemberNo()%>"/>
-        <span>총 금액</span>
+        <span id="notice">----</span>
         <h3 id="coupon-total"></h3>
 
 		<input type="hidden" name="couponCheckVaild" id="couponCheckVaild" value ="0"/>
+		<input type="hidden" name="couponType" id="couponTypeInput" />
         <input type="button" id="coupon-x-btn" value="취소하기">
         <input type="button" id="coupon-submit-btn" value="등록하기" onclick="LetsRegCoupon();">
         <input type="hidden" name="memberIdToReg" id="memberIdToReg" value="<%=loginMember.getMemberId()%>">
+        
     </form>
 </div>
 <div class="member-container">
@@ -217,12 +219,33 @@ $("#member-coupon").click((e)=>{
 				dataType : "json",
 				success(data) {
 					console.log(`데이터 받아왔나요? : \${data}`);
-					
-					//포인트 얼마인지 보여주기
-					const couponPAmount = data["couponPAmount"]; 
-					console.log(`포인트 얼마? \${couponPAmount}`);			
-					document.getElementById("coupon-total").innerHTML = `\${couponPAmount} 원`;
-					$("#couponCheckVaild").val(1);
+
+					if(typeof data != "string" ) {
+						//쿠폰타입 처리하기
+						const couponType = data["couponType"];
+						console.log(`쿠폰 타입은 : \${couponType}`);
+						
+						$("#couponTypeInput").val(couponType);
+						
+						if('P' === couponType){
+							//포인트 얼마인지 보여주기
+							const couponPAmount = data["couponPAmount"]; 
+							console.log(`포인트 얼마? \${couponPAmount}`);
+							document.getElementById("notice").innerHTML = "포인트";
+							document.getElementById("coupon-total").innerHTML = `\${couponPAmount} p`;
+							$("#couponCheckVaild").val(1);
+	
+						}else{
+							const couponDiscountRate = data["couponDiscount"];
+							console.log(`할인율 얼마? \${couponDiscountRate}`);	
+							document.getElementById("notice").innerHTML = "할인율";
+							document.getElementById("coupon-total").innerHTML = `\${couponDiscountRate} %`;
+							$("#couponCheckVaild").val(1);
+						}
+						
+					}else{//유효기간 지난 쿠폰일 시
+						alert(data);
+					}
 					
 				},
 				//유효하지 않은 쿠폰일 시 alert 띄우고 input 값 지우기
