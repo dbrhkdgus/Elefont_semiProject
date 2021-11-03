@@ -85,5 +85,16 @@ public class CouponService {
 		return result;
 	}
 
+	public Coupon selectOneCouponByCouponNo(String couponNo) {
+		Connection conn = getConnection();
+		Coupon coupon = couponDao.selectOneCouponByCouponNo(conn, couponNo);
+		
+		close(conn);
+		
+		return coupon;
+	}
+
+
+
 
 }

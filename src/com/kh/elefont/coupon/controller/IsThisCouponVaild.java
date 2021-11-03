@@ -49,12 +49,15 @@ public class IsThisCouponVaild extends HttpServlet {
 		
 		System.out.println("쿠폰 연결한 값 " + sb);
 		
-		String sbtoString = sb.toString();
+		String couponNo = sb.toString();
 		
-		System.out.println("sbtoString : " + sbtoString);
+		System.out.println("sbtoString : " + couponNo);
 		
 		
-		List<Coupon> couponList = couponService.selectAllCouponByMemberNo(memberNo);
+		//List<Coupon> couponList = couponService.selectAllCouponByMemberNo(memberNo);
+		
+		Coupon coupon = couponService.selectOneCouponByCouponNo(couponNo);
+		
 		System.out.println("couponList " + couponList );
 		
 		if(couponList != null) {
@@ -62,8 +65,8 @@ public class IsThisCouponVaild extends HttpServlet {
 				String couponNumber = coupon.getCouponNo();
 				System.out.println("couponNumber는 " + couponNumber );
 				
-				if(sbtoString.equals(couponNumber)) {
-					System.out.println(sbtoString + "이 쿠폰은 사용할 수 있는 쿠폰입니다");
+				if(couponNo.equals(couponNumber)) {
+					System.out.println(couponNo + "이 쿠폰은 사용할 수 있는 쿠폰입니다");
 					
 					//3. 응답 처리
 					response.setContentType("application/json; charset=utf-8");

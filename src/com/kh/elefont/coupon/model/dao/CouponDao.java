@@ -201,4 +201,23 @@ public class CouponDao {
 		return result;
 	}
 
+	public Coupon selectOneCouponByCouponNo(Connection conn, String couponNo) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		Coupon coupon = null;
+		String sql = prop.getProperty("selectOneCouponByCouponNo");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+		}catch(SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return coupon;
+	}
+
 }
