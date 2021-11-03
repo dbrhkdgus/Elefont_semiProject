@@ -166,15 +166,15 @@ List<Attachment> attachmentList = (List<Attachment>) request.getAttribute("attac
 				</div>
 				<div>
 					<div class="user-search-bar">
-							<select name="user-search" id="user-search">
-								<option value="" selected>모든 주문 조회</option>
+							<select name="order-search" id="user-search">
+								<option value="all" selected>모든 주문 조회</option>
 								<option value="orderNo">주문 번호로 검색</option>
 								<option value="orderDate">주문일로 검색</option>
 								<option value="orderId">주문 회원으로 검색</option>
 								<option value="orderFont">주문 상품으로 검색</option>
 							</select>
-							<input type="text" name="" id="" placeholder="검색할 내용을 입력하세요."/>
-							<input type="button" value="검색" />
+							<input type="text" name="order-search-keyword" id="" placeholder="검색할 내용을 입력하세요."/>
+							<input type="button" value="검색" id="orderFinder"/>
 						</div>
 					<div class="fix-head">
 						<table class="admin-tbl fix-tbl">
@@ -542,6 +542,14 @@ $(memberId).autocomplete({
 		});
 	}
 });
-
+/* 주문관리 - 주문검색 클릭시 */
+$(orderFinder).click((e)=>{
+	const $searchType = $("[name=order-search]").val();
+	const $searchKeyword = $("[name=order-search-keyword]").val();
+	console.log(`searchType = \${$searchType}`);
+	console.log(`searchKeyword = \${$searchKeyword}`);
+	
+	location.href = "<%=request.getContextPath()%>/admin/orderFinder?searchType="+$searchType+"&searchKeyword="+$searchKeyword;
+});
 
 </script>

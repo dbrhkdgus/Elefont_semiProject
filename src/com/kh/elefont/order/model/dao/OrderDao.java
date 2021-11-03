@@ -10,8 +10,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 import java.util.Properties;
 
+import com.kh.elefont.font.model.vo.Font;
 import com.kh.elefont.order.model.vo.Order;
 import com.kh.elefont.order.model.vo.OrderExt;
 
@@ -201,6 +203,65 @@ public class OrderDao {
 				
 				orderList.add(oe);
 			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return orderList;
+	}
+
+	public List<Order> selectSerchOrder(Connection conn, Map<String, Object> param) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		List<Order> orderList = new ArrayList<>();
+		String sql = "";
+		String searchType = (String)param.get("searchType");
+//		String searchKeyword = (String)param.get("searchKeyword");
+//		System.out.println("param.get(\"searchKeyword\")@Dao : " + param.get("searchKeyword"));
+		System.out.println("searchType@Dao : " + searchType);
+		switch(searchType) {
+		case "orderNo" : 
+			sql = prop.getProperty("selectSearchOrderByorderNo");
+			break;
+		case "orderDate" : 
+			sql = prop.getProperty("selectSearchFontByorderDate");
+			break;
+		case "orderId" : 
+			sql = prop.getProperty("selectSearchFontByorderId");
+			break;
+		case "orderFont" : 
+			sql = prop.getProperty("selectSearchFontByorderFont");
+			break;
+		}
+		
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, "%"+param.get("searchKeyword")+"%");
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				OrderExt orderExt = new OrderExt();
+	
+				orderExt.setMemberNo(rset.getString("member_no"));
+				orderExt.setMemberOrderDate(rset.getDate("member_order_date"));
+				orderExt.setOrderNo(rset.getString("order_no"));
+				orderExt.setFontNo(rset.getString("font_no"));
+				orderExt.setFontName(rset.getString("font_name"));
+				orderExt.setFontPrice(rset.getInt("font_price"));
+				orderExt.setFontDiscoutRate(rset.getDouble("font_discount_rate"));
+				orderExt.setMemberId(rset.getString("member_id"));
+				orderExt.setMemberEmail(rset.getString("member_email"));
+				orderExt.setFontUrl(rset.getString("font_url"));
+				
+				
+				orderList.add(orderExt);
+			}
+			System.out.println("fontList@Dao : " + orderList);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
