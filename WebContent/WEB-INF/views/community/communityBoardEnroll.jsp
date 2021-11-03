@@ -34,7 +34,7 @@
                          
                           
                             <label for="font">사용된 폰트  </label> 
-                                <input type="text" name="font" />
+                                <input type="text" name="font" id="font_search"/>
                             
 
                            
@@ -126,6 +126,36 @@ $("[name=upFile]").change((e) => {
  $(() => {
      $(document.boardEnrollFrm).submit(boardValidate);
  });
+ 
+ 
+ /* 검색어 자동완성 */
+	$("#font_search").autocomplete({
+		source(request, response){
+			//request : 사용자 입력값을 가진 객체
+			//response : 검색어 목록 데이터를 처리할 콜백 함수
+			//console.log(request, response);
+			
+			const {term : searchName} = request;
+			
+			$.ajax({
+				url: "<%= request.getContextPath()%>/autocomplete",
+				data: {searchName}, //?searchName=김
+				success(data){
+					console.log(data);
+					let temp = data.split("\n");
+					temp = $.map(temp, (name, index)=>{
+						return {
+							label : name,
+							value : name
+						}
+					});
+					console.log(temp);
+					response(temp);
+				},
+				error : console.log
+			});
+		}
+	});
 </script>
 
 <!-- Community Board Enroll end -->
