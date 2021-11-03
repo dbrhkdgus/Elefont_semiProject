@@ -100,7 +100,7 @@
 <%
 			}
 %>
-                                <i class="fas fa-search-plus"></i>
+                               
                              </div>
                         </div> 
 

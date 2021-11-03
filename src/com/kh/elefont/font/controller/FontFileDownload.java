@@ -31,22 +31,20 @@ public class FontFileDownload extends HttpServlet {
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		//1.
 		String fontNo = (String)(request.getParameter("fontNo"));
-		System.out.println("제가 fontNO을 JSP에서 잘 받아왔나요? ㅜㅜ" + fontNo);
+		
 		
 		
 		//2. 업무로직
 		Attachment attach = fontService.selectOneFontAttachmentByFontNo(fontNo);
-		System.out.println("attach@servlet = " + attach);
-		
-		
-		
+
 		//3.
 		
 		// 저장된 경로의 파일 입력스트림
 		String saveDirectory = getServletContext().getRealPath("/upload/font");
 		String filename = attach.getRenamedFilename();
+		
 		File downFile = new File(saveDirectory, filename);
-		System.out.println("downFile@servlet = " + downFile);
+		
 		
 		BufferedInputStream bis = new BufferedInputStream(new FileInputStream(downFile));
 		
