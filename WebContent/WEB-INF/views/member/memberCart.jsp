@@ -149,7 +149,7 @@ for(MemberCartView mcv : memberCartList){
 		/* $(".payment_window").show(); */
 		if(confirm("해당 상품을 삭제하시겠습니까?") ){
 			/* console.log(`\${$(e.target).parent().parent().children("input").val()}`); */
-			location.href= `<%=request.getContextPath() %>/member/memberCartDelete?cartNo=\${$(e.target).parent().parent().children("input").val()&type=delete}`; 
+			location.href= `<%=request.getContextPath() %>/member/memberCartDelete?cartNo=\${$(e.target).parent().parent().children("input").val()}`; 
 		}
 	});
 	

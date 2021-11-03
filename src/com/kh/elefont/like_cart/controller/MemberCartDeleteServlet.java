@@ -45,22 +45,29 @@ public class MemberCartDeleteServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		List<String> cartNoList = new ArrayList<>();
 		String[] cartNoArr = request.getParameterValues("chk_cart_no");
+		String type = request.getParameter("type");
+		System.out.println("type@servlet : " + type);
+			
 		
-
-		if (cartNoArr != null) {
-			for (int i = 0; i < cartNoArr.length; i++) {
-				cartNoList.add(cartNoArr[i]);
-				int result = 0;
-				for (String cartNo : cartNoList) {
-					result = likeCartService.deleteCart(cartNo);
-					if (result < 0) {
-						session.setAttribute("msg", "실패");
-						break;
+			if (cartNoArr != null) {
+				if("delete".equals(type)) {
+				for (int i = 0; i < cartNoArr.length; i++) {
+					cartNoList.add(cartNoArr[i]);
+					int result = 0;
+					for (String cartNo : cartNoList) {
+						result = likeCartService.deleteCart(cartNo);
+						if (result < 0) {
+							session.setAttribute("msg", "실패");
+							break;
+						}
 					}
 				}
+			}else if("purchase".equals(type)) {
+				
+				
 			}
+			
 		}
-		
 		String location = request.getHeader("Referer");
 		response.sendRedirect(location);
 		
