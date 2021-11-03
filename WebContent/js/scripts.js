@@ -115,7 +115,7 @@
             typeSpeed: 50,
             loop : true
           })
-			.css("font-family","MapoAgape");
+			.css("font-family","Somi");
          });
         
 		 
