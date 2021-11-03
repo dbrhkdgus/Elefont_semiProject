@@ -267,20 +267,33 @@ if(loginMember != null){
                                 	/* 구매하기 버튼 클릭 */
                                 	$("#purchase-button").click((e)=>{
                                 		<% 
-                                		for(Order order : orderList){ 
-	                                		if(font.getFontNo().equals(order.getFontNo())){
+                                		if(loginMember == null){
+                                		%>
+                                		alert("로그인 후 이용이 가능합니다.");
+                                		$('.loginBox').show();
+                                    	$(loginId).select();
+                                		<%
+                                		}else{
+                                			for(Order order : orderList){ 
+	                                			if(font.getFontNo().equals(order.getFontNo())){
 	                                	%>
 	                                	
-	                                		alert("이미 구매한 폰트입니다.");
-	                                		return false;
+	                                			alert("이미 구매한 폰트입니다.");
+	                                			return false;
 	                                	
 	                                	<%	
-	                                			break;
-	                                		}
-                                		}
-	                                	%>
+	                                				break;
+	                                			}
+                                			}
+                                			
+                                		%>
+                                		
                                 		$("input[name=PerCartType]").val("purchase")
                                 		$(document.PurchaseCartFrm).submit();
+                                		
+                                		<%
+                                		}
+	                                	%>
                                 		
                                 	});
                                 	
@@ -290,6 +303,8 @@ if(loginMember != null){
 	if(loginMember == null){			
 %>
 									alert("로그인 후 이용 가능합니다.");
+									$('.loginBox').show();
+	                            	$(loginId).select();
 									return;
 <%
 } else if("A".equals(loginMember.getMemberRole())){
@@ -334,18 +349,28 @@ if(loginMember != null){
                                 	/* 장바구니 추가 버튼 클릭 */
                                 	$("#cart-button").click((e)=>{
                                 		<% 
-                                		for(Order order : orderList){ 
-	                                		if(font.getFontNo().equals(order.getFontNo())){
+                                		if(loginMember == null){
+                                		%>
+                                		alert("로그인 후 이용이 가능합니다.");
+                                		$('.loginBox').show();
+                                    	$(loginId).select();
+                                		
+                                		<%}else{ 
+                                			for(Order order : orderList){ 
+	                                			if(font.getFontNo().equals(order.getFontNo())){
 	                                	%>
 	                                	
-	                                		alert("이미 구매한 폰트입니다.");
-	                                		return false;
+	                                			alert("이미 구매한 폰트입니다.");
+	                                			return false;
 	                                	
 	                                	<%	
-	                                			break;
-	                                		}
-                                		}
-	                                	%>
+	                                				break;
+	                                			}
+                                			}
+                                			
+                                		%>
+                                		
+                                		
                                 		$("input[name=PerCartType]").val("cart");
                                 		$fontNo = $(e.target).data("fontNo");
                                 		$PerCartType = $(e.target).data("type");                               		
@@ -366,6 +391,9 @@ if(loginMember != null){
                                 			},
                                 			error: console.log
                                 		});
+                                		<%
+                                		}
+	                                	%>
                                 		
                                 	});
                                 	

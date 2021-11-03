@@ -11,36 +11,59 @@ System.out.println("mcvList @JSP : " + mcvList);
 String fontPrice = (String)request.getAttribute("fontPrice");
 String memberEmail = (String)request.getAttribute("memberEmail");
 String memberNo = (String)request.getAttribute("memberNo");
+double discountRate = 0;
+
+if(request.getAttribute("couponDiscountRate") != null){
+	discountRate = (double) request.getAttribute("couponDiscountRate");
+	}
 %>
 
 <section id="portfolio" class="portfolio section-space-padding">
-	<div class="coupon-enroll">
-	    <form action="#" method="POST" name="userCouponEnrollFrm">
-	        <h2>쿠폰 등록 번호</h2>
-	        <input type="text" class="coupon-no" name="coupon-no1" id="coupon-no1" value="elpo" readonly>
-	        <span>-</span>
-	        <input type="text" class="coupon-no" name="coupon-no2" id="coupon-no2">
-	        <span>-</span>
-	        <input type="text" class="coupon-no" name="coupon-no3" id="coupon-no3">
-	        <input type="button" id="checkIfIHave" value="조회">
-	        <br>
-	        <input type="hidden" name="memberNoToReg" id="memberNoToReg" value="<%=loginMember.getMemberNo()%>"/>
-	        <span>총 금액</span>
-	        <h3 id="coupon-total"></h3>
-	
-			<input type="hidden" name="couponCheckVaild" id="couponCheckVaild" value ="0"/>
-	        <input type="button" id="coupon-x-btn" value="취소하기">
-	        <input type="button" id="coupon-submit-btn" value="등록하기" onclick="LetsRegCoupon();">
-	        <input type="hidden" name="memberIdToReg" id="memberIdToReg" value="<%=loginMember.getMemberId()%>">
-	    </form>
-	</div>
+<div class="coupon-enroll">
+    <form action="<%=request.getContextPath()%>/order/couponEnroll" method="POST" name="userCouponEnrollFrm">
+        <h2>쿠폰 등록 번호</h2>
+        <input type="text" class="coupon-no" name="coupon-no1" id="coupon-no1" value="elpo" readonly>
+        <span>-</span>
+        <input type="text" class="coupon-no" name="coupon-no2" id="coupon-no2">
+        <span>-</span>
+        <input type="text" class="coupon-no" name="coupon-no3" id="coupon-no3">
+        <input type="button" id="checkIfIHave" value="조회">
+        <br>
+        <input type="hidden" name="memberNoToReg" id="memberNoToReg" value="<%=loginMember.getMemberNo()%>"/>
+        <span id="notice">----</span>
+        <h3 id="coupon-total"></h3>
+
+		<input type="hidden" name="couponCheckVaild" id="couponCheckVaild" value ="0"/>
+		<input type="hidden" name="couponType" id="couponTypeInput" />
+		<input type="hidden"  name="font-price" value="<%= fontPrice %>" />
+		<input type="hidden" name="purchase-email" value="<%=memberEmail %>" />
+		<input type="hidden" name="fontName" value="<%=fontName %>"/>
+		<input type="hidden" name="font-no" value="<%= fontNo %>" />
+		
+		
+        <input type="button" id="coupon-x-btn" value="취소하기">
+        <input type="button" id="coupon-submit-btn" value="등록하기" onclick="LetsRegCoupon();">
+        <input type="hidden" name="memberIdToReg" id="memberIdToReg" value="<%=loginMember.getMemberId()%>">
+        
+    </form>
+</div>
    <div class="purchase-container">
        <h1>폰트 구매</h1>
        <form action="<%= request.getContextPath()%>/font/fontPurchase" method="POST" name="fontPurchaseFrm">
-           <p class="purchase-menu"><span> 구매하신 폰트 : </span><span><%=fontName %></span></p>
-           <p class="purchase-menu"><span>폰트가격 : </span><span><%=fontPrice %></span></p>
-           <p class="purchase-menu"><span>쿠폰등록하기 : </span> </p>
+           <p class="purchase-menu"><span> 구매하신 폰트 : </span><span><%=fontName %></span></p>           
+<%if(request.getAttribute("couponNo") !=null){ %>       
+           <p class="purchase-menu"><span>폰트가격 : </span><span id="fontPrice"><del><%=fontPrice %></del></span>&nbsp<span>[<%= (double)request.getAttribute("salePrice") %>]</span></p>
+<% } else {%> 
+			<p class="purchase-menu"><span>폰트가격 : </span><span id="fontPrice"><%=fontPrice %></span></p>
+<%} %>                   
+<% if(request.getAttribute("couponNo") !=null){
+%>           
+           <p class="purchase-menu"><span>쿠폰등록하기 : <%=request.getAttribute("couponNo")%> </span> </p>
+<% } %>           
+<% if(request.getAttribute("couponNo") == null){
+%>	           
            <button type="button" id="purchase-coupon-btn">쿠폰등록</button><span>쿠폰 적용 금액</span><br>
+<% }%>    
            <label for="purchase-email-address">받으실 이메일 주소</label>
            <input type="text" name="purchase-email" value="<%=memberEmail %>">
            <input type="hidden"  name="member-no" value="<%=loginMember.getMemberNo()%>"/>
@@ -83,53 +106,105 @@ $("#purchase-coupon-btn").click((e)=>{
 	if($couponEnroll.css("display","none")){
 		$couponEnroll.show();
 		
-	/*User 쿠폰 사용 이벤트 - 다현 - */
-	$("#checkIfIHave").click((e)=>{
-		const $frmData = $(document.userCouponEnrollFrm);
-		
-		let couponMemberNo = $("#memberNoToReg").val();
-		console.log(`쿠폰 사용할 memberId : \${couponMemberNo}`);
-		
-		let couponMemberId = $("#memberIdToReg").val();
-		console.log(`쿠폰 사용할 memberId : \${couponMemberId}`);
-		
-		$.ajax({
-			url : "<%=request.getContextPath()%>/coupon/isThisCouponVaild",
-			data : $frmData.serialize(),
-			method : "post",
-			dataType : "json",
-			success(data) {
-				console.log(`데이터 받아왔나요? : \${data}`);
-				
-				//포인트 얼마인지 보여주기
-				const couponPAmount = data["couponPAmount"]; 		
-				document.getElementById("coupon-total").innerHTML = `\${couponPAmount} 원`;
-				$("#couponCheckVaild").val(1);
-				
-			},
-			//유효하지 않은 쿠폰일 시 alert 띄우고 input 값 지우기
-			error(xhr, textStatus, err){
-				console.log(xhr, textStatus, err);
-				alert("유효하지 않은 쿠폰입니다");
-				var coupons = document.getElementsByClassName("coupon-no");
-				coupons[1].value = "";
-				coupons[2].value = "";
-				document.getElementById("coupon-total").innerHTML = "";
-			}
+		/*User 쿠폰 사용 이벤트 - 다현 - */
+		$("#checkIfIHave").click((e)=>{
+			const $frmData = $(document.userCouponEnrollFrm);
+			
+			let couponMemberNo = $("#memberNoToReg").val();
+			console.log(`쿠폰 사용할 memberId : \${couponMemberNo}`);
+			
+			let couponMemberId = $("#memberIdToReg").val();
+			console.log(`쿠폰 사용할 memberId : \${couponMemberId}`);
+			
+			$.ajax({
+				url : "<%=request.getContextPath()%>/coupon/isThisCouponVaild",
+				data : $frmData.serialize(),
+				method : "post",
+				dataType : "json",
+				success(data) {
+					console.log(`데이터 받아왔나요? : \${data}`);
+
+					if(typeof data != "string" ) {
+						//쿠폰타입 처리하기
+						const couponType = data["couponType"];
+						console.log(`쿠폰 타입은 : \${couponType}`);
+						
+						$("#couponTypeInput").val(couponType);
+						
+						if('P' === couponType){
+							//포인트 얼마인지 보여주기
+							const couponPAmount = data["couponPAmount"]; 
+							console.log(`포인트 얼마? \${couponPAmount}`);
+							document.getElementById("notice").innerHTML = "포인트";
+							document.getElementById("coupon-total").innerHTML = `\${couponPAmount} p`;
+							$("#couponCheckVaild").val(1);
+	
+						}else{
+							const couponDiscountRate = data["couponDiscount"];
+							console.log(`할인율 얼마? \${couponDiscountRate}`);	
+							document.getElementById("notice").innerHTML = "할인율";
+							document.getElementById("coupon-total").innerHTML = `\${couponDiscountRate} %`;
+							$("#couponCheckVaild").val(1);
+						}
+						
+					}else{//유효기간 지난 쿠폰일 시
+						alert(data);
+					}
+					
+				},
+				//유효하지 않은 쿠폰일 시 alert 띄우고 input 값 지우기
+				error(xhr, textStatus, err){
+					console.log(xhr, textStatus, err);
+					alert("유효하지 않은 쿠폰입니다");
+					var coupons = document.getElementsByClassName("coupon-no");
+					coupons[1].value = "";
+					coupons[2].value = "";
+					document.getElementById("coupon-total").innerHTML = "";
+				}			
+			});
+			
 		});
 		
-	});
-
-	/*User 쿠폰 사용 이벤트 끝 - 다현 - */
-
-
-	$("#coupon-x-btn").click((e)=>{
-		$couponEnroll.hide();
-	});
+		/*User 쿠폰 사용 이벤트 끝 - 다현 - */
+		
+		
+		$("#coupon-x-btn").click((e)=>{
+			$couponEnroll.hide();
+		});
 		
 	}
 	else return;
 });
+
+
+function LetsRegCoupon(){
+	const $vaild = $("#couponCheckVaild").val();
+	console.log("vaild 값은 : ")
+	console.log($vaild);
+	if($vaild !=1){
+		alert("쿠폰 조회가 필요합니다");
+	}
+	if($vaild == 1){
+		if(confirm("쿠폰을 등록하시겠습니까?")) {
+			$(document.userCouponEnrollFrm).submit()				
+		}
+		
+	}
+}
+
+$("#coupon-no2").change(() => {
+	$("#couponCheckVaild").val(0);
+	
+});
+
+$("#coupon-no3").change(() => {
+	$("#couponCheckVaild").val(0);
+	
+});
+
+
+
+
 
 </script>
 
