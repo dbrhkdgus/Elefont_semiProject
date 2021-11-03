@@ -1,9 +1,13 @@
+<%@page import="com.kh.elefont.like_cart.model.vo.MemberCartView"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@include file = "/WEB-INF/views/common/LandingHeader.jsp" %>
 <%
 String fontNo = (String)request.getAttribute("fontNo");
 String fontName = (String)request.getAttribute("fontName");
+List<MemberCartView> mcvList = (List<MemberCartView>)request.getAttribute("mcvList");
+System.out.println("mcvList @JSP : " + mcvList);
 String fontPrice = (String)request.getAttribute("fontPrice");
 String memberEmail = (String)request.getAttribute("memberEmail");
 String memberNo = (String)request.getAttribute("memberNo");
@@ -13,7 +17,14 @@ String memberNo = (String)request.getAttribute("memberNo");
             <div class="purchase-container">
                 <h1>폰트 구매</h1>
                 <form action="<%= request.getContextPath()%>/font/fontPurchase" method="POST" name="fontPurchaseFrm">
-                    <p class="purchase-menu"><span> 구매하신 폰트 : </span><span><%=fontName %></span></p>
+                
+                    <p class="purchase-menu">
+                    	<span> 구매하신 폰트 : </span>
+<% 
+
+%>                    	              
+                    	<span><%=fontName %></span>
+                    </p>
                     <p class="purchase-menu"><span>폰트가격 : </span><span><%=fontPrice %></span></p>
                     <p class="purchase-menu"><span>쿠폰등록하기 : </span> </p>
                     <button>쿠폰등록</button><span>쿠폰 적용 금액</span><br>
@@ -26,8 +37,8 @@ String memberNo = (String)request.getAttribute("memberNo");
                     <br />
                     <input type="button" name ="btn-purchase" value = "구매하기" />
                     <input type="button" name ="btn-cancle" value = "취소" />
-            </div>
                 </form>
+            </div>
          </section>
          
     	 <script>
