@@ -1456,6 +1456,7 @@ text-align: center;
     margin-top: 10px;
     margin-left: 10px;
     font-size: 40px;
+    font-weight: bold;
 
 }
 .cart_content_box{
@@ -1466,7 +1467,7 @@ text-align: center;
 .cart_content{
     display: flex;
     align-items: center;
-    border: 1px solid skyblue;
+    border: 1px solid #26BF5C;
     margin: 10px; 
     height: 150px;
     width: 80%;
@@ -1511,7 +1512,7 @@ text-align: center;
     flex-direction: column;
     align-items: center;
    /*  margin-right: 460px; */
-    margin-left: 235px;
+    margin-left: 32px;
 }
 .check_all_box input[type=checkbox]{
     transform: scale(1.7);
