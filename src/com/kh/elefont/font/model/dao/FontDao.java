@@ -987,6 +987,32 @@ public class FontDao {
 		return likefontList;
 	}
 
+	public String selectFontNoByCartNo(Connection conn, String cartNo) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String fontNom = "";
+		
+		String sql = prop.getProperty("selectFontNoByCartNo");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, cartNo);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				fontNom = rset.getString(1);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return fontNom;
+	}
+
 }
 
 	
