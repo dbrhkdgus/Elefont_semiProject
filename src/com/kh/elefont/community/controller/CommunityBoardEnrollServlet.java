@@ -102,8 +102,7 @@ public class CommunityBoardEnrollServlet extends HttpServlet {
 			attach.setOriginalFilename(originalFilename);
 			attach.setRenamedFilename(renamedFilename);
 			MemberService memberService = new MemberService();
-			System.out.println(memberService.selectMemberNoByMemberName(writer));
-			attach.setMemberNo(memberService.selectMemberNoByMemberName(writer));
+			attach.setMemberNo(loginMember.getMemberNo());
 			System.out.println(communityService.selectLastCommNo());
 			attach.setCommNo(communityService.selectLastCommNo());
 			// attachment insert sql

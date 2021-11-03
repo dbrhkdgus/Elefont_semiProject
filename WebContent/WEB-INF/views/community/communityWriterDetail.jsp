@@ -35,6 +35,7 @@
  <%
  	int cnt = 0;
  	for(Attachment att : attachmentList){
+ 		System.out.println(att.getMemberNo());
  		if(cnt < 8) {
  %>
  						<img src="<%= request.getContextPath()%>/upload/community/<%=att.getRenamedFilename()%>" alt="" width=16px/>
