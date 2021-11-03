@@ -340,10 +340,10 @@ List<Attachment> attachmentList = (List<Attachment>) request.getAttribute("attac
 		for(Font f : fontList){
 			String targetFontNo = f.getFontNo();
 %>
-								<tr class="font-a <%=f.getFontApproval() == null? "font-w": "N".equals(f.getFontApproval())? "font-n" :"font-y" %>">
+								<tr class="font-a <%=f.getFontApproval().isBlank()? "font-w": "N".equals(f.getFontApproval())? "font-n" :"font-y" %>">
 									<td>
 										<select class="font-approval">
-											<option value="" <%= (f.getFontApproval() == null)? "selected":"" %>>심사 대기</option>
+											<option value="" <%= (f.getFontApproval().isBlank())? "selected":"" %>>심사 대기</option>
 											<option value="N" <%= "N".equals(f.getFontApproval())?"selected":"" %>>미승인</option>
 											<option value="Y" <%= ("Y".equals(f.getFontApproval()) || "C".equals(f.getFontApproval()))?"selected":"" %>>승인</option>
 										</select>
