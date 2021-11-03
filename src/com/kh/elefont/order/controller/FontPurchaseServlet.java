@@ -85,6 +85,8 @@ public class FontPurchaseServlet extends HttpServlet {
 		Font font = fontService.selectOneFontByFontNo(fontNo);
 		font.setFontPurchasedCount(font.getFontPurchasedCount()+1);
 		result = fontService.updateFontPurchaseCount(font);
+		
+		
 		// view단 처리
 		
 		response.sendRedirect(request.getContextPath()+"/shopDetail?fontNo="+fontNo);
