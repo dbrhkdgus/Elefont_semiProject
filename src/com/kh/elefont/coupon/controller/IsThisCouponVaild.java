@@ -1,7 +1,8 @@
 package com.kh.elefont.coupon.controller;
 
 import java.io.IOException;
-import java.util.List;
+import java.sql.Date;
+import java.text.SimpleDateFormat;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -52,33 +53,35 @@ public class IsThisCouponVaild extends HttpServlet {
 		String couponNo = sb.toString();
 		
 		System.out.println("sbtoString : " + couponNo);
-		
-		
-		//List<Coupon> couponList = couponService.selectAllCouponByMemberNo(memberNo);
-		
+
 		Coupon coupon = couponService.selectOneCouponByCouponNo(couponNo);
 		
 		
 		
-		System.out.println("couponList " + couponList );
-		
-		if(couponList != null) {
-			for(Coupon coupon : couponList) {
+		if(coupon != null) {
+			if(memberNo.equals(coupon.getMemberNo()) || coupon.getMemberNo() == null) {
 				String couponNumber = coupon.getCouponNo();
 				System.out.println("couponNumber는 " + couponNumber );
 				
-				if(couponNo.equals(couponNumber)) {
-					System.out.println(couponNo + "이 쿠폰은 사용할 수 있는 쿠폰입니다");
-					
+				long expiredMilisecond = coupon.getCouponExpDate().getTime();
+				long currentMilisecond = System.currentTimeMillis();
+				
+				long canWeUseTime = expiredMilisecond - currentMilisecond;
+				System.out.println("양수인가 음수인가? : " + canWeUseTime);
+				
+				if(canWeUseTime >0) { 
+					System.out.println(couponNo + "이 쿠폰은 사용할 수 있는 쿠폰입니다");						
 					//3. 응답 처리
 					response.setContentType("application/json; charset=utf-8");
 					new Gson().toJson(coupon, response.getWriter());					
+				}else {
+					
+					
+					response.setContentType("application/json; charset=utf-8");
+					
 				}
-		
+			}
 		}
-		
-		}
-		
 	}
 
 }

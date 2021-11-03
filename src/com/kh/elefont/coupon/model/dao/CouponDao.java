@@ -209,6 +209,24 @@ public class CouponDao {
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, couponNo);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				coupon = new Coupon();
+				coupon.setCouponNo(couponNo);
+				coupon.setCouponType(rset.getString("coupon_type"));
+				coupon.setCouponRegDate(rset.getDate("coupon_reg_date"));
+				coupon.setCouponExpDate(rset.getDate("coupon_exp_date"));
+				if("P".equals(coupon.getCouponType()))
+					coupon.setCouponPAmount(rset.getInt("coupon_p_amount"));
+				else
+					coupon.setCouponDiscount(rset.getDouble("coupon_discount"));
+				
+				coupon.setMemberNo(rset.getString("member_no"));
+				
+			}
 			
 		}catch(SQLException e) {
 			e.printStackTrace();
