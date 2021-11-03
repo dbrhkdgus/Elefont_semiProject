@@ -5,7 +5,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@include file = "/WEB-INF/views/common/LandingHeader.jsp" %>
-<%@include file = "/css/fontApply.jsp" %>
+
     
     <!-- community writer detail 시작 -->
 <%
@@ -17,6 +17,27 @@
 	List<Font> allFontList = (List<Font>)request.getAttribute("allFontList");
 	System.out.println(fontLikeList);
 %>
+<style>
+<% 
+if(!allFontList.isEmpty()){
+	for(Font font : allFontList){
+		if(font.getFontFamily() != null){
+%>
+
+
+@font-face {
+    font-family: '<%= font.getFontFamily()%>';
+    src: url('<%= font.getFontUrl()%>') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+<% 
+		}
+	} 
+}
+%>
+</style>
 <section id="portfolio" class="portfolio section-space-padding">
     <div id="writer-detail"class="container"> 
         <div class="comm-writer-detail">
