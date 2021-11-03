@@ -1,3 +1,4 @@
+<%@page import="com.kh.elefont.common.model.vo.Attachment"%>
 <%@page import="com.kh.elefont.font.model.vo.Font"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -8,6 +9,8 @@
 	List<Font> approvalList = (List<Font>) session.getAttribute("approvalList");
 	List<Font> checkedList = (List<Font>) session.getAttribute("checkedList");
 	List<Font> auditList = (List<Font>) session.getAttribute("auditList");
+	List<Attachment> attachmentList = (List<Attachment>)request.getAttribute("attachmentList");
+	
 %>
      <!-- seller 심사완료1! -->
 <section id="portfolio" class="portfolio section-space-padding">
@@ -28,6 +31,7 @@
                     <table class="fix-tbl">
                     	<thead>
                     		<tr>
+                    		
 	                    		<th>등록 일자</th>
 	                    		<th>폰트명</th>
 	                    		<th>폰트 파일</th>
@@ -37,14 +41,22 @@
 <%
 if(!checkedList.isEmpty()){
 	for(Font f : checkedList){
+		for(Attachment fontAtt : attachmentList){
+			if(f.getFontNo().equals(fontAtt.getFontNo())){
 %>
 							<tr>
 								<td><%= f.getFontRegDate() %></td>
 								<td><%= f.getFontName() %></td>
-								<td></td>
+								<td>
+								<input type="button" value="파일 다운로드" class="fontDownloadBtn"/>
+								<input type="hidden" name="renamedFileName" value="<%= fontAtt.getFontNo()%>"/>
+								</td>
 							</tr>
 <%
+			}
+		}
 	}
+
 }else{
 %>
 							<tr>
@@ -72,13 +84,20 @@ if(!checkedList.isEmpty()){
 <%
 if(!auditList.isEmpty()){
 	for(Font f : auditList){
+		for(Attachment fontAtt : attachmentList){
+			if(f.getFontNo().equals(fontAtt.getFontNo())){
 %>
 							<tr>
 								<td><%= f.getFontRegDate() %></td>
 								<td><%= f.getFontName() %></td>
-								<td></td>
+								<td>
+								<input type="button" value="파일 다운로드" class="fontDownloadBtn"/>
+								<input type="hidden" name="renamedFileName" value="<%= fontAtt.getFontNo()%>"/>
+								</td>
 							</tr>
 <%
+			}				
+		}
 	}
 }else{
 %>
@@ -109,17 +128,24 @@ if(!auditList.isEmpty()){
 <%
 if(!approvalList.isEmpty()){
 	for(Font f : approvalList){
+		for(Attachment fontAtt : attachmentList){
+			if(f.getFontNo().equals(fontAtt.getFontNo())){
 %>
 							<tr height="25px">
 								<td><%= f.getFontRegDate() %></td>
 								<td><%= f.getFontName() %></td>
-								<td></td>
+								<td>
+								<input type="button" value="파일 다운로드" class="fontDownloadBtn"/>
+								<input type="hidden" name="renamedFileName" value="<%= fontAtt.getFontNo()%>"/>
+								</td>
 								<td><%= f.getFontApproval() %></td>
 								<td>
 									<input type="button" value="확인" id="auditCheckBtn" data-font-no = "<%= f.getFontNo()%>" data-font-approval="<%=f.getFontApproval()%>"/>
 								</td>
 							</tr>
 <%
+			}				
+		}
 	}
 }else{
 %>
@@ -148,6 +174,13 @@ if(!approvalList.isEmpty()){
 </section>
 
 <script>
+/* 폰트 관리 - 회원 폰트 다운로드 버튼 클릭 시 파일 다운로드 */
+$(".fontDownloadBtn").click((e)=>{
+    $fontNo = $(e.target).next().val();
+    console.log($fontNo);
+    location.href = "<%=request.getContextPath()%>/font/fontDownload?fontNo=" + $fontNo; 
+});
+
 /* 폰트 조회 창 높이 폰트 입력량에 따라 조절*/
 $(window).load((e)=>{
 	const $fixHead = $(".fix-head");
