@@ -186,8 +186,8 @@ for(MemberCartView mcv : memberCartList){
 	
 	/* 주문하기 버튼 */
 	$("#select_order_font").click((e)=>{
-	
-		
+		$("input[name='type']").val('purchase');
+		$(document.cartFrm).submit();	
 		
 		
 	});

@@ -49,8 +49,8 @@ public class MemberCartDeleteServlet extends HttpServlet {
 		System.out.println("type@servlet : " + type);
 			
 		
+		if("delete".equals(type)) {
 			if (cartNoArr != null) {
-				if("delete".equals(type)) {
 				for (int i = 0; i < cartNoArr.length; i++) {
 					cartNoList.add(cartNoArr[i]);
 					int result = 0;
@@ -62,8 +62,21 @@ public class MemberCartDeleteServlet extends HttpServlet {
 						}
 					}
 				}
-			}else if("purchase".equals(type)) {
-				
+			}
+			
+		}else if("purchase".equals(type)) {
+			if (cartNoArr != null) {
+				for (int i = 0; i < cartNoArr.length; i++) {
+					cartNoList.add(cartNoArr[i]);
+					int result = 0;
+					for (String cartNo : cartNoList) {
+						//업무
+						if (result < 0) {
+							session.setAttribute("msg", "실패");
+							break;
+						}
+					}
+				}
 				
 			}
 			
