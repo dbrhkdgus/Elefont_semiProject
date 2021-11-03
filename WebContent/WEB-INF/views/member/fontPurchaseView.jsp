@@ -1,13 +1,18 @@
+<%@page import="com.kh.elefont.like_cart.model.vo.MemberCartView"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@include file = "/WEB-INF/views/common/LandingHeader.jsp" %>
 <%
 String fontNo = (String)request.getAttribute("fontNo");
 String fontName = (String)request.getAttribute("fontName");
+List<MemberCartView> mcvList = (List<MemberCartView>)request.getAttribute("mcvList");
+System.out.println("mcvList @JSP : " + mcvList);
 String fontPrice = (String)request.getAttribute("fontPrice");
 String memberEmail = (String)request.getAttribute("memberEmail");
 String memberNo = (String)request.getAttribute("memberNo");
 %>
+
 <section id="portfolio" class="portfolio section-space-padding">
 	<div class="coupon-enroll">
 	    <form action="#" method="POST" name="userCouponEnrollFrm">
@@ -48,6 +53,7 @@ String memberNo = (String)request.getAttribute("memberNo");
        </form>
    </div>
 </section>
+
          
 <script>
 /* 취소버튼 -> 이전페이지로 돌아가기 */
