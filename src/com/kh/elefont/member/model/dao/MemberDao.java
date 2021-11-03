@@ -375,6 +375,9 @@ public class MemberDao {
 		case "phone" : 
 			sql = prop.getProperty("selectSearchMemberByMemberPhone");
 			break;
+		case "all" :
+			sql = prop.getProperty("selectSearchMemberByMemberName");
+			break;
 		}
 		
 		
@@ -659,6 +662,12 @@ public class MemberDao {
 			close(pstmt);
 		}
 		return result;
+	}
+
+
+	public List<Member> selectSearchMemberByMemberName(Connection conn, Map<String, Object> param) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 
 
