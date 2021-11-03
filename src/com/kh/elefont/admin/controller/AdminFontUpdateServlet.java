@@ -31,15 +31,11 @@ public class AdminFontUpdateServlet extends HttpServlet {
 		Font[] fontArr = new Font[fontApprovalArr.length];
 		
 		for(int i = 0; i < fontNoArr.length; i++) {
-//			System.out.println("fontApproval" + i + ":" + fontApprovalArr[i]);
-//			System.out.println("fontNo" + i + ":" + fontNoArr[i]);
-//			System.out.println("fontPrice" + i + ":" + fontPriceArr[i]);
-//			System.out.println("fontDiscount" + i + ":" + fontDiscountRateArr[i]);
 			String fontApproval = fontApprovalArr[i];
 			String fontNo = fontNoArr[i];
 			double fontPrice = Double.parseDouble(fontPriceArr[i]);
 			double fontDiscountRate = Double.parseDouble(fontDiscountRateArr[i]);
-			fontArr[i] = new Font(fontNo, null, null, null, fontPrice, fontDiscountRate, 0,0,0,null, fontApproval, null);
+			fontArr[i] = new Font(fontNo, null, null, null, fontPrice, fontDiscountRate, 0,0,0,null, fontApproval, null, null, null);
 			
 //			System.out.println(fontArr[i]);
 		}

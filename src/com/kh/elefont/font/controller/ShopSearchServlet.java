@@ -35,11 +35,8 @@ public class ShopSearchServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		Member loginMember = (Member)session.getAttribute("loginMember");
 		// 랜딩 시, 기존 font 테이블 전부 조회
-		Map<String, Object> param = new HashMap<>();
-		param.put("searchKeyword", fontName);
-		param.put("searchType", "font-name");
 		
-		List<Font> fontList = fontService.selectSerchFont(param);
+		List<Font> fontList = fontService.selectShopFontByFontName(fontName);
 		System.out.println("fontList@servlet : " + fontList);
 		List<Attachment> fontAttchmentList = attachmentService.selectAllFontAttachmentList();
 		List<String> likeList = null;
