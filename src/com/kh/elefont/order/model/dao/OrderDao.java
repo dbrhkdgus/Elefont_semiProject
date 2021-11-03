@@ -216,12 +216,12 @@ public class OrderDao {
 	public List<Order> selectSerchOrder(Connection conn, Map<String, Object> param) {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
-		List<Font> fontList = new ArrayList<>();
+		List<Order> orderList = new ArrayList<>();
 		String sql = "";
 		String searchType = (String)param.get("searchType");
 //		String searchKeyword = (String)param.get("searchKeyword");
 //		System.out.println("param.get(\"searchKeyword\")@Dao : " + param.get("searchKeyword"));
-		
+		System.out.println("searchType@Dao : " + searchType);
 		switch(searchType) {
 		case "orderNo" : 
 			sql = prop.getProperty("selectSearchOrderByorderNo");
@@ -245,21 +245,23 @@ public class OrderDao {
 			rset = pstmt.executeQuery();
 			
 			while(rset.next()) {
-				OrderExt font = new OrderExt();
+				OrderExt orderExt = new OrderExt();
 	
-				font.setFontNo(rset.getString("font_no"));
-				font.setFontName(rset.getString("font_name"));
-				font.setFontPrice(rset.getDouble("font_price"));
-				font.setFontDiscountRate(rset.getDouble("font_discount_rate"));
-				font.setFontApproval(rset.getString("font_approval"));
-				font.setMemberId(rset.getString("member_id"));
-				font.setFontLikeCount(rset.getInt("font_like_count"));
-				font.setFontFamily(rset.getString("font_family"));
-				font.setFontUrl(rset.getString("font_url"));
-				font.setFontWeight(rset.getString("font_weight"));
-				fontList.add(font);
+				orderExt.setMemberNo(rset.getString("member_no"));
+				orderExt.setMemberOrderDate(rset.getDate("member_order_date"));
+				orderExt.setOrderNo(rset.getString("order_no"));
+				orderExt.setFontNo(rset.getString("font_no"));
+				orderExt.setFontName(rset.getString("font_name"));
+				orderExt.setFontPrice(rset.getInt("font_price"));
+				orderExt.setFontDiscoutRate(rset.getDouble("font_discount_rate"));
+				orderExt.setMemberId(rset.getString("member_id"));
+				orderExt.setMemberEmail(rset.getString("member_email"));
+				orderExt.setFontUrl(rset.getString("font_url"));
+				
+				
+				orderList.add(orderExt);
 			}
-			System.out.println("fontList@Dao : " + fontList);
+			System.out.println("fontList@Dao : " + orderList);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -267,6 +269,6 @@ public class OrderDao {
 			close(pstmt);
 		}
 		
-		return fontList;
+		return orderList;
 	}
 }

@@ -42,8 +42,6 @@ public class AdminOrderFinderServlet extends HttpServlet {
 		//1.사용자 입력값 처리
 		String searchType = request.getParameter("searchType");
 		String searchKeyword = request.getParameter("searchKeyword");
-		System.out.println("searchType" + searchType);
-		System.out.println("searchKeyword" + searchKeyword);
 		List<Order> orderList = null;
 		
 		
@@ -59,7 +57,7 @@ public class AdminOrderFinderServlet extends HttpServlet {
 		}else {
 			orderList = orderService.selectSerchOrder(param);
 		}
-		System.out.println("fontList@servlet : " + orderList);
+		System.out.println("orderList@servlet : " + orderList);
 		
 		
 		HttpSession session = request.getSession();
@@ -80,12 +78,12 @@ public class AdminOrderFinderServlet extends HttpServlet {
 		request.setAttribute("couponList", couponList);
 		request.setAttribute("orderList", orderList);
 		request.setAttribute("categoryList", categoryList);
-		session.setAttribute("tabIndex", 0);
+		session.setAttribute("tabIndex", 2);
 		
 		request.setAttribute("memberList", memberList);
-		request.setAttribute("tabIndex", 0);
+		request.setAttribute("tabIndex", 2);
 		request.setAttribute("fontList", fontList);
-		session.setAttribute("tabIndex", 4);
+		
 
 		//3. view단 처리
 		request
