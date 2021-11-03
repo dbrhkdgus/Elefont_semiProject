@@ -21,15 +21,16 @@
         <div class="comm-writer-detail">
 
             <div class="comm-detail-writer-info">
-                
+                <div class="comm-detail-writer-photo">
                 <img src="<%= request.getContextPath()%>/upload/profilephotos/<%=profileAttachment.getRenamedFilename()%>" alt="" class="writer-profile-img">
+                </div>
                 <h2><%= writerMember.getMemberName() %></h2>
                 <h2>게시글 수 : <span><%= totalCommunityByWriter %></span></h2>
             </div>
             
             <div class="comm-writer-history">
                 <div class="comm-writer-comm-history">
-                    <p>커뮤니티 게시글 이력</p>
+                    <h4 id="shop-detail-rep">커뮤니티 게시글 이력</h4>
                     <div class="comm-writer-comm-history-content">
  <%
  	int cnt = 0;
@@ -53,7 +54,7 @@
                    
                 </div>
                 <div class="comm-writer-font-history">
-                    <p>폰트 좋아요 이력</p>
+                    <h4 id="shop-detail-rep">폰트 좋아요 이력</h4>
                 <div class="comm-writer-font-history-content">
 <%
 	int fontCnt = 0;
@@ -70,7 +71,7 @@
 			
 %>
                     </div>
-			<p>전체보기</p>
+			<p onclick="location.href='<%=request.getContextPath() %>/member/fontLikeList?memberNo=<%= writerMember.getMemberNo() %>'">전체보기</p>
 <%
 		}
 	}

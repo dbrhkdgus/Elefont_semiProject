@@ -27,9 +27,9 @@ import com.kh.elefont.rep.model.vo.Rep;
 public class CommunityPictureDetailServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
-	CommunityService communityService = new CommunityService();
-	AttachmentService attachmentService = new AttachmentService();
-	RepService repService = new RepService();
+	private CommunityService communityService = new CommunityService();
+	private AttachmentService attachmentService = new AttachmentService();
+	private RepService repService = new RepService();
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
