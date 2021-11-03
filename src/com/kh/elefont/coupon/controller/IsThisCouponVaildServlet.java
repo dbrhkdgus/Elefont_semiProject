@@ -29,9 +29,7 @@ public class IsThisCouponVaildServlet extends HttpServlet {
 		
 		
 		String memberNo = request.getParameter("memberNoToReg");
-		String memberId = request.getParameter("memberIdToReg");
 		System.out.println("비동기로 쿠폰 있는 지 확인하기 위한 memberNo : " + memberNo);
-		System.out.println("비동기로 쿠폰 있는 지 확인하기 위한 memberId : " + memberId);
 		
 		String couponNo1 = request.getParameter("coupon-no1");
 		String couponNo2 = request.getParameter("coupon-no2");
