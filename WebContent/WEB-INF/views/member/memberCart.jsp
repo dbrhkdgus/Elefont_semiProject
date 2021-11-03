@@ -96,7 +96,7 @@ for(MemberCartView mcv : memberCartList){
 			
 		<div class="member_cart_null_box" >
 			<img alt="우는코끼리" src="https://i.ibb.co/6r0JR8x/Kakao-Talk-20211103-202307893.png" style="width:120%;">
-			<h1 >장바구니가 텅~</h1>
+			<h1 class="h1_font_style">장바구니가 텅~</h1>
 		</div>
 <%
 }
