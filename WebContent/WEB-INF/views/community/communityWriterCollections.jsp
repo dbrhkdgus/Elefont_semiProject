@@ -29,25 +29,21 @@
 					</ul>
 				
 				</div>
- 						<div class="like-comm">
-<%--                            <a href="<%= request.getContextPath()%>/community/writerDetail?writer=<% userId%>"><i class="fas fa-user"></i><div class="like-comm-writer"> user id </div></a> --%>
-                                <a href="#"><i class="fas fa-user"></i><div class="like-comm-writer"> 글쓴이 </div></a>
-                                <div class="comm-img">
-                               		<a href="#">
-                               		<img src="https://cdn.discordapp.com/attachments/893374121449254916/904648543921401856/unknown.png" alt="" />
-                               		</a>
-                               		
-                                </div>
-                                
-                            </div> 
-
-
-              
-                           
-
-                    </div>
-                </div>
-            </div>
+				<div class="collection-list-center">
+					<div class="writer-collection-comm-list">
+<%
+for(Attachment att : attachmentList) {
+%>	
+						<div class="collection-comm-img-box" onclick="location.href='<%= request.getContextPath()%>/community/pictureDetail?commNo=<%= att.getCommNo() %>'">
+							<img class="collection-comm-img" src="<%= request.getContextPath()%>/upload/community/<%=att.getRenamedFilename()%>" alt="" />
+						</div> 
+<%
+}
+%>
+					</div>
+				</div>
+                               
+			</div>
         </section>
 <script>
 	
