@@ -13,6 +13,7 @@ import javax.servlet.http.HttpSession;
 
 import com.kh.elefont.common.MailSend;
 import com.kh.elefont.common.model.service.AttachmentService;
+import com.kh.elefont.coupon.model.service.CouponService;
 import com.kh.elefont.font.model.service.FontService;
 import com.kh.elefont.font.model.vo.Font;
 import com.kh.elefont.member.model.service.MemberService;
@@ -31,16 +32,24 @@ public class FontPurchaseServlet extends HttpServlet {
 	MemberService memberService = new MemberService();
 	AttachmentService attachmentService = new AttachmentService();
 	FontService fontService = new FontService();
+	CouponService couponService = new CouponService();
 	
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		String couponNo = (String)request.getParameter("coupon-no");
+		System.out.println("결제 할 때 있니없니 couponNo : "+ couponNo);
 		String memberNo = request.getParameter("member-no");
 		String fontNo = request.getParameter("font-no");
 		String fontPrice = request.getParameter("font-price");
 		String orderNo = "order-" + System.currentTimeMillis();
 		//유일한 값을 위해서
+		
+		if(couponNo != null) {
+			int result = couponService.deleteUsedCoupon(couponNo);
+			System.out.println("쿠폰 삭제 잘 했나요?" + result);
+		}
 
 		Order order = new Order();
 		
