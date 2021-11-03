@@ -342,11 +342,25 @@ List<Attachment> attachmentList = (List<Attachment>) request.getAttribute("attac
 %>
 								<tr class="font-a <%=f.getFontApproval().isBlank()? "font-w": "N".equals(f.getFontApproval())? "font-n" :"font-y" %>">
 									<td>
+<%
+			if("C".equals(f.getFontApproval())){
+%>
+										<select class="font-approval" disabled>
+											<option value="C" selected>승인</option>
+											<option value="">심사 대기</option>
+											<option value="N">미승인</option>
+										</select>
+<%
+			}else{
+%>
 										<select class="font-approval">
 											<option value="" <%= (f.getFontApproval().isBlank())? "selected":"" %>>심사 대기</option>
 											<option value="N" <%= "N".equals(f.getFontApproval())?"selected":"" %>>미승인</option>
-											<option value="Y" <%= ("Y".equals(f.getFontApproval()) || "C".equals(f.getFontApproval()))?"selected":"" %>>승인</option>
+											<option value="Y" <%="Y".equals(f.getFontApproval())?"selected":"" %>>승인</option>
 										</select>
+<%
+			}
+%>
 										<input type="hidden" name="fontApproval" />
 									</td>
 									<td><%= f.getFontNo() %><input type="hidden" name="fontNo" value="<%= f.getFontNo() %>"/></td>
