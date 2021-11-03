@@ -11,7 +11,6 @@ System.out.println("mcvList @JSP : " + mcvList);
 String fontPrice = (String)request.getAttribute("fontPrice");
 String memberEmail = (String)request.getAttribute("memberEmail");
 String memberNo = (String)request.getAttribute("memberNo");
-double discountRate = 0;
 double salePrice = 0;
 
 	
@@ -57,6 +56,7 @@ double salePrice = 0;
            <input type="text" name="purchase-email" value="<%=memberEmail %>">
            <input type="hidden"  name="member-no" value="<%=loginMember.getMemberNo()%>"/>
            <input type="hidden"  name="font-no" value="<%= fontNo %>"/>
+           <input type="hidden"  name="font-price" value="<%= fontPrice %>"/>
            <input type="hidden" name="coupon-no" id="coupon-no"/>
            
            <br />
@@ -75,7 +75,7 @@ $("input[name=btn-cancle]").click((e)=>{
 
 $("input[name=btn-purchase]").click((e)=>{
 	const memberPoint = <%= loginMember.getMemberPoint()%>;
-	const fontPrice = <%=(salePrice == 0)?fontPrice: salePrice%>;
+	const fontPrice = $("[name=font-price]").val();
 	  		if(fontPrice > memberPoint){
 	  			alert(`보유하신 포인트가 부족하여 구매를 진행할 수 없습니다.
 	(현재 보유 포인트 : \${memberPoint}P)`);
@@ -186,13 +186,13 @@ function LetsRegCoupon(){
 				dataType : "json",
 				data : $userCouponEnrollFrm.serialize(),
 				success(data) {
-					//무슨 값을 받아와야 하니?
 					const salePrice = data["salePrice"];
 					const couponNo = data["couponNo"];
 					
 					$(".coupon-enroll").hide();
 					
 					$("#fontPrice").html(`<del><%= fontPrice %></del><span>[\${salePrice}]</span>`);
+					$("[name=font-price]").val(salePrice);
 					$("#couponReg").html(`등록된 쿠폰 : \${couponNo}`)
 					
 					$("#coupon-no").val(couponNo);

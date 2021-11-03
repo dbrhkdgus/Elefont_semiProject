@@ -46,7 +46,7 @@ public class FontPurchaseServlet extends HttpServlet {
 		String orderNo = "order-" + System.currentTimeMillis();
 		//유일한 값을 위해서
 		
-		if(couponNo != null) {
+		if(!(couponNo.isBlank())) {
 			int result = couponService.deleteUsedCoupon(couponNo);
 			System.out.println("쿠폰 삭제 잘 했나요?" + result);
 		}
