@@ -5,6 +5,7 @@ import static com.kh.elefont.common.JdbcTemplate.commit;
 import static com.kh.elefont.common.JdbcTemplate.getConnection;
 import static com.kh.elefont.common.JdbcTemplate.rollback;
 
+
 import java.sql.Connection;
 import java.util.ArrayList;
 import java.util.List;
@@ -14,6 +15,7 @@ import com.kh.elefont.common.model.vo.Attachment;
 import com.kh.elefont.community.model.dao.CommunityDao;
 import com.kh.elefont.community.model.vo.Community;
 import com.kh.elefont.like_cart.model.vo.CommLike;
+
 
 
 public class CommunityService {
@@ -272,6 +274,13 @@ public class CommunityService {
 		
 		return communityList;
 	}
-	
+
+	public List<Community> findCommListByMap(Map<String, Object> param) {
+		Connection conn = getConnection();
+		List<Community> list = communityDao.findCommListByMap(conn, param);
+		close(conn);
+		return list;
+
+	}	
 
 }
