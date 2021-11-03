@@ -151,19 +151,17 @@ public class OrderDao {
 			rset = pstmt.executeQuery();
 			
 			while(rset.next()) {
-				OrderExt oe = new OrderExt();
-				
-				oe.setMemberNo(rset.getString("member_no"));
-				oe.setMemberOrderDate(rset.getDate("member_order_date"));
-				oe.setOrderNo(rset.getString("order_no"));
-				oe.setFontNo(rset.getString("font_no"));
-				oe.setFontName(rset.getString("font_name"));
-				oe.setFontPrice(rset.getInt("font_price"));
-				oe.setFontDiscoutRate(rset.getDouble("font_discount_rate"));
-				oe.setMemberId(rset.getString("member_id"));
-				oe.setMemberEmail(rset.getString("member_email"));
-				oe.setFontUrl(rset.getString("font_url"));
-				
+				OrderExt oe = new OrderExt();				
+				oe.setMemberNo(rset.getString("member_no"));				
+				oe.setMemberOrderDate(rset.getDate("member_order_date"));				
+				oe.setOrderNo(rset.getString("order_no"));				
+				oe.setFontNo(rset.getString("font_no"));				
+				oe.setFontName(rset.getString("font_name"));				
+				oe.setFontPrice(rset.getInt("font_price"));				
+				oe.setFontDiscoutRate(rset.getDouble("font_discount_rate"));				
+				oe.setMemberId(rset.getString("member_id"));				
+				oe.setMemberEmail(rset.getString("member_email"));				
+				oe.setFontUrl(rset.getString("font_url"));				
 				orderList.add(oe);
 			}
 		} catch (SQLException e) {

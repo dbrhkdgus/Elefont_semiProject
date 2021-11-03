@@ -102,8 +102,7 @@ $("#purchase-coupon-btn").click((e)=>{
 				console.log(`데이터 받아왔나요? : \${data}`);
 				
 				//포인트 얼마인지 보여주기
-				const couponPAmount = data["couponPAmount"]; 
-				console.log(`포인트 얼마? \${couponPAmount}`);			
+				const couponPAmount = data["couponPAmount"]; 		
 				document.getElementById("coupon-total").innerHTML = `\${couponPAmount} 원`;
 				$("#couponCheckVaild").val(1);
 				

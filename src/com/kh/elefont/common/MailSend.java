@@ -71,6 +71,7 @@ public class MailSend {
 
 	public void purchaseMailSend(List<Order> orderList, List<String> attachList) {
 		Properties prop = System.getProperties();
+		System.out.println("orderList@mailsend.java : " + orderList);
 		OrderExt order = (OrderExt) orderList.get(0);
 		String memberId = order.getMemberId();
 		String memberEmail = order.getMemberEmail();

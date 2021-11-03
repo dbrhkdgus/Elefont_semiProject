@@ -2181,7 +2181,7 @@ p { padding: 5px 0; }
     margin-bottom: 10px;
 }
 
-.enrollBtn>button{
+#btn-comm-board-enroll{
 background-color: #4CAF50; /* Green */
 border: 0px;
 color: white;
@@ -3397,6 +3397,20 @@ align-items: center;
 	margin-left:5px;
 }
 
+/*커뮤니티 랜딩페이지 검색창 스타일 윤희*/
+#comm-search-container{
+	display:flex;
+	align-items: center;
+}
+
+.comm-search-type{
+	margin-right:12px;
+	margin-left:10px;
+}
+.comm-search-type input{
+	margin-right:7px;
+	margin-left:10px;
+}
 
 
 
