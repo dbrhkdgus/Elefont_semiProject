@@ -57,7 +57,7 @@ public class MemberDetailServlet extends HttpServlet {
 			List<Coupon> couponList = couponService.selectAllCoupon();
 			List<Order> orderList = orderService.selectAllOrder();
 			List<FontCategory> categoryList = fontService.selectAllFontCategory();
-			List<Attachment> attachmentList = attachmentService.selectAllCommAttachmentList();
+			List<Attachment> attachmentList = attachmentService.selectAllFontAttachmentList();
 			
 			request.setAttribute("attachmentList", attachmentList);
 			request.setAttribute("memberList", memberList);

@@ -84,7 +84,7 @@ public class AttachmentDao {
 				
 				
 				attachmentList.add(attachment);
-				
+				System.out.println("attachmentList@Dao : " + attachmentList);
 			}
 				
 		} catch (SQLException e) {
@@ -181,7 +181,7 @@ public class AttachmentDao {
 				
 			while(rset.next()) {
 					Attachment attachment = new Attachment();
-			attachment.setAttNo(rset.getInt("att_no"));
+					attachment.setAttNo(rset.getInt("att_no"));
 					attachment.setMemberNo(rset.getString("member_no"));
 					attachment.setCommNo(rset.getString("comm_no"));
 					attachment.setFontNo(rset.getString("font_no"));
@@ -190,7 +190,8 @@ public class AttachmentDao {
 					attachment.setRegDate(rset.getDate("reg_date"));
      
 					fontAttchmentList.add(attachment);
-				  }
+			}
+			System.out.println("fontAttchmentList@Dao : " + fontAttchmentList);
 		} catch (SQLException e) {
 			
 			e.printStackTrace();

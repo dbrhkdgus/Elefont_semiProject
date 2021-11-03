@@ -340,6 +340,7 @@ System.out.println("attachmentList" + attachmentList);
 <%
 	if(!fontList.isEmpty()){
 		for(Font f : fontList){
+			String targetFontNo = f.getFontNo();
 %>
 								<tr class="font-a <%=f.getFontApproval() == null? "font-w": "N".equals(f.getFontApproval())? "font-n" :"font-y" %>">
 									<td>
@@ -362,11 +363,13 @@ System.out.println("attachmentList" + attachmentList);
 <% 
 	
 	for(Attachment fontAtt :attachmentList){
-		if(f.getFontNo().equals(fontAtt.getFontNo()))
+		if(targetFontNo.equals(fontAtt.getFontNo()))
 				
 %>
-										<input type="button" value="파일 다운로드" class="fontDownloadBtn"/>			
+										<input type="button" value="파일 다운로드" class="fontDownloadBtn"/>
+										<input type="hidden" name="renamedFileName" value="<%= fontAtt.getRenamedFilename()%>"/>			
 <%
+		break;
 	}
 %>	
 									</td>
@@ -456,7 +459,7 @@ $("[name=fontAuditYN]").change((e)=>{
 
 /* 폰트 관리 - 회원 폰트 다운로드 버튼 클릭 시 파일 다운로드 */
 $(".fontDownloadBtn").click((e)=>{
-    $fontNo = $(e.target).parent().prevAll().eq(2).html();
+    $fontNo = $(e.target).parent().prevAll().eq(3).text();
     console.log($fontNo);
     location.href = "<%=request.getContextPath()%>/font/fontDownload?fontNo=" + $fontNo; 
 });
