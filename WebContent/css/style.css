@@ -1435,7 +1435,18 @@ text-align: center;
 }
 
 /* 장바구니 css */
+#cart-container{
+	display: flex;
+	margin-left: 165px;
+    flex-direction: column;
+    margin-left: 90px;
+    align-items: center;
+}
 
+#cartFrm{
+	width:100%;
+	margin-left: 300px;
+}
 .cart_title{
     margin-top: 30px;
     text-align: left;
@@ -1456,8 +1467,7 @@ text-align: center;
     display: flex;
     align-items: center;
     border: 1px solid skyblue;
-    margin: 10px;
-    
+    margin: 10px; 
     height: 150px;
     width: 80%;
     
@@ -1488,7 +1498,7 @@ text-align: center;
     width: 100%;
     text-align: left;
     align-items: center;
-    margin-left: 125px;
+   /*  margin-left: 125px; */
     margin-right: 200px;
 }
 .cart_buttons button{
@@ -1500,8 +1510,8 @@ text-align: center;
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-right: 460px;
-    margin-left: 10px;
+   /*  margin-right: 460px; */
+    margin-left: 235px;
 }
 .check_all_box input[type=checkbox]{
     transform: scale(1.7);
@@ -1509,6 +1519,15 @@ text-align: center;
     margin-bottom: 10px;
 }
 
+.cart_bottom_buttons{
+	margin-left:327px;
+}
+
+.member_cart_null_box{
+	text-align: center;
+    width: 25%;
+}
+   
 /* 장바구니 - 결제창 */
 
 .payment_window{
@@ -2689,26 +2708,29 @@ font-size: 16px;
 #writer-detail{
     margin-left: 10%;
 }
+.comm-detail-writer-info {
+	position: sticky;
+	top: 81px;
+}
 .comm-writer-detail{
     display: flex;
-    align-items: center;
-   	 justify-content: center;
-   	 height: 1000px;
-}
-.comm-writer-info{
-    text-align: center;
+    align-items: flex-start;
+   	justify-content: center;
 }
 .writer-profile-img{
+	margin-top: 80px;
     width: 270px;
     height: 270px;
 }
 .comm-writer-history{
-    margin-left: 150px;
+    margin-left: 100px;
 }
 .comm-writer-comm-history{
-   
     text-align: left;
     margin-bottom: 50px;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
 }
 .comm-writer-font-history{
     text-align: left;
@@ -2719,19 +2741,27 @@ font-size: 16px;
     height: 500px;
 }
 .like-item-comm{
-	height : 210px;
-	margin-right: 10px;
+	border: 1px solid black;
+    width: 150px;
+    height: 150px;
+    text-align: center;
 }
 .like-item-comm{
 	zoom : 0.8;
 }
 .comm-writer-comm-history-content{
+    width: 645px;
     display: flex;
-    justify-content: space-around;
-    margin-bottom: 30px;
+    justify-content: flex-start;
+    /* margin: 10px; */
+    flex-wrap: wrap;
+    align-items: center;
 }
 .comm-writer-comm-history-content img{
     width: 150px;
+    height: 150px;
+    margin-bottom: 9px;
+    margin-right: 10px;
 }
 
 
@@ -2786,10 +2816,10 @@ font-size: 16px;
 }
 .comm-user-content{
 	padding-left: 15px;
-    width: 400px;
+    width: 490px;
 }
 .comm-writer-info{
-    text-align: centerk;
+    text-align: center;
 }
 .comm-writer-info-buttons i{
     font-size: 50px;
