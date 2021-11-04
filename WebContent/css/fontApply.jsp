@@ -2,8 +2,9 @@
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<% List<Font> fontList = (List<Font>)session.getAttribute("fontList"); 
-
+<% 
+List<Font> fontList = (List<Font>)session.getAttribute("fontList"); 
+System.out.println("fontList@jsp : " + fontList);
 %>
 
 <style>

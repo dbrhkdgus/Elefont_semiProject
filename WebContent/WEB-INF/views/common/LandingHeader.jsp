@@ -3,9 +3,9 @@
 <%@page import="com.kh.elefont.member.model.vo.Member"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%
+<%-- <%
 	List<String> questionerList = (List<String>)request.getAttribute("questionerList");
-%>
+%> --%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -99,7 +99,7 @@
 		const msgContent = appendMsg(leftRight, name, content, time);
 		console.log(msgContent);
 		 $("#que-balloon").append(msgContent);
-<%
+<%-- <%
 	for(String questioner : questionerList){		
 %>
 		questionerCheck = <%= questioner%>
@@ -114,7 +114,7 @@
 <%
 		
 	}
-%>		 
+%>	 --%>	 
 	 }else{
 		 msgToHtml(msg); 
 	 }
