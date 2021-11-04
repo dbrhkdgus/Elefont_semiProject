@@ -45,7 +45,9 @@ public class AdminAnswerQnAServlet extends HttpServlet {
 			
 		}
 		
-		request.setAttribute("questionList", questionList);  
+		request.setAttribute("questionList", questionList); 
+		request.setAttribute("questionerList", questionerList); 
+		
 		request.setAttribute("attachmentList", attachmentList);  
 		request.setAttribute("questionListGroupBy", questionListGroupBy);  
 		request.setAttribute("memberList", memberList);  
