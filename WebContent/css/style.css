@@ -18,7 +18,7 @@
     font-style: normal;
 }
 
-/* 나눔스퀘어 */
+/* 보통은 !나눔스퀘어 */
 @font-face {
     font-family: 'NanumSquareRound';
     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/NanumSquareRound.woff') format('woff');
@@ -31,6 +31,13 @@
     font-family: 'Pretendard-Regular';
     src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
     font-weight: 400;
+    font-style: normal;
+}
+
+@font-face {
+    font-family: 'KCC-eunyoung';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_one@1.0/KCC-eunyoung-Regular.woff') format('woff');
+    font-weight: normal;
     font-style: normal;
 }
 /*
@@ -158,13 +165,14 @@ fieldset {
 	font-family: 'Pretendard-Regular';
     margin-top: 0;
     font-weight: 600;
-    border-bottom: 4px double #24b662;
+    box-shadow: 4px 4px 9px #dfdfdf;
 	border-radius: 25px;
     font-size: 30px;
     margin: 0 auto;
     padding: 10px 0;
     width: 350px;
 	margin-bottom: 30px;
+	
 }
 
 .section-title p {
@@ -200,6 +208,7 @@ fieldset {
 	-webkit-transition: all 0.3s;
 	-moz-transition: all 0.3s;
 	transition: all 0.3s;
+	font-family: 'KCC-eunyoung';
 }
 
 .button:after {
@@ -229,6 +238,7 @@ fieldset {
 	border: 3px solid #fff;
 	color: #fff;
 	overflow: hidden;
+	
 }
 /*숍으로이동하기  */
 .button-style:hover,
@@ -237,7 +247,9 @@ fieldset {
 	background-image:url(https://kabekin.com/iphone/uploads/cache/1735676553/kabekin18-300x505-MM-100.jpg);
 	/* background: #24b662;  */
 	color: #ffffff !important;
+	font-family: 'KCC-eunyoung';
 }
+
 
 .button-style:before {
 	position: absolute;
@@ -1045,6 +1057,7 @@ text-align: center;
     }
     .section-title h2 {
         font-size: 22px;
+        font-family: 'NanumSquareRound';
     }
     .testimonial-word {
         padding: 0;
