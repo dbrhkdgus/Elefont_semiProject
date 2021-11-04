@@ -22,7 +22,7 @@ import com.kh.elefont.font.model.vo.Font;
 /**
  * Servlet implementation class MainLandingServlet
  */
-@WebServlet("/mainLanding")
+@WebServlet("")
 public class MainLandingServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private FontService fontService = new FontService();
@@ -38,19 +38,15 @@ public class MainLandingServlet extends HttpServlet {
 		List<Font> fontList =  fontService.selectAllApprovedFontOrderByDate();
 		List<Community> communityList = communityService.selectAllCommunityListByLikeCount();
 		List<Attachment> attachmentList = attachmentService.selectAllCommAttachmentList();
-		Map<String, Object> map = new HashMap<>();
-		map.put("fontList", fontList);
-		map.put("communityList", communityList);
-		map.put("attachmentList", attachmentList);
 		
 		
-		Gson gson = new Gson();
-		String jsonStr = gson.toJson(map);
-		System.out.println(jsonStr);
+		
+		request.setAttribute("fontList", fontList);
+		request.setAttribute("communityList", communityList);
+		request.setAttribute("attachmentList", attachmentList);
 		
 		//3. view단 처리
-		response.setContentType("application/json; charset = utf-8");
-		response.getWriter().print(jsonStr);
+		request.getRequestDispatcher("/WEB-INF/views/index.jsp").forward(request, response);
 	}
 
 }

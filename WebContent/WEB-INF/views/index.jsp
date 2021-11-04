@@ -1,3 +1,6 @@
+<%@page import="com.kh.elefont.common.model.vo.Attachment"%>
+<%@page import="com.kh.elefont.community.model.vo.Community"%>
+<%@page import="com.kh.elefont.font.model.vo.Font"%>
 <%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -5,130 +8,13 @@
 
 <%@include file = "/WEB-INF/views/common/header.jsp" %>
 
-<%session.removeAttribute("categoryList"); session.removeAttribute("fontList"); %>
-<script>
-const commNo = [];
-const renamedFilename = [];
-const commTitle = [];
-const commContent = [];
- $.ajax({
-	url: "<%=request.getContextPath()%>/mainLanding",
-	dataType: "json",
-	type:"GET",
-	success(data){
-		const fontList = data["fontList"]; 
-		const communityList = data["communityList"];
-		const attachmentList = data["attachmentList"];
-		
-		
-		for(let i = 0; i < fontList.length; i++){
-			$("header").append(`<style>
-					@font-face {
-				    font-family: '\${fontList[i].fontFamily}';
-				    src: url('\${fontList[i].fontUrl}') format('woff');
-				    font-weight: normal;
-				    font-style: normal;
-				}
-					#\${fontList[i].fontNo}{
-						font-size : 40px;
-					}
-					
-					
-					</style>`);
-			$("#fonts-box").append(`<div class="test-item"> <div class="landing-fontName-textarea-box"><a href="<%=request.getContextPath()%>/shopDetail?fontNo=\${fontList[i].fontNo}">\${fontList[i].fontName}</a> </div><textarea name="" id="\${fontList[i].fontNo}" cols="30" rows="10" class="font-style" style="font-family:'\${fontList[i].fontFamily}';" ></textarea><\div></div>`);
-			
-		};
-		
-		
-		for(let i = 0; i < 3; i++){
-			for(let j = 0; j <attachmentList.length; j++){
-				if(communityList[i].commNo == attachmentList[j].commNo){
-					
-					commNo.push(communityList[i].commNo);
-					renamedFilename.push(attachmentList[j].renamedFilename);
-					commTitle.push(communityList[i].commTitle);
-					commContent.push(communityList[i].commContent);
-					<%-- $("#landing-community-box").append(`
-							<div class="testimonial-word text-center">
-		                    	<div class="review-photo " id="\${communityList[i].commNo}" style="background-image: url('<%=request.getContextPath()%>/upload/community/\${attachmentList[j].renamedFilename}');"></div>
-		                    
-		                    		<div class="review-content">
-		                    		
-		                        		<h2>\${communityList[i].commTitle}</h2>
-		                        		<p>\${communityList[i].commContent}</p>
-		                        		
-		                            	<div class="like-button">
-		                                	<i class="heart-icon"></i>  
-		                          	 	</div>
-		                          	 	
-		                    		</div>
-		               		</div>
-		               		
-		                
-	                    `); --%>
-	                    
-	                
-	                
-					$("body").append(`<script>
-						$("#\${communityList[i].commNo}").click((e)=>{
-							location.href = "<%=request.getContextPath()%>/community/pictureDetail?commNo=\${communityList[i].commNo}";
-						});
-						
-						/* Testimonial Carousel/Slider */
+<%
+session.removeAttribute("categoryList"); session.removeAttribute("fontList"); 
+List<Font> fontList = (List<Font>) request.getAttribute("fontList");
+List<Community> communityList = (List<Community>) request.getAttribute("communityList");
+List<Attachment> attachmentList = (List<Attachment>) request.getAttribute("attachmentList");
 
-						$(".testimonial-carousel-list").owlCarousel({
-						    items: 1,
-						    autoPlay: true,
-						    stopOnHover: false,
-						    navigation: true,
-						    navigationText: ["<i class='fa fa-long-arrow-left fa-2x owl-navi'></i>", "<i class='fa fa-long-arrow-right fa-2x owl-navi'></i>"],
-						    itemsDesktop: [1199, 1],
-						    itemsDesktopSmall: [980, 1],
-						    itemsTablet: [768, 1],
-						    itemsTabletSmall: false,
-						    itemsMobile: [479, 1],
-						    autoHeight: true,
-						    pagination: false,
-						    transitionStyle : "backSlide"
-						});
-						
-						<\/script>
-						`);
-					
-					break;
-				}
-			
-			}
-			
-		};
-		for(let i = 0; i < 3; i++){
-			
-        	$(`#rc\${i+1}`).children("h2").text(`\${commTitle[i]}`);
-            $(`#rc\${i+1}`).children("p").text(`\${commContent[i]}`);
-            
-            console.log(`\${renamedFilename[i]}`);
-            $("body").append(`<style>
-					#rp\${i+1}{
-						background-image : url(<%=request.getContextPath()%>/upload/community/\${renamedFilename[i]});
-						
-					}
-					
-					
-					</style>`);
-           
-        }
-		
-		
-		
-		
-	},
-	error: console.log
-}); 
-
-
-
-
-</script>
+%>
 
 <form name="checkIdDuplicateFrm" action="<%= request.getContextPath() %>/member/checkIdDuplicate" method="POST">
 <input type="hidden" name="memberId" />
@@ -264,7 +150,7 @@ const commContent = [];
                 <div class="col-sm-12">
                     <div class="section-title">
                         <h2>Shop</h2>
-                        <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit</p>
+                        <p>Elefont의 신상 폰트들을 만나보세요!</p>
                     </div>
                 </div>
             </div>
@@ -298,7 +184,8 @@ const commContent = [];
             <div class="col-sm-12">
                 <div class="section-title">
                     <h2>베스트 리뷰</h2>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit.</p>
+                    <p>다른 사람들은 폰트를 어떻게 활용하고 있을까요? <br />
+                    Elefont의 커뮤니티 게시판에서 확인해보세요!</p>
                 </div>
             </div>
         </div>
