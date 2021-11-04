@@ -1732,6 +1732,37 @@ text-align: center;
     background-color: #59C38A;
     width: fit-content;
 }
+/* 폰트구매 css */
+.font_purchase_h1{
+	font-family: 'NanumSquareRound';
+	font-weight: 900;
+	text-align: center;
+    margin-bottom: 25px;
+
+}
+
+.purchase-label{
+	font-size: 20px;
+	 font-family: 'NanumSquareRound';
+	font-weight: bold;
+	margin-bottom:20px;
+	margin-right:20px;
+	background-color:#A0BFB5;
+}
+#purchase-email{
+	margin-top:20px;
+}
+.purchase-buttons{
+	margin-left:10px;
+	margin-top:20px;
+	display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+#purchase-btn{
+	margin-right:7px;
+}
 /* 숍디테일 댓글 */
 .shop-detail-reply{
     width: 500px;
