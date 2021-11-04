@@ -79,12 +79,10 @@ public class AdminFontFinderServlet extends HttpServlet {
 		request.setAttribute("couponList", couponList);
 		request.setAttribute("orderList", orderList);
 		request.setAttribute("categoryList", categoryList);
-		session.setAttribute("tabIndex", 0);
 		
 		request.setAttribute("memberList", memberList);
-		request.setAttribute("tabIndex", 0);
 		request.setAttribute("fontList", fontList);
-		session.setAttribute("tabIndex", 4);
+		request.setAttribute("tabIndex", 4);
 
 		//3. view단 처리
 		request

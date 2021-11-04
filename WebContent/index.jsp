@@ -19,7 +19,7 @@ const commContent = [];
 		const fontList = data["fontList"]; 
 		const communityList = data["communityList"];
 		const attachmentList = data["attachmentList"];
-		console.log(communityList);
+		
 		
 		for(let i = 0; i < fontList.length; i++){
 			$("header").append(`<style>
@@ -43,6 +43,7 @@ const commContent = [];
 		for(let i = 0; i < 3; i++){
 			for(let j = 0; j <attachmentList.length; j++){
 				if(communityList[i].commNo == attachmentList[j].commNo){
+					
 					commNo.push(communityList[i].commNo);
 					renamedFilename.push(attachmentList[j].renamedFilename);
 					commTitle.push(communityList[i].commTitle);
@@ -65,11 +66,7 @@ const commContent = [];
 		               		
 		                
 	                    `); --%>
-	                    for(let i = 0; i < 3; i++){
-	                    	$(`#rc\${i+1}`).children("h2").text(`\${commTitle[i]}`);
-	    	                $(`#rc\${i+1}`).children("p").text(`\${commContent[i]}`);
-	    	               
-	                    }
+	                    
 	                
 	                
 					$("body").append(`<script>
@@ -97,19 +94,33 @@ const commContent = [];
 						
 						<\/script>
 						`);
-					$("body").append(`<style>
-					#rp\${i}{
+					
+					break;
+				}
+			
+			}
+			
+		};
+		for(let i = 0; i < 3; i++){
+			
+        	$(`#rc\${i+1}`).children("h2").text(`\${commTitle[i]}`);
+            $(`#rc\${i+1}`).children("p").text(`\${commContent[i]}`);
+            
+            console.log(`\${renamedFilename[i]}`);
+            $("body").append(`<style>
+					#rp\${i+1}{
 						background-image : url(<%=request.getContextPath()%>/upload/community/\${renamedFilename[i]});
 						
 					}
 					
 					
 					</style>`);
-					
-				}
-			
-			}
-		};
+           
+        }
+		
+		
+		
+		
 	},
 	error: console.log
 }); 

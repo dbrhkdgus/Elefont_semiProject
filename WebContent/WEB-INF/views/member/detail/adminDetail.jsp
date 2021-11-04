@@ -9,7 +9,7 @@ List<Coupon> couponList = (List<Coupon>) request.getAttribute("couponList");
 List<Order> orderList = (List<Order>) request.getAttribute("orderList");
 List<FontCategory> categoryList = (List<FontCategory>) request.getAttribute("categoryList");
 Attachment profile = (Attachment) request.getAttribute("profile");
-int tabIndex = (int)session.getAttribute("tabIndex");
+int tabIndex = (int)request.getAttribute("tabIndex");
 List<Attachment> attachmentList = (List<Attachment>) request.getAttribute("attachmentList");
 %>
 
@@ -340,7 +340,9 @@ List<Attachment> attachmentList = (List<Attachment>) request.getAttribute("attac
 		for(Font f : fontList){
 			String targetFontNo = f.getFontNo();
 %>
-								<tr class="font-a <%=f.getFontApproval().isBlank()? "font-w": "N".equals(f.getFontApproval())? "font-n" :"font-y" %>">
+								<tr class="font-a <%="N".equals(f.getFontApproval())? "font-n" 
+										: ("Y".equals(f.getFontApproval())||"C".equals(f.getFontApproval()))? 
+												"font-y" : "font-w" %>">
 									<td>
 <%
 			if("C".equals(f.getFontApproval())){
@@ -354,7 +356,7 @@ List<Attachment> attachmentList = (List<Attachment>) request.getAttribute("attac
 			}else{
 %>
 										<select class="font-approval">
-											<option value="" <%= (f.getFontApproval().isBlank())? "selected":"" %>>심사 대기</option>
+											<option value="" <%= (f.getFontApproval() == null)? "selected":"" %>>심사 대기</option>
 											<option value="N" <%= "N".equals(f.getFontApproval())?"selected":"" %>>미승인</option>
 											<option value="Y" <%="Y".equals(f.getFontApproval())?"selected":"" %>>승인</option>
 										</select>

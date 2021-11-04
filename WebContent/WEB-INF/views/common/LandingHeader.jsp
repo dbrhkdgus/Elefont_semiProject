@@ -194,19 +194,19 @@ if(loginMember != null){
 %>
                     			
                                 <ul class="member-menu">
-                                	<li><a href="<%=request.getContextPath() %>/member/memberDetail"><img src="<%=request.getContextPath() %>/images/home.png" alt="" />마이페이지</a></li>
-                                    <li><a href="<%=request.getContextPath() %>/member/fontLikeList"><img src="<%=request.getContextPath() %>/images/like.png" alt="" />좋아요 리스트</a></li>
-                                    <li><a href="<%=request.getContextPath() %>/member/memberCart"><img src="<%=request.getContextPath() %>/images/shopping-cart.png" alt="" />장바구니</a></li>
-                                    <li><a href="<%=request.getContextPath() %>/member/memberLogout"><img src="<%=request.getContextPath() %>/images/logout.png" alt="" />로그아웃</a></li>
+                                	<li><a href="<%=request.getContextPath() %>/member/memberDetail"><img src="<%=request.getContextPath() %>/images/dropdown/home.png" alt="" />마이페이지</a></li>
+                                    <li><a href="<%=request.getContextPath() %>/member/fontLikeList"><img src="<%=request.getContextPath() %>/images/dropdown/like.png" alt="" />좋아요 리스트</a></li>
+                                    <li><a href="<%=request.getContextPath() %>/member/memberCart"><img src="<%=request.getContextPath() %>/images/dropdown/shopping-cart.png" alt="" />장바구니</a></li>
+                                    <li><a href="<%=request.getContextPath() %>/member/memberLogout"><img src="<%=request.getContextPath() %>/images/dropdown/logout.png" alt="" />로그아웃</a></li>
                                 </ul>
 <%		
 	}else if("S".equals(memberRole)){
 %>
 								<ul class="member-menu">
-                                	<li><a href="<%=request.getContextPath() %>/member/memberDetail"><img src="<%=request.getContextPath() %>/images/home.png" alt="" />내 정보 수정</a></li>
-                                    <li><a href="<%=request.getContextPath() %>/member/fontLikeList"><img src="<%=request.getContextPath() %>/images/like.png" alt="" />폰트 등록 및 관리</a></li>
-                                    <li><a href="<%=request.getContextPath() %>/member/memberCart"><img src="<%=request.getContextPath() %>/images/shopping-cart.png" alt="" />무얼로 채워야할까?</a></li>
-                                    <li><a href="<%=request.getContextPath() %>/member/memberLogout"><img src="<%=request.getContextPath() %>/images/logout.png" alt="" />로그아웃</a></li>
+                                	<li><a href="<%=request.getContextPath() %>/member/memberDetail"><img src="<%=request.getContextPath() %>/images/dropdown/home.png" alt="" />마이페이지</a></li>
+                                    <li><a href="<%=request.getContextPath() %>/seller/fontEnroll"><img src="<%=request.getContextPath() %>/images/dropdown/like.png" alt="" />폰트 등록</a></li>
+                                    <li><a href="<%=request.getContextPath() %>/seller/fontAudit"><img src="<%=request.getContextPath() %>/images/dropdown/audit.png" alt="" />심사 현황</a></li>
+                                    <li><a href="<%=request.getContextPath() %>/member/memberLogout"><img src="<%=request.getContextPath() %>/images/dropdown/logout.png" alt="" />로그아웃</a></li>
                                 </ul>
 
 
@@ -215,11 +215,12 @@ if(loginMember != null){
 	}else if("A".equals(memberRole)){
 %>
 								<ul class="member-menu">
-                                	<li><a href="<%=request.getContextPath() %>/member/memberDetail"><img src="<%=request.getContextPath() %>/images/home.png" alt="" />회원 관리</a></li>
-                                    <li><a href="<%=request.getContextPath() %>/member/fontLikeList"><img src="<%=request.getContextPath() %>/images/like.png" alt="" />게시판 관리</a></li>
-                                    <li><a href="<%=request.getContextPath() %>/member/memberCart"><img src="<%=request.getContextPath() %>/images/shopping-cart.png" alt="" />주문 관리</a></li>
-                                    <li><a href="<%=request.getContextPath() %>/member/memberCart"><img src="<%=request.getContextPath() %>/images/shopping-cart.png" alt="" />쿠폰 관리</a></li>
-                                    <li><a href="<%=request.getContextPath() %>/member/memberLogout"><img src="<%=request.getContextPath() %>/images/logout.png" alt="" />로그아웃</a></li>
+                                	<li><a href="<%=request.getContextPath() %>/member/memberDetail?index=0"><img src="<%=request.getContextPath() %>/images/dropdown/member.png" alt="" />회원 관리</a></li>
+                                    <li><a href="<%=request.getContextPath() %>/member/memberDetail?index=1"><img src="<%=request.getContextPath() %>/images/dropdown/board.png" alt="" />게시판 관리</a></li>
+                                    <li><a href="<%=request.getContextPath() %>/member/memberDetail?index=2"><img src="<%=request.getContextPath() %>/images/dropdown/shopping-cart.png" alt="" />주문 관리</a></li>
+                                    <li><a href="<%=request.getContextPath() %>/member/memberDetail?index=3"><img src="<%=request.getContextPath() %>/images/dropdown/coupon.png" alt="" />쿠폰 관리</a></li>
+                                    <li><a href="<%=request.getContextPath() %>/member/memberDetail?index=4"><img src="<%=request.getContextPath() %>/images/dropdown/fonts.png" alt="" />폰트 관리</a></li>
+                                    <li><a href="<%=request.getContextPath() %>/member/memberLogout"><img src="<%=request.getContextPath() %>/images/dropdown/logout.png" alt="" />로그아웃</a></li>
                                 </ul>
 
 

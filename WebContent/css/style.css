@@ -384,7 +384,7 @@ body.loaded #preloader{
 
 .home-section-background h2 {
     color: #f8f8f8;
-    font-size: 65px;
+    font-size: 50px;
     letter-spacing: 5px;
     margin: 0;
 }
@@ -2498,6 +2498,9 @@ font-size: 16px;
 	margin-bottom: 30px;
 }
 
+#font-file{
+	margin: 0;
+}
 
 .font-audit{
 	text-align: center;
@@ -3319,7 +3322,7 @@ display: flex;
     color: #999999;
 }
 
-#tbl-board-view input[type=text],[type=file]{
+#tbl-board-view input[type=text],#tbl-board-view [type=file]{
 width: -webkit-fill-available;
 border: 0;
 margin: 20px;
