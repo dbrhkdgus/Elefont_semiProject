@@ -129,33 +129,36 @@ List<DeletedRep> deletedRepList = (List<DeletedRep>) request.getAttribute("delet
 				</div>
 				<div>
 					<div id="admin-board-section">
-						<div class="admin-board" id="deleted-comm-table">
+						<div class="deleted-comm-table">
 							<h4>삭제된 게시물</h4>
-							<div class="fix-head">
-								<table class="fix-tbl" id="font-category-tbl">
-									<tr>
-										<th width="28px">No.</th>
-										<th width="165px">글번호</th>
-										<th width="144px">회원번호</th>
-										<th width="86px">작성자</th>
-										<th width="218px">작성 내용</th>
-										<th width="80px">등록일</th>
-										<th width="80px">삭제일</th>
-									</tr>
+							<div class="fix-tbl-head">
+								<table class="admin-deleted-comm-tbl fix-deleted-c-tbl">
+									<thead>
+										<tr>
+											<th width="55px">No.</th>
+											<th width="160px">글번호</th>
+											<th width="136px">회원번호</th>
+											<th width="72px">작성자</th>
+											<th width="218px">작성 내용</th>
+											<th width="80px">등록일</th>
+											<th width="80px">삭제일</th>
+										</tr>
+									</thead>
+									
 <%
 int cnt =1;
 if(!deletedCommList.isEmpty()){
 	for(DeletedCommunity dc : deletedCommList){
 %>
-									<tr>
-										<td><%= cnt %></td>
-										<td><%= dc.getCommNo() %></td>
-										<td><%= dc.getMemberNo() %></td>
-										<td><%= dc.getCommWriter() %></td>
-										<td><%= dc.getCommContent() %></td>
-										<td><%= dc.getCommRegDate() %></td>
-										<td><%= dc.getCommDeleteDate() %></td>
-									</tr>
+										<tr>
+											<td width="30px"><%= cnt %></td>
+											<td width="162px"><%= dc.getCommNo() %></td>
+											<td width="138px"><%= dc.getMemberNo() %></td>
+											<td width="86px"><%= dc.getCommWriter() %></td>
+											<td width="218px"><span id="deleted-tbl-content"><%= dc.getCommContent() %></span></td>
+											<td width="80px"><%= dc.getCommRegDate() %></td>
+											<td width="80px"><%= dc.getCommDeleteDate() %></td>
+										</tr>
 <%
 		cnt++;		
 	}
@@ -168,22 +171,25 @@ if(!deletedCommList.isEmpty()){
 <%
 }
 %>
+									
 								</table>
 							</div>
 						</div>
-						<div class="admin-board">
-							<h4>삭제된 댓글</h4>
-							<div class="fix-head">
-								<table class="fix-tbl" id="rep-category-tbl">
-									<tr>
-										<th>No.</th>
-										<th>글번호</th>
-										<th>회원번호</th>
-										<th>작성자</th>
-										<th>댓글 내용</th>
-										<th>등록일</th>
-										<th>삭제일</th>
-									</tr>
+						<div class="deleted-comm-table">
+							<h4 id="first-tbl-margin">삭제된 댓글</h4>
+							<div class="fix-tbl-head">
+								<table class="admin-deleted-comm-tbl fix-deleted-c-tbl">
+									<thead>
+										<tr>
+											<th width="55px">No.</th>
+											<th width="160px">글번호</th>
+											<th width="136px">회원번호</th>
+											<th width="72px">작성자</th>
+											<th width="218px">댓글 내용</th>
+											<th width="80px">등록일</th>
+											<th width="80px">삭제일</th>
+										</tr>
+									</thead>
 <%
 int repCnt =1;
 if(!deletedRepList.isEmpty()){
