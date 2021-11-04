@@ -1,13 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
 <%@include file = "/WEB-INF/views/common/LandingHeader.jsp"%>
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.9.0/themes/smoothness/jquery-ui.css" />
 <%
 List<String> fontNameList = (List<String>)request.getAttribute("fontNameList");
 System.out.println("fontNameList@jsp : " + fontNameList);
 %>
+
     <!-- Community Board Enroll start -->
-<section id="portfolio" class="portfolio section-space-padding">
+	<section id="portfolio" class="portfolio section-space-padding">
     <div class="container">
 
             <section id="communityEnroll" class="community-enroll-section-space-padding">
@@ -90,14 +91,11 @@ function readImage(input) {
         reader.readAsDataURL(input.files[0])
     }
 }
-
 // input file에 change 이벤트 부여
 const inputImage = document.getElementById("input-image")
 inputImage.addEventListener("change", e => {
     readImage(e.target)
 })
-
-
 $("[name=upFile]").change((e) => {
     // 파일 선택여부
     const $file = $(e.target);
