@@ -14,18 +14,22 @@ public class FontExt extends Font implements Serializable{
 	
 	private Date memberOrderDate;
 	private String memberOrderNo;
-
+	private double finalPrice;
+	
 	public FontExt() {
 		super();
+		// TODO Auto-generated constructor stub
 	}
 
 	public FontExt(String fontNo, String fontName, String fontUrl, String memberId, double fontPrice,
 			double fontDiscountRate, int fontLikeCount, int fontViewCount, int fontPurchasedCount, Date fontRegDate,
-			String fontApproval, Attachment attach, Date memberOrderDate, String memberOrderNo) {
+			String fontApproval, String fontFamily, String fontWeight, Attachment attach, Date memberOrderDate,
+			String memberOrderNo, double finalPrice) {
 		super(fontNo, fontName, fontUrl, memberId, fontPrice, fontDiscountRate, fontLikeCount, fontViewCount,
-				fontPurchasedCount, fontRegDate, fontApproval, memberOrderNo, memberOrderNo, attach);
+				fontPurchasedCount, fontRegDate, fontApproval, fontFamily, fontWeight, attach);
 		this.memberOrderDate = memberOrderDate;
 		this.memberOrderNo = memberOrderNo;
+		this.finalPrice = finalPrice;
 	}
 
 	public Date getMemberOrderDate() {
@@ -44,9 +48,22 @@ public class FontExt extends Font implements Serializable{
 		this.memberOrderNo = memberOrderNo;
 	}
 
-	@Override
-	public String toString() {
-		return "FontExt [memberOrderDate=" + memberOrderDate + ", memberOrderNo=" + memberOrderNo + "]";
+	public double getFinalPrice() {
+		return finalPrice;
 	}
 
+	public void setFinalPrice(double finalPrice) {
+		this.finalPrice = finalPrice;
+	}
+
+	public static long getSerialversionuid() {
+		return serialVersionUID;
+	}
+
+	@Override
+	public String toString() {
+		return "FontExt [memberOrderDate=" + memberOrderDate + ", memberOrderNo=" + memberOrderNo + ", finalPrice="
+				+ finalPrice + "]";
+	}
+	
 }

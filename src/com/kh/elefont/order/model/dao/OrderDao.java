@@ -276,4 +276,26 @@ public class OrderDao {
 		
 		return orderList;
 	}
+
+	public int insertOrderFont(Connection conn, Order order) {
+		PreparedStatement pstmt = null;
+		int result  = 0;
+		String sql = prop.getProperty("insertOrderFontWithoutFinalPrice");
+//		insertOrderFont = insert into member_orders values(?,?,default,?)		
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, order.getOrderNo());
+			pstmt.setString(2, order.getMemberNo());
+			
+			
+			result = pstmt.executeUpdate();
+			System.out.println("finalPrice 추가한 결과가 잘 나왔나요? : " +result);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(pstmt);
+		}
+		return result;
+	}
 }
