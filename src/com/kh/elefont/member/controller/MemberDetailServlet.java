@@ -62,12 +62,12 @@ public class MemberDetailServlet extends HttpServlet {
 			List<Order> orderList = orderService.selectAllOrder();
 			List<FontCategory> categoryList = fontService.selectAllFontCategory();
 			List<Attachment> attachmentList = attachmentService.selectAllFontAttachmentList();
-			List<Question> QuestionList = questionService.selectAllQuestionForAdmin();
+			
 			int notAnsweredQuestionCnt = questionService.selectNotAnseredQuestionCnt();
-			
-			
-			request.setAttribute("QuestionList", QuestionList); 
+			int answeredQuestionCnt = questionService.selectAnsweredQuestionCnt();
+
 			request.setAttribute("notAnsweredQuestionCnt", notAnsweredQuestionCnt); 
+			request.setAttribute("answeredQuestionCnt", answeredQuestionCnt); 
 			request.setAttribute("attachmentList", attachmentList);
 			request.setAttribute("memberList", memberList);
 			request.setAttribute("fontList", fontList);

@@ -12,8 +12,8 @@ List<FontCategory> categoryList = (List<FontCategory>) request.getAttribute("cat
 Attachment profile = (Attachment) request.getAttribute("profile");
 int tabIndex = (int)request.getAttribute("tabIndex");
 List<Attachment> attachmentList = (List<Attachment>) request.getAttribute("attachmentList");
-List<Question> QuestionList = (List<Question>)request.getAttribute("QuestionList");
-int 
+int notAnsweredQuestionCnt = (int)request.getAttribute("notAnsweredQuestionCnt");
+int answeredQuestionCnt = (int)request.getAttribute("answeredQuestionCnt");
 %>
 
      <div class="member-container">
@@ -30,11 +30,11 @@ int
                     <span>회원 등급</span>
                 </div>
                 <div>
-                    <div class="">0</div>
+                    <div class=""><%=answeredQuestionCnt %></div>
                     <span>답변 완료</span>
                 </div>
                 <a href="<%=request.getContextPath()%>/admin/answerQnA">
-                    <div class="f">3</div>
+                    <div class="f" style="color:red;"><%=notAnsweredQuestionCnt %></div>
                     <span>답변 미완료</span>
                 </a>
                  </div>

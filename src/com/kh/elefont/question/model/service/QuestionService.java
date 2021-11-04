@@ -50,19 +50,8 @@ public class QuestionService {
 
 	public int selectNotAnseredQuestionCnt() {
 		Connection conn = getConnection();
-		int cnt = 0;
-		try {
-			
-			cnt = questionDao.selectNotAnseredQuestionCnt(conn);
-			
-			commit(conn);
-		}catch(Exception e) {
-			rollback(conn);
-			throw e;
-		}finally {
-			close(conn);
-		}
-		
+		int cnt =  questionDao.selectNotAnseredQuestionCnt(conn);
+		close(conn);
 		return cnt;
 	}
 	
@@ -72,6 +61,22 @@ public class QuestionService {
 		close(conn);
 		return question;
 
+	}
+
+	public int selectAnsweredQuestionCnt() {
+		Connection conn = getConnection();
+		int cnt =  questionDao.selectAnsweredQuestionCnt(conn);
+		close(conn);
+		return cnt;
+	}
+
+	public Question selectAllQuestionGroupByForAdmin(String questioner) {
+		Connection conn = getConnection();
+		Question question = questionDao.selectAllQuestionGroupByForAdmin(conn,questioner);
+		
+		close(conn);
+		
+		return question;
 	}
 
 }
