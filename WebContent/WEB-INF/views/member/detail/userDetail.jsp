@@ -273,9 +273,6 @@ $("#member-coupon").click((e)=>{
 	else return;
 });
 
-$("#btn-member-Info-Edit").click((e)=>{
-	location.href = "<%= request.getContextPath()%>/member/memberInfoEdit?memberId=<%=loginMember.getMemberId()%>&memberNo=<%=loginMember.getMemberNo()%>";
-});
 
 /* 조회 창 높이 행 입력량에 따라 조절*/
 $(window).load((e)=>{

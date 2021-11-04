@@ -52,6 +52,7 @@ public class MemberDetailServlet extends HttpServlet {
 		request.setAttribute("profile", profile);
 		
 		if("A".equals(memberRole)) {
+			int index = Integer.parseInt(request.getParameter("index"));
 			List<Member> memberList = memberService.selectAllMember();
 			List<Font> fontList = fontService.selectAllFont();
 			List<Coupon> couponList = couponService.selectAllCoupon();
@@ -65,7 +66,7 @@ public class MemberDetailServlet extends HttpServlet {
 			request.setAttribute("couponList", couponList);
 			request.setAttribute("orderList", orderList);
 			request.setAttribute("categoryList", categoryList);
-			session.setAttribute("tabIndex", 0);
+			request.setAttribute("tabIndex", index);
 		}else if("U".equals(memberRole)) {
 			List<Attachment> commAttachmentList = attachmentService.selectAllCommAttachmentListByMemberNo(loginMember.getMemberNo());
 			List<Font> fontLikeList = fontService.selectAllLikedFontByMemberNo(loginMember.getMemberNo());
