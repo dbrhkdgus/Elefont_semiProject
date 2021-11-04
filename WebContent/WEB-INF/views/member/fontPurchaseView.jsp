@@ -42,14 +42,15 @@ double salePrice = 0;
     </form>
 </div>
    <div class="purchase-container">
-       <h1>폰트 구매</h1>
-       <form action="<%= request.getContextPath()%>/font/fontPurchase" method="POST" name="fontPurchaseFrm">
-           <p class="purchase-menu"><span>구매하신 폰트 : </span><span><%=fontName %></span></p>               
-           <p class="purchase-menu"><span>폰트가격 : </span><span id="fontPrice"><%=fontPrice %></span></p>
-           <p class="purchase-menu"><span id="couponReg">쿠폰 등록하기 : </span></p>
+       
+       <form action="<%= request.getContextPath()%>/font/fontPurchase" method="POST" name="fontPurchaseFrm" style="padding:70px; box-shadow: 6px 6px 16px #dfdfdf;">
+           <h1 class="font_purchase_h1">폰트 구매</h1>
+           <p class="purchase-menu"><span class="purchase-label">구매하신 폰트  </span><br><span><%=fontName %></span></p>               
+           <p class="purchase-menu"><span class="purchase-label" >폰트가격  </span><br><span id="fontPrice"><%=fontPrice %></span></p>
+           <span class="purchase-menu"><span class="purchase-label" id="couponReg">쿠폰 등록하기  </span></span>
           	<button type="button" id="purchase-coupon-btn">쿠폰등록</button><br>                
-           <label for="purchase-email-address">받으실 이메일 주소</label>
-           <input type="text" name="purchase-email" value="<%=memberEmail %>">
+           <label for="purchase-email-address" style="background-color:#A0BFB5;  font-family: 'NanumSquareRound'; font-size: 20px; margin-right:5px;">받으실 이메일 주소</label>
+           <input type="text" id="purchase-email" name="purchase-email" value="<%=memberEmail %>">
            <input type="hidden"  name="member-no" value="<%=loginMember.getMemberNo()%>"/>
            <input type="hidden"  name="font-no" value="<%= fontNo %>"/>
            <input type="hidden"  name="font-price" value="<%= fontPrice %>"/>
@@ -57,8 +58,10 @@ double salePrice = 0;
            <input type="hidden" name="finalPrice" id="finalPrice" value="<%= fontPrice %>" />
            
            <br />
-           <input type="button" name ="btn-purchase" value = "구매하기" />
-           <input type="button" name ="btn-cancle" value = "취소" />
+           <div class="purchase-buttons">
+	           <input type="button" id="purchase-btn" name ="btn-purchase" value = "구매하기" />
+	           <input type="button" name ="btn-cancle" value = "취소" />
+           </div>
        </form>
    </div>
 </section>

@@ -26,6 +26,8 @@ for(Faq f : faqList) {
 %>
                 </div>
             </div>
+            
+            
             <div class="faq_chat">
                 <a id="chatClick" onclick="showUpChat();">
                     <img src="https://i.ibb.co/KLrtGnq/chat-Icon-1.png" alt="" style="width: 130px;" >
@@ -33,15 +35,15 @@ for(Faq f : faqList) {
             </div>
             <div id ="chatMessage">
                 <div id="chatMsg">
-                	<ul class="question-balloon">
+                	<ul class="question-balloon" id="que-balloon">
 					</ul>
                 </div>
                 <hr>
                 <div id="chatPutMsg">
-                    <form id="chatInputFrm" action="">
+                    <form id = "chatInputFrm" name="chatInputFrm" action="<%= request.getContextPath()%>/chat/chatInput">
                         <textarea name="qContent" id="textareaMsg" cols="30" rows="3">메세지를 입력하세요</textarea>
                         <input type="button" value="전송" id="chatInputBtn">
-                        <input type="hidden" name="qWriter" value="" />
+                        <input type="hidden" name="qWriter" value="<%=loginMember.getMemberNo() %>" />
                     </form>
                 </div>
             </div>        
@@ -60,15 +62,56 @@ for(Faq f : faqList) {
         const $chatMessage = $("#chatMessage");
         
         if($chatMessage.css("display")=="none"){
-            console.log(($chatMessage.css("display"))=="none");
+            
             $chatMessage.show();
         }
         else {
-            console.log("닫혀랏엽")
+            
             // $chatMessage.css("display", "none");
             $chatMessage.hide();
         }    
     }
+    
+    $(chatInputBtn).click((e)=>{
+    	const receiver = "<%= loginMember.getMemberNo()%>";
+		if(!receiver) return;
+		
+		
+		const msg = {
+			type: "que",
+			sender: "<%= loginMember.getMemberNo()%>",
+			msg : $(textareaMsg).val(),
+			receiver: receiver,
+			time : Date.now()
+		};
+		
+		ws.send(JSON.stringify(msg));
+    	
+		
+		const $frmData = $(document.chatInputFrm);
+		$.ajax({
+			url : "<%= request.getContextPath()%>/chat/chatInput",
+			data : $frmData.serialize(),
+			method : "post",
+			dataType : "json",
+			success(data) {
+				
+
+				
+				
+			},
+			//유효하지 않은 쿠폰일 시 alert 띄우고 input 값 지우기
+			error:console.log			
+		});
+		
+		
+		
+		
+		
+		
+		$(textareaMsg).val("").focus();
+   	
+    });
     
 
 </script>
