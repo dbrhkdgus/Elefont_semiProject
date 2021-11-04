@@ -177,7 +177,6 @@ if(!approvalList.isEmpty()){
 /* 폰트 관리 - 회원 폰트 다운로드 버튼 클릭 시 파일 다운로드 */
 $(".fontDownloadBtn").click((e)=>{
     $fontNo = $(e.target).next().val();
-    console.log($fontNo);
     location.href = "<%=request.getContextPath()%>/font/fontDownload?fontNo=" + $fontNo; 
 });
 
@@ -187,7 +186,6 @@ $(window).load((e)=>{
 	$.each($fixHead, function(index, item){
 		let $item = $(item);
 		let length = $(item).find('tr').length;
-		console.log(length);
 		
 		if(length > 4){
 			$fixHead.eq(index).css("height","100px");

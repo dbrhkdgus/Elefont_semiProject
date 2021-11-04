@@ -226,7 +226,6 @@ $('.btn-transform').on('click', (e)=>{
 	$(e.target).hide();
 	$(e.target).next().show();
 	 var oldContent = $(e.target).parent("div").find("span").eq(1).text();
-	 console.log(oldContent);
 	 $(e.target).parent("div").find("span").eq(1).html('');
 	 $(e.target).parent("div").find("span").eq(1).html(`<input type="text" class="re-input-size" name="update_rep_content" value = "\${oldContent}" />`); 
 });
@@ -308,7 +307,6 @@ $(".fa-heart").click((e)=>{
 	%>
 	let $target = $(e.target);
 	let $commNo = $target.data("commNo");
-	console.log($commNo);
 	
 	$.ajax({
 		url:"<%=request.getContextPath()%>/community/commDetailLike",
@@ -316,7 +314,6 @@ $(".fa-heart").click((e)=>{
 		type:"GET",
 		data:{'commNo' : $commNo},
 		success(jsonStr){
-			console.log(jsonStr);
 			const likeValid = jsonStr["likeValid"];
 			const likeCnt = jsonStr["likeCnt"];
 			if(likeValid == 1){

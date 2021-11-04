@@ -245,7 +245,6 @@ if(loginMember == null){
 %>
 		let $target = $(e.target);
 		let $commNo = $target.data("commNo");
-		console.log($commNo);
 		
 		$.ajax({
 			url: "<%= request.getContextPath()%>/community/commLike",

@@ -148,7 +148,6 @@
             const $name = "<%=name%>";
 			while(i<=5){
 				if($(".input-val").eq(i).val()== $name){
-					console.log("일치 , " + i)
 					const $leftinner = $(".leftbox");
 					 $leftinner.css("display" ,"none");
 	                 $leftinner.eq(i).css("display","flex");
@@ -161,9 +160,7 @@
             	
                  $(".rightBtn").click((e)=>{
                    const $index = $(e.target).parent().index();
-                    // console.log($rightinner);
                     const $leftinner = $(".leftbox");
-                    console.log($leftinner);
                     $leftinner.css("display" ,"none");
                     $leftinner.eq($index).css("display","flex");
 

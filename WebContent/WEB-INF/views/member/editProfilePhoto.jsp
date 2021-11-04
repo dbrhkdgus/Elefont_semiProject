@@ -105,7 +105,6 @@ $(closeBtn).click(()=>{
  var openFile = function(event) { 
 	
 	$(didWePutFile).val(1);
-	console.log($(didWePutFile).val());
 	var input = event.target; var reader = new FileReader(); 
 	 
  	reader.onload = function(){ 

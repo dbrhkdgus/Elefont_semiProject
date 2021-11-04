@@ -166,7 +166,6 @@ for(String questioner : questionerList){
 
 $(".qnaChatSection").hide();
 $("#btn-<%=questioner%>").click((e)=>{
-	console.log("click");
 	$(".qnaChatSection").hide();
 	$("#<%=questioner%>").show();
 });

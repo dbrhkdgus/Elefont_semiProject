@@ -324,11 +324,8 @@ if(loginMember != null){
 										type:"GET",
 										data: {'fontNo' : $fontNo},
 										success(data){
-											console.log(data);
 											const likeValid = data["likeValid"];
 											const likeCnt = data["likeCnt"];
-											console.log("likeValid@jsp = " +likeValid);
-											console.log("likeCnt@jsp = "+likeCnt);
 											
 											if(likeValid == 1){
 												$target
@@ -380,7 +377,6 @@ if(loginMember != null){
                                 			type:"POST",
                                 			data: {'fontNo' : $fontNo, 'PerCartType' : $PerCartType},
                                 			success(data){
-                                				console.log(data);
                                 				const insertCart = data["insertCart"];
                                 				if(insertCart == 1){
 	                                				alert("장바구니 등록 성공!");                               					

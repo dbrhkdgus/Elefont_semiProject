@@ -266,7 +266,6 @@ if(loginMember == null){
 %>
 	let $target = $(e.target);
 	let $commNo = $target.data("commNo");
-	console.log($commNo);
 	
 	$.ajax({
 		url: "<%= request.getContextPath()%>/community/commLike",
@@ -274,7 +273,6 @@ if(loginMember == null){
 		type: "GET",
 		data: {'commNo' : $commNo},
 		success(jsonStr){
-			console.log(jsonStr);
 			const likeValid = jsonStr["likeValid"];
 			const likeCnt = jsonStr["likeCnt"];
 			
@@ -294,9 +292,6 @@ if(loginMember == null){
 });
 
 </script>
-
-
-
 
 
 <%@ include file = "/WEB-INF/views/common/footer.jsp" %>
