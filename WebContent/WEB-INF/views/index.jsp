@@ -155,12 +155,25 @@ List<Attachment> attachmentList = (List<Attachment>) request.getAttribute("attac
                 </div>
             </div>
 
-            
+ <%
+for(Font font : fontList){
+%>
+
 
             <div class="portfolio-inner">
                 <div class="row" id="fonts-box">
-
-                    
+					<div class="col-md-4 col-sm-6 col-xs-12 mix filter-sale ">
+                        <div class="item">
+                            <a href="images/portfolio/1.jpg" class="portfolio-popup item-img" title="Project Title">
+                                <img src="images/portfolio/1.jpg" alt="">
+                            </a>
+                            
+                        </div>
+                    </div>
+	                
+<%	
+}
+%>           
 
                 </div>
             </div>
@@ -194,37 +207,18 @@ List<Attachment> attachmentList = (List<Attachment>) request.getAttribute("attac
             <div class="testimonial-carousel-list margin-top-20" id="landing-community-box">
 
                 <div class="testimonial-word text-center">
-                    <div class="review-photo" id="rp1"></div>
-                    <div class="review-content" id="rc1">
-                        <h2></h2>
-                        <p>
-                        </p>
-                            
-                    </div>
-                </div>
+	                <div class="review-photo" style="background-image: url(https://cdn.crowdpic.net/list-thumb/thumb_l_6E3D0D96ADF1E2E821C86602AF03B960.jpg);"></div>
+	                    <div class="review-content">
+	                        <h2>BEST-REVIEW1</h2>
+	                        <p>quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+	                            Duisauteiruredolor in reprehenderit in voluptate.
+	                        </p>
+	                            <div class="like-button">
+	                                  <i class="heart-icon"></i>
+	                            </div>
+	                    </div>
+	                </div>
 
-                <div class="testimonial-word text-center">
-                	
-                	<!-- 이미지에 호버시 마우스 커서 모양 변경처리하기 -->
-                    <div class="review-photo"  id="rp2" ></div>
-                    
-                    <div class="review-content" id="rc2">
-                        <h2></h2>
-                        <p>
-                            </p>
-                            
-                    </div>
-                </div>
-
-                <div class="testimonial-word text-center">
-                    <div class="review-photo"  id="rp3"></div>
-                    
-                    <div class="review-content" id="rc3">
-                        <h2></h2>
-                        <p></p>
-                           
-                    </div>
-                </div>
 		
             </div>
         </div>
