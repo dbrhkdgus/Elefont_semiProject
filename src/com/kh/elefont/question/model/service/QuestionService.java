@@ -20,4 +20,22 @@ public class QuestionService {
 		return questionList;
 	}
 
+	public int insertQuestion(String qContent, String qWriter) {
+		Connection conn = getConnection();
+		int result = 0;
+		try {
+			
+			result = questionDao.insertQuestion(conn, qContent, qWriter);
+			
+			commit(conn);
+		}catch(Exception e) {
+			rollback(conn);
+			throw e;
+		}finally {
+			close(conn);
+		}
+		
+		return result;
+	}
+
 }

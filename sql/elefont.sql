@@ -281,6 +281,8 @@ CREATE TABLE like_community (
     constraint fk_like_community_member_no foreign key (member_no) references member(member_no),
     constraint fk_like_community_comm_no foreign key (comm_no) references community (comm_no)
 );    
+--alter table question modify q_writer varchar2(100);
+--alter table question modify q_questioner varchar2(100);
 
 --FK제약 없는테이블
 CREATE TABLE question (
@@ -532,6 +534,7 @@ ALTER TABLE font ADD CONSTRAINT FK_FONT_MEMBER_ID FOREIGN KEY (
 ) REFERENCES MEMBER(member_id);
 --
 create sequence seq_font_no;
+create sequence seq_question_no;
 
 
 commit;
