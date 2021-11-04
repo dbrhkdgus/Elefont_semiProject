@@ -83,21 +83,19 @@ for(Faq f : faqList) {
 			method : "post",
 			dataType : "json",
 			success(data) {
-				console.log(data);
 
 				const msg = {
 						type: "que",
-						sender: "<%= loginMember.getMemberNo()%>",
-						msg : $(textareaMsg).val(),
+						sender: data["qWriter"],
+						msg : data["qContent"],
 						receiver: receiver,
-						time : Date.now()
+						time : data["qDate"]
 					};
 					
 				ws.send(JSON.stringify(msg));
 				$(textareaMsg).val("").focus();
 				
 			},
-			//유효하지 않은 쿠폰일 시 alert 띄우고 input 값 지우기
 			error:console.log			
 		});
 		

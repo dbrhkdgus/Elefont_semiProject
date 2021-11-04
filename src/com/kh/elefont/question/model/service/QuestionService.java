@@ -38,4 +38,11 @@ public class QuestionService {
 		return result;
 	}
 
+	public Question selectLastQuestion() {
+		Connection conn = getConnection();
+		Question question = questionDao.selectLastQuestion(conn);
+		close(conn);
+		return question;
+	}
+
 }
