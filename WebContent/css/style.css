@@ -155,7 +155,7 @@ fieldset {
 }
 
 .section-title h2 {
-	font-family: 'GmarketSansBold';
+	font-family: 'Pretendard-Regular';
     margin-top: 0;
     font-weight: 600;
     border-bottom: 4px double #24b662;
@@ -1702,7 +1702,11 @@ text-align: center;
 	 font-size: 15px;
     font-weight: 700;
 }
-
+#font-previewer-title{
+	font-family: 'NanumSquareRound';
+    background-color: #59C38A;
+    width: fit-content;
+}
 #purchase-button,#cart-button,#sd-like-button{
     cursor:pointer;
     font-size:30px;
@@ -1741,7 +1745,7 @@ text-align: center;
     line-height: 100%;
     
 }
-#font-previewer-title{
+-previewer-title{
  	font-family: 'NanumSquareRound';
     text-align: left;
     background-color: #59C38A;
@@ -2067,9 +2071,9 @@ p { padding: 5px 0; }
 }
 .search-tools{
 	display: flex;
-	
   	height: 45px;
     justify-content: space-between;
+    margin-bottom: 10px;
 }
 /* shop에서 한개의 아이템 div */
 .tools{
@@ -2082,14 +2086,11 @@ p { padding: 5px 0; }
 }
 
 #color-title{
+  font-family: 'NanumSquareRound';
   margin: 0 10px;
 }
 
-#style-button{
-  padding: 0 15px;
-  width: 150px;
 
-}
 
 .font-style-category{
   display: flex;
@@ -2802,6 +2803,42 @@ font-size: 16px;
 }
 .font-search-bar{
 	text-align: right;
+}
+
+#font_search{
+	font-family: 'NanumSquareRound';
+	border:none;
+	border-bottom:2px solid #eee ;
+}
+#btn-search{
+	border:none;
+	background-color:white;
+}
+
+#font-sort,#range-result{
+	font-family: 'NanumSquareRound';
+}
+
+#style-button{
+  font-family: 'NanumSquareRound';
+  width: 150px;
+  border: 0px solid #6DB692;
+  border-radius: 50px;
+  padding-top:6px;
+  padding-bottom:6px;
+}
+#style-button:focus,#btn-search:focus{
+	border:none;
+}
+#btn-search{
+	font-size: 24px;
+    color: #24B662;
+    margin-left: 10px;
+}
+
+#font_search:focus{
+	outline:none;
+	border-bottom:2px solid #24B662 ;
 }
 .fix-tbl{
 	table-layout:fixed;
