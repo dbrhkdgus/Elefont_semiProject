@@ -7,13 +7,12 @@
 
 
 <%@include file = "/WEB-INF/views/common/header.jsp" %>
-
+<%@include file = "/css/fontApply.jsp" %>
 <%
 session.removeAttribute("categoryList"); session.removeAttribute("fontList"); 
-List<Font> fontList = (List<Font>) request.getAttribute("fontList");
 List<Community> communityList = (List<Community>) request.getAttribute("communityList");
 List<Attachment> attachmentList = (List<Attachment>) request.getAttribute("attachmentList");
-
+List<String> commLikeList = (List<String>) request.getAttribute("commLikeList");
 %>
 
 <form name="checkIdDuplicateFrm" action="<%= request.getContextPath() %>/member/checkIdDuplicate" method="POST">
@@ -154,25 +153,27 @@ List<Attachment> attachmentList = (List<Attachment>) request.getAttribute("attac
                     </div>
                 </div>
             </div>
-			<div>
+            <div class="portfolio-inner">
+				<div class="row" id="fonts-box">
  <%
 for(Font font : fontList){
 %>
 
 
-            <div class="test-item"> 
-            
-            	<div class="landing-fontName-textarea-box">
-            		<a href="<%=request.getContextPath()%>/shopDetail?fontNo=<%=font.getFontNo()%>"><%= font.getFontName() %></a> 
-            	</div>
-            	
-            	<textarea cols="30" rows="10" class="font-style" style="font-family:<%=font.getFontFamily() %>;" ></textarea>
-            </div>
+		            <div class="test-item"> 
+		            
+		            	<div class="landing-fontName-textarea-box">
+		            		<a href="<%=request.getContextPath()%>/shopDetail?fontNo=<%=font.getFontNo()%>"><%= font.getFontName() %></a> 
+		            	</div>
+		            	
+		            	<textarea cols="30" rows="10" class="font-style" style="font-family:<%=font.getFontFamily() %>;" ></textarea>
+		            </div>
 <%	
 }
 %>           
+				</div>
 			</div>
-
+		</div>
 
         <div class="text-center margin-top-50">
             <a class="button button-style button-style-dark button-style-icon fa fa-long-arrow-right smoth-scroll"
@@ -201,18 +202,42 @@ for(Font font : fontList){
         <div class="row">
             <div class="testimonial-carousel-list margin-top-20" id="landing-community-box">
 
-                <div class="testimonial-word text-center">
-	                <div class="review-photo" style="background-image: url(https://cdn.crowdpic.net/list-thumb/thumb_l_6E3D0D96ADF1E2E821C86602AF03B960.jpg);"></div>
+<%
+for(Community comm : communityList){
+	for(Attachment att : attachmentList){
+		if(comm.getCommNo().equals(att.getCommNo())){
+			
+%>
+		 <div class="testimonial-word text-center">
+	                <div class="review-photo" style="background-image: url(<%= request.getContextPath()%>/upload/community/<%= att.getRenamedFilename()%>);" onclick = "location.href='<%=request.getContextPath()%>/community/pictureDetail?commNo=<%= comm.getCommNo()%>'"></div>
 	                    <div class="review-content">
-	                        <h2>BEST-REVIEW1</h2>
-	                        <p>quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
-	                            Duisauteiruredolor in reprehenderit in voluptate.
+	                        <h2><%= comm.getCommTitle() %></h2>
+	                        <p><%= comm.getCommContent() %>
 	                        </p>
 	                            <div class="like-button">
-	                                  <i class="heart-icon"></i>
+<%
+if(loginMember != null && !commLikeList.isEmpty() && commLikeList.contains(comm.getCommNo())){
+%>
+						<i class="fas fa-heart" data-comm-no="<%=comm.getCommNo()%>"><span><%=comm.getCommLikeCount() %></span></i>
+<%
+				}else{
+%>                                    
+						<i class="far fa-heart" data-comm-no="<%=comm.getCommNo()%>"><span><%=comm.getCommLikeCount() %></span></i>
+<%
+				}
+%>  
 	                            </div>
-	                    </div>
-	                </div>
+	                  </div>
+	      </div>
+
+
+
+<%
+		}
+	}
+}
+%>
+               
 
 		
             </div>
@@ -222,7 +247,53 @@ for(Font font : fontList){
 </section>
 <!-- 리뷰 End -->
 
+<script>
+/* 좋아요 버튼 클릭시 사용자 좋아요 여부에 따른 버튼 이벤트 */
+$(".fa-heart").click((e)=>{
+	
+<%
+if(loginMember == null){
+%>
+	alert("로그인 후 사용 가능한 기능입니다.");
+	return;
+<%
+}else if("A".equals(loginMember.getMemberRole())){
+%>
+	alert("일반 회원만 사용 가능합니다.");
+	return;
+<%
+}
+%>
+	let $target = $(e.target);
+	let $commNo = $target.data("commNo");
+	console.log($commNo);
+	
+	$.ajax({
+		url: "<%= request.getContextPath()%>/community/commLike",
+		dataType: "json",
+		type: "GET",
+		data: {'commNo' : $commNo},
+		success(jsonStr){
+			console.log(jsonStr);
+			const likeValid = jsonStr["likeValid"];
+			const likeCnt = jsonStr["likeCnt"];
+			
+			if(likeValid == 1){
+				$target
+					.removeClass("far")
+					.addClass("fas");
+			}else{
+				$target
+					.removeClass("fas")
+					.addClass("far");
+			}
+			$target.html(`<span>\${likeCnt}</span>`);
+		},
+		error: console.log
+	});
+});
 
+</script>
 
 
 
