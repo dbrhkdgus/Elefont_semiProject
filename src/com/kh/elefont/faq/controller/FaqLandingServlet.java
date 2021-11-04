@@ -16,6 +16,7 @@ import com.kh.elefont.faq.model.vo.Faq;
 import com.kh.elefont.member.model.vo.Member;
 import com.kh.elefont.question.model.service.QuestionService;
 import com.kh.elefont.question.model.vo.Question;
+import com.kh.mvc.common.MvcUtils;
 
 
 /**
@@ -46,6 +47,13 @@ public class FaqLandingServlet extends HttpServlet {
 			 questionList = questionService.selectAllQuestion(loginMember.getMemberNo());
 		 }
 		 
+		//XSS 공격 대비 
+		//cross-site script공격. 악성코드를 웹페이지 삽입하여 클라이언트의 개인정보를 탈취하는 공격법
+		String content = MvcUtils.escapeHtml(board.getContent());
+		
+		//개행문자 br태그 변환 처리
+		content = MvcUtils.convertLineFeedToBr(content);
+		board.setContent(content);
 		 
 		
 		//3. 뷰단처리
