@@ -36,7 +36,7 @@ for(Question que : questionListGroupBy){
 			
 %>
                         <li class="">
-                            <a class="qnaListLink" href="#" onclick="">
+                            <a class="qnaListLink" class="btn-open-chat">
                                 <div class="infoArea">
                                     <div class="thumbnailWrap" aria-hidden="true">
                                         <img class="qnaProfile" src="<%=request.getContextPath()%>/upload/profilephotos/<%=att.getRenamedFilename()%>">
@@ -67,21 +67,40 @@ for(Question que : questionListGroupBy){
                 </div>
             </section>
         </div>
-        <div class="qnaContent">
+        
+<%
+for(Question que : questionListGroupBy){
+	for(Member member : memberList){
+		if(que.getqQuestioner().equals(member.getMemberNo())){
+			for(Attachment att : attachmentList){
+				if(att.getMemberNo().equals(que.getqQuestioner())){
+%>
+        <div class="qnaContent" id="<%= que.getqQuestioner()%>">
             <section class="qnaChatSection">
                 <div class="qnaChatHeader">
                     <div class="qnaInfoArea">
                         <div class="thumbnailArea">
                             <div class="thumbnailWrap" aria-hidden="true">
-                                <img class="qnaProfile" src="https://image-notepet.akamaized.net/resize/620x-/seimage/20190104%2F4ceebf301cf61479f62d88990f863b8d.jpg" alt="https://image-notepet.akamaized.net/resize/620x-/seimage/20190104%2F4ceebf301cf61479f62d88990f863b8d.jpg">
+                                <img class="qnaProfile" src="<%=request.getContextPath() %>/upload/profilephotos/<%=att.getRenamedFilename()%>">
                             </div>
                         </div>
                         <div class="textWrap">
                             <div class="nameArea">
-                                <strong class="qnaName">Bazzyung</strong>
+                                <strong class="qnaName"><%= member.getMemberName() %></strong>
                             </div>
                             <div class="textArea">
-                                <p class="qnaIsAnswered">답변완료</p>
+<%
+if("N".equals(que.getqIsAnswered())){
+%>
+                                <p class="qnaIsAnswered" style="color:red">답변미완료</p>
+
+<%	
+}else{
+%>
+ 								<p class="qnaIsAnswered">답변완료</p>
+<%	
+}
+%>
                             </div>
                         </div>
                     </div>
@@ -92,42 +111,30 @@ for(Question que : questionListGroupBy){
                             <span>
                                 <em>
                                     <strong>10. 24.</strong>
-                                    "(일)"
+                                    
                                 </em>
                             </span>
                         </li>
                         <li class="newMessageBallonArea">
                             <div class="messageBalloon">
                                 <div class="qnaMessage">
+<%
+for(Question ques : questionList){
+	if(ques.getqQuestioner().equals(que.getqQuestioner())){
+%>
                                     <p class="qnaMessage fromAdmin">
-                                        "무엇이 궁금하세요?"
-                                        <br>
-                                        "문의사항을 남겨주시면 확인 후 답변드리겠습니다."
+                                        <%= ques.getqContent() %>
                                     </p>
+
+<%
+	}
+}
+%>                                
                                 </div>
                             </div>
-                            <div class="qnaMessageTime">
-                                <span class="_time">
-                                    <em>오후</em>
-                                    <span>05:33</span>
-                                </span>
-                            </div>
+                           
                         </li>
-                        <li class="newMessageBallonArea">
-                            <div class="messageBalloon">
-                                <div class="qnaMessage">
-                                    <p class="qnaMessage fromMember">
-                                        판매자 문의
-                                    </p>
-                                </div>
-                            </div>
-                            <div class="qnaMessageTime">
-                                <span class="_time">
-                                    <em>오후</em>
-                                    <span>05:33</span>
-                                </span>
-                            </div>
-                        </li>
+                        
                     </ul>
                 </div>
             </section>
@@ -138,10 +145,25 @@ for(Question que : questionListGroupBy){
                     <input type="button" value="전송">
                 </form>
             </div>
+<%
+				}
+			}
+		}
+	}
+}
+
+%>        
         </div>
     </div>
 </section>
 
+<script>
+/* $(".btn-open-chat").hide(); */
+$(".btn-open-chat").click((e)=>{
+	
+});
 
+
+</script>
 
 <%@ include file = "/WEB-INF/views/common/footer.jsp" %>
