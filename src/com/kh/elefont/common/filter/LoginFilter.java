@@ -17,7 +17,18 @@ import com.kh.elefont.member.model.vo.Member;
 /**
  * Servlet Filter implementation class LoginFilter
  */
-@WebFilter({ "/member/memberDelete", "/member/memberUpdate", "/member/updatePassword", "/board/boardForm"})
+@WebFilter({ 
+	"/member/memberDelete", 
+	"/member/memberUpdate", 
+	"/member/updatePassword", 
+	"/community/boardEnroll",
+	"/community/communityUpdate",
+	"/member/memberDetail",
+	"/member/fontLikeList",
+	"/member/commLikeList",
+	"/member/memberCart",
+	"/seller/*"
+	})
 public class LoginFilter implements Filter {
 
 	/**
