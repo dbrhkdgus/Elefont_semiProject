@@ -55,7 +55,7 @@
 					<input type="radio" name="font-style" id="font-style3" value="M">
 					<label for="font-style3">Monospace</label><br />
 					<input type="radio" name="font-style" id="font-style4" value="M" checked>
-					<label for="font-style4">Nomal</label>
+					<label for="font-style4">Normal</label>
    				</td>
    			</tr>
    			<tr>
@@ -91,7 +91,7 @@
    			</tr>
    			<tr>
 	   			<td colspan="2" id="font-frm-line">
-		   			<hr />
+		   			<br />
 	   			</td>
    			</tr>
    			<tr>
