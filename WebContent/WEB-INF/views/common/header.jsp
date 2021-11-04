@@ -45,16 +45,44 @@
 	   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
 
+<script>
+/**
+ * websocket client 설정
+ */
+ const ws = new WebSocket(`ws://\${location.host}<%=request.getContextPath()%>/elefontWebsocket`); //이 주소로 웹소켓 연결을 다시 요청
+ ws.onopen = (e) => {
+	 console.log("open!", e);
+ } ;
+ ws.onmessage = (e) => {
+	 console.log("message!", e);
+	 const msg = JSON.parse(e.data);
+	 if("dm" === msg.type){
+		 alert(`\${msg.sender}님의 메세지
+------------------------------------
+\${msg.msg}`);
+	 }else{
+		 msgToHtml(msg); 
+	 }
+ } ;
+ ws.onerror = (e) => {
+	 console.log("error!", e);
+ } ;
+ 
+ ws.onclose = (e) => {
+	 console.log("close!", e);
+ } ;
 
+
+
+</script>
 
 </head>
 
 <body>
 <script>
 <%
-	
 	String msg = (String)session.getAttribute("msg");
-
+	
 	if(msg != null) { 
 %> 
 	
