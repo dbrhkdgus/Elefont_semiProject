@@ -60,4 +60,26 @@ public class QuestionDao {
 		return questionList;
 	}
 
+	public int insertQuestion(Connection conn, String qContent, String qWriter) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String sql = prop.getProperty("insertQuestion");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, qWriter);
+			pstmt.setString(2, qContent);
+			pstmt.setString(3, qWriter);
+			
+			result = pstmt.executeUpdate();
+			
+					
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		return result;
+	}
+
 }

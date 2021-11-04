@@ -75,19 +75,7 @@ for(Faq f : faqList) {
     $(chatInputBtn).click((e)=>{
     	const receiver = "<%= loginMember.getMemberNo()%>";
 		if(!receiver) return;
-		
-		
-		const msg = {
-			type: "que",
-			sender: "<%= loginMember.getMemberNo()%>",
-			msg : $(textareaMsg).val(),
-			receiver: receiver,
-			time : Date.now()
-		};
-		
-		ws.send(JSON.stringify(msg));
-    	
-		
+
 		const $frmData = $(document.chatInputFrm);
 		$.ajax({
 			url : "<%= request.getContextPath()%>/chat/chatInput",
@@ -95,21 +83,24 @@ for(Faq f : faqList) {
 			method : "post",
 			dataType : "json",
 			success(data) {
-				
+				console.log(data);
 
-				
+				const msg = {
+						type: "que",
+						sender: "<%= loginMember.getMemberNo()%>",
+						msg : $(textareaMsg).val(),
+						receiver: receiver,
+						time : Date.now()
+					};
+					
+				ws.send(JSON.stringify(msg));
+				$(textareaMsg).val("").focus();
 				
 			},
 			//유효하지 않은 쿠폰일 시 alert 띄우고 input 값 지우기
 			error:console.log			
 		});
 		
-		
-		
-		
-		
-		
-		$(textareaMsg).val("").focus();
    	
     });
     

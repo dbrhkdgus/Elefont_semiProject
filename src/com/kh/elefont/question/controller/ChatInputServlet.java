@@ -8,7 +8,9 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.google.gson.Gson;
 import com.kh.elefont.question.model.service.QuestionService;
+import com.kh.elefont.question.model.vo.Question;
 
 /**
  * Servlet implementation class ChatInputServlet
@@ -26,6 +28,15 @@ public class ChatInputServlet extends HttpServlet {
 		
 		// 업무처리
 		int result = questionService.insertQuestion(qContent,qWriter);
-	}
+		System.out.println("result@questionServlet = " + result);
+		//		등록한 질문을 불러와서 그 값을 담아 jsp append처리
+		/*
+		 * int qNo = questionService.selectLastQuestionNo(qWriter); Question question =
+		 * questionService.selectOneQuestion
+		 * 
+		 * response.setContentType("application/json; charset=utf-8"); new
+		 * Gson().toJson();//뭘 보내
+		 */	
+		}
 
 }
