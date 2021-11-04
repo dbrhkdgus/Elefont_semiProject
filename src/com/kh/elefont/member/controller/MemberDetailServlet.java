@@ -13,6 +13,8 @@ import javax.servlet.http.HttpSession;
 
 import com.kh.elefont.common.model.service.AttachmentService;
 import com.kh.elefont.common.model.vo.Attachment;
+import com.kh.elefont.community.model.service.CommunityService;
+import com.kh.elefont.community.model.vo.DeletedCommunity;
 import com.kh.elefont.coupon.model.service.CouponService;
 import com.kh.elefont.coupon.model.vo.Coupon;
 import com.kh.elefont.font.model.service.FontService;
@@ -23,6 +25,8 @@ import com.kh.elefont.member.model.service.MemberService;
 import com.kh.elefont.member.model.vo.Member;
 import com.kh.elefont.order.model.service.OrderService;
 import com.kh.elefont.order.model.vo.Order;
+import com.kh.elefont.rep.model.service.RepService;
+import com.kh.elefont.rep.model.vo.DeletedRep;
 
 /**
  * Servlet implementation class MemberDetailServlet
@@ -36,6 +40,8 @@ public class MemberDetailServlet extends HttpServlet {
 	private CouponService couponService = new CouponService();
 	private OrderService orderService = new OrderService();
 	private LikeCartService likeCartService = new LikeCartService();
+	private CommunityService communityService = new CommunityService();
+	private RepService repService = new RepService();
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
@@ -59,6 +65,8 @@ public class MemberDetailServlet extends HttpServlet {
 			List<Order> orderList = orderService.selectAllOrder();
 			List<FontCategory> categoryList = fontService.selectAllFontCategory();
 			List<Attachment> attachmentList = attachmentService.selectAllFontAttachmentList();
+			List<DeletedCommunity> deletedCommList = communityService.selectAllDeletedCommList();
+			List<DeletedRep> deletedRepList = repService.selectAllDeletedRepList();
 			
 			request.setAttribute("attachmentList", attachmentList);
 			request.setAttribute("memberList", memberList);
@@ -67,6 +75,8 @@ public class MemberDetailServlet extends HttpServlet {
 			request.setAttribute("orderList", orderList);
 			request.setAttribute("categoryList", categoryList);
 			request.setAttribute("tabIndex", index);
+			request.setAttribute("deletedCommList", deletedCommList);
+			request.setAttribute("deletedRepList", deletedRepList);
 		}else if("U".equals(memberRole)) {
 			List<Attachment> commAttachmentList = attachmentService.selectAllCommAttachmentListByMemberNo(loginMember.getMemberNo());
 			List<Font> fontLikeList = fontService.selectAllLikedFontByMemberNo(loginMember.getMemberNo());
