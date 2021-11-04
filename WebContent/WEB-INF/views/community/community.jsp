@@ -123,7 +123,7 @@ if(loginMember != null){
 <%
 				}
 %>                                    
-						<i class="fas fa-search-plus"></i>
+						
 					</div>
 					<div class="like-comm-content">
 						<span><%= comm.getCommTitle() %></span>
