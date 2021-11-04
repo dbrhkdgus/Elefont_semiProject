@@ -379,7 +379,7 @@ body.loaded #preloader{
 
 .home-section-background:after {
     position: absolute;
-    background: rgba(0, 0, 0, .7);
+    background: rgba(0, 0, 0, .5);
     left: 0;
     top: 0;
     width: 100%;
@@ -1995,6 +1995,38 @@ p { padding: 5px 0; }
     height: 260px;
     background-color: rgb(246, 255, 197);
     margin: 10px auto;
+    overflow:auto;
+}
+
+#que-balloon{
+	width: 100%;
+}
+#que-balloon>li{
+	width: 100%;
+}
+#que-balloon li div:not(:last-of-type){
+	font-size: 1.5rem;
+}
+.message{
+	display: inline-block;
+	word-break:break-all; 
+	margin: 5px 5px 0 5px; 
+	max-width: 75%; 
+	border: 1px solid #888; 
+	padding: 10px; 
+	border-radius: 5px; 
+	background-color: #FCFCFC; 
+	color: #555;
+
+}
+.qtime{
+	font-size: 1rem;
+}
+#que-balloon>.left{
+	text-align: left;
+}
+#que-balloon>.right{
+	text-align: right;
 }
 
 /* faq-end */
@@ -2965,6 +2997,7 @@ font-size: 16px;
     flex-wrap: wrap;
     align-items: center;
 }
+
 .comm-writer-comm-history-content img{
     width: 150px;
     height: 150px;
@@ -2995,11 +3028,8 @@ font-size: 16px;
 
 
 /* community picture detail */
-.comm-title{
-	margin-left:160px;
-}
+
 .comm-pic-detail{
-    margin-top: 10px;
     display: flex;
     justify-content: center;
 }
@@ -3014,12 +3044,16 @@ font-size: 16px;
     padding-bottom:20px;
 }
 .comm-board-title-button {
+	margin-left: 190px;
+    margin-right: 160px;
+    margin-bottom: 10px;
 	display: flex;
     align-items: baseline;
     justify-content: space-between;
-    width: 920px;
     margin-bottom: 10px;
+    align-items: center;
 }
+
 #comm-board-button {
 	background-color: #4CAF50; /* Green */
 	border: 0px;
@@ -3038,17 +3072,18 @@ font-size: 16px;
 	width: 700px;
 }
 #comm-user-attach-img{
-    width: 430px;
+    width: 530px;
     /* height: 430px; */
     /* margin-right: 15px; */
     margin-bottom: 50px;
 }
 .comm-board-img-user-content{
+	padding-top: 10px;
 	display: flex;
 }
 .comm-user-content{
 	padding-left: 15px;
-    width: 490px;
+    width: 300px;
 }
 .comm-writer-info{
 	text-align: center;
@@ -3058,9 +3093,7 @@ font-size: 16px;
     width: 260px;
     margin-left: 30px;
 }
-.comm-container>h1{
-	margin-left:160px;
-}
+
 
 .comm-writer-info-buttons i{
 	margin-top:30px;
@@ -3093,6 +3126,7 @@ font-size: 16px;
     width: 100px;
     height: 100px;
 	margin: 10px;
+	border-radius:5px;
 }
 .comm-detail-reply {
     width: -webkit-fill-available;

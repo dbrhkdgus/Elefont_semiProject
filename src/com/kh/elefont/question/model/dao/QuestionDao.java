@@ -50,10 +50,15 @@ public class QuestionDao {
 				question.setqDate(rset.getTimestamp("q_date"));
 				question.setqIsAnswered(rset.getString("q_is_answered"));
 				
+				System.out.println("question@allQDao : " + question);
+				
 				questionList.add(question);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
 		}
 		
 		
@@ -223,5 +228,29 @@ public class QuestionDao {
 
 		return question;
 	}
+
+	public List<String> selectAllQuestioner(Connection conn) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		List<String> questionerList = new ArrayList<>();
+		String sql = prop.getProperty("selectAllQuestioner");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				
+				questionerList.add(rset.getString(1));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		
+		return questionerList;
+	}
+
+
 
 }
