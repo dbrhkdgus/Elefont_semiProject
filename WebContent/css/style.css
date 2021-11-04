@@ -155,7 +155,7 @@ fieldset {
 }
 
 .section-title h2 {
-	font-family: 'GmarketSansBold';
+	font-family: 'Pretendard-Regular';
     margin-top: 0;
     font-weight: 600;
     border-bottom: 4px double #24b662;
@@ -1702,7 +1702,11 @@ text-align: center;
 	 font-size: 15px;
     font-weight: 700;
 }
-
+#font-previewer-title{
+	font-family: 'NanumSquareRound';
+    background-color: #59C38A;
+    width: fit-content;
+}
 #purchase-button,#cart-button,#sd-like-button{
     cursor:pointer;
     font-size:30px;
@@ -1741,7 +1745,7 @@ text-align: center;
     line-height: 100%;
     
 }
-#font-previewer-title{
+-previewer-title{
  	font-family: 'NanumSquareRound';
     text-align: left;
     background-color: #59C38A;
@@ -2099,9 +2103,9 @@ p { padding: 5px 0; }
 }
 .search-tools{
 	display: flex;
-	
   	height: 45px;
     justify-content: space-between;
+    margin-bottom: 10px;
 }
 /* shop에서 한개의 아이템 div */
 .tools{
@@ -2114,14 +2118,11 @@ p { padding: 5px 0; }
 }
 
 #color-title{
+  font-family: 'NanumSquareRound';
   margin: 0 10px;
 }
 
-#style-button{
-  padding: 0 15px;
-  width: 150px;
 
-}
 
 .font-style-category{
   display: flex;
@@ -2754,7 +2755,7 @@ font-size: 16px;
 }
 .admin-board{
 	padding: 0px 10px 0px 10px;
-	font-size: 10px;
+	font-size: 1rem;
 }
 .admin-board > h4 {
 	margin-top: 0px;
@@ -2835,6 +2836,42 @@ font-size: 16px;
 .font-search-bar{
 	text-align: right;
 }
+
+#font_search{
+	font-family: 'NanumSquareRound';
+	border:none;
+	border-bottom:2px solid #eee ;
+}
+#btn-search{
+	border:none;
+	background-color:white;
+}
+
+#font-sort,#range-result{
+	font-family: 'NanumSquareRound';
+}
+
+#style-button{
+  font-family: 'NanumSquareRound';
+  width: 150px;
+  border: 0px solid #6DB692;
+  border-radius: 50px;
+  padding-top:6px;
+  padding-bottom:6px;
+}
+#style-button:focus,#btn-search:focus{
+	border:none;
+}
+#btn-search{
+	font-size: 24px;
+    color: #24B662;
+    margin-left: 10px;
+}
+
+#font_search:focus{
+	outline:none;
+	border-bottom:2px solid #24B662 ;
+}
 .fix-tbl{
 	table-layout:fixed;
 	width: 100%;
@@ -2870,8 +2907,68 @@ font-size: 16px;
 #fDCRate{
 	width: 80px;
 }
-#deleted-comm-table {
-	margin-bottom: 18px;
+#first-tbl-margin {
+    margin-top: 12px;
+}
+.deleted-comm-table {
+	padding: 0px 10px 0px 10px;
+	font-size: 1rem;
+}
+.deleted-comm-table > h4 {
+	margin-top: 0px;
+}
+.deleted-comm-table ul li{
+	list-style: none;
+}
+.deleted-comm-table tr th{
+	padding: 0 15px;
+}
+.admin-deleted-comm-tbl tr th{
+	padding: 0 15px;
+}
+.admin-deleted-comm-tbl{
+	border: 2px solid #000;
+	border-collapse: collapse;
+	margin: 0 auto;
+	width: 850px;
+}
+.admin-deleted-comm-tbl th, .admin-deleted-comm-tbl td{
+	border: 1px solid #000;
+	text-align: center;
+	font-size: 1rem;
+}
+.admin-deleted-comm-tbl td{
+	overflow: auto;
+}
+.admin-deleted-comm-tbl tr{
+	overflow: auto;	
+}
+.fix-deleted-c-tbl{
+	table-layout:fixed;
+	width: 100%;
+}
+.fix-deleted-c-tbl th, .fix-deleted-c-tbl td{
+	overflow: auto;
+	border: 1px solid #000;
+	font-size: 1rem;
+	background-color: #fff;
+	text-align: center;
+}
+.fix-deleted-c-tbl thead th{
+	position: sticky;
+	top: 0px;
+	background-color: #005A3C;
+	color: #fff;
+	text-align: center;
+}
+.fix-tbl-head{
+	overflow:auto;
+	height: 104px;
+	width: 820px;
+	margin: 10px auto;
+}
+#deleted-tbl-content {
+	overflow: auto;
 }
 /* 멤버 디테일 끝*/
 
