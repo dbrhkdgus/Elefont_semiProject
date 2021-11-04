@@ -25,8 +25,13 @@ import com.kh.elefont.member.model.service.MemberService;
 import com.kh.elefont.member.model.vo.Member;
 import com.kh.elefont.order.model.service.OrderService;
 import com.kh.elefont.order.model.vo.Order;
+<<<<<<< HEAD
+import com.kh.elefont.question.model.service.QuestionService;
+import com.kh.elefont.question.model.vo.Question;
+=======
 import com.kh.elefont.rep.model.service.RepService;
 import com.kh.elefont.rep.model.vo.DeletedRep;
+>>>>>>> branch 'master' of https://github.com/dbrhkdgus/Elefont_semiProject.git
 
 /**
  * Servlet implementation class MemberDetailServlet
@@ -40,6 +45,7 @@ public class MemberDetailServlet extends HttpServlet {
 	private CouponService couponService = new CouponService();
 	private OrderService orderService = new OrderService();
 	private LikeCartService likeCartService = new LikeCartService();
+	private QuestionService questionService = new QuestionService();
 	private CommunityService communityService = new CommunityService();
 	private RepService repService = new RepService();
 	/**
@@ -68,6 +74,11 @@ public class MemberDetailServlet extends HttpServlet {
 			List<DeletedCommunity> deletedCommList = communityService.selectAllDeletedCommList();
 			List<DeletedRep> deletedRepList = repService.selectAllDeletedRepList();
 			
+			int notAnsweredQuestionCnt = questionService.selectNotAnseredQuestionCnt();
+			int answeredQuestionCnt = questionService.selectAnsweredQuestionCnt();
+
+			request.setAttribute("notAnsweredQuestionCnt", notAnsweredQuestionCnt); 
+			request.setAttribute("answeredQuestionCnt", answeredQuestionCnt); 
 			request.setAttribute("attachmentList", attachmentList);
 			request.setAttribute("memberList", memberList);
 			request.setAttribute("fontList", fontList);
