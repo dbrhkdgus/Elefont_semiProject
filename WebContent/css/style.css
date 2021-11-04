@@ -2044,7 +2044,7 @@ p { padding: 5px 0; }
 }
 .test-item-title{
   height: 60px;
-  border-bottom: 2px solid black;
+  border-bottom: 1px solid #A0A0A0;
   justify-content: space-around;
   padding-left: 10px;
   display: flex;
@@ -2059,8 +2059,14 @@ p { padding: 5px 0; }
 }
 .test-item{
   margin: 10px;
-  border: 2px solid black;
+  border: 1.5px solid #A0A0A0;
+  border-radius:5px;
 }
+
+.test-item textarea:focus{
+  outline: 1px solid #6DB692;
+}
+
 .test-item textarea{
   resize: none;
   width: 263px;
