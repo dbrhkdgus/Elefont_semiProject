@@ -1,6 +1,16 @@
+<%@page import="com.kh.elefont.common.model.vo.Attachment"%>
+<%@page import="com.kh.elefont.question.model.vo.Question"%>
+<%@page import="java.util.List"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@include file = "/WEB-INF/views/common/LandingHeader.jsp" %>
+<%
+List<Question> questionList = (List<Question>)request.getAttribute("questionList");
+List<Question> questionListGroupBy = (List<Question>)request.getAttribute("questionListGroupBy");
+List<Member> memberList = (List<Member>)request.getAttribute("memberList");
+List<Attachment> attachmentList = (List<Attachment>)request.getAttribute("attachmentList");
+
+%>
 <section class="section-space-padding">
 	<div id="qnaContainer">
         <div id="snb">
@@ -17,60 +27,42 @@
             <section class="qnaListArea">
                 <div class="qnaListWrap">
                     <ul class="qnaList">
+<%
+for(Question que : questionListGroupBy){
+	for(Member member : memberList){
+		if(que.getqQuestioner().equals(member.getMemberNo())){
+			for(Attachment att : attachmentList){
+				if(att.getMemberNo().equals(que.getqQuestioner())){
+			
+%>
                         <li class="">
                             <a class="qnaListLink" href="#" onclick="">
                                 <div class="infoArea">
                                     <div class="thumbnailWrap" aria-hidden="true">
-                                        <img class="qnaProfile" src="https://image-notepet.akamaized.net/resize/620x-/seimage/20190104%2F4ceebf301cf61479f62d88990f863b8d.jpg" alt="https://image-notepet.akamaized.net/resize/620x-/seimage/20190104%2F4ceebf301cf61479f62d88990f863b8d.jpg">
+                                        <img class="qnaProfile" src="<%=request.getContextPath()%>/upload/profilephotos/<%=att.getRenamedFilename()%>">
                                     </div>
                                     <div class="textWrap">
                                         <div class="nameArea">
-                                            <strong class="qnaName">Bazzyung</strong>
-                                            <span class="dateArea">오후 05:33</span>
+                                            <strong class="qnaName"><%=member.getMemberName() %></strong>
+                                            <span class="dateArea"><%= que.getqDate() %></span>
                                         </div>
                                         <div class="textArea">
-                                            <p class="qnaMessage">질문 미리보기</p>
+                                            <p class="qnaMessage"><%= que.getqContent() %></p>
                                         </div>
                                     </div>
                                 </div>
                             </a>
                         </li>
-                        <li class="">
-                            <a class="qnaListLink" href="#" onclick="">
-                                <div class="infoArea">
-                                    <div class="thumbnailWrap" aria-hidden="true">
-                                        <img class="qnaProfile" src="https://t1.daumcdn.net/liveboard/Lovedoongdoong/ba449cf0fca541a4838afc41854aaacd.jpg" alt="https://t1.daumcdn.net/liveboard/Lovedoongdoong/ba449cf0fca541a4838afc41854aaacd.jpg">
-                                    </div>
-                                    <div class="textWrap">
-                                        <div class="nameArea">
-                                            <strong class="qnaName">갱얼쥐</strong>
-                                            <span class="dateArea">오후 05:30</span>
-                                        </div>
-                                        <div class="textArea">
-                                            <p class="qnaMessage">질문 미리보기</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
-                        <li class="">
-                            <a class="qnaListLink" href="#" onclick="">
-                                <div class="infoArea">
-                                    <div class="thumbnailWrap" aria-hidden="true">
-                                        <img class="qnaProfile" src="https://pbs.twimg.com/media/DqafpViUwAAREp5.jpg" alt="https://pbs.twimg.com/media/DqafpViUwAAREp5.jpg">
-                                    </div>
-                                    <div class="textWrap">
-                                        <div class="nameArea">
-                                            <strong class="qnaName">피카피카</strong>
-                                            <span class="dateArea">오후 4:33</span>
-                                        </div>
-                                        <div class="textArea">
-                                            <p class="qnaMessage">질문 미리보기</p>
-                                        </div>
-                                    </div>
-                                </div>
-                            </a>
-                        </li>
+<% 		
+				}
+			}
+			break;
+		}
+	}
+}
+%>                    
+                      
+                        
                     </ul>
                 </div>
             </section>

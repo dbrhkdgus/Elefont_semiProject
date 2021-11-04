@@ -18,10 +18,19 @@
     font-style: normal;
 }
 
+/* 나눔스퀘어 */
 @font-face {
     font-family: 'NanumSquareRound';
     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/NanumSquareRound.woff') format('woff');
     font-weight: normal;
+    font-style: normal;
+}
+
+/* 명조 폰트 */
+@font-face {
+    font-family: 'Pretendard-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+    font-weight: 400;
     font-style: normal;
 }
 /*
@@ -99,6 +108,7 @@ h6 {
 a {
     text-decoration: none;
     color: inherit;
+    transition: all 0.3s ease;
 }
 
 img {
@@ -145,6 +155,7 @@ fieldset {
 }
 
 .section-title h2 {
+	font-family: 'GmarketSansBold';
     margin-top: 0;
     font-weight: 600;
     border-bottom: 4px double #24b662;
@@ -157,6 +168,7 @@ fieldset {
 }
 
 .section-title p {
+	font-family: 'NanumSquareRound';
     font-weight: 400;
 	line-height: 25px;
 	margin-bottom: 40px;
@@ -528,6 +540,7 @@ ul.portfolio li.active {
 }
 
 /* shop에서 한개의 아이템 div */
+
 .item {
     -webkit-transition: .3s;
     transition: .3s;
@@ -1686,6 +1699,8 @@ text-align: center;
 .sd-buttton-content{
 	 font-family: 'NanumSquareRound';
 	 margin-right:10px;
+	 font-size: 15px;
+    font-weight: 700;
 }
 
 #purchase-button,#cart-button,#sd-like-button{
@@ -1727,7 +1742,7 @@ text-align: center;
     
 }
 #font-previewer-title{
- 
+ 	font-family: 'NanumSquareRound';
     text-align: left;
     background-color: #59C38A;
     width: fit-content;
@@ -1766,6 +1781,7 @@ text-align: center;
 /* 숍디테일 댓글 */
 .shop-detail-reply{
     width: 500px;
+    font-family: 'NanumSquareRound';
    
 }
 .liner{
@@ -1810,6 +1826,7 @@ text-align: center;
 }
 
 #shop-detail-review{
+	font-family: 'NanumSquareRound';
     background-color: #59C38A;
     width: fit-content;
 
@@ -1874,6 +1891,7 @@ text-align: center;
 #sd-copyright-content{
     margin-top: 30px;
     text-align: center;
+     font-family: 'NanumSquareRound';
 }
 .btn-re-rep-transFrm, .btn-re-rep-transFrm{
 	margin-left: 13px;
@@ -1905,6 +1923,7 @@ text-align: center;
     flex-wrap: wrap;
     align-content: center;
     width: 70%;
+    align-items: center;
 }
 
 .faq_title{
@@ -1922,7 +1941,8 @@ width:80%;
 
 
 #faq_title_content{
-   
+	font-size:18px;
+   font-family: 'NanumSquareRound';
     text-align: left;
     width:80%;
 }
@@ -1933,6 +1953,7 @@ width:80%;
     background-color: #ECF2F0;
     text-align: left;
     width: 80%;
+    font-family: 'NanumSquareRound';
 }
 
 p { padding: 5px 0; }
@@ -1981,6 +2002,7 @@ p { padding: 5px 0; }
 /*어바웃 about 페이지 이윤희*/
 .about>span{
     font-size: 5rem;
+    font-family: 'NanumSquareRound';
 }
 .about{
     margin-top: 40px;
@@ -1991,6 +2013,7 @@ p { padding: 5px 0; }
 
 .about.content>span{
     font-size: 2rem;
+    font-family: 'NanumSquareRound';
 }
 .about.outer{
     display: flex;
@@ -2011,8 +2034,9 @@ p { padding: 5px 0; }
 }
 
 .about.inner >input{
-	background:#1AAB8A;
-	color:#fff;
+	background:gold;
+	font-family: 'NanumSquareRound';
+	color: black;
 	border:none;
 	position:relative;
 	height: 30px;
@@ -2024,7 +2048,7 @@ p { padding: 5px 0; }
 
 .about.inner >input:hover{
 	background:#fff;
-	  color:#1AAB8A;
+	  color: black;
 }
 
 
@@ -2087,13 +2111,15 @@ p { padding: 5px 0; }
 }
 .test-item-title{
   height: 60px;
-  border-bottom: 2px solid black;
+  border-bottom: 1px solid #A0A0A0;
   justify-content: space-around;
   padding-left: 10px;
   display: flex;
   flex-direction: column;
   align-items: flex-start;
 }
+
+
 .test-shop{
   display: flex;
   justify-content: flex-start;
@@ -2102,8 +2128,14 @@ p { padding: 5px 0; }
 }
 .test-item{
   margin: 10px;
-  border: 2px solid black;
+  border: 1.5px solid #A0A0A0;
+  border-radius:5px;
 }
+
+.test-item textarea:focus{
+  outline: 1px solid #6DB692;
+}
+
 .test-item textarea{
   resize: none;
   width: 263px;
@@ -2329,6 +2361,7 @@ font-size: 16px;
 	margin-right: 10px;
 	border-radius: 70%;
     overflow: hidden;
+    border: 2px solid gold;
 }
 
 #profile-loginMember-name{
@@ -2461,6 +2494,16 @@ font-size: 16px;
     border-radius: 50%;
     border: 1px solid gold;
 }
+#btn-member-Info-Edit{
+    border: none;
+    font-size:1.5rem;
+    background-color:transparent;
+    transition: all 0.3s ease;
+}
+
+#btn-member-Info-Edit:hover{
+    color:#6DB692;
+}
 /* 일반 회원  */
 .coupon-enroll{
   width: 700px;
@@ -2490,12 +2533,13 @@ font-size: 16px;
 .member-profile{
   width: 300px;
   height: 450px;
-  border: 2px solid #000;
+  border: 1px solid #A0A0A0;
   border-radius: 10px;
   text-align: center;
   margin-top: 20px;
   padding-top: 100px;
   margin-right: 30px;
+  box-shadow: 2px 2px 5px 1px rgb(0 0 0 / 10%);
 }
 .member-detail{
   display: flex;
@@ -2505,7 +2549,7 @@ font-size: 16px;
   width: 900px;
 }
 .member-title{
-  border: 2px solid #000;
+  border: 1px solid #A0A0A0;
   border-radius: 10px;
   padding: 10px 0;
   text-align: center;
@@ -2521,7 +2565,13 @@ font-size: 16px;
 .member-list *{
   width: 160px;
   height: 160px;
-  border: 1px solid #000;
+  border: 1px solid #A0A0A0;
+  border-radius:7px;
+}
+.member-list >a{
+  width: 160px;
+  height: 160px;
+  border: none;
 }
 
 
@@ -2892,16 +2942,23 @@ font-size: 16px;
 
 
 /* community picture detail */
+.comm-title{
+	margin-left:160px;
+}
 .comm-pic-detail{
-    margin-top: 50px;
+    margin-top: 10px;
     display: flex;
     justify-content: center;
 }
 .comm-board-content{
+	border-top:2px solid #eee;
+	border-right: 2px solid #eee;
+	border-bottom : 2px solid #eee;; 
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: flex-start;
+    padding-bottom:20px;
 }
 .comm-board-title-button {
 	display: flex;
@@ -2941,10 +2998,20 @@ font-size: 16px;
     width: 490px;
 }
 .comm-writer-info{
-    text-align: center;
+	text-align: center;
+    border-radius: 7px;
+    box-shadow: 2px 2px 5px 1px rgb(0 0 0 / 10%);
+    height: 470px;
+    width: 260px;
+    margin-left: 30px;
 }
+.comm-container>h1{
+	margin-left:160px;
+}
+
 .comm-writer-info-buttons i{
-    font-size: 50px;
+	margin-top:30px;
+	font-size: 40px;
     
 }
 .comm-writer-info-buttons .fa-heart{
