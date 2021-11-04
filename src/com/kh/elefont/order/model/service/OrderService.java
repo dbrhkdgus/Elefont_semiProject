@@ -22,12 +22,12 @@ public class OrderService {
 		return order;
 	}
 
-	public int insertOrderFont(Order order) {
+	public int insertOrderFont(Order order, String finalPrice) {
 		Connection conn = getConnection();
 		int result = 0;
 		
 		try {
-			result = orderDao.insertOrderFont(conn, order);
+			result = orderDao.insertOrderFont(conn, order,finalPrice);
 //			System.out.println("result@dao = "+result);
 			commit(conn);
 		}catch(Exception e) {

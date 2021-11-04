@@ -40,9 +40,12 @@ public class FontPurchaseServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String couponNo = (String)request.getParameter("coupon-no");
 		System.out.println("결제 할 때 있니없니 couponNo : "+ couponNo);
+		String finalPrice = request.getParameter("finalPrice");
+		System.out.println("finalPrice 잘 받아 왔나요? : " + finalPrice);
 		String memberNo = request.getParameter("member-no");
 		String fontNo = request.getParameter("font-no");
 		String fontPrice = request.getParameter("font-price");
+		System.out.println("fontPrice  잘 받아 왔나요? : " + fontPrice);
 		String orderNo = "order-" + System.currentTimeMillis();
 		//유일한 값을 위해서
 		
@@ -60,7 +63,7 @@ public class FontPurchaseServlet extends HttpServlet {
 		
 		//업무처리
 		//1. 테이블에 인서트하기. view_member_orders
-		int result = orderService.insertOrderFont(order);
+		int result = orderService.insertOrderFont(order,finalPrice);
 		result = orderService.insertOrders(order);
 		
 		

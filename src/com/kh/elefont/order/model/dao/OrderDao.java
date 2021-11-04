@@ -67,18 +67,23 @@ public class OrderDao {
 		
 	}
 
-	public int insertOrderFont(Connection conn, Order order) {
+	public int insertOrderFont(Connection conn, Order order, String finalPrice) {
 		PreparedStatement pstmt = null;
 		int result  = 0;
 		String sql = prop.getProperty("insertOrderFont");
+		double finalPriceD = Double.parseDouble(finalPrice);
+		System.out.println("finalPriceD : " + finalPriceD);
+//		insertOrderFont = insert into member_orders values(?,?,default,?)		
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
-			pstmt.setString(1,order.getOrderNo());
-			pstmt.setString(2,order.getMemberNo());
+			pstmt.setString(1, order.getOrderNo());
+			pstmt.setString(2, order.getMemberNo());
+			pstmt.setDouble(3, finalPriceD);
 			
 			
 			result = pstmt.executeUpdate();
+			System.out.println("finalPrice 추가한 결과가 잘 나왔나요? : " +result);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
