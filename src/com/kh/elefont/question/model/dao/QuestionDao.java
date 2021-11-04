@@ -229,4 +229,28 @@ public class QuestionDao {
 		return question;
 	}
 
+	public List<String> selectAllQuestioner(Connection conn) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		List<String> questionerList = new ArrayList<>();
+		String sql = prop.getProperty("selectAllQuestioner");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				
+				questionerList.add(rset.getString(1));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		
+		return questionerList;
+	}
+
+
+
 }
