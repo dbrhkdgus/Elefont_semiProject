@@ -92,6 +92,7 @@ h6 {
 a {
     text-decoration: none;
     color: inherit;
+    transition: all 0.3s ease;
 }
 
 img {
@@ -2424,6 +2425,16 @@ font-size: 16px;
     border-radius: 50%;
     border: 1px solid gold;
 }
+#btn-member-Info-Edit{
+    border: none;
+    font-size:1.5rem;
+    background-color:transparent;
+    transition: all 0.3s ease;
+}
+
+#btn-member-Info-Edit:hover{
+    color:#6DB692;
+}
 /* 일반 회원  */
 .coupon-enroll{
   width: 700px;
@@ -2453,12 +2464,13 @@ font-size: 16px;
 .member-profile{
   width: 300px;
   height: 450px;
-  border: 2px solid #000;
+  border: 1px solid #A0A0A0;
   border-radius: 10px;
   text-align: center;
   margin-top: 20px;
   padding-top: 100px;
   margin-right: 30px;
+      box-shadow: 2px 2px 5px 1px rgb(0 0 0 / 10%);
 }
 .member-detail{
   display: flex;
@@ -2468,7 +2480,7 @@ font-size: 16px;
   width: 900px;
 }
 .member-title{
-  border: 2px solid #000;
+  border: 1px solid #A0A0A0;
   border-radius: 10px;
   padding: 10px 0;
   text-align: center;
@@ -2484,7 +2496,13 @@ font-size: 16px;
 .member-list *{
   width: 160px;
   height: 160px;
-  border: 1px solid #000;
+  border: 1px solid #A0A0A0;
+  border-radius:7px;
+}
+.member-list >a{
+  width: 160px;
+  height: 160px;
+  border: none;
 }
 
 
