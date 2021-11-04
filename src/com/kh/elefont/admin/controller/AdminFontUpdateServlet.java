@@ -47,7 +47,7 @@ public class AdminFontUpdateServlet extends HttpServlet {
 		
 		//3. sendRedirect
 		request.getSession().setAttribute("msg", msg);
-		response.sendRedirect(request.getContextPath() + "/member/memberDetail");
+		response.sendRedirect(request.getContextPath() + "/member/memberDetail?index=4");
 	}
 
 }
