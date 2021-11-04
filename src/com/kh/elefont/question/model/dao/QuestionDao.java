@@ -87,6 +87,60 @@ public class QuestionDao {
 		return result;
 	}
 
+
+	public List<Question> selectAllQuestionForAdmin(Connection conn) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		List<Question> questionList = new ArrayList<>();
+		String sql = prop.getProperty("selectAllQuestionForAdmin");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				Question question = new Question();
+				
+				question.setqNo(rset.getInt("q_no"));
+				question.setqQuestioner(rset.getString("q_questioner"));
+				question.setqContent(rset.getString("q_content"));
+				question.setqWriter(rset.getString("q_writer"));
+				question.setqDate(rset.getTimestamp("q_date"));
+				question.setqIsAnswered(rset.getString("q_is_answered"));
+				
+				questionList.add(question);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		
+		return questionList;
+	}
+
+	public int selectNotAnseredQuestionCnt(Connection conn) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		int cnt = 0;
+		String sql = prop.getProperty("selectNotAnseredQuestionCnt");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				cnt = rset.getInt(1);
+
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		
+		return cnt;
+	}
 	public Question selectLastQuestion(Connection conn) {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
@@ -107,6 +161,63 @@ public class QuestionDao {
 				question.setqIsAnswered(rset.getString("q_is_answered"));
 				
 				System.out.println(question);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+
+		return question;
+
+	}
+
+	public int selectAnsweredQuestionCnt(Connection conn) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		int cnt = 0;
+		String sql = prop.getProperty("selectAnsweredQuestionCnt");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				cnt = rset.getInt(1);
+
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		
+		
+		return cnt;
+	}
+
+	public Question selectAllQuestionGroupByForAdmin(Connection conn, String questioner) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		Question question = new Question();
+		String sql = prop.getProperty("selectAllQuestionGroupByForAdmin");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, questioner);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				
+				question.setqNo(rset.getInt("q_no"));
+				question.setqQuestioner(rset.getString("q_questioner"));
+				question.setqContent(rset.getString("q_content"));
+				question.setqWriter(rset.getString("q_writer"));
+				question.setqDate(rset.getTimestamp("q_date"));
+				question.setqIsAnswered(rset.getString("q_is_answered"));
+				
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

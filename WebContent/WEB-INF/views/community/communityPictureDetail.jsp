@@ -22,11 +22,11 @@
 			
 %>
 <section id="portfolio" class="portfolio section-space-padding">
-    <div class="container">
-        <div class="comm-pic-detail">
-            <div class="comm-board-content">
-            	<div class="comm-board-title-button">
-		            <h1><%=community.getCommTitle() %></h1>
+   		<div class="comm-container">
+   		
+		 
+		  	<div class="comm-board-title-button">
+		  	 <div class="comm-title"><h1><%=community.getCommTitle() %></h1></div>
 		           
 <% 	
 if(editable){ 
@@ -39,6 +39,9 @@ if(editable){
 } 
 %>
             	</div>
+        <div class="comm-pic-detail">
+            <div class="comm-board-content">
+            
 	            <div class="comm-board-img-user-content">
 	                <img id="comm-user-attach-img" src="<%= request.getContextPath()%>/upload/community/<%=attachment.getRenamedFilename()%>" alt="">
 	                <div class="comm-user-content">
@@ -203,7 +206,7 @@ if(cnt >= 4) {
                 </div>
             </div>
         </div>
-        </div>
+    </div>   
 </section>
 <% if(editable){ %>
 <form action="<%= request.getContextPath() %>/community/communityDelete" name="deleteBoardFrm">
