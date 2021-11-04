@@ -54,6 +54,7 @@ double salePrice = 0;
            <input type="hidden"  name="font-no" value="<%= fontNo %>"/>
            <input type="hidden"  name="font-price" value="<%= fontPrice %>"/>
            <input type="hidden" name="coupon-no" id="coupon-no"/>
+           <input type="hidden" name="finalPrice" id="finalPrice" value="<%= fontPrice %>" />
            
            <br />
            <input type="button" name ="btn-purchase" value = "구매하기" />
@@ -190,6 +191,7 @@ function LetsRegCoupon(){
 					$(".coupon-enroll").hide();
 					
 					$("#fontPrice").html(`<del><%= fontPrice %></del><span>[\${salePriceRound}]</span>`);
+					$("#finalPrice").val(salePriceRound);
 					$("[name=font-price]").val(salePrice);
 					$("#couponReg").html(`등록된 쿠폰 : \${couponNo}`)
 					
@@ -197,6 +199,7 @@ function LetsRegCoupon(){
 					$("#purchase-coupon-btn").html("쿠폰취소").attr("id","coupon-cancle-btn");
 					
 					$("#coupon-cancle-btn").click(()=>{
+						$(".coupon-enroll").hide();
 						location.reload();
 					});
 					

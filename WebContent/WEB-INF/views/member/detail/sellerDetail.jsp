@@ -34,14 +34,14 @@ Attachment profile = (Attachment) request.getAttribute("profile");
               <span><%=loginMember.getMemberId() %></span>님, 안녕하세요!
                 <button id="member-font" onclick="location.href='<%=request.getContextPath()%>/seller/fontEnroll'">폰트 등록</button>
                  </div>
-                			<div class="data-graphs">
+            	<div class="data-graphs">
 				<div>
 					<h4>내 폰트 판매 현황</h4>
 					<div class="data-bars">
 <% for(Font fontC : checkedList){
 %>
 						<div class="data-bar">
-							<div data-width="3"><%=fontC.getFontName() %><span><%= fontC.getFontPurchasedCount() %></span></div>
+							<div data-width="<%= (int)fontC.getFontPurchasedCount()%10*10 %>"><%=fontC.getFontName() %><span><%= fontC.getFontPurchasedCount() %></span></div>
 						</div>
 <%	
 }
@@ -54,7 +54,7 @@ Attachment profile = (Attachment) request.getAttribute("profile");
 					<div class="data-bars">
 <% for(Font fontC : checkedList){ %>					
 						<div class="data-bar">
-							<div data-width="30"><%=fontC.getFontName() %><span><%= fontC.getFontLikeCount() %></span></div>
+							<div data-width="<%= (int)fontC.getFontLikeCount()%10*10 %>"><%=fontC.getFontName() %><span><%= fontC.getFontLikeCount() %></span></div>
 						</div>
 <% } %>						
 					</div>
@@ -65,4 +65,21 @@ Attachment profile = (Attachment) request.getAttribute("profile");
 
 
      </div>
-            
+     
+<script>
+$(window).on('load', ()=>{
+	
+		$(".data-bar>div").each(function(index, item){
+			let $target = $(item);
+			console.log($target);
+			let $data = $target.data('width');
+			console.log($data);
+			
+			$target.css('width', $data + '%');
+		});
+
+	
+});
+
+
+</script>       

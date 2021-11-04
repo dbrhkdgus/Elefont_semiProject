@@ -290,6 +290,15 @@ public class CommunityService {
 		
 		close(conn);
 		return likeCommunityList;
+	}
+
+	public List<Community> selectAllCommunityListByLikeCountThree() {
+		Connection conn = getConnection();
+		List<Community> communityList = communityDao.selectAllCommunityListByLikeCountThree(conn);
+		
+		close(conn);
+		
+		return communityList;
 	}	
 
 }

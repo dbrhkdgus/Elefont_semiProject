@@ -216,6 +216,7 @@ List<Attachment> attachmentList = (List<Attachment>) request.getAttribute("attac
 					<div class="coupon-enroll-wrapper">
 						<form action="" method="POST" name="couponEnrollFrm">
 							<table id="coupon-enroll-tbl">
+							<input type="hidden" name="index" value="4"/>
 								<tr>
 									<th >쿠폰 발행</th>
 									<td colspan="2">
