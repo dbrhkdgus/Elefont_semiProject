@@ -79,4 +79,15 @@ public class QuestionService {
 		return question;
 	}
 
+	public List<String> selectAllQuestioner() {
+		Connection conn = getConnection();
+		List<String> questionerList = questionDao.selectAllQuestioner(conn);
+		
+		close(conn);
+		
+		return questionerList;
+	}
+
+
+
 }

@@ -31,23 +31,18 @@ public class AdminAnswerQnAServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		List<Question> questionList = questionService.selectAllQuestionForAdmin();
+		List<String> questionerList = questionService.selectAllQuestioner();
 		List<Question> questionListGroupBy = new ArrayList<>();
 		
 		List<Member> memberList = memberService.selectAllMember();
 		List<Attachment> attachmentList = attachmentService.selectAllprofileAttachmentList();
-		for(int i = 0; i < questionList.size(); i++) {
-			Question queG = questionService.selectAllQuestionGroupByForAdmin(questionList.get(i).getqQuestioner());
-			if(i != 0) {
-				System.out.println("queG@Servlet : " + queG.getqQuestioner());
-				System.out.println("que@Servlet : " + questionList.get(i-1).getqQuestioner());
-				if(queG.getqQuestioner().equals(questionList.get(i-1).getqQuestioner())) {
-					continue;
-				}else {
-					questionListGroupBy.add(queG);
-				}
-			}else {
-				questionListGroupBy.add(queG);
-			}
+		
+		
+		for(String questionner : questionerList) {
+
+				questionListGroupBy.add(questionService.selectAllQuestionGroupByForAdmin(questionner));
+			
+			
 		}
 		
 		request.setAttribute("questionList", questionList);  
