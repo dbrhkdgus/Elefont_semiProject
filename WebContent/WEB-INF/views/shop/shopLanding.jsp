@@ -229,6 +229,7 @@ $(".font-style").css("color", $(color).val());
 	}); 
 	/* 검색어 자동완성 */
 	$("#font_search").autocomplete({
+
 		source(request, response){
 			//request : 사용자 입력값을 가진 객체
 			//response : 검색어 목록 데이터를 처리할 콜백 함수

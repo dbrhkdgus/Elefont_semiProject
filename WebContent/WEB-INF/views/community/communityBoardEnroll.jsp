@@ -2,6 +2,10 @@
     pageEncoding="UTF-8"%>
 
 <%@include file = "/WEB-INF/views/common/LandingHeader.jsp"%>
+<%
+List<String> fontNameList = (List<String>)request.getAttribute("fontNameList");
+System.out.println("fontNameList@jsp : " + fontNameList);
+%>
     <!-- Community Board Enroll start -->
 <section id="portfolio" class="portfolio section-space-padding">
     <div class="container">
@@ -68,6 +72,9 @@
         </section>
         
 <script>
+
+
+
 function readImage(input) {
     // 인풋 태그에 파일이 있는 경우
     if(input.files && input.files[0]) {
@@ -102,17 +109,30 @@ $("[name=upFile]").change((e) => {
     }
 });
 
+
 /**
  * boardEnrollFrm 유효성 검사
  */
  function boardValidate(e){
      const $title = $("[name=title]");
      const $content = $("[name=content]");
+     var fontDb = "";
+	 	<%for(String fontName : fontNameList){ %>
+	 		fontDb += "<%=fontName%> ";
+	 	<% } %>
+	 	console.log(fontDb);
      //제목을 작성하지 않은 경우 폼제출할 수 없음.
      if(!/^.+$/.test($title.val())){
          alert("제목을 입력하세요.");
          return false;
      }
+     if(font_search.value == '' || font_search.value == null){
+         alert('사용한 폰트는 필수 항목입니다.');
+         return false;
+     } else if(fontDb.indexOf(font_search.value) == -1){
+    	 alert('Elefont에 등록된 폰트만 입력해주세요.');
+         return false;
+     } 
                         
      //내용을 작성하지 않은 경우 폼제출할 수 없음.
      // .(임의의 문자)에는 \n(개행문자)가 포함되지 않는다.
@@ -156,6 +176,10 @@ $("[name=upFile]").change((e) => {
 			});
 		}
 	});
+ 
+	
+	 		
+
 </script>
 
 <!-- Community Board Enroll end -->
