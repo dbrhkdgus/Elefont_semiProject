@@ -10,9 +10,7 @@ List<Order> orderList = (List<Order>) request.getAttribute("orderList");
 List<FontCategory> categoryList = (List<FontCategory>) request.getAttribute("categoryList");
 Attachment profile = (Attachment) request.getAttribute("profile");
 int tabIndex = (int)session.getAttribute("tabIndex");
-System.out.println("tabIndex@jsp = " + tabIndex);
 List<Attachment> attachmentList = (List<Attachment>) request.getAttribute("attachmentList");
-System.out.println("attachmentList" + attachmentList);	
 %>
 
      <div class="member-container">
@@ -168,15 +166,15 @@ System.out.println("attachmentList" + attachmentList);
 				</div>
 				<div>
 					<div class="user-search-bar">
-							<select name="user-search" id="user-search">
-								<option value="" selected>모든 주문 조회</option>
+							<select name="order-search" id="user-search">
+								<option value="all" selected>모든 주문 조회</option>
 								<option value="orderNo">주문 번호로 검색</option>
 								<option value="orderDate">주문일로 검색</option>
 								<option value="orderId">주문 회원으로 검색</option>
 								<option value="orderFont">주문 상품으로 검색</option>
 							</select>
-							<input type="text" name="" id="" placeholder="검색할 내용을 입력하세요."/>
-							<input type="button" value="검색" />
+							<input type="text" name="order-search-keyword" id="" placeholder="검색할 내용을 입력하세요."/>
+							<input type="button" value="검색" id="orderFinder"/>
 						</div>
 					<div class="fix-head">
 						<table class="admin-tbl fix-tbl">
@@ -342,13 +340,27 @@ System.out.println("attachmentList" + attachmentList);
 		for(Font f : fontList){
 			String targetFontNo = f.getFontNo();
 %>
-								<tr class="font-a <%=f.getFontApproval() == null? "font-w": "N".equals(f.getFontApproval())? "font-n" :"font-y" %>">
+								<tr class="font-a <%=f.getFontApproval().isBlank()? "font-w": "N".equals(f.getFontApproval())? "font-n" :"font-y" %>">
 									<td>
-										<select class="font-approval">
-											<option value="" <%= (f.getFontApproval() == null)? "selected":"" %>>심사 대기</option>
-											<option value="N" <%= "N".equals(f.getFontApproval())?"selected":"" %>>미승인</option>
-											<option value="Y" <%= ("Y".equals(f.getFontApproval()) || "C".equals(f.getFontApproval()))?"selected":"" %>>승인</option>
+<%
+			if("C".equals(f.getFontApproval())){
+%>
+										<select class="font-approval" disabled>
+											<option value="C" selected>승인</option>
+											<option value="">심사 대기</option>
+											<option value="N">미승인</option>
 										</select>
+<%
+			}else{
+%>
+										<select class="font-approval">
+											<option value="" <%= (f.getFontApproval().isBlank())? "selected":"" %>>심사 대기</option>
+											<option value="N" <%= "N".equals(f.getFontApproval())?"selected":"" %>>미승인</option>
+											<option value="Y" <%="Y".equals(f.getFontApproval())?"selected":"" %>>승인</option>
+										</select>
+<%
+			}
+%>
 										<input type="hidden" name="fontApproval" />
 									</td>
 									<td><%= f.getFontNo() %><input type="hidden" name="fontNo" value="<%= f.getFontNo() %>"/></td>
@@ -441,11 +453,12 @@ $(memberFinder).click((e)=>{
 });
 
 /* 폰트 관리 - 폰트 검색 버튼 클릭 시 search-type, search-keyword 전송 */
-$(fontFinder).click((e)=>{
+$("#fontFinder").click((e)=>{
 	const $searchType = $("[name=font-search]").val();
 	const $searchKeyword = $("[name=font-search-keyword]").val();
-	console.log($searchType);
-	console.log($searchKeyword);
+	console.log(`searchType = \${$searchType}`);
+	console.log(`searchKeyword = \${$searchKeyword}`);
+	
 	location.href = "<%=request.getContextPath()%>/admin/fontFinder?searchType="+$searchType+"&searchKeyword="+$searchKeyword;
 });
 
@@ -543,6 +556,14 @@ $(memberId).autocomplete({
 		});
 	}
 });
-
+/* 주문관리 - 주문검색 클릭시 */
+$(orderFinder).click((e)=>{
+	const $searchType = $("[name=order-search]").val();
+	const $searchKeyword = $("[name=order-search-keyword]").val();
+	console.log(`searchType = \${$searchType}`);
+	console.log(`searchKeyword = \${$searchKeyword}`);
+	
+	location.href = "<%=request.getContextPath()%>/admin/orderFinder?searchType="+$searchType+"&searchKeyword="+$searchKeyword;
+});
 
 </script>

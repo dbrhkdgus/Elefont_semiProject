@@ -142,7 +142,7 @@ public class FontDao {
 		ResultSet rset = null;
 		List<Font> fontList = new ArrayList<>();
 		
-		String sql = prop.getProperty("selectAllApprovedFontOrderByDate");
+		String sql = prop.getProperty("selectAllFont");
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
@@ -1038,6 +1038,45 @@ public class FontDao {
 		
 		return fontNom;
 	
+	}
+
+	public List<Font> selectShopFontByFontName(Connection conn, String fontName) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		List<Font> fontList = new ArrayList<>();
+		String sql = "";
+		sql = prop.getProperty("selectShopFontByFontName");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, "%"+fontName+"%");
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				Font font = new Font();
+	
+				font.setFontNo(rset.getString("font_no"));
+				font.setFontName(rset.getString("font_name"));
+				font.setFontPrice(rset.getDouble("font_price"));
+				font.setFontDiscountRate(rset.getDouble("font_discount_rate"));
+				font.setFontApproval(rset.getString("font_approval"));
+				font.setMemberId(rset.getString("member_id"));
+				font.setFontLikeCount(rset.getInt("font_like_count"));
+				font.setFontFamily(rset.getString("font_family"));
+				font.setFontUrl(rset.getString("font_url"));
+				font.setFontWeight(rset.getString("font_weight"));
+				fontList.add(font);
+			}
+			System.out.println("fontList@Dao : " + fontList);
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return fontList;
 	}
 
 }
