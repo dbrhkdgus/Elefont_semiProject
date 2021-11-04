@@ -2146,7 +2146,8 @@ p { padding: 5px 0; }
   height: 390px;
   text-align: center;
   margin: 10px;
-  border: 2px solid black;
+  border: 1px solid #A0A0A0;
+  border-radius:5px;
 }
 .like-comm > a {
   margin: 0 auto;
@@ -2170,14 +2171,24 @@ p { padding: 5px 0; }
   width: 266px;
   height: 266px;
   border: none;
-  border-bottom: 1px solid #000;
-  border-top: 1px solid #000;
+  border-bottom: 1px solid #A0A0A0;
+  border-top: 1px solid #A0A0A0;
   align-items: center;
   justify-content: center;
+  overflow: hidden
 }
 
 .comm-img > a > img {
 	height: 259px;
+	  transform:scale(1);
+	  transition:.3s;
+	  
+}
+
+.comm-img > a > img:hover {
+	height: 259px;
+	transform:scale(1.2);
+	
 }
 
 
@@ -3500,7 +3511,31 @@ align-items: center;
 .comm-search-type input{
 	margin-right:7px;
 	margin-left:10px;
+	border:none;
+	border-bottom: 2px solid #eee; 
+	
 }
+
+.comm-search-type input:focus{
+	outline: none;
+    border-bottom: 2px solid #1bab58;
+}
+
+.comm-search-type button{
+	border: none;
+	transition: 0.5s;
+	background-color: transparent;
+	
+
+}
+
+
+.comm-search-type button:hover{
+	border:none;
+	background-color: #eee;
+  	
+}
+
 
 
 
