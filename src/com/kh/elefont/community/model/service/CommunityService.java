@@ -14,6 +14,7 @@ import java.util.Map;
 import com.kh.elefont.common.model.vo.Attachment;
 import com.kh.elefont.community.model.dao.CommunityDao;
 import com.kh.elefont.community.model.vo.Community;
+import com.kh.elefont.community.model.vo.DeletedCommunity;
 import com.kh.elefont.font.model.vo.Font;
 import com.kh.elefont.like_cart.model.vo.CommLike;
 
@@ -299,6 +300,13 @@ public class CommunityService {
 		close(conn);
 		
 		return communityList;
+	}
+
+	public List<DeletedCommunity> selectAllDeletedCommList() {
+		Connection conn = getConnection();
+		List<DeletedCommunity> deletedCommList = communityDao.selectAllDeletedCommList(conn);
+		close(conn);
+		return deletedCommList;
 	}	
 
 }

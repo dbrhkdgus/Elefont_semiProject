@@ -2671,7 +2671,7 @@ font-size: 16px;
 }
 .admin-tab-bar ul li{
 	list-style: none;
-	width: 150px; 
+	width: 158px; 
 	text-align: center;
 }
 .admin-tab-bar li a {
@@ -2692,10 +2692,14 @@ font-size: 16px;
 #admin-board-section{
 	display:flex;
 	justify-content: center;
-	
+    flex-direction: column;
 }
 .admin-board{
-	padding: 10px 100px 10px 10px;
+	padding: 0px 10px 0px 10px;
+	font-size: 10px;
+}
+.admin-board > h4 {
+	margin-top: 0px;
 }
 .admin-board ul li{
 	list-style: none;
@@ -2735,8 +2739,8 @@ font-size: 16px;
 }
 .fc-fix{
 	overflow:auto;
-	height:180px;
-	width: 370px;
+	height:102px;
+	width: 820px;
 	margin: 10px auto;
 }
 
@@ -2808,7 +2812,9 @@ font-size: 16px;
 #fDCRate{
 	width: 80px;
 }
-
+#deleted-comm-table {
+	margin-bottom: 18px;
+}
 /* 멤버 디테일 끝*/
 
 /* community writer detail  */
