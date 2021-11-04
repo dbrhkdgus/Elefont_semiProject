@@ -154,30 +154,25 @@ List<Attachment> attachmentList = (List<Attachment>) request.getAttribute("attac
                     </div>
                 </div>
             </div>
-
+			<div>
  <%
 for(Font font : fontList){
 %>
 
 
-            <div class="portfolio-inner">
-                <div class="row" id="fonts-box">
-					<div class="col-md-4 col-sm-6 col-xs-12 mix filter-sale ">
-                        <div class="item">
-                            <a href="images/portfolio/1.jpg" class="portfolio-popup item-img" title="Project Title">
-                                <img src="images/portfolio/1.jpg" alt="">
-                            </a>
-                            
-                        </div>
-                    </div>
-	                
+            <div class="test-item"> 
+            
+            	<div class="landing-fontName-textarea-box">
+            		<a href="<%=request.getContextPath()%>/shopDetail?fontNo=<%=font.getFontNo()%>"><%= font.getFontName() %></a> 
+            	</div>
+            	
+            	<textarea cols="30" rows="10" class="font-style" style="font-family:<%=font.getFontFamily() %>;" ></textarea>
+            </div>
 <%	
 }
 %>           
+			</div>
 
-                </div>
-            </div>
-        </div>
 
         <div class="text-center margin-top-50">
             <a class="button button-style button-style-dark button-style-icon fa fa-long-arrow-right smoth-scroll"
