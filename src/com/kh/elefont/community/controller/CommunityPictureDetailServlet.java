@@ -112,9 +112,16 @@ public class CommunityPictureDetailServlet extends HttpServlet {
 			//cross-site script공격. 악성코드를 웹페이지삽입하여 클라이언트의 개인정보탈취하는 공격법
 			String content = ElefontUtils.escapeHtml(community.getCommContent());
 			
+			
 			// 개행문자 br태그 변환처리
 			content = ElefontUtils.convertLineFeedToBr(content);
+			
 			community.setCommContent(content);
+			
+			for(Rep rep : repList) {
+				String reply = ElefontUtils.escapeHtml(rep.getRepContent());
+				rep.setRepContent(reply);
+			}
 			
 			
 			
