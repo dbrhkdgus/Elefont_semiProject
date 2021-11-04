@@ -40,6 +40,7 @@ public class FaqLandingServlet extends HttpServlet {
 		 
 		 
 		 List<Question> questionList = new ArrayList<>();
+		 List<String> questionerList = questionService.selectAllQuestioner();
 		 
 		 if(loginMember != null) {
 			 questionList = questionService.selectAllQuestion(loginMember.getMemberNo());
@@ -50,6 +51,7 @@ public class FaqLandingServlet extends HttpServlet {
 		//3. 뷰단처리
 		request.setAttribute("faqList", faqList);
 		request.setAttribute("questionList", questionList);
+		request.setAttribute("questionerList", questionerList); 
 		request
 			.getRequestDispatcher("/WEB-INF/views/faq/faqLanding.jsp")
 			.forward(request, response);

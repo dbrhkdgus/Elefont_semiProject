@@ -2586,11 +2586,11 @@ font-size: 16px;
   border: 1px solid #A0A0A0;
   border-radius: 10px;
   text-align: center;
-  margin-top: 20px;
-  padding-top: 100px;
+  padding-top: 70px;
   margin-right: 30px;
   box-shadow: 2px 2px 5px 1px rgb(0 0 0 / 10%);
 }
+
 .member-detail{
   display: flex;
   justify-content: space-evenly;
@@ -2631,6 +2631,11 @@ font-size: 16px;
 .font-wrapper{
 	display:flex;
 }
+
+#font-enroll-page{
+	text-align:center;
+}
+
 #font-enroll{
 /* 	position: absolute;
 	top: 50%;
@@ -2638,13 +2643,33 @@ font-size: 16px;
 	transform: translate(-50%, -50%); */
 	text-align: center;
 }
-#fontEnrollFrm{
-	display: inline-block;
-	padding: 10px 0 10px 5%;
-	border: 1px solid #000;
-	border-radius: 10px;
+
+#fontEnrollFrm input[type=file]{
+	border: none;
+}
+
+#fontEnrollFrm input{
+	border: none;
+	border-bottom: 1px solid #A0A0A0;
 	
 }
+
+
+#fontEnrollFrm input:focus{
+	outline: none;
+    border-bottom: 2px solid #1bab58;
+
+}
+
+#fontEnrollFrm{
+	display: inline-block;
+    padding: 20px 0 10px 5%;    
+    border: 1px solid #A0A0A0;
+    border-top-left-radius: 100px;
+    border-bottom-right-radius: 100px;
+    font-family: 'NanumSquareRound';
+}
+
 #fontEnrollFrm th, #fontEnrollFrm td{
 	padding: 5px 0 5px 20px;
 	text-align: left;
@@ -2656,6 +2681,7 @@ font-size: 16px;
 #fontEnroll-title{
 	padding-left: 50px;
 	margin-bottom: 30px;
+	font-family: 'NanumSquareRound';
 }
 
 #font-file{
@@ -2665,8 +2691,6 @@ font-size: 16px;
 .font-audit{
 	text-align: center;
 	display: inline-block;
-	border-radius: 50%;
-	background-color: #DFDFDF;
 	padding-top: 12px;
 	width: 50px;
 	height: 50px;
@@ -2772,7 +2796,7 @@ font-size: 16px;
 }
 .admin-board{
 	padding: 0px 10px 0px 10px;
-	font-size: 10px;
+	font-size: 1rem;
 }
 .admin-board > h4 {
 	margin-top: 0px;
@@ -2924,8 +2948,68 @@ font-size: 16px;
 #fDCRate{
 	width: 80px;
 }
-#deleted-comm-table {
-	margin-bottom: 18px;
+#first-tbl-margin {
+    margin-top: 12px;
+}
+.deleted-comm-table {
+	padding: 0px 10px 0px 10px;
+	font-size: 1rem;
+}
+.deleted-comm-table > h4 {
+	margin-top: 0px;
+}
+.deleted-comm-table ul li{
+	list-style: none;
+}
+.deleted-comm-table tr th{
+	padding: 0 15px;
+}
+.admin-deleted-comm-tbl tr th{
+	padding: 0 15px;
+}
+.admin-deleted-comm-tbl{
+	border: 2px solid #000;
+	border-collapse: collapse;
+	margin: 0 auto;
+	width: 850px;
+}
+.admin-deleted-comm-tbl th, .admin-deleted-comm-tbl td{
+	border: 1px solid #000;
+	text-align: center;
+	font-size: 1rem;
+}
+.admin-deleted-comm-tbl td{
+	overflow: auto;
+}
+.admin-deleted-comm-tbl tr{
+	overflow: auto;	
+}
+.fix-deleted-c-tbl{
+	table-layout:fixed;
+	width: 100%;
+}
+.fix-deleted-c-tbl th, .fix-deleted-c-tbl td{
+	overflow: auto;
+	border: 1px solid #000;
+	font-size: 1rem;
+	background-color: #fff;
+	text-align: center;
+}
+.fix-deleted-c-tbl thead th{
+	position: sticky;
+	top: 0px;
+	background-color: #005A3C;
+	color: #fff;
+	text-align: center;
+}
+.fix-tbl-head{
+	overflow:auto;
+	height: 104px;
+	width: 820px;
+	margin: 10px auto;
+}
+#deleted-tbl-content {
+	overflow: auto;
 }
 /* 멤버 디테일 끝*/
 

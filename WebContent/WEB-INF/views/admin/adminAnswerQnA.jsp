@@ -10,6 +10,7 @@ List<Question> questionListGroupBy = (List<Question>)request.getAttribute("quest
 List<Member> memberList = (List<Member>)request.getAttribute("memberList");
 List<Attachment> attachmentList = (List<Attachment>)request.getAttribute("attachmentList");
 
+
 %>
 <section class="section-space-padding">
 	<div id="qnaContainer">
@@ -33,10 +34,10 @@ for(Question que : questionListGroupBy){
 		if(que.getqQuestioner().equals(member.getMemberNo())){
 			for(Attachment att : attachmentList){
 				if(att.getMemberNo().equals(que.getqQuestioner())){
-			
+				
 %>
                         <li class="">
-                            <a class="qnaListLink" class="btn-open-chat">
+                            <a class="qnaListLink" id="btn-<%=que.getqQuestioner()%>">
                                 <div class="infoArea">
                                     <div class="thumbnailWrap" aria-hidden="true">
                                         <img class="qnaProfile" src="<%=request.getContextPath()%>/upload/profilephotos/<%=att.getRenamedFilename()%>">
@@ -54,6 +55,7 @@ for(Question que : questionListGroupBy){
                             </a>
                         </li>
 <% 		
+					
 				}
 			}
 			break;
@@ -75,8 +77,8 @@ for(Question que : questionListGroupBy){
 			for(Attachment att : attachmentList){
 				if(att.getMemberNo().equals(que.getqQuestioner())){
 %>
-        <div class="qnaContent" id="<%= que.getqQuestioner()%>">
-            <section class="qnaChatSection">
+        <div class="qnaContent">
+            <section class="qnaChatSection"id="<%= que.getqQuestioner()%>">
                 <div class="qnaChatHeader">
                     <div class="qnaInfoArea">
                         <div class="thumbnailArea">
@@ -117,7 +119,7 @@ if("N".equals(que.getqIsAnswered())){
                         </li>
                         <li class="newMessageBallonArea">
                             <div class="messageBalloon">
-                                <div class="qnaMessage">
+                                <div class="qnaMessage" id="message-from-<%= que.getqQuestioner()%>">
 <%
 for(Question ques : questionList){
 	if(ques.getqQuestioner().equals(que.getqQuestioner())){
@@ -138,13 +140,6 @@ for(Question ques : questionList){
                     </ul>
                 </div>
             </section>
-            <hr>
-            <div class="chatWrite">
-                <form action="" id="qnaInputFrm">
-                    <textarea name="" id="qnaInput" cols="100" rows="3" placeholder="메시지를 입력하세요."></textarea>
-                    <input type="button" value="전송">
-                </form>
-            </div>
 <%
 				}
 			}
@@ -153,16 +148,31 @@ for(Question ques : questionList){
 }
 
 %>        
+            <hr>
+            <div class="chatWrite">
+                <form action="" id="qnaInputFrm">
+                    <textarea name="" id="qnaInput" cols="100" rows="3" placeholder="메시지를 입력하세요."></textarea>
+                    <input type="button" value="전송">
+                </form>
+            </div>
         </div>
     </div>
 </section>
 
 <script>
-/* $(".btn-open-chat").hide(); */
-$(".btn-open-chat").click((e)=>{
-	
-});
+<%
+for(String questioner : questionerList){
+%>
 
+$(".qnaChatSection").hide();
+$("#btn-<%=questioner%>").click((e)=>{
+	console.log("click");
+	$(".qnaChatSection").hide();
+	$("#<%=questioner%>").show();
+});
+<%
+}
+%>
 
 </script>
 
