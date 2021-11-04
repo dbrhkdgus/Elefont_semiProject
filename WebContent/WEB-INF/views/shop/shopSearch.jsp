@@ -63,8 +63,6 @@
  	
     List<Attachment> fontAttchmentList = (List<Attachment>)request.getAttribute("fontAttchmentList");
     List<String> likeList = (List<String>) request.getAttribute("likeList");
-   	//System.out.println("fontList@jsp : " + fontList);
-   	//System.out.println("fontAttchmentList@jsp : " + fontAttchmentList);
     for(Font font : fontList){
     	for(Attachment att : fontAttchmentList){
     		
@@ -108,7 +106,6 @@ $(".font-style").css("color", $(color).val());
 
 	/* 샵 랜딩 스타일 체크박스 드롭다운 메뉴 */
 	$("#style-button").click((e)=>{
-		console.log("스타일 버튼 클릭");
 	    $(".font-style-chkbox").toggle();
 	});
 	/* 폰트 사이즈 조절 바 px크기 입력, textarea에 반영*/
@@ -127,7 +124,6 @@ $(".font-style").css("color", $(color).val());
 	/* 색상 변경 시 아래 textarea에 있는 글씨들에 반영 */
 	$(color).change((e)=>{
 		let $fontColor = $(e.target).val();
-		console.log($fontColor);
 		$(".font-style").css("color",$fontColor);
 	});
 	
@@ -192,7 +188,6 @@ $(".font-style").css("color", $(color).val());
 				url: "<%= request.getContextPath()%>/autocomplete",
 				data: {searchName}, //?searchName=김
 				success(data){
-					console.log(data);
 					let temp = data.split("\n");
 					temp = $.map(temp, (name, index)=>{
 						return {
@@ -200,7 +195,6 @@ $(".font-style").css("color", $(color).val());
 							value : name
 						}
 					});
-					console.log(temp);
 					response(temp);
 				},
 				error : console.log

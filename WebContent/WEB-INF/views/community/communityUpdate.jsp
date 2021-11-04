@@ -85,7 +85,6 @@ inputImage.addEventListener("change", e => {
 $("[name=upFile]").change((e) => {
     // 파일 선택여부
     const $file = $(e.target);
-    //console.log($file.val());
      const newFnameSrc = $file.val().split("\\");
      const newFname  = newFnameSrc [newFnameSrc .length-1]; //마지막 화일명
     if($file.val() != ""){

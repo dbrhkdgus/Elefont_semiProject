@@ -81,7 +81,6 @@ $(chatInputBtn).click((e)=>{
 		method : "post",
 		dataType : "json",
 		success(data) {
-			console.log(data);
 
  			const msg = {
 					type: "que",

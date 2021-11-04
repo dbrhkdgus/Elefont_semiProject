@@ -1,6 +1,7 @@
 package com.kh.elefont.community.controller;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.servlet.ServletContext;
 import javax.servlet.ServletException;
@@ -28,11 +29,14 @@ import com.oreilly.servlet.multipart.FileRenamePolicy;
 public class CommunityBoardEnrollServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	CommunityService communityService = new CommunityService();
+	FontService fontService = new FontService();
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// TODO Auto-generated method stub
+		List<String> fontNameList = fontService.selectAllFontName();
+		request.setAttribute("fontNameList", fontNameList);
 		request.getRequestDispatcher("/WEB-INF/views/community/communityBoardEnroll.jsp").forward(request, response);
 	}
 	
@@ -86,7 +90,7 @@ public class CommunityBoardEnrollServlet extends HttpServlet {
 		community.setMemberNo(memberNo);
 		
 		
-		FontService fontService = new FontService();
+		
 		community.setFontNo(fontService.selectFontNoByFontName(font));
 		
 		System.out.println("community@servlet : " + community);
@@ -112,7 +116,8 @@ public class CommunityBoardEnrollServlet extends HttpServlet {
 			
 			community.setAttach(attach);
 		}
-		
+		List<String> fontNameList = fontService.selectAllFontName();
+		request.setAttribute("fontNameList", fontNameList);
 		String msg = result > 0 ? "게시물 등록 성공" : "게시물 등록 실패";
 		
 		session.setAttribute("msg", msg);

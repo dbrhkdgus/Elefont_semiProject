@@ -78,8 +78,6 @@
  	
     List<Attachment> fontAttchmentList = (List<Attachment>)request.getAttribute("fontAttchmentList");
     List<String> likeList = (List<String>) request.getAttribute("likeList");
-   	//System.out.println("fontList@jsp : " + fontList);
-   	//System.out.println("fontAttchmentList@jsp : " + fontAttchmentList);
     for(Font font : fontList){
     	for(Attachment att : fontAttchmentList){
     		
@@ -122,7 +120,6 @@ $(".font-style").css("color", $(color).val());
 
 	/* 샵 랜딩 스타일 체크박스 드롭다운 메뉴 */
 	$("#style-button").click((e)=>{
-		console.log("스타일 버튼 클릭");
 	    $(".font-style-chkbox").toggle();
 	 
 	});
@@ -134,7 +131,6 @@ $(".font-style").css("color", $(color).val());
    			
    	
         	if($(e.target).is(':checked')){
-        	 console.log("check")
 <%if(!categoryList.isEmpty()){%>
                  var categoryList = "<%=str %>";
                 location.href = `<%=request.getContextPath()%>/shop?category=\${categoryList}&add=\${$(e.target).val()}`;  
@@ -143,7 +139,6 @@ $(".font-style").css("color", $(color).val());
 <%}%>                     
          }else{
         	  location.href = `<%=request.getContextPath()%>/shop?flag=\${$(e.target).val()}`;  
-        	 console.log("uncheck")
          }
   }); 
   
@@ -174,7 +169,6 @@ $(".font-style").css("color", $(color).val());
 	/* 색상 변경 시 아래 textarea에 있는 글씨들에 반영 */
 	$(color).change((e)=>{
 		let $fontColor = $(e.target).val();
-		console.log($fontColor);
 		$(".font-style").css("color",$fontColor);
 	});
 	
@@ -229,6 +223,7 @@ $(".font-style").css("color", $(color).val());
 	}); 
 	/* 검색어 자동완성 */
 	$("#font_search").autocomplete({
+
 		source(request, response){
 			//request : 사용자 입력값을 가진 객체
 			//response : 검색어 목록 데이터를 처리할 콜백 함수
@@ -239,7 +234,6 @@ $(".font-style").css("color", $(color).val());
 				url: "<%= request.getContextPath()%>/autocomplete",
 				data: {searchName}, //?searchName=김
 				success(data){
-					console.log(data);
 					let temp = data.split("\n");
 					temp = $.map(temp, (name, index)=>{
 						return {
@@ -247,7 +241,6 @@ $(".font-style").css("color", $(color).val());
 							value : name
 						}
 					});
-					console.log(temp);
 					response(temp);
 				},
 				error : console.log
@@ -259,14 +252,8 @@ $(".font-style").css("color", $(color).val());
 		location.href = `<%=request.getContextPath()%>/shopSearch?fontName=\${$(font_search).val()}`;
 	});
 	$('#font-sort').change((e)=>{
-		console.log($('#font-sort').val());
 		location.href = `<%=request.getContextPath()%>/shop?sort=\${$('#font-sort').val()}`
 	});
-	
-	
-	
-	
-
 
 	
 </script>
