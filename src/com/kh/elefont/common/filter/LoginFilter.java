@@ -18,7 +18,9 @@ import com.kh.elefont.member.model.vo.Member;
  * Servlet Filter implementation class LoginFilter
  */
 @WebFilter({ 
-	"/member/*",
+	"/member/memberInfoEdit",
+	"/member/fontLikeList",
+	"/member/memberDetail",
 	"/seller/*",
 	"/community/boardEnroll",
 	"/community/communityUpdate",

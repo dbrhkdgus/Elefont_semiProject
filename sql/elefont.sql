@@ -245,11 +245,12 @@ end;
 --FK제약 없는테이블
 CREATE TABLE rep_deleted (
     rep_no    number    ,
+    member_no varchar2(200),
     rep_writer    varchar2(20)        ,
     rep_content    varchar2(2000)        ,
     rep_reg_date    Date        ,
-    font_no    varchar2(500)        not null ,
-    comm_no varchar2(500)  not null,
+    font_no    varchar2(500),
+    comm_no varchar2(500),
     rep_level number,
     rep_ref number,
     rep_delete_date Date DEFAULT sysdate 
@@ -264,7 +265,7 @@ BEGIN
         insert into
         rep_deleted
         values
-        (:old.rep_no, :old.rep_writer, :old.rep_content, :old.rep_reg_date, :old.font_no, :old.comm_no, :old.rep_level,:old.rep_ref, default);
+        (:old.rep_no, :old.member_no, :old.rep_writer, :old.rep_content, :old.rep_reg_date, :old.font_no, :old.comm_no, :old.rep_level,:old.rep_ref, default);
 
 end;
 /
