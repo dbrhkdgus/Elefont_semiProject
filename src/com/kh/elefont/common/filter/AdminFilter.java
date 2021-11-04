@@ -29,12 +29,12 @@ public class AdminFilter implements Filter {
 		HttpSession session = httpReq.getSession();
 		Member loginMember = (Member)session.getAttribute("loginMember");
 		
-		//if(loginMember == null || !((MemberService.ADMIN_ROLE).equals(loginMember.getMemberRole()))){
-		//	session.setAttribute("msg", "관리자만 이용 가능합니다.");
-		//	HttpServletResponse httpRes = (HttpServletResponse) response;
-		//	httpRes.sendRedirect(httpReq.getContextPath()+"/");;
-		//	return;
-		//}
+		if(loginMember == null || !((MemberService.ADMIN_ROLE).equals(loginMember.getMemberRole()))){
+			session.setAttribute("msg", "관리자만 이용 가능합니다.");
+			HttpServletResponse httpRes = (HttpServletResponse) response;
+			httpRes.sendRedirect(httpReq.getContextPath()+"/");;
+			return;
+		}
 		
 		chain.doFilter(request, response);
 	}
