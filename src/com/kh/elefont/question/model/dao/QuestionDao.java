@@ -50,10 +50,15 @@ public class QuestionDao {
 				question.setqDate(rset.getTimestamp("q_date"));
 				question.setqIsAnswered(rset.getString("q_is_answered"));
 				
+				System.out.println("question@allQDao : " + question);
+				
 				questionList.add(question);
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
 		}
 		
 		
