@@ -13,7 +13,9 @@ import java.util.List;
 import java.util.Properties;
 
 import com.kh.elefont.community.model.vo.Community;
+import com.kh.elefont.community.model.vo.DeletedCommunity;
 import com.kh.elefont.font.model.dao.FontDao;
+import com.kh.elefont.rep.model.vo.DeletedRep;
 import com.kh.elefont.rep.model.vo.Rep;
 
 public class RepDao {
@@ -192,6 +194,42 @@ public class RepDao {
 			close(pstmt);
 		}	
 		return repList;
+	}
+
+	public List<DeletedRep> selectAllDeletedRepList(Connection conn) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		List<DeletedRep> deletedRepList = new ArrayList<>();
+		
+		String sql = prop.getProperty("selectAllDeletedRepList");
+		
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				DeletedRep deletedRep = new DeletedRep();
+				deletedRep.setComnNo(rset.getString("comm_no"));
+				deletedRep.setMemberNo(rset.getString("member_no"));
+				deletedRep.setRepWriter(rset.getString("rep_writer"));
+				deletedRep.setRepContent(rset.getString("rep_content"));
+				deletedRep.setRepRegDate(rset.getDate("rep_reg_date"));
+				deletedRep.setRepDeleteDate(rset.getDate("rep_delete_date"));
+				
+				deletedRepList.add(deletedRep);
+				
+			}
+				
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return deletedRepList;
 	}
 
 }

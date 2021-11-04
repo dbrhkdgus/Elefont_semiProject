@@ -14,6 +14,7 @@ import java.util.Map;
 import java.util.Properties;
 
 import com.kh.elefont.community.model.vo.Community;
+import com.kh.elefont.community.model.vo.DeletedCommunity;
 import com.kh.elefont.font.model.vo.Font;
 import com.kh.elefont.like_cart.model.vo.CommLike;
 
@@ -657,6 +658,42 @@ public class CommunityDao {
 		}
 		
 		return communityList;
+	}
+
+	public List<DeletedCommunity> selectAllDeletedCommList(Connection conn) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		List<DeletedCommunity> deletedCommList = new ArrayList<>();
+		
+		String sql = prop.getProperty("selectAllDeletedCommList");
+		
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				DeletedCommunity deletedCommunity = new DeletedCommunity();
+				deletedCommunity.setCommNo(rset.getString("comm_no"));
+				deletedCommunity.setCommWriter(rset.getString("comm_writer"));
+				deletedCommunity.setCommContent(rset.getString("comm_content"));
+				deletedCommunity.setCommRegDate(rset.getDate("comm_reg_date"));
+				deletedCommunity.setCommDeleteDate(rset.getDate("comm_delete_date"));
+				deletedCommunity.setMemberNo(rset.getString("member_no"));
+				
+				deletedCommList.add(deletedCommunity);
+				
+			}
+				
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return deletedCommList;
 	}
 	
 
