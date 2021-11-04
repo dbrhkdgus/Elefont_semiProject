@@ -15,15 +15,10 @@
 	List<Attachment> allAttachmentList = (List<Attachment>)request.getAttribute("allAttachmentList");
 	List<LikeFont> likeFontList = (List<LikeFont>)request.getAttribute("likeFontList");
 	
-	
-	
-	System.out.println(allAttachmentList);
 	List<String> categoryList = (List<String>)session.getAttribute("categoryList");
 	String str = "";
 	for( String c : categoryList){
 		str += c;
-		
-				
 	};
 	
 	
@@ -45,8 +40,6 @@
 	for(Attachment att : allAttachmentList ){
 		if(att.getCommNo() == null && att.getFontNo() == null && att.getMemberNo().equals(loginMember.getMemberNo())){
 			likeProfilepic = att.getRenamedFilename();
-			System.out.println("likeProfilepic" + likeProfilepic);
-
 %>                                
                                      <div class="communitylike-profile-photo-box">
                                      <img src="<%= request.getContextPath()%>/upload/profilephotos/<%=likeProfilepic%>" alt="" />
@@ -141,7 +134,6 @@ $(".font-style").css("color", $(color).val());
 
 	/* 샵 랜딩 스타일 체크박스 드롭다운 메뉴 */
 	$("#style-button").click((e)=>{
-		console.log("스타일 버튼 클릭");
 	    $(".font-style-chkbox").toggle();
 	 
 	});
@@ -153,7 +145,6 @@ $(".font-style").css("color", $(color).val());
    			
    	
         	if($(e.target).is(':checked')){
-        	 console.log("check")
 <%if(!categoryList.isEmpty()){%>
                  var categoryList = "<%=str %>";
                 location.href = `<%=request.getContextPath()%>/shop?category=\${categoryList}&add=\${$(e.target).val()}`;  
@@ -162,20 +153,9 @@ $(".font-style").css("color", $(color).val());
 <%}%>                     
          }else{
         	  location.href = `<%=request.getContextPath()%>/shop?flag=\${$(e.target).val()}`;  
-        	 console.log("uncheck")
          }
   }); 
   
-
-
-
-
-    
-    
-     
-	  
-
-	
 
 	/* 폰트 사이즈 조절 바 px크기 입력, textarea에 반영*/
 	
@@ -193,7 +173,6 @@ $(".font-style").css("color", $(color).val());
 	/* 색상 변경 시 아래 textarea에 있는 글씨들에 반영 */
 	$(color).change((e)=>{
 		let $fontColor = $(e.target).val();
-		console.log($fontColor);
 		$(".font-style").css("color",$fontColor);
 	});
 	
@@ -258,7 +237,6 @@ $(".font-style").css("color", $(color).val());
 				url: "<%= request.getContextPath()%>/autocomplete",
 				data: {searchName}, //?searchName=김
 				success(data){
-					console.log(data);
 					let temp = data.split("\n");
 					temp = $.map(temp, (name, index)=>{
 						return {
@@ -266,7 +244,6 @@ $(".font-style").css("color", $(color).val());
 							value : name
 						}
 					});
-					console.log(temp);
 					response(temp);
 				},
 				error : console.log
@@ -278,12 +255,10 @@ $(".font-style").css("color", $(color).val());
 		location.href = `<%=request.getContextPath()%>/shopSearch?fontName=\${$(font_search).val()}`;
 	});
 	$('#font-sort').change((e)=>{
-		console.log($('#font-sort').val());
 		location.href = `<%=request.getContextPath()%>/shop?sort=\${$('#font-sort').val()}`
 	});
 	
 	$("#member-comm").click((e)=>{
-		console.log("클릭");
 		location.href = "<%=request.getContextPath()%>/member/commLikeList"
 	});
 

@@ -508,8 +508,6 @@ $("[name=memberRole]").change((e)=>{
 $(memberFinder).click((e)=>{
 	const $searchType = $("[name=search-type]").val();
 	const $searchKeyword = $("[name=search-keyword]").val();
-	console.log($searchType);
-	console.log($searchKeyword);
 	location.href = "<%=request.getContextPath()%>/admin/memberFinder?searchType="+$searchType+"&searchKeyword="+$searchKeyword;
 });
 
@@ -517,8 +515,6 @@ $(memberFinder).click((e)=>{
 $("#fontFinder").click((e)=>{
 	const $searchType = $("[name=font-search]").val();
 	const $searchKeyword = $("[name=font-search-keyword]").val();
-	console.log(`searchType = \${$searchType}`);
-	console.log(`searchKeyword = \${$searchKeyword}`);
 	
 	location.href = "<%=request.getContextPath()%>/admin/fontFinder?searchType="+$searchType+"&searchKeyword="+$searchKeyword;
 });
@@ -534,7 +530,6 @@ $("[name=fontAuditYN]").change((e)=>{
 /* 폰트 관리 - 회원 폰트 다운로드 버튼 클릭 시 파일 다운로드 */
 $(".fontDownloadBtn").click((e)=>{
     $fontNo = $(e.target).parent().prevAll().eq(3).text();
-    console.log($fontNo);
     location.href = "<%=request.getContextPath()%>/font/fontDownload?fontNo=" + $fontNo; 
 });
 
@@ -548,7 +543,6 @@ $(".fontDownloadBtn").click((e)=>{
 			$item = $(item);
 			let $fontApprYN = $(".font-approval").eq(index).val();
 			$item.val($fontApprYN);
-			console.log($item.val());
 		});	
 		$.each($fontPrice, function(index, item){
 			$item = $(item);
@@ -621,8 +615,6 @@ $(memberId).autocomplete({
 $(orderFinder).click((e)=>{
 	const $searchType = $("[name=order-search]").val();
 	const $searchKeyword = $("[name=order-search-keyword]").val();
-	console.log(`searchType = \${$searchType}`);
-	console.log(`searchKeyword = \${$searchKeyword}`);
 	
 	location.href = "<%=request.getContextPath()%>/admin/orderFinder?searchType="+$searchType+"&searchKeyword="+$searchKeyword;
 });

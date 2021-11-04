@@ -51,10 +51,8 @@
  */
  const ws = new WebSocket(`ws://\${location.host}<%=request.getContextPath()%>/elefontWebsocket`); //이 주소로 웹소켓 연결을 다시 요청
  ws.onopen = (e) => {
-	 console.log("open!", e);
  } ;
  ws.onmessage = (e) => {
-	 console.log("message!", e);
 	 const msg = JSON.parse(e.data);
 	 if("dm" === msg.type){
 		 alert(`\${msg.sender}님의 메세지
@@ -65,11 +63,9 @@
 	 }
  } ;
  ws.onerror = (e) => {
-	 console.log("error!", e);
  } ;
  
  ws.onclose = (e) => {
-	 console.log("close!", e);
  } ;
 
 
@@ -152,7 +148,6 @@ if(loginMember != null){
 	Member member = (Member) session.getAttribute("member");
 	File profilePhotoAttach = (File) session.getAttribute("profilePhotoAttach");
 	String photoPath = profilePhotoAttach.getName();
-	/* System.out.println("Header.jsp 프로필 경로가 궁금하느냐? : " + photoPath); */
 %>
                                         <li ><a class="smoth-scroll" id="profile" href="#user"><img id="profile-img" src="<%= request.getContextPath() %>/upload/profilephotos/<%=photoPath%>" ><span id="profile-loginMember-name"><%= loginMember.getMemberName() %></span></a>
                                         </li> 

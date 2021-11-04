@@ -206,9 +206,6 @@ for(MemberCartView mcv : memberCartList){
 			    }
 			  }
 		  
-		  console.log(price);
-		
-		
 			if(confirm(`\${fontName} 폰트의 구매를 진행합니다.
 총 \${price}P가 결제됩니다. (현재 보유 포인트 : \${memberPoint}P)`)){
 				
@@ -216,24 +213,12 @@ for(MemberCartView mcv : memberCartList){
 				$(document.cartFrm).submit();	
 			}
 		
-	
-				
-				
 			$("input[name='type']").val('purchase');
 			$(document.cartFrm).submit();	
-			
-		
-		
 		
 	});
 	
-	
-	
 </script>
-
-
-
-
     <!-- 결제 팝업 끝-->
 
 <%@ include file = "/WEB-INF/views/common/footer.jsp" %>

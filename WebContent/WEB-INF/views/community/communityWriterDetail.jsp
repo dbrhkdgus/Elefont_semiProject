@@ -57,7 +57,6 @@ if(!allFontList.isEmpty()){
  <%
  	int cnt = 0;
  	for(Attachment att : attachmentList){
- 		System.out.println(att.getMemberNo());
  		if(cnt < 8) {
  %>
  						<div onclick="location.href='<%= request.getContextPath()%>/community/pictureDetail?commNo=<%= att.getCommNo() %>'">
