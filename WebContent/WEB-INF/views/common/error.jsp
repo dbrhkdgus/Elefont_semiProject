@@ -38,7 +38,26 @@ body { text-align: center; }
     </div>
 	<p><a id="goBackError" href="#" ><span><이전 페이지 돌아가기</span><img style="width: 60px;" src="https://i.ibb.co/yNWnxfF/Lovepik-com-400202184-a-house-with-a-warm-house.png" alt=""><span>></span></a></p>
 
-<%@ include file = "/WEB-INF/views/common/footer.jsp" %>
+   <footer class="footer-section" style="background: #A0BFB5; padding: 63px 0px;">
+        <div class="container">
+            <div class="row">
+
+                <div class="col-md-4 text-left">
+                    <p><span><a href="<%=request.getContextPath() %>/about" class="smoth-scroll">About Us</a></span> | <span><a href="mailto:watt.kwon@gmail.com"
+                                class="smoth-scroll">Contact Us</a></span></p>
+                </div>
+
+                <div class="col-md-4 text-center">
+                    <p>© Copyright 2021 Produce404</p>
+                </div>
+
+                <div class="col-md-4 uipasta-credit text-right">
+                    <p>Designed By <span class="footer-teamName">Produce404</span></p>
+                </div>
+
+            </div>
+        </div>
+    </footer>
 
 <script>
 $(goBackError).click(()=>{
