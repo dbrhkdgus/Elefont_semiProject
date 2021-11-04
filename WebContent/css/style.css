@@ -17,6 +17,13 @@
     font-weight: normal;
     font-style: normal;
 }
+
+@font-face {
+    font-family: 'NanumSquareRound';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/NanumSquareRound.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
 /*
    
     Template Name : Rolling - Freelancer Portfolio Template
@@ -1676,6 +1683,11 @@ text-align: center;
     margin:30px 19px 200px;
 }
 
+.sd-buttton-content{
+	 font-family: 'NanumSquareRound';
+	 margin-right:10px;
+}
+
 #purchase-button,#cart-button,#sd-like-button{
     cursor:pointer;
     font-size:30px;
@@ -2413,8 +2425,8 @@ font-size: 16px;
 
 #my-profile-pic{
 	display: inline-block;
-    width: 100px;
-    height: 100px;
+    width: 150px;
+    height: 150px;
     border-radius: 50%;
     border: 1px solid gold;
 }
