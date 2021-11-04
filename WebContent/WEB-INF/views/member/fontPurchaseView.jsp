@@ -197,6 +197,7 @@ function LetsRegCoupon(){
 					$("#purchase-coupon-btn").html("쿠폰취소").attr("id","coupon-cancle-btn");
 					
 					$("#coupon-cancle-btn").click(()=>{
+						$(".coupon-enroll").hide();
 						location.reload();
 					});
 					
