@@ -22,6 +22,7 @@ import com.kh.elefont.member.model.vo.Member;
 	"/seller/*",
 	"/community/boardEnroll",
 	"/community/communityUpdate",
+	"/community/communityDelete"
 	})
 public class LoginFilter implements Filter {
 
