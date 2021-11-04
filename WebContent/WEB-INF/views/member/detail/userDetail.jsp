@@ -136,7 +136,7 @@ int cartCount = (int)request.getAttribute("cartCount");
 						<td><%=fe.getFontName() %></td>
 						<td><%=fe.getFontPrice() %></td>
 						<td><%=fe.getFontDiscountRate() %></td>
-						<td><%=fe.getFontPrice()*fe.getFontDiscountRate() %></td>
+						<td><%=fe.getFinalPrice()%></td>
 					</tr>
 <%
 		}

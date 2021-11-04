@@ -688,7 +688,8 @@ public class FontDao {
 				font.setFontDiscountRate(rset.getDouble("font_discount_rate"));
 				font.setMemberOrderDate(rset.getDate("member_order_date"));
 				font.setMemberOrderNo(rset.getString("order_no"));
-				
+				font.setFinalPrice(rset.getDouble("final_price"));
+
 				fontPurchasedList.add(font);
 			}
 		} catch (SQLException e) {
