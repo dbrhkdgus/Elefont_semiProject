@@ -56,7 +56,7 @@
                                 <div class="aboutdetail leftbox"> 
                                     <div class="left image">   
                                     <input type="hidden" value="<%=keh%>" class="input-val" /> 
-                                   <img src="https://i.ibb.co/yyhZB9x/924514.png" alt=""  id="bigImg" >
+                                   <img src="https://i.ibb.co/s1JmptQ/image.png" alt=""  id="bigImg" >
                                    <p>김은희</p>
                                    </div>
                                        <div class="left content ">
@@ -67,7 +67,7 @@
                                 <div class="aboutdetail leftbox"  > 
                                 <input type="hidden" value="<%=bjy%>" class="input-val" /> 
                                     <div class="left image">   
-                                   <img src="https://media.discordapp.net/attachments/896004674937823263/904722580630556712/profile.jpg" alt=""  id="bigImg" >
+                                   <img src="https://media.discordapp.net/attachments/896004674937823263/904724717175439430/74d5566ca4912f5e.jpg" alt=""  id="bigImg" >
                                    <p>백지영</p>
                                    </div>
                                        <div class="left content ">
@@ -89,7 +89,7 @@
                                 <div class="aboutdetail leftbox"  > 
                                 <input type="hidden" value="<%=lyh%>" class="input-val" /> 
                                     <div class="left image">   
-                                   <img src="https://i.ibb.co/yyhZB9x/924514.png" alt=""  id="bigImg" >
+                                   <img src="https://media.discordapp.net/attachments/896004674937823263/904724557737386054/unknown.png?width=641&height=670" alt=""  id="bigImg" >
                                    <p>이윤희</p>
                                    </div>
                                        <div class="left content ">
@@ -104,34 +104,34 @@
                               <div class="aboutdetail rightouter">
                            
                                 <div class="aboutdetail rightinner" name="권혜진"  >
-                                    <img src="https://i.ibb.co/ZT0fdYz/Visual-Studio-Code-1-35-icon-svg.png" alt="">
+                                    <img src="https://media.discordapp.net/attachments/895611304352555008/904720737141678080/KakaoTalk_20211101_221426889.jpg?width=670&height=670" alt="">
                                      <button type="button"   class = "rightBtn"  > 권혜진</button>
                                 </div> 
                                     
     
     
                                   <div class="aboutdetail rightinner">
-                                    <img src="./images/portfolio/1.jpg" alt="" >
+                                    <img src="https://cdn.discordapp.com/attachments/893374121449254916/904649352100851762/DSC07028_2.jpg" alt="" >
                                      <button type="button"  class = "rightBtn" > 김다현</button>
                                   </div>   
     
                                   <div class="aboutdetail rightinner">
-                                    <img src="./images/portfolio/1.jpg" alt="">
+                                    <img src="https://i.ibb.co/s1JmptQ/image.png" alt="">
                                     <button type="button" class = "rightBtn"  > 김은희</button>
                                   </div>   
     
                                   <div class="aboutdetail rightinner">
-                                    <img src="./images/portfolio/1.jpg" alt="">
+                                    <img src="https://media.discordapp.net/attachments/896004674937823263/904724717175439430/74d5566ca4912f5e.jpg" alt="">
                                     <button type="button" class = "rightBtn"   > 백지영</button>
                                   </div>   
     
                                   <div class="aboutdetail rightinner">
-                                    <img src="./images/portfolio/1.jpg" alt="">
+                                    <img src="https://i.ibb.co/L1pCTTN/tmp-1613290479805.jpg" alt="">
                                     <button type="button" class = "rightBtn"  > 유광현</button>
                                   </div>   
     
                                   <div class="aboutdetail rightinner">
-                                    <img src="./images/portfolio/1.jpg" alt="">
+                                    <img src="https://media.discordapp.net/attachments/896004674937823263/904724557737386054/unknown.png?width=641&height=670" alt="">
                                     <button type="button" class = "rightBtn"  > 이윤희</button>
                                   </div>   
     

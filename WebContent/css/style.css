@@ -1968,15 +1968,20 @@ p { padding: 5px 0; }
 }
 
 .about.inner >input{
-    position: relative;
-    top: 10px;
-    border: none;
+	background:#1AAB8A;
+	color:#fff;
+	border:none;
+	position:relative;
+	height: 30px;
+    width: -webkit-fill-available;
+	cursor:pointer;
+	transition:800ms ease all;
+	outline:none;
 }
 
 .about.inner >input:hover{
-    position: relative;
-    top: 10px;
-    background-color:#fff;
+	background:#fff;
+	  color:#1AAB8A;
 }
 
 
@@ -3198,28 +3203,57 @@ font-size: 16px;
 .aboutdetail.rightouter{
     display: flex;
     flex-wrap: wrap;
-    width: 200px;
+    width: 250px;
 }
 
 
 .aboutdetail.rightinner{
     /* border: 1px solid #000; */
-    width: 80px;
-    height: 80px;
-    margin: 20px 20px 20px 0px;
+    width: 100px;
+    height: 150px;
+    /* margin: 20px 20px 20px 0px; */
+    margin: 0px auto;
+    overflow: hidden; 
+   
+}
+
+.aboutdetail.rightinner>img{
+    /* border: 1px solid #000; */
+    width: 100px;
+    height: 100px;
+    transition: all 0.2s linear;
+
+}
+
+.aboutdetail.rightinner>img:hover{
+	width:100px;
+	height:100px;
+    transform: scale(1.2);
+    margin: 0px auto;
+   
+
 }
 
 
-.aboutdetail.rightinner >button{
-	width: -webkit-fill-available;
-    position: relative;
+.rightBtn{
+	background:#1AAB8A;
+	color:#fff;
+	border:none;
+	position:relative;
+	top:10px;
+	transition:800ms ease all;
+	width: -webkit-fill-available; 
     font-size: .7rem;
     padding: 0px;
     height: 20px;
     top: 5px;
     line-height: 18px;
-    border: none;
-    
+    border-radius : 7px;
+}
+.aboutdetail.rightinner >button:hover{
+	background: #fff;
+    color: #1AAB8A
+	
 }
 
 .aboutdetail.leftbox{
