@@ -2672,7 +2672,7 @@ font-size: 16px;
 }
 .admin-board{
 	padding: 0px 10px 0px 10px;
-	font-size: 10px;
+	font-size: 1rem;
 }
 .admin-board > h4 {
 	margin-top: 0px;
@@ -2790,6 +2790,13 @@ font-size: 16px;
 }
 #deleted-comm-table {
 	margin-bottom: 18px;
+}
+#font-category-tbl td {
+	overflow: auto;
+	height: 100%;
+}
+#font-category-tbl tr {
+	height: 25px;
 }
 /* 멤버 디테일 끝*/
 

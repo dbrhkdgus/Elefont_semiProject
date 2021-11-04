@@ -127,16 +127,16 @@ List<DeletedRep> deletedRepList = (List<DeletedRep>) request.getAttribute("delet
 					<div id="admin-board-section">
 						<div class="admin-board" id="deleted-comm-table">
 							<h4>삭제된 게시물</h4>
-							<div class="fc-fix">
-								<table id="font-category-tbl">
+							<div class="fix-head">
+								<table class="fix-tbl" id="font-category-tbl">
 									<tr>
-										<th>No.</th>
-										<th>글번호</th>
-										<th>회원번호</th>
-										<th>작성자</th>
+										<th width="28px">No.</th>
+										<th width="165px">글번호</th>
+										<th width="144px">회원번호</th>
+										<th width="86px">작성자</th>
 										<th width="218px">작성 내용</th>
-										<th>등록일</th>
-										<th>삭제일</th>
+										<th width="80px">등록일</th>
+										<th width="80px">삭제일</th>
 									</tr>
 <%
 int cnt =1;
@@ -169,8 +169,8 @@ if(!deletedCommList.isEmpty()){
 						</div>
 						<div class="admin-board">
 							<h4>삭제된 댓글</h4>
-							<div class="fc-fix">
-								<table id="font-category-tbl">
+							<div class="fix-head">
+								<table class="fix-tbl" id="rep-category-tbl">
 									<tr>
 										<th>No.</th>
 										<th>글번호</th>
