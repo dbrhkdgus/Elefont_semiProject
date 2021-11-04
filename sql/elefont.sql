@@ -608,3 +608,7 @@ commit;
 -- 김다현 11월 01일 회원 탈퇴시 커뮤니티 글 삭제 위한 컬럼 추가
 --alter Table community add(member_no varchar2(200));
 --alter table community add constraint fk_community_member_no foreign key(member_no) references member(member_no) on delete cascade;
+
+-- 김다현 11월 04일 member_orders 테이블 컬럼 추가
+--alter table member_orders add final_price number default 0 not null;
+
