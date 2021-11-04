@@ -2542,8 +2542,8 @@ font-size: 16px;
 .data-bar div{
 	background-color: #26BF5C;
 	position : relative;
-	padding-left: 25px;
-	/* width: 0; */
+	padding-left: 10px;
+	width: 0;
 	border-radius:2px;
 }
 .data-bar span{
