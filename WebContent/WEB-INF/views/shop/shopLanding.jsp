@@ -86,7 +86,7 @@
     	}
 %>
                         <div class="test-item">
-                            <a href="<%= request.getContextPath()%>/shopDetail?fontNo=<%= font.getFontNo()%>"><div class="test-item-title"> <%= font.getFontName()%> </div></a>
+                            <a href="<%= request.getContextPath()%>/shopDetail?fontNo=<%= font.getFontNo()%>"><div class="test-item-title"> <%= font.getFontName()%></div></a>
                             <textarea name="" id="<%= font.getFontNo() %>" cols="30" rows="10" class="font-style" style="font-family: '<%= font.getFontFamily() %>';" ></textarea>
                             <div class="test-item-buttons"> 
 <%
