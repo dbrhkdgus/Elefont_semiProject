@@ -82,4 +82,35 @@ public class QuestionDao {
 		return result;
 	}
 
+	public Question selectLastQuestion(Connection conn) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		Question question = null;
+		String sql = prop.getProperty("selectLastQuestion");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				question = new Question();
+				question.setqNo(rset.getInt("q_no"));
+				question.setqQuestioner(rset.getString("q_questioner"));
+				question.setqContent(rset.getString("q_content"));
+				question.setqWriter(rset.getString("q_writer"));
+				question.setqDate(rset.getTimestamp("q_date"));
+				question.setqIsAnswered(rset.getString("q_is_answered"));
+				
+				System.out.println(question);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+
+		return question;
+	}
+
 }
