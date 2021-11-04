@@ -237,7 +237,7 @@ BEGIN
 		insert into
 		community_deleted
 		values
-		(:old.comm_no, :old.comm_writer, :old.comm_content, :old.comm_reg_date, default);
+		(:old.comm_no, :old.comm_writer, :old.comm_content, :old.comm_reg_date, default, :old.member_no);
 end;
 /
 
@@ -616,3 +616,5 @@ commit;
 -- 김다현 11월 04일 member_orders 테이블 컬럼 추가
 --alter table member_orders add final_price number default 0 not null;
 
+-- 백지영 11월 04일 community_deleted 테이블 컬럼추가
+--alter table community_deleted add member_no varchar2(200) not null;

@@ -1,3 +1,5 @@
+<%@page import="com.kh.elefont.rep.model.vo.DeletedRep"%>
+<%@page import="com.kh.elefont.community.model.vo.DeletedCommunity"%>
 <%@page import="com.kh.elefont.font.model.vo.Font"%>
 <%@page import="com.kh.elefont.common.model.vo.Attachment"%>
 <%@page import="com.kh.elefont.question.model.vo.Question"%>
@@ -14,6 +16,9 @@ int tabIndex = (int)request.getAttribute("tabIndex");
 List<Attachment> attachmentList = (List<Attachment>) request.getAttribute("attachmentList");
 int notAnsweredQuestionCnt = (int)request.getAttribute("notAnsweredQuestionCnt");
 int answeredQuestionCnt = (int)request.getAttribute("answeredQuestionCnt");
+List<DeletedCommunity> deletedCommList = (List<DeletedCommunity>) request.getAttribute("deletedCommList");
+List<DeletedRep> deletedRepList = (List<DeletedRep>) request.getAttribute("deletedRepList");
+
 %>
 
      <div class="member-container">
@@ -47,7 +52,7 @@ int answeredQuestionCnt = (int)request.getAttribute("answeredQuestionCnt");
 			<div class="admin-tab-bar">
 				<ul>
 					<li class="active"><a href="#">회원 관리</a></li>
-					<li><a href="#">게시판 관리</a></li>
+					<li><a href="#">스팸/삭제된 글</a></li>
 					<li><a href="#">주문 관리</a></li>
 					<li><a href="#">쿠폰 관리</a></li>
 					<li><a href="#">폰트 관리</a></li>
@@ -124,46 +129,90 @@ int answeredQuestionCnt = (int)request.getAttribute("answeredQuestionCnt");
 				</div>
 				<div>
 					<div id="admin-board-section">
-						<div class="admin-board" >
-							<h4>폰트 카테고리 관리</h4>
+						<div class="admin-board" id="deleted-comm-table">
+							<h4>삭제된 게시물</h4>
 							<div class="fc-fix">
 								<table id="font-category-tbl">
 									<tr>
 										<th>No.</th>
-										<th>분류코드</th>
-										<th>폰트번호</th>
+										<th>글번호</th>
+										<th>회원번호</th>
+										<th>작성자</th>
+										<th width="218px">작성 내용</th>
+										<th>등록일</th>
+										<th>삭제일</th>
 									</tr>
 <%
-	if(!categoryList.isEmpty()){
-		for(FontCategory fc : categoryList){
+int cnt =1;
+if(!deletedCommList.isEmpty()){
+	for(DeletedCommunity dc : deletedCommList){
 %>
 									<tr>
-										<td><%= categoryList.indexOf(fc) %></td>
-										<td><%= fc.getCategoryCode() %></td>
-										<td><%= fc.getFontNo() %></td>
+										<td><%= cnt %></td>
+										<td><%= dc.getCommNo() %></td>
+										<td><%= dc.getMemberNo() %></td>
+										<td><%= dc.getCommWriter() %></td>
+										<td><%= dc.getCommContent() %></td>
+										<td><%= dc.getCommRegDate() %></td>
+										<td><%= dc.getCommDeleteDate() %></td>
 									</tr>
 <%
-		}
-	}else{
-%>
-									<tr>
-										<td colspan="3">카테고리가 없습니다.</td>
-									</tr>
-<%
+		cnt++;		
 	}
+
+}else{
 %>
-	
+							<tr>
+								<td colspan="7">삭제된 글이 없습니다</td>
+							</tr>
+<%
+}
+%>
 								</table>
 							</div>
 						</div>
 						<div class="admin-board">
-							<h4>커뮤니티 관리</h4>
-							<ul>
-								<li><a href="<%= request.getContextPath()%>/admin/answerQnA">1:1 문의 관리</a></li>
-								<li><a href="">삭제 게시글/댓글 관리</a></li>
-								<li><a href="<%= request.getContextPath()%>/community">커뮤니티로 이동</a></li>
-							</ul>
-							
+							<h4>삭제된 댓글</h4>
+							<div class="fc-fix">
+								<table id="font-category-tbl">
+									<tr>
+										<th>No.</th>
+										<th>글번호</th>
+										<th>회원번호</th>
+										<th>작성자</th>
+										<th>댓글 내용</th>
+										<th>등록일</th>
+										<th>삭제일</th>
+									</tr>
+<%
+int repCnt =1;
+if(!deletedRepList.isEmpty()){
+	for(DeletedRep dr : deletedRepList){
+%>
+									<tr>
+										<td><%= repCnt %></td>
+										<td><%= dr.getComnNo() %></td>
+										<td><%= dr.getMemberNo() %></td>
+										<td><%= dr.getRepWriter() %></td>
+										<td><%= dr.getRepContent() %></td>
+										<td><%= dr.getRepRegDate() %></td>
+										<td><%= dr.getRepDeleteDate() %></td>
+									</tr>
+<%
+		repCnt++;		
+	}
+
+}else{
+%>
+							<tr>
+								<td colspan="7">삭제된 댓글이 없습니다</td>
+							</tr>
+<%
+}
+%>
+	
+								</table>
+							</div>
 						</div>
 					</div>
 				</div>
