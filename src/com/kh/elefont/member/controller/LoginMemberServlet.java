@@ -34,7 +34,7 @@ public class LoginMemberServlet extends HttpServlet {
 		//업무 로직 X
 		Member member = memberService.selectOneMember(memberId);
 		HttpSession session = request.getSession();
-		System.out.println(session.getId());
+		
 		
 		String msg = "";
 		if(member != null && password.equals(member.getMemberPwd())) {
@@ -42,7 +42,8 @@ public class LoginMemberServlet extends HttpServlet {
 			// session객체에 로그인 정보 기록
 			
 			session.setAttribute("loginMember", member);
-			
+			session.setAttribute("memberNo", member.getMemberNo());
+			session.setAttribute("memberName", member.getMemberName());
 //			 @@@@session유효시간 할건가요??? @@@
 //			 session.setMaxInactiveInterval(60); // 60초
 			
