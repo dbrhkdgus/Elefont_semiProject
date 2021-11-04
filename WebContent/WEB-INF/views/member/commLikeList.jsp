@@ -11,8 +11,6 @@
 	List<CommLike> commLikeList = (List<CommLike>) request.getAttribute("commLikeList");
 	List<Attachment> allAttachmentList = (List<Attachment>)request.getAttribute("allAttachmentList");
 	
-	
-	System.out.println("commlike@jsp"+ commLikeList );
 %>
   
      <!-- Portfolio Start -->
@@ -29,7 +27,6 @@ String likeProfilepic ="";
 	for(Attachment att : allAttachmentList ){
 		if(att.getCommNo() == null && att.getFontNo() == null && att.getMemberNo().equals(loginMember.getMemberNo())){
 			likeProfilepic = att.getRenamedFilename();
-			System.out.println("likeProfilepic" + likeProfilepic);
 
 %>                                
                                 <div class="communitylike-profile-photo-box">
@@ -94,7 +91,6 @@ String likeProfilepic ="";
 								for(Attachment attpic : allAttachmentList)	
 								if(attpic.getCommNo() == null && attpic.getFontNo() == null && attpic.getMemberNo().equals(writerNo)){
 									profileAttachFilename = attpic.getRenamedFilename();
-									System.out.println("profileAttachFilename@@@@@@@" + profileAttachFilename);
 						}
 					}
 				}
@@ -156,13 +152,11 @@ String likeProfilepic ="";
 <script>
 
 /* 좋아요 버튼 클릭시 사용자 좋아요 여부에 따른 버튼 이벤트 */
-/* 좋아요 버튼 클릭시 사용자 좋아요 여부에 따른 버튼 이벤트 */
 	$(".fa-heart").click((e)=>{
 		
 
 		let $target = $(e.target);
 		let $commNo = $target.data("commNo");
-		console.log($commNo);
 		
 		$.ajax({
 			url: "<%= request.getContextPath()%>/community/commLike",
@@ -170,7 +164,6 @@ String likeProfilepic ="";
 			type: "GET",
 			data: {'commNo' : $commNo},
 			success(jsonStr){
-				console.log(jsonStr);
 				const likeValid = jsonStr["likeValid"];
 				const likeCnt = jsonStr["likeCnt"];
 				
@@ -189,7 +182,6 @@ String likeProfilepic ="";
 		});
 	});
 $("#member-font").click((e)=>{
-	console.log("클릭");
 	location.href = "<%=request.getContextPath()%>/member/fontLikeList"
 });
 </script>

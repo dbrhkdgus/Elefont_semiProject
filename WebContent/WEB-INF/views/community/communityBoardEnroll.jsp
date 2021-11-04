@@ -101,7 +101,6 @@ inputImage.addEventListener("change", e => {
 $("[name=upFile]").change((e) => {
     // 파일 선택여부
     const $file = $(e.target);
-    console.log($file.val());
      const newFnameSrc = $file.val().split("\\");
      const newFname  = newFnameSrc [newFnameSrc .length-1]; //마지막 화일명
     if($file.val() != ""){
@@ -161,7 +160,6 @@ $("[name=upFile]").change((e) => {
 				url: "<%= request.getContextPath()%>/autocomplete",
 				data: {searchName}, //?searchName=김
 				success(data){
-					console.log(data);
 					let temp = data.split("\n");
 					temp = $.map(temp, (name, index)=>{
 						return {
@@ -169,7 +167,6 @@ $("[name=upFile]").change((e) => {
 							value : name
 						}
 					});
-					console.log(temp);
 					response(temp);
 				},
 				error : console.log

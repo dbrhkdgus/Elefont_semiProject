@@ -9,8 +9,6 @@
 Member member = (Member) request.getAttribute("member");
 File profilePhotoAttach = (File) request.getAttribute("profilePhotoAttach");
 String photoPath = profilePhotoAttach.getName();
-System.out.println("파일 몇개 궁금하느냐? : " + profilePhotoAttach);
-System.out.println("경로가 궁금하느냐? : " + photoPath);
 %>
 
 <!-- 회원정보 수정 section 시작-->
@@ -114,7 +112,6 @@ System.out.println("경로가 궁금하느냐? : " + photoPath);
 											<input type="hidden" class="emailValid" value="1"/>
 											<script>
 											$(editEmailk).change((e) => {
-												console.log("이 칸을 건들였다아")
 												$(".emailValid").val(0);
 											});
 											</script>
@@ -165,7 +162,6 @@ System.out.println("경로가 궁금하느냐? : " + photoPath);
 
 $("#memberwithdrawalBtn").click((e)=>{
 	if(confirm("탈퇴하시겠습니까?")){
-		console.log("탈퇴?잘가요 ㅜㅜ")
 		$(document.withdrawalFrm).submit();
 	}
 });
@@ -209,7 +205,6 @@ $("#memberInfoEditBtn").click(()=>{
 			return;
 		}
 		const emailVaildVal = $(".emailValid").val();
-		console.log(emailVaildVal);
 		
 		if(emailVaildVal < 1){
 			alert("중복검사를 다시 해주세요"); 
