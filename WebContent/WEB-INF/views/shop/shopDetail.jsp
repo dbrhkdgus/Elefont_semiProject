@@ -451,8 +451,8 @@ if(loginMember != null){
                         <h4 id="sd-copyright-title">저작권 정보</h4>
                         <hr class="liner">
                         <p id="sd-copyright-content">
-                        	본 <%= font.getFontName() %>의 저작권은 <%= fontCopyright.getFontPublisher() %>에 있으며, <%= fontCopyright.getFontDesigner() %>에 의해 만들어졌습니다. 
-                        	<br>저작권 및 자세한 문의사항은 <a href="<%=fontCopyright.getFontRootUrl() %>"> <%=fontCopyright.getFontRootUrl() %></a>에 문의하시길 바랍니다.
+                        	본<mark> <%= font.getFontName() %></mark>의 저작권은 <mark><%= fontCopyright.getFontPublisher() %></mark>에 있으며, <mark><%= fontCopyright.getFontDesigner() %></mark>에 의해 만들어졌습니다. 
+                        	<br>저작권 및 자세한 문의사항은 <mark><a href="<%=fontCopyright.getFontRootUrl() %>"> <%=fontCopyright.getFontRootUrl() %></a></mark>에 문의하시길 바랍니다.
                         </p>
                       
                     </div>        
