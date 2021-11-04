@@ -46,6 +46,10 @@ public class MainLandingServlet extends HttpServlet {
 			commLikeList = communityService.selectAllLikedComm(loginMember.getMemberNo());
 		}
 		
+		if(session.getAttribute("memberNo") == null) {
+			
+			session.setAttribute("memberNo", "비회원");
+		}
 		session.setAttribute("fontList", fontList);
 		request.setAttribute("communityList", communityList);
 		request.setAttribute("attachmentList", attachmentList);

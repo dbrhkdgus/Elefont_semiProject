@@ -34,7 +34,7 @@ public class LoginMemberServlet extends HttpServlet {
 		//업무 로직 X
 		Member member = memberService.selectOneMember(memberId);
 		HttpSession session = request.getSession();
-		System.out.println(session.getId());
+		
 		
 		String msg = "";
 		if(member != null && password.equals(member.getMemberPwd())) {
@@ -42,7 +42,7 @@ public class LoginMemberServlet extends HttpServlet {
 			// session객체에 로그인 정보 기록
 			
 			session.setAttribute("loginMember", member);
-			
+			session.setAttribute("memberNo", member.getMemberNo());
 //			 @@@@session유효시간 할건가요??? @@@
 //			 session.setMaxInactiveInterval(60); // 60초
 			
@@ -62,7 +62,6 @@ public class LoginMemberServlet extends HttpServlet {
 			// 서버컴퓨터 파일 
 			String saveDirectory = getServletContext().getRealPath("/upload/profilephotos");
 			File profilePhotoAttach = new File(saveDirectory, attach.getRenamedFilename());
-			System.out.println("여기 뭐가 올렸나?" + profilePhotoAttach);
 
 			
 			//3. 뷰단처리

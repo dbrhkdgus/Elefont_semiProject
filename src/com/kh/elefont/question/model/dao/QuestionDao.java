@@ -60,4 +60,57 @@ public class QuestionDao {
 		return questionList;
 	}
 
+	public int insertQuestion(Connection conn, String qContent, String qWriter) {
+		PreparedStatement pstmt = null;
+		int result = 0;
+		String sql = prop.getProperty("insertQuestion");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, qWriter);
+			pstmt.setString(2, qContent);
+			pstmt.setString(3, qWriter);
+			
+			result = pstmt.executeUpdate();
+			
+					
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}finally {
+			close(pstmt);
+		}
+		return result;
+	}
+
+	public Question selectLastQuestion(Connection conn) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		Question question = null;
+		String sql = prop.getProperty("selectLastQuestion");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				question = new Question();
+				question.setqNo(rset.getInt("q_no"));
+				question.setqQuestioner(rset.getString("q_questioner"));
+				question.setqContent(rset.getString("q_content"));
+				question.setqWriter(rset.getString("q_writer"));
+				question.setqDate(rset.getTimestamp("q_date"));
+				question.setqIsAnswered(rset.getString("q_is_answered"));
+				
+				System.out.println(question);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+
+		return question;
+	}
+
 }

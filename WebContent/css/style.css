@@ -17,6 +17,13 @@
     font-weight: normal;
     font-style: normal;
 }
+
+@font-face {
+    font-family: 'NanumSquareRound';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_two@1.0/NanumSquareRound.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
 /*
    
     Template Name : Rolling - Freelancer Portfolio Template
@@ -1676,6 +1683,11 @@ text-align: center;
     margin:30px 19px 200px;
 }
 
+.sd-buttton-content{
+	 font-family: 'NanumSquareRound';
+	 margin-right:10px;
+}
+
 #purchase-button,#cart-button,#sd-like-button{
     cursor:pointer;
     font-size:30px;
@@ -1719,6 +1731,37 @@ text-align: center;
     text-align: left;
     background-color: #59C38A;
     width: fit-content;
+}
+/* 폰트구매 css */
+.font_purchase_h1{
+	font-family: 'NanumSquareRound';
+	font-weight: 900;
+	text-align: center;
+    margin-bottom: 25px;
+
+}
+
+.purchase-label{
+	font-size: 20px;
+	 font-family: 'NanumSquareRound';
+	font-weight: bold;
+	margin-bottom:20px;
+	margin-right:20px;
+	background-color:#A0BFB5;
+}
+#purchase-email{
+	margin-top:20px;
+}
+.purchase-buttons{
+	margin-left:10px;
+	margin-top:20px;
+	display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+#purchase-btn{
+	margin-right:7px;
 }
 /* 숍디테일 댓글 */
 .shop-detail-reply{
@@ -2413,8 +2456,8 @@ font-size: 16px;
 
 #my-profile-pic{
 	display: inline-block;
-    width: 100px;
-    height: 100px;
+    width: 150px;
+    height: 150px;
     border-radius: 50%;
     border: 1px solid gold;
 }
