@@ -31,6 +31,10 @@ if("U".equals(memberRole)){
 <%
 }
 %>
-
+<script>
+$("#btn-member-Info-Edit").click((e)=>{
+	location.href = "<%= request.getContextPath()%>/member/memberInfoEdit?memberId=<%=loginMember.getMemberId()%>&memberNo=<%=loginMember.getMemberNo()%>";
+});
+</script>
 </section>
 <%@ include file = "/WEB-INF/views/common/footer.jsp" %>

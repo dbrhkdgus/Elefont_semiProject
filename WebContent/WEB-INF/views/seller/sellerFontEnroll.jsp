@@ -90,7 +90,7 @@
    				</td>
    			</tr>
    			<tr>
-	   			<td>
+	   			<td colspan="2" id="font-frm-line">
 		   			<hr />
 	   			</td>
    			</tr>
