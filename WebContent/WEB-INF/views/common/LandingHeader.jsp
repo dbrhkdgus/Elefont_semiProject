@@ -167,7 +167,7 @@ $(window).on('load', function() {
 
 
     <!-- Home & Menu Section Start -->
-    <header id="home" class="home-section">
+    <!-- <header id="home" class="home-section"> -->
 
         <div class="header-top-area" style = "background-color: black; ">
             <div class="container">

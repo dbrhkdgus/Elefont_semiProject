@@ -29,7 +29,7 @@
 			<div id ="comm-search-container">
 			
 				<select id="searchType">
-				<option value="writerName"<%="writerName".equals(searchType) ? "selected":"" %>>>작성자</option>		
+				<option value="writerName"<%="writerName".equals(searchType) ? "selected":"" %>>작성자</option>		
 	            <option value="title" <%="title".equals(searchType) ? "selected":"" %> >제목</option>
 	            <option value="content" <%="content".equals(searchType) ? "selected":"" %> >내용</option>
 	            
