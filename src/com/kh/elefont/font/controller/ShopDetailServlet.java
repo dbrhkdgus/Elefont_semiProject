@@ -124,6 +124,7 @@ public class ShopDetailServlet extends HttpServlet {
 			
 			for(Rep rep : repList) {
 				String reply = ElefontUtils.escapeHtml(rep.getRepContent());
+				reply = ElefontUtils.convertLineFeedToBr(reply);
 				rep.setRepContent(reply);
 			}
 			
