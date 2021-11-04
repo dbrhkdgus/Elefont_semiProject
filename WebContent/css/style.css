@@ -208,7 +208,7 @@ fieldset {
 	-webkit-transition: all 0.3s;
 	-moz-transition: all 0.3s;
 	transition: all 0.3s;
-	font-family: 'KCC-eunyoung';
+	font-family: 'NanumSquareRound';
 }
 
 .button:after {
@@ -247,7 +247,7 @@ fieldset {
 	background-image:url(https://kabekin.com/iphone/uploads/cache/1735676553/kabekin18-300x505-MM-100.jpg);
 	/* background: #24b662;  */
 	color: #ffffff !important;
-	font-family: 'KCC-eunyoung';
+	
 }
 
 
@@ -1719,6 +1719,7 @@ text-align: center;
 	font-family: 'NanumSquareRound';
     background-color: #59C38A;
     width: fit-content;
+    padding: 5px;
 }
 #purchase-button,#cart-button,#sd-like-button{
     cursor:pointer;
@@ -1737,6 +1738,7 @@ text-align: center;
     text-align: left;
     background-color: #59C38A;
     width: fit-content;
+    padding: 5px;
 }
 .h1_font_style{
 	margin-left: 35px;
@@ -1846,6 +1848,7 @@ text-align: center;
 	font-family: 'NanumSquareRound';
     background-color: #59C38A;
     width: fit-content;
+    padding: 5px;
 
 }
 .re-reply-box{
@@ -1899,6 +1902,7 @@ text-align: center;
 #sd-copyright-title{
     background-color: #59C38A;
     width: fit-content;
+    padding: 5px;
 }
 
 #sd-review-text{
