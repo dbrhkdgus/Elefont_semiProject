@@ -237,7 +237,7 @@ BEGIN
 		insert into
 		community_deleted
 		values
-		(:old.comm_no, :old.comm_writer, :old.comm_content, :old.comm_reg_date, default);
+		(:old.comm_no, :old.comm_writer, :old.comm_content, :old.comm_reg_date, default, :old.member_no);
 end;
 /
 
@@ -281,6 +281,8 @@ CREATE TABLE like_community (
     constraint fk_like_community_member_no foreign key (member_no) references member(member_no),
     constraint fk_like_community_comm_no foreign key (comm_no) references community (comm_no)
 );    
+--alter table question modify q_writer varchar2(100);
+--alter table question modify q_questioner varchar2(100);
 
 --FK제약 없는테이블
 CREATE TABLE question (
@@ -532,6 +534,7 @@ ALTER TABLE font ADD CONSTRAINT FK_FONT_MEMBER_ID FOREIGN KEY (
 ) REFERENCES MEMBER(member_id);
 --
 create sequence seq_font_no;
+create sequence seq_question_no;
 
 
 commit;
@@ -613,3 +616,5 @@ commit;
 -- 김다현 11월 04일 member_orders 테이블 컬럼 추가
 --alter table member_orders add final_price number default 0 not null;
 
+-- 백지영 11월 04일 community_deleted 테이블 컬럼추가
+--alter table community_deleted add member_no varchar2(200) not null;

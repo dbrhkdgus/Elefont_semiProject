@@ -15,7 +15,7 @@ import javax.websocket.Session;
 import javax.websocket.server.ServerEndpoint;
 
 import com.google.gson.Gson;
-import com.kh.elefont.member.model.vo.Member;
+
 
 @ServerEndpoint(value="/elefontWebsocket", configurator=ElefontWebsocketConfig.class)
 public class ElefontWebsocket {
@@ -34,19 +34,17 @@ public class ElefontWebsocket {
 		// 사용자 userId - session을 clients map에 저장
 		Map<String, Object> userProp = config.getUserProperties();
 		String memberNo = (String) userProp.get("memberNo");
-		String memberName = (String) userProp.get("memberName");
-		System.out.println("memberNo@ws : " + memberNo);
-		System.out.println("memberName@ws : " + memberName);
+		
 		clients.put(memberNo, session);
-		clients.put(memberName, session);
+		
 		
 		// userId를 session의 userProperties 맵 객체에 저장(onClose에서 사용)
 		Map<String, Object> sessionUserProp = session.getUserProperties();
 		sessionUserProp.put("memberNo", memberNo);
-		sessionUserProp.put("memberName", memberName);
+		
 		
 		// 접속 알림
-		String jsonMsg = msgToJson("welcome",memberName+"("+memberNo+")","님이 입장했습니다.");
+		String jsonMsg = msgToJson("welcome","("+memberNo+")","님이 입장했습니다.");
 		onMessage(jsonMsg, session);
 		
 		logClients();
@@ -58,6 +56,7 @@ public class ElefontWebsocket {
 		map.put("sender", userId);
 		map.put("msg", msg);
 		map.put("time", System.currentTimeMillis());
+		
 		String jsonMsg = new Gson().toJson(map);
 		return jsonMsg;
 	}
@@ -66,7 +65,7 @@ public class ElefontWebsocket {
 	public void onMessage(String msg, Session session) throws IOException {
 		Map<String, Object> map = new Gson().fromJson(msg, HashMap.class);
 		
-		if("dm".equals(map.get("type"))) {
+		if("que".equals(map.get("type"))) {
 			Session receiverSess = clients.get(map.get("receiver"));
 			receiverSess.getBasicRemote().sendText(msg);
 		}else {
@@ -95,12 +94,12 @@ public class ElefontWebsocket {
 	public void onClose(Session session) throws IOException {
 		// clients에서 사용자 제거
 		Map<String, Object> userProp = session.getUserProperties();
-		String userId = (String)userProp.get("userId");
+		String memberNo = (String)userProp.get("memberNo");
 		
-		clients.remove(userId);
+		clients.remove(memberNo);
 		
 		// 다른 사용ㄹ자에게 알림
-		String msg = msgToJson("goodbte",userId,"님이 나갔습니다.");
+		String msg = msgToJson("goodbte",memberNo,"님이 나갔습니다.");
 		onMessage(msg,session);
 	}
 

@@ -22,11 +22,12 @@
 			
 %>
 <section id="portfolio" class="portfolio section-space-padding">
-    <div class="container">
+   		<div class="comm-container">
+   		<div class="comm-title-delBtn">
+		  <div class="comm-title"><h1><%=community.getCommTitle() %></h1></div>
         <div class="comm-pic-detail">
             <div class="comm-board-content">
             	<div class="comm-board-title-button">
-		            <h1><%=community.getCommTitle() %></h1>
 		           
 <% 	
 if(editable){ 
@@ -203,7 +204,7 @@ if(cnt >= 4) {
                 </div>
             </div>
         </div>
-        </div>
+    </div>   
 </section>
 <% if(editable){ %>
 <form action="<%= request.getContextPath() %>/community/communityDelete" name="deleteBoardFrm">

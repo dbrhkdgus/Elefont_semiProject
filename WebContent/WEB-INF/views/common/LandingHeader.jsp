@@ -45,7 +45,35 @@
 	   <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
     <![endif]-->
 	<script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
+<script>
+/**
+ * websocket client 설정
+ */
+ const ws = new WebSocket(`ws://\${location.host}<%=request.getContextPath()%>/elefontWebsocket`); //이 주소로 웹소켓 연결을 다시 요청
+ ws.onopen = (e) => {
+	 console.log("open!", e);
+ } ;
+ ws.onmessage = (e) => {
+	 console.log("message!", e);
+	 const msg = JSON.parse(e.data);
+	 if("que" === msg.type){
+		 
+$("#que-balloon").append(`<li><div>\${msg.msg}</div> </li>`);
+	 }else{
+		 msgToHtml(msg); 
+	 }
+ } ;
+ ws.onerror = (e) => {
+	 console.log("error!", e);
+ } ;
+ 
+ ws.onclose = (e) => {
+	 console.log("close!", e);
+ } ;
 
+
+
+</script>
 
 </head>
 

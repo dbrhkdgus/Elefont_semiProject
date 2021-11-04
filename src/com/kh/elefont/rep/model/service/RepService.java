@@ -9,7 +9,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 import com.kh.elefont.community.model.vo.Community;
+import com.kh.elefont.community.model.vo.DeletedCommunity;
 import com.kh.elefont.rep.model.dao.RepDao;
+import com.kh.elefont.rep.model.vo.DeletedRep;
 import com.kh.elefont.rep.model.vo.Rep;
 
 public class RepService {
@@ -115,5 +117,12 @@ public class RepService {
 	        }
 	        return repList;
 		
+	}
+
+	public List<DeletedRep> selectAllDeletedRepList() {
+		Connection conn = getConnection();
+		List<DeletedRep> deletedRepList = repDao.selectAllDeletedRepList(conn);
+		close(conn);
+		return deletedRepList;
 	}
 }
