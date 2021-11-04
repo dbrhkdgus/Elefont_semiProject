@@ -33,7 +33,7 @@ for(Faq f : faqList) {
             </div>
             <div id ="chatMessage">
                 <div id="chatMsg">
-                	<ul class="question-balloon">
+                	<ul class="question-balloon" id="que-balloon">
 					</ul>
                 </div>
                 <hr>
@@ -60,15 +60,35 @@ for(Faq f : faqList) {
         const $chatMessage = $("#chatMessage");
         
         if($chatMessage.css("display")=="none"){
-            console.log(($chatMessage.css("display"))=="none");
+            
             $chatMessage.show();
         }
         else {
-            console.log("닫혀랏엽")
+            
             // $chatMessage.css("display", "none");
             $chatMessage.hide();
         }    
     }
+    
+    $(chatInputBtn).click((e)=>{
+    	const receiver = "<%= loginMember.getMemberNo()%>";
+		if(!receiver) return;
+		
+		
+		const msg = {
+			type: "que",
+			sender: "<%= loginMember.getMemberNo()%>",
+			msg : $(textareaMsg).val(),
+			receiver: receiver,
+			time : Date.now()
+		};
+		
+		ws.send(JSON.stringify(msg));
+    	
+		$(textareaMsg).val("").focus();
+    	
+    	
+    });
     
 
 </script>
