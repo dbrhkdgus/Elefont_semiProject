@@ -46,6 +46,22 @@
     <![endif]-->
 	<script src="https://code.jquery.com/ui/1.13.0/jquery-ui.js"></script>
 <script>
+<%
+	
+	String msg = (String)session.getAttribute("msg");
+	
+	if(msg != null) { 
+%> 
+	
+    alert("<%= msg %>");
+    
+    
+<% 
+	session.removeAttribute("msg"); } 
+
+	Member loginMember = (Member)session.getAttribute("loginMember");
+
+%>
 /**
  * websocket client 설정
  */
@@ -56,9 +72,30 @@
  ws.onmessage = (e) => {
 	 console.log("message!", e);
 	 const msg = JSON.parse(e.data);
+	 console.log("msg.msg",msg.msg);
 	 if("que" === msg.type){
-		 
-$("#que-balloon").append(`<li><div>\${msg.msg}</div> </li>`);
+		let name = "";
+		let content = msg.msg;
+		let leftRight = "";
+		let time = msg.time;
+		let writer = msg.sender;
+		let questioner = msg.receiver;
+		
+		if(writer === questioner){
+			name = "<%=loginMember != null? loginMember.getMemberId():""%>";	
+			leftRight = "right";
+		}else{
+			name = "Elefont";
+			leftRight = "left";
+		}
+		console.log(name);
+		console.log(content);
+		console.log(time);
+		
+		const msgContent = appendMsg(leftRight, name, content, time);
+		console.log(msgContent);
+		 $("#que-balloon").append(msgContent);
+				 
 	 }else{
 		 msgToHtml(msg); 
 	 }
@@ -96,22 +133,7 @@ $(window).on('load', function() {
 	});
 });
 
-<%
-	
-	String msg = (String)session.getAttribute("msg");
-	
-	if(msg != null) { 
-%> 
-	
-    alert("<%= msg %>");
-    
-    
-<% 
-	session.removeAttribute("msg"); } 
 
-	Member loginMember = (Member)session.getAttribute("loginMember");
-
-%>
 </script>
 
 
