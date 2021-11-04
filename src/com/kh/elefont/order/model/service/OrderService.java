@@ -3,6 +3,7 @@ import static com.kh.elefont.common.JdbcTemplate.*;
 
 import java.sql.Connection;
 import java.util.List;
+import java.util.Map;
 
 import com.kh.elefont.font.model.vo.Font;
 import com.kh.elefont.member.model.vo.Member;
@@ -76,6 +77,14 @@ public class OrderService {
 	public List<Order> selectAllOrder() {
 		Connection conn = getConnection();
 		List<Order> orderList = orderDao.selectAllOrderList(conn);
+		close(conn);
+		return orderList;
+	}
+
+	public List<Order> selectSerchOrder(Map<String, Object> param) {
+		Connection conn = getConnection();
+		List<Order> orderList = orderDao.selectSerchOrder(conn,param);
+		
 		close(conn);
 		return orderList;
 	}

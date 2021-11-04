@@ -34,14 +34,10 @@ double salePrice = 0;
 		<input type="hidden" name="couponCheckVaild" id="couponCheckVaild" value ="0"/>
 		<input type="hidden" name="couponType" id="couponTypeInput" />
 		<input type="hidden"  name="font-price" value="<%= fontPrice %>" />
-		<input type="hidden" name="purchase-email" value="<%=memberEmail %>" />
-		<input type="hidden" name="fontName" value="<%=fontName %>"/>
-		<input type="hidden" name="font-no" value="<%= fontNo %>" />
 		
 		
         <input type="button" id="coupon-x-btn" value="취소하기">
         <input type="button" id="coupon-submit-btn" value="등록하기" onclick="LetsRegCoupon();">
-        <input type="hidden" name="memberIdToReg" id="memberIdToReg" value="<%=loginMember.getMemberId()%>">
         
     </form>
 </div>

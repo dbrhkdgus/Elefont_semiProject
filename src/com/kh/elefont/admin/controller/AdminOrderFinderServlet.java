@@ -28,8 +28,8 @@ import com.kh.elefont.order.model.vo.Order;
 /**
  * Servlet implementation class AdminFontFinderServlet
  */
-@WebServlet("/admin/fontFinder")
-public class AdminFontFinderServlet extends HttpServlet {
+@WebServlet("/admin/orderFinder")
+public class AdminOrderFinderServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private FontService fontService = new FontService();
 	private AttachmentService attachmentService = new AttachmentService();
@@ -42,9 +42,7 @@ public class AdminFontFinderServlet extends HttpServlet {
 		//1.사용자 입력값 처리
 		String searchType = request.getParameter("searchType");
 		String searchKeyword = request.getParameter("searchKeyword");
-		System.out.println("searchType" + searchType);
-		System.out.println("searchKeyword" + searchKeyword);
-		List<Font> fontList = null;
+		List<Order> orderList = null;
 		
 		
 		Map<String,Object> param = new HashMap<>();
@@ -54,12 +52,12 @@ public class AdminFontFinderServlet extends HttpServlet {
 		
 		//2.업무로직!!
 		if("all".equals(searchType)) {
-			fontList = fontService.selectAllFont();
+			orderList = orderService.selectAllOrder();
 			
 		}else {
-			fontList = fontService.selectSerchFont(param);
+			orderList = orderService.selectSerchOrder(param);
 		}
-		System.out.println("fontList@servlet : " + fontList);
+		System.out.println("orderList@servlet : " + orderList);
 		
 		
 		HttpSession session = request.getSession();
@@ -68,10 +66,11 @@ public class AdminFontFinderServlet extends HttpServlet {
 		request.setAttribute("profile", profile);
 		
 		List<Coupon> couponList = couponService.selectAllCoupon();
-		List<Order> orderList = orderService.selectAllOrder();
+		
 		List<FontCategory> categoryList = fontService.selectAllFontCategory();
 		List<Attachment> attachmentList = attachmentService.selectAllFontAttachmentList();
 		List<Member> memberList = memberService.selectAllMember();
+		List<Font> fontList = fontService.selectAllFont();
 		
 		request.setAttribute("attachmentList", attachmentList);
 		request.setAttribute("memberList", memberList);
@@ -79,12 +78,12 @@ public class AdminFontFinderServlet extends HttpServlet {
 		request.setAttribute("couponList", couponList);
 		request.setAttribute("orderList", orderList);
 		request.setAttribute("categoryList", categoryList);
-		session.setAttribute("tabIndex", 0);
+		session.setAttribute("tabIndex", 2);
 		
 		request.setAttribute("memberList", memberList);
-		request.setAttribute("tabIndex", 0);
+		request.setAttribute("tabIndex", 2);
 		request.setAttribute("fontList", fontList);
-		session.setAttribute("tabIndex", 4);
+		
 
 		//3. view단 처리
 		request

@@ -566,6 +566,8 @@ commit;
 --alter table like_community drop constraint fk_like_community_comm_no;
 --alter table like_community add constraint fk_like_community_member_no foreign key(member_no) references member(member_no) on delete cascade;
 --alter table like_community add constraint fk_like_community_comm_no foreign key(comm_no) references community(comm_no) on delete cascade;
+--11.3일 유저 좋아요리스트 전체보기를 위해 추가(지영)
+--ALTER TABLE like_community MODIFY like_comm_reg_date TIMESTAMP; 
 --
 ---- 회원-포인트
 --alter table member_point drop constraint fk_member_point_point_no;
@@ -600,6 +602,8 @@ commit;
 --alter table like_font drop constraint fk_like_font_font_no;
 --alter table like_font add constraint fk_like_font_member_no foreign key (member_no) references member(member_no) on delete cascade;
 --alter table like_font add constraint fk_like_font_font_no foreign key (font_no) references font (font_no) on delete cascade;
+--11.3일 유저 좋아요리스트 전체보기를 위해 추가(지영)
+--ALTER TABLE like_font MODIFY like_font_reg_date TIMESTAMP;
 
 -- 김다현 11월 01일 회원 탈퇴시 커뮤니티 글 삭제 위한 컬럼 추가
 --alter Table community add(member_no varchar2(200));
