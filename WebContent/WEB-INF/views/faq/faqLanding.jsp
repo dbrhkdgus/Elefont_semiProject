@@ -26,6 +26,8 @@ for(Faq f : faqList) {
 %>
                 </div>
             </div>
+            
+            
             <div class="faq_chat">
                 <a id="chatClick" onclick="showUpChat();">
                     <img src="https://i.ibb.co/KLrtGnq/chat-Icon-1.png" alt="" style="width: 130px;" >
@@ -38,10 +40,10 @@ for(Faq f : faqList) {
                 </div>
                 <hr>
                 <div id="chatPutMsg">
-                    <form id="chatInputFrm" action="">
+                    <form id = "chatInputFrm" name="chatInputFrm" action="<%= request.getContextPath()%>/chat/chatInput">
                         <textarea name="qContent" id="textareaMsg" cols="30" rows="3">메세지를 입력하세요</textarea>
                         <input type="button" value="전송" id="chatInputBtn">
-                        <input type="hidden" name="qWriter" value="" />
+                        <input type="hidden" name="qWriter" value="<%=loginMember.getMemberNo() %>" />
                     </form>
                 </div>
             </div>        
@@ -85,9 +87,30 @@ for(Faq f : faqList) {
 		
 		ws.send(JSON.stringify(msg));
     	
+		
+		const $frmData = $(document.chatInputFrm);
+		$.ajax({
+			url : "<%= request.getContextPath()%>/chat/chatInput",
+			data : $frmData.serialize(),
+			method : "post",
+			dataType : "json",
+			success(data) {
+				
+
+				
+				
+			},
+			//유효하지 않은 쿠폰일 시 alert 띄우고 input 값 지우기
+			error:console.log			
+		});
+		
+		
+		
+		
+		
+		
 		$(textareaMsg).val("").focus();
-    	
-    	
+   	
     });
     
 

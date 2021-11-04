@@ -58,7 +58,7 @@
 	 const msg = JSON.parse(e.data);
 	 if("que" === msg.type){
 		 
-$("#que-balloon").append(`<li>\${msg.msg} </li>`);
+$("#que-balloon").append(`<li><div>\${msg.msg}</div> </li>`);
 	 }else{
 		 msgToHtml(msg); 
 	 }
