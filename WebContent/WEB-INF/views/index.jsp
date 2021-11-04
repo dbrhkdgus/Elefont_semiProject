@@ -148,7 +148,7 @@ List<String> commLikeList = (List<String>) request.getAttribute("commLikeList");
             <div class="row" >
                 <div class="col-sm-12">
                     <div class="section-title">
-                        <h2>Shop</h2>
+                        <h2 class="landing-to-shop">Shop</h2>
                         <p>Elefont의 신상 폰트들을 만나보세요!</p>
                     </div>
                 </div>
@@ -192,7 +192,7 @@ for(Font font : fontList){
         <div class="row">
             <div class="col-sm-12">
                 <div class="section-title">
-                    <h2>베스트 리뷰</h2>
+                    <h2 class="landing-to-shop">베스트 리뷰</h2>
                     <p>다른 사람들은 폰트를 어떻게 활용하고 있을까요? <br />
                     Elefont의 커뮤니티 게시판에서 확인해보세요!</p>
                 </div>

@@ -1,8 +1,11 @@
+<%@page import="java.util.List"%>
 <%@page import="java.io.File"%>
 <%@page import="com.kh.elefont.member.model.vo.Member"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
+<%-- <%
+	List<String> questionerList = (List<String>)request.getAttribute("questionerList");
+%> --%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -80,6 +83,7 @@
 		let time = msg.time;
 		let writer = msg.sender;
 		let questioner = msg.receiver;
+		var questionerCheck = "";
 		
 		if(writer === questioner){
 			name = "<%=loginMember != null? loginMember.getMemberId():""%>";	
@@ -95,7 +99,22 @@
 		const msgContent = appendMsg(leftRight, name, content, time);
 		console.log(msgContent);
 		 $("#que-balloon").append(msgContent);
-				 
+<%-- <%
+	for(String questioner : questionerList){		
+%>
+		questionerCheck = <%= questioner%>
+		if(questionerCheck === writer){
+			$(`#\${writer}`).append(`
+					<p>\${msg.msg}</p>
+					
+					`);
+			
+		}
+
+<%
+		
+	}
+%>	 --%>	 
 	 }else{
 		 msgToHtml(msg); 
 	 }
