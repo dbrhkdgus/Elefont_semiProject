@@ -23,6 +23,8 @@ import com.kh.elefont.member.model.service.MemberService;
 import com.kh.elefont.member.model.vo.Member;
 import com.kh.elefont.order.model.service.OrderService;
 import com.kh.elefont.order.model.vo.Order;
+import com.kh.elefont.question.model.service.QuestionService;
+import com.kh.elefont.question.model.vo.Question;
 
 /**
  * Servlet implementation class MemberDetailServlet
@@ -36,6 +38,7 @@ public class MemberDetailServlet extends HttpServlet {
 	private CouponService couponService = new CouponService();
 	private OrderService orderService = new OrderService();
 	private LikeCartService likeCartService = new LikeCartService();
+	private QuestionService questionService = new QuestionService();
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
@@ -59,7 +62,12 @@ public class MemberDetailServlet extends HttpServlet {
 			List<Order> orderList = orderService.selectAllOrder();
 			List<FontCategory> categoryList = fontService.selectAllFontCategory();
 			List<Attachment> attachmentList = attachmentService.selectAllFontAttachmentList();
+			List<Question> QuestionList = questionService.selectAllQuestionForAdmin();
+			int notAnsweredQuestionCnt = questionService.selectNotAnseredQuestionCnt();
 			
+			
+			request.setAttribute("QuestionList", QuestionList); 
+			request.setAttribute("notAnsweredQuestionCnt", notAnsweredQuestionCnt); 
 			request.setAttribute("attachmentList", attachmentList);
 			request.setAttribute("memberList", memberList);
 			request.setAttribute("fontList", fontList);

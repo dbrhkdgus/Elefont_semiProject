@@ -38,4 +38,31 @@ public class QuestionService {
 		return result;
 	}
 
+	public List<Question> selectAllQuestionForAdmin() {
+		Connection conn = getConnection();
+		List<Question> questionList = questionDao.selectAllQuestionForAdmin(conn);
+		
+		close(conn);
+		
+		return questionList;
+	}
+
+	public int selectNotAnseredQuestionCnt() {
+		Connection conn = getConnection();
+		int cnt = 0;
+		try {
+			
+			cnt = questionDao.selectNotAnseredQuestionCnt(conn);
+			
+			commit(conn);
+		}catch(Exception e) {
+			rollback(conn);
+			throw e;
+		}finally {
+			close(conn);
+		}
+		
+		return cnt;
+	}
+
 }

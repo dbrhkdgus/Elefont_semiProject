@@ -1,5 +1,6 @@
 <%@page import="com.kh.elefont.font.model.vo.Font"%>
 <%@page import="com.kh.elefont.common.model.vo.Attachment"%>
+<%@page import="com.kh.elefont.question.model.vo.Question"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%
@@ -11,6 +12,8 @@ List<FontCategory> categoryList = (List<FontCategory>) request.getAttribute("cat
 Attachment profile = (Attachment) request.getAttribute("profile");
 int tabIndex = (int)request.getAttribute("tabIndex");
 List<Attachment> attachmentList = (List<Attachment>) request.getAttribute("attachmentList");
+List<Question> QuestionList = (List<Question>)request.getAttribute("QuestionList");
+int 
 %>
 
      <div class="member-container">
