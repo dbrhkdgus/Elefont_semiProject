@@ -32,6 +32,7 @@ public class ChatInputServlet extends HttpServlet {
 		
 		//		등록한 질문을 불러와서 그 값을 담아 jsp append처리
 		Question question = questionService.selectLastQuestion();
+		System.out.println("question@servlet : " + question);
 		  
 		response.setContentType("application/json; charset=utf-8"); 
 		new Gson().toJson(question, response.getWriter());

@@ -1974,6 +1974,38 @@ p { padding: 5px 0; }
     height: 260px;
     background-color: rgb(246, 255, 197);
     margin: 10px auto;
+    overflow:auto;
+}
+
+#que-balloon{
+	width: 100%;
+}
+#que-balloon>li{
+	width: 100%;
+}
+#que-balloon li div:not(:last-of-type){
+	font-size: 1.5rem;
+}
+.message{
+	display: inline-block;
+	word-break:break-all; 
+	margin: 5px 5px 0 5px; 
+	max-width: 75%; 
+	border: 1px solid #888; 
+	padding: 10px; 
+	border-radius: 5px; 
+	background-color: #FCFCFC; 
+	color: #555;
+
+}
+.qtime{
+	font-size: 1rem;
+}
+#que-balloon>.left{
+	text-align: left;
+}
+#que-balloon>.right{
+	text-align: right;
 }
 
 /* faq-end */
