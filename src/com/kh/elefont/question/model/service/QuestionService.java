@@ -38,6 +38,7 @@ public class QuestionService {
 		return result;
 	}
 
+
 	public List<Question> selectAllQuestionForAdmin() {
 		Connection conn = getConnection();
 		List<Question> questionList = questionDao.selectAllQuestionForAdmin(conn);
@@ -63,6 +64,14 @@ public class QuestionService {
 		}
 		
 		return cnt;
+	}
+	
+	public Question selectLastQuestion() {
+		Connection conn = getConnection();
+		Question question = questionDao.selectLastQuestion(conn);
+		close(conn);
+		return question;
+
 	}
 
 }
