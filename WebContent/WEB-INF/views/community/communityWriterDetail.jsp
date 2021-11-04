@@ -39,7 +39,7 @@ if(!allFontList.isEmpty()){
 %>
 </style>
 <section id="portfolio" class="portfolio section-space-padding">
-    <div id="writer-detail"class="container"> 
+    <div class="container"> 
         <div class="comm-writer-detail">
 
             <div class="comm-detail-writer-info">
@@ -125,7 +125,8 @@ if(!allFontList.isEmpty()){
 	}
 			
 %>
-            
+            	</div>
+            </div>
         </div>
             
     </div>
