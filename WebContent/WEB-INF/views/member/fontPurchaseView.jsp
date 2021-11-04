@@ -187,11 +187,13 @@ function LetsRegCoupon(){
 				data : $userCouponEnrollFrm.serialize(),
 				success(data) {
 					const salePrice = data["salePrice"];
+					const salePriceRound = parseFloat(salePrice).toFixed(1);
+					console.log(`반올림한 결과  : \${salePriceRound}`);
 					const couponNo = data["couponNo"];
 					
 					$(".coupon-enroll").hide();
 					
-					$("#fontPrice").html(`<del><%= fontPrice %></del><span>[\${salePrice}]</span>`);
+					$("#fontPrice").html(`<del><%= fontPrice %></del><span>[\${salePriceRound}]</span>`);
 					$("[name=font-price]").val(salePrice);
 					$("#couponReg").html(`등록된 쿠폰 : \${couponNo}`)
 					
@@ -204,7 +206,7 @@ function LetsRegCoupon(){
 					
 					
 				},error(xhr, textStatus, err){
-					alert("비동기 에러 발생 삐잉");
+					alert("잘못된 접근입니다.");
 					
 				}				
 			});
