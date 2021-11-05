@@ -236,6 +236,7 @@ if(loginMember == null){
 		alert("로그인 후 사용 가능한 기능입니다.");
 		$('.loginBox').show();
     	$(loginId).select();
+    	$('#loginBtn').css("color","gold");
 		return;
 <%
 }else if("A".equals(loginMember.getMemberRole())){
