@@ -891,8 +891,7 @@ public class FontDao {
 				font.setFontApproval(rset.getString("font_approval") == null? " ": rset.getString("font_approval"));
 				font.setMemberId(rset.getString("member_id"));
 				font.setFontLikeCount(rset.getInt("font_like_count"));
-				font.setFontFamily(rset.getString("FONT_FAMILY"));
-				font.setFontWeight(rset.getString("font_weight"));
+
 				
 				fontList.add(font);
 			}
