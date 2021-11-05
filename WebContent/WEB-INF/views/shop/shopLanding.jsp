@@ -10,6 +10,8 @@
 	String sort = request.getParameter("sort") == null? "newest" : request.getParameter("sort");	
 	
 	List<String> categoryList = (List<String>)session.getAttribute("categoryList");
+	
+	
 	String str = "";
 	for( String c : categoryList){
 		str += c;
@@ -68,9 +70,9 @@
               
                     <div class="test-shop">
                         <div class="test-item">
-                            <div class="test-item-title"> 전체 폰트 적용 </div>
+                            <div class="test-item-title" style="font-family: 'NanumSquareRound'; font-size : 25px;"> 전체 폰트 적용 </div>
 
-                            <textarea name="" id="allFontStyle" cols="30" rows="10"></textarea>
+                            <textarea name="" id="allFontStyle" cols="30" rows="10" style="font-family: 'NanumSquareRound';"></textarea>
                            
                         </div>
                        
@@ -84,7 +86,7 @@
     	}
 %>
                         <div class="test-item">
-                            <a href="<%= request.getContextPath()%>/shopDetail?fontNo=<%= font.getFontNo()%>"><div class="test-item-title"> <%= font.getFontName()%></div></a>
+                            <a href="<%= request.getContextPath()%>/shopDetail?fontNo=<%= font.getFontNo()%>"><div class="test-item-title" style="font-family: '<%= font.getFontFamily() %>'; font-size: 20px;"> <%= font.getFontName()%></div></a>
                             <textarea name="" id="<%= font.getFontNo() %>" cols="30" rows="10" class="font-style" style="font-family: '<%= font.getFontFamily() %>';" ></textarea>
                             <div class="test-item-buttons"> 
 <%
@@ -182,8 +184,11 @@ $(".font-style").css("color", $(color).val());
  	$(".fa-heart").click((e)=>{
 <%
 	if(loginMember == null){
-%>
+%>  
 		alert("로그인 후 이용 가능합니다.");
+		$('.loginBox').show();
+    	$(loginId).select();
+    
 		return;
 <%
 	}else if("A".equals(loginMember.getMemberRole())){

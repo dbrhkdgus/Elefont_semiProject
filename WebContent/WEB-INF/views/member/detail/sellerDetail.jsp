@@ -4,6 +4,8 @@
 List<Font> approvalList = (List<Font>)request.getAttribute("approvalList");
 List<Font> checkedList = (List<Font>)request.getAttribute("checkedList");
 List<Font> auditList = (List<Font>)request.getAttribute("auditList");
+List<Font> checkedListByLikeCnt = (List<Font>)request.getAttribute("checkedListByLikeCnt");
+List<Font> checkedListByPurchasedCnt = (List<Font>)request.getAttribute("checkedListByPurchasedCnt");
 Attachment profile = (Attachment) request.getAttribute("profile");
 %>
         <div class="member-container">
@@ -38,10 +40,14 @@ Attachment profile = (Attachment) request.getAttribute("profile");
 				<div>
 					<h4>내 폰트 판매 현황</h4>
 					<div class="data-bars">
-<% for(Font fontC : checkedList){
+<% 
+	for(Font fontC : checkedListByPurchasedCnt){
 %>
+						<div class="data-name">
+							<%=fontC.getFontName() %>
+						</div>	
 						<div class="data-bar">
-							<div data-width="<%= (int)fontC.getFontPurchasedCount()%10*10 %>"><%=fontC.getFontName() %><span><%= fontC.getFontPurchasedCount() %></span></div>
+							<div data-width="<%= (int)fontC.getFontPurchasedCount()>0?(int)fontC.getFontPurchasedCount()%25*4+10:10 %>"><span><%= fontC.getFontPurchasedCount() %></span></div>
 						</div>
 <%	
 }
@@ -52,9 +58,14 @@ Attachment profile = (Attachment) request.getAttribute("profile");
 				<div>
 					<h4>내 폰트 좋아요 현황</h4>
 					<div class="data-bars">
-<% for(Font fontC : checkedList){ %>					
+<% 
+	for(Font fontC : checkedListByLikeCnt){ 
+%>					
+						<div class="data-name">
+							<%=fontC.getFontName() %>
+						</div>	
 						<div class="data-bar">
-							<div data-width="<%= (int)fontC.getFontLikeCount()%10*10 %>"><%=fontC.getFontName() %><span><%= fontC.getFontLikeCount() %></span></div>
+							<div data-width="<%= (int)fontC.getFontLikeCount()>0?(int)fontC.getFontLikeCount()%25*4+10:10 %>"><span><%= fontC.getFontLikeCount() %></span></div>
 						</div>
 <% } %>						
 					</div>

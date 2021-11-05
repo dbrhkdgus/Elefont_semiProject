@@ -156,17 +156,18 @@ List<String> commLikeList = (List<String>) request.getAttribute("commLikeList");
             <div class="portfolio-inner">
 				<div class="row" id="fonts-box">
  <%
-for(Font font : fontList){
+for(int i = 0; i < 9; i++){
+	Font font = fontList.get(i);
 %>
 
 
 		            <div class="test-item"> 
 		            
 		            	<div class="landing-fontName-textarea-box">
-		            		<a href="<%=request.getContextPath()%>/shopDetail?fontNo=<%=font.getFontNo()%>"><%= font.getFontName() %></a> 
+		            		<a href="<%=request.getContextPath()%>/shopDetail?fontNo=<%=font.getFontNo()%>" ><p style="font-family:<%=font.getFontFamily() %>; font-size : 20px;"><%= font.getFontName() %></p></a> 
 		            	</div>
 		            	
-		            	<textarea cols="30" rows="10" class="font-style" style="font-family:<%=font.getFontFamily() %>;" ></textarea>
+		            	<textarea cols="30" rows="10" class="font-style" style="font-family:<%=font.getFontFamily() %>; font-size : 30px;" ></textarea>
 		            </div>
 <%	
 }
@@ -212,7 +213,7 @@ for(Community comm : communityList){
 	                <div class="review-photo" style="background-image: url(<%= request.getContextPath()%>/upload/community/<%= att.getRenamedFilename()%>);" onclick = "location.href='<%=request.getContextPath()%>/community/pictureDetail?commNo=<%= comm.getCommNo()%>'"></div>
 	                    <div class="review-content">
 	                        <h2><%= comm.getCommTitle() %></h2>
-	                        <p><%= comm.getCommContent() %>
+	                        <p class="landing-community-content"><%= comm.getCommContent() %>
 	                        </p>
 	                            <div class="like-button">
 <%
@@ -255,6 +256,8 @@ $(".fa-heart").click((e)=>{
 if(loginMember == null){
 %>
 	alert("로그인 후 사용 가능한 기능입니다.");
+	$('.loginBox').show();
+	$(loginId).select();
 	return;
 <%
 }else if("A".equals(loginMember.getMemberRole())){
@@ -291,6 +294,8 @@ if(loginMember == null){
 	});
 });
 
+/*  
+	$(".landing-community-content").text() 이값이 12개를 넘어가면 $(".landing-community-content") 속성 변경이 되어야함 width값이 350px로변경되어야함 */
 </script>
 
 

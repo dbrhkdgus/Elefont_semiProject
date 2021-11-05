@@ -10,6 +10,7 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.kh.elefont.common.ElefontUtils;
 import com.kh.elefont.common.model.service.AttachmentService;
 import com.kh.elefont.common.model.vo.Attachment;
 import com.kh.elefont.member.model.service.MemberService;
@@ -39,11 +40,20 @@ public class AdminAnswerQnAServlet extends HttpServlet {
 		
 		
 		for(String questionner : questionerList) {
-
 				questionListGroupBy.add(questionService.selectAllQuestionGroupByForAdmin(questionner));
-			
-			
 		}
+		
+		//qContent xss처리
+		for(Question q : questionList) {
+			//XSS 공격 대비 
+			//cross-site script공격. 악성코드를 웹페이지 삽입하여 클라이언트의 개인정보를 탈취하는 공격법
+			String content = ElefontUtils.escapeHtml(q.getqContent());
+			
+			//개행문자 br태그 변환 처리
+			content = ElefontUtils.convertLineFeedToBr(content);
+			q.setqContent(content);
+			 
+		 }
 		
 		request.setAttribute("questionList", questionList); 
 		request.setAttribute("questionerList", questionerList); 

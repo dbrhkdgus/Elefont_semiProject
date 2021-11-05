@@ -160,7 +160,8 @@ $(window).on('load', function() {
     <!-- Home & Menu Section Start -->
     <!-- <header id="home" class="home-section"> -->
 
-        <div class="header-top-area" >
+
+        <div class="header-top-area" style = "background-color: #f2f2f2;">
             <div class="container">
                 <div class="row">
 
@@ -272,7 +273,7 @@ if(loginMember != null){
 %>
 								<ul class="member-menu">
                                 	<li><a href="<%=request.getContextPath() %>/member/memberDetail?index=0"><img src="<%=request.getContextPath() %>/images/dropdown/member.png" alt="" />회원 관리</a></li>
-                                    <li><a href="<%=request.getContextPath() %>/member/memberDetail?index=1"><img src="<%=request.getContextPath() %>/images/dropdown/board.png" alt="" />게시판 관리</a></li>
+                                    <li><a href="<%=request.getContextPath() %>/member/memberDetail?index=1"><img src="<%=request.getContextPath() %>/images/dropdown/board.png" alt="" />스팸/삭제된 글</a></li>
                                     <li><a href="<%=request.getContextPath() %>/member/memberDetail?index=2"><img src="<%=request.getContextPath() %>/images/dropdown/shopping-cart.png" alt="" />주문 관리</a></li>
                                     <li><a href="<%=request.getContextPath() %>/member/memberDetail?index=3"><img src="<%=request.getContextPath() %>/images/dropdown/coupon.png" alt="" />쿠폰 관리</a></li>
                                     <li><a href="<%=request.getContextPath() %>/member/memberDetail?index=4"><img src="<%=request.getContextPath() %>/images/dropdown/fonts.png" alt="" />폰트 관리</a></li>
