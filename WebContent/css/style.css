@@ -3157,8 +3157,8 @@ p { padding: 5px 0; }
     justify-content: center;
 }
 .comm-board-content{
+    width: 830px;
 	border-top:2px solid #eee;
-	border-right: 2px solid #eee;
 	border-bottom : 2px solid #eee;; 
     display: flex;
     flex-direction: column;
@@ -3166,7 +3166,12 @@ p { padding: 5px 0; }
     align-items: flex-start;
     padding-bottom:20px;
 }
+.comm-title {
+	width: 826px;
+    overflow: auto;
+}
 .comm-board-title-button {
+    width: 1130px;
 	margin-left: 190px;
     margin-right: 160px;
     margin-bottom: 10px;
@@ -3267,7 +3272,7 @@ p { padding: 5px 0; }
 	margin-left: 6px;
 }
 .rep-enroll-area {
-	width: 92%;
+	width: 90%;
 	margin-top: 10px;
 }
 .comm-board-re-repEnroll{
@@ -3278,7 +3283,7 @@ p { padding: 5px 0; }
 	width: 800px;
 }
 .re-input-size {
-	width: 600px;
+	width: 470px;
 }
 .community-detail-profile-photo-box {
 	margin-right: 10px;

@@ -125,4 +125,20 @@ public class RepService {
 		close(conn);
 		return deletedRepList;
 	}
+
+	public int deleteCommRep(String commNo) {
+		Connection conn = getConnection();
+		int result = 0;
+		
+		try {
+			result = repDao.deleteCommRep(conn, commNo);			
+		
+			commit(conn);
+		}catch(Exception e) {
+			e.printStackTrace();
+			rollback(conn);
+		}
+		close(conn);
+		return result;
+	}
 }
