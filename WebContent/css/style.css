@@ -2574,7 +2574,7 @@ p { padding: 5px 0; }
 /* 멤버 디테일 시작*/
 #member-mypage{
   position: relative;
-  
+  	font-family: 'NanumSquareRound';
 }
 
 #my-profile-pic{
@@ -2637,6 +2637,11 @@ p { padding: 5px 0; }
 }
 .member-log{
   width: 900px;
+  padding-left: 10px;  
+}
+
+.member-log h4{
+  font-family: 'NanumSquareRound';
 }
 .member-title{
   border: 1px solid #A0A0A0;
@@ -2651,19 +2656,44 @@ p { padding: 5px 0; }
 .member-list{
   display: flex;
   justify-content: space-evenly;
+  margin-top:15px;
 }
 .member-list *{
-  width: 160px;
-  height: 160px;
-  border: 1px solid #A0A0A0;
   border-radius:7px;
 }
 .member-list >a{
-  width: 160px;
-  height: 160px;
   border: none;
 }
+.my-font-img{
+	border: 1px solid #A0A0A0;
+	width: 200px;
+	height: 50px;
+	line-height: 50px;
+    text-align: center;
+}
+.my-comm-img >img{
+	border: 1px solid #A0A0A0;
+	width:160px;
+	height:160px;
+}
+.my-font-img >a{
+	text-align: center;
+    font-size: 2rem;
+}
+.member-log a{
+	padding-left:15px;
+}
 
+.member-font-purchase h4{
+	margin-top:20px;
+	margin-bottom:15px;
+	padding-left:15px;
+}
+
+.member-coupon-list h4{
+	margin-top:10px;
+	padding-left:15px;
+}
 
 
 

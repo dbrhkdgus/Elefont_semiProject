@@ -160,6 +160,7 @@ $(window).on('load', function() {
     <!-- Home & Menu Section Start -->
     <!-- <header id="home" class="home-section"> -->
 
+
         <div class="header-top-area" style = "background-color: #f2f2f2;">
             <div class="container">
                 <div class="row">
