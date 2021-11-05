@@ -3866,7 +3866,10 @@ align-items: center;
   	
 }
 
-
+/* 로그인 버튼 손가락 모양*/
+#loginBtn-li{
+	cursor : pointer;
+}
 
 
 

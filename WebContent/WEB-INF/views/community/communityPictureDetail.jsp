@@ -282,6 +282,7 @@ if(loginMember!=null) {
 		alert("댓글등록은 로그인 이후 가능합니다.");
 		$('.loginBox').show();
 		$(loginId).select();
+		$('#loginBtn').css("color","gold");
 <%
 }
 %>
@@ -298,6 +299,7 @@ $(".fa-heart").click((e)=>{
 			alert("로그인 후 사용 가능한 기능입니다.");
 			$('.loginBox').show();
 			$(loginId).select();
+			$('#loginBtn').css("color","gold");
 			return;
 	<%
 	}else if("A".equals(loginMember.getMemberRole())){

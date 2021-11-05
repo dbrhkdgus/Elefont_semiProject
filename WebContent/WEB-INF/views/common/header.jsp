@@ -154,12 +154,13 @@ if(loginMember != null){
 <% 
 }else{
 %>
-                                        <li><a class="smoth-scroll" id="loginBtn" href="#">Login</a>
+                                        <li><a class="smoth-scroll" id="loginBtn" >Login</a>
                                         </li>
                                         
                                         <script>
                                     	/* 로그인 버튼 클릭 시 로그인 창 띄우기 */
                                     	$(loginBtn).click((e)=> {
+                                    		$('#loginBtn').css("color","black");
                                     		if($('.loginBox').css('display') == 'none') {
                                     			$('.loginBox').show();
                                     		} else {
