@@ -226,7 +226,7 @@ public class OrderDao {
 		String searchType = (String)param.get("searchType");
 //		String searchKeyword = (String)param.get("searchKeyword");
 //		System.out.println("param.get(\"searchKeyword\")@Dao : " + param.get("searchKeyword"));
-		System.out.println("searchType@Dao : " + searchType);
+		
 		switch(searchType) {
 		case "orderNo" : 
 			sql = prop.getProperty("selectSearchOrderByorderNo");

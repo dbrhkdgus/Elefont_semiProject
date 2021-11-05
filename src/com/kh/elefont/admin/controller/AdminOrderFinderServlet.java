@@ -57,7 +57,7 @@ public class AdminOrderFinderServlet extends HttpServlet {
 		}else {
 			orderList = orderService.selectSerchOrder(param);
 		}
-		System.out.println("orderList@servlet : " + orderList);
+		
 		
 		
 		HttpSession session = request.getSession();
