@@ -164,10 +164,10 @@ for(int i = 0; i < 9; i++){
 		            <div class="test-item"> 
 		            
 		            	<div class="landing-fontName-textarea-box">
-		            		<a href="<%=request.getContextPath()%>/shopDetail?fontNo=<%=font.getFontNo()%>"><%= font.getFontName() %></a> 
+		            		<a href="<%=request.getContextPath()%>/shopDetail?fontNo=<%=font.getFontNo()%>" ><p style="font-family:<%=font.getFontFamily() %>; font-size : 20px;"><%= font.getFontName() %></p></a> 
 		            	</div>
 		            	
-		            	<textarea cols="30" rows="10" class="font-style" style="font-family:<%=font.getFontFamily() %>;" ></textarea>
+		            	<textarea cols="30" rows="10" class="font-style" style="font-family:<%=font.getFontFamily() %>; font-size : 30px;" ></textarea>
 		            </div>
 <%	
 }
