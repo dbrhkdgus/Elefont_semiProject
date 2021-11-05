@@ -37,7 +37,7 @@ public class MainLandingServlet extends HttpServlet {
 		HttpSession session = request.getSession();
 		Member loginMember = (Member)session.getAttribute("loginMember");
 		//업무로직
-		List<Font> fontList =  fontService.selectAllApprovedFontOrderByDate();
+		List<Font> fontList =  fontService.selectAllApprovedFontOrderByPopular();
 		List<Community> communityList = communityService.selectAllCommunityListByLikeCountThree();
 		List<Attachment> attachmentList = attachmentService.selectAllCommAttachmentList();
 		List<String> commLikeList = new ArrayList<>();

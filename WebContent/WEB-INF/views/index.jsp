@@ -156,7 +156,8 @@ List<String> commLikeList = (List<String>) request.getAttribute("commLikeList");
             <div class="portfolio-inner">
 				<div class="row" id="fonts-box">
  <%
-for(Font font : fontList){
+for(int i = 0; i < 9; i++){
+	Font font = fontList.get(i);
 %>
 
 
