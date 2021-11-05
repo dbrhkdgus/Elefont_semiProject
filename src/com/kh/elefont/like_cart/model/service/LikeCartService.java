@@ -78,7 +78,7 @@ public class LikeCartService {
 	}
 
 
-	public List<MemberCartView> selectMemberCartList(String memberNo, String cartNo) {
+	public List<MemberCartView> selectMemberCartList(String memberNo) {
 		Connection conn = getConnection();
 
 		List<MemberCartView> memberCartList = likeCartDao.selectMemberCartList(conn, memberNo);
@@ -87,12 +87,6 @@ public class LikeCartService {
 	}
 
 
-	public int selectCartCountByMemberNo(String memberNo) {
-		Connection conn = getConnection();
 
-		int cnt = likeCartDao.selectCartCountByMemberNo(conn, memberNo);
-		close(conn);
-		return cnt;
-	}
 
 }
