@@ -179,6 +179,7 @@ fieldset {
     padding: 10px 0;
     width: 350px;
 	margin-bottom: 30px;
+	border: 2px solid #eee;
 	
 }
 
@@ -3526,6 +3527,9 @@ p { padding: 5px 0; }
     padding: 5px;
     border: solid 1px darkgray;
 }
+.infoArea *{
+	pointer-events: none;
+}
 
 .thumbnailWrap {
     width: 50px;
@@ -3570,7 +3574,7 @@ p { padding: 5px 0; }
     width: 56px;
 }
 
-#qna-chat-msg{
+.qna-chat-msg{
 	height: 340px;
 }
 /* admin qna end */

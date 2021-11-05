@@ -81,6 +81,7 @@ if(loginMember != null){
 		String commNo = "";
 		String profileAttachFilename = "";
 		
+				
 		for(Community comm : communityList){
 			for(Attachment att : allAttachmentList){
 				
@@ -136,20 +137,26 @@ if(loginMember != null){
 <%
 	}
 }else{
+	
 	String attachFilename = "";
 	String memberNo = "";
 	String commNo = "";
 	String profileAttachFilename = "";
 	
-	for(Community comm : list){
+	
+	for(Community findcomm : list){
 		for(Attachment att : allAttachmentList){
 			
-			if(att.getCommNo() != null && att.getCommNo().equals(comm.getCommNo())){
+			
+			if(att.getCommNo() != null && att.getCommNo().equals(findcomm.getCommNo())){
 				attachFilename = att.getRenamedFilename();
 				memberNo = att.getMemberNo();
 				commNo = att.getCommNo();
+				
 			}
-			if(att.getCommNo() == null && att.getFontNo() == null && att.getMemberNo().equals(comm.getMemberNo())){
+
+			if(att.getCommNo() == null && att.getFontNo() == null && att.getMemberNo().equals(findcomm.getMemberNo())){
+				
 				profileAttachFilename = att.getRenamedFilename();
 			
 		}
@@ -162,7 +169,7 @@ if(loginMember != null){
 							<div class="community-profile-photo-box">
 								<img class="community-profile-photo" src="<%= request.getContextPath()%>/upload/profilephotos/<%=profileAttachFilename%>"> 
 							</div>
-							<span><%= comm.getCommWriter() %></span>
+							<span><%= findcomm.getCommWriter() %></span>
 						</div>
 					</div>
 					<div class="comm-img">
@@ -173,20 +180,20 @@ if(loginMember != null){
 					</div>
 					<div class="like-comm-buttons"> 
 <%
-				if(loginMember != null && !commLikeList.isEmpty() && commLikeList.contains(comm.getCommNo())){
+				if(loginMember != null && !commLikeList.isEmpty() && commLikeList.contains(findcomm.getCommNo())){
 %>
-						<i class="fas fa-heart" data-comm-no="<%=comm.getCommNo()%>"><span><%=comm.getCommLikeCount() %></span></i>
+						<i class="fas fa-heart" data-comm-no="<%=findcomm.getCommNo()%>"><span><%=findcomm.getCommLikeCount() %></span></i>
 <%
 				}else{
 %>                                    
-						<i class="far fa-heart" data-comm-no="<%=comm.getCommNo()%>"><span><%=comm.getCommLikeCount() %></span></i>
+						<i class="far fa-heart" data-comm-no="<%=findcomm.getCommNo()%>"><span><%=findcomm.getCommLikeCount() %></span></i>
 <%
 				}
 %>                                    
 						<i class="fas fa-search-plus"></i>
 					</div>
 					<div class="like-comm-content">
-						<span><%= comm.getCommTitle() %></span>
+						<span><%= findcomm.getCommTitle() %></span>
 					</div>
 				</div> 
 

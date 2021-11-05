@@ -62,7 +62,7 @@ if(loginMember != null){
                 <hr>
                 <div class="chatPutMsg">
                     <form class = "chatInputFrm" name="chatInputFrm" action="<%= request.getContextPath()%>/chat/chatInput">
-                        <textarea name="qContent" class="textareaMsg" cols="30" rows="3">메세지를 입력하세요</textarea>
+                        <textarea name="qContent" class="textareaMsg" cols="30" rows="3" placeholder="메세지를 입력하세요"></textarea>
                         <input type="button" value="전송" class = "chatInputBtn">
                         <input type="hidden" name="qWriter" value="<%=loginMember.getMemberNo() %>" />
                     </form>
@@ -91,7 +91,7 @@ $(".chatInputBtn").click((e)=>{
 					time : data["qDate"]
 				};
 			ws.send(JSON.stringify(msg));
-			$(textareaMsg).val("").focus();
+			$(".textareaMsg").val("").focus();
 		},
 		error:console.log			
 	});
@@ -148,16 +148,15 @@ if(loginMember == null){
         if($chatMessage.css("display")=="none"){
             
             $chatMessage.show();
+        	$('.chatMsg').scrollTop($('.chatMsg').prop('scrollHeight'));
         }
         else {
-            
-            // $chatMessage.css("display", "none");
             $chatMessage.hide();
         }    
     	
     });
     
-    
+
     
 
 </script>
