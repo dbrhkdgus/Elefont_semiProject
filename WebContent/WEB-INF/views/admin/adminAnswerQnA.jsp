@@ -9,7 +9,7 @@ List<Question> questionList = (List<Question>)request.getAttribute("questionList
 List<Question> questionListGroupBy = (List<Question>)request.getAttribute("questionListGroupBy");
 List<Member> memberList = (List<Member>)request.getAttribute("memberList");
 List<Attachment> attachmentList = (List<Attachment>)request.getAttribute("attachmentList");
-
+List<String> questionerList = (List<String>)request.getAttribute("questionerList");
 
 %>
 <section class="section-space-padding">
@@ -70,6 +70,7 @@ for(Question que : questionListGroupBy){
             </section>
         </div>
         
+        <div class="qnaContent">
 <%
 for(Question que : questionListGroupBy){
 	for(Member member : memberList){
@@ -77,7 +78,6 @@ for(Question que : questionListGroupBy){
 			for(Attachment att : attachmentList){
 				if(att.getMemberNo().equals(que.getqQuestioner())){
 %>
-        <div class="qnaContent">
             <section class="qnaChatSection"id="<%= que.getqQuestioner()%>">
                 <div class="qnaChatHeader">
                     <div class="qnaInfoArea">
