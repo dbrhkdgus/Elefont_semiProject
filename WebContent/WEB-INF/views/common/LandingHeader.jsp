@@ -92,6 +92,8 @@
 		
 		const msgContent = appendMsg(leftRight, name, content, time);
 		 $("#que-balloon").append(msgContent);
+     	 $('.chatMsg').scrollTop($('.chatMsg').prop('scrollHeight'));
+     	 
 <%-- <%
 	for(String questioner : questionerList){		
 %>
