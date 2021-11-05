@@ -55,6 +55,7 @@ if(loginMember != null){
 						</li>
 <%
 		}
+	}
 %>
 					</ul>
                 </div>
@@ -115,7 +116,7 @@ const appendMsg = (leftRight, name, content, time) =>{
 };
 </script>     
 <%
-	}
+
 }
 %>
         </section>
