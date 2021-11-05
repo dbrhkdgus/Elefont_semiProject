@@ -9,7 +9,7 @@ List<Question> questionList = (List<Question>)request.getAttribute("questionList
 List<Question> questionListGroupBy = (List<Question>)request.getAttribute("questionListGroupBy");
 List<Member> memberList = (List<Member>)request.getAttribute("memberList");
 List<Attachment> attachmentList = (List<Attachment>)request.getAttribute("attachmentList");
-
+List<String> questionerList = (List<String>)request.getAttribute("questionerList");
 
 %>
 <section class="section-space-padding">
@@ -70,6 +70,7 @@ for(Question que : questionListGroupBy){
             </section>
         </div>
         
+       <div class="qnaContent">
 <%
 for(Question que : questionListGroupBy){
 	for(Member member : memberList){
@@ -77,7 +78,6 @@ for(Question que : questionListGroupBy){
 			for(Attachment att : attachmentList){
 				if(att.getMemberNo().equals(que.getqQuestioner())){
 %>
-        <div class="qnaContent">
             <section class="qnaChatSection"id="<%= que.getqQuestioner()%>">
                 <div class="qnaChatHeader">
                     <div class="qnaInfoArea">
@@ -107,8 +107,8 @@ if("N".equals(que.getqIsAnswered())){
                         </div>
                     </div>
                 </div>
-                <div class="qnaChatArea">
-                    <ul class="groupQnaMessageBallon" style="visibility: visible;">
+                <div class="chatMsg" id="qna-chat-msg">
+                    <ul class="question-balloon" style="visibility: visible;">
                         <li class="dateCheck">
                             <span>
                                 <em>
@@ -116,29 +116,38 @@ if("N".equals(que.getqIsAnswered())){
                                     
                                 </em>
                             </span>
+                        <div class="qnaMessage" id="message-from-<%= que.getqQuestioner()%>"></div>
                         </li>
-                        <li class="newMessageBallonArea">
-                            <div class="messageBalloon">
-                                <div class="qnaMessage" id="message-from-<%= que.getqQuestioner()%>">
 <%
 for(Question ques : questionList){
 	if(ques.getqQuestioner().equals(que.getqQuestioner())){
 %>
-                                    <p class="qnaMessage fromAdmin">
-                                        <%= ques.getqContent() %>
-                                    </p>
+						<li class = <%=(!ques.getqWriter().equals(loginMember.getMemberNo()))? "left": "right"%>>
+							<div class="sender">
+								<%=(!ques.getqWriter().equals(loginMember.getMemberNo()))? member.getMemberName(): loginMember.getMemberId()%>
+							</div>
+							<div class="message">
+								<%= ques.getqContent() %>
+							</div>
+							<div class="qtime"><%=ques.getqDate()%></div>
+						</li>
 
 <%
 	}
 }
 %>                                
-                                </div>
-                            </div>
-                           
-                        </li>
-                        
-                    </ul>
-                </div>
+                 
+             </ul>
+         </div>
+          <hr>
+         <div class="chatPutMsg">
+             <form class = "chatInputFrm" name="chatInputFrm" action="<%= request.getContextPath()%>/chat/chatInput">
+                 <textarea name="qContent" class="textareaMsg" cols="30" rows="3">메세지를 입력하세요</textarea>
+                 <input type="button" value="전송" class="chatInputBtn">
+                 <input type="hidden" name="qWriter" value="<%=loginMember.getMemberNo() %>" />
+             </form>
+         </div>
+
             </section>
 <%
 				}
@@ -148,13 +157,7 @@ for(Question ques : questionList){
 }
 
 %>        
-            <hr>
-            <div class="chatWrite">
-                <form action="" id="qnaInputFrm">
-                    <textarea name="" id="qnaInput" cols="100" rows="3" placeholder="메시지를 입력하세요."></textarea>
-                    <input type="button" value="전송">
-                </form>
-            </div>
+
         </div>
     </div>
 </section>

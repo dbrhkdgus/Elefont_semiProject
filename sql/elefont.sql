@@ -55,6 +55,8 @@ CREATE TABLE member (
     constraint uq_member_email unique(member_email),
     constraint fk_att_no foreign key(att_no) references attachment(att_no)
 );
+--김다현 11월 05일 회원가입시 1000원 적립 위한 수정
+ALTER TABLE member MODIFY (member_point DEFAULT 1000);
 
 ALTER TABLE member ADD CONSTRAINT PK_member_member_NO PRIMARY KEY (
 	member_no

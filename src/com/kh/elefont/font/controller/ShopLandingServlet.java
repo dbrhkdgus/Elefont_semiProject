@@ -81,6 +81,7 @@ public class ShopLandingServlet extends HttpServlet {
 		request.setAttribute("sort", sort);
 		session.setAttribute("categoryList", categoryList);
 		session.setAttribute("fontList", fontList);
+		
 		request.getRequestDispatcher("/WEB-INF/views/shop/shopLanding.jsp").forward(request, response);
 	}
 
