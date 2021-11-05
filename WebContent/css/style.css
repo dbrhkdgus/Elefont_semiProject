@@ -2448,7 +2448,7 @@ p { padding: 5px 0; }
 	content: "▼";
 	font-size: 2px;
 	margin: 0 3px;
-	color: #fff;
+	color: black;
 	
 }
 #profile-img{
@@ -3527,6 +3527,9 @@ p { padding: 5px 0; }
     padding: 5px;
     border: solid 1px darkgray;
 }
+.infoArea *{
+	pointer-events: none;
+}
 
 .thumbnailWrap {
     width: 50px;
@@ -3571,7 +3574,7 @@ p { padding: 5px 0; }
     width: 56px;
 }
 
-#qna-chat-msg{
+.qna-chat-msg{
 	height: 340px;
 }
 /* admin qna end */
