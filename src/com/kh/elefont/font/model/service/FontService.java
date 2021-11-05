@@ -352,6 +352,18 @@ public class FontService {
 		close(conn);
 		return fontNoList;
 	}
+	public List<Font> selectFontLikeCnt(String memberId) {
+		Connection conn = getConnection();
+		List<Font> checkedListByLikeCnt = fontDao.selectFontLikeCnt(conn, memberId);
+		close(conn);
+		return checkedListByLikeCnt;
+	}
+	public List<Font> selectFontPurchasedCnt(String memberId) {
+		Connection conn = getConnection();
+		List<Font> checkedListByPurchasedCnt = fontDao.selectFontPurchasedCnt(conn, memberId);
+		close(conn);
+		return checkedListByPurchasedCnt;
+	}
 
 
 
