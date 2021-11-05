@@ -213,7 +213,7 @@ for(Community comm : communityList){
 	                <div class="review-photo" style="background-image: url(<%= request.getContextPath()%>/upload/community/<%= att.getRenamedFilename()%>);" onclick = "location.href='<%=request.getContextPath()%>/community/pictureDetail?commNo=<%= comm.getCommNo()%>'"></div>
 	                    <div class="review-content">
 	                        <h2><%= comm.getCommTitle() %></h2>
-	                        <p><%= comm.getCommContent() %>
+	                        <p class="landing-community-content"><%= comm.getCommContent() %>
 	                        </p>
 	                            <div class="like-button">
 <%
@@ -294,6 +294,8 @@ if(loginMember == null){
 	});
 });
 
+/*  
+	$(".landing-community-content").text() 이값이 12개를 넘어가면 $(".landing-community-content") 속성 변경이 되어야함 width값이 350px로변경되어야함 */
 </script>
 
 
