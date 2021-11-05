@@ -56,7 +56,7 @@ int likeCount = fontLikeList.size();
    </div>
    <div class="member-log">
     <div class="member-title">
-     	<span><%=loginMember.getMemberId() %></span>님의 현재 포인트는 <span><%= loginMember.getMemberPoint() %></span>점입니다.
+     	<span><%=loginMember.getMemberId() %></span>님의 현재 포인트는 <span><%= Math.round(Double.parseDouble(loginMember.getMemberPoint()))%></span>점입니다.
       <button id="member-coupon">쿠폰 등록</button>
     </div>
        <div class="member-comm">
