@@ -982,7 +982,7 @@ text-align: center;
 
 .footer-section p {
     font-size: 14px;
-    font-family: 'HSYuji-Regular';
+    font-family: 'NanumSquareRound';
     font-size: 20px;
 }
 
@@ -2980,7 +2980,7 @@ p { padding: 5px 0; }
 }
 .fix-head{
 	overflow:auto;
-	height:180px;
+	height:140px;
 	width: 820px;
 	margin: 10px auto;
 }
@@ -3050,7 +3050,7 @@ p { padding: 5px 0; }
 .fix-tbl-head{
 	overflow:auto;
 	height: 104px;
-	width: 820px;
+	width: 830px;
 	margin: 10px auto;
 }
 #deleted-tbl-content {
@@ -3391,7 +3391,6 @@ p { padding: 5px 0; }
 .seller-management{
     margin-left:  200px;
     margin-right:  200px;
-    margin-top:50px;
     padding:20px;
     
     

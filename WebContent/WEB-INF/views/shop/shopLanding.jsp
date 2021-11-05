@@ -188,15 +188,7 @@ $(".font-style").css("color", $(color).val());
 		alert("로그인 후 이용 가능합니다.");
 		$('.loginBox').show();
     	$(loginId).select();
-    	
-    	var loginBox = setInterval(function(){
-    		$('.loginBox').fadeOut(1000).fadeIn(1000);
-    	},500);
-    	
-    	$('.loginBox').mouseover(function(){
-    		clearInterval(loginBox);
-    		});
-    	/* $(".loginBox").css("background-color",'gold'); */
+    
 		return;
 <%
 	}else if("A".equals(loginMember.getMemberRole())){
