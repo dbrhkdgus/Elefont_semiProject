@@ -2317,10 +2317,12 @@ p { padding: 5px 0; }
 }
 .like-comm-content{
   overflow: hidden;
+  white-space: nowrap;
   height: 45px;
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 0px 8px 0px 8px;
 }
 
 .comm-img{
@@ -2375,15 +2377,21 @@ p { padding: 5px 0; }
 }
 
 #btn-comm-board-enroll{
-background-color: #4CAF50; /* Green */
-border: 0px;
-color: white;
-padding: 10px 12px;
-text-align: center;
-text-decoration: none;
-display: inline-block;
-font-size: 16px;
+	background-color: #4CAF50; /* Green */
+	border: 0px;
+	color: white;
+	padding: 10px 12px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 16px;
 }
+.comm-user-title {
+	overflow: hidden;
+  	text-overflow: ellipsis;
+  	margin: 0px;
+}
+/* 커뮤니티 페이지 끝 */
 /*
  * 메뉴 로그인 nav창
  */
