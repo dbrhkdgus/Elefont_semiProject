@@ -1503,7 +1503,7 @@ text-align: center;
 	display: flex;
 	margin-left: 165px;
     flex-direction: column;
-    margin-left: 90px;
+    margin-left: 155px;
     align-items: center;
 }
 
@@ -1512,6 +1512,7 @@ text-align: center;
 	margin-left: 300px;
 }
 .cart_title{
+	font-family: 'NanumSquareRound';
     margin-top: 30px;
     text-align: left;
     margin-bottom: 50px;
@@ -1524,11 +1525,13 @@ text-align: center;
 
 }
 .cart_content_box{
+	
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 .cart_content{
+	font-family: 'NanumSquareRound';
     display: flex;
     align-items: center;
     border: 1px solid #26BF5C;
@@ -1757,6 +1760,7 @@ text-align: center;
     background-color: #59C38A;
     width: fit-content;
     padding: 5px;
+    font-family: 'NanumSquareRound';
 }
 .h1_font_style{
 	margin-left: 35px;
@@ -2296,6 +2300,7 @@ p { padding: 5px 0; }
 }
 
 .like-comm{
+  font-family: 'NanumSquareRound';
   width: 270px;
   height: 390px;
   text-align: center;
@@ -2574,7 +2579,7 @@ p { padding: 5px 0; }
 /* 멤버 디테일 시작*/
 #member-mypage{
   position: relative;
-  
+  	font-family: 'NanumSquareRound';
 }
 
 #my-profile-pic{
@@ -2637,6 +2642,11 @@ p { padding: 5px 0; }
 }
 .member-log{
   width: 900px;
+  padding-left: 10px;  
+}
+
+.member-log h4{
+  font-family: 'NanumSquareRound';
 }
 .member-title{
   border: 1px solid #A0A0A0;
@@ -2651,19 +2661,44 @@ p { padding: 5px 0; }
 .member-list{
   display: flex;
   justify-content: space-evenly;
+  margin-top:15px;
 }
 .member-list *{
-  width: 160px;
-  height: 160px;
-  border: 1px solid #A0A0A0;
   border-radius:7px;
 }
 .member-list >a{
-  width: 160px;
-  height: 160px;
   border: none;
 }
+.my-font-img{
+	border: 1px solid #A0A0A0;
+	width: 200px;
+	height: 50px;
+	line-height: 50px;
+    text-align: center;
+}
+.my-comm-img >img{
+	border: 1px solid #A0A0A0;
+	width:160px;
+	height:160px;
+}
+.my-font-img >a{
+	text-align: center;
+    font-size: 2rem;
+}
+.member-log a{
+	padding-left:15px;
+}
 
+.member-font-purchase h4{
+	margin-top:20px;
+	margin-bottom:15px;
+	padding-left:15px;
+}
+
+.member-coupon-list h4{
+	margin-top:10px;
+	padding-left:15px;
+}
 
 
 
@@ -2932,7 +2967,11 @@ p { padding: 5px 0; }
 #font-sort,#range-result{
 	font-family: 'NanumSquareRound';
 }
-
+#font-sort{
+	border: 2px solid #26BF5C;
+    border-radius: 30px;
+    padding: 5px;
+}
 #style-button{
   font-family: 'NanumSquareRound';
   width: 150px;
@@ -3172,6 +3211,7 @@ p { padding: 5px 0; }
 }
 .comm-board-title-button {
     width: 1130px;
+	font-family: 'NanumSquareRound';
 	margin-left: 190px;
     margin-right: 160px;
     margin-bottom: 10px;
@@ -3181,7 +3221,9 @@ p { padding: 5px 0; }
     margin-bottom: 10px;
     align-items: center;
 }
-
+.comm-title > h1{
+	font-family: 'NanumSquareRound';
+}
 #comm-board-button {
 	background-color: #4CAF50; /* Green */
 	border: 0px;
@@ -3213,6 +3255,7 @@ p { padding: 5px 0; }
 	padding-left: 15px;
     width: 300px;
     word-break:keep-all;
+    font-family: 'NanumSquareRound';
 }
 .comm-writer-info{
 	text-align: center;
@@ -3879,7 +3922,10 @@ align-items: center;
   	
 }
 
-
+/* 로그인 버튼 손가락 모양*/
+#loginBtn-li{
+	cursor : pointer;
+}
 
 
 

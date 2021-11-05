@@ -233,11 +233,14 @@ $("#search-content").hide();
 <%
 if(loginMember == null){
 %>
+
 	alert("로그인 후 이용 가능합니다.");
 	$('.loginBox').show();
 	$(loginId).select();
+  $('#loginBtn').css("color","gold");
 	
 	return;
+
 <%
 }else if("A".equals(loginMember.getMemberRole())){
 %>

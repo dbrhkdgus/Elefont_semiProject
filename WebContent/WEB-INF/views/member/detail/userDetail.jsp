@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@include file = "/css/fontApply.jsp" %>
 <%
 List<Attachment> commAttachmentList = (List<Attachment>)request.getAttribute("commAttachmentList");
 List<Font> fontLikeList = (List<Font>) request.getAttribute("fontLikeList");
@@ -9,6 +10,28 @@ Attachment profile = (Attachment) request.getAttribute("profile");
 int cartCount = (int)request.getAttribute("cartCount");
 int likeCount = fontLikeList.size();
 %>
+<style>
+<% 
+if(!fontList.isEmpty()){
+	for(Font font : fontList){
+		if(font.getFontFamily() != null){
+%>
+
+
+@font-face {
+    font-family: '<%= font.getFontFamily()%>';
+    src: url('<%= font.getFontUrl()%>') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+<% 
+		}
+	} 
+}
+%>
+</style>
+
 <div class="coupon-enroll">
     <form action="<%=request.getContextPath()%>/coupon/redeemCoupon" method="POST" name="userCouponEnrollFrm">
         <h2>쿠폰 등록 번호</h2>
@@ -56,7 +79,7 @@ int likeCount = fontLikeList.size();
    </div>
    <div class="member-log">
     <div class="member-title">
-     	<span><%=loginMember.getMemberId() %></span>님의 현재 포인트는 <span><%= loginMember.getMemberPoint() %></span>점입니다.
+     	<span><%=loginMember.getMemberId() %></span>님의 현재 포인트는 <span><%= Math.round(Double.parseDouble(loginMember.getMemberPoint()))%></span>점입니다.
       <button id="member-coupon">쿠폰 등록</button>
     </div>
        <div class="member-comm">
@@ -90,23 +113,42 @@ int likeCount = fontLikeList.size();
            <h4><a href="<%=request.getContextPath()%>/member/fontLikeList?memberNo=<%=loginMember.getMemberNo()%>">내 좋아요 리스트</a></h4>
            <div class="member-list">
 <%
+	
 	if(fontLikeList.size() < 4){	
 		for(Font f : fontLikeList){
+			for(Font allfont: fontList){
+				if(f.getFontNo().equals(allfont.getFontNo())){
+			
+
 %>
-              <a href="<%=request.getContextPath()%>/shopDetail?fontNo=<%=f.getFontNo()%>"><div class="my-font-img"><%=f.getFontName() %></div></a>
+              <div class="my-font-img"><a style ="font-family : '<%=allfont.getFontFamily() %>';"href="<%=request.getContextPath()%>/shopDetail?fontNo=<%=f.getFontNo()%>"><%=f.getFontName() %></a></div>
+			
+			
+			
+			
+			
+				
 <%
+					}
+				}
+			}
 		}
-	}else{
+else{
 		for(int i = 0; i < 3; i++){
 			Font f = fontLikeList.get(i);
+		
+		
 %>
               <a href="<%=request.getContextPath()%>/shopDetail?fontNo=<%=f.getFontNo()%>"><div class="my-font-img"><%=f.getFontName() %></div></a>
+				
 <%
-		}
+		}	
 %>
               <a href="<%=request.getContextPath()%>/member/fontLikeList?memberNo=<%=loginMember.getMemberNo()%>"><div class="my-font-img">더보기</div></a>
 <%
-	}
+		
+	
+}
 %>
             </div>
         </div>
@@ -199,6 +241,10 @@ int likeCount = fontLikeList.size();
     </div>
 </div> 
 <script>
+
+
+
+
 $("#member-coupon").click((e)=>{
 	const $couponEnroll = $(".coupon-enroll");
 	if($couponEnroll.css("display","none")){

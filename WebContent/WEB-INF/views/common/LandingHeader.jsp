@@ -160,6 +160,7 @@ $(window).on('load', function() {
     <!-- Home & Menu Section Start -->
     <!-- <header id="home" class="home-section"> -->
 
+
         <div class="header-top-area" style = "background-color: #f2f2f2;">
             <div class="container">
                 <div class="row">
@@ -208,12 +209,13 @@ if(loginMember != null){
 <% 
 }else{
 %>
-                                        <li><a class="smoth-scroll" id="loginBtn" href="#">Login</a>
+                                        <li id="loginBtn-li"><a class="smoth-scroll" id="loginBtn" >Login</a>
                                         </li>
                                         
                                         <script>
                                     	/* 로그인 버튼 클릭 시 로그인 창 띄우기 */
                                     	$(loginBtn).click((e)=> {
+                                    		$('#loginBtn').css("color","black");
                                     		if($('.loginBox').css('display') == 'none') {
                                     			$('.loginBox').show();
                                     		} else {
