@@ -58,8 +58,6 @@
                                         <div class="likeList-profile-button">
                                         <button id="member-font">Font</button><button id="member-comm">Community</button>
                                         </div>
-                                      
-                                
                                 
                             </div>
                              <div class="tools font-color-previewer">
