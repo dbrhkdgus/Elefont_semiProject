@@ -80,13 +80,6 @@ for(MemberCartView mcv : memberCartList){
 	                    </div>
 	                </div>
 		 </form> 	
-		
-			            
-       	      
-        
-      
-	             
-	        
                 
                 
             </div>
@@ -207,10 +200,6 @@ for(MemberCartView mcv : memberCartList){
 		var fontName = [];
 		var price = 0;
 		
-		if(fontName.length == 0){
-			alert("선택된 폰트가 없습니다.");
-			return
-		}
 		
 		  for (i = 0; i < lenth; i++) {
 			    if (chekObj[i].checked === true) {
