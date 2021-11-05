@@ -2972,7 +2972,7 @@ font-size: 16px;
 }
 .fix-head{
 	overflow:auto;
-	height:180px;
+	height:140px;
 	width: 820px;
 	margin: 10px auto;
 }
@@ -3042,7 +3042,7 @@ font-size: 16px;
 .fix-tbl-head{
 	overflow:auto;
 	height: 104px;
-	width: 820px;
+	width: 830px;
 	margin: 10px auto;
 }
 #deleted-tbl-content {
@@ -3383,7 +3383,6 @@ font-size: 16px;
 .seller-management{
     margin-left:  200px;
     margin-right:  200px;
-    margin-top:50px;
     padding:20px;
     
     

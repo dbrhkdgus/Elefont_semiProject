@@ -60,7 +60,9 @@ if(!checkedList.isEmpty()){
 }else{
 %>
 							<tr>
-								<td colspan="3">등록한 폰트가 없습니다.</td>
+								<td colspan="3">
+										<br />등록한 폰트가 없습니다.<br /><br />
+								</td>
 							</tr>
 <%
 }
@@ -102,7 +104,9 @@ if(!auditList.isEmpty()){
 }else{
 %>
 							<tr>
-								<td colspan="3">심사 중인 폰트가 없습니다.</td>
+								<td colspan="3">
+									<br />심사 중인 폰트가 없습니다.<br /><br />
+								</td>
 							</tr>
 <%
 }
@@ -150,7 +154,9 @@ if(!approvalList.isEmpty()){
 }else{
 %>
 							<tr>
-								<td colspan="5">심사 결과가 없습니다.</td>
+								<td colspan="5">
+									<br />심사 결과가 없습니다.<br /><br />
+								</td>
 							</tr>
 <%
 }
@@ -180,28 +186,7 @@ $(".fontDownloadBtn").click((e)=>{
     location.href = "<%=request.getContextPath()%>/font/fontDownload?fontNo=" + $fontNo; 
 });
 
-/* 폰트 조회 창 높이 폰트 입력량에 따라 조절*/
-$(window).load((e)=>{
-	const $fixHead = $(".fix-head");
-	$.each($fixHead, function(index, item){
-		let $item = $(item);
-		let length = $(item).find('tr').length;
-		
-		if(length > 4){
-			$fixHead.eq(index).css("height","100px");
-		}
-		else{
-			if(index != 2){
-				length = length*25 + 3;
-				$fixHead.eq(index).css("height", length+"px");
-			}
-			else{
-				length = length*27 + 3;
-				$fixHead.eq(index).css("height", length+"px");
-			}
-		}
-	});
-});
+
 /* 폰트 등록 모달에서 폰트 등록 시 font테이블에 insert 진행*/
    $("#sm-font-button").click((e)=>{
 		const $fontEnroll = $(".font-enroll");
