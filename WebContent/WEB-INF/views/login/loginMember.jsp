@@ -13,7 +13,6 @@
 <script>
 		$(loginBtn).on("click", (e)=>{
 			let login = confirm("로그인하시겠습니까?");
-			console.log(login);
 			if(login){
 				alert("로그인되었습니다");
 				location.href = "<%=request.getContextPath()%>/login/loginMember";

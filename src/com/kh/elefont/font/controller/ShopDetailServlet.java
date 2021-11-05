@@ -14,6 +14,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.kh.elefont.common.ElefontUtils;
 import com.kh.elefont.common.model.service.AttachmentService;
 import com.kh.elefont.common.model.vo.Attachment;
 import com.kh.elefont.community.model.service.CommunityService;
@@ -121,17 +122,11 @@ public class ShopDetailServlet extends HttpServlet {
 				return;
 			}
 			
-			// XSS공격대비 
-			// cross-site script공격. 악성코드를 웹페이지삽입하여 클라이언트의 개인정보탈취하는 공격법
-			//String content = MvcUtils.escapeHtml(board.getContent());
-			
-			// 개행문자 br태그 변환처리
-			//content = MvcUtils.convertLineFeedToBr(content);
-			//board.setContent(content);
-			
-			// 댓글목록 가져오기
-			//List<BoardComment> commentList = boardService.selectCommentList(no);
-			//System.out.println("commentList@servlet = " + commentList);
+			for(Rep rep : repList) {
+				String reply = ElefontUtils.escapeHtml(rep.getRepContent());
+				reply = ElefontUtils.convertLineFeedToBr(reply);
+				rep.setRepContent(reply);
+			}
 			
 			Map<String,Object> param = new HashMap<>();
 			param.put("fontNo", fontNo);

@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.kh.elefont.common.ElefontUtils;
 import com.kh.elefont.common.model.service.AttachmentService;
 import com.kh.elefont.common.model.vo.Attachment;
 import com.kh.elefont.community.model.service.CommunityService;
@@ -26,9 +27,9 @@ import com.kh.elefont.member.model.vo.Member;
 import com.kh.elefont.order.model.service.OrderService;
 import com.kh.elefont.order.model.vo.Order;
 import com.kh.elefont.question.model.service.QuestionService;
-import com.kh.elefont.question.model.vo.Question;
 import com.kh.elefont.rep.model.service.RepService;
 import com.kh.elefont.rep.model.vo.DeletedRep;
+import com.kh.mvc.common.MvcUtils;
 
 
 /**
@@ -74,6 +75,17 @@ public class MemberDetailServlet extends HttpServlet {
 			
 			int notAnsweredQuestionCnt = questionService.selectNotAnseredQuestionCnt();
 			int answeredQuestionCnt = questionService.selectAnsweredQuestionCnt();
+			
+			for(DeletedCommunity dc : deletedCommList) {
+				String dcContent = ElefontUtils.escapeHtml(dc.getCommContent());
+				dcContent = ElefontUtils.convertLineFeedToBr(dcContent);
+				dc.setCommContent(dcContent);
+			}
+			for(DeletedRep dr : deletedRepList) {
+				String drContent = ElefontUtils.escapeHtml(dr.getRepContent());
+				drContent = ElefontUtils.convertLineFeedToBr(drContent);
+				dr.setRepContent(drContent);
+			}
 
 			request.setAttribute("notAnsweredQuestionCnt", notAnsweredQuestionCnt); 
 			request.setAttribute("answeredQuestionCnt", answeredQuestionCnt); 

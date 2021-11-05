@@ -1,9 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-
 <%@include file = "/WEB-INF/views/common/LandingHeader.jsp"%>
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.9.0/themes/smoothness/jquery-ui.css" />
+<%
+List<String> fontNameList = (List<String>)request.getAttribute("fontNameList");
+System.out.println("fontNameList@jsp : " + fontNameList);
+%>
+
     <!-- Community Board Enroll start -->
-<section id="portfolio" class="portfolio section-space-padding">
+	<section id="portfolio" class="portfolio section-space-padding">
     <div class="container">
 
             <section id="communityEnroll" class="community-enroll-section-space-padding">
@@ -68,6 +73,9 @@
         </section>
         
 <script>
+
+
+
 function readImage(input) {
     // 인풋 태그에 파일이 있는 경우
     if(input.files && input.files[0]) {
@@ -83,18 +91,14 @@ function readImage(input) {
         reader.readAsDataURL(input.files[0])
     }
 }
-
 // input file에 change 이벤트 부여
 const inputImage = document.getElementById("input-image")
 inputImage.addEventListener("change", e => {
     readImage(e.target)
 })
-
-
 $("[name=upFile]").change((e) => {
     // 파일 선택여부
     const $file = $(e.target);
-    console.log($file.val());
      const newFnameSrc = $file.val().split("\\");
      const newFname  = newFnameSrc [newFnameSrc .length-1]; //마지막 화일명
     if($file.val() != ""){
@@ -102,17 +106,30 @@ $("[name=upFile]").change((e) => {
     }
 });
 
+
 /**
  * boardEnrollFrm 유효성 검사
  */
  function boardValidate(e){
      const $title = $("[name=title]");
      const $content = $("[name=content]");
+     var fontDb = "";
+	 	<%for(String fontName : fontNameList){ %>
+	 		fontDb += "<%=fontName%> ";
+	 	<% } %>
+	 	console.log(fontDb);
      //제목을 작성하지 않은 경우 폼제출할 수 없음.
      if(!/^.+$/.test($title.val())){
          alert("제목을 입력하세요.");
          return false;
      }
+     if(font_search.value == '' || font_search.value == null){
+         alert('사용한 폰트는 필수 항목입니다.');
+         return false;
+     } else if(fontDb.indexOf(font_search.value) == -1){
+    	 alert('Elefont에 등록된 폰트만 입력해주세요.');
+         return false;
+     } 
                         
      //내용을 작성하지 않은 경우 폼제출할 수 없음.
      // .(임의의 문자)에는 \n(개행문자)가 포함되지 않는다.
@@ -141,7 +158,6 @@ $("[name=upFile]").change((e) => {
 				url: "<%= request.getContextPath()%>/autocomplete",
 				data: {searchName}, //?searchName=김
 				success(data){
-					console.log(data);
 					let temp = data.split("\n");
 					temp = $.map(temp, (name, index)=>{
 						return {
@@ -149,13 +165,16 @@ $("[name=upFile]").change((e) => {
 							value : name
 						}
 					});
-					console.log(temp);
 					response(temp);
 				},
 				error : console.log
 			});
 		}
 	});
+ 
+	
+	 		
+
 </script>
 
 <!-- Community Board Enroll end -->

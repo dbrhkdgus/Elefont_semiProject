@@ -29,7 +29,7 @@
 			<div id ="comm-search-container">
 			
 				<select id="searchType">
-				<option value="writerName"<%="writerName".equals(searchType) ? "selected":"" %>>>작성자</option>		
+				<option value="writerName"<%="writerName".equals(searchType) ? "selected":"" %>>작성자</option>		
 	            <option value="title" <%="title".equals(searchType) ? "selected":"" %> >제목</option>
 	            <option value="content" <%="content".equals(searchType) ? "selected":"" %> >내용</option>
 	            
@@ -123,7 +123,7 @@ if(loginMember != null){
 <%
 				}
 %>                                    
-						<i class="fas fa-search-plus"></i>
+						
 					</div>
 					<div class="like-comm-content">
 						<span><%= comm.getCommTitle() %></span>
@@ -245,7 +245,6 @@ if(loginMember == null){
 %>
 		let $target = $(e.target);
 		let $commNo = $target.data("commNo");
-		console.log($commNo);
 		
 		$.ajax({
 			url: "<%= request.getContextPath()%>/community/commLike",

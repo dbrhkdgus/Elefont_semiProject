@@ -71,9 +71,7 @@ $(window).on('load', ()=>{
 	
 		$(".data-bar>div").each(function(index, item){
 			let $target = $(item);
-			console.log($target);
 			let $data = $target.data('width');
-			console.log($data);
 			
 			$target.css('width', $data + '%');
 		});

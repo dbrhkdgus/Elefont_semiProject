@@ -226,10 +226,8 @@ $("#member-coupon").click((e)=>{
 			const $frmData = $(document.userCouponEnrollFrm);
 			
 			let couponMemberNo = $("#memberNoToReg").val();
-			console.log(`쿠폰 사용할 memberId : \${couponMemberNo}`);
 			
 			let couponMemberId = $("#memberIdToReg").val();
-			console.log(`쿠폰 사용할 memberId : \${couponMemberId}`);
 			
 			$.ajax({
 				url : "<%=request.getContextPath()%>/coupon/isThisCouponVaild",
@@ -237,26 +235,22 @@ $("#member-coupon").click((e)=>{
 				method : "post",
 				dataType : "json",
 				success(data) {
-					console.log(`데이터 받아왔나요? : \${data}`);
 
 					if(typeof data != "string" ) {
 						//쿠폰타입 처리하기
 						const couponType = data["couponType"];
-						console.log(`쿠폰 타입은 : \${couponType}`);
 						
 						$("#couponTypeInput").val(couponType);
 						
 						if('P' === couponType){
 							//포인트 얼마인지 보여주기
 							const couponPAmount = data["couponPAmount"]; 
-							console.log(`포인트 얼마? \${couponPAmount}`);
 							document.getElementById("notice").innerHTML = "포인트";
 							document.getElementById("coupon-total").innerHTML = `\${couponPAmount} p`;
 							$("#couponCheckVaild").val(1);
 	
 						}else{
 							const couponDiscountRate = data["couponDiscount"];
-							console.log(`할인율 얼마? \${couponDiscountRate}`);	
 							document.getElementById("notice").innerHTML = "할인율";
 							document.getElementById("coupon-total").innerHTML = `\${couponDiscountRate} %`;
 							$("#couponCheckVaild").val(1);
@@ -269,7 +263,6 @@ $("#member-coupon").click((e)=>{
 				},
 				//유효하지 않은 쿠폰일 시 alert 띄우고 input 값 지우기
 				error(xhr, textStatus, err){
-					console.log(xhr, textStatus, err);
 					alert("유효하지 않은 쿠폰입니다");
 					var coupons = document.getElementsByClassName("coupon-no");
 					coupons[1].value = "";
@@ -315,8 +308,6 @@ $(window).load((e)=>{
 	
 	function LetsRegCoupon(){
 		const $vaild = $("#couponCheckVaild").val();
-		console.log("vaild 값은 : ")
-		console.log($vaild);
 		if($vaild !=1){
 			alert("쿠폰 조회가 필요합니다");
 		}

@@ -70,12 +70,9 @@
  */
  const ws = new WebSocket(`ws://\${location.host}<%=request.getContextPath()%>/elefontWebsocket`); //이 주소로 웹소켓 연결을 다시 요청
  ws.onopen = (e) => {
-	 console.log("open!", e);
  } ;
  ws.onmessage = (e) => {
-	 console.log("message!", e);
 	 const msg = JSON.parse(e.data);
-	 console.log("msg.msg",msg.msg);
 	 if("que" === msg.type){
 		let name = "";
 		let content = msg.msg;
@@ -92,12 +89,8 @@
 			name = "Elefont";
 			leftRight = "left";
 		}
-		console.log(name);
-		console.log(content);
-		console.log(time);
 		
 		const msgContent = appendMsg(leftRight, name, content, time);
-		console.log(msgContent);
 		 $("#que-balloon").append(msgContent);
 <%-- <%
 	for(String questioner : questionerList){		
@@ -120,11 +113,9 @@
 	 }
  } ;
  ws.onerror = (e) => {
-	 console.log("error!", e);
  } ;
  
  ws.onclose = (e) => {
-	 console.log("close!", e);
  } ;
 
 
@@ -167,7 +158,7 @@ $(window).on('load', function() {
 
 
     <!-- Home & Menu Section Start -->
-    <header id="home" class="home-section">
+    <!-- <header id="home" class="home-section"> -->
 
         <div class="header-top-area" style = "background-color: black; ">
             <div class="container">
@@ -207,13 +198,9 @@ $(window).on('load', function() {
 <%
 
 if(loginMember != null){
-	System.out.println(loginMember);
-	
 	Member member = (Member) session.getAttribute("member");
 	File profilePhotoAttach = (File) session.getAttribute("profilePhotoAttach");
 	String photoPath = profilePhotoAttach.getName();
-	/* System.out.println("LandingHeader.jsp 프로필 경로가 궁금하느냐? : " + photoPath); */
-
 	
 %>
                                      <li ><a class="smoth-scroll" id="profile" href="#user"><img id="profile-img" src="<%= request.getContextPath() %>/upload/profilephotos/<%=photoPath%>" ><span id="profile-loginMember-name"><%= loginMember.getMemberName() %></span></a>
