@@ -64,7 +64,6 @@ public class MemberDetailServlet extends HttpServlet {
 		if("A".equals(memberRole)) {
 			int index = Integer.parseInt(request.getParameter("index"));
 			List<Member> memberList = memberService.selectAllMember();
-			List<Font> fontList = fontService.selectAllFont();
 			List<Coupon> couponList = couponService.selectAllCoupon();
 			List<Order> orderList = orderService.selectAllOrder();
 			List<FontCategory> categoryList = fontService.selectAllFontCategory();
@@ -90,7 +89,6 @@ public class MemberDetailServlet extends HttpServlet {
 			request.setAttribute("answeredQuestionCnt", answeredQuestionCnt); 
 			request.setAttribute("attachmentList", attachmentList);
 			request.setAttribute("memberList", memberList);
-			request.setAttribute("fontList", fontList);
 			request.setAttribute("couponList", couponList);
 			request.setAttribute("orderList", orderList);
 			request.setAttribute("categoryList", categoryList);
@@ -102,7 +100,10 @@ public class MemberDetailServlet extends HttpServlet {
 			List<Font> fontLikeList = fontService.selectAllLikedFontByMemberNo(loginMember.getMemberNo());
 			List<Font> fontPurchasedList = fontService.selectAllPurchasedFontByMemberNo(loginMember.getMemberNo());
 			List<Coupon> coupounList = couponService.selectAllCouponByMemberNo(loginMember.getMemberNo());
+			List<Font> fontList = fontService.selectAllApprovedFontOrderByDate();
 			int cartCount = likeCartService.selectCartCountByMemberNo(loginMember.getMemberNo());
+			
+			session.setAttribute("fontList", fontList);
 			request.setAttribute("commAttachmentList", commAttachmentList);
 			request.setAttribute("fontLikeList", fontLikeList);
 			request.setAttribute("fontPurchasedList", fontPurchasedList);

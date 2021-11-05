@@ -14,6 +14,7 @@ import com.kh.elefont.common.model.service.AttachmentService;
 import com.kh.elefont.common.model.vo.Attachment;
 import com.kh.elefont.community.model.service.CommunityService;
 import com.kh.elefont.community.model.vo.Community;
+import com.kh.elefont.rep.model.service.RepService;
 
 /**
  * Servlet implementation class CommunityDeleteServlet
@@ -23,6 +24,7 @@ public class CommunityDeleteServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	private CommunityService communityService = new CommunityService();
 	private AttachmentService attachmentService = new AttachmentService();
+	private RepService repService = new RepService();
 
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
@@ -45,9 +47,9 @@ public class CommunityDeleteServlet extends HttpServlet {
 		if(delBool == true) {
 			attachmentService.deleteAttachmentByCommNo(commNo);
 		}
-		
+		int repResult = repService.deleteCommRep(commNo);
 		int result = communityService.deleteCommunity(commNo);
-		String msg = result > 0 ? "게시물 삭제 성공!" : "게시물 삭제 실패!";
+		String msg = (repResult > 0 && result > 0) ? "게시물 삭제 성공!" : "게시물 삭제 실패!";
 		
 		//3.사용자메세지 및 redirect처리
 		request.getSession().setAttribute("msg", msg);

@@ -249,15 +249,20 @@ if(loginMember != null && !commLikeList.isEmpty() && commLikeList.contains(comm.
 <!-- 리뷰 End -->
 
 <script>
+
 /* 좋아요 버튼 클릭시 사용자 좋아요 여부에 따른 버튼 이벤트 */
 $(".fa-heart").click((e)=>{
 	
 <%
 if(loginMember == null){
 %>
+	
 	alert("로그인 후 사용 가능한 기능입니다.");
 	$('.loginBox').show();
 	$(loginId).select();
+	$('#loginBtn').css("color","gold");
+	
+	
 	return;
 <%
 }else if("A".equals(loginMember.getMemberRole())){
