@@ -1080,6 +1080,30 @@ public class FontDao {
 		return fontList;
 	}
 
+	public List<String> selectAllFontNo(Connection conn) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		List<String> fontNoList = new ArrayList<>();
+		String sql = prop.getProperty("selectAllFontNo");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			
+			rset = pstmt.executeQuery();
+			while(rset.next()) {
+				fontNoList.add(rset.getString(1));
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return fontNoList;
+	}
+
 }
 
 	
