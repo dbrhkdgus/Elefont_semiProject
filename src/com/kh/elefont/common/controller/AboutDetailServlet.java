@@ -1,6 +1,10 @@
 package com.kh.elefont.common.controller;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -17,16 +21,18 @@ public class AboutDetailServlet extends HttpServlet {
   
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 				//1.사용자입력값
+				String[] names = {"유광현","권혜진","김은희","김다현","백지영","이윤희"};
 				String name = request.getParameter("name");
-				System.out.println("어바웃디테일서블릿"+name);
+				if(Arrays.asList(names).contains(name)) {
+					request.setAttribute("name",name);
+					request.getRequestDispatcher("/WEB-INF/views/common/aboutDetail.jsp").forward(request, response);	
+				}else {
+					request.getRequestDispatcher("/WEB-INF/common/404.jsp").forward(request, response);
+				}
 				
 				
-				//2.업무?
-					
-						
-				//3.뷰단
-				request.setAttribute("name",name);
-				request.getRequestDispatcher("/WEB-INF/views/common/aboutDetail.jsp").forward(request, response);
+				
+				
 	}
 
 	
