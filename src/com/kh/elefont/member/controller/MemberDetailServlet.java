@@ -66,7 +66,7 @@ public class MemberDetailServlet extends HttpServlet {
 			List<Member> memberList = memberService.selectAllMember();
 			List<Coupon> couponList = couponService.selectAllCoupon();
 			List<Order> orderList = orderService.selectAllOrder();
-			List<Font> fontList = fontService.selectAllApprovedFontOrderByDate();
+			List<Font> fontList = fontService.selectAllFont();
 			List<FontCategory> categoryList = fontService.selectAllFontCategory();
 			List<Attachment> attachmentList = attachmentService.selectAllFontAttachmentList();
 			List<DeletedCommunity> deletedCommList = communityService.selectAllDeletedCommList();
