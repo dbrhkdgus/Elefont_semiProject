@@ -1,14 +1,36 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@include file = "/css/fontApply.jsp" %>
 <%
 List<Attachment> commAttachmentList = (List<Attachment>)request.getAttribute("commAttachmentList");
 List<Font> fontLikeList = (List<Font>) request.getAttribute("fontLikeList");
-List<Font> fontAllList = (List<Font>) request.getAttribute("fontList");
 List<Font> fontPurchasedList = (List<Font>) request.getAttribute("fontPurchasedList");
 List<Coupon> couponList = (List<Coupon>) request.getAttribute("couponList");
 Attachment profile = (Attachment) request.getAttribute("profile");
 int cartCount = (int)request.getAttribute("cartCount");
 %>
+<style>
+<% 
+if(!fontList.isEmpty()){
+	for(Font font : fontList){
+		if(font.getFontFamily() != null){
+%>
+
+
+@font-face {
+    font-family: '<%= font.getFontFamily()%>';
+    src: url('<%= font.getFontUrl()%>') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+<% 
+		}
+	} 
+}
+%>
+</style>
+
 <div class="coupon-enroll">
     <form action="<%=request.getContextPath()%>/coupon/redeemCoupon" method="POST" name="userCouponEnrollFrm">
         <h2>쿠폰 등록 번호</h2>
@@ -90,21 +112,27 @@ int cartCount = (int)request.getAttribute("cartCount");
            <h4><a href="<%=request.getContextPath()%>/member/fontLikeList?memberNo=<%=loginMember.getMemberNo()%>">내 좋아요 리스트</a></h4>
            <div class="member-list">
 <%
+	
 	if(fontLikeList.size() < 4){	
 		for(Font f : fontLikeList){
-			for(Font allFont : fontAllList)	{
-			System.out.println("폰트패밀리값 " + allFont);
+			for(Font allfont: fontList){
+				if(f.getFontNo().equals(allfont.getFontNo())){
+			
+
 %>
-              <a href="<%=request.getContextPath()%>/shopDetail?fontNo=<%=f.getFontNo()%>"><div class="my-font-img"><%=f.getFontName() %></div></a>
-			<script>
-			console.log(	$(".member-font-like").children().eq(1).children("a").eq(0).css("font-family","<%=f.getFontFamily()%>")) ;
-				
-			</script>
+              <div class="my-font-img"><a style ="font-family : '<%=allfont.getFontFamily() %>';"href="<%=request.getContextPath()%>/shopDetail?fontNo=<%=f.getFontNo()%>"><%=f.getFontName() %></a></div>
+			
+			
+			
+			
+			
 				
 <%
+					}
+				}
 			}
 		}
-	}else{
+else{
 		for(int i = 0; i < 3; i++){
 			Font f = fontLikeList.get(i);
 		
