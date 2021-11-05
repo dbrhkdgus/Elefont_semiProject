@@ -47,14 +47,13 @@ for(MemberCartView mcv : memberCartList){
 	                        <div class="cart_content_font_price cart_content_margin">
 	                            <h3>판매가</h3>
 	                            <div class="cart_font_price">
-	                                <p><%=mcv.getFontPrice() %></p>
-	                                <p class="cart_price_explain">회원 할인<%=mcv.getFontDiscountRate() %> %</p>
+	                                <p><%=mcv.getFontPrice() %>P</p>
 	                            </div>
 	                        </div>
 	                        
 	                        <div class="cart_content_pay_price">
 	                            <h3>주문금액</h3>
-	                            <p><%=disresult %>P</p>
+	                            <p><%=mcv.getFontPrice() %>P</p>
 	                        </div>
 	                        <div class="cart_order  cart_content_margin">
 	                        	<input type="button" class="btn-delete-from-cart" value="삭제하기"/>
@@ -74,6 +73,7 @@ for(MemberCartView mcv : memberCartList){
 	                    <div class= "cart_bottom_buttons">
 	                    	<input type="button"  id="check_all_delete" value="전체 삭제하기">
 	                    	<input type="button"  id="selected_cart_delete" value="선택한 상품 삭제하기">  
+	                    	
 	                    	<input type="button"  id="select_order_font" value="주문하기">	  
 	                    	<input type="hidden"  name="type" value="">
 	                                  
@@ -211,6 +211,8 @@ for(MemberCartView mcv : memberCartList){
 				
 				$("input[name='type']").val('purchase');
 				$(document.cartFrm).submit();	
+			}else{
+				return;
 			}
 		
 			$("input[name='type']").val('purchase');
