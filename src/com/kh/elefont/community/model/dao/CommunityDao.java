@@ -695,6 +695,33 @@ public class CommunityDao {
 		
 		return deletedCommList;
 	}
+
+	public List<String> selectAllCommNo(Connection conn) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		List<String> commNoList = new ArrayList<>();
+		String sql = prop.getProperty("selectAllCommNo");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				String commNo = rset.getString(1);
+				
+				commNoList.add(commNo);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+			
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+	
+		return commNoList;
+	}
 	
 
 
