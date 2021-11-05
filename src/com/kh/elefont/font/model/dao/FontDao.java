@@ -1103,6 +1103,84 @@ public class FontDao {
 		return fontNoList;
 	}
 
+	public List<Font> selectFontLikeCnt(Connection conn, String memberId) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		List<Font> checkedListByLikeCnt = new ArrayList<>();
+		String sql = "";
+		sql = prop.getProperty("selectFontLikeCnt");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, memberId);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				Font font = new Font();
+	
+				font.setFontNo(rset.getString("font_no"));
+				font.setFontName(rset.getString("font_name"));
+				font.setFontPrice(rset.getDouble("font_price"));
+				font.setFontDiscountRate(rset.getDouble("font_discount_rate"));
+				font.setFontApproval(rset.getString("font_approval"));
+				font.setMemberId(rset.getString("member_id"));
+				font.setFontLikeCount(rset.getInt("font_like_count"));
+				font.setFontFamily(rset.getString("font_family"));
+				font.setFontUrl(rset.getString("font_url"));
+				font.setFontWeight(rset.getString("font_weight"));
+				checkedListByLikeCnt.add(font);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return checkedListByLikeCnt;
+	}
+
+	public List<Font> selectFontPurchasedCnt(Connection conn, String memberId) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		List<Font> checkedListByPurchasedCnt = new ArrayList<>();
+		String sql = "";
+		sql = prop.getProperty("selectFontPurchasedCnt");
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			pstmt.setString(1, memberId);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				Font font = new Font();
+	
+				font.setFontNo(rset.getString("font_no"));
+				font.setFontName(rset.getString("font_name"));
+				font.setFontPrice(rset.getDouble("font_price"));
+				font.setFontDiscountRate(rset.getDouble("font_discount_rate"));
+				font.setFontApproval(rset.getString("font_approval"));
+				font.setMemberId(rset.getString("member_id"));
+				font.setFontLikeCount(rset.getInt("font_like_count"));
+				font.setFontPurchasedCount(rset.getInt("font_purchased_count"));
+				font.setFontFamily(rset.getString("font_family"));
+				font.setFontUrl(rset.getString("font_url"));
+				font.setFontWeight(rset.getString("font_weight"));
+				
+				checkedListByPurchasedCnt.add(font);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return checkedListByPurchasedCnt;
+	}
+
 }
 
 	

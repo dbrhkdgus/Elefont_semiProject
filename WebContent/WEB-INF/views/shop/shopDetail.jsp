@@ -24,7 +24,7 @@ int memberLikeValid = (int)request.getAttribute("likeValid");
  <section id="portfolio" class="portfolio section-space-padding" >
     <div class="shop-detail">
        <div class= "shop-detail-top">
-           <div class="shop-detail-font-name"><h2><%= font.getFontName() %></h2></div>
+           <div class="shop-detail-font-name" ><h2 style="font-family: '<%= font.getFontFamily() %>';"><%= font.getFontName() %></h2></div>
            <div class="shop-detail-buttons">
            
 	           	<form action="<%= request.getContextPath() %>/font/fontOrder" class="shop-detail-icon" method="GET" name="PurchaseCartFrm">  
@@ -40,7 +40,7 @@ int memberLikeValid = (int)request.getAttribute("likeValid");
 %>              
                     <input type="hidden" name="PerCartType" value = "" />
                     <input type="hidden" name="font-no" value="<%=font.getFontNo()%>"/>
-                    <input type="hidden" name="font-name" value="<%=font.getFontName()%>"/>
+                    <input type="hidden" name="font-name" value="<%=font.getFontName()%>" />
                     <input type="hidden" name="font-price" value="<%=font.getFontPrice()%>"/>
 <% if(loginMember != null){ %>                        	
                     <input type="hidden" name="email" value="<%=loginMember.getMemberEmail()%>"/>
