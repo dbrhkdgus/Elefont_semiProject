@@ -307,6 +307,15 @@ public class CommunityService {
 		List<DeletedCommunity> deletedCommList = communityDao.selectAllDeletedCommList(conn);
 		close(conn);
 		return deletedCommList;
+	}
+
+	public List<String> selectAllCommNo() {
+		Connection conn = getConnection();
+		List<String> commNoList = communityDao.selectAllCommNo(conn);
+		
+		close(conn);
+		
+		return commNoList;
 	}	
 
 }
