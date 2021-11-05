@@ -37,8 +37,8 @@ for(Faq f : faqList) {
 <%
 if(loginMember != null){
 %>
-            <div id ="chatMessage">
-                <div id="chatMsg">
+            <div class ="chatMessage">
+                <div class="chatMsg">
                 	<ul class="question-balloon" id="que-balloon">
 <%
 	if(!questionList.isEmpty()){
@@ -60,10 +60,10 @@ if(loginMember != null){
 					</ul>
                 </div>
                 <hr>
-                <div id="chatPutMsg">
-                    <form id = "chatInputFrm" name="chatInputFrm" action="<%= request.getContextPath()%>/chat/chatInput">
-                        <textarea name="qContent" id="textareaMsg" cols="30" rows="3">메세지를 입력하세요</textarea>
-                        <input type="button" value="전송" id="chatInputBtn">
+                <div class="chatPutMsg">
+                    <form class = "chatInputFrm" name="chatInputFrm" action="<%= request.getContextPath()%>/chat/chatInput">
+                        <textarea name="qContent" class="textareaMsg" cols="30" rows="3">메세지를 입력하세요</textarea>
+                        <input type="button" value="전송" class = "chatInputBtn">
                         <input type="hidden" name="qWriter" value="<%=loginMember.getMemberNo() %>" />
                     </form>
                 </div>
@@ -71,7 +71,7 @@ if(loginMember != null){
 
 
 <script>
-$(chatInputBtn).click((e)=>{
+$(".chatInputBtn").click((e)=>{
 	<%-- const receiver = "<%= loginMember.getMemberNo()%>"; --%>
 	/* if(!receiver) return; */
 
@@ -133,7 +133,7 @@ const appendMsg = (leftRight, name, content, time) =>{
 	});
 
     $(chatClick).click((e)=>{
-        const $chatMessage = $("#chatMessage");
+        const $chatMessage = $(".chatMessage");
 <%
 if(loginMember == null){
 %>        

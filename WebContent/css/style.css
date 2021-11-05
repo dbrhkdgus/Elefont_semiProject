@@ -1998,7 +1998,7 @@ p { padding: 5px 0; }
 #faqH1{
     font-weight: bold;
 }
-#chatMessage{
+.chatMessage{
     position: fixed;
     border-radius: 10px;
     border: 3px solid #005A3C;
@@ -2010,28 +2010,30 @@ p { padding: 5px 0; }
     display: none;
     z-index: 100;
 }
-#chatInputFrm{
+.chatInputFrm{
     display: flex;
 }
-#chatPutMsg textarea {
+.chatPutMsg textarea {
     resize: none;
+    width: 100%;
 }
-#chatMsg{
+.chatMsg{
     border-radius: 10px;
-    width: 280px;
+    width: 100%;
     height: 260px;
-    background-color: rgb(246, 255, 197);
+    background-color: #f0f2f5;
     margin: 10px auto;
     overflow:auto;
 }
 
-#que-balloon{
+.question-balloon{
 	width: 100%;
 }
-#que-balloon>li{
+.question-balloon>li{
 	width: 100%;
+	margin-bottom: 10px;
 }
-#que-balloon li div:not(:last-of-type){
+.question-balloon li div:not(:last-of-type){
 	font-size: 1.5rem;
 }
 .message{
@@ -2049,10 +2051,10 @@ p { padding: 5px 0; }
 .qtime{
 	font-size: 1rem;
 }
-#que-balloon>.left{
+.question-balloon>.left{
 	text-align: left;
 }
-#que-balloon>.right{
+.question-balloon>.right{
 	text-align: right;
 }
 
@@ -3486,6 +3488,10 @@ font-size: 16px;
 
 #qnaInputFrm input {
     width: 56px;
+}
+
+#qna-chat-msg{
+	height: 340px;
 }
 /* admin qna end */
 
