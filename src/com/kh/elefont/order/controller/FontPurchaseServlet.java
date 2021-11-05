@@ -16,6 +16,8 @@ import com.kh.elefont.common.model.service.AttachmentService;
 import com.kh.elefont.coupon.model.service.CouponService;
 import com.kh.elefont.font.model.service.FontService;
 import com.kh.elefont.font.model.vo.Font;
+import com.kh.elefont.like_cart.model.service.LikeCartService;
+import com.kh.elefont.like_cart.model.vo.MemberCartView;
 import com.kh.elefont.member.model.service.MemberService;
 import com.kh.elefont.member.model.vo.Member;
 import com.kh.elefont.order.model.service.OrderService;
@@ -33,6 +35,7 @@ public class FontPurchaseServlet extends HttpServlet {
 	AttachmentService attachmentService = new AttachmentService();
 	FontService fontService = new FontService();
 	CouponService couponService = new CouponService();
+	LikeCartService likeCartService = new LikeCartService();
 	
 	/**
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
@@ -98,6 +101,14 @@ public class FontPurchaseServlet extends HttpServlet {
 		font.setFontPurchasedCount(font.getFontPurchasedCount()+1);
 		result = fontService.updateFontPurchaseCount(font);
 		
+		// 해당 멤버가 폰트를 장바구니에 넣어둔 상태라면, 그 장바구니를 삭제하기.
+		List<MemberCartView> memberCartViewList = likeCartService.selectMemberCartList(memberNo);
+		for(MemberCartView mcv : memberCartViewList) {
+			if(fontNo.equals(mcv.getFontNo())) {
+				result = likeCartService.deleteCart(mcv.getCartNo());
+				
+			}
+		}
 		
 		// view단 처리
 		

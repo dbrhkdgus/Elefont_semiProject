@@ -1,3 +1,4 @@
+<%@page import="com.kh.elefont.font.model.vo.Font"%>
 <%@page import="com.kh.elefont.rep.model.vo.Rep"%>
 <%@page import="com.kh.elefont.member.model.service.MemberService"%>
 <%@page import="com.kh.elefont.community.model.vo.Community"%>
@@ -14,6 +15,7 @@
 	List<Attachment> allAttachmentList = (List<Attachment>)request.getAttribute("allAttachmentList");
 	List<String> commLikeList = (List<String>) request.getAttribute("commLikeList");
 	List<Rep> repList = (List<Rep>)request.getAttribute("repList");
+	List<Font> allFontList = (List<Font>)request.getAttribute("allFontList");
 	
 	boolean editable = loginMember != null && (
 			  loginMember.getMemberNo().equals(attachment.getMemberNo())
@@ -47,6 +49,21 @@ if(editable){
 	                <div class="comm-user-content">
 	                   <%=community.getCommContent() %>
 	                </div>
+	            </div>
+<%
+String fontName = "";
+for(Font font : allFontList) {
+	if(community.getFontNo().equals(font.getFontNo())) {
+		fontName = font.getFontName();
+	}
+}
+%>
+	            <div class="comm-font-used">
+	            	<h4>사용한 폰트</h4>
+	            	<div class="comm-font-used-link" onclick="location.href='<%= request.getContextPath() %>/shopDetail?fontNo=<%=community.getFontNo()%>'">
+	            	<i class="fas fa-search-plus"></i>
+	            	<span><%= fontName %></span>
+	            	</div>
 	            </div>
 	            <div class="comm-detail-reply">
 	            		<h4 id="shop-detail-rep">댓글</h4>
@@ -173,7 +190,7 @@ for(Rep rep : repList){
 <%
 				}
 %>
-                    <i class="fas fa-search-plus" onclick="location.href='<%= request.getContextPath() %>/shopDetail?fontNo=<%=community.getFontNo()%>'"></i>
+                   
                 </div>
                 <div class="comm-writer-img-name" onclick="location.href='<%= request.getContextPath()%>/community/writerDetail?commWriter=<%= attachment.getMemberNo() %>'">
                     <div class="community-detail-profile-photo-box">
@@ -198,7 +215,7 @@ for(Attachment att : attachmentList){
 }
 if(cnt >= 4) {
 %>
-					<p onclick="location.href='<%=request.getContextPath()%>/community/writerCollections?memberNo=<%= profileAttachment.getMemberNo() %>'">더보기<p>
+					<p class="comm-more-text" onclick="location.href='<%=request.getContextPath()%>/community/writerCollections?memberNo=<%= profileAttachment.getMemberNo() %>'">더보기<p>
 <%
 }
  %>

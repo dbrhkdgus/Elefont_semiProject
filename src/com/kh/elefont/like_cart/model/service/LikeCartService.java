@@ -78,12 +78,21 @@ public class LikeCartService {
 	}
 
 
-	public List<MemberCartView> selectMemberCartList(String memberNo, String cartNo) {
+	public List<MemberCartView> selectMemberCartList(String memberNo) {
 		Connection conn = getConnection();
 
 		List<MemberCartView> memberCartList = likeCartDao.selectMemberCartList(conn, memberNo);
 		close(conn);
 		return memberCartList;
+	}
+
+
+	public List<String> selectAllCartNo() {
+		Connection conn = getConnection();
+
+		List<String> cartNoList = likeCartDao.selectAllCartNo(conn);
+		close(conn);
+		return cartNoList;
 	}
 
 
@@ -94,5 +103,8 @@ public class LikeCartService {
 		close(conn);
 		return cnt;
 	}
+
+
+
 
 }

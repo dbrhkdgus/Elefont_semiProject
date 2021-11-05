@@ -364,6 +364,23 @@ public class FontService {
 		close(conn);
 		return checkedListByPurchasedCnt;
 	}
+	
+	public int countTotalFontLikeByWriter(String memberNo) {
+		Connection conn = getConnection();
+		 int totalFontLikeByWriter = 0;
+	        
+	        try {
+	        	totalFontLikeByWriter = fontDao.countTotalFontLikeByWriter(conn, memberNo);
+	            
+	            commit(conn);
+	        }catch(Exception e) {
+	            rollback(conn);
+	            throw e;
+	        }finally {
+	            close(conn);
+	        }
+	        return totalFontLikeByWriter;
+	}
 
 
 

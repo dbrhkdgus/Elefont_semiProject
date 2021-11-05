@@ -50,6 +50,9 @@ public class CommunityWriterDetailServlet extends HttpServlet {
 		System.out.println("커뮤니티라이터디테일서블릿 프로필어태치넘버 " + profileAttachment);
 		// 게시물 수 
 		int totalCommunityByWriter = communityService.countTotalCommunityByWriter(writerMember.getMemberNo());
+		// 폰트 좋아요 수
+		int totalFontLikeByWriter = fontService.countTotalFontLikeByWriter(writerMember.getMemberNo());
+		
 		
 		List<String> categoryList = session.getAttribute("categoryList") == null ? new ArrayList<>() : (List<String>) session.getAttribute("categoryList");
 		List<Attachment> attachmentList = attachmentService.selectAllCommAttachmentListByMemberNo(memberNo);
@@ -66,6 +69,7 @@ public class CommunityWriterDetailServlet extends HttpServlet {
 		request.setAttribute("profileAttachment", profileAttachment);
 		request.setAttribute("fontLikeList", fontLikeList);
 		request.setAttribute("allFontList", allFontList);
+		request.setAttribute("totalFontLikeByWriter", totalFontLikeByWriter);
 		
 		request.getRequestDispatcher("/WEB-INF/views/community/communityWriterDetail.jsp").forward(request, response);
 	}

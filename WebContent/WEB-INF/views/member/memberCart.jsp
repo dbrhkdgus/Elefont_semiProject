@@ -47,14 +47,13 @@ for(MemberCartView mcv : memberCartList){
 	                        <div class="cart_content_font_price cart_content_margin">
 	                            <h3>판매가</h3>
 	                            <div class="cart_font_price">
-	                                <p><%=mcv.getFontPrice() %></p>
-	                                <p class="cart_price_explain">회원 할인<%=mcv.getFontDiscountRate() %> %</p>
+	                                <p><%=mcv.getFontPrice() %>P</p>
 	                            </div>
 	                        </div>
 	                        
 	                        <div class="cart_content_pay_price">
 	                            <h3>주문금액</h3>
-	                            <p><%=disresult %>P</p>
+	                            <p><%=mcv.getFontPrice() %>P</p>
 	                        </div>
 	                        <div class="cart_order  cart_content_margin">
 	                        	<input type="button" class="btn-delete-from-cart" value="삭제하기"/>
@@ -74,6 +73,7 @@ for(MemberCartView mcv : memberCartList){
 	                    <div class= "cart_bottom_buttons">
 	                    	<input type="button"  id="check_all_delete" value="전체 삭제하기">
 	                    	<input type="button"  id="selected_cart_delete" value="선택한 상품 삭제하기">  
+	                    	
 	                    	<input type="button"  id="select_order_font" value="주문하기">	  
 	                    	<input type="hidden"  name="type" value="">
 	                                  
@@ -158,8 +158,19 @@ for(MemberCartView mcv : memberCartList){
 	
 	/* 선택한 상품 다중 삭제 */
 	$("#selected_cart_delete").click((e)=>{
-		$("input[name='type']").val('delete');		
-		$(document.cartFrm).submit();
+		 $("input[name='type']").val('delete');
+		 var checked = 'input[name="chk_cart_no"]:checked';
+		 var selectedElements = document.querySelectorAll(checked);
+		 var selectedElementsCnt = selectedElements.length;
+		 
+		 if(selectedElementsCnt > 0){
+			 
+			$(document.cartFrm).submit();
+		 }else{
+			 alert("선택된 상품이 없습니다.");
+			 return
+		 }
+		
 	});
 	
 	
@@ -196,6 +207,11 @@ for(MemberCartView mcv : memberCartList){
 		var fontName = [];
 		var price = 0;
 		
+		if(fontName.length == 0){
+			alert("선택된 폰트가 없습니다.");
+			return
+		}
+		
 		  for (i = 0; i < lenth; i++) {
 			    if (chekObj[i].checked === true) {
 			      
@@ -211,6 +227,8 @@ for(MemberCartView mcv : memberCartList){
 				
 				$("input[name='type']").val('purchase');
 				$(document.cartFrm).submit();	
+			}else{
+				return;
 			}
 		
 			$("input[name='type']").val('purchase');

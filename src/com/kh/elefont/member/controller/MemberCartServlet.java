@@ -101,7 +101,7 @@ public class MemberCartServlet extends HttpServlet {
 
 			
 			List<MemberCartView> memberCartList = new ArrayList<>();
-			memberCartList = likeCartService.selectMemberCartList(memberNo ,cartNo);
+			memberCartList = likeCartService.selectMemberCartList(memberNo);
 			
 			
 				request.setAttribute("memberCartList", memberCartList);

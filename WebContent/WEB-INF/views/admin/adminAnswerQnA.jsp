@@ -36,10 +36,10 @@ for(Question que : questionListGroupBy){
 				if(att.getMemberNo().equals(que.getqQuestioner())){
 				
 %>
-                        <li class="">
-                            <a class="qnaListLink" id="btn-<%=que.getqQuestioner()%>">
-                                <div class="infoArea">
-                                    <div class="thumbnailWrap" aria-hidden="true">
+                        <li class="msg-div" id="btn-<%=que.getqQuestioner()%>">
+                            <a class="qnaListLink" >
+                                <div class="infoArea" data-name="<%=que.getqQuestioner()%>">
+                                    <div class="thumbnailWrap" aria-hidden="true" >
                                         <img class="qnaProfile" src="<%=request.getContextPath()%>/upload/profilephotos/<%=att.getRenamedFilename()%>">
                                     </div>
                                     <div class="textWrap">
@@ -107,7 +107,7 @@ if("N".equals(que.getqIsAnswered())){
                         </div>
                     </div>
                 </div>
-                <div class="chatMsg" id="qna-chat-msg">
+                <div class="chatMsg qna-chat-msg" id="">
                     <ul class="question-balloon" style="visibility: visible;">
                         <li class="dateCheck">
                             <span>
@@ -163,18 +163,14 @@ for(Question ques : questionList){
 </section>
 
 <script>
-<%
-for(String questioner : questionerList){
-%>
-
 $(".qnaChatSection").hide();
-$("#btn-<%=questioner%>").click((e)=>{
+$(".infoArea").click((e)=>{
+	const target = $(e.target).data("name");
+	const index = $(e.target).parent().parent().index();
 	$(".qnaChatSection").hide();
-	$("#<%=questioner%>").show();
-});
-<%
-}
-%>
+	$("#"+target).show();
+	$('.qna-chat-msg').eq(index).scrollTop($('.qna-chat-msg').eq(index).prop('scrollHeight'));
+})
 
 </script>
 
