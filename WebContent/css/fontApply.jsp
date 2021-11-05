@@ -12,14 +12,16 @@ System.out.println("fontList@jsp : " + fontList);
 if(!fontList.isEmpty()){
 	for(Font font : fontList){
 		if(font.getFontFamily() != null){
+			
 %>
 
 
 @font-face {
     font-family: '<%= font.getFontFamily()%>';
-    src: url('<%= font.getFontUrl()%>') format('woff');
-    font-weight: normal;
+    src: url('<%= font.getFontUrl()%>') format('woff2');
+    font-weight: 300;
     font-style: normal;
+    
 }
 
 <% 
@@ -27,6 +29,8 @@ if(!fontList.isEmpty()){
 	} 
 }
 %>
+
+
 </style>
 
 
