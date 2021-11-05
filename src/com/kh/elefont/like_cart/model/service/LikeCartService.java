@@ -87,6 +87,15 @@ public class LikeCartService {
 	}
 
 
+	public List<String> selectAllCartNo() {
+		Connection conn = getConnection();
+
+		List<String> cartNoList = likeCartDao.selectAllCartNo(conn);
+		close(conn);
+		return cartNoList;
+	}
+
+
 
 
 }

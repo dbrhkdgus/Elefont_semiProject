@@ -289,4 +289,33 @@ public class LikeCartDao {
 		return cnt;
 	}
 
+	public List<String> selectAllCartNo(Connection conn) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		String sql = prop.getProperty("selectAllCartNo");
+		List<String> cartNoList = new ArrayList<>();
+		
+		
+		try {
+			
+			pstmt = conn.prepareStatement(sql);
+			rset = pstmt.executeQuery();
+
+			
+			while(rset.next()) {
+				cartNoList.add(rset.getString(1));
+				
+			}
+			
+
+			
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		return cartNoList;
+	}
+
 }

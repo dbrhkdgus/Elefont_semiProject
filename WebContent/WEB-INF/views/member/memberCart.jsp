@@ -158,8 +158,19 @@ for(MemberCartView mcv : memberCartList){
 	
 	/* 선택한 상품 다중 삭제 */
 	$("#selected_cart_delete").click((e)=>{
-		$("input[name='type']").val('delete');		
-		$(document.cartFrm).submit();
+		 $("input[name='type']").val('delete');
+		 var checked = 'input[name="chk_cart_no"]:checked';
+		 var selectedElements = document.querySelectorAll(checked);
+		 var selectedElementsCnt = selectedElements.length;
+		 
+		 if(selectedElementsCnt > 0){
+			 
+			$(document.cartFrm).submit();
+		 }else{
+			 alert("선택된 상품이 없습니다.");
+			 return
+		 }
+		
 	});
 	
 	
@@ -195,6 +206,11 @@ for(MemberCartView mcv : memberCartList){
 		var memberPoint = <%=loginMember.getMemberPoint() %>;
 		var fontName = [];
 		var price = 0;
+		
+		if(fontName.length == 0){
+			alert("선택된 폰트가 없습니다.");
+			return
+		}
 		
 		  for (i = 0; i < lenth; i++) {
 			    if (chekObj[i].checked === true) {
