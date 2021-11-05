@@ -873,8 +873,8 @@ public class FontDao {
 			sql += "category_code like '%M%'";
 		}
 		
-		System.out.println("sql@Dao :" + sql);
-	
+		
+		
 		try {
 			pstmt = conn.prepareStatement(sql);
 			
@@ -891,6 +891,8 @@ public class FontDao {
 				font.setFontApproval(rset.getString("font_approval") == null? " ": rset.getString("font_approval"));
 				font.setMemberId(rset.getString("member_id"));
 				font.setFontLikeCount(rset.getInt("font_like_count"));
+				font.setFontFamily(rset.getString("font_family"));
+				
 
 				
 				fontList.add(font);
