@@ -3,6 +3,7 @@
 <%
 List<Attachment> commAttachmentList = (List<Attachment>)request.getAttribute("commAttachmentList");
 List<Font> fontLikeList = (List<Font>) request.getAttribute("fontLikeList");
+List<Font> fontAllList = (List<Font>) request.getAttribute("fontList");
 List<Font> fontPurchasedList = (List<Font>) request.getAttribute("fontPurchasedList");
 List<Coupon> couponList = (List<Coupon>) request.getAttribute("couponList");
 Attachment profile = (Attachment) request.getAttribute("profile");
@@ -91,21 +92,34 @@ int cartCount = (int)request.getAttribute("cartCount");
 <%
 	if(fontLikeList.size() < 4){	
 		for(Font f : fontLikeList){
+			for(Font allFont : fontAllList)	{
+			System.out.println("폰트패밀리값 " + allFont);
 %>
               <a href="<%=request.getContextPath()%>/shopDetail?fontNo=<%=f.getFontNo()%>"><div class="my-font-img"><%=f.getFontName() %></div></a>
+			<script>
+			console.log(	$(".member-font-like").children().eq(1).children("a").eq(0).css("font-family","<%=f.getFontFamily()%>")) ;
+				
+			</script>
+				
 <%
+			}
 		}
 	}else{
 		for(int i = 0; i < 3; i++){
 			Font f = fontLikeList.get(i);
+		
+		
 %>
               <a href="<%=request.getContextPath()%>/shopDetail?fontNo=<%=f.getFontNo()%>"><div class="my-font-img"><%=f.getFontName() %></div></a>
+				
 <%
-		}
+		}	
 %>
               <a href="<%=request.getContextPath()%>/member/fontLikeList?memberNo=<%=loginMember.getMemberNo()%>"><div class="my-font-img">더보기</div></a>
 <%
-	}
+		
+	
+}
 %>
             </div>
         </div>
@@ -198,6 +212,10 @@ int cartCount = (int)request.getAttribute("cartCount");
     </div>
 </div> 
 <script>
+
+
+
+
 $("#member-coupon").click((e)=>{
 	const $couponEnroll = $(".coupon-enroll");
 	if($couponEnroll.css("display","none")){

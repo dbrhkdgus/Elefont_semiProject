@@ -2517,7 +2517,7 @@ font-size: 16px;
 /* 멤버 디테일 시작*/
 #member-mypage{
   position: relative;
-  
+  	font-family: 'NanumSquareRound';
 }
 
 #my-profile-pic{
@@ -2580,6 +2580,11 @@ font-size: 16px;
 }
 .member-log{
   width: 900px;
+  padding-left: 10px;  
+}
+
+.member-log h4{
+  font-family: 'NanumSquareRound';
 }
 .member-title{
   border: 1px solid #A0A0A0;
