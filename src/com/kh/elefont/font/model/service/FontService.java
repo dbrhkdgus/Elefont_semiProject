@@ -345,6 +345,13 @@ public class FontService {
 		close(conn);
 		return fontList;
 	}
+	public List<String> selectAllFontNo() {
+		Connection conn = getConnection();
+		List<String> fontNoList = fontDao.selectAllFontNo(conn);
+		
+		close(conn);
+		return fontNoList;
+	}
 
 
 
