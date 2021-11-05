@@ -1183,6 +1183,35 @@ public class FontDao {
 		return checkedListByPurchasedCnt;
 	}
 
+	public int countTotalFontLikeByWriter(Connection conn, String memberNo) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		int totalFontLikeByWriter = 0;
+		
+		String sql = prop.getProperty("countTotalFontLikeByWriter");
+		
+		
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			pstmt.setString(1,memberNo);
+			
+			rset = pstmt.executeQuery();
+			
+			if(rset.next()) {
+				totalFontLikeByWriter = rset.getInt(1);
+			}
+				
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		return totalFontLikeByWriter;
+	}
+
 }
 
 	
