@@ -6,6 +6,7 @@
     pageEncoding="UTF-8"%>
 <%@include file = "/WEB-INF/views/common/LandingHeader.jsp" %>
 <%@include file = "/css/fontApply.jsp" %>
+<link rel="stylesheet" href="http://code.jquery.com/ui/1.9.0/themes/smoothness/jquery-ui.css" />
 <%
 	String sort = request.getParameter("sort") == null? "newest" : request.getParameter("sort");	
 	
@@ -188,7 +189,8 @@ $(".font-style").css("color", $(color).val());
 		alert("로그인 후 이용 가능합니다.");
 		$('.loginBox').show();
     	$(loginId).select();
-    
+    	$('#loginBtn').css("color","gold");
+
 		return;
 <%
 	}else if("A".equals(loginMember.getMemberRole())){

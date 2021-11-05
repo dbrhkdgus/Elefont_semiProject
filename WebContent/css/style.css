@@ -1504,7 +1504,7 @@ text-align: center;
 	display: flex;
 	margin-left: 165px;
     flex-direction: column;
-    margin-left: 90px;
+    margin-left: 155px;
     align-items: center;
 }
 
@@ -1513,6 +1513,7 @@ text-align: center;
 	margin-left: 300px;
 }
 .cart_title{
+	font-family: 'NanumSquareRound';
     margin-top: 30px;
     text-align: left;
     margin-bottom: 50px;
@@ -1525,11 +1526,13 @@ text-align: center;
 
 }
 .cart_content_box{
+	
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 .cart_content{
+	font-family: 'NanumSquareRound';
     display: flex;
     align-items: center;
     border: 1px solid #26BF5C;
@@ -1758,6 +1761,7 @@ text-align: center;
     background-color: #59C38A;
     width: fit-content;
     padding: 5px;
+    font-family: 'NanumSquareRound';
 }
 .h1_font_style{
 	margin-left: 35px;
@@ -2297,6 +2301,7 @@ p { padding: 5px 0; }
 }
 
 .like-comm{
+  font-family: 'NanumSquareRound';
   width: 270px;
   height: 390px;
   text-align: center;
@@ -2318,16 +2323,18 @@ p { padding: 5px 0; }
 }
 .like-comm-content{
   overflow: hidden;
+  white-space: nowrap;
   height: 45px;
   display: flex;
   align-items: center;
   justify-content: center;
+  padding: 0px 8px 0px 8px;
 }
 
 .comm-img{
   display: flex;
-  width: 266px;
-  height: 266px;
+  width: 269px;
+  height: 269px;
   border: none;
   border-bottom: 1px solid #A0A0A0;
   border-top: 1px solid #A0A0A0;
@@ -2376,15 +2383,21 @@ p { padding: 5px 0; }
 }
 
 #btn-comm-board-enroll{
-background-color: #4CAF50; /* Green */
-border: 0px;
-color: white;
-padding: 10px 12px;
-text-align: center;
-text-decoration: none;
-display: inline-block;
-font-size: 16px;
+	background-color: #4CAF50; /* Green */
+	border: 0px;
+	color: white;
+	padding: 10px 12px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 16px;
 }
+.comm-user-title {
+	overflow: hidden;
+  	text-overflow: ellipsis;
+  	margin: 0px;
+}
+/* 커뮤니티 페이지 끝 */
 /*
  * 메뉴 로그인 nav창
  */
@@ -2955,7 +2968,11 @@ font-size: 16px;
 #font-sort,#range-result{
 	font-family: 'NanumSquareRound';
 }
-
+#font-sort{
+	border: 2px solid #26BF5C;
+    border-radius: 30px;
+    padding: 5px;
+}
 #style-button{
   font-family: 'NanumSquareRound';
   width: 150px;
@@ -3180,8 +3197,8 @@ font-size: 16px;
     justify-content: center;
 }
 .comm-board-content{
+    width: 830px;
 	border-top:2px solid #eee;
-	border-right: 2px solid #eee;
 	border-bottom : 2px solid #eee;; 
     display: flex;
     flex-direction: column;
@@ -3189,7 +3206,13 @@ font-size: 16px;
     align-items: flex-start;
     padding-bottom:20px;
 }
+.comm-title {
+	width: 826px;
+    overflow: auto;
+}
 .comm-board-title-button {
+    width: 1130px;
+	font-family: 'NanumSquareRound';
 	margin-left: 190px;
     margin-right: 160px;
     margin-bottom: 10px;
@@ -3199,7 +3222,9 @@ font-size: 16px;
     margin-bottom: 10px;
     align-items: center;
 }
-
+.comm-title > h1{
+	font-family: 'NanumSquareRound';
+}
 #comm-board-button {
 	background-color: #4CAF50; /* Green */
 	border: 0px;
@@ -3231,6 +3256,7 @@ font-size: 16px;
 	padding-left: 15px;
     width: 300px;
     word-break:keep-all;
+    font-family: 'NanumSquareRound';
 }
 .comm-writer-info{
 	text-align: center;
@@ -3290,7 +3316,7 @@ font-size: 16px;
 	margin-left: 6px;
 }
 .rep-enroll-area {
-	width: 92%;
+	width: 90%;
 	margin-top: 10px;
 }
 .comm-board-re-repEnroll{
@@ -3301,7 +3327,7 @@ font-size: 16px;
 	width: 800px;
 }
 .re-input-size {
-	width: 600px;
+	width: 470px;
 }
 .community-detail-profile-photo-box {
 	margin-right: 10px;
@@ -3657,8 +3683,10 @@ font-size: 16px;
 }
 
 .left.content{
+	font-family: 'NanumSquareRound';
     width:550px;
-    text-align: center;
+   	text-align: left;
+    margin-left: 60px;
 }
 .left.image{
 	text-align: center;
@@ -3897,7 +3925,10 @@ align-items: center;
   	
 }
 
-
+/* 로그인 버튼 손가락 모양*/
+#loginBtn-li{
+	cursor : pointer;
+}
 
 
 

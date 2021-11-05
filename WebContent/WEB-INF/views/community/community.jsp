@@ -127,7 +127,7 @@ if(loginMember != null){
 						
 					</div>
 					<div class="like-comm-content">
-						<span><%= comm.getCommTitle() %></span>
+						<p class="comm-user-title"><%= comm.getCommTitle() %></p>
 					</div>
 				</div> 
 
@@ -240,10 +240,14 @@ $("#search-content").hide();
 <%
 if(loginMember == null){
 %>
-		alert("로그인 후 사용 가능한 기능입니다.");
-		$('.loginBox').show();
-    	$(loginId).select();
-		return;
+
+	alert("로그인 후 이용 가능합니다.");
+	$('.loginBox').show();
+	$(loginId).select();
+  $('#loginBtn').css("color","gold");
+	
+	return;
+
 <%
 }else if("A".equals(loginMember.getMemberRole())){
 %>
