@@ -3677,8 +3677,10 @@ p { padding: 5px 0; }
 }
 
 .left.content{
+	font-family: 'NanumSquareRound';
     width:550px;
-    text-align: center;
+   	text-align: left;
+    margin-left: 60px;
 }
 .left.image{
 	text-align: center;
