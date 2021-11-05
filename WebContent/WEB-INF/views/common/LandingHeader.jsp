@@ -208,7 +208,7 @@ if(loginMember != null){
 <% 
 }else{
 %>
-                                        <li><a class="smoth-scroll" id="loginBtn" >Login</a>
+                                        <li id="loginBtn-li"><a class="smoth-scroll" id="loginBtn" >Login</a>
                                         </li>
                                         
                                         <script>
