@@ -287,24 +287,24 @@ if(!deletedRepList.isEmpty()){
 								<tr>
 									<td>
 										<span>포인트/할인율</span>
-										<input type="text" name="couponRate" id="couponRate" />
+										<input type="text" name="couponRate" id="couponRate" tabindex="1"/>
 									</td>
 									<td>
 										<span>쿠폰 매수</span>
-										<input type="number" name="couponCnt" id="couponCnt" value="1"/>
+										<input type="number" name="couponCnt" id="couponCnt" value="1" tabindex="2"/>
 									</td>
 									<td rowspan="2">
-										<input type="button" value="발행" id="couponEnrollBtn"/>
+										<input type="button" value="발행" id="couponEnrollBtn" tabindex="5"/>
 									</td>
 								</tr>
 								<tr>
 									<td>
 										<span>쿠폰 유효기간</span>
-										<input type="text" name="couponExpired" id="couponExpired" placeholder="발급일로부터 일"/>
+										<input type="text" name="couponExpired" id="couponExpired" placeholder="발급일로부터 일" tabindex="3"/>
 									</td>
 									<td>
 										<span>회원 아이디 입력</span>
-										<input type="text" name="memberId" id="memberId" placeholder="회원 아이디를 입력하세요" />
+										<input type="text" name="memberId" id="memberId" placeholder="회원 아이디를 입력하세요" tabindex="4"/>
 									</td>
 								</tr>
 								<tr>
