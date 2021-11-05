@@ -67,23 +67,25 @@ public class OrderDao {
 		
 	}
 
-	public int insertOrderFont(Connection conn, Order order, String finalPrice) {
+	public int insertOrderFont(Connection conn, Order order, double finalPrice) {
 		PreparedStatement pstmt = null;
 		int result  = 0;
 		String sql = prop.getProperty("insertOrderFont");
-		double finalPriceD = Double.parseDouble(finalPrice);
-		System.out.println("finalPriceD : " + finalPriceD);
 //		insertOrderFont = insert into member_orders values(?,?,default,?)		
+		System.out.println("finalPrice@dao = " + finalPrice);
+		System.out.println(" order.getOrderNo()@dao = " +  order.getOrderNo());
+		System.out.println("order.getMemberNo()@dao = " + order.getMemberNo());
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, order.getOrderNo());
 			pstmt.setString(2, order.getMemberNo());
-			pstmt.setDouble(3, finalPriceD);
+			pstmt.setDouble(3, finalPrice);
 			
 			
 			result = pstmt.executeUpdate();
-			System.out.println("finalPrice 추가한 결과가 잘 나왔나요? : " +result);
+			
+			
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -298,4 +300,6 @@ public class OrderDao {
 		}
 		return result;
 	}
+
 }
+

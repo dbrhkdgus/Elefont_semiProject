@@ -22,13 +22,12 @@ public class OrderService {
 		return order;
 	}
 
-	public int insertOrderFont(Order order, String finalPrice) {
+	public int insertOrderFont(Order order, double finalPrice) {
 		Connection conn = getConnection();
 		int result = 0;
 		
 		try {
 			result = orderDao.insertOrderFont(conn, order,finalPrice);
-//			System.out.println("result@dao = "+result);
 			commit(conn);
 		}catch(Exception e) {
 			rollback(conn);
@@ -105,6 +104,7 @@ public class OrderService {
 		
 		return result;
 	}
+
 		
 }
 

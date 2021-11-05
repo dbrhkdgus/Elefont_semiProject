@@ -40,7 +40,7 @@ public class FontPurchaseServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String couponNo = (String)request.getParameter("coupon-no");
 		System.out.println("결제 할 때 있니없니 couponNo : "+ couponNo);
-		String finalPrice = request.getParameter("finalPrice");
+		double finalPrice = Double.parseDouble(request.getParameter("finalPrice"));
 		System.out.println("finalPrice 잘 받아 왔나요? : " + finalPrice);
 		String memberNo = request.getParameter("member-no");
 		String fontNo = request.getParameter("font-no");

@@ -2,6 +2,7 @@ package com.kh.elefont.like_cart.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -13,8 +14,8 @@ import javax.servlet.http.HttpSession;
 
 import com.kh.elefont.common.MailSend;
 import com.kh.elefont.common.model.service.AttachmentService;
-import com.kh.elefont.common.model.vo.Attachment;
 import com.kh.elefont.font.model.service.FontService;
+import com.kh.elefont.font.model.vo.Font;
 import com.kh.elefont.like_cart.model.service.LikeCartService;
 import com.kh.elefont.member.model.service.MemberService;
 import com.kh.elefont.member.model.vo.Member;
@@ -53,6 +54,8 @@ public class MemberCartPurchaseDeleteServlet extends HttpServlet {
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+		
+		
 		HttpSession session = request.getSession();
 		List<String> cartNoList = new ArrayList<>();
 		List<Order> orderList = new ArrayList<>();
@@ -60,7 +63,7 @@ public class MemberCartPurchaseDeleteServlet extends HttpServlet {
 		List<String> fontNoList = new ArrayList<>();
 		String[] cartNoArr = request.getParameterValues("chk_cart_no");
 		String type = request.getParameter("type");
-		
+		double price =0;
 		
 		String memberNo = request.getParameter("member_no");
 		String fontPrice = request.getParameter("font_price");
@@ -83,14 +86,21 @@ public class MemberCartPurchaseDeleteServlet extends HttpServlet {
 			
 		}else if("purchase".equals(type)) {
 			if (cartNoArr != null) {
+
 				for (int i = 0; i < cartNoArr.length; i++) {
 					cartNoList.add(cartNoArr[i]);
-					
+					//price = Double.parseDouble(prices[i]); 
+					//System.out.println("폰트 가격 : " + price);
+
 					}
 				for (String cartNo : cartNoList) {
 					//업무
-					
+			
 					String fontNo = fontService.selectFontNoByCartNo(cartNo);
+					Font font = fontService.selectOneFontByFontNo(fontNo);
+					double fontOriPrice = font.getFontPrice();
+					System.out.println("폰트 원래 가격을 받아왔나요? " + fontOriPrice);
+					
 						
 						int result = 0;
 						
@@ -98,12 +108,10 @@ public class MemberCartPurchaseDeleteServlet extends HttpServlet {
 						order.setMemberNo(memberNo);
 						order.setFontNo(fontNo);
 						order.setOrderNo( "order-" + System.currentTimeMillis());
-						
-						
-						
-						
+					
 						fontNoList.add(fontNo);
-						result = orderService.insertOrderFont(order);
+						System.out.println("servlet@@@order = " + order);
+						result = orderService.insertOrderFont(order,fontOriPrice);
 						result = orderService.insertOrders(order);
 						
 						List<Order> oList = orderService.selectAllOrderListByOrderNo(order.getOrderNo());
