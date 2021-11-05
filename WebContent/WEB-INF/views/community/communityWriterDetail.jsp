@@ -12,6 +12,7 @@
 	Member writerMember = (Member)request.getAttribute("writerMember");
 	Attachment profileAttachment = (Attachment)request.getAttribute("profileAttachment");
 	int totalCommunityByWriter = (int)request.getAttribute("totalCommunityByWriter");
+	int totalFontLikeByWriter = (int)request.getAttribute("totalFontLikeByWriter");
 	List<Attachment> attachmentList = (List<Attachment>)request.getAttribute("attachmentList");
 	List<Font> fontLikeList = (List<Font>)request.getAttribute("fontLikeList");
 	List<Font> allFontList = (List<Font>)request.getAttribute("allFontList");
@@ -47,12 +48,17 @@ if(!allFontList.isEmpty()){
                 <img src="<%= request.getContextPath()%>/upload/profilephotos/<%=profileAttachment.getRenamedFilename()%>" alt="" class="writer-profile-img">
                 </div>
                 <h2><%= writerMember.getMemberName() %></h2>
-                <h2>게시글 수 : <span><%= totalCommunityByWriter %></span></h2>
+<%
+boolean bool = ("대답 안 함".equals(writerMember.getMemberJob()) || "기타".equals(writerMember.getMemberJob())); 
+if(!bool) {
+%>
+                <h4> 직업 : <span><%= writerMember.getMemberJob() %></span></h4>
+<%} %>
             </div>
             
             <div class="comm-writer-history">
                 <div class="comm-writer-comm-history">
-                    <h4 id="shop-detail-rep">커뮤니티 게시글 이력</h4>
+                    <h4 id="shop-detail-rep">커뮤니티 게시글 이력(<%= totalCommunityByWriter %>)</h4>
                     <div class="comm-writer-comm-history-content">
  <%
  	int cnt = 0;
@@ -83,7 +89,7 @@ if(!allFontList.isEmpty()){
                    
                 </div>
                 <div class="comm-writer-font-history">
-                    <h4 id="shop-detail-rep">폰트 좋아요 이력</h4>
+                    <h4 id="shop-detail-rep">폰트 좋아요 이력(<%= totalFontLikeByWriter %>)</h4>
                 <div class="comm-writer-font-history-content">
 <%
 	int fontCnt = 0;
