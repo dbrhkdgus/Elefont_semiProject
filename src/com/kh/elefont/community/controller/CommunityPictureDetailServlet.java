@@ -17,6 +17,8 @@ import com.kh.elefont.common.model.service.AttachmentService;
 import com.kh.elefont.common.model.vo.Attachment;
 import com.kh.elefont.community.model.service.CommunityService;
 import com.kh.elefont.community.model.vo.Community;
+import com.kh.elefont.font.model.service.FontService;
+import com.kh.elefont.font.model.vo.Font;
 import com.kh.elefont.member.model.vo.Member;
 import com.kh.elefont.rep.model.service.RepService;
 import com.kh.elefont.rep.model.vo.Rep;
@@ -31,6 +33,8 @@ public class CommunityPictureDetailServlet extends HttpServlet {
 	private CommunityService communityService = new CommunityService();
 	private AttachmentService attachmentService = new AttachmentService();
 	private RepService repService = new RepService();
+	private FontService fontService = new FontService();
+	
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
@@ -99,7 +103,7 @@ public class CommunityPictureDetailServlet extends HttpServlet {
 				List<Attachment> attachmentList = attachmentService.selectAllCommAttachmentListByMemberNo(attachment.getMemberNo());
 				List<Rep> repList = repService.selectAllCommunityRepListByCommNo(commNo);
 				List<Attachment> allAttachmentList = attachmentService.selectAllAttachmentList();
-				
+				List<Font> allFontList = fontService.selectAllApprovedFontOrderByDate();
 				 
 				
 				//게시글 가져오기에 실패한경우
@@ -134,6 +138,7 @@ public class CommunityPictureDetailServlet extends HttpServlet {
 				request.setAttribute("attachmentList", attachmentList);
 				request.setAttribute("profileAttachment", profileAttachment);
 				request.setAttribute("allAttachmentList", allAttachmentList);
+				request.setAttribute("allFontList", allFontList);
 				request.getRequestDispatcher("/WEB-INF/views/community/communityPictureDetail.jsp").forward(request, response);
 			}else {
 				request.getRequestDispatcher("/WEB-INF/common/404.jsp").forward(request, response);
