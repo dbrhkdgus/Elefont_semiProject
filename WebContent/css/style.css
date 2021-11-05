@@ -499,7 +499,7 @@ body.loaded #preloader{
 
 .navigation-menu .navbar-nav li a:hover {
     background: none;
-    color: #fff;
+    color: #6DB692;
     -webkit-transition: all 0.3s ease-out;
     transition: all 0.3s ease-out;
 }
@@ -731,6 +731,9 @@ text-align: center;
 }
 .review-content{
 	width: 100%;
+	display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 .testimonial-word img {
 	margin: 0px 90px 0px 0px;
@@ -2208,6 +2211,15 @@ p { padding: 5px 0; }
   margin: 10px;
   
 }
+#color{
+	border: none;
+	border-radius:7px;
+	background-color:#f2f2f2;
+	
+}
+#color:focus{
+	border:none;
+}
 #allFontStyle{
 	font-size: 30px;
 }
@@ -2490,7 +2502,7 @@ font-size: 16px;
 }
 
 .navigation-background .navigation-menu .navbar-nav li a:hover {
-    color: #fff;
+    color: #6DB692;
 }
 
 /* 회원가입 폼 */
@@ -2914,6 +2926,10 @@ font-size: 16px;
 }
 #style-button:focus,#btn-search:focus{
 	border:none;
+}
+
+#style-button:hover{
+	background-color:#A0BFB5;
 }
 #btn-search{
 	font-size: 24px;
