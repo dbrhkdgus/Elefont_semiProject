@@ -40,8 +40,11 @@ Attachment profile = (Attachment) request.getAttribute("profile");
 					<div class="data-bars">
 <% for(Font fontC : checkedList){
 %>
+						<div class="data-name">
+							<%=fontC.getFontName() %>
+						</div>	
 						<div class="data-bar">
-							<div data-width="<%= (int)fontC.getFontPurchasedCount()%10*10 %>"><%=fontC.getFontName() %><span><%= fontC.getFontPurchasedCount() %></span></div>
+							<div data-width="<%= (int)fontC.getFontPurchasedCount()>0?(int)fontC.getFontPurchasedCount()%25*4+10:10 %>"><span><%= fontC.getFontPurchasedCount() %></span></div>
 						</div>
 <%	
 }
@@ -53,8 +56,11 @@ Attachment profile = (Attachment) request.getAttribute("profile");
 					<h4>내 폰트 좋아요 현황</h4>
 					<div class="data-bars">
 <% for(Font fontC : checkedList){ %>					
+						<div class="data-name">
+							<%=fontC.getFontName() %>
+						</div>	
 						<div class="data-bar">
-							<div data-width="<%= (int)fontC.getFontLikeCount()%10*10 %>"><%=fontC.getFontName() %><span><%= fontC.getFontLikeCount() %></span></div>
+							<div data-width="<%= (int)fontC.getFontLikeCount()>0?(int)fontC.getFontLikeCount()%25*4+10:10 %>"><span><%= fontC.getFontLikeCount() %></span></div>
 						</div>
 <% } %>						
 					</div>

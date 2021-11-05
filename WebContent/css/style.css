@@ -2701,17 +2701,17 @@ font-size: 16px;
 .data-graphs{
 	display: flex;
 	flex-direction: row;
-	justify-content: center;
+	justify-content: space-around;
 	padding: 20px;
 }
-.data-graphs>div{
-	padding: 10px 100px 0 10px;
-}
 .data-bars{
-	height:300px;
+	height:280px;
 	width: 300px;
-	padding-top: 50px;
-	padding-left: 50px;
+	margin-top: 50px;
+	padding: 10px;
+	overflow: auto;
+	border : 1px solid #d8d8d8;
+	border-radius : 10px;
 }
 .data-bar{
 	color: #fff;
@@ -2731,6 +2731,7 @@ font-size: 16px;
 	padding-left: 10px;
 	width: 0;
 	border-radius:2px;
+	height : 100%;
 }
 .data-bar span{
 	display: block;
