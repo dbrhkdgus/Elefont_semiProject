@@ -544,7 +544,7 @@ public class CommunityDao {
 		ResultSet rset = null;
 		List<Community> list = new ArrayList<>();
 		String sql = null;
-		System.out.println("param@Dao = " + param);
+	
 		String searchType = (String) param.get("searchType");
 		switch(searchType) {
 		case "writerName":
@@ -560,7 +560,7 @@ public class CommunityDao {
 			param.put("searchKeyword", "%" + param.get("searchKeyword") + "%"); 
 			break;
 		}
-		System.out.println("sql@dao = " + sql);
+		
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
@@ -579,7 +579,7 @@ public class CommunityDao {
 				community.setCommRegDate(rset.getDate("comm_reg_date"));
 				community.setFontNo(rset.getString("font_no"));
 				community.setCommTitle(rset.getString("comm_title"));
-				community.setMemberNo("member_no");
+				community.setMemberNo(rset.getString("member_no"));
 				
 				list.add(community);
 			}

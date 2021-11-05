@@ -84,7 +84,7 @@ public class AttachmentDao {
 				
 				
 				attachmentList.add(attachment);
-				System.out.println("attachmentList@Dao : " + attachmentList);
+
 			}
 				
 		} catch (SQLException e) {
@@ -93,7 +93,7 @@ public class AttachmentDao {
 			close(rset);
 			close(pstmt);
 		}
-		System.out.println("attachmentListDao@" + attachmentList);
+	
 		return attachmentList;
 	}
 	public List<Attachment> selectAllAttachmentListByMemberNo(Connection conn, String memberNo) {
@@ -191,7 +191,7 @@ public class AttachmentDao {
      
 					fontAttchmentList.add(attachment);
 			}
-			System.out.println("fontAttchmentList@Dao : " + fontAttchmentList);
+
 		} catch (SQLException e) {
 			
 			e.printStackTrace();
@@ -341,7 +341,6 @@ public class AttachmentDao {
 			close(rset);
 			close(pstmt);
 		}
-		System.out.println("profileAttachmentListDao@" + profileAttachmentList);
 		return profileAttachmentList;
 	}
 	public List<Attachment> selectAllAttachmentList(Connection conn) {
@@ -378,7 +377,7 @@ public class AttachmentDao {
 			close(rset);
 			close(pstmt);
 		}
-		System.out.println("allAttachmentListDao@" + allAttachmentList);
+		
 		return allAttachmentList;
 	}
 	public Attachment selectOneAttachmentByFontNo(Connection conn, String fontNo) {

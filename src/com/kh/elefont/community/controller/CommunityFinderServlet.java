@@ -55,8 +55,7 @@ public class CommunityFinderServlet extends HttpServlet {
 		String url = request.getRequestURI() + queryString; // /mvc/admin/memberFinder?searchType=memberId&searchKeyword=a 
 		
 		
-		System.out.println("param@servlet = " + param);
-		System.out.println("찾은거@servlet = " + list);
+			
 		
 		request.setAttribute("communityList", communityList);
 		request.setAttribute("attachmentList", attachmentList);

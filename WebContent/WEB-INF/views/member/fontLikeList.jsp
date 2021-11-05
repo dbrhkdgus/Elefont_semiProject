@@ -103,7 +103,7 @@
 %>                       
 						<div class="test-item">
                             <a href="<%= request.getContextPath()%>/shopDetail?fontNo=<%=fontNo %>"><div class="test-item-title"> <%=fontName %> </div></a>
-                            <textarea name="" id="<%= fontNo%>" cols="30" rows="10" class="font-style" style="font-family: '<%= fontFamily %>';" ></textarea>
+                            <textarea name="" id="<%= fontNo%>" cols="30" rows="10" class="font-style" style="font-family: '<%= fontFamily %>';"  placeholder="직접 타이핑해서 폰트를 확인해 보세요!"></textarea>
                            <div class="test-item-buttons"> 
 <%
 			if(loginMember != null && !likeList.isEmpty() && likeList.contains(fontNo)){

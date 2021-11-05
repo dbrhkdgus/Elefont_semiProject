@@ -167,7 +167,7 @@ for(int i = 0; i < 9; i++){
 		            		<a href="<%=request.getContextPath()%>/shopDetail?fontNo=<%=font.getFontNo()%>" ><p style="font-family:<%=font.getFontFamily() %>; font-size : 20px;"><%= font.getFontName() %></p></a> 
 		            	</div>
 		            	
-		            	<textarea cols="30" rows="10" class="font-style" style="font-family:<%=font.getFontFamily() %>; font-size : 30px;" ></textarea>
+		            	<textarea cols="30" rows="10" class="font-style" style="font-family:<%=font.getFontFamily() %>; font-size : 30px;" placeholder="직접 타이핑해서 폰트를 확인해 보세요!" ></textarea>
 		            </div>
 <%	
 }

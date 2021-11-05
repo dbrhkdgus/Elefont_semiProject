@@ -66,6 +66,7 @@ public class MemberDetailServlet extends HttpServlet {
 			List<Member> memberList = memberService.selectAllMember();
 			List<Coupon> couponList = couponService.selectAllCoupon();
 			List<Order> orderList = orderService.selectAllOrder();
+			List<Font> fontList = fontService.selectAllFont();
 			List<FontCategory> categoryList = fontService.selectAllFontCategory();
 			List<Attachment> attachmentList = attachmentService.selectAllFontAttachmentList();
 			List<DeletedCommunity> deletedCommList = communityService.selectAllDeletedCommList();
@@ -84,7 +85,8 @@ public class MemberDetailServlet extends HttpServlet {
 				drContent = ElefontUtils.convertLineFeedToBr(drContent);
 				dr.setRepContent(drContent);
 			}
-
+			
+			request.setAttribute("fontList", fontList);
 			request.setAttribute("notAnsweredQuestionCnt", notAnsweredQuestionCnt); 
 			request.setAttribute("answeredQuestionCnt", answeredQuestionCnt); 
 			request.setAttribute("attachmentList", attachmentList);

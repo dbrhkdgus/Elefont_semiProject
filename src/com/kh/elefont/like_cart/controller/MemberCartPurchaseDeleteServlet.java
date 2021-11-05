@@ -2,6 +2,7 @@ package com.kh.elefont.like_cart.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -37,19 +38,25 @@ public class MemberCartPurchaseDeleteServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse
 	 *      response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response)
-			throws ServletException, IOException {
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String cartNo = request.getParameter("cartNo");
-		int result = likeCartService.deleteCart(cartNo);
-		HttpSession session = request.getSession();
-		if (result > 0) {
-			session.setAttribute("msg", "장바구니에서 삭제되었습니다.");
-		} else {
-			session.setAttribute("msg", "실패");
+		List<String> cartNoList = likeCartService.selectAllCartNo();
+		
+		if(cartNo != null && cartNoList.contains(cartNo)) {
+			
+				int result = likeCartService.deleteCart(cartNo);
+				HttpSession session = request.getSession();
+				if (result > 0) {
+					session.setAttribute("msg", "장바구니에서 삭제되었습니다.");
+				} else {
+					session.setAttribute("msg", "실패");
+				}
+		
+				String location = request.getHeader("Referer");
+				response.sendRedirect(location);
+		}else {
+			request.getRequestDispatcher("/WEB-INF/member/memberCart.jsp").forward(request, response);
 		}
-
-		String location = request.getHeader("Referer");
-		response.sendRedirect(location);
 	}
 
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -62,6 +69,7 @@ public class MemberCartPurchaseDeleteServlet extends HttpServlet {
 		String type = request.getParameter("type");
 		
 		
+			
 		String memberNo = request.getParameter("member_no");
 		String fontPrice = request.getParameter("font_price");
 		Member loginMember = memberService.selectOneMemberByMemberNo(memberNo); 	
@@ -137,7 +145,7 @@ public class MemberCartPurchaseDeleteServlet extends HttpServlet {
 			
 			
 			new MailSend().purchaseMailSend(orderList, attachList);
-			session.setAttribute("msg", "구매가 완료되었습니다. 구매하신 폰트는 메일로 보내드렸습니당");
+			session.setAttribute("msg", "구매가 완료되었습니다. 구매하신 폰트는 메일로 보내드렸습니다.");
 			
 		}
 		
@@ -145,6 +153,7 @@ public class MemberCartPurchaseDeleteServlet extends HttpServlet {
 		
 		String location = request.getHeader("Referer");
 		response.sendRedirect(location);
+		
 		
 		
 	}
