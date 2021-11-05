@@ -10,6 +10,8 @@
 	String sort = request.getParameter("sort") == null? "newest" : request.getParameter("sort");	
 	
 	List<String> categoryList = (List<String>)session.getAttribute("categoryList");
+	
+	
 	String str = "";
 	for( String c : categoryList){
 		str += c;
