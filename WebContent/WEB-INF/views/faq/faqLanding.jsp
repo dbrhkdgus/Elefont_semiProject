@@ -138,6 +138,8 @@ const appendMsg = (leftRight, name, content, time) =>{
 if(loginMember == null){
 %>        
         	alert("로그인 시에만 사용 가능합니다.");
+    		$('.loginBox').show();
+        	$(loginId).select();
         	return;
 <%
 }
