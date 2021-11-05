@@ -45,11 +45,6 @@ public class MemberCartServlet extends HttpServlet {
 				String memberNo = member.getMemberNo();
 				
 				
-				
-				//System.out.println("fontNo, memberNo, PerCartType @ servlet = "+ fontNo + memberNo + PerCartType);
-				//System.out.println("cart_no@servlet : "+ cartNo);
-				
-				
 				//2. 업무 로직
 				//like_font 테이블에서 조회. DQL이지만 존재 여부 확인 후, DML문 처리가 있을 예정이므로 int값으로 받는다.
 				//json 변환할 데이터 객체 생성
@@ -77,7 +72,7 @@ public class MemberCartServlet extends HttpServlet {
 			
 				map.put("insertCart", insertCart);
 								
-//				//json문자열로 변환
+				//json문자열로 변환
 				Gson gson = new Gson();
 				String jsonStr = gson.toJson(map);
 				
@@ -94,15 +89,11 @@ public class MemberCartServlet extends HttpServlet {
 			
 			Member member = (Member)session.getAttribute("loginMember");
 			
-			
 			String cartNo = request.getParameter("cartNo");
 			String memberNo = member.getMemberNo();
-
-
 			
 			List<MemberCartView> memberCartList = new ArrayList<>();
 			memberCartList = likeCartService.selectMemberCartList(memberNo);
-			
 			
 				request.setAttribute("memberCartList", memberCartList);
 				request

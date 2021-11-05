@@ -42,19 +42,16 @@ public class FontPurchaseServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String couponNo = (String)request.getParameter("coupon-no");
-		System.out.println("결제 할 때 있니없니 couponNo : "+ couponNo);
-		String finalPrice = request.getParameter("finalPrice");
-		System.out.println("finalPrice 잘 받아 왔나요? : " + finalPrice);
+		String _finalPrice = request.getParameter("finalPrice");
+		double finalPrice = Double.parseDouble(_finalPrice);
 		String memberNo = request.getParameter("member-no");
 		String fontNo = request.getParameter("font-no");
 		String fontPrice = request.getParameter("font-price");
-		System.out.println("fontPrice  잘 받아 왔나요? : " + fontPrice);
 		String orderNo = "order-" + System.currentTimeMillis();
 		//유일한 값을 위해서
 		
 		if(!(couponNo.isBlank())) {
 			int result = couponService.deleteUsedCoupon(couponNo);
-			System.out.println("쿠폰 삭제 잘 했나요?" + result);
 		}
 
 		Order order = new Order();
