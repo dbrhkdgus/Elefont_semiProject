@@ -40,6 +40,13 @@
     font-weight: normal;
     font-style: normal;
 }
+
+@font-face {
+    font-family: 'HSYuji-Regular';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2108@1.1/HSYuji-Regular.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
 /*
    
     Template Name : Rolling - Freelancer Portfolio Template
@@ -968,13 +975,15 @@ text-align: center;
 /* Footer */
 
 .footer-section {
-    background: #000;
+    background: #333333;
     padding: 80px 0px;
     color: #f8f8f8;
 }
 
 .footer-section p {
     font-size: 14px;
+    font-family: 'NanumSquareRound';
+    font-size: 20px;
 }
 
 .footer-section a {
@@ -2963,7 +2972,7 @@ font-size: 16px;
 }
 .fix-head{
 	overflow:auto;
-	height:180px;
+	height:140px;
 	width: 820px;
 	margin: 10px auto;
 }
@@ -3033,7 +3042,7 @@ font-size: 16px;
 .fix-tbl-head{
 	overflow:auto;
 	height: 104px;
-	width: 820px;
+	width: 830px;
 	margin: 10px auto;
 }
 #deleted-tbl-content {
@@ -3374,7 +3383,6 @@ font-size: 16px;
 .seller-management{
     margin-left:  200px;
     margin-right:  200px;
-    margin-top:50px;
     padding:20px;
     
     
@@ -3857,6 +3865,7 @@ align-items: center;
 	background-color: #eee;
   	
 }
+
 
 
 
