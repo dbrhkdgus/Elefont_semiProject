@@ -29,7 +29,6 @@ import com.kh.elefont.order.model.vo.Order;
 import com.kh.elefont.question.model.service.QuestionService;
 import com.kh.elefont.rep.model.service.RepService;
 import com.kh.elefont.rep.model.vo.DeletedRep;
-import com.kh.mvc.common.MvcUtils;
 
 
 /**
@@ -115,6 +114,9 @@ public class MemberDetailServlet extends HttpServlet {
 			List<Font> checkedList = new ArrayList<>();
 			List<Font> auditList = new ArrayList<>();
 			
+			List<Font> checkedListByLikeCnt = fontService.selectFontLikeCnt(loginMember.getMemberId());
+			List<Font> checkedListByPurchasedCnt = fontService.selectFontPurchasedCnt(loginMember.getMemberId());
+			
 			//	memberId로 조회한 폰트 목록들을 심사 대기중(audit)/심사 승인/심사 미승인/판매자 체크로 나누어 분리하고 분리한 리스트가 비어 있지 않은 경우 session에 저장
 			for(Font f : list) {
 				if("Y".equals(f.getFontApproval()) || "N".equals(f.getFontApproval())){
@@ -131,8 +133,8 @@ public class MemberDetailServlet extends HttpServlet {
 			request.setAttribute("approvalList", approvalList);
 			request.setAttribute("checkedList", checkedList);
 			request.setAttribute("auditList", auditList);
-			
-			
+			request.setAttribute("checkedListByLikeCnt", checkedListByLikeCnt);
+			request.setAttribute("checkedListByPurchasedCnt", checkedListByPurchasedCnt);
 
 		}
 		
