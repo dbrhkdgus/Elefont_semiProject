@@ -7,6 +7,7 @@ List<Font> fontPurchasedList = (List<Font>) request.getAttribute("fontPurchasedL
 List<Coupon> couponList = (List<Coupon>) request.getAttribute("couponList");
 Attachment profile = (Attachment) request.getAttribute("profile");
 int cartCount = (int)request.getAttribute("cartCount");
+int likeCount = fontLikeList.size();
 %>
 <div class="coupon-enroll">
     <form action="<%=request.getContextPath()%>/coupon/redeemCoupon" method="POST" name="userCouponEnrollFrm">
@@ -48,7 +49,7 @@ int cartCount = (int)request.getAttribute("cartCount");
               <span>장바구니</span>
           </a>
           <a href="<%=request.getContextPath()%>/member/fontLikeList">
-              <span>1</span><br>
+              <span><%=likeCount %></span><br>
               <span>좋아요</span>
           </a>
       </div>

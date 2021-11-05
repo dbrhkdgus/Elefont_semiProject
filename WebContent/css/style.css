@@ -732,7 +732,6 @@ text-align: center;
 .review-content{
 	width: 100%;
 }
-
 .testimonial-word img {
 	margin: 0px 90px 0px 0px;
     width: 50% ;
@@ -747,6 +746,7 @@ text-align: center;
     font-weight: 700;
     letter-spacing: 4px;
     margin: 20px 0px 50px;
+    word-break:keep-all;
 }
 
 .testimonial-word p {
