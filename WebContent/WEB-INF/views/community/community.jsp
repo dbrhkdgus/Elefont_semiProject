@@ -239,14 +239,6 @@ if(loginMember == null){
 	$(loginId).select();
   $('#loginBtn').css("color","gold");
 	
-	var loginBox = setInterval(function(){
-		$('.loginBox').fadeOut(1000).fadeIn(1000);
-	},500);
-	
-	$('.loginBox').mouseover(function(){
-		clearInterval(loginBox);
-		});
-	/* $(".loginBox").css("background-color",'gold'); */
 	return;
 
 <%
