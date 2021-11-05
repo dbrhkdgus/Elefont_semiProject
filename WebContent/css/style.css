@@ -1503,7 +1503,7 @@ text-align: center;
 	display: flex;
 	margin-left: 165px;
     flex-direction: column;
-    margin-left: 90px;
+    margin-left: 155px;
     align-items: center;
 }
 
@@ -1512,6 +1512,7 @@ text-align: center;
 	margin-left: 300px;
 }
 .cart_title{
+	font-family: 'NanumSquareRound';
     margin-top: 30px;
     text-align: left;
     margin-bottom: 50px;
@@ -1524,11 +1525,13 @@ text-align: center;
 
 }
 .cart_content_box{
+	
     display: flex;
     flex-direction: column;
     align-items: center;
 }
 .cart_content{
+	font-family: 'NanumSquareRound';
     display: flex;
     align-items: center;
     border: 1px solid #26BF5C;
@@ -1757,6 +1760,7 @@ text-align: center;
     background-color: #59C38A;
     width: fit-content;
     padding: 5px;
+    font-family: 'NanumSquareRound';
 }
 .h1_font_style{
 	margin-left: 35px;
@@ -2296,6 +2300,7 @@ p { padding: 5px 0; }
 }
 
 .like-comm{
+  font-family: 'NanumSquareRound';
   width: 270px;
   height: 390px;
   text-align: center;
@@ -2924,7 +2929,11 @@ font-size: 16px;
 #font-sort,#range-result{
 	font-family: 'NanumSquareRound';
 }
-
+#font-sort{
+	border: 2px solid #26BF5C;
+    border-radius: 30px;
+    padding: 5px;
+}
 #style-button{
   font-family: 'NanumSquareRound';
   width: 150px;
@@ -3159,6 +3168,7 @@ font-size: 16px;
     padding-bottom:20px;
 }
 .comm-board-title-button {
+	font-family: 'NanumSquareRound';
 	margin-left: 190px;
     margin-right: 160px;
     margin-bottom: 10px;
@@ -3168,7 +3178,9 @@ font-size: 16px;
     margin-bottom: 10px;
     align-items: center;
 }
-
+.comm-title > h1{
+	font-family: 'NanumSquareRound';
+}
 #comm-board-button {
 	background-color: #4CAF50; /* Green */
 	border: 0px;
@@ -3200,6 +3212,7 @@ font-size: 16px;
 	padding-left: 15px;
     width: 300px;
     word-break:keep-all;
+    font-family: 'NanumSquareRound';
 }
 .comm-writer-info{
 	text-align: center;
