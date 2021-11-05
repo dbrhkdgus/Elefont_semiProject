@@ -148,16 +148,15 @@ if(loginMember == null){
         if($chatMessage.css("display")=="none"){
             
             $chatMessage.show();
+        	$('.chatMsg').scrollTop($('.chatMsg').prop('scrollHeight'));
         }
         else {
-            
-            // $chatMessage.css("display", "none");
             $chatMessage.hide();
         }    
     	
     });
     
-    
+
     
 
 </script>
