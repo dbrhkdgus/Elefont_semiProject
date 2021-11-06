@@ -72,8 +72,8 @@
 										<p>Hello,
 I’m Darci Kim and I am an ever-growing individual, levelling up everyday :) <br />
 
-Despite the challenges I faced while developing Elefont, I’d like to think that I’ve levelled up from this experience haha. 
-My teammates’ support and healthy supply of running jokes are what kept me going during this project. 
+Despite the challenges I faced while developing Elefont, I’d like to think that I’ve advanced 3 levels from this experience haha. 
+My teammates’ support and ※healthy supply of running jokes※ are what kept me going during this project. 
 And as I look back on our shared moments of struggles and successes, I present to you Elefont!</p>
                                    </div>
                                 </div>   
