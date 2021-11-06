@@ -17,12 +17,18 @@
                  
         
                     <div class="about">
-                      <span>AboutDetail</span>
-                         </div>
+                      <div class="underlined-text">
+					    <p class="underlined first">Produce 404</p>
+					    <br />
+					    <p class="underlined second">멤버소개</p>
+					    
+					   </div>
+                     </div>
+                         
                          <div class="about content">
                              </div>  
                              <div class="aboutdetail outer">
-
+					
 
 
 
