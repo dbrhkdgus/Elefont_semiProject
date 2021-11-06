@@ -29,8 +29,6 @@ if(!fontList.isEmpty()){
 	} 
 }
 %>
-
-
 </style>
 
 
