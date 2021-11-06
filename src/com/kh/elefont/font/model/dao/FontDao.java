@@ -1243,7 +1243,7 @@ public class FontDao {
 			}
 			sql += "category_code like '%M%'";
 		}
-		System.out.println("sql1@dao : " + sql);
+		
 		switch(sort) {
 			 case "popular" : sql += " order by font_like_count desc"; break;
 			 case "view" : sql += " order by font_view_count desc"; break;
@@ -1254,7 +1254,7 @@ public class FontDao {
 		
 		}
 		
-		System.out.println("sql2@dao : " + sql);
+		
 		try {
 			pstmt = conn.prepareStatement(sql);
 			
