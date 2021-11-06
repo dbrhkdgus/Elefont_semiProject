@@ -16,7 +16,6 @@
 	List<Attachment> attachmentList = (List<Attachment>)request.getAttribute("attachmentList");
 	List<Font> fontLikeList = (List<Font>)request.getAttribute("fontLikeList");
 	List<Font> allFontList = (List<Font>)request.getAttribute("allFontList");
-	System.out.println(fontLikeList);
 %>
 <style>
 <% 
@@ -49,7 +48,8 @@ if(!allFontList.isEmpty()){
                 </div>
                 <h2><%= writerMember.getMemberName() %></h2>
 <%
-boolean bool = ("대답 안 함".equals(writerMember.getMemberJob()) || "기타".equals(writerMember.getMemberJob())); 
+boolean bool = 
+	("대답 안 함".equals(writerMember.getMemberJob()) || "기타".equals(writerMember.getMemberJob())); 
 if(!bool) {
 %>
                 <h4> 직업 : <span><%= writerMember.getMemberJob() %></span></h4>
@@ -116,7 +116,6 @@ if(!bool) {
 <%
 				fontCnt++;
 		}
-				System.out.println("전체보기cnt@jsp : " + fontCnt);
 	}
 %>
                     </div>
