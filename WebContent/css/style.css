@@ -2100,8 +2100,13 @@ p { padding: 5px 0; }
     color: cornsilk;
 }
 
+.about span{
+	margin-bottom :10px;
+    font-size: 5.5rem;
+    font-family: 'Recipekorea';
+}
+
 .about{
-    display: flex;
     margin-top: 40px;
     margin-bottom: 20px;
     text-align: center;
