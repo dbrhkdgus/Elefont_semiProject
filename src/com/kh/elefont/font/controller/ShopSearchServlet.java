@@ -38,6 +38,7 @@ public class ShopSearchServlet extends HttpServlet {
 		
 		List<Font> fontList = fontService.selectShopFontByFontName(fontName);
 
+		
 		List<Attachment> fontAttchmentList = attachmentService.selectAllFontAttachmentList();
 		List<String> likeList = null;
 		

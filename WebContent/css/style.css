@@ -998,7 +998,13 @@ text-align: center;
     color: #ffffff;
 }
 
+.contact-Us:hover{
+	color: #26BF5C;
 
+}
+.about-us:hover{
+	color:gold;
+}
 
 /* Responsive */
 
@@ -2094,8 +2100,13 @@ p { padding: 5px 0; }
     color: cornsilk;
 }
 
+.about span{
+	margin-bottom :10px;
+    font-size: 5.5rem;
+    font-family: 'Recipekorea';
+}
+
 .about{
-    display: flex;
     margin-top: 40px;
     margin-bottom: 20px;
     text-align: center;
@@ -2159,7 +2170,7 @@ p { padding: 5px 0; }
 }
 
 .about.inner >input{
-	background:gold;
+	background:#A0BFB5;
 	font-family: 'NanumSquareRound';
 	color: black;
 	border:none;
@@ -3306,6 +3317,8 @@ p { padding: 5px 0; }
 	display: flex;
 }
 .comm-user-content{
+	margin: 55px 5px;
+	font-size:15px;
 	padding-left: 15px;
     width: 415px;
     word-break:keep-all;
@@ -3354,6 +3367,7 @@ p { padding: 5px 0; }
 	margin: 10px;
 	border-radius:5px;
 }
+
 .comm-detail-reply {
     width: -webkit-fill-available;
 }
@@ -3703,7 +3717,7 @@ p { padding: 5px 0; }
 
 
 .rightBtn{
-	background:#1AAB8A;
+	background:#A0BFB5;
 	color:#fff;
 	border:none;
 	position:relative;
@@ -3716,6 +3730,7 @@ p { padding: 5px 0; }
     top: 5px;
     line-height: 18px;
     border-radius : 7px;
+    font-family: 'NanumSquareRound';
 }
 .aboutdetail.rightinner >button:hover{
 	background: #fff;
@@ -3739,6 +3754,7 @@ p { padding: 5px 0; }
     width: 250px;
     border-radius:50%;
     height: 250px;
+    border: 4px solid #005A3C;
 }
 
 
@@ -3748,6 +3764,12 @@ p { padding: 5px 0; }
     border: 1px solid #000;
    
 }
+
+.left.image p{
+	 font-family: 'NanumSquareRound';
+	 font-size:2rem;
+	
+} 
 
 
 .aboutdetail.leftbox>button{
@@ -3996,7 +4018,12 @@ align-items: center;
 	
 
 }
-
+#searchType{
+	
+	border:2px solid #1bab58;
+    border-radius: 30px;
+    padding: 4px;
+}
 
 .comm-search-type button:hover{
 	border:none;
@@ -4009,5 +4036,6 @@ align-items: center;
 	cursor : pointer;
 }
 
+/* 시험!! */
 
 

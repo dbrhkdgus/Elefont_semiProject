@@ -47,9 +47,9 @@ public class CommunityDeleteServlet extends HttpServlet {
 		if(delBool == true) {
 			attachmentService.deleteAttachmentByCommNo(commNo);
 		}
-		int repResult = repService.deleteCommRep(commNo);
+		repService.deleteCommRep(commNo);
 		int result = communityService.deleteCommunity(commNo);
-		String msg = (repResult > 0 && result > 0) ? "게시물 삭제 성공!" : "게시물 삭제 실패!";
+		String msg = result > 0 ? "게시물 삭제 성공!" : "게시물 삭제 실패!";
 		
 		//3.사용자메세지 및 redirect처리
 		request.getSession().setAttribute("msg", msg);
