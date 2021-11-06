@@ -61,6 +61,10 @@ public class ShopLandingServlet extends HttpServlet {
 
 			 
 			 }
+		}else {
+			
+			fontList = fontService.selectAllApprovedFontOrderByPopularUsingCategory(sort,categoryList);
+			
 		}
 		
 		 
