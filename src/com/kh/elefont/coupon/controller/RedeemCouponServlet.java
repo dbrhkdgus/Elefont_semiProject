@@ -50,15 +50,10 @@ public class RedeemCouponServlet extends HttpServlet {
 
 		
 		if("P".equals(couponType)) {
-			int couponPrice = couponService.selectCouponPrice(couponNo);
-
-			
+			int couponPrice = couponService.selectCouponPrice(couponNo);		
 			int result = memberService.updateMemberPoint(couponPrice,memberNo);
-
-			
 			int result2 = couponService.deleteUsedCoupon(couponNo);
-	
-			
+
 			Member member = memberService.selectOneMember(memberId);
 			session.setAttribute("loginMember", member);			
 		}else {
