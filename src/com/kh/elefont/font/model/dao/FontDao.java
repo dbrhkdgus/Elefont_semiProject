@@ -1247,7 +1247,7 @@ public class FontDao {
 		switch(sort) {
 			 case "popular" : sql += " order by font_like_count desc"; break;
 			 case "view" : sql += " order by font_view_count desc"; break;
-			 case "order" : sql += " order by font_purchase_count desc"; break;
+			 case "order" : sql += " order by font_purchased_count desc"; break;
 			 case "recommand" : sql += " order by font_reg_date desc"; break;
 			 case "newest" : sql += " order by font_reg_date desc"; break;
 		
