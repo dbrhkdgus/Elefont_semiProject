@@ -381,6 +381,12 @@ public class FontService {
 	        }
 	        return totalFontLikeByWriter;
 	}
+	public List<Font> selectAllApprovedFontOrderByPopularUsingCategory(String sort, List<String> categoryList) {
+		Connection conn = getConnection();
+		List<Font> fontList = fontDao.selectAllApprovedFontOrderByPopularUsingCategory(conn,sort, categoryList);
+		close(conn);
+		return fontList;
+	}
 
 
 

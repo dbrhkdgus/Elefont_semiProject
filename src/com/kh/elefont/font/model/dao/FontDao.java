@@ -847,7 +847,7 @@ public class FontDao {
 		if(!categoryList.isEmpty()) {
 			
 		String sql = "select * from view_font_font_category where " ; 
-		System.out.println("categorylist @dao" + categoryList);
+		
 		if(categoryList.contains("S")) {
 			if(categoryList.indexOf("S")!= 0) {
 				sql += "or ";
@@ -1210,6 +1210,83 @@ public class FontDao {
 		}
 		
 		return totalFontLikeByWriter;
+	}
+
+	public List<Font> selectAllApprovedFontOrderByPopularUsingCategory(Connection conn, String sort, List<String> categoryList) {
+		PreparedStatement pstmt = null;
+		ResultSet rset = null;
+		List<Font> fontList = new ArrayList<>();
+		if(!categoryList.isEmpty()) {
+			
+		String sql = "select * from view_font_font_category where " ; 
+		
+		if(categoryList.contains("S")) {
+			if(categoryList.indexOf("S")!= 0) {
+				sql += "or ";
+			}
+			sql += "category_code like '%S%'";		
+		}
+		if(categoryList.contains("G")) {
+			if(categoryList.indexOf("G")!= 0) {
+				sql += "or ";
+			}
+			sql += "category_code like '%G%'";
+		}
+		if(categoryList.contains("H")) {
+			if(categoryList.indexOf("H")!= 0) {
+				sql += "or ";
+			}
+			sql += "category_code like '%H%'";
+		}
+		if(categoryList.contains("M")) {
+			if(categoryList.indexOf("M")!= 0) {
+				sql += "or ";
+			}
+			sql += "category_code like '%M%'";
+		}
+		System.out.println("sql1@dao : " + sql);
+		switch(sort) {
+			 case "popular" : sql += " order by font_like_count desc"; break;
+			 case "view" : sql += " order by font_view_count desc"; break;
+			 case "order" : sql += " order by font_purchase_count desc"; break;
+			 case "recommand" : sql += " order by font_reg_date desc"; break;
+			 case "newest" : sql += " order by font_reg_date desc"; break;
+		
+		
+		}
+		
+		System.out.println("sql2@dao : " + sql);
+		try {
+			pstmt = conn.prepareStatement(sql);
+			
+			rset = pstmt.executeQuery();
+			
+			while(rset.next()) {
+				Font font = new Font();
+				font.setFontNo(rset.getString("font_no"));
+				font.setFontName(rset.getString("font_name"));
+				font.setFontUrl(rset.getString("font_url"));
+				font.setFontPrice(rset.getDouble("font_price"));
+				font.setFontDiscountRate(rset.getDouble("font_discount_rate"));
+				font.setFontRegDate(rset.getDate("font_reg_date"));
+				font.setFontApproval(rset.getString("font_approval") == null? " ": rset.getString("font_approval"));
+				font.setMemberId(rset.getString("member_id"));
+				font.setFontLikeCount(rset.getInt("font_like_count"));
+				font.setFontFamily(rset.getString("font_family"));
+				
+
+				
+				fontList.add(font);
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		} finally {
+			close(rset);
+			close(pstmt);
+		}
+		
+		}
+		return fontList;
 	}
 
 }
