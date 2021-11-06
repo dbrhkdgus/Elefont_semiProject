@@ -998,7 +998,13 @@ text-align: center;
     color: #ffffff;
 }
 
+.contact-Us:hover{
+	color: #26BF5C;
 
+}
+.about-us:hover{
+	color:gold;
+}
 
 /* Responsive */
 
@@ -2159,7 +2165,7 @@ p { padding: 5px 0; }
 }
 
 .about.inner >input{
-	background:gold;
+	background:#A0BFB5;
 	font-family: 'NanumSquareRound';
 	color: black;
 	border:none;
@@ -3306,6 +3312,8 @@ p { padding: 5px 0; }
 	display: flex;
 }
 .comm-user-content{
+	margin: 55px 5px;
+	font-size:15px;
 	padding-left: 15px;
     width: 415px;
     word-break:keep-all;
@@ -3354,6 +3362,7 @@ p { padding: 5px 0; }
 	margin: 10px;
 	border-radius:5px;
 }
+
 .comm-detail-reply {
     width: -webkit-fill-available;
 }
@@ -3703,7 +3712,7 @@ p { padding: 5px 0; }
 
 
 .rightBtn{
-	background:#1AAB8A;
+	background:#26BF5C;
 	color:#fff;
 	border:none;
 	position:relative;
@@ -3996,7 +4005,12 @@ align-items: center;
 	
 
 }
-
+#searchType{
+	
+	border:2px solid #1bab58;
+    border-radius: 30px;
+    padding: 4px;
+}
 
 .comm-search-type button:hover{
 	border:none;
@@ -4009,5 +4023,6 @@ align-items: center;
 	cursor : pointer;
 }
 
+/* 시험!! */
 
 

@@ -6,8 +6,8 @@
             <div class="row">
 
                 <div class="col-md-4 text-left">
-                    <p><span><a href="<%=request.getContextPath() %>/about" class="smoth-scroll">About Us</a></span> | <span><a href="mailto:watt.kwon@gmail.com"
-                                class="smoth-scroll">Contact Us</a></span></p>
+                    <p><span><a href="<%=request.getContextPath() %>/about" class="about-us">About Us</a></span> | <span><a href="mailto:watt.kwon@gmail.com"
+                                class="contact-Us">Contact Us</a></span></p>
                 </div>
 
                 <div class="col-md-4 text-center">
