@@ -26,7 +26,6 @@ public class ElefontWebsocket {
 	public static Map<String, Session> clients = new HashMap<>();
 	
 	public static void logClients() {
-		System.out.printf("현재 접속자 수 (%d) : %s%n",clients.size(),clients.keySet());
 	}
 	
 	@OnOpen

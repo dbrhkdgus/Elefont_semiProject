@@ -33,7 +33,7 @@ public class FontLikeServlet extends HttpServlet {
 		//1. 사용자 입력값 처리
 		String fontNo = request.getParameter("fontNo");
 		String memberNo = member.getMemberNo();
-		System.out.println("fontNo, memberNo @ servlet = "+ fontNo + memberNo);
+
 		Map<String, Object> param = new HashMap<>();
 		param.put("fontNo", fontNo);
 		param.put("memberNo", memberNo);
@@ -45,7 +45,7 @@ public class FontLikeServlet extends HttpServlet {
 		int likeValid = 0;
 		Map<String, Object> map = new HashMap<>();
 		likeValid = fontService.selectFontLike(param);
-		System.out.println("selectFontLike@servlet = " + likeValid);
+
 		
 		if(likeValid == 1) {
 			//좋아요 이력이 있는 경우 like_font 테이블에서 내용 삭제 후 font테이블 좋아요 카운트 감소
@@ -68,7 +68,7 @@ public class FontLikeServlet extends HttpServlet {
 		//json문자열로 변환
 		Gson gson = new Gson();
 		String jsonStr = gson.toJson(map);
-		System.out.println(jsonStr);
+
 		
 		//3. view단 처리
 		response.setContentType("application/json; charset = utf-8");

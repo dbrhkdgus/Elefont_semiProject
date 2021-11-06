@@ -621,8 +621,7 @@ public class FontDao {
 		List<Font> fontList = new ArrayList<>();
 		String sql = "";
 		String searchType = (String)param.get("searchType");
-//		String searchKeyword = (String)param.get("searchKeyword");
-//		System.out.println("param.get(\"searchKeyword\")@Dao : " + param.get("searchKeyword"));
+
 		
 		switch(searchType) {
 		case "font-no" : 
@@ -658,7 +657,7 @@ public class FontDao {
 				font.setFontWeight(rset.getString("font_weight"));
 				fontList.add(font);
 			}
-			System.out.println("fontList@Dao : " + fontList);
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -847,7 +846,7 @@ public class FontDao {
 		if(!categoryList.isEmpty()) {
 			
 		String sql = "select * from view_font_font_category where " ; 
-		System.out.println("categorylist @dao" + categoryList);
+
 		if(categoryList.contains("S")) {
 			if(categoryList.indexOf("S")!= 0) {
 				sql += "or ";
@@ -1070,7 +1069,7 @@ public class FontDao {
 				font.setFontWeight(rset.getString("font_weight"));
 				fontList.add(font);
 			}
-			System.out.println("fontList@Dao : " + fontList);
+
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {

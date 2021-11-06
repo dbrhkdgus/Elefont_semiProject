@@ -28,9 +28,7 @@ public class FontOrderViewServlet extends HttpServlet {
 		String memberEmail = request.getParameter("email");
 		
 		//2.업무로직
-//		Order order = orderService.selectOneOrderByMemberNo(memberNo);
-	 
-//		System.out.println("order @Servlet:" + order);
+
 		
 		request.setAttribute("fontNo", fontNo);
 		request.setAttribute("memberNo", memberNo);

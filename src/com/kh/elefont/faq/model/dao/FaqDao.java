@@ -34,14 +34,14 @@ public class FaqDao {
 		ResultSet rset = null;
 		List<Faq> list = new ArrayList<>();
 		String sql = prop.getProperty("selectAllFaq");
-		System.out.println(sql);
+
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
 			//조회한 쿼리문 (select 아니면 익스큐트 업데이트지)
 			rset = pstmt.executeQuery(); 
 			
-			System.out.println(rset);
+
 			
  			while(rset.next()) {			
 				Faq faq = new Faq();
@@ -51,7 +51,6 @@ public class FaqDao {
 				faq.setFaqTitle(rset.getString("faq_title"));
 				faq.setFaqContent(rset.getString("faq_content"));
 				
-				System.out.println("faq를 잘 받아왔나용옹? dao입니다." + faq);
 				list.add(faq);
 			}
 		} catch (SQLException e) {

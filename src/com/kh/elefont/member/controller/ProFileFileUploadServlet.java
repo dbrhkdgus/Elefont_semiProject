@@ -39,15 +39,14 @@ public class ProFileFileUploadServlet extends HttpServlet {
 		FileRenamePolicy policy = new ElefontFileRenamePolicy();
 		MultipartRequest multipartRequest = new MultipartRequest(request, saveDirectory, maxPostSize, encoding, policy);
 		
-		System.out.println("잘도착햇나요?");
 		String memberNo = multipartRequest.getParameter("memberNo");
-		System.out.println("memberNo : " + memberNo);
+
 		
 		
 		int delResult = memberService.deletePrePhoto(memberNo); 
 		
 		File f = multipartRequest.getFile("profileimage");
-		System.out.println(f);
+
 		//파일 프젝 업로드 폴더에 저장된 거 확인함!
 		
 		
@@ -59,14 +58,14 @@ public class ProFileFileUploadServlet extends HttpServlet {
 			attach.setRenamedFilename(multipartRequest.getFilesystemName("profileimage"));
 		}
 		
-		System.out.println(attach);
+
 		
 		
 		int result = memberService.insertProfileImage(attach);
-		System.out.println("여기가 1이면 디비에 프로필 사진 등록 완료  :  " + result);
+
 		
 		File profilePhotoAttach = new File(saveDirectory, attach.getRenamedFilename());
-		System.out.println("덮어씌우기용  profilePhotoAttach 확인 : " +  profilePhotoAttach);
+
 		
 		if(attach != null ) {
 			request.setAttribute("attach", attach);		

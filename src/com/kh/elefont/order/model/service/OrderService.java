@@ -14,7 +14,6 @@ public class OrderService {
 	OrderDao orderDao = new OrderDao();
 	
 	public Order selectOneOrderByMemberNo(String memberNo) {
-		System.out.println("서비스");
 		Connection conn = getConnection();
 
 		Order order = orderDao.selectOneOrderByMemberNo(conn, memberNo);

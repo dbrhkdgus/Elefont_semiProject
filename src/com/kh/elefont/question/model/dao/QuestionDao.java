@@ -50,8 +50,6 @@ public class QuestionDao {
 				question.setqDate(rset.getTimestamp("q_date"));
 				question.setqIsAnswered(rset.getString("q_is_answered"));
 				
-				System.out.println("question@allQDao : " + question);
-				
 				questionList.add(question);
 			}
 		} catch (SQLException e) {
@@ -159,8 +157,7 @@ public class QuestionDao {
 				question.setqWriter(rset.getString("q_writer"));
 				question.setqDate(rset.getTimestamp("q_date"));
 				question.setqIsAnswered(rset.getString("q_is_answered"));
-				
-				System.out.println(question);
+
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

@@ -23,7 +23,7 @@ public class LogFilter implements Filter{
 	public void doFilter(ServletRequest request, ServletResponse response, FilterChain chain)
 			throws IOException, ServletException {
 		// 1. servlet 호출 전에 실행
-		System.out.println();
+
 		System.out.println("========================================");
 		HttpServletRequest httpReq = (HttpServletRequest) request;
 		System.out.println(httpReq.getRequestURI()); // /mvc/member/memberDetail

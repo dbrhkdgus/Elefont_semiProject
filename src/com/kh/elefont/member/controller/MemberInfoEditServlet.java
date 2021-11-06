@@ -32,19 +32,18 @@ public class MemberInfoEditServlet extends HttpServlet {
 		//1. 사용자 입력값
 		String memberId = request.getParameter("memberId");
 		String memberNo = request.getParameter("memberNo");
-		System.out.println("MemberInfoEditServlet 에서 memberId 확인 : " + memberId);
-		System.out.println("MemberInfoEditServlet 에서 memberNo 확인 : " + memberNo);
+
 		
 		//2. 업무로직
 		Member member = memberService.selectOneMember(memberId);
 		
 		Attachment attach = memberService.selectOneAttachmentByNo(memberNo);
-		System.out.println("MemberInfoEditServlet 에서 attach 잘 받아왔나 확인" + attach);
+
 
 		// 서버컴퓨터 파일 
 		String saveDirectory = getServletContext().getRealPath("/upload/profilephotos");
 		File profilePhotoAttach = new File(saveDirectory, attach.getRenamedFilename());
-		System.out.println("여기 뭐가 올렸나?" + profilePhotoAttach);
+
 
 		
 		//3. 뷰단처리
@@ -70,15 +69,7 @@ public class MemberInfoEditServlet extends HttpServlet {
 		Date birthday = null;
 		if(_birthday != null && !"".equals(_birthday))
 			birthday = Date.valueOf(_birthday);
-		
-		System.out.println("멤버아이디 잘 받았니?" + memberId);
-		System.out.println("멤버비번 잘 받았니?" +  pwd);
-		System.out.println("멤버이름 잘 받았니?" +  name);
-		System.out.println("멤버성별 잘 받았니?" + gender);
-		System.out.println("멤버이메일 잘 받았니?" +  email);
-		System.out.println("멤버생일 잘 받았니?" +  birthday );
-		System.out.println("멤버연락처 잘 받았니?" +  phone );
-		System.out.println("멤버직업 잘 받았니?" +  job );
+
 		
 		Member member = new Member (null,memberId,pwd,name,gender,email,phone,birthday,job,null,null,null,null,null);
 		

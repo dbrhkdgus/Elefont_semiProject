@@ -185,7 +185,7 @@ public class CommunityDao {
 			close(rset);
 			close(pstmt);
 		}
-//    System.out.println("commDao@" + community);
+
 		
 		return community;
     }
@@ -271,7 +271,7 @@ public class CommunityDao {
 
 
 	public int updateCommunity(Connection conn, Community community) {
-		System.out.println("updateCommunity@Dao" + community);
+
 		int result = 0;
 		PreparedStatement pstmt = null;
 		String query = prop.getProperty("updateCommunity"); 

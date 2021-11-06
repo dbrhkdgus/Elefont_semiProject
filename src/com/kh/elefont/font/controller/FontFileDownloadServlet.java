@@ -19,7 +19,7 @@ import com.kh.elefont.font.model.service.FontService;
  * Servlet implementation class FontFileDownload
  */
 @WebServlet("/font/fontDownload")
-public class FontFileDownload extends HttpServlet {
+public class FontFileDownloadServlet extends HttpServlet {
 	private static final long serialVersionUID = 1L;
 	
 	private FontService fontService = new FontService();

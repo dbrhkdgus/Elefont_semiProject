@@ -53,11 +53,11 @@ public class LoginMemberServlet extends HttpServlet {
 			//1. 사용자 입력값
 
 			String memberNo = member.getMemberNo();
-			System.out.println("로그인 이후에 memberNo을 잘 받아왔나요?" + memberNo);
+
 
 			
 			Attachment attach = memberService.selectOneAttachmentByNo(memberNo);
-			System.out.println("MemberInfoEditServlet 에서 attach 잘 받아왔나 확인" + attach);
+
 
 			// 서버컴퓨터 파일 
 			String saveDirectory = getServletContext().getRealPath("/upload/profilephotos");
