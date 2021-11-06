@@ -24,8 +24,8 @@
     <title>Elefont</title>
 
     <!-- Favicon -->
-    <link rel="shortcut icon" href="images/favicon/favicon.ico">
-    <link rel="apple-touch-icon" sizes="144x144" type="image/x-icon" href="images/favicon/apple-touch-icon.png">
+    <link rel="shortcut icon" href="images/favicon/elefont_logo.png">
+    <link rel="apple-touch-icon" sizes="144x144" type="image/x-icon" href="images/favicon/elefont_logo.png">
 
     <!-- All CSS Plugins -->
     <link rel="stylesheet" type="text/css" href="<%=request.getContextPath() %>/css/plugin.css">
