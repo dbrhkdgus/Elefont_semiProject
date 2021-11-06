@@ -576,10 +576,7 @@ $(couponEnrollBtn).click((e)=>{
 			const $ol = $("<ol></ol>");
 			const $couponResult = $("#coupon-result");
 			$couponResult.html("");
-			if(data.length == 1){
-				if(data[0] === "Complete") alert(`\${couponMemberId}님에게 정상적으로 쿠폰이 발급되었습니다.`);
-				else $ol.append("<li>"+ data[0] +"</li>");
-			}
+			if(data[0] === "Complete") alert(`\${couponMemberId}님에게 정상적으로 쿠폰이 발급되었습니다.`);
 			else{
 				data.forEach(element =>{
 					$ol.append(`<li>\${element}</li>`);
