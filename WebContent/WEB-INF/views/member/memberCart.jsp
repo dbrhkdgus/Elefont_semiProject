@@ -18,7 +18,7 @@
 if(!memberCartList.isEmpty()){
 %>
                 <div class="cart_title">
-                    <span>주문내역</span>
+                    <span>장바구니</span>
                     <hr>
                 </div>
      	<form name="cartFrm"  action="<%=request.getContextPath() %>/member/memberCartDelete" method="post" id="cartFrm" >
