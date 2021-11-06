@@ -123,7 +123,7 @@ public class CommunityService {
 		
 		try {
 			result = communityDao.updateCommunityViewCount(conn, commNo);
-//			System.out.println("result@dao = "+result);
+
 			commit(conn);
 		}catch(Exception e) {
 			rollback(conn);
@@ -153,7 +153,7 @@ public class CommunityService {
 
 
 	public int updateCommunity(Community community) {
-		System.out.println("community:updateservice@ :" + community);
+
 		Connection conn = getConnection();
 		int result = 0;
 		try {

@@ -81,7 +81,6 @@ public class AdminMemberFinderServlet extends HttpServlet {
 		request.setAttribute("couponList", couponList);
 		request.setAttribute("orderList", orderList);
 		request.setAttribute("categoryList", categoryList);
-		//session.setAttribute("tabIndex", 0);
 		
 		request.setAttribute("memberList", memberList);
 		request.setAttribute("tabIndex", 0);

@@ -25,12 +25,12 @@ public class CheckEmailDuplicateServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		/// 1. 사용자 입력값
 		String memberEmail = request.getParameter("memberEmail");
-	    System.out.println("memberEmail@servlet = " + memberEmail);
+
 	    
 	    // 2.업무로직
         Member member = memberService.selectOneMemberByEmail(memberEmail);
         boolean available = member == null;
-        System.out.println("available@servlet = " + available);
+
         
         // 3.view단처리
         request.setAttribute("available", available);

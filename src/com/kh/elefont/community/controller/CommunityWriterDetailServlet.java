@@ -40,14 +40,13 @@ public class CommunityWriterDetailServlet extends HttpServlet {
 		Member loginMember = (Member) session.getAttribute("loginMember");
 		// 입력값
 		String memberNo = request.getParameter("commWriter");
-		System.out.println("memberNo@servlet : " + memberNo);
+
 		
 		// 업무로직
 		Member writerMember = new Member();
 		writerMember = memberService.selectOneMemberByMemberNo(memberNo);
 		Attachment profileAttachment = attachmentService.selectProfileAttachment(memberNo);
-		System.out.println("커뮤니티라이터디테일서블릿 멤버넘버 " +writerMember.getMemberNo());
-		System.out.println("커뮤니티라이터디테일서블릿 프로필어태치넘버 " + profileAttachment);
+
 		// 게시물 수 
 		int totalCommunityByWriter = communityService.countTotalCommunityByWriter(writerMember.getMemberNo());
 		// 폰트 좋아요 수
@@ -58,7 +57,7 @@ public class CommunityWriterDetailServlet extends HttpServlet {
 		List<Attachment> attachmentList = attachmentService.selectAllCommAttachmentListByMemberNo(memberNo);
 		List<Font> fontLikeList = fontService.selectAllLikedFontByMemberNo(memberNo);
 		List<Font> allFontList = fontService.selectAllFont();
-		System.out.println("폰트리스트@@서블릿 : "+ fontLikeList);
+
 		
 		
 		

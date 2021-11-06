@@ -33,13 +33,10 @@ public class ElefontUtils {
 		} catch (NoSuchAlgorithmException | UnsupportedEncodingException e) {
 			e.printStackTrace();
 		}
-		System.out.println("암호화 전 : " + password);
-		System.out.println("암호화된 이진데이터 : " + new String(encrypted));
 		
 		// 2.인코딩
 		Encoder encoder = Base64.getEncoder();
 		String encryptedPassword = encoder.encodeToString(encrypted);
-		System.out.println("암호화 후 : " + encryptedPassword);
 		
 		return encryptedPassword;
 	}

@@ -29,15 +29,11 @@ public class IsThisCouponVaildServlet extends HttpServlet {
 		
 		
 		String memberNo = request.getParameter("memberNoToReg");
-		System.out.println("비동기로 쿠폰 있는 지 확인하기 위한 memberNo : " + memberNo);
+
 		
 		String couponNo1 = request.getParameter("coupon-no1");
 		String couponNo2 = request.getParameter("coupon-no2");
 		String couponNo3 = request.getParameter("coupon-no3");
-		
-		System.out.println("couponNo1 : " + couponNo1);
-		System.out.println("couponNo2 : " + couponNo2);
-		System.out.println("couponNo3 : " + couponNo3);
 
 		StringBuffer sb = new StringBuffer();
 		sb.append(couponNo1);
@@ -46,24 +42,24 @@ public class IsThisCouponVaildServlet extends HttpServlet {
 		sb.append("-");
 		sb.append(couponNo3);
 		
-		System.out.println("쿠폰 연결한 값 " + sb);
+
 		
 		String couponNo = sb.toString();
 		
-		System.out.println("sbtoString : " + couponNo);
+
 
 		Coupon coupon = couponService.selectOneCouponByCouponNo(couponNo);
 				
 		if(coupon != null) {
 			if(memberNo.equals(coupon.getMemberNo()) || coupon.getMemberNo() == null) {
 				String couponNumber = coupon.getCouponNo();
-				System.out.println("couponNumber는 " + couponNumber );
+
 				
 				long expiredMilisecond = coupon.getCouponExpDate().getTime();
 				long currentMilisecond = System.currentTimeMillis();
 				
 				long canWeUseTime = expiredMilisecond - currentMilisecond;
-				System.out.println("양수인가 음수인가? : " + canWeUseTime);
+
 				
 				if(canWeUseTime >0) { 
 					//3. 응답 처리

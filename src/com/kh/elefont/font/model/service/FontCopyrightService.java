@@ -31,7 +31,7 @@ private FontCopyrightDao fontCopyrightDao = new FontCopyrightDao();
 	}
 
 	public FontCopyright selectOneFontCopyrightByFontNo(String fontNo) {
-		System.out.println("서비스단에 도착했나요?");
+
 		Connection conn = getConnection();
 		FontCopyright fontCopyright = fontCopyrightDao.selectOneFontCopyrightByFontNo(conn,fontNo);
 		close(conn);

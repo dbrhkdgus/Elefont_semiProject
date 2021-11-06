@@ -31,12 +31,13 @@ public class ShopSearchServlet extends HttpServlet {
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		String fontName = request.getParameter("fontName");
-		System.out.println("fontName@Servlet : " + fontName);
+
 		HttpSession session = request.getSession();
 		Member loginMember = (Member)session.getAttribute("loginMember");
 		// 랜딩 시, 기존 font 테이블 전부 조회
 		
 		List<Font> fontList = fontService.selectShopFontByFontName(fontName);
+
 		
 		List<Attachment> fontAttchmentList = attachmentService.selectAllFontAttachmentList();
 		List<String> likeList = null;

@@ -21,16 +21,5 @@ public class MemberLikeListServlet extends HttpServlet {
 		
 	}
 	
-//	/**
-//	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
-//	 */
-//	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-//		
-//		request.getRequestDispatcher("/WEB-INF/views/member/memberLikeList.jsp").forward(request, response);
-//
-//		
-//		
-//		
-//	}
 
 }

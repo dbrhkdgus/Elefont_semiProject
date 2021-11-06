@@ -63,7 +63,7 @@ public class CommunityPictureDetailServlet extends HttpServlet {
 					for(Cookie c : cookies) {
 						String name = c.getName();
 						String value = c.getValue();
-						System.out.println(name + " : " + value);
+
 						
 						if("communityView".equals(name)) {
 							communityViewValue = value;
@@ -76,7 +76,6 @@ public class CommunityPictureDetailServlet extends HttpServlet {
 					}
 				}
 				
-				System.out.printf("hasRead = %b, boardValue = %s%n", hasRead, communityViewValue);
 				
 				// 게시글을 처음 읽는 경우
 				if(!hasRead) {
@@ -91,7 +90,6 @@ public class CommunityPictureDetailServlet extends HttpServlet {
 				}
 				
 				
-				System.out.println("commNo@servlet : " + commNo);
 				
 				Community community = new Community();
 				community = communityService.selectOneCommunity(commNo);

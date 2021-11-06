@@ -25,7 +25,7 @@ public class MemberWithdrawalServlet extends HttpServlet {
 			throws ServletException, IOException {
 		// 1.사용자값
 		String memberId = request.getParameter("memberId");
-		System.out.println("탈퇴를 위한 멤버 아이디 잘 받아왔나요?" + memberId);
+
 
 		// 2. 로직처리
 		int result = memberService.withdrawalMember(memberId);

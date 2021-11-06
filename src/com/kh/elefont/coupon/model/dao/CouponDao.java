@@ -78,7 +78,7 @@ public class CouponDao {
 			else
 				sql = prop.getProperty("insertDiscountCoupon");
 		}
-		System.out.println("sql@couponDao = " + sql);
+
 		
 		try {
 			pstmt = conn.prepareStatement(sql);

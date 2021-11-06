@@ -71,7 +71,7 @@ public class ShopDetailServlet extends HttpServlet {
 					for(Cookie c : cookies) {
 						String name = c.getName();
 						String value = c.getValue();
-						System.out.println(name + " : " + value);
+
 						
 						if("fontView".equals(name)) {
 							fontViewValue = value;

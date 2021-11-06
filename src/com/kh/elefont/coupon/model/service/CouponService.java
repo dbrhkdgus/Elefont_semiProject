@@ -30,7 +30,7 @@ public class CouponService {
 			for(int i = 0; i< couponCnt; i++) {
 				String couponNo = "";
 				int result = couponDao.insertCoupon(conn,coupon);
-				System.out.println("result@couponService = " + result);
+
 				
 				if(!coupon.getMemberNo().isBlank())
 					couponNo = "Complete";

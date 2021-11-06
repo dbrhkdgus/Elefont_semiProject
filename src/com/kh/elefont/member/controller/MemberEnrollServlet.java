@@ -46,13 +46,13 @@ public class MemberEnrollServlet extends HttpServlet {
 		
 		//default 프로필 사진 넣어주기 시작
 		int defaultAttNo = 211;
-		Attachment attach = memberService.BringDefaultProfilePhoto(memberId,defaultAttNo);
+		Attachment attach = memberService.bringDefaultProfilePhoto(memberId,defaultAttNo);
 		
 		
 		////default 프로필 사진 넣어주기  끝
 		
 		Member member = new Member(null, memberId, password, memberName, memberGender, email, phone, birthday, job, null, null, null, memberRole, attach);
-		System.out.println("member@servlet" + member);
+
 		
 		
 		//업무 로직

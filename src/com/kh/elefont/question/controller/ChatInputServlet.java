@@ -29,7 +29,7 @@ public class ChatInputServlet extends HttpServlet {
 		
 		// 업무처리
 		int result = questionService.insertQuestion(qContent,qWriter);
-		System.out.println("result@questionServlet = " + result);
+
 		
 		//		등록한 질문을 불러와서 그 값을 담아 jsp append처리
 		Question question = questionService.selectLastQuestion();

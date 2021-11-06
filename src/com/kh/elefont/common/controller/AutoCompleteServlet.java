@@ -32,10 +32,8 @@ public class AutoCompleteServlet extends HttpServlet {
 		String searchName = request.getParameter("searchName");
 		
 		
-		//2. 업무 로직
-		
+		//2. 업무 로직		
 		List<String> fontNameList = fontService.selectAllFontName();
-		System.out.println("fontNameList@Servlet : " + fontNameList);
 		List<String> filteredList = new ArrayList<>();
 		for(String name : fontNameList) {
 			if(name.contains(searchName))

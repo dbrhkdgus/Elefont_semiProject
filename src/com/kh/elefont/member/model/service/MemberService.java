@@ -47,7 +47,7 @@ public class MemberService {
 	}
 
 	public Member selectOneMemberByEmail(String memberEmail) {
-		System.out.println("서비스");
+
 		Connection conn = getConnection();
 
 		Member member = memberDao.selectOneMemberByEmail(conn, memberEmail);
@@ -112,7 +112,7 @@ public class MemberService {
 
 
 	public int insertProfileImage(Attachment attach) {
-		System.out.println("서비스단에 왔나요?");
+
 		Connection conn = getConnection();
 		int result = 0;
 		
@@ -147,7 +147,7 @@ public class MemberService {
 	}
 
 	public int deletePrePhoto(String memberNo) {
-		System.out.println("서비스단에 memberNo : " + memberNo);
+
 		Connection conn = getConnection();
 		int delResult = 0;
 		
@@ -174,9 +174,9 @@ public class MemberService {
 	}
 
 
-	public Attachment BringDefaultProfilePhoto(String memberId, int defaultAttNo) {
+	public Attachment bringDefaultProfilePhoto(String memberId, int defaultAttNo) {
 		Connection conn = getConnection();
-		Attachment attach = memberDao.BringDefaultProfilePhoto(conn,defaultAttNo,memberId);
+		Attachment attach = memberDao.bringDefaultProfilePhoto(conn,defaultAttNo,memberId);
 		close(conn);
 
 		return attach;

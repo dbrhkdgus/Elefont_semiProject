@@ -24,7 +24,6 @@ public class ElefontWebsocketConfig extends Configurator{
 		userProp.put("memberNo", memberNo);
 		
 		
-		System.out.println("userProp = " + userProp);
 	}
 
 }

@@ -65,10 +65,7 @@ public class SellerFontAuditServlet extends HttpServlet {
 //		}
 			
 		attachmentList = attachmentService.selectAllFontAttachmentList();
-		System.out.println("approvalList@servlet : " + approvalList);
-		System.out.println("checkedList@servlet : " + checkedList);
-		System.out.println("auditList@servlet : " + auditList);
-		
+
 		
 		//3. view단 연결
 		request.setAttribute("attachmentList", attachmentList);

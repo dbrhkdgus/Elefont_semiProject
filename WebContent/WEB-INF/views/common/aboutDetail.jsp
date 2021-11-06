@@ -62,17 +62,17 @@
                                    <p><mark>김다현</mark></p>
                                    </div>
                                        <div class="left content about-detail-content" style="margin-top :40px;">
-                                       <p>안녕하세요.느리지만 매일 조금씩 성장해나가는 김다현입니다.<br />
+                                       <p>안녕하세요. 느리지만 매일 조금씩 성장해나가는 김다현입니다.<br />
 										엘리폰트 쇼핑몰 프로젝트를 통해
-										좌충우돌하며 여기저기 들이박았지만 <br />3레벨 정도 레벨업 했습니다. ㅎㅎ <br />
+										좌충우돌하며 여기저기 들이박았지만 3레벨 정도 레벨업 했습니다. ㅎㅎ <br />
 										또 팀원분들의 ※개그※와 따숩한 도움의 손길이 없었다면 들이박다가 고장 났을 거에요.
 
-										최고의 팀원들과 함께한 좌충우돌 레벨업의 추억, <br />여기 엘리폰트 프로젝트에 남깁니다.
+										최고의 팀원들과 함께한 좌충우돌 레벨업의 추억, 여기 엘리폰트 프로젝트에 남깁니다.
 										</p>
 										<p>Hello,
 I’m Darci Kim and I am an ever-growing individual, levelling up everyday :) <br />
 
-Despite the challenges I faced while developing Elefont, I’d like to think that I’ve levelled up from this experience! 
+Despite the challenges I faced while developing Elefont, I’d like to think that I’ve levelled up from this experience haha. 
 My teammates’ support and healthy supply of running jokes are what kept me going during this project. 
 And as I look back on our shared moments of struggles and successes, I present to you Elefont!</p>
                                    </div>
