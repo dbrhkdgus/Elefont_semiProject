@@ -87,8 +87,16 @@
     	}
 %>
                         <div class="test-item">
-                            <a href="<%= request.getContextPath()%>/shopDetail?fontNo=<%= font.getFontNo()%>"><div class="test-item-title" style="font-family: '<%= font.getFontFamily() %>'; font-size: 20px;"> <%= font.getFontName()%></div></a>
-                            <textarea name="" id="<%= font.getFontNo() %>" cols="30" rows="10" class="font-style" style="font-family: '<%= font.getFontFamily() %>';" placeholder="직접 타이핑해서 폰트를 확인해 보세요!"></textarea>
+                            <a href="<%= request.getContextPath()%>/shopDetail?fontNo=<%= font.getFontNo()%>">
+                            	<div class="test-item-title" style="font-family: '<%= font.getFontFamily() %>'; font-size: 20px;"> 
+                            		<%= font.getFontName()%>
+                            	</div>
+                            </a>
+                            <textarea name="" id="<%= font.getFontNo() %>" 
+                            	cols="30" rows="10" class="font-style" 
+                            	style="font-family: '<%= font.getFontFamily() %>';" 
+                            	placeholder="직접 타이핑해서 폰트를 확인해 보세요!">
+                            </textarea>
                             <div class="test-item-buttons"> 
 <%
 			if(loginMember != null && !likeList.isEmpty() && likeList.contains(font.getFontNo())){
@@ -128,21 +136,21 @@ $(".font-style").css("color", $(color).val());
 	});
 	
 	
-	/* 글씨체 체크박스  */
+/* 글씨체 체크박스  */
 	
-   		$("input[name='font-style']").change((e)=>{
-   			
-   	
-        	if($(e.target).is(':checked')){
+	$("input[name='font-style']").change((e)=>{
+  			
+  	
+       	if($(e.target).is(':checked')){
 <%if(!categoryList.isEmpty()){%>
-                 var categoryList = "<%=str %>";
-                location.href = `<%=request.getContextPath()%>/shop?category=\${categoryList}&add=\${$(e.target).val()}`;  
+			var categoryList = "<%=str %>";
+			location.href = `<%=request.getContextPath()%>/shop?category=\${categoryList}&add=\${$(e.target).val()}`;  
 <%}else{%>
-  				 location.href = `<%=request.getContextPath()%>/shop?add=\${$(e.target).val()}`; 		
+			location.href = `<%=request.getContextPath()%>/shop?add=\${$(e.target).val()}`; 		
 <%}%>                     
-         }else{
-        	  location.href = `<%=request.getContextPath()%>/shop?flag=\${$(e.target).val()}`;  
-         }
+        }else{
+			location.href = `<%=request.getContextPath()%>/shop?flag=\${$(e.target).val()}`;  
+        }
   }); 
   
 
@@ -258,6 +266,8 @@ $(".font-style").css("color", $(color).val());
 	$("#btn-search").click((e)=>{
 		location.href = `<%=request.getContextPath()%>/shopSearch?fontName=\${$(font_search).val()}`;
 	});
+
+/* 정렬 처리 */
 	$('#font-sort').change((e)=>{
 		location.href = `<%=request.getContextPath()%>/shop?sort=\${$('#font-sort').val()}`
 	});

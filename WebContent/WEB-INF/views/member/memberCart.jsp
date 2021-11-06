@@ -24,44 +24,38 @@ if(!memberCartList.isEmpty()){
      	<form name="cartFrm"  action="<%=request.getContextPath() %>/member/memberCartDelete" method="post" id="cartFrm" >
 <%
 for(MemberCartView mcv : memberCartList){
-	
 	int disresult = (int)(mcv.getFontPrice()-(mcv.getFontPrice() * mcv.getFontDiscountRate()));
 %>
   	
 	                 <div class="cart_content" style="width:'100%';">
-	                 
-	                		<input type="hidden" name="cart_no" value=<%=mcv.getCartNo() %>>
-	                		<input type="hidden" name="member_no" value=<%=mcv.getMemberNo()%>>
-	                		<input type="hidden" name="font_no" value=<%=mcv.getFontNo()%>>
-	                		<input type="hidden" name="font_name" value=<%=mcv.getFontName()%>>
-	                        <input type="checkbox" name="chk_cart_no" class="check-box" value=<%=mcv.getCartNo()%>>
-	                		<input type="hidden" name="font_price" value=<%=mcv.getFontPrice()%>>
+                		<input type="hidden" name="cart_no" value=<%=mcv.getCartNo() %>>
+                		<input type="hidden" name="member_no" value=<%=mcv.getMemberNo()%>>
+                		<input type="hidden" name="font_no" value=<%=mcv.getFontNo()%>>
+                		<input type="hidden" name="font_name" value=<%=mcv.getFontName()%>>
+                        <input type="checkbox" name="chk_cart_no" class="check-box" value=<%=mcv.getCartNo()%>>
+                		<input type="hidden" name="font_price" value=<%=mcv.getFontPrice()%>>
 
-	                        <img src="./images/shop_test_img.png" alt="" class="cart_content_img cart_content_margin">
-	                        <div class="cart_content_font_name cart_content_margin">
-	                            <h3>상품명</h3>
-	                            <div class="cart_font_name">
-	                                <p><%=mcv.getFontName() %></p>
-	                            </div>
-	                        </div>
-	                        <div class="cart_content_font_price cart_content_margin">
-	                            <h3>판매가</h3>
-	                            <div class="cart_font_price">
-	                                <p><%=mcv.getFontPrice() %>P</p>
-	                            </div>
-	                        </div>
-	                        
-	                        <div class="cart_content_pay_price">
-	                            <h3>주문금액</h3>
-	                            <p><%=mcv.getFontPrice() %>P</p>
-	                        </div>
-	                        <div class="cart_order  cart_content_margin">
-	                        	<input type="button" class="btn-delete-from-cart" value="삭제하기"/>
-	                            <!-- <button class="btn-delete-from-cart">삭제하기</button>   -->
-	                        </div>
-	                    </div>
-	         
-       
+                        <img src="./images/shop_test_img.png" alt="" class="cart_content_img cart_content_margin">
+                        <div class="cart_content_font_name cart_content_margin">
+                            <h3>상품명</h3>
+                            <div class="cart_font_name">
+                                <p><%=mcv.getFontName() %></p>
+                            </div>
+                        </div>
+                        <div class="cart_content_font_price cart_content_margin">
+                            <h3>판매가</h3>
+                            <div class="cart_font_price">
+                                <p><%=mcv.getFontPrice() %>P</p>
+                            </div>
+                        </div>
+                        <div class="cart_content_pay_price">
+                            <h3>주문금액</h3>
+                            <p><%=mcv.getFontPrice() %>P</p>
+                        </div>
+                        <div class="cart_order  cart_content_margin">
+                        	<input type="button" class="btn-delete-from-cart" value="삭제하기"/>
+                        </div>
+                    </div>
 <%
 }
 %>              
@@ -142,10 +136,10 @@ for(MemberCartView mcv : memberCartList){
 	
 	/* 선택한 단일 폰트 삭제 */
 	$(".btn-delete-from-cart").click((e) =>{
-		/* $(".payment_window").show(); */
+
 		if(confirm("해당 상품을 삭제하시겠습니까?") ){
-			/* console.log(`\${$(e.target).parent().parent().children("input").val()}`); */
-			location.href= `<%=request.getContextPath() %>/member/memberCartDelete?cartNo=\${$(e.target).parent().parent().children("input").val()}`; 
+			location.href= `<%=request.getContextPath() %>/member/memberCartDelete?
+					cartNo=\${$(e.target).parent().parent().children("input").val()}`; 
 		}
 	});
 	
@@ -157,11 +151,10 @@ for(MemberCartView mcv : memberCartList){
 		 var selectedElementsCnt = selectedElements.length;
 		 
 		 if(selectedElementsCnt > 0){
-			 
 			$(document.cartFrm).submit();
 		 }else{
 			 alert("선택된 상품이 없습니다.");
-			 return
+			 return;
 		 }
 		
 	});
