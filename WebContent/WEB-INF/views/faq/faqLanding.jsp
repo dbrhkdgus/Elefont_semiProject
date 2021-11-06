@@ -71,10 +71,17 @@ if(loginMember != null){
 
 
 <script>
+$(document).on('keydown', '.textareaMsg', function(e){
+	if(e.keyCode == 13 && !e.shiftkey){
+		e.preventDefault();
+		sendMsg();
+	}
+});
 $(".chatInputBtn").click((e)=>{
-	<%-- const receiver = "<%= loginMember.getMemberNo()%>"; --%>
-	/* if(!receiver) return; */
+	sendMsg();
+});
 
+const sendMsg = () =>{
 	const $frmData = $(document.chatInputFrm);
 	$.ajax({
 		url : "<%= request.getContextPath()%>/chat/chatInput",
@@ -95,9 +102,7 @@ $(".chatInputBtn").click((e)=>{
 		},
 		error:console.log			
 	});
-	
-	
-});
+};
 
 const appendMsg = (leftRight, name, content, time) =>{
 	const $msgdiv = $(`<li>
