@@ -67,23 +67,19 @@ public class OrderDao {
 		
 	}
 
-	public int insertOrderFont(Connection conn, Order order, String finalPrice) {
+	public int insertOrderFont(Connection conn, Order order, double finalPrice) {
 		PreparedStatement pstmt = null;
 		int result  = 0;
 		String sql = prop.getProperty("insertOrderFont");
-		double finalPriceD = Double.parseDouble(finalPrice);
-		System.out.println("finalPriceD : " + finalPriceD);
-//		insertOrderFont = insert into member_orders values(?,?,default,?)		
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
 			pstmt.setString(1, order.getOrderNo());
 			pstmt.setString(2, order.getMemberNo());
-			pstmt.setDouble(3, finalPriceD);
+			pstmt.setDouble(3, finalPrice);
 			
 			
 			result = pstmt.executeUpdate();
-			System.out.println("finalPrice 추가한 결과가 잘 나왔나요? : " +result);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -224,8 +220,6 @@ public class OrderDao {
 		List<Order> orderList = new ArrayList<>();
 		String sql = "";
 		String searchType = (String)param.get("searchType");
-//		String searchKeyword = (String)param.get("searchKeyword");
-//		System.out.println("param.get(\"searchKeyword\")@Dao : " + param.get("searchKeyword"));
 		
 		switch(searchType) {
 		case "orderNo" : 
@@ -266,7 +260,6 @@ public class OrderDao {
 				
 				orderList.add(orderExt);
 			}
-			System.out.println("fontList@Dao : " + orderList);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {
@@ -281,7 +274,6 @@ public class OrderDao {
 		PreparedStatement pstmt = null;
 		int result  = 0;
 		String sql = prop.getProperty("insertOrderFontWithoutFinalPrice");
-//		insertOrderFont = insert into member_orders values(?,?,default,?)		
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
@@ -290,7 +282,6 @@ public class OrderDao {
 			
 			
 			result = pstmt.executeUpdate();
-			System.out.println("finalPrice 추가한 결과가 잘 나왔나요? : " +result);
 		} catch (SQLException e) {
 			e.printStackTrace();
 		} finally {

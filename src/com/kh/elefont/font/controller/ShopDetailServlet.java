@@ -59,7 +59,6 @@ public class ShopDetailServlet extends HttpServlet {
 			//1.파리미터 fontNo
 			
 			String fontNo = request.getParameter("fontNo");
-			System.out.println("fontNoList@sevlet : " + fontNoList);
 			if(fontNoList.contains(fontNo)) {
 					
 				//2.비지니스로직 호출
@@ -133,7 +132,6 @@ public class ShopDetailServlet extends HttpServlet {
 				param.put("memberNo", memberNo);
 				
 				int likeValid = fontService.selectFontLike(param);
-				System.out.println("shopDetail@servlet " + likeValid);
 				
 				//3.view단 처리위임
 				request.setAttribute("font", font);

@@ -2,7 +2,6 @@ package com.kh.elefont.like_cart.controller;
 
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.Arrays;
 import java.util.List;
 
 import javax.servlet.ServletException;
@@ -14,8 +13,8 @@ import javax.servlet.http.HttpSession;
 
 import com.kh.elefont.common.MailSend;
 import com.kh.elefont.common.model.service.AttachmentService;
-import com.kh.elefont.common.model.vo.Attachment;
 import com.kh.elefont.font.model.service.FontService;
+import com.kh.elefont.font.model.vo.Font;
 import com.kh.elefont.like_cart.model.service.LikeCartService;
 import com.kh.elefont.member.model.service.MemberService;
 import com.kh.elefont.member.model.vo.Member;
@@ -99,6 +98,7 @@ public class MemberCartPurchaseDeleteServlet extends HttpServlet {
 					//업무
 					
 					String fontNo = fontService.selectFontNoByCartNo(cartNo);
+					Font f = fontService.selectOneFontByFontNo(fontNo);
 						
 						int result = 0;
 						
@@ -111,7 +111,7 @@ public class MemberCartPurchaseDeleteServlet extends HttpServlet {
 						
 						
 						fontNoList.add(fontNo);
-						result = orderService.insertOrderFont(order);
+						result = orderService.insertOrderFont(order, f.getFontPrice());
 						result = orderService.insertOrders(order);
 						
 						List<Order> oList = orderService.selectAllOrderListByOrderNo(order.getOrderNo());
@@ -139,22 +139,18 @@ public class MemberCartPurchaseDeleteServlet extends HttpServlet {
 				attachList.set(i, filepath  + "/" + filename);
 			}
 			
-				
-			
-				
-			
-			
-			new MailSend().purchaseMailSend(orderList, attachList);
-			session.setAttribute("msg", "구매가 완료되었습니다. 구매하신 폰트는 메일로 보내드렸습니다.");
+			try {
+				new MailSend().purchaseMailSend(orderList, attachList);
+				session.setAttribute("msg", "구매가 완료되었습니다. 구매하신 폰트는 메일로 보내드렸습니다.");
+			}catch(Exception e) {
+				session.setAttribute("msg", "결제 메일 발송에 오류가 발생했습니다. 죄송합니다.");
+				throw e;
+			}
 			
 		}
 		
-		
-		
 		String location = request.getHeader("Referer");
 		response.sendRedirect(location);
-		
-		
 		
 	}
 
