@@ -107,7 +107,7 @@ List<String> commLikeList = (List<String>) request.getAttribute("commLikeList");
 				</td>
 			</tr>
 		</table>
-			<input type="submit" value="가입" >
+			<input type="submit" value="가입"  id="enrollBtn1">		
 			<input type="button" value="취소" id="enrollXBtn2">
 	</form>
 	<script>
