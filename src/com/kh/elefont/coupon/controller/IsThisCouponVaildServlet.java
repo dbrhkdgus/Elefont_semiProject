@@ -30,7 +30,6 @@ public class IsThisCouponVaildServlet extends HttpServlet {
 		
 		String memberNo = request.getParameter("memberNoToReg");
 
-		
 		String couponNo1 = request.getParameter("coupon-no1");
 		String couponNo2 = request.getParameter("coupon-no2");
 		String couponNo3 = request.getParameter("coupon-no3");
@@ -42,12 +41,8 @@ public class IsThisCouponVaildServlet extends HttpServlet {
 		sb.append("-");
 		sb.append(couponNo3);
 		
-
-		
 		String couponNo = sb.toString();
 		
-
-
 		Coupon coupon = couponService.selectOneCouponByCouponNo(couponNo);
 				
 		if(coupon != null) {
