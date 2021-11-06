@@ -219,11 +219,11 @@ for(Community comm : communityList){
 <%
 if(loginMember != null && !commLikeList.isEmpty() && commLikeList.contains(comm.getCommNo())){
 %>
-						<i class="fas fa-heart" data-comm-no="<%=comm.getCommNo()%>"><span><%=comm.getCommLikeCount() %></span></i>
+						<i class="fas fa-heart" data-comm-no="<%=comm.getCommNo()%>" style= "color: #E64960;font-size: 23px; margin-right:10px;"><span><%=comm.getCommLikeCount() %></span></i>
 <%
 				}else{
 %>                                    
-						<i class="far fa-heart" data-comm-no="<%=comm.getCommNo()%>"><span><%=comm.getCommLikeCount() %></span></i>
+						<i class="far fa-heart" data-comm-no="<%=comm.getCommNo()%>" style= "color: #E64960;font-size: 23px; margin-right:10px;"><span><%=comm.getCommLikeCount() %></span></i>
 <%
 				}
 %>  
