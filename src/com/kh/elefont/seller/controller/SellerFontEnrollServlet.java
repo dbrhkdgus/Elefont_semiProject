@@ -132,8 +132,6 @@ public class SellerFontEnrollServlet extends HttpServlet {
 		
 		fontCategoryCode += _fontReleaseYear.replace("-", "");
 		
-		System.out.println("fontCategoryCode@serlvet = " + fontCategoryCode);
-		
 		FontCategory fontCategory = new FontCategory();
 		fontCategory.setCategoryCode(fontCategoryCode);
 		fontCategory.setCategoryReleaseYear(fontReleaseYear);

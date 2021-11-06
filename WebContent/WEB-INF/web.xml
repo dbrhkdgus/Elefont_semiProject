@@ -16,11 +16,11 @@
 		<location>/WEB-INF/views/common/404.jsp</location>
 	</error-page>
 	
-<!-- 	<error-page>
+ 	<error-page>
 		<exception-type>java.lang.Exception</exception-type>
 		<location>/WEB-INF/views/common/error.jsp</location>
 	</error-page> 
-   -->
+ 
   
   
   

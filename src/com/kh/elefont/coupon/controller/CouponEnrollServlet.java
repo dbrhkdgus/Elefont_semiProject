@@ -35,7 +35,7 @@ public class CouponEnrollServlet extends HttpServlet {
 		String _couponExpired = request.getParameter("couponExpired");
 		int couponExpired = Integer.parseInt(_couponExpired);
 		String memberId = request.getParameter("memberId");
-		System.out.println("memberId@servlet = " + memberId);
+
 		int couponCnt = Integer.parseInt(request.getParameter("couponCnt"));
 		String memberNo = "";
 		
@@ -56,7 +56,7 @@ public class CouponEnrollServlet extends HttpServlet {
 		// 쿠폰 등록 후 등록한 쿠폰 정보를 가져와 뷰단에 뿌려주어야 함
 		
 		List<String> couponList = couponService.insertCoupon(coupon, couponCnt);
-		System.out.println("couponList@servlet = " + couponList);
+
 		
 		//3. 응답 처리
 		response.setContentType("application/json; charset=utf-8");

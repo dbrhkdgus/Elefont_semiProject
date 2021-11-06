@@ -64,7 +64,7 @@ public class CommunityUpdateServlet extends HttpServlet {
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// 0. MultipartRequest 객체
-		System.out.println("커뮤니티수정doPost서블릿들어옴");
+
 			String saveDirectory = getServletContext().getRealPath("/upload/community");
 			int maxPostSize = 1024 * 1024 * 10; 
 			String encoding = "utf-8";
@@ -88,7 +88,7 @@ public class CommunityUpdateServlet extends HttpServlet {
 			FontService fontService = new FontService();
 			community.setFontNo(fontService.selectFontNoByFontName(font));
 			
-			System.out.println(community);
+
 			// 첨부파일
 			File f = multipartRequest.getFile("upFile");
 			Attachment attach = new Attachment();
@@ -99,7 +99,7 @@ public class CommunityUpdateServlet extends HttpServlet {
 			community.setAttach(attach);
 			
 			
-			System.out.println("community@servlet = " + community);
+
 			
 			// 2. 업무로직 
 			int result = 0;

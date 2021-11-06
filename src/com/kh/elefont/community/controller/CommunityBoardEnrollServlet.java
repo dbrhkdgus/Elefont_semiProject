@@ -92,10 +92,7 @@ public class CommunityBoardEnrollServlet extends HttpServlet {
 		
 		
 		community.setFontNo(fontService.selectFontNoByFontName(font));
-		
-		System.out.println("community@servlet : " + community);
-		
-		
+				
 		
 		// 3. 업무로직
 		int result = communityService.enrollBoard(community);
@@ -107,7 +104,7 @@ public class CommunityBoardEnrollServlet extends HttpServlet {
 			attach.setRenamedFilename(renamedFilename);
 			MemberService memberService = new MemberService();
 			attach.setMemberNo(loginMember.getMemberNo());
-			System.out.println(communityService.selectLastCommNo());
+
 			attach.setCommNo(communityService.selectLastCommNo());
 			// attachment insert sql
 			AttachmentService attachmentService = new AttachmentService();

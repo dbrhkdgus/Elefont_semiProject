@@ -17,15 +17,7 @@ public class AboutServlet extends HttpServlet {
 	/**
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
-	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//1.사용자입력값
-		
-		
-		//2.업무?
-				
-				
-		//3.뷰단
-		
+	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {		
 		request.getRequestDispatcher("/WEB-INF/views/common/aboutLanding.jsp").forward(request, response);
 	}
 

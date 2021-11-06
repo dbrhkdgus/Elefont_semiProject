@@ -19,8 +19,6 @@ public class EditProfilePhotoServlet extends HttpServlet {
 		String memberNo = request.getParameter("memberNo");
 		String profilePhotoPath = request.getParameter("profilePhotoPath");
 		
-		System.out.println("memberNO 확인해보자 : " + memberNo);
-		System.out.println("profilePhotoPath확인해보자 : " + profilePhotoPath);
 		
 		request.setAttribute("profilePhotoPath", profilePhotoPath);
 		

@@ -26,12 +26,12 @@ public class CheckIdDuplicateServlet extends HttpServlet {
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
 		// 1. 사용자 입력값
 		String memberId = request.getParameter("memberId");
-	    System.out.println("memberId@servlet = " + memberId);
+
 	    
 	    // 2.업무로직
         Member member = memberService.selectOneMember(memberId);
         boolean available = member == null;
-        System.out.println("available@servlet = " + available);
+
         
         // 3.view단처리
         request.setAttribute("available", available);

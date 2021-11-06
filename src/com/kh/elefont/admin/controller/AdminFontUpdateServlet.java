@@ -37,13 +37,11 @@ public class AdminFontUpdateServlet extends HttpServlet {
 			double fontDiscountRate = Double.parseDouble(fontDiscountRateArr[i]);
 			fontArr[i] = new Font(fontNo, null, null, null, fontPrice, fontDiscountRate, 0,0,0,null, fontApproval, null, null, null);
 			
-//			System.out.println(fontArr[i]);
 		}
 		
 		//2. 업무 로직
 		int result = fontService.updateFont(fontArr);
 		String msg = result > 0? "폰트 관리 사항 업데이트 완료": "폰트 관리 사항 업데이트 실패";
-//		System.out.println(msg);
 		
 		//3. sendRedirect
 		request.getSession().setAttribute("msg", msg);

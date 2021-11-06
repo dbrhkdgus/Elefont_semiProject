@@ -2100,8 +2100,13 @@ p { padding: 5px 0; }
     color: cornsilk;
 }
 
+.about span{
+	margin-bottom :10px;
+    font-size: 5.5rem;
+    font-family: 'Recipekorea';
+}
+
 .about{
-    display: flex;
     margin-top: 40px;
     margin-bottom: 20px;
     text-align: center;
@@ -3712,7 +3717,7 @@ p { padding: 5px 0; }
 
 
 .rightBtn{
-	background:#26BF5C;
+	background:#A0BFB5;
 	color:#fff;
 	border:none;
 	position:relative;
@@ -3725,6 +3730,7 @@ p { padding: 5px 0; }
     top: 5px;
     line-height: 18px;
     border-radius : 7px;
+    font-family: 'NanumSquareRound';
 }
 .aboutdetail.rightinner >button:hover{
 	background: #fff;
@@ -3748,6 +3754,7 @@ p { padding: 5px 0; }
     width: 250px;
     border-radius:50%;
     height: 250px;
+    border: 4px solid #005A3C;
 }
 
 
@@ -3757,6 +3764,12 @@ p { padding: 5px 0; }
     border: 1px solid #000;
    
 }
+
+.left.image p{
+	 font-family: 'NanumSquareRound';
+	 font-size:2rem;
+	
+} 
 
 
 .aboutdetail.leftbox>button{

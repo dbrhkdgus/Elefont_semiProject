@@ -26,7 +26,7 @@ public class MemberDao {
 		  	
 		  
 	        String filepath = MemberDao.class.getResource("/member/member-query.properties").getPath();
-//	        System.out.println(filepath);
+
 	        try {
 	            prop.load(new FileReader(filepath));
 	        } catch (IOException e) {
@@ -68,7 +68,7 @@ public class MemberDao {
 				
 				member = new Member(memberNo, memberId, memberPwd, memberName, memberGender, memberEmail, memberPhone, memberBirthday, memberJob, memberPoint, enrollDate, memberQuitYN, memberRole, null);
 			}
-			System.out.println(member);
+
 			
 			
 		} catch (SQLException e) {
@@ -87,7 +87,7 @@ public class MemberDao {
 		PreparedStatement pstmt = null;
 		int result = 0;
 		String sql = prop.getProperty("insertMember");
-		System.out.println(sql);
+
 		
 		try {
 			pstmt = conn.prepareStatement(sql);
@@ -118,12 +118,12 @@ public class MemberDao {
 		ResultSet rset = null;
 		String sql = prop.getProperty("selectOneMemberByEmail");
 		Member member = null;
-		System.out.println("memberDao@"+memberEmail);
+
 		
 		try {
 			// 1.PreparedStatment객체 생성 및 미완성쿼리 값대입
 			pstmt = conn.prepareStatement(sql);
-			System.out.println(sql);
+
 			pstmt.setString(1, memberEmail);
 			
 			// 2.실행 & ResultSet객체 리턴
@@ -148,7 +148,7 @@ public class MemberDao {
 				
 				member = new Member(memberNo, memberId, memberPwd, memberName, memberGender, memberEmail, memberPhone, memberBirthday, memberJob, memberPoint, enrollDate, memberQuitYN, memberRole, null);
 			}
-			System.out.println(member);
+
 			
 			
 		} catch (SQLException e) {
@@ -237,7 +237,7 @@ public class MemberDao {
 		try {
 			// 1.PreparedStatment객체 생성 및 미완성쿼리 값대입
 			pstmt = conn.prepareStatement(sql);
-			System.out.println(sql);
+
 			pstmt.setString(1, memberNo);
 			
 			// 2.실행 & ResultSet객체 리턴
@@ -262,8 +262,7 @@ public class MemberDao {
 				
 				member = new Member(memberNo, memberId, memberPwd, memberName, memberGender, memberEmail, memberPhone, memberBirthday, memberJob, memberPoint, enrollDate, memberQuitYN, memberRole, null);
 			}
-			System.out.println(member);
-			
+	
 			
 		} catch (SQLException e) {
 			e.printStackTrace();
@@ -330,7 +329,7 @@ public class MemberDao {
 
 
 	public int insertProfileImage(Connection conn, Attachment attach) {
-		System.out.println("디에오단에 왔나요?");
+
 		PreparedStatement pstmt = null;
 		int result = 0;
 		String sql = prop.getProperty("insertProfileImage");
@@ -339,7 +338,7 @@ public class MemberDao {
 		//= insert into attachment values(seq_attachment_no.nextval,?,null,?,?,default,null)
 
 		try {
-			System.out.println(sql);
+
 			pstmt=conn.prepareStatement(sql);
 			pstmt.setString(1, attach.getMemberNo());
 			pstmt.setString(2, attach.getOriginalFilename());
@@ -347,7 +346,7 @@ public class MemberDao {
 			
 			result = pstmt.executeUpdate();
 			
-			System.out.println("executeUpdate 날린 직후 result : " + result);
+
 			
 		}catch(SQLException e) {
 			e.printStackTrace();
@@ -471,7 +470,7 @@ public class MemberDao {
 			pstmt.setString(1, memberNo);
 			
 			rset = pstmt.executeQuery();
-			System.out.println("rset 체크 : " + rset);
+
 			
 			if(rset.next()) {
 				attach = new Attachment();
@@ -484,7 +483,6 @@ public class MemberDao {
 				attach.setRegDate(rset.getDate("reg_date"));
 				attach.setFontNo(rset.getString("font_no"));
 			}
-			System.out.println("Dao에서 attach를 잘 받았나요?" + attach);
 		
 		}catch(SQLException e) {
 			e.printStackTrace();
@@ -497,11 +495,11 @@ public class MemberDao {
 	}
 
 
-	public Attachment BringDefaultProfilePhoto(Connection conn, int defaultAttNo, String memberId) {
+	public Attachment bringDefaultProfilePhoto(Connection conn, int defaultAttNo, String memberId) {
 		PreparedStatement pstmt = null;
 		ResultSet rset = null;
 		Attachment attach = null;
-		String sql = prop.getProperty("BringDefaultProfilePhoto");
+		String sql = prop.getProperty("bringDefaultProfilePhoto");
 		//BringDefaultProfilePhoto = select * from attachment where att_no =?
 		
 		
@@ -515,7 +513,7 @@ public class MemberDao {
 			rset = pstmt.executeQuery();
 						
 			  String currentDate = new SimpleDateFormat("yy-MM-dd").format(new Date(System.currentTimeMillis()));
-			  System.out.println("오늘의 날짜 : "+ currentDate);
+
 		
 			
 			if(rset.next()) {
@@ -529,7 +527,7 @@ public class MemberDao {
 				attach.setRegDate(rset.getDate("reg_date"));
 				attach.setFontNo(rset.getString("font_no"));
 			}
-			System.out.println("Dao에서 attach를 잘 받았나요?" + attach);
+
 		
 		}catch(SQLException e) {
 			e.printStackTrace();
@@ -543,7 +541,7 @@ public class MemberDao {
 
 
 	public int insertDefaultPhoto(Connection conn, String memberNo) {
-		System.out.println("memberNo을 디에이오에서 " + memberNo);
+
 		PreparedStatement pstmt = null;
 		int result = 0;
 		String sql = prop.getProperty("insertDefaultPhoto");
@@ -617,11 +615,7 @@ public class MemberDao {
 		PreparedStatement pstmt = null;
 		int result = 0;
 		String sql = prop.getProperty("updateDefaultImage");
-		System.out.println("sql확인 : " + sql);
-		System.out.println(" memberNo확인 : " + memberNo);
-		
-		// updateDefaultImage = update attachment set original_filename = 'defaultProfilePhoto.png', 
-		// renamed_filename = '20211029_224039394_100.png' where memberNo =? 
+
 		
 		try {
 			
@@ -629,7 +623,7 @@ public class MemberDao {
 			pstmt.setString(1, memberNo);
 			
 			result = pstmt.executeUpdate();
-			System.out.println("기본사진으로 업데이트 잘 되었나요? : " + result);
+
 			
 		}catch(SQLException e) {
 			e.printStackTrace();
@@ -644,7 +638,7 @@ public class MemberDao {
 		PreparedStatement pstmt = null;
 		int result = 0;
 		String sql = prop.getProperty("updateCouponPoint");
-		System.out.println("dao에서 받은 쿠폰 충전 금액은 :" + couponPrice);
+
 		//updateCouponPoint = update member set member_point = member_point + ? 
 		//where member_no =?
 		

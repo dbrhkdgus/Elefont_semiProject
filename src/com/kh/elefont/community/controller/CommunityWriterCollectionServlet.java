@@ -45,7 +45,7 @@ public class CommunityWriterCollectionServlet extends HttpServlet {
 		List<Attachment> attachmentList = new ArrayList<>();
 		Member member = memberService.selectOneMemberByMemberNo(memberNo);
 		Attachment profileAttachment = attachmentService.selectProfileAttachment(memberNo);
-		System.out.println("profileAttachment@servlet : " + profileAttachment);
+
 		communityList = communityService.selectAllCommListByMemberNo(memberNo);
 		attachmentList = attachmentService.selectAllCommAttachmentListByMemberNo(memberNo);
 		

@@ -22,16 +22,9 @@ public class DeleteUpdateRepServlet extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		System.out.println("DeleteUpdateRep 도착----------------------------");
 		String type = request.getParameter("type");
 		String repNo = request.getParameter("rep_no");
-		
-		
-		System.out.println("---------------------------------------");
-		System.out.println("type@servlet : " + type);
-		System.out.println("repNo@servlet : " + repNo);
-		
-		System.out.println("---------------------------------------");
+
 		// 업무로직
 		int result = 0;
 		switch(type) {

@@ -42,8 +42,6 @@ public class AdminFontFinderServlet extends HttpServlet {
 		//1.사용자 입력값 처리
 		String searchType = request.getParameter("searchType");
 		String searchKeyword = request.getParameter("searchKeyword");
-		System.out.println("searchType" + searchType);
-		System.out.println("searchKeyword" + searchKeyword);
 		List<Font> fontList = null;
 		
 		
@@ -59,9 +57,7 @@ public class AdminFontFinderServlet extends HttpServlet {
 		}else {
 			fontList = fontService.selectSerchFont(param);
 		}
-		System.out.println("fontList@servlet : " + fontList);
-		
-		
+				
 		HttpSession session = request.getSession();
 		Member loginMember = (Member)session.getAttribute("loginMember");
 		Attachment profile = attachmentService.selectProfileAttachment(loginMember.getMemberNo());
