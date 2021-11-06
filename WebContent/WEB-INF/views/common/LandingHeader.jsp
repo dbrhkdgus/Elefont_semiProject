@@ -38,7 +38,7 @@
 
     <!-- Google Web Fonts  -->
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Poppins:400,300,500,600,700">
-	
+	<link href="https://fonts.googleapis.com/css2?family=Dancing+Script&display=swap" rel="stylesheet">
 	<script src="<%=request.getContextPath() %>/js/jquery.min.js"></script>
 	
 

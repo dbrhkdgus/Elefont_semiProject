@@ -1,4 +1,11 @@
 @font-face {
+    font-family: 'Recipekorea';
+    src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/Recipekorea.woff') format('woff');
+    font-weight: normal;
+    font-style: normal;
+}
+
+@font-face {
     font-family: 'MapoAgape';
     src: url('https://cdn.jsdelivr.net/gh/projectnoonnu/noonfonts_2001@1.1/MapoAgapeA.woff') format('woff');
     font-weight: normal;
@@ -2079,15 +2086,54 @@ p { padding: 5px 0; }
 /* faq-end */
 
 /*어바웃 about 페이지 이윤희*/
-.about>span{
-    font-size: 5rem;
-    font-family: 'NanumSquareRound';
+.about p{
+	margin-bottom :10px;
+    font-size: 5.5rem;
+    font-family: 'Recipekorea';
+    -webkit-text-stroke: 1px  #000;
+    color: cornsilk;
 }
+
 .about{
+    display: flex;
     margin-top: 40px;
     margin-bottom: 20px;
     text-align: center;
+    justify-content: center;
 }
+.underlined-text {
+  font-size:100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.underlined {
+  display: block;
+  float:left;
+  position:relative;
+}
+.underlined:before {
+  display: block;
+  content:'';
+  position:absolute;
+  width:100%;
+  bottom:0;
+  left:0;
+  background:#f66;
+  z-index:-1;
+}
+.underlined.first:before {
+  height:25px;
+  background:#A0BFB5;
+  
+}
+.underlined.second:before {
+  height:25px;
+  background:#005A3C;
+}
+
+
+
 
 
 .about.content>span{
@@ -3689,11 +3735,18 @@ p { padding: 5px 0; }
     width: 250px;
 }
 
+.left.image img{
+    width: 250px;
+    border-radius:50%;
+    height: 250px;
+}
+
 
 .aboutdetail.leftbox>img{
     width: 250px;
     height: 250px;
     border: 1px solid #000;
+   
 }
 
 
