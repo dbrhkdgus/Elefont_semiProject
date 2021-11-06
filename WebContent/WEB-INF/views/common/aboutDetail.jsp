@@ -109,7 +109,7 @@ And as I look back on our shared moments of struggles and successes, I present t
                                        <div class="left content about-detail-content">
                                        <p>
                                        안녕하세요? 팀프로듀스 404에서 0을 맡고 있습니다. <br />
-                                       훌륭한 팀장,팀원 분들 만나서	프로젝트가 순조롭게 흘러가는 걸  보고 <br />
+                                       훌륭한 팀장,팀원 분들 만나서	프로젝트가<br /> 순조롭게 흘러가는 걸  보고 <br />
 										팀웍이란 이런거구나 하고 느꼈습니다.
                                        </p>
                                        
