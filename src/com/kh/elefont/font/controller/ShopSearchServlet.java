@@ -37,7 +37,7 @@ public class ShopSearchServlet extends HttpServlet {
 		// 랜딩 시, 기존 font 테이블 전부 조회
 		
 		List<Font> fontList = fontService.selectShopFontByFontName(fontName);
-		System.out.println("fontList@servlet : " + fontList);
+		
 		List<Attachment> fontAttchmentList = attachmentService.selectAllFontAttachmentList();
 		List<String> likeList = null;
 		
